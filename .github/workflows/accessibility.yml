@@ -1,0 +1,24 @@
+name: accessibility
+
+# Workstream I gate: WCAG-oriented ARIA audit of the studio base component
+# library via axe (vitest-axe + jsdom). jsdom can't do layout, so colour
+# contrast is checked visually in Storybook (addon-a11y); this catches the
+# ARIA-surface regressions — missing names, roles, and labels.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  a11y:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: studio axe audit
+        working-directory: studio
+        run: npm ci && npm run test:a11y

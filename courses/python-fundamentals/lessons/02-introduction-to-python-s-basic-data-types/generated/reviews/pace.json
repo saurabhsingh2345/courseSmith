@@ -1,0 +1,58 @@
+{
+  "target_wpm": 150,
+  "tolerance": 0.15,
+  "sections": [
+    {
+      "id": "what-are-data-types",
+      "words": 97,
+      "duration_ms": 39170,
+      "wpm": 148.58309931069695,
+      "deviation": -0.009446004595353656,
+      "flagged": false
+    },
+    {
+      "id": "understanding-strings",
+      "words": 72,
+      "duration_ms": 30007,
+      "wpm": 143.9664078381711,
+      "deviation": -0.04022394774552595,
+      "flagged": false
+    },
+    {
+      "id": "exploring-integers-and-floats",
+      "words": 69,
+      "duration_ms": 28786,
+      "wpm": 143.8199124574446,
+      "deviation": -0.04120058361703608,
+      "flagged": false
+    },
+    {
+      "id": "what-are-booleans",
+      "words": 58,
+      "duration_ms": 24083,
+      "wpm": 144.5002698999294,
+      "deviation": -0.036664867333803954,
+      "flagged": false
+    },
+    {
+      "id": "overview-of-data-types",
+      "words": 54,
+      "duration_ms": 20337,
+      "wpm": 159.3155332644933,
+      "deviation": 0.06210355509662198,
+      "flagged": false
+    },
+    {
+      "id": "next-steps-in-python",
+      "words": 46,
+      "duration_ms": 14887,
+      "wpm": 185.39665479948948,
+      "deviation": 0.2359776986632632,
+      "flagged": true
+    }
+  ],
+  "flagged": [
+    "next-steps-in-python"
+  ],
+  "checked_at": "2026-07-26T13:47:50.950117Z"
+}

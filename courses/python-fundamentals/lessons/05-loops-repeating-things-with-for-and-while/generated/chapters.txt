@@ -1,0 +1,6 @@
+0:00 What are loops?
+0:32 Using for loops
+1:03 Understanding while loops
+1:34 When to use each loop
+2:00 Practice with loops
+2:25 Whats Next

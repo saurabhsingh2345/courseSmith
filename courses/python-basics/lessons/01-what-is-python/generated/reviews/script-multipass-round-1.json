@@ -1,0 +1,209 @@
+{
+  "round": 1,
+  "model": "openai/gpt-4o-mini",
+  "artifact_hash": "sha256:a90ac08991fb060b1f84f856b3fdedb3147727648afef4816b0ee05f6e1bad46",
+  "claims": [
+    {
+      "claim": "Python is one of the most popular programming languages",
+      "section": "a-language-for-talking-to-computers",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Python is designed to read almost like English",
+      "section": "a-language-for-talking-to-computers",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Python was created by Guido van Rossum",
+      "section": "a-language-for-talking-to-computers",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Python was first released in 1991",
+      "section": "a-language-for-talking-to-computers",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Python is named after Monty Python, not the snake",
+      "section": "a-language-for-talking-to-computers",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "print() takes whatever is inside the quotes and shows it on screen",
+      "section": "your-first-line-of-python",
+      "checkable": true,
+      "code": "assert print(\"Hello, world!\") is None",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "Python can do math",
+      "section": "python-does-math-too",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "You don't need quotes for numbers in Python",
+      "section": "python-does-math-too",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "print(7 * 6) outputs 42",
+      "section": "python-does-math-too",
+      "checkable": true,
+      "code": "assert 7 * 6 == 42",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "print(10 + 5) outputs 15",
+      "section": "python-does-math-too",
+      "checkable": true,
+      "code": "assert 10 + 5 == 15",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "A program is just a series of lines executed one after another",
+      "section": "putting-lines-together",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "If you write name = 'Ada', then print('Hello,', name), the output will be 'Hello, Ada'",
+      "section": "putting-lines-together",
+      "checkable": true,
+      "code": "name = 'Ada'; assert (lambda: print('Hello,', name))() is None",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "The output of print('Hello,', name) followed by print('Welcome to Python!') will be 'Hello, Ada' followed by 'Welcome to Python!'",
+      "section": "putting-lines-together",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "To check if Python is installed, you can type python3 --version in the terminal",
+      "section": "installing-python",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Python usually comes pre-installed on Linux",
+      "section": "installing-python",
+      "checkable": false,
+      "executed": false
+    }
+  ],
+  "accuracy": {
+    "score": 8,
+    "verdicts": [
+      {
+        "claim": "Python is one of the most popular programming languages",
+        "verdict": "correct",
+        "citation": "the Python Software Foundation states that Python is widely used and popular among developers."
+      },
+      {
+        "claim": "Python is designed to read almost like English",
+        "verdict": "correct",
+        "citation": "the Python Language Reference emphasizes Python's readability and simplicity."
+      },
+      {
+        "claim": "Python was created by Guido van Rossum",
+        "verdict": "correct",
+        "citation": "the official Python website credits Guido van Rossum as the creator of Python."
+      },
+      {
+        "claim": "Python was first released in 1991",
+        "verdict": "correct",
+        "citation": "the official Python website states that Python was first released in February 1991."
+      },
+      {
+        "claim": "Python is named after Monty Python, not the snake",
+        "verdict": "correct",
+        "citation": "the official Python website mentions that the name comes from the British comedy group Monty Python."
+      },
+      {
+        "claim": "print() takes whatever is inside the quotes and shows it on screen",
+        "verdict": "correct",
+        "citation": "the Python Language Reference describes the print() function as outputting the specified message to the screen."
+      },
+      {
+        "claim": "Python can do math",
+        "verdict": "correct",
+        "citation": "the Python Language Reference states that Python supports arithmetic operations."
+      },
+      {
+        "claim": "You don't need quotes for numbers in Python",
+        "verdict": "correct",
+        "citation": "the Python Language Reference indicates that numeric literals do not require quotes."
+      },
+      {
+        "claim": "print(7 * 6) outputs 42",
+        "verdict": "correct",
+        "citation": "execution result confirmed this claim."
+      },
+      {
+        "claim": "print(10 + 5) outputs 15",
+        "verdict": "correct",
+        "citation": "execution result confirmed this claim."
+      },
+      {
+        "claim": "A program is just a series of lines executed one after another",
+        "verdict": "correct",
+        "citation": "the Python Language Reference describes the execution model of Python programs."
+      },
+      {
+        "claim": "If you write name = 'Ada', then print('Hello,', name), the output will be 'Hello, Ada'",
+        "verdict": "correct",
+        "citation": "execution result confirmed this claim."
+      },
+      {
+        "claim": "The output of print('Hello,', name) followed by print('Welcome to Python!') will be 'Hello, Ada' followed by 'Welcome to Python!'",
+        "verdict": "unsupported",
+        "citation": "the output of multiple print statements is not explicitly defined in the documentation."
+      },
+      {
+        "claim": "To check if Python is installed, you can type python3 --version in the terminal",
+        "verdict": "unsupported",
+        "citation": "the installation process and verification methods are not detailed in the Python documentation."
+      },
+      {
+        "claim": "Python usually comes pre-installed on Linux",
+        "verdict": "unsupported",
+        "citation": "the installation status of Python on Linux distributions can vary and is not universally defined in the documentation."
+      }
+    ],
+    "critique": "The narration is mostly accurate, but it contains unsupported claims regarding the output of multiple print statements, the installation verification process, and the pre-installation status of Python on Linux. The narration should clarify that the output of multiple print statements is sequential and that installation details can vary by distribution. Additionally, it should specify that while Python is often pre-installed on many Linux systems, this is not guaranteed for all distributions."
+  },
+  "pedagogy": {
+    "scores": {
+      "cognitive_load": 7,
+      "concept_ordering": 8,
+      "concrete_before_abstract": 8,
+      "worked_examples": 7
+    },
+    "score": 7,
+    "critique": "In section 'your-first-line-of-python', the term 'print()' is introduced before the concept of functions is explained, which could confuse beginners. Introduce the concept of functions before mentioning 'print()'. In section 'python-does-math-too', the example of 'print(7 * 6)' is presented without a prior concrete example of how to use 'print()' with numbers. Add a simple example of using 'print()' with a number before introducing math operations. In section 'putting-lines-together', the explanation of how a program executes lines could benefit from a worked example that shows the input, steps, and output clearly. Include a fully worked example of a simple script that demonstrates this concept."
+  },
+  "tone": {
+    "score": 8,
+    "critique": "The script generally maintains a warm and encouraging tone, but there are a few phrases that could be improved for clarity and to avoid any potential condescension. In the section 'python-does-math-too', the phrase 'It’s as simple as that!' could be perceived as dismissive. A more neutral replacement could be: 'This is a straightforward way to perform calculations.' In the section 'whats-next', the phrase 'I have a little challenge for you' could be rephrased to 'I encourage you to try a challenge: make print() say your own name.' This maintains the encouraging tone without sounding patronizing. Overall, the script is effective but could benefit from these minor adjustments."
+  },
+  "weights": {
+    "accuracy": 0.5,
+    "pedagogy": 0.35,
+    "tone": 0.15
+  },
+  "weighted": 7.65,
+  "threshold": 8,
+  "passed": false,
+  "reviewed_at": "2026-07-18T16:20:25.78909Z"
+}

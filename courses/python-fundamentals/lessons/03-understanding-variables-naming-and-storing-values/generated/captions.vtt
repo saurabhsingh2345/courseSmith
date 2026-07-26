@@ -1,0 +1,218 @@
+WEBVTT
+
+1
+00:00:00.031 --> 00:00:02.414
+A variable is like a container for storing
+
+2
+00:00:02.474 --> 00:00:03.215
+data values.
+
+3
+00:00:03.856 --> 00:00:05.097
+It has a name that you use to
+
+4
+00:00:05.178 --> 00:00:07.040
+reference the value stored inside.
+
+5
+00:00:07.681 --> 00:00:09.383
+Variables can hold different types of
+
+6
+00:00:09.423 --> 00:00:11.406
+data, like numbers or text.
+
+7
+00:00:11.966 --> 00:00:13.308
+Let's look at that in a picture.
+
+8
+00:00:13.829 --> 00:00:15.651
+Here, you can see how a variable has
+
+9
+00:00:15.691 --> 00:00:16.792
+a name and a value.
+
+10
+00:00:17.373 --> 00:00:19.216
+The name helps us identify what we're
+
+11
+00:00:19.236 --> 00:00:19.736
+working with.
+
+12
+00:00:20.237 --> 00:00:22.179
+And the value is the actual data we
+
+13
+00:00:22.219 --> 00:00:23.541
+want to keep track of.
+
+14
+00:00:24.162 --> 00:00:26.586
+When naming variables, it's helpful to use
+
+15
+00:00:26.647 --> 00:00:28.730
+descriptive names that reflect the value
+
+16
+00:00:28.770 --> 00:00:29.111
+stored.
+
+17
+00:00:29.792 --> 00:00:31.355
+You can start with a letter or an
+
+18
+00:00:31.415 --> 00:00:34.080
+underscore, and then use letters, numbers,
+
+19
+00:00:34.301 --> 00:00:35.583
+or underscores after that.
+
+20
+00:00:36.064 --> 00:00:38.348
+Just remember, you can't use spaces or
+
+21
+00:00:38.368 --> 00:00:40.532
+other special characters, except for
+
+22
+00:00:40.632 --> 00:00:41.193
+underscores.
+
+23
+00:00:41.955 --> 00:00:43.938
+This way, your variable names will be
+
+24
+00:00:44.018 --> 00:00:46.002
+clear and easy to understand.
+
+25
+00:00:46.690 --> 00:00:48.412
+You can create a variable using the
+
+26
+00:00:48.472 --> 00:00:50.694
+assignment operator, which is the equals
+
+27
+00:00:50.794 --> 00:00:52.356
+sign '='.
+
+28
+00:00:52.356 --> 00:00:54.478
+For example, let's say we want to create
+
+29
+00:00:54.518 --> 00:00:57.001
+a variable called 'my_variable' and store
+
+30
+00:00:57.021 --> 00:00:58.022
+the value 10 in it.
+
+31
+00:00:58.543 --> 00:01:00.885
+We write it like this: my_variable equals
+
+32
+00:01:00.905 --> 00:01:01.186
+10.
+
+33
+00:01:01.706 --> 00:01:04.109
+Now, let's see how this looks in code.
+
+34
+00:01:04.129 --> 00:01:05.791
+When we run this code, we can print
+
+35
+00:01:05.831 --> 00:01:07.112
+the value of 'my_variable'.
+
+36
+00:01:07.713 --> 00:01:08.553
+It shows us 10.
+
+37
+00:01:09.134 --> 00:01:11.837
+This is how we store values in variables.
+
+38
+00:01:12.340 --> 00:01:14.262
+To use the value stored in a variable,
+
+39
+00:01:14.563 --> 00:01:16.004
+you simply reference its name.
+
+40
+00:01:16.665 --> 00:01:19.108
+For instance, if we have 'my_variable' set
+
+41
+00:01:19.128 --> 00:01:21.270
+to 10, we can update it by adding
+
+42
+00:01:21.290 --> 00:01:21.951
+5 to it.
+
+43
+00:01:22.412 --> 00:01:25.055
+We write: my_variable equals my_variable
+
+44
+00:01:25.115 --> 00:01:25.715
+plus 5.
+
+45
+00:01:26.196 --> 00:01:28.318
+When we print 'my_variable' again, it
+
+46
+00:01:28.399 --> 00:01:29.260
+shows us 15.
+
+47
+00:01:29.300 --> 00:01:31.782
+This way, you can see how easy it
+
+48
+00:01:31.802 --> 00:01:34.045
+is to update values in variables.
+
+49
+00:01:34.767 --> 00:01:36.938
+Now that you know about variables, next
+
+50
+00:01:36.959 --> 00:01:39.110
+you'll explore data types in more detail.
+
+51
+00:01:39.834 --> 00:01:41.945
+After that, we'll learn about lists and
+
+52
+00:01:41.985 --> 00:01:43.513
+how to store multiple values.
+
+53
+00:01:44.217 --> 00:01:46.268
+Understanding variables will help you as
+
+54
+00:01:46.328 --> 00:01:48.439
+you continue your programming journey.
+

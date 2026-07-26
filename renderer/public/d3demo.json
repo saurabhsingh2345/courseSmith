@@ -1,0 +1,26 @@
+{
+  "kind": "d3",
+  "layout": "tree",
+  "title": "Python's core data types",
+  "nodes": [
+    {"id": "obj", "label": "object", "group": 0},
+    {"id": "num", "label": "Numbers", "group": 1},
+    {"id": "seq", "label": "Sequences", "group": 1},
+    {"id": "map", "label": "Mapping", "group": 1},
+    {"id": "int", "label": "int", "group": 2},
+    {"id": "float", "label": "float", "group": 2},
+    {"id": "str", "label": "str", "group": 2},
+    {"id": "list", "label": "list", "group": 2},
+    {"id": "dict", "label": "dict", "group": 3}
+  ],
+  "edges": [
+    {"from": "obj", "to": "num"},
+    {"from": "obj", "to": "seq"},
+    {"from": "obj", "to": "map"},
+    {"from": "num", "to": "int"},
+    {"from": "num", "to": "float"},
+    {"from": "seq", "to": "str"},
+    {"from": "seq", "to": "list"},
+    {"from": "map", "to": "dict"}
+  ]
+}

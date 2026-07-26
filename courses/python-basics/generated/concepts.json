@@ -1,0 +1,77 @@
+{
+  "concepts": [
+    {
+      "name": "function call",
+      "introduced_in": "",
+      "required_by": [
+        "02-variables"
+      ]
+    },
+    {
+      "name": "integer",
+      "introduced_in": "",
+      "required_by": [
+        "02-variables"
+      ]
+    },
+    {
+      "name": "print function",
+      "introduced_in": "01-what-is-python",
+      "required_by": null
+    },
+    {
+      "name": "string",
+      "introduced_in": "",
+      "required_by": [
+        "01-what-is-python",
+        "02-variables"
+      ]
+    },
+    {
+      "name": "variable",
+      "introduced_in": "02-variables",
+      "required_by": [
+        "01-what-is-python"
+      ]
+    }
+  ],
+  "violations": [
+    {
+      "concept": "string",
+      "used_in": "01-what-is-python",
+      "section": "your-first-line-of-python",
+      "quote": "whatever is inside the quotes"
+    },
+    {
+      "concept": "variable",
+      "used_in": "01-what-is-python",
+      "section": "what-s-next",
+      "quote": "we'll cover variables, which is how programs remember things",
+      "introduced_in": "02-variables"
+    },
+    {
+      "concept": "string",
+      "used_in": "02-variables",
+      "section": "names-without-quotes-text-with-quotes",
+      "quote": "Quotes mean \"these exact characters\""
+    },
+    {
+      "concept": "integer",
+      "used_in": "02-variables",
+      "section": "variables-can-hold-numbers-too",
+      "quote": "You can also use variables to hold numbers"
+    },
+    {
+      "concept": "function call",
+      "used_in": "02-variables",
+      "section": "names-without-quotes-text-with-quotes",
+      "quote": "print(name) shows what the variable holds"
+    },
+    {
+      "concept": "function call",
+      "used_in": "02-variables",
+      "section": "variables-working-together",
+      "quote": "print() can take several things"
+    }
+  ]
+}

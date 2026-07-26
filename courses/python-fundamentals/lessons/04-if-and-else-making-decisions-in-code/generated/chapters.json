@@ -1,0 +1,38 @@
+[
+  {
+    "id": "understanding-conditional-statements",
+    "title": "Understanding conditional statements",
+    "start_ms": 0,
+    "end_ms": 17328
+  },
+  {
+    "id": "the-structure-of-if-statements",
+    "title": "The structure of if statements",
+    "start_ms": 17328,
+    "end_ms": 40463
+  },
+  {
+    "id": "adding-else-statements",
+    "title": "Adding else statements",
+    "start_ms": 40463,
+    "end_ms": 58402
+  },
+  {
+    "id": "using-comparison-operators",
+    "title": "Using comparison operators",
+    "start_ms": 58402,
+    "end_ms": 79360
+  },
+  {
+    "id": "flowchart-for-if-and-else-statements",
+    "title": "Flowchart for if and else statements",
+    "start_ms": 79360,
+    "end_ms": 96016
+  },
+  {
+    "id": "whats-next",
+    "title": "Whats Next",
+    "start_ms": 96016,
+    "end_ms": 111797
+  }
+]

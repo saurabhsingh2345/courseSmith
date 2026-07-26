@@ -1,0 +1,38 @@
+[
+  {
+    "id": "what-are-loops",
+    "title": "What are loops?",
+    "start_ms": 0,
+    "end_ms": 32110
+  },
+  {
+    "id": "using-for-loops",
+    "title": "Using for loops",
+    "start_ms": 32110,
+    "end_ms": 63788
+  },
+  {
+    "id": "understanding-while-loops",
+    "title": "Understanding while loops",
+    "start_ms": 63788,
+    "end_ms": 94700
+  },
+  {
+    "id": "when-to-use-each-loop",
+    "title": "When to use each loop",
+    "start_ms": 94700,
+    "end_ms": 120383
+  },
+  {
+    "id": "practice-with-loops",
+    "title": "Practice with loops",
+    "start_ms": 120383,
+    "end_ms": 145392
+  },
+  {
+    "id": "whats-next",
+    "title": "Whats Next",
+    "start_ms": 145392,
+    "end_ms": 163333
+  }
+]

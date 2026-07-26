@@ -1,0 +1,38 @@
+{
+  "runner": "docker-sandbox",
+  "blocks": [
+    {
+      "source": "lesson.md",
+      "index": 0,
+      "code": "print('Hello, World!')",
+      "claimed_output": "Hello, World!",
+      "hash": "sha256:2b33215fadf3c54926d5c4100348afc158dbff4c94b15044e3a7fe804f80ed2d",
+      "stdout": "Hello, World!\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-26T13:39:33.471517Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 1,
+      "code": "print('Hello', 'World!')",
+      "claimed_output": "Hello World!",
+      "hash": "sha256:9db14a8b6f7978df0f2dbe971be92837d1754a8218444d44f91f57821796ed31",
+      "stdout": "Hello World!\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-26T13:39:33.727879Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 2,
+      "code": "print(5 + 3)",
+      "claimed_output": "8",
+      "hash": "sha256:90a1bda8619b9658efc051d149e6819cfe517d5772aab4bea80f8a6715e6359d",
+      "stdout": "8\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-26T13:39:33.924868Z"
+    }
+  ]
+}

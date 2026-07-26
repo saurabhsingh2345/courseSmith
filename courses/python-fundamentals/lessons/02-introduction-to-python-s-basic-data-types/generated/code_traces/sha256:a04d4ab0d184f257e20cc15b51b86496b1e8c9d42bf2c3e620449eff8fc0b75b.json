@@ -1,0 +1,32 @@
+{
+  "code": "print(5 + 3.2)",
+  "lines": [
+    "print(5 + 3.2)"
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "line": 1,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 1,
+      "line": 1,
+      "event": "return",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "8.2\n"
+    }
+  ],
+  "truncated": false,
+  "stdout": "8.2\n"
+}

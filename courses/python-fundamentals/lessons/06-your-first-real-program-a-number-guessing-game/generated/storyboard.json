@@ -1,0 +1,129 @@
+{
+  "sections": [
+    {
+      "id": "what-were-building",
+      "points": [
+        {
+          "text": "Number guessing game",
+          "icon": "dot",
+          "at_word": 5
+        },
+        {
+          "text": "Classic first program",
+          "icon": "book",
+          "at_word": 8
+        },
+        {
+          "text": "Fun and interactive",
+          "icon": "sparkles",
+          "at_word": 39
+        }
+      ]
+    },
+    {
+      "id": "picking-the-secret-number",
+      "points": [
+        {
+          "text": "Use random module",
+          "icon": "gear",
+          "at_word": 10
+        },
+        {
+          "text": "Repeatable choices",
+          "icon": "check",
+          "at_word": 21
+        },
+        {
+          "text": "Get number 1 to 10",
+          "icon": "target",
+          "at_word": 27
+        },
+        {
+          "text": "Import random",
+          "icon": "file",
+          "at_word": 54
+        }
+      ]
+    },
+    {
+      "id": "checking-a-guess-with-if-else",
+      "points": [
+        {
+          "text": "Check player's guess",
+          "icon": "check",
+          "at_word": 4
+        },
+        {
+          "text": "Use == operator",
+          "icon": "code",
+          "at_word": 12
+        },
+        {
+          "text": "Print win message",
+          "icon": "message",
+          "at_word": 16
+        }
+      ]
+    },
+    {
+      "id": "the-game-loop-guessing-until-its-right",
+      "points": [
+        {
+          "text": "Game loop concept",
+          "icon": "dot",
+          "at_word": 3
+        },
+        {
+          "text": "For loop for guesses",
+          "icon": "layers",
+          "at_word": 12
+        },
+        {
+          "text": "Interactive feedback",
+          "icon": "message",
+          "at_word": 24
+        }
+      ]
+    },
+    {
+      "id": "what-your-program-just-did",
+      "points": [
+        {
+          "text": "Picked a secret number",
+          "icon": "brain",
+          "at_word": 6
+        },
+        {
+          "text": "Looped over guesses",
+          "icon": "repeat",
+          "at_word": 12
+        },
+        {
+          "text": "Made decisions",
+          "icon": "idea",
+          "at_word": 20
+        }
+      ]
+    },
+    {
+      "id": "where-to-go-from-here",
+      "points": [
+        {
+          "text": "Change range to 1-100",
+          "icon": "target",
+          "at_word": 9
+        },
+        {
+          "text": "Count attempts",
+          "icon": "clock",
+          "at_word": 19
+        },
+        {
+          "text": "Make it interactive",
+          "icon": "keyboard",
+          "at_word": 37
+        }
+      ]
+    }
+  ]
+}

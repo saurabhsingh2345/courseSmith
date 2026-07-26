@@ -1,0 +1,31 @@
+name: "Python Basics"
+slug: python-basics
+description: >
+  A friendly, hands-on introduction to Python for people who have never
+  written a line of code. Ten short video lessons take you from "what even
+  is Python?" to writing your own small programs.
+
+style:
+  voice: af_heart
+  tone: warm, encouraging teacher who explains with everyday analogies
+  pace_wpm: 145
+  audience: absolute beginners with no programming experience
+  language: en
+
+branding:
+  colors:
+    primary: "#306998"    # Python blue
+    accent: "#ffd43b"     # Python yellow
+    background: "#ffffff"
+  diagram_style: clean, flat, rounded corners, generous whitespace
+
+pipeline:
+  # gpt-4o-mini for content too: Groq's free-tier 12k tokens/min window
+  # stalls on large regeneration prompts; 4o-mini is ~2-4¢ per lesson and
+  # has no such squeeze.
+  llm_content: openai/gpt-4o-mini
+  llm_review: openai/gpt-4o-mini
+  review_threshold: 8
+  captions_model: whisper-large-v3
+  # Just the videos — no quiz/mistakes/exercises/site generation.
+  video_only: true

@@ -1,0 +1,56 @@
+{
+  "target_wpm": 150,
+  "tolerance": 0.15,
+  "sections": [
+    {
+      "id": "what-are-loops",
+      "words": 77,
+      "duration_ms": 31374,
+      "wpm": 147.2556894243641,
+      "deviation": -0.01829540383757262,
+      "flagged": false
+    },
+    {
+      "id": "using-for-loops",
+      "words": 79,
+      "duration_ms": 30377,
+      "wpm": 156.03910853606348,
+      "deviation": 0.040260723573756534,
+      "flagged": false
+    },
+    {
+      "id": "understanding-while-loops",
+      "words": 83,
+      "duration_ms": 30172,
+      "wpm": 165.0536921649211,
+      "deviation": 0.10035794776614068,
+      "flagged": false
+    },
+    {
+      "id": "when-to-use-each-loop",
+      "words": 63,
+      "duration_ms": 25096,
+      "wpm": 150.62161300605675,
+      "deviation": 0.004144086707044987,
+      "flagged": false
+    },
+    {
+      "id": "practice-with-loops",
+      "words": 62,
+      "duration_ms": 24574,
+      "wpm": 151.37950679580044,
+      "deviation": 0.00919671197200292,
+      "flagged": false
+    },
+    {
+      "id": "whats-next",
+      "words": 42,
+      "duration_ms": 17941,
+      "wpm": 140.4603979711276,
+      "deviation": -0.06359734685914929,
+      "flagged": false
+    }
+  ],
+  "flagged": null,
+  "checked_at": "2026-07-26T14:26:39.312735Z"
+}

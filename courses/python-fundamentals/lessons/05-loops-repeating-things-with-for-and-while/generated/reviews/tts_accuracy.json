@@ -1,0 +1,51 @@
+{
+  "source": "whisperx",
+  "overall_wer": 0,
+  "threshold": 0.05,
+  "sections": [
+    {
+      "id": "what-are-loops",
+      "words": 77,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "using-for-loops",
+      "words": 79,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "understanding-while-loops",
+      "words": 83,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "when-to-use-each-loop",
+      "words": 63,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "practice-with-loops",
+      "words": 62,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "whats-next",
+      "words": 42,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    }
+  ],
+  "flagged": null,
+  "checked_at": "2026-07-26T14:26:39.31237Z"
+}

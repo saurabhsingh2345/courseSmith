@@ -1,0 +1,16 @@
+{
+  "target_wpm": 145,
+  "tolerance": 0.15,
+  "sections": [
+    {
+      "id": "overview",
+      "words": 113,
+      "duration_ms": 41279,
+      "wpm": 164.24816492647594,
+      "deviation": 0.13274596501017888,
+      "flagged": false
+    }
+  ],
+  "flagged": null,
+  "checked_at": "2026-07-20T10:35:47.322356Z"
+}

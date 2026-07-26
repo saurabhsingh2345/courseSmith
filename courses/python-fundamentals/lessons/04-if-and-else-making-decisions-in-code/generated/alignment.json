@@ -1,0 +1,3182 @@
+{
+  "source": "whisperx",
+  "words": [
+    {
+      "word": "Conditional",
+      "startMs": 31,
+      "endMs": 572
+    },
+    {
+      "word": "statements",
+      "startMs": 652,
+      "endMs": 1113
+    },
+    {
+      "word": "are",
+      "startMs": 1254,
+      "endMs": 1334
+    },
+    {
+      "word": "a",
+      "startMs": 1374,
+      "endMs": 1414
+    },
+    {
+      "word": "key",
+      "startMs": 1494,
+      "endMs": 1715
+    },
+    {
+      "word": "part",
+      "startMs": 1775,
+      "endMs": 1975
+    },
+    {
+      "word": "of",
+      "startMs": 2015,
+      "endMs": 2055
+    },
+    {
+      "word": "programming.",
+      "startMs": 2136,
+      "endMs": 2677
+    },
+    {
+      "word": "They",
+      "startMs": 3218,
+      "endMs": 3318
+    },
+    {
+      "word": "let",
+      "startMs": 3358,
+      "endMs": 3478
+    },
+    {
+      "word": "us",
+      "startMs": 3539,
+      "endMs": 3599
+    },
+    {
+      "word": "make",
+      "startMs": 3679,
+      "endMs": 3819
+    },
+    {
+      "word": "decisions",
+      "startMs": 3899,
+      "endMs": 4440
+    },
+    {
+      "word": "in",
+      "startMs": 4521,
+      "endMs": 4561
+    },
+    {
+      "word": "our",
+      "startMs": 4621,
+      "endMs": 4701
+    },
+    {
+      "word": "code.",
+      "startMs": 4761,
+      "endMs": 5062
+    },
+    {
+      "word": "When",
+      "startMs": 5703,
+      "endMs": 5803
+    },
+    {
+      "word": "we",
+      "startMs": 5863,
+      "endMs": 5944
+    },
+    {
+      "word": "use",
+      "startMs": 6084,
+      "endMs": 6224
+    },
+    {
+      "word": "them,",
+      "startMs": 6264,
+      "endMs": 6445
+    },
+    {
+      "word": "we're",
+      "startMs": 6846,
+      "endMs": 6986
+    },
+    {
+      "word": "evaluating",
+      "startMs": 7046,
+      "endMs": 7687
+    },
+    {
+      "word": "conditions",
+      "startMs": 7748,
+      "endMs": 8349
+    },
+    {
+      "word": "and",
+      "startMs": 8509,
+      "endMs": 8589
+    },
+    {
+      "word": "executing",
+      "startMs": 8730,
+      "endMs": 9231
+    },
+    {
+      "word": "code",
+      "startMs": 9311,
+      "endMs": 9652
+    },
+    {
+      "word": "based",
+      "startMs": 10072,
+      "endMs": 10333
+    },
+    {
+      "word": "on",
+      "startMs": 10413,
+      "endMs": 10473
+    },
+    {
+      "word": "whether",
+      "startMs": 10513,
+      "endMs": 10714
+    },
+    {
+      "word": "those",
+      "startMs": 10774,
+      "endMs": 10954
+    },
+    {
+      "word": "conditions",
+      "startMs": 11055,
+      "endMs": 11596
+    },
+    {
+      "word": "are",
+      "startMs": 11616,
+      "endMs": 11796
+    },
+    {
+      "word": "true",
+      "startMs": 11896,
+      "endMs": 12197
+    },
+    {
+      "word": "or",
+      "startMs": 12237,
+      "endMs": 12558
+    },
+    {
+      "word": "false.",
+      "startMs": 12638,
+      "endMs": 12979
+    },
+    {
+      "word": "The",
+      "startMs": 13480,
+      "endMs": 13560
+    },
+    {
+      "word": "main",
+      "startMs": 13620,
+      "endMs": 13841
+    },
+    {
+      "word": "types",
+      "startMs": 13901,
+      "endMs": 14141
+    },
+    {
+      "word": "of",
+      "startMs": 14181,
+      "endMs": 14221
+    },
+    {
+      "word": "conditional",
+      "startMs": 14281,
+      "endMs": 14722
+    },
+    {
+      "word": "statements",
+      "startMs": 14783,
+      "endMs": 15203
+    },
+    {
+      "word": "are",
+      "startMs": 15384,
+      "endMs": 15464
+    },
+    {
+      "word": "if",
+      "startMs": 15584,
+      "endMs": 15684
+    },
+    {
+      "word": "and",
+      "startMs": 15985,
+      "endMs": 16065
+    },
+    {
+      "word": "else.",
+      "startMs": 16226,
+      "endMs": 17348
+    },
+    {
+      "word": "and",
+      "startMs": 17328,
+      "endMs": 17588
+    },
+    {
+      "word": "if",
+      "startMs": 17628,
+      "endMs": 17709
+    },
+    {
+      "word": "statement",
+      "startMs": 17769,
+      "endMs": 18189
+    },
+    {
+      "word": "is",
+      "startMs": 18309,
+      "endMs": 18370
+    },
+    {
+      "word": "the",
+      "startMs": 18430,
+      "endMs": 18510
+    },
+    {
+      "word": "first",
+      "startMs": 18590,
+      "endMs": 18850
+    },
+    {
+      "word": "step",
+      "startMs": 18910,
+      "endMs": 19191
+    },
+    {
+      "word": "in",
+      "startMs": 19291,
+      "endMs": 19351
+    },
+    {
+      "word": "making",
+      "startMs": 19431,
+      "endMs": 19732
+    },
+    {
+      "word": "decisions.",
+      "startMs": 19792,
+      "endMs": 20272
+    },
+    {
+      "word": "It",
+      "startMs": 20913,
+      "endMs": 20974
+    },
+    {
+      "word": "checks",
+      "startMs": 21034,
+      "endMs": 21314
+    },
+    {
+      "word": "a",
+      "startMs": 21354,
+      "endMs": 21414
+    },
+    {
+      "word": "specific",
+      "startMs": 21454,
+      "endMs": 21955
+    },
+    {
+      "word": "condition.",
+      "startMs": 22015,
+      "endMs": 22476
+    },
+    {
+      "word": "If",
+      "startMs": 23057,
+      "endMs": 23117
+    },
+    {
+      "word": "that",
+      "startMs": 23137,
+      "endMs": 23337
+    },
+    {
+      "word": "condition",
+      "startMs": 23397,
+      "endMs": 23818
+    },
+    {
+      "word": "is",
+      "startMs": 23838,
+      "endMs": 23958
+    },
+    {
+      "word": "true,",
+      "startMs": 24058,
+      "endMs": 24339
+    },
+    {
+      "word": "it",
+      "startMs": 24719,
+      "endMs": 24799
+    },
+    {
+      "word": "runs",
+      "startMs": 24879,
+      "endMs": 25160
+    },
+    {
+      "word": "the",
+      "startMs": 25180,
+      "endMs": 25320
+    },
+    {
+      "word": "code",
+      "startMs": 25380,
+      "endMs": 25661
+    },
+    {
+      "word": "block",
+      "startMs": 25701,
+      "endMs": 25981
+    },
+    {
+      "word": "associated",
+      "startMs": 26061,
+      "endMs": 26662
+    },
+    {
+      "word": "with",
+      "startMs": 26722,
+      "endMs": 26822
+    },
+    {
+      "word": "it.",
+      "startMs": 26902,
+      "endMs": 26963
+    },
+    {
+      "word": "If",
+      "startMs": 27523,
+      "endMs": 27584
+    },
+    {
+      "word": "the",
+      "startMs": 27624,
+      "endMs": 27684
+    },
+    {
+      "word": "condition",
+      "startMs": 27724,
+      "endMs": 28184
+    },
+    {
+      "word": "is",
+      "startMs": 28224,
+      "endMs": 28365
+    },
+    {
+      "word": "false,",
+      "startMs": 28385,
+      "endMs": 28845
+    },
+    {
+      "word": "it",
+      "startMs": 29146,
+      "endMs": 29186
+    },
+    {
+      "word": "simply",
+      "startMs": 29246,
+      "endMs": 29546
+    },
+    {
+      "word": "skips",
+      "startMs": 29607,
+      "endMs": 29907
+    },
+    {
+      "word": "that",
+      "startMs": 29987,
+      "endMs": 30127
+    },
+    {
+      "word": "code",
+      "startMs": 30228,
+      "endMs": 30468
+    },
+    {
+      "word": "block.",
+      "startMs": 30508,
+      "endMs": 30828
+    },
+    {
+      "word": "For",
+      "startMs": 31269,
+      "endMs": 31389
+    },
+    {
+      "word": "example,",
+      "startMs": 31429,
+      "endMs": 31870
+    },
+    {
+      "word": "if",
+      "startMs": 32050,
+      "endMs": 32110
+    },
+    {
+      "word": "we",
+      "startMs": 32150,
+      "endMs": 32251
+    },
+    {
+      "word": "check",
+      "startMs": 32311,
+      "endMs": 32551
+    },
+    {
+      "word": "if",
+      "startMs": 32611,
+      "endMs": 32691
+    },
+    {
+      "word": "age",
+      "startMs": 32831,
+      "endMs": 33012
+    },
+    {
+      "word": "is",
+      "startMs": 33052,
+      "endMs": 33112
+    },
+    {
+      "word": "greater",
+      "startMs": 33192,
+      "endMs": 33553
+    },
+    {
+      "word": "than",
+      "startMs": 33613,
+      "endMs": 33713
+    },
+    {
+      "word": "or",
+      "startMs": 33793,
+      "endMs": 33873
+    },
+    {
+      "word": "equal",
+      "startMs": 33973,
+      "endMs": 34214
+    },
+    {
+      "word": "to",
+      "startMs": 34254,
+      "endMs": 34314
+    },
+    {
+      "word": "18,",
+      "startMs": 34334,
+      "endMs": 34814
+    },
+    {
+      "word": "we",
+      "startMs": 35215,
+      "endMs": 35315
+    },
+    {
+      "word": "can",
+      "startMs": 35355,
+      "endMs": 35475
+    },
+    {
+      "word": "print",
+      "startMs": 35516,
+      "endMs": 35676
+    },
+    {
+      "word": "a",
+      "startMs": 35716,
+      "endMs": 35736
+    },
+    {
+      "word": "message",
+      "startMs": 35796,
+      "endMs": 36116
+    },
+    {
+      "word": "saying,",
+      "startMs": 36156,
+      "endMs": 36497
+    },
+    {
+      "word": "you",
+      "startMs": 36898,
+      "endMs": 37058
+    },
+    {
+      "word": "are",
+      "startMs": 37098,
+      "endMs": 37318
+    },
+    {
+      "word": "an",
+      "startMs": 37378,
+      "endMs": 37418
+    },
+    {
+      "word": "adult.",
+      "startMs": 37478,
+      "endMs": 37839
+    },
+    {
+      "word": "Let's",
+      "startMs": 38540,
+      "endMs": 38720
+    },
+    {
+      "word": "see",
+      "startMs": 38760,
+      "endMs": 38901
+    },
+    {
+      "word": "that",
+      "startMs": 38961,
+      "endMs": 39101
+    },
+    {
+      "word": "in",
+      "startMs": 39161,
+      "endMs": 39221
+    },
+    {
+      "word": "action.",
+      "startMs": 39321,
+      "endMs": 40483
+    },
+    {
+      "word": "Now",
+      "startMs": 40463,
+      "endMs": 40924
+    },
+    {
+      "word": "let's",
+      "startMs": 41064,
+      "endMs": 41285
+    },
+    {
+      "word": "talk",
+      "startMs": 41345,
+      "endMs": 41545
+    },
+    {
+      "word": "about",
+      "startMs": 41585,
+      "endMs": 41726
+    },
+    {
+      "word": "the",
+      "startMs": 41746,
+      "endMs": 41846
+    },
+    {
+      "word": "else",
+      "startMs": 41946,
+      "endMs": 42107
+    },
+    {
+      "word": "statement.",
+      "startMs": 42127,
+      "endMs": 42568
+    },
+    {
+      "word": "This",
+      "startMs": 43049,
+      "endMs": 43189
+    },
+    {
+      "word": "provides",
+      "startMs": 43269,
+      "endMs": 43670
+    },
+    {
+      "word": "an",
+      "startMs": 43730,
+      "endMs": 43770
+    },
+    {
+      "word": "alternative",
+      "startMs": 43850,
+      "endMs": 44452
+    },
+    {
+      "word": "action",
+      "startMs": 44592,
+      "endMs": 44913
+    },
+    {
+      "word": "when",
+      "startMs": 44973,
+      "endMs": 45093
+    },
+    {
+      "word": "the",
+      "startMs": 45133,
+      "endMs": 45193
+    },
+    {
+      "word": "if",
+      "startMs": 45253,
+      "endMs": 45294
+    },
+    {
+      "word": "condition",
+      "startMs": 45414,
+      "endMs": 45895
+    },
+    {
+      "word": "is",
+      "startMs": 45975,
+      "endMs": 46055
+    },
+    {
+      "word": "false.",
+      "startMs": 46135,
+      "endMs": 46456
+    },
+    {
+      "word": "By",
+      "startMs": 47117,
+      "endMs": 47218
+    },
+    {
+      "word": "combining",
+      "startMs": 47298,
+      "endMs": 47759
+    },
+    {
+      "word": "if",
+      "startMs": 47779,
+      "endMs": 47979
+    },
+    {
+      "word": "and",
+      "startMs": 48019,
+      "endMs": 48080
+    },
+    {
+      "word": "else,",
+      "startMs": 48160,
+      "endMs": 48380
+    },
+    {
+      "word": "we",
+      "startMs": 48741,
+      "endMs": 48841
+    },
+    {
+      "word": "can",
+      "startMs": 48881,
+      "endMs": 49002
+    },
+    {
+      "word": "create",
+      "startMs": 49042,
+      "endMs": 49362
+    },
+    {
+      "word": "two",
+      "startMs": 49382,
+      "endMs": 49643
+    },
+    {
+      "word": "possible",
+      "startMs": 49743,
+      "endMs": 50164
+    },
+    {
+      "word": "outcomes.",
+      "startMs": 50284,
+      "endMs": 50705
+    },
+    {
+      "word": "For",
+      "startMs": 51226,
+      "endMs": 51327
+    },
+    {
+      "word": "instance,",
+      "startMs": 51427,
+      "endMs": 51848
+    },
+    {
+      "word": "if",
+      "startMs": 52028,
+      "endMs": 52088
+    },
+    {
+      "word": "someone",
+      "startMs": 52148,
+      "endMs": 52369
+    },
+    {
+      "word": "is",
+      "startMs": 52409,
+      "endMs": 52469
+    },
+    {
+      "word": "under",
+      "startMs": 52529,
+      "endMs": 52710
+    },
+    {
+      "word": "18,",
+      "startMs": 52770,
+      "endMs": 53171
+    },
+    {
+      "word": "we",
+      "startMs": 53291,
+      "endMs": 53411
+    },
+    {
+      "word": "can",
+      "startMs": 53451,
+      "endMs": 53571
+    },
+    {
+      "word": "print,",
+      "startMs": 53612,
+      "endMs": 53872
+    },
+    {
+      "word": "you",
+      "startMs": 54193,
+      "endMs": 54353
+    },
+    {
+      "word": "are",
+      "startMs": 54433,
+      "endMs": 54514
+    },
+    {
+      "word": "a",
+      "startMs": 54554,
+      "endMs": 54574
+    },
+    {
+      "word": "minor.",
+      "startMs": 54634,
+      "endMs": 54955
+    },
+    {
+      "word": "This",
+      "startMs": 55656,
+      "endMs": 55816
+    },
+    {
+      "word": "way,",
+      "startMs": 55897,
+      "endMs": 56057
+    },
+    {
+      "word": "we",
+      "startMs": 56217,
+      "endMs": 56317
+    },
+    {
+      "word": "cover",
+      "startMs": 56358,
+      "endMs": 56598
+    },
+    {
+      "word": "both",
+      "startMs": 56658,
+      "endMs": 56879
+    },
+    {
+      "word": "scenarios.",
+      "startMs": 56939,
+      "endMs": 58422
+    },
+    {
+      "word": "Comparison",
+      "startMs": 58402,
+      "endMs": 59203
+    },
+    {
+      "word": "operators",
+      "startMs": 59304,
+      "endMs": 59805
+    },
+    {
+      "word": "are",
+      "startMs": 59845,
+      "endMs": 60005
+    },
+    {
+      "word": "essential",
+      "startMs": 60065,
+      "endMs": 60506
+    },
+    {
+      "word": "for",
+      "startMs": 60586,
+      "endMs": 60686
+    },
+    {
+      "word": "defining",
+      "startMs": 60746,
+      "endMs": 61247
+    },
+    {
+      "word": "our",
+      "startMs": 61307,
+      "endMs": 61387
+    },
+    {
+      "word": "conditions.",
+      "startMs": 61427,
+      "endMs": 61968
+    },
+    {
+      "word": "They",
+      "startMs": 62590,
+      "endMs": 62710
+    },
+    {
+      "word": "help",
+      "startMs": 62770,
+      "endMs": 62950
+    },
+    {
+      "word": "us",
+      "startMs": 63010,
+      "endMs": 63111
+    },
+    {
+      "word": "compare",
+      "startMs": 63151,
+      "endMs": 63471
+    },
+    {
+      "word": "values",
+      "startMs": 63531,
+      "endMs": 63952
+    },
+    {
+      "word": "to",
+      "startMs": 64012,
+      "endMs": 64092
+    },
+    {
+      "word": "see",
+      "startMs": 64152,
+      "endMs": 64293
+    },
+    {
+      "word": "if",
+      "startMs": 64353,
+      "endMs": 64413
+    },
+    {
+      "word": "they're",
+      "startMs": 64433,
+      "endMs": 64633
+    },
+    {
+      "word": "true",
+      "startMs": 64673,
+      "endMs": 64954
+    },
+    {
+      "word": "or",
+      "startMs": 64994,
+      "endMs": 65294
+    },
+    {
+      "word": "false.",
+      "startMs": 65375,
+      "endMs": 65735
+    },
+    {
+      "word": "Some",
+      "startMs": 66417,
+      "endMs": 66577
+    },
+    {
+      "word": "common",
+      "startMs": 66657,
+      "endMs": 66978
+    },
+    {
+      "word": "operators",
+      "startMs": 67098,
+      "endMs": 67599
+    },
+    {
+      "word": "include",
+      "startMs": 67639,
+      "endMs": 67999
+    },
+    {
+      "word": "equals,",
+      "startMs": 68019,
+      "endMs": 68500
+    },
+    {
+      "word": "not",
+      "startMs": 68881,
+      "endMs": 69081
+    },
+    {
+      "word": "equals,",
+      "startMs": 69202,
+      "endMs": 69562
+    },
+    {
+      "word": "greater",
+      "startMs": 69923,
+      "endMs": 70264
+    },
+    {
+      "word": "than",
+      "startMs": 70324,
+      "endMs": 70484
+    },
+    {
+      "word": "and",
+      "startMs": 70664,
+      "endMs": 70744
+    },
+    {
+      "word": "less",
+      "startMs": 70804,
+      "endMs": 71025
+    },
+    {
+      "word": "than.",
+      "startMs": 71065,
+      "endMs": 71245
+    },
+    {
+      "word": "For",
+      "startMs": 71686,
+      "endMs": 71786
+    },
+    {
+      "word": "example,",
+      "startMs": 71846,
+      "endMs": 72307
+    },
+    {
+      "word": "if",
+      "startMs": 72508,
+      "endMs": 72588
+    },
+    {
+      "word": "we",
+      "startMs": 72608,
+      "endMs": 72728
+    },
+    {
+      "word": "check",
+      "startMs": 72788,
+      "endMs": 73029
+    },
+    {
+      "word": "if",
+      "startMs": 73089,
+      "endMs": 73169
+    },
+    {
+      "word": "the",
+      "startMs": 73209,
+      "endMs": 73289
+    },
+    {
+      "word": "temperature",
+      "startMs": 73329,
+      "endMs": 73750
+    },
+    {
+      "word": "is",
+      "startMs": 73830,
+      "endMs": 73910
+    },
+    {
+      "word": "greater",
+      "startMs": 73970,
+      "endMs": 74271
+    },
+    {
+      "word": "than",
+      "startMs": 74331,
+      "endMs": 74451
+    },
+    {
+      "word": "25,",
+      "startMs": 74471,
+      "endMs": 74772
+    },
+    {
+      "word": "we",
+      "startMs": 75413,
+      "endMs": 75513
+    },
+    {
+      "word": "can",
+      "startMs": 75553,
+      "endMs": 75673
+    },
+    {
+      "word": "print,",
+      "startMs": 75713,
+      "endMs": 75974
+    },
+    {
+      "word": "it's",
+      "startMs": 76395,
+      "endMs": 76495
+    },
+    {
+      "word": "a",
+      "startMs": 76535,
+      "endMs": 76575
+    },
+    {
+      "word": "hot",
+      "startMs": 76615,
+      "endMs": 76815
+    },
+    {
+      "word": "day.",
+      "startMs": 76855,
+      "endMs": 77096
+    },
+    {
+      "word": "Let's",
+      "startMs": 77757,
+      "endMs": 77937
+    },
+    {
+      "word": "see",
+      "startMs": 77957,
+      "endMs": 78098
+    },
+    {
+      "word": "how",
+      "startMs": 78138,
+      "endMs": 78258
+    },
+    {
+      "word": "that",
+      "startMs": 78318,
+      "endMs": 78478
+    },
+    {
+      "word": "looks.",
+      "startMs": 78518,
+      "endMs": 79380
+    },
+    {
+      "word": "Flow",
+      "startMs": 79360,
+      "endMs": 80101
+    },
+    {
+      "word": "charts",
+      "startMs": 80121,
+      "endMs": 80382
+    },
+    {
+      "word": "are",
+      "startMs": 80442,
+      "endMs": 80522
+    },
+    {
+      "word": "a",
+      "startMs": 80562,
+      "endMs": 80602
+    },
+    {
+      "word": "great",
+      "startMs": 80682,
+      "endMs": 80903
+    },
+    {
+      "word": "way",
+      "startMs": 80963,
+      "endMs": 81103
+    },
+    {
+      "word": "to",
+      "startMs": 81163,
+      "endMs": 81223
+    },
+    {
+      "word": "visualize",
+      "startMs": 81283,
+      "endMs": 81744
+    },
+    {
+      "word": "the",
+      "startMs": 81784,
+      "endMs": 81884
+    },
+    {
+      "word": "logic",
+      "startMs": 81924,
+      "endMs": 82285
+    },
+    {
+      "word": "behind",
+      "startMs": 82405,
+      "endMs": 82746
+    },
+    {
+      "word": "a",
+      "startMs": 82806,
+      "endMs": 82866
+    },
+    {
+      "word": "fell",
+      "startMs": 82886,
+      "endMs": 83147
+    },
+    {
+      "word": "statements.",
+      "startMs": 83167,
+      "endMs": 83627
+    },
+    {
+      "word": "They",
+      "startMs": 84288,
+      "endMs": 84409
+    },
+    {
+      "word": "show",
+      "startMs": 84489,
+      "endMs": 84669
+    },
+    {
+      "word": "how",
+      "startMs": 84709,
+      "endMs": 84890
+    },
+    {
+      "word": "we",
+      "startMs": 84970,
+      "endMs": 85070
+    },
+    {
+      "word": "flow",
+      "startMs": 85150,
+      "endMs": 85370
+    },
+    {
+      "word": "from",
+      "startMs": 85410,
+      "endMs": 85591
+    },
+    {
+      "word": "checking",
+      "startMs": 85671,
+      "endMs": 85991
+    },
+    {
+      "word": "a",
+      "startMs": 86052,
+      "endMs": 86072
+    },
+    {
+      "word": "condition",
+      "startMs": 86112,
+      "endMs": 86572
+    },
+    {
+      "word": "to",
+      "startMs": 86612,
+      "endMs": 87053
+    },
+    {
+      "word": "executing",
+      "startMs": 87193,
+      "endMs": 87674
+    },
+    {
+      "word": "actions",
+      "startMs": 87714,
+      "endMs": 88215
+    },
+    {
+      "word": "based",
+      "startMs": 88496,
+      "endMs": 88756
+    },
+    {
+      "word": "on",
+      "startMs": 88816,
+      "endMs": 88876
+    },
+    {
+      "word": "that",
+      "startMs": 88916,
+      "endMs": 89077
+    },
+    {
+      "word": "condition.",
+      "startMs": 89157,
+      "endMs": 89618
+    },
+    {
+      "word": "Understanding",
+      "startMs": 90139,
+      "endMs": 90720
+    },
+    {
+      "word": "flow",
+      "startMs": 90800,
+      "endMs": 91000
+    },
+    {
+      "word": "charts",
+      "startMs": 91040,
+      "endMs": 91341
+    },
+    {
+      "word": "can",
+      "startMs": 91421,
+      "endMs": 91561
+    },
+    {
+      "word": "really",
+      "startMs": 91621,
+      "endMs": 91841
+    },
+    {
+      "word": "help",
+      "startMs": 91902,
+      "endMs": 92102
+    },
+    {
+      "word": "when",
+      "startMs": 92162,
+      "endMs": 92302
+    },
+    {
+      "word": "planning",
+      "startMs": 92362,
+      "endMs": 92663
+    },
+    {
+      "word": "your",
+      "startMs": 92703,
+      "endMs": 92803
+    },
+    {
+      "word": "code.",
+      "startMs": 92843,
+      "endMs": 93144
+    },
+    {
+      "word": "Let's",
+      "startMs": 93705,
+      "endMs": 93905
+    },
+    {
+      "word": "look",
+      "startMs": 93965,
+      "endMs": 94125
+    },
+    {
+      "word": "at",
+      "startMs": 94165,
+      "endMs": 94206
+    },
+    {
+      "word": "that",
+      "startMs": 94246,
+      "endMs": 94426
+    },
+    {
+      "word": "in",
+      "startMs": 94506,
+      "endMs": 94546
+    },
+    {
+      "word": "a",
+      "startMs": 94606,
+      "endMs": 94626
+    },
+    {
+      "word": "picture.",
+      "startMs": 94686,
+      "endMs": 95648
+    },
+    {
+      "word": "Now",
+      "startMs": 96016,
+      "endMs": 96257
+    },
+    {
+      "word": "that",
+      "startMs": 96297,
+      "endMs": 96397
+    },
+    {
+      "word": "you",
+      "startMs": 96438,
+      "endMs": 96538
+    },
+    {
+      "word": "have",
+      "startMs": 96578,
+      "endMs": 96679
+    },
+    {
+      "word": "a",
+      "startMs": 96719,
+      "endMs": 96739
+    },
+    {
+      "word": "grasp",
+      "startMs": 96799,
+      "endMs": 97160
+    },
+    {
+      "word": "of",
+      "startMs": 97221,
+      "endMs": 97281
+    },
+    {
+      "word": "if",
+      "startMs": 97361,
+      "endMs": 97462
+    },
+    {
+      "word": "and",
+      "startMs": 97542,
+      "endMs": 97602
+    },
+    {
+      "word": "else",
+      "startMs": 97682,
+      "endMs": 97843
+    },
+    {
+      "word": "statements,",
+      "startMs": 97883,
+      "endMs": 98646
+    },
+    {
+      "word": "there's",
+      "startMs": 98666,
+      "endMs": 98867
+    },
+    {
+      "word": "more",
+      "startMs": 98907,
+      "endMs": 99068
+    },
+    {
+      "word": "to",
+      "startMs": 99128,
+      "endMs": 99249
+    },
+    {
+      "word": "explore.",
+      "startMs": 99309,
+      "endMs": 99771
+    },
+    {
+      "word": "Next,",
+      "startMs": 100453,
+      "endMs": 100774
+    },
+    {
+      "word": "we'll",
+      "startMs": 100955,
+      "endMs": 101116
+    },
+    {
+      "word": "dive",
+      "startMs": 101156,
+      "endMs": 101377
+    },
+    {
+      "word": "into",
+      "startMs": 101417,
+      "endMs": 101598
+    },
+    {
+      "word": "elif,",
+      "startMs": 101778,
+      "endMs": 102120
+    },
+    {
+      "word": "which",
+      "startMs": 102340,
+      "endMs": 102501
+    },
+    {
+      "word": "allows",
+      "startMs": 102561,
+      "endMs": 102883
+    },
+    {
+      "word": "us",
+      "startMs": 102943,
+      "endMs": 103023
+    },
+    {
+      "word": "to",
+      "startMs": 103063,
+      "endMs": 103144
+    },
+    {
+      "word": "check",
+      "startMs": 103204,
+      "endMs": 103445
+    },
+    {
+      "word": "multiple",
+      "startMs": 103545,
+      "endMs": 103987
+    },
+    {
+      "word": "conditions.",
+      "startMs": 104027,
+      "endMs": 104549
+    },
+    {
+      "word": "After",
+      "startMs": 105332,
+      "endMs": 105513
+    },
+    {
+      "word": "that,",
+      "startMs": 105553,
+      "endMs": 105774
+    },
+    {
+      "word": "we'll",
+      "startMs": 105975,
+      "endMs": 106135
+    },
+    {
+      "word": "learn",
+      "startMs": 106155,
+      "endMs": 106356
+    },
+    {
+      "word": "about",
+      "startMs": 106396,
+      "endMs": 106617
+    },
+    {
+      "word": "loops,",
+      "startMs": 106677,
+      "endMs": 106978
+    },
+    {
+      "word": "which",
+      "startMs": 107360,
+      "endMs": 107500
+    },
+    {
+      "word": "let",
+      "startMs": 107561,
+      "endMs": 107681
+    },
+    {
+      "word": "us",
+      "startMs": 107741,
+      "endMs": 107802
+    },
+    {
+      "word": "repeat",
+      "startMs": 107882,
+      "endMs": 108183
+    },
+    {
+      "word": "actions",
+      "startMs": 108344,
+      "endMs": 108705
+    },
+    {
+      "word": "based",
+      "startMs": 108826,
+      "endMs": 109107
+    },
+    {
+      "word": "on",
+      "startMs": 109187,
+      "endMs": 109247
+    },
+    {
+      "word": "conditions.",
+      "startMs": 109307,
+      "endMs": 109829
+    },
+    {
+      "word": "Exciting",
+      "startMs": 110392,
+      "endMs": 110773
+    },
+    {
+      "word": "stuff",
+      "startMs": 110833,
+      "endMs": 111094
+    },
+    {
+      "word": "ahead.",
+      "startMs": 111155,
+      "endMs": 111797
+    }
+  ],
+  "sections": [
+    {
+      "id": "understanding-conditional-statements",
+      "startMs": 31,
+      "endMs": 17348,
+      "wordStart": 0,
+      "wordEnd": 45,
+      "wer": 0
+    },
+    {
+      "id": "the-structure-of-if-statements",
+      "startMs": 17328,
+      "endMs": 40483,
+      "wordStart": 45,
+      "wordEnd": 113,
+      "wer": 0.014705882352941176
+    },
+    {
+      "id": "adding-else-statements",
+      "startMs": 40463,
+      "endMs": 58422,
+      "wordStart": 113,
+      "wordEnd": 162,
+      "wer": 0
+    },
+    {
+      "id": "using-comparison-operators",
+      "startMs": 58402,
+      "endMs": 79380,
+      "wordStart": 162,
+      "wordEnd": 218,
+      "wer": 0
+    },
+    {
+      "id": "flowchart-for-if-and-else-statements",
+      "startMs": 79360,
+      "endMs": 95648,
+      "wordStart": 218,
+      "wordEnd": 265,
+      "wer": 0.044444444444444446
+    },
+    {
+      "id": "whats-next",
+      "startMs": 96016,
+      "endMs": 111797,
+      "wordStart": 265,
+      "wordEnd": 309,
+      "wer": 0
+    }
+  ],
+  "displayWords": [
+    {
+      "word": "Conditional",
+      "startMs": 31,
+      "endMs": 572
+    },
+    {
+      "word": "statements",
+      "startMs": 652,
+      "endMs": 1113
+    },
+    {
+      "word": "are",
+      "startMs": 1254,
+      "endMs": 1334
+    },
+    {
+      "word": "a",
+      "startMs": 1374,
+      "endMs": 1414
+    },
+    {
+      "word": "key",
+      "startMs": 1494,
+      "endMs": 1715
+    },
+    {
+      "word": "part",
+      "startMs": 1775,
+      "endMs": 1975
+    },
+    {
+      "word": "of",
+      "startMs": 2015,
+      "endMs": 2055
+    },
+    {
+      "word": "programming.",
+      "startMs": 2136,
+      "endMs": 2677
+    },
+    {
+      "word": "They",
+      "startMs": 3218,
+      "endMs": 3318
+    },
+    {
+      "word": "let",
+      "startMs": 3358,
+      "endMs": 3478
+    },
+    {
+      "word": "us",
+      "startMs": 3539,
+      "endMs": 3599
+    },
+    {
+      "word": "make",
+      "startMs": 3679,
+      "endMs": 3819
+    },
+    {
+      "word": "decisions",
+      "startMs": 3899,
+      "endMs": 4440
+    },
+    {
+      "word": "in",
+      "startMs": 4521,
+      "endMs": 4561
+    },
+    {
+      "word": "our",
+      "startMs": 4621,
+      "endMs": 4701
+    },
+    {
+      "word": "code.",
+      "startMs": 4761,
+      "endMs": 5062
+    },
+    {
+      "word": "When",
+      "startMs": 5703,
+      "endMs": 5803
+    },
+    {
+      "word": "we",
+      "startMs": 5863,
+      "endMs": 5944
+    },
+    {
+      "word": "use",
+      "startMs": 6084,
+      "endMs": 6224
+    },
+    {
+      "word": "them,",
+      "startMs": 6264,
+      "endMs": 6445
+    },
+    {
+      "word": "we're",
+      "startMs": 6846,
+      "endMs": 6986
+    },
+    {
+      "word": "evaluating",
+      "startMs": 7046,
+      "endMs": 7687
+    },
+    {
+      "word": "conditions",
+      "startMs": 7748,
+      "endMs": 8349
+    },
+    {
+      "word": "and",
+      "startMs": 8509,
+      "endMs": 8589
+    },
+    {
+      "word": "executing",
+      "startMs": 8730,
+      "endMs": 9231
+    },
+    {
+      "word": "code",
+      "startMs": 9311,
+      "endMs": 9652
+    },
+    {
+      "word": "based",
+      "startMs": 10072,
+      "endMs": 10333
+    },
+    {
+      "word": "on",
+      "startMs": 10413,
+      "endMs": 10473
+    },
+    {
+      "word": "whether",
+      "startMs": 10513,
+      "endMs": 10714
+    },
+    {
+      "word": "those",
+      "startMs": 10774,
+      "endMs": 10954
+    },
+    {
+      "word": "conditions",
+      "startMs": 11055,
+      "endMs": 11596
+    },
+    {
+      "word": "are",
+      "startMs": 11616,
+      "endMs": 11796
+    },
+    {
+      "word": "true",
+      "startMs": 11896,
+      "endMs": 12197
+    },
+    {
+      "word": "or",
+      "startMs": 12237,
+      "endMs": 12558
+    },
+    {
+      "word": "false.",
+      "startMs": 12638,
+      "endMs": 12979
+    },
+    {
+      "word": "The",
+      "startMs": 13480,
+      "endMs": 13560
+    },
+    {
+      "word": "main",
+      "startMs": 13620,
+      "endMs": 13841
+    },
+    {
+      "word": "types",
+      "startMs": 13901,
+      "endMs": 14141
+    },
+    {
+      "word": "of",
+      "startMs": 14181,
+      "endMs": 14221
+    },
+    {
+      "word": "conditional",
+      "startMs": 14281,
+      "endMs": 14722
+    },
+    {
+      "word": "statements",
+      "startMs": 14783,
+      "endMs": 15203
+    },
+    {
+      "word": "are",
+      "startMs": 15384,
+      "endMs": 15464
+    },
+    {
+      "word": "'if'",
+      "startMs": 15584,
+      "endMs": 15684
+    },
+    {
+      "word": "and",
+      "startMs": 15985,
+      "endMs": 16065
+    },
+    {
+      "word": "'else'.",
+      "startMs": 16226,
+      "endMs": 17348
+    },
+    {
+      "word": "An",
+      "startMs": 17348,
+      "endMs": 17588
+    },
+    {
+      "word": "if",
+      "startMs": 17628,
+      "endMs": 17709
+    },
+    {
+      "word": "statement",
+      "startMs": 17769,
+      "endMs": 18189
+    },
+    {
+      "word": "is",
+      "startMs": 18309,
+      "endMs": 18370
+    },
+    {
+      "word": "the",
+      "startMs": 18430,
+      "endMs": 18510
+    },
+    {
+      "word": "first",
+      "startMs": 18590,
+      "endMs": 18850
+    },
+    {
+      "word": "step",
+      "startMs": 18910,
+      "endMs": 19191
+    },
+    {
+      "word": "in",
+      "startMs": 19291,
+      "endMs": 19351
+    },
+    {
+      "word": "making",
+      "startMs": 19431,
+      "endMs": 19732
+    },
+    {
+      "word": "decisions.",
+      "startMs": 19792,
+      "endMs": 20272
+    },
+    {
+      "word": "It",
+      "startMs": 20913,
+      "endMs": 20974
+    },
+    {
+      "word": "checks",
+      "startMs": 21034,
+      "endMs": 21314
+    },
+    {
+      "word": "a",
+      "startMs": 21354,
+      "endMs": 21414
+    },
+    {
+      "word": "specific",
+      "startMs": 21454,
+      "endMs": 21955
+    },
+    {
+      "word": "condition.",
+      "startMs": 22015,
+      "endMs": 22476
+    },
+    {
+      "word": "If",
+      "startMs": 23057,
+      "endMs": 23117
+    },
+    {
+      "word": "that",
+      "startMs": 23137,
+      "endMs": 23337
+    },
+    {
+      "word": "condition",
+      "startMs": 23397,
+      "endMs": 23818
+    },
+    {
+      "word": "is",
+      "startMs": 23838,
+      "endMs": 23958
+    },
+    {
+      "word": "true,",
+      "startMs": 24058,
+      "endMs": 24339
+    },
+    {
+      "word": "it",
+      "startMs": 24719,
+      "endMs": 24799
+    },
+    {
+      "word": "runs",
+      "startMs": 24879,
+      "endMs": 25160
+    },
+    {
+      "word": "the",
+      "startMs": 25180,
+      "endMs": 25320
+    },
+    {
+      "word": "code",
+      "startMs": 25380,
+      "endMs": 25661
+    },
+    {
+      "word": "block",
+      "startMs": 25701,
+      "endMs": 25981
+    },
+    {
+      "word": "associated",
+      "startMs": 26061,
+      "endMs": 26662
+    },
+    {
+      "word": "with",
+      "startMs": 26722,
+      "endMs": 26822
+    },
+    {
+      "word": "it.",
+      "startMs": 26902,
+      "endMs": 26963
+    },
+    {
+      "word": "If",
+      "startMs": 27523,
+      "endMs": 27584
+    },
+    {
+      "word": "the",
+      "startMs": 27624,
+      "endMs": 27684
+    },
+    {
+      "word": "condition",
+      "startMs": 27724,
+      "endMs": 28184
+    },
+    {
+      "word": "is",
+      "startMs": 28224,
+      "endMs": 28365
+    },
+    {
+      "word": "false,",
+      "startMs": 28385,
+      "endMs": 28845
+    },
+    {
+      "word": "it",
+      "startMs": 29146,
+      "endMs": 29186
+    },
+    {
+      "word": "simply",
+      "startMs": 29246,
+      "endMs": 29546
+    },
+    {
+      "word": "skips",
+      "startMs": 29607,
+      "endMs": 29907
+    },
+    {
+      "word": "that",
+      "startMs": 29987,
+      "endMs": 30127
+    },
+    {
+      "word": "code",
+      "startMs": 30228,
+      "endMs": 30468
+    },
+    {
+      "word": "block.",
+      "startMs": 30508,
+      "endMs": 30828
+    },
+    {
+      "word": "For",
+      "startMs": 31269,
+      "endMs": 31389
+    },
+    {
+      "word": "example,",
+      "startMs": 31429,
+      "endMs": 31870
+    },
+    {
+      "word": "if",
+      "startMs": 32050,
+      "endMs": 32110
+    },
+    {
+      "word": "we",
+      "startMs": 32150,
+      "endMs": 32251
+    },
+    {
+      "word": "check",
+      "startMs": 32311,
+      "endMs": 32551
+    },
+    {
+      "word": "if",
+      "startMs": 32611,
+      "endMs": 32691
+    },
+    {
+      "word": "age",
+      "startMs": 32831,
+      "endMs": 33012
+    },
+    {
+      "word": "is",
+      "startMs": 33052,
+      "endMs": 33112
+    },
+    {
+      "word": "greater",
+      "startMs": 33192,
+      "endMs": 33553
+    },
+    {
+      "word": "than",
+      "startMs": 33613,
+      "endMs": 33713
+    },
+    {
+      "word": "or",
+      "startMs": 33793,
+      "endMs": 33873
+    },
+    {
+      "word": "equal",
+      "startMs": 33973,
+      "endMs": 34214
+    },
+    {
+      "word": "to",
+      "startMs": 34254,
+      "endMs": 34314
+    },
+    {
+      "word": "18,",
+      "startMs": 34334,
+      "endMs": 34814
+    },
+    {
+      "word": "we",
+      "startMs": 35215,
+      "endMs": 35315
+    },
+    {
+      "word": "can",
+      "startMs": 35355,
+      "endMs": 35475
+    },
+    {
+      "word": "print",
+      "startMs": 35516,
+      "endMs": 35676
+    },
+    {
+      "word": "a",
+      "startMs": 35716,
+      "endMs": 35736
+    },
+    {
+      "word": "message",
+      "startMs": 35796,
+      "endMs": 36116
+    },
+    {
+      "word": "saying,",
+      "startMs": 36156,
+      "endMs": 36497
+    },
+    {
+      "word": "\"You",
+      "startMs": 36898,
+      "endMs": 37058
+    },
+    {
+      "word": "are",
+      "startMs": 37098,
+      "endMs": 37318
+    },
+    {
+      "word": "an",
+      "startMs": 37378,
+      "endMs": 37418
+    },
+    {
+      "word": "adult.\"",
+      "startMs": 37478,
+      "endMs": 37839
+    },
+    {
+      "word": "Let's",
+      "startMs": 38540,
+      "endMs": 38720
+    },
+    {
+      "word": "see",
+      "startMs": 38760,
+      "endMs": 38901
+    },
+    {
+      "word": "that",
+      "startMs": 38961,
+      "endMs": 39101
+    },
+    {
+      "word": "in",
+      "startMs": 39161,
+      "endMs": 39221
+    },
+    {
+      "word": "action.",
+      "startMs": 39321,
+      "endMs": 40483
+    },
+    {
+      "word": "Now,",
+      "startMs": 40483,
+      "endMs": 40924
+    },
+    {
+      "word": "let’s",
+      "startMs": 41064,
+      "endMs": 41285
+    },
+    {
+      "word": "talk",
+      "startMs": 41345,
+      "endMs": 41545
+    },
+    {
+      "word": "about",
+      "startMs": 41585,
+      "endMs": 41726
+    },
+    {
+      "word": "the",
+      "startMs": 41746,
+      "endMs": 41846
+    },
+    {
+      "word": "else",
+      "startMs": 41946,
+      "endMs": 42107
+    },
+    {
+      "word": "statement.",
+      "startMs": 42127,
+      "endMs": 42568
+    },
+    {
+      "word": "This",
+      "startMs": 43049,
+      "endMs": 43189
+    },
+    {
+      "word": "provides",
+      "startMs": 43269,
+      "endMs": 43670
+    },
+    {
+      "word": "an",
+      "startMs": 43730,
+      "endMs": 43770
+    },
+    {
+      "word": "alternative",
+      "startMs": 43850,
+      "endMs": 44452
+    },
+    {
+      "word": "action",
+      "startMs": 44592,
+      "endMs": 44913
+    },
+    {
+      "word": "when",
+      "startMs": 44973,
+      "endMs": 45093
+    },
+    {
+      "word": "the",
+      "startMs": 45133,
+      "endMs": 45193
+    },
+    {
+      "word": "if",
+      "startMs": 45253,
+      "endMs": 45294
+    },
+    {
+      "word": "condition",
+      "startMs": 45414,
+      "endMs": 45895
+    },
+    {
+      "word": "is",
+      "startMs": 45975,
+      "endMs": 46055
+    },
+    {
+      "word": "false.",
+      "startMs": 46135,
+      "endMs": 46456
+    },
+    {
+      "word": "By",
+      "startMs": 47117,
+      "endMs": 47218
+    },
+    {
+      "word": "combining",
+      "startMs": 47298,
+      "endMs": 47759
+    },
+    {
+      "word": "if",
+      "startMs": 47779,
+      "endMs": 47979
+    },
+    {
+      "word": "and",
+      "startMs": 48019,
+      "endMs": 48080
+    },
+    {
+      "word": "else,",
+      "startMs": 48160,
+      "endMs": 48380
+    },
+    {
+      "word": "we",
+      "startMs": 48741,
+      "endMs": 48841
+    },
+    {
+      "word": "can",
+      "startMs": 48881,
+      "endMs": 49002
+    },
+    {
+      "word": "create",
+      "startMs": 49042,
+      "endMs": 49362
+    },
+    {
+      "word": "two",
+      "startMs": 49382,
+      "endMs": 49643
+    },
+    {
+      "word": "possible",
+      "startMs": 49743,
+      "endMs": 50164
+    },
+    {
+      "word": "outcomes.",
+      "startMs": 50284,
+      "endMs": 50705
+    },
+    {
+      "word": "For",
+      "startMs": 51226,
+      "endMs": 51327
+    },
+    {
+      "word": "instance,",
+      "startMs": 51427,
+      "endMs": 51848
+    },
+    {
+      "word": "if",
+      "startMs": 52028,
+      "endMs": 52088
+    },
+    {
+      "word": "someone",
+      "startMs": 52148,
+      "endMs": 52369
+    },
+    {
+      "word": "is",
+      "startMs": 52409,
+      "endMs": 52469
+    },
+    {
+      "word": "under",
+      "startMs": 52529,
+      "endMs": 52710
+    },
+    {
+      "word": "18,",
+      "startMs": 52770,
+      "endMs": 53171
+    },
+    {
+      "word": "we",
+      "startMs": 53291,
+      "endMs": 53411
+    },
+    {
+      "word": "can",
+      "startMs": 53451,
+      "endMs": 53571
+    },
+    {
+      "word": "print,",
+      "startMs": 53612,
+      "endMs": 53872
+    },
+    {
+      "word": "\"You",
+      "startMs": 54193,
+      "endMs": 54353
+    },
+    {
+      "word": "are",
+      "startMs": 54433,
+      "endMs": 54514
+    },
+    {
+      "word": "a",
+      "startMs": 54554,
+      "endMs": 54574
+    },
+    {
+      "word": "minor.\"",
+      "startMs": 54634,
+      "endMs": 54955
+    },
+    {
+      "word": "This",
+      "startMs": 55656,
+      "endMs": 55816
+    },
+    {
+      "word": "way,",
+      "startMs": 55897,
+      "endMs": 56057
+    },
+    {
+      "word": "we",
+      "startMs": 56217,
+      "endMs": 56317
+    },
+    {
+      "word": "cover",
+      "startMs": 56358,
+      "endMs": 56598
+    },
+    {
+      "word": "both",
+      "startMs": 56658,
+      "endMs": 56879
+    },
+    {
+      "word": "scenarios.",
+      "startMs": 56939,
+      "endMs": 58422
+    },
+    {
+      "word": "Comparison",
+      "startMs": 58422,
+      "endMs": 59203
+    },
+    {
+      "word": "operators",
+      "startMs": 59304,
+      "endMs": 59805
+    },
+    {
+      "word": "are",
+      "startMs": 59845,
+      "endMs": 60005
+    },
+    {
+      "word": "essential",
+      "startMs": 60065,
+      "endMs": 60506
+    },
+    {
+      "word": "for",
+      "startMs": 60586,
+      "endMs": 60686
+    },
+    {
+      "word": "defining",
+      "startMs": 60746,
+      "endMs": 61247
+    },
+    {
+      "word": "our",
+      "startMs": 61307,
+      "endMs": 61387
+    },
+    {
+      "word": "conditions.",
+      "startMs": 61427,
+      "endMs": 61968
+    },
+    {
+      "word": "They",
+      "startMs": 62590,
+      "endMs": 62710
+    },
+    {
+      "word": "help",
+      "startMs": 62770,
+      "endMs": 62950
+    },
+    {
+      "word": "us",
+      "startMs": 63010,
+      "endMs": 63111
+    },
+    {
+      "word": "compare",
+      "startMs": 63151,
+      "endMs": 63471
+    },
+    {
+      "word": "values",
+      "startMs": 63531,
+      "endMs": 63952
+    },
+    {
+      "word": "to",
+      "startMs": 64012,
+      "endMs": 64092
+    },
+    {
+      "word": "see",
+      "startMs": 64152,
+      "endMs": 64293
+    },
+    {
+      "word": "if",
+      "startMs": 64353,
+      "endMs": 64413
+    },
+    {
+      "word": "they're",
+      "startMs": 64433,
+      "endMs": 64633
+    },
+    {
+      "word": "true",
+      "startMs": 64673,
+      "endMs": 64954
+    },
+    {
+      "word": "or",
+      "startMs": 64994,
+      "endMs": 65294
+    },
+    {
+      "word": "false.",
+      "startMs": 65375,
+      "endMs": 65735
+    },
+    {
+      "word": "Some",
+      "startMs": 66417,
+      "endMs": 66577
+    },
+    {
+      "word": "common",
+      "startMs": 66657,
+      "endMs": 66978
+    },
+    {
+      "word": "operators",
+      "startMs": 67098,
+      "endMs": 67599
+    },
+    {
+      "word": "include",
+      "startMs": 67639,
+      "endMs": 67999
+    },
+    {
+      "word": "equals,",
+      "startMs": 68019,
+      "endMs": 68500
+    },
+    {
+      "word": "not",
+      "startMs": 68881,
+      "endMs": 69081
+    },
+    {
+      "word": "equals,",
+      "startMs": 69202,
+      "endMs": 69562
+    },
+    {
+      "word": "greater",
+      "startMs": 69923,
+      "endMs": 70264
+    },
+    {
+      "word": "than,",
+      "startMs": 70324,
+      "endMs": 70484
+    },
+    {
+      "word": "and",
+      "startMs": 70664,
+      "endMs": 70744
+    },
+    {
+      "word": "less",
+      "startMs": 70804,
+      "endMs": 71025
+    },
+    {
+      "word": "than.",
+      "startMs": 71065,
+      "endMs": 71245
+    },
+    {
+      "word": "For",
+      "startMs": 71686,
+      "endMs": 71786
+    },
+    {
+      "word": "example,",
+      "startMs": 71846,
+      "endMs": 72307
+    },
+    {
+      "word": "if",
+      "startMs": 72508,
+      "endMs": 72588
+    },
+    {
+      "word": "we",
+      "startMs": 72608,
+      "endMs": 72728
+    },
+    {
+      "word": "check",
+      "startMs": 72788,
+      "endMs": 73029
+    },
+    {
+      "word": "if",
+      "startMs": 73089,
+      "endMs": 73169
+    },
+    {
+      "word": "the",
+      "startMs": 73209,
+      "endMs": 73289
+    },
+    {
+      "word": "temperature",
+      "startMs": 73329,
+      "endMs": 73750
+    },
+    {
+      "word": "is",
+      "startMs": 73830,
+      "endMs": 73910
+    },
+    {
+      "word": "greater",
+      "startMs": 73970,
+      "endMs": 74271
+    },
+    {
+      "word": "than",
+      "startMs": 74331,
+      "endMs": 74451
+    },
+    {
+      "word": "25,",
+      "startMs": 74471,
+      "endMs": 74772
+    },
+    {
+      "word": "we",
+      "startMs": 75413,
+      "endMs": 75513
+    },
+    {
+      "word": "can",
+      "startMs": 75553,
+      "endMs": 75673
+    },
+    {
+      "word": "print,",
+      "startMs": 75713,
+      "endMs": 75974
+    },
+    {
+      "word": "\"It's",
+      "startMs": 76395,
+      "endMs": 76495
+    },
+    {
+      "word": "a",
+      "startMs": 76535,
+      "endMs": 76575
+    },
+    {
+      "word": "hot",
+      "startMs": 76615,
+      "endMs": 76815
+    },
+    {
+      "word": "day.\"",
+      "startMs": 76855,
+      "endMs": 77096
+    },
+    {
+      "word": "Let’s",
+      "startMs": 77757,
+      "endMs": 77937
+    },
+    {
+      "word": "see",
+      "startMs": 77957,
+      "endMs": 78098
+    },
+    {
+      "word": "how",
+      "startMs": 78138,
+      "endMs": 78258
+    },
+    {
+      "word": "that",
+      "startMs": 78318,
+      "endMs": 78478
+    },
+    {
+      "word": "looks.",
+      "startMs": 78518,
+      "endMs": 79380
+    },
+    {
+      "word": "Flowcharts",
+      "startMs": 79380,
+      "endMs": 80101
+    },
+    {
+      "word": "are",
+      "startMs": 80442,
+      "endMs": 80522
+    },
+    {
+      "word": "a",
+      "startMs": 80562,
+      "endMs": 80602
+    },
+    {
+      "word": "great",
+      "startMs": 80682,
+      "endMs": 80903
+    },
+    {
+      "word": "way",
+      "startMs": 80963,
+      "endMs": 81103
+    },
+    {
+      "word": "to",
+      "startMs": 81163,
+      "endMs": 81223
+    },
+    {
+      "word": "visualize",
+      "startMs": 81283,
+      "endMs": 81744
+    },
+    {
+      "word": "the",
+      "startMs": 81784,
+      "endMs": 81884
+    },
+    {
+      "word": "logic",
+      "startMs": 81924,
+      "endMs": 82285
+    },
+    {
+      "word": "behind",
+      "startMs": 82405,
+      "endMs": 82746
+    },
+    {
+      "word": "if-else",
+      "startMs": 82806,
+      "endMs": 83147
+    },
+    {
+      "word": "statements.",
+      "startMs": 83167,
+      "endMs": 83627
+    },
+    {
+      "word": "They",
+      "startMs": 84288,
+      "endMs": 84409
+    },
+    {
+      "word": "show",
+      "startMs": 84489,
+      "endMs": 84669
+    },
+    {
+      "word": "how",
+      "startMs": 84709,
+      "endMs": 84890
+    },
+    {
+      "word": "we",
+      "startMs": 84970,
+      "endMs": 85070
+    },
+    {
+      "word": "flow",
+      "startMs": 85150,
+      "endMs": 85370
+    },
+    {
+      "word": "from",
+      "startMs": 85410,
+      "endMs": 85591
+    },
+    {
+      "word": "checking",
+      "startMs": 85671,
+      "endMs": 85991
+    },
+    {
+      "word": "a",
+      "startMs": 86052,
+      "endMs": 86072
+    },
+    {
+      "word": "condition",
+      "startMs": 86112,
+      "endMs": 86572
+    },
+    {
+      "word": "to",
+      "startMs": 86612,
+      "endMs": 87053
+    },
+    {
+      "word": "executing",
+      "startMs": 87193,
+      "endMs": 87674
+    },
+    {
+      "word": "actions",
+      "startMs": 87714,
+      "endMs": 88215
+    },
+    {
+      "word": "based",
+      "startMs": 88496,
+      "endMs": 88756
+    },
+    {
+      "word": "on",
+      "startMs": 88816,
+      "endMs": 88876
+    },
+    {
+      "word": "that",
+      "startMs": 88916,
+      "endMs": 89077
+    },
+    {
+      "word": "condition.",
+      "startMs": 89157,
+      "endMs": 89618
+    },
+    {
+      "word": "Understanding",
+      "startMs": 90139,
+      "endMs": 90720
+    },
+    {
+      "word": "flowcharts",
+      "startMs": 90800,
+      "endMs": 91000
+    },
+    {
+      "word": "can",
+      "startMs": 91421,
+      "endMs": 91561
+    },
+    {
+      "word": "really",
+      "startMs": 91621,
+      "endMs": 91841
+    },
+    {
+      "word": "help",
+      "startMs": 91902,
+      "endMs": 92102
+    },
+    {
+      "word": "when",
+      "startMs": 92162,
+      "endMs": 92302
+    },
+    {
+      "word": "planning",
+      "startMs": 92362,
+      "endMs": 92663
+    },
+    {
+      "word": "your",
+      "startMs": 92703,
+      "endMs": 92803
+    },
+    {
+      "word": "code.",
+      "startMs": 92843,
+      "endMs": 93144
+    },
+    {
+      "word": "Let's",
+      "startMs": 93705,
+      "endMs": 93905
+    },
+    {
+      "word": "look",
+      "startMs": 93965,
+      "endMs": 94125
+    },
+    {
+      "word": "at",
+      "startMs": 94165,
+      "endMs": 94206
+    },
+    {
+      "word": "that",
+      "startMs": 94246,
+      "endMs": 94426
+    },
+    {
+      "word": "in",
+      "startMs": 94506,
+      "endMs": 94546
+    },
+    {
+      "word": "a",
+      "startMs": 94606,
+      "endMs": 94626
+    },
+    {
+      "word": "picture.",
+      "startMs": 94686,
+      "endMs": 95648
+    },
+    {
+      "word": "Now",
+      "startMs": 96016,
+      "endMs": 96257
+    },
+    {
+      "word": "that",
+      "startMs": 96297,
+      "endMs": 96397
+    },
+    {
+      "word": "you",
+      "startMs": 96438,
+      "endMs": 96538
+    },
+    {
+      "word": "have",
+      "startMs": 96578,
+      "endMs": 96679
+    },
+    {
+      "word": "a",
+      "startMs": 96719,
+      "endMs": 96739
+    },
+    {
+      "word": "grasp",
+      "startMs": 96799,
+      "endMs": 97160
+    },
+    {
+      "word": "of",
+      "startMs": 97221,
+      "endMs": 97281
+    },
+    {
+      "word": "if",
+      "startMs": 97361,
+      "endMs": 97462
+    },
+    {
+      "word": "and",
+      "startMs": 97542,
+      "endMs": 97602
+    },
+    {
+      "word": "else",
+      "startMs": 97682,
+      "endMs": 97843
+    },
+    {
+      "word": "statements,",
+      "startMs": 97883,
+      "endMs": 98646
+    },
+    {
+      "word": "there's",
+      "startMs": 98666,
+      "endMs": 98867
+    },
+    {
+      "word": "more",
+      "startMs": 98907,
+      "endMs": 99068
+    },
+    {
+      "word": "to",
+      "startMs": 99128,
+      "endMs": 99249
+    },
+    {
+      "word": "explore.",
+      "startMs": 99309,
+      "endMs": 99771
+    },
+    {
+      "word": "Next,",
+      "startMs": 100453,
+      "endMs": 100774
+    },
+    {
+      "word": "we’ll",
+      "startMs": 100955,
+      "endMs": 101116
+    },
+    {
+      "word": "dive",
+      "startMs": 101156,
+      "endMs": 101377
+    },
+    {
+      "word": "into",
+      "startMs": 101417,
+      "endMs": 101598
+    },
+    {
+      "word": "elif,",
+      "startMs": 101778,
+      "endMs": 102120
+    },
+    {
+      "word": "which",
+      "startMs": 102340,
+      "endMs": 102501
+    },
+    {
+      "word": "allows",
+      "startMs": 102561,
+      "endMs": 102883
+    },
+    {
+      "word": "us",
+      "startMs": 102943,
+      "endMs": 103023
+    },
+    {
+      "word": "to",
+      "startMs": 103063,
+      "endMs": 103144
+    },
+    {
+      "word": "check",
+      "startMs": 103204,
+      "endMs": 103445
+    },
+    {
+      "word": "multiple",
+      "startMs": 103545,
+      "endMs": 103987
+    },
+    {
+      "word": "conditions.",
+      "startMs": 104027,
+      "endMs": 104549
+    },
+    {
+      "word": "After",
+      "startMs": 105332,
+      "endMs": 105513
+    },
+    {
+      "word": "that,",
+      "startMs": 105553,
+      "endMs": 105774
+    },
+    {
+      "word": "we'll",
+      "startMs": 105975,
+      "endMs": 106135
+    },
+    {
+      "word": "learn",
+      "startMs": 106155,
+      "endMs": 106356
+    },
+    {
+      "word": "about",
+      "startMs": 106396,
+      "endMs": 106617
+    },
+    {
+      "word": "loops,",
+      "startMs": 106677,
+      "endMs": 106978
+    },
+    {
+      "word": "which",
+      "startMs": 107360,
+      "endMs": 107500
+    },
+    {
+      "word": "let",
+      "startMs": 107561,
+      "endMs": 107681
+    },
+    {
+      "word": "us",
+      "startMs": 107741,
+      "endMs": 107802
+    },
+    {
+      "word": "repeat",
+      "startMs": 107882,
+      "endMs": 108183
+    },
+    {
+      "word": "actions",
+      "startMs": 108344,
+      "endMs": 108705
+    },
+    {
+      "word": "based",
+      "startMs": 108826,
+      "endMs": 109107
+    },
+    {
+      "word": "on",
+      "startMs": 109187,
+      "endMs": 109247
+    },
+    {
+      "word": "conditions.",
+      "startMs": 109307,
+      "endMs": 109829
+    },
+    {
+      "word": "Exciting",
+      "startMs": 110392,
+      "endMs": 110773
+    },
+    {
+      "word": "stuff",
+      "startMs": 110833,
+      "endMs": 111094
+    },
+    {
+      "word": "ahead!",
+      "startMs": 111155,
+      "endMs": 111797
+    }
+  ],
+  "displaySections": [
+    {
+      "id": "understanding-conditional-statements",
+      "startMs": 31,
+      "endMs": 17348,
+      "wordStart": 0,
+      "wordEnd": 45,
+      "wer": 0
+    },
+    {
+      "id": "the-structure-of-if-statements",
+      "startMs": 17348,
+      "endMs": 40483,
+      "wordStart": 45,
+      "wordEnd": 113,
+      "wer": 0
+    },
+    {
+      "id": "adding-else-statements",
+      "startMs": 40483,
+      "endMs": 58422,
+      "wordStart": 113,
+      "wordEnd": 162,
+      "wer": 0
+    },
+    {
+      "id": "using-comparison-operators",
+      "startMs": 58422,
+      "endMs": 79380,
+      "wordStart": 162,
+      "wordEnd": 218,
+      "wer": 0
+    },
+    {
+      "id": "flowchart-for-if-and-else-statements",
+      "startMs": 79380,
+      "endMs": 95648,
+      "wordStart": 218,
+      "wordEnd": 262,
+      "wer": 0
+    },
+    {
+      "id": "whats-next",
+      "startMs": 96016,
+      "endMs": 111797,
+      "wordStart": 262,
+      "wordEnd": 306,
+      "wer": 0
+    }
+  ]
+}

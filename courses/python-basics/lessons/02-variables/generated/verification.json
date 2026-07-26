@@ -1,0 +1,71 @@
+{
+  "runner": "docker-sandbox",
+  "blocks": [
+    {
+      "source": "lesson.md",
+      "index": 0,
+      "code": "name = \"Ada\"\nprint(name)\nprint(name)",
+      "claimed_output": "Ada\nAda",
+      "hash": "sha256:545beeb823aa3d7f128cef8163b33e2fa5a35fd6c4eaeb30ea96fc86a9a4caba",
+      "stdout": "Ada\nAda\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-17T12:28:58.528508Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 1,
+      "code": "name = \"Ada\"\nprint(\"name\")\nprint(name)",
+      "claimed_output": "name\nAda",
+      "hash": "sha256:1f24a9dcc1fb4858d25020eedf9743221e58a84f9cacb7d63160acd44670d50b",
+      "stdout": "name\nAda\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-17T12:28:58.67296Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 2,
+      "code": "score = 0\nprint(score)",
+      "claimed_output": "0",
+      "hash": "sha256:a8c442f8ba20232eb98abb5cafa0562a6900ea4097f6802c6a99ff71c8dc97c0",
+      "stdout": "0\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-18T16:36:29.421285Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 3,
+      "code": "score = 0\nprint(score)\nscore = 10\nprint(score)",
+      "claimed_output": "0\n10",
+      "hash": "sha256:25a3c00748f9127fdb9f661a4dcda35b5f1ad35980e9a377207ec15aba533b7e",
+      "stdout": "0\n10\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-17T12:28:58.835255Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 4,
+      "code": "apples = 3\napples = apples + 2\nprint(apples)",
+      "claimed_output": "5",
+      "hash": "sha256:af8d2dca995ec5594f9863d4e37d39b0e5bd024651cc636385f09d619d669bc2",
+      "stdout": "5\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-17T12:28:58.96683Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 5,
+      "code": "name = \"Ada\"\nage = 12\nprint(name, \"is\", age)\nprint(name, \"turns\", age + 1, \"next year\")",
+      "claimed_output": "Ada is 12\nAda turns 13 next year",
+      "hash": "sha256:c45c508bfc45e3ce798aaf23aee5fc11d875ac1d12fd0adc2fa4ba9d83eec077",
+      "stdout": "Ada is 12\nAda turns 13 next year\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-17T12:28:59.10734Z"
+    }
+  ]
+}

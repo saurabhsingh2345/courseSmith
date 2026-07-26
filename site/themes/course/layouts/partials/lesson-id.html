@@ -1,0 +1,4 @@
+{{- /* Stable lesson identifier used as the localStorage progress key.
+       Deliberately not a URL so Hugo's relative-URL rewriting never touches it.
+       Usage: {{ partial "lesson-id.html" $lessonPage }} → python-basics/01-what-is-python */ -}}
+{{- printf "%s/%s" .CurrentSection.File.ContentBaseName .File.ContentBaseName -}}

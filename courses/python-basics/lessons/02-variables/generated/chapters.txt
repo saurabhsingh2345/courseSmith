@@ -1,0 +1,8 @@
+0:00 You already used one
+0:27 Giving a value a name
+1:04 Names without quotes, text with quotes
+1:30 Picking good names
+2:00 Changing what is inside
+2:28 Variables can hold numbers too
+2:55 Variables working together
+3:22 Whats Next

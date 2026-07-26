@@ -1,0 +1,22 @@
+{
+  "exercises": [
+    {
+      "slug": "check-even-or-odd",
+      "title": "Check Even or Odd",
+      "description": "Write a function `check_even_or_odd(number)` that returns 'Even' if the number is even and 'Odd' if the number is odd. For example, `check_even_or_odd(4)` should return 'Even' and `check_even_or_odd(3)` should return 'Odd'.",
+      "starter_code": "def check_even_or_odd(number):\n    # TODO: return 'Even' or 'Odd' based on the number\n    ...",
+      "solution_code": "def check_even_or_odd(number):\n    if number % 2 == 0:\n        return 'Even'\n    else:\n        return 'Odd'",
+      "test_code": "from exercise import check_even_or_odd\n\ndef test_check_even_or_odd():\n    assert check_even_or_odd(4) == 'Even'\n    assert check_even_or_odd(3) == 'Odd'\n    assert check_even_or_odd(0) == 'Even'\n    assert check_even_or_odd(-1) == 'Odd'"
+    },
+    {
+      "slug": "count-to-ten",
+      "title": "Count to Ten",
+      "description": "Create a function `count_to_ten()` that returns a list of numbers from 1 to 10. For example, calling `count_to_ten()` should return `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`.",
+      "starter_code": "def count_to_ten():\n    # TODO: return a list of numbers from 1 to 10\n    ...",
+      "solution_code": "def count_to_ten():\n    numbers = []\n    for i in range(1, 11):\n        numbers.append(i)\n    return numbers",
+      "test_code": "from exercise import count_to_ten\n\ndef test_count_to_ten():\n    assert count_to_ten() == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n    assert len(count_to_ten()) == 10"
+    }
+  ],
+  "runner": "docker-sandbox",
+  "generated_at": "2026-07-20T10:35:13.07246Z"
+}

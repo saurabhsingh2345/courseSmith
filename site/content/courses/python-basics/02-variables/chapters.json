@@ -1,0 +1,50 @@
+[
+  {
+    "id": "you-already-used-one",
+    "title": "You already used one",
+    "start_ms": 0,
+    "end_ms": 27537
+  },
+  {
+    "id": "giving-a-value-a-name",
+    "title": "Giving a value a name",
+    "start_ms": 27537,
+    "end_ms": 64105
+  },
+  {
+    "id": "names-without-quotes-text-with-quotes",
+    "title": "Names without quotes, text with quotes",
+    "start_ms": 64105,
+    "end_ms": 90143
+  },
+  {
+    "id": "picking-good-names",
+    "title": "Picking good names",
+    "start_ms": 90143,
+    "end_ms": 120130
+  },
+  {
+    "id": "changing-what-is-inside",
+    "title": "Changing what is inside",
+    "start_ms": 120130,
+    "end_ms": 148987
+  },
+  {
+    "id": "variables-can-hold-numbers-too",
+    "title": "Variables can hold numbers too",
+    "start_ms": 148987,
+    "end_ms": 175312
+  },
+  {
+    "id": "variables-working-together",
+    "title": "Variables working together",
+    "start_ms": 175312,
+    "end_ms": 202818
+  },
+  {
+    "id": "whats-next",
+    "title": "Whats Next",
+    "start_ms": 202818,
+    "end_ms": 223020
+  }
+]

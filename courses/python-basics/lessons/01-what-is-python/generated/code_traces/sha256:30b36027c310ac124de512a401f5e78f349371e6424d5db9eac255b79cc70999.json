@@ -1,0 +1,44 @@
+{
+  "code": "print(7 * 6)\nprint(10 + 5)",
+  "lines": [
+    "print(7 * 6)",
+    "print(10 + 5)"
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "line": 1,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 1,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "42\n"
+    },
+    {
+      "step": 2,
+      "line": 2,
+      "event": "return",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "42\n15\n"
+    }
+  ],
+  "truncated": false,
+  "stdout": "42\n15\n"
+}

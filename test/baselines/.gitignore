@@ -1,0 +1,4 @@
+# Committed baselines are the *.png files. The renderer writes these transient
+# artifacts on every compare run — never commit them.
+*.actual.png
+*.diff.png

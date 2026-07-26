@@ -1,0 +1,109 @@
+{
+  "sections": [
+    {
+      "id": "what-is-a-variable",
+      "points": [
+        {
+          "text": "Container for data",
+          "icon": "box",
+          "at_word": 6
+        },
+        {
+          "text": "Name references value",
+          "icon": "link",
+          "at_word": 14
+        },
+        {
+          "text": "Different data types",
+          "icon": "brain",
+          "at_word": 20
+        },
+        {
+          "text": "Identifies what we're working with",
+          "icon": "idea",
+          "at_word": 26
+        }
+      ]
+    },
+    {
+      "id": "naming-variables",
+      "points": [
+        {
+          "text": "Descriptive names",
+          "icon": "dot",
+          "at_word": 4
+        },
+        {
+          "text": "Start with letter or underscore",
+          "icon": "keyboard",
+          "at_word": 10
+        },
+        {
+          "text": "No spaces or special characters",
+          "icon": "bug",
+          "at_word": 16
+        }
+      ]
+    },
+    {
+      "id": "creating-and-storing-values-in-variables",
+      "points": [
+        {
+          "text": "Assignment operator '='",
+          "icon": "code",
+          "at_word": 8
+        },
+        {
+          "text": "Create variable example",
+          "icon": "file",
+          "at_word": 16
+        },
+        {
+          "text": "Print variable value",
+          "icon": "monitor",
+          "at_word": 36
+        }
+      ]
+    },
+    {
+      "id": "retrieving-values-from-variables",
+      "points": [
+        {
+          "text": "Reference variable name",
+          "icon": "link",
+          "at_word": 8
+        },
+        {
+          "text": "Update variable value",
+          "icon": "gear",
+          "at_word": 16
+        },
+        {
+          "text": "Print updated value",
+          "icon": "monitor",
+          "at_word": 28
+        }
+      ]
+    },
+    {
+      "id": "whats-next",
+      "points": [
+        {
+          "text": "Explore data types",
+          "icon": "brain",
+          "at_word": 7
+        },
+        {
+          "text": "Learn about lists",
+          "icon": "list",
+          "at_word": 12
+        },
+        {
+          "text": "Continue programming journey",
+          "icon": "rocket",
+          "at_word": 20
+        }
+      ]
+    }
+  ]
+}

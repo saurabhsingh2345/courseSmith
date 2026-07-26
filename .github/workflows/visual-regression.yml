@@ -1,0 +1,31 @@
+name: visual-regression
+
+# Workstream I gate: render each Remotion composition to a still and pixel-diff
+# it against the committed golden frames in test/baselines/. Blocks a PR that
+# changes what a scene looks like without an intentional baseline update
+# (`node test/visual_regression.mjs --update`).
+#
+# Runs on macOS because the committed baselines were rendered there — headless
+# Chromium font antialiasing differs across platforms, so the golden frames are
+# platform-pinned. Regenerate on the same OS you run the gate on.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  visual:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: install renderer deps
+        working-directory: renderer
+        run: npm ci
+
+      - name: pixel-diff compositions against baselines
+        run: node test/visual_regression.mjs

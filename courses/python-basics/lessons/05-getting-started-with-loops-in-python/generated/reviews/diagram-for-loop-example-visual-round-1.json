@@ -1,0 +1,13 @@
+{
+  "kind": "diagram:for-loop-example",
+  "round": 1,
+  "model": "openai/gpt-4o",
+  "passed": false,
+  "issues": [
+    "Missing 'Print item' step",
+    "Missing 'End Loop' step"
+  ],
+  "svg_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/python-basics/lessons/05-getting-started-with-loops-in-python/generated/diagrams/attempts/for-loop-example-round-1.svg",
+  "png_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/python-basics/lessons/05-getting-started-with-loops-in-python/generated/diagrams/attempts/for-loop-example-round-1.png",
+  "checked_at": "2026-07-26T13:22:34Z"
+}

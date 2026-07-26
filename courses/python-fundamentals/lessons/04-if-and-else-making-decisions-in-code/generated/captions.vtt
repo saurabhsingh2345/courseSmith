@@ -1,0 +1,222 @@
+WEBVTT
+
+1
+00:00:00.031 --> 00:00:02.055
+Conditional statements are a key part of
+
+2
+00:00:02.136 --> 00:00:02.677
+programming.
+
+3
+00:00:03.218 --> 00:00:05.062
+They let us make decisions in our code.
+
+4
+00:00:05.703 --> 00:00:07.687
+When we use them, we're evaluating
+
+5
+00:00:07.748 --> 00:00:10.473
+conditions and executing code based on
+
+6
+00:00:10.513 --> 00:00:12.558
+whether those conditions are true or
+
+7
+00:00:12.638 --> 00:00:12.979
+false.
+
+8
+00:00:13.480 --> 00:00:15.203
+The main types of conditional statements
+
+9
+00:00:15.384 --> 00:00:17.348
+are 'if' and 'else'.
+
+10
+00:00:17.348 --> 00:00:19.351
+An if statement is the first step in
+
+11
+00:00:19.431 --> 00:00:20.272
+making decisions.
+
+12
+00:00:20.913 --> 00:00:22.476
+It checks a specific condition.
+
+13
+00:00:23.057 --> 00:00:25.320
+If that condition is true, it runs the
+
+14
+00:00:25.380 --> 00:00:26.963
+code block associated with it.
+
+15
+00:00:27.523 --> 00:00:29.907
+If the condition is false, it simply skips
+
+16
+00:00:29.987 --> 00:00:30.828
+that code block.
+
+17
+00:00:31.269 --> 00:00:33.112
+For example, if we check if age is
+
+18
+00:00:33.192 --> 00:00:35.475
+greater than or equal to 18, we can
+
+19
+00:00:35.516 --> 00:00:37.418
+print a message saying, "You are an
+
+20
+00:00:37.478 --> 00:00:40.483
+adult." Let's see that in action.
+
+21
+00:00:40.483 --> 00:00:42.107
+Now, let’s talk about the else
+
+22
+00:00:42.127 --> 00:00:42.568
+statement.
+
+23
+00:00:43.049 --> 00:00:45.093
+This provides an alternative action when
+
+24
+00:00:45.133 --> 00:00:46.456
+the if condition is false.
+
+25
+00:00:47.117 --> 00:00:49.362
+By combining if and else, we can create
+
+26
+00:00:49.382 --> 00:00:50.705
+two possible outcomes.
+
+27
+00:00:51.226 --> 00:00:53.411
+For instance, if someone is under 18, we
+
+28
+00:00:53.451 --> 00:00:56.057
+can print, "You are a minor." This way,
+
+29
+00:00:56.217 --> 00:00:58.422
+we cover both scenarios.
+
+30
+00:00:58.422 --> 00:01:00.686
+Comparison operators are essential for
+
+31
+00:01:00.746 --> 00:01:01.968
+defining our conditions.
+
+32
+00:01:02.590 --> 00:01:04.413
+They help us compare values to see if
+
+33
+00:01:04.433 --> 00:01:05.735
+they're true or false.
+
+34
+00:01:06.417 --> 00:01:09.081
+Some common operators include equals, not
+
+35
+00:01:09.202 --> 00:01:11.245
+equals, greater than, and less than.
+
+36
+00:01:11.686 --> 00:01:13.289
+For example, if we check if the
+
+37
+00:01:13.329 --> 00:01:15.673
+temperature is greater than 25, we can
+
+38
+00:01:15.713 --> 00:01:18.258
+print, "It's a hot day." Let’s see how
+
+39
+00:01:18.318 --> 00:01:19.380
+that looks.
+
+40
+00:01:19.380 --> 00:01:21.744
+Flowcharts are a great way to visualize
+
+41
+00:01:21.784 --> 00:01:23.627
+the logic behind if-else statements.
+
+42
+00:01:24.288 --> 00:01:26.072
+They show how we flow from checking a
+
+43
+00:01:26.112 --> 00:01:28.876
+condition to executing actions based on
+
+44
+00:01:28.916 --> 00:01:29.618
+that condition.
+
+45
+00:01:30.139 --> 00:01:32.102
+Understanding flowcharts can really help
+
+46
+00:01:32.162 --> 00:01:33.144
+when planning your code.
+
+47
+00:01:33.705 --> 00:01:35.648
+Let's look at that in a picture.
+
+48
+00:01:36.016 --> 00:01:37.462
+Now that you have a grasp of if
+
+49
+00:01:37.542 --> 00:01:39.249
+and else statements, there's more to
+
+50
+00:01:39.309 --> 00:01:39.771
+explore.
+
+51
+00:01:40.453 --> 00:01:42.883
+Next, we’ll dive into elif, which allows
+
+52
+00:01:42.943 --> 00:01:44.549
+us to check multiple conditions.
+
+53
+00:01:45.332 --> 00:01:47.500
+After that, we'll learn about loops, which
+
+54
+00:01:47.561 --> 00:01:49.829
+let us repeat actions based on conditions.
+
+55
+00:01:50.392 --> 00:01:51.797
+Exciting stuff ahead!
+

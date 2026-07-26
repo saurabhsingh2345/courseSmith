@@ -1,0 +1,71 @@
+{
+  "title": "The print function: making Python say things on screen",
+  "sections": [
+    {
+      "id": "introduction-to-the-print-function",
+      "narration": "Let’s start by talking about what the print function does. The print function is a tool in Python that displays output on the screen. It's one of the first things you'll use when you start coding in Python. You can print text, numbers, and more. This function is essential for showing results and messages while you work on your programs. So, it’s really important to understand how it works.",
+      "duration_est_sec": 42,
+      "cues": []
+    },
+    {
+      "id": "basic-usage-of-print",
+      "narration": "Using the print function is pretty straightforward. You call it by writing print with parentheses. Inside those parentheses, you put the text you want to display, and it should be enclosed in quotes. For example, if you write print('Hello, World!'), it will display 'Hello, World!' on the screen. Let’s see that in action. Here’s what it looks like in code. When you run this, you’ll see the output right below it. It’s a simple way to make Python say something.",
+      "duration_est_sec": 42,
+      "cues": [
+        {
+          "type": "demo",
+          "ref": "Open a terminal and type print('Hello, World!') to see the output.",
+          "at_word": 36
+        }
+      ]
+    },
+    {
+      "id": "printing-multiple-items",
+      "narration": "You can also print multiple items at once. To do this, separate each item with a comma. When you do this, they will be displayed with a space in between. For example, if you write print('Hello', 'World!'), it will print 'Hello World!'. Let’s take a look at how that works in practice. Here’s the code, and when you run it, you’ll see how the items are printed together.",
+      "duration_est_sec": 42,
+      "cues": [
+        {
+          "type": "demo",
+          "ref": "Open a terminal and type print('Hello', 'World!') to see the output.",
+          "at_word": 36
+        }
+      ]
+    },
+    {
+      "id": "printing-numbers-and-calculations",
+      "narration": "The print function can also display numbers. You can print the results of calculations directly. For instance, if you write print(5 + 3), it will display 8. This is a great way to see the results of your math operations right on the screen. Let’s check that out with a quick example. Here’s the code you would use, and when you run it, you’ll see the output.",
+      "duration_est_sec": 42,
+      "cues": [
+        {
+          "type": "demo",
+          "ref": "Open a terminal and type print(5 + 3) to see the output.",
+          "at_word": 36
+        }
+      ]
+    },
+    {
+      "id": "experimenting-with-print",
+      "narration": "Now it’s your turn to experiment with the print function. Try printing different types of data. You can mix text and numbers in your print statements. The idea is to get creative with what you display on the screen. Let’s see an example of this. You can open a terminal and type print('I love Python!') to see how it works.",
+      "duration_est_sec": 42,
+      "cues": [
+        {
+          "type": "demo",
+          "ref": "Open a terminal and type print('I love Python!') to see the output.",
+          "at_word": 21
+        }
+      ]
+    },
+    {
+      "id": "whats-next",
+      "narration": "Now that you can print messages, the next step is to learn about variables. Variables are used to store data that you can later use with the print function. In the next lesson, we’ll cover how to create and use variables. This will help you take your coding skills to the next level.",
+      "duration_est_sec": 42,
+      "cues": [
+        {
+          "type": "diagram",
+          "ref": "print-function-overview",
+          "at_word": 12
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "order": [
+    "q1",
+    "q2",
+    "q5",
+    "q3",
+    "q4"
+  ],
+  "interleaving": "5 questions, 0 adjacent same-type pair(s)",
+  "difficulty_targets": {
+    "easy": 1,
+    "hard": 1,
+    "medium": 3
+  },
+  "_todo": "difficulty distribution is target-only until the IRT model (workstream D) supplies per-question estimates"
+}

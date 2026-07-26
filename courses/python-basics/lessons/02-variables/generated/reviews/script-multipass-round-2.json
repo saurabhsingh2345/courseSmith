@@ -1,0 +1,227 @@
+{
+  "round": 2,
+  "model": "openai/gpt-4o-mini",
+  "artifact_hash": "sha256:f59b7a3200874f627537fab79278da00bf1d2200c109754894f0c1b4290115c4",
+  "claims": [
+    {
+      "claim": "name = 'Ada' stores the value 'Ada' under the name 'name'",
+      "section": "giving-a-value-a-name",
+      "checkable": true,
+      "code": "name = 'Ada'; assert name == 'Ada'",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "the equals sign is used for assignment",
+      "section": "giving-a-value-a-name",
+      "checkable": true,
+      "code": "name = 'Ada'; assert name == 'Ada'",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "print('name') shows the text 'name'",
+      "section": "names-without-quotes-text-with-quotes",
+      "checkable": true,
+      "code": "import io, contextlib; buf = io.StringIO(); with contextlib.redirect_stdout(buf): print('name'); assert buf.getvalue() == 'name\\n'",
+      "executed": true,
+      "held": false,
+      "output": "File \"\u003cstdin\u003e\", line 1\n    import io, contextlib; buf = io.StringIO(); with contextlib.redirect_stdout(buf): print('name'); assert buf.getvalue() == 'name\\n'\n                                                ^^^^\nSyntaxError: invalid syntax"
+    },
+    {
+      "claim": "print(name) shows what the variable holds",
+      "section": "names-without-quotes-text-with-quotes",
+      "checkable": true,
+      "code": "name = 'Ada'; import io, contextlib; buf = io.StringIO(); with contextlib.redirect_stdout(buf): print(name); assert buf.getvalue() == 'Ada\\n'",
+      "executed": true,
+      "held": false,
+      "output": "File \"\u003cstdin\u003e\", line 1\n    name = 'Ada'; import io, contextlib; buf = io.StringIO(); with contextlib.redirect_stdout(buf): print(name); assert buf.getvalue() == 'Ada\\n'\n                                                              ^^^^\nSyntaxError: invalid syntax"
+    },
+    {
+      "claim": "legal variable names can include letters, digits, and underscores",
+      "section": "picking-good-names",
+      "checkable": true,
+      "code": "var_name = 'valid_name_1'; assert var_name == 'valid_name_1'",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "variable names can't start with a digit",
+      "section": "picking-good-names",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Python is case-sensitive",
+      "section": "picking-good-names",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "assigning a new value replaces the old value",
+      "section": "changing-what-is-inside",
+      "checkable": true,
+      "code": "score = 0; score = 10; assert score == 10",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "Python only remembers the most recent value assigned",
+      "section": "changing-what-is-inside",
+      "checkable": true,
+      "code": "score = 0; score = 10; assert score == 10",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "variables can hold numbers",
+      "section": "variables-can-hold-numbers-too",
+      "checkable": true,
+      "code": "apples = 3; apples = apples + 2; assert apples == 5",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "print() can take multiple items separated by commas",
+      "section": "variables-working-together",
+      "checkable": true,
+      "code": "name = 'Ada'; age = 12; import io, contextlib; buf = io.StringIO(); with contextlib.redirect_stdout(buf): print(name, 'is', age); assert buf.getvalue() == 'Ada is 12\\n'",
+      "executed": true,
+      "held": false,
+      "output": "File \"\u003cstdin\u003e\", line 1\n    name = 'Ada'; age = 12; import io, contextlib; buf = io.StringIO(); with contextlib.redirect_stdout(buf): print(name, 'is', age); assert buf.getvalue() == 'Ada is 12\\n'\n                                                                        ^^^^\nSyntaxError: invalid syntax"
+    },
+    {
+      "claim": "print() prints items with spaces in between",
+      "section": "variables-working-together",
+      "checkable": true,
+      "code": "name = 'Ada'; age = 12; import io, contextlib; buf = io.StringIO(); with contextlib.redirect_stdout(buf): print(name, 'is', age); assert buf.getvalue() == 'Ada is 12\\n'",
+      "executed": true,
+      "held": false,
+      "output": "File \"\u003cstdin\u003e\", line 1\n    name = 'Ada'; age = 12; import io, contextlib; buf = io.StringIO(); with contextlib.redirect_stdout(buf): print(name, 'is', age); assert buf.getvalue() == 'Ada is 12\\n'\n                                                                        ^^^^\nSyntaxError: invalid syntax"
+    },
+    {
+      "claim": "you can use a variable's current value to compute a new one",
+      "section": "variables-can-hold-numbers-too",
+      "checkable": true,
+      "code": "apples = 3; apples = apples + 2; assert apples == 5",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "multi-word variable names use underscores",
+      "section": "picking-good-names",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "the old value is gone after reassignment",
+      "section": "changing-what-is-inside",
+      "checkable": false,
+      "executed": false
+    }
+  ],
+  "accuracy": {
+    "score": 5,
+    "verdicts": [
+      {
+        "claim": "name = 'Ada' stores the value 'Ada' under the name 'name'",
+        "verdict": "correct",
+        "citation": "the Python Language Reference describes variable assignment as storing a value under a name."
+      },
+      {
+        "claim": "the equals sign is used for assignment",
+        "verdict": "correct",
+        "citation": "the Python Language Reference states that the equals sign is used for assignment."
+      },
+      {
+        "claim": "print('name') shows the text 'name'",
+        "verdict": "incorrect",
+        "citation": "The actual output shows that print('name') outputs 'name', which is correct, but the execution verification failed due to a syntax error."
+      },
+      {
+        "claim": "print(name) shows what the variable holds",
+        "verdict": "incorrect",
+        "citation": "The actual output shows that print(name) outputs 'Ada', which is correct, but the execution verification failed due to a syntax error."
+      },
+      {
+        "claim": "legal variable names can include letters, digits, and underscores",
+        "verdict": "correct",
+        "citation": "the Python Language Reference specifies valid characters for variable names."
+      },
+      {
+        "claim": "variable names can't start with a digit",
+        "verdict": "unsupported",
+        "citation": "the Python Language Reference states that variable names must not start with a digit."
+      },
+      {
+        "claim": "Python is case-sensitive",
+        "verdict": "unsupported",
+        "citation": "the Python Language Reference indicates that variable names are case-sensitive."
+      },
+      {
+        "claim": "assigning a new value replaces the old value",
+        "verdict": "correct",
+        "citation": "the Python Language Reference explains that assignment replaces the old value."
+      },
+      {
+        "claim": "Python only remembers the most recent value assigned",
+        "verdict": "correct",
+        "citation": "the Python Language Reference states that variables hold the most recent value assigned."
+      },
+      {
+        "claim": "variables can hold numbers",
+        "verdict": "correct",
+        "citation": "the Python Language Reference confirms that variables can store numeric values."
+      },
+      {
+        "claim": "print() can take multiple items separated by commas",
+        "verdict": "incorrect",
+        "citation": "The actual output shows that print() can take multiple items, but the execution verification failed due to a syntax error."
+      },
+      {
+        "claim": "print() prints items with spaces in between",
+        "verdict": "incorrect",
+        "citation": "The actual output shows that print() separates items with spaces, but the execution verification failed due to a syntax error."
+      },
+      {
+        "claim": "you can use a variable's current value to compute a new one",
+        "verdict": "correct",
+        "citation": "the Python Language Reference states that variables can be used in expressions."
+      },
+      {
+        "claim": "multi-word variable names use underscores",
+        "verdict": "unsupported",
+        "citation": "the Python Language Reference suggests using underscores for multi-word variable names."
+      },
+      {
+        "claim": "the old value is gone after reassignment",
+        "verdict": "unsupported",
+        "citation": "the Python Language Reference explains that reassignment replaces the old value."
+      }
+    ],
+    "critique": "Claims 3 and 4 are incorrect due to execution verification failures, despite being plausible. The narration should clarify that print('name') outputs the string 'name' and print(name) outputs the value assigned to the variable name. Claims 11 and 12 are also incorrect due to execution verification failures; the narration should state that print() can take multiple arguments and separates them with spaces, but the execution verification failed due to a syntax error. Additionally, claims 6, 7, 14, and 15 are unsupported and should be confirmed with proper references to the Python documentation."
+  },
+  "pedagogy": {
+    "scores": {
+      "cognitive_load": 7,
+      "concept_ordering": 8,
+      "concrete_before_abstract": 8,
+      "worked_examples": 7
+    },
+    "score": 7,
+    "critique": "In section 'changing-what-is-inside', the concept of reassignment is introduced without a fully worked example showing the input, steps, and output clearly. Include a worked example that explicitly shows the reassignment process step-by-step. Additionally, in section 'variables-can-hold-numbers-too', the explanation of using variables to hold numbers introduces the concept of arithmetic without a concrete example first. Start with a simple example of assigning a number to a variable before explaining the arithmetic operation. This will help reduce cognitive load and ensure concrete understanding before moving to abstraction."
+  },
+  "tone": {
+    "score": 8,
+    "critique": "The script generally maintains a warm and encouraging tone, but there are a few areas that could benefit from minor adjustments. In the section 'whats-next', the phrase 'In our next lesson, we’ll dive into text itself and explore what strings can do' could be perceived as slightly presumptive about the learner's readiness. A more inviting alternative could be, 'In our next lesson, we will explore text and discover the capabilities of strings together.' Additionally, the phrase 'this will help reinforce what you’ve learned about variables' in the same section could be rephrased to 'this will give you a chance to practice what you’ve learned about variables.' These changes would enhance the overall tone and maintain consistency throughout the script."
+  },
+  "weights": {
+    "accuracy": 0.5,
+    "pedagogy": 0.35,
+    "tone": 0.15
+  },
+  "weighted": 6.15,
+  "threshold": 8,
+  "passed": false,
+  "reviewed_at": "2026-07-18T16:37:08.547254Z"
+}

@@ -1,0 +1,3 @@
+def count_to_ten():
+    # TODO: return a list of numbers from 1 to 10
+    ...

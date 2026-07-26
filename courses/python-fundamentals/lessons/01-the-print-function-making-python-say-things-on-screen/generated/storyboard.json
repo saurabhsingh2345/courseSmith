@@ -1,0 +1,119 @@
+{
+  "sections": [
+    {
+      "id": "introduction-to-the-print-function",
+      "points": [
+        {
+          "text": "Displays output on screen",
+          "icon": "monitor",
+          "at_word": 14
+        },
+        {
+          "text": "Essential for showing results",
+          "icon": "check",
+          "at_word": 38
+        }
+      ]
+    },
+    {
+      "id": "basic-usage-of-print",
+      "points": [
+        {
+          "text": "Call with parentheses",
+          "icon": "code",
+          "at_word": 10
+        },
+        {
+          "text": "Enclose text in quotes",
+          "icon": "dot",
+          "at_word": 21
+        },
+        {
+          "text": "Simple way to say something",
+          "icon": "message",
+          "at_word": 66
+        }
+      ]
+    },
+    {
+      "id": "printing-multiple-items",
+      "points": [
+        {
+          "text": "Print multiple items",
+          "icon": "list",
+          "at_word": 8
+        },
+        {
+          "text": "Separate with a comma",
+          "icon": "dot",
+          "at_word": 17
+        },
+        {
+          "text": "Items displayed together",
+          "icon": "layers",
+          "at_word": 60
+        }
+      ]
+    },
+    {
+      "id": "printing-numbers-and-calculations",
+      "points": [
+        {
+          "text": "Display numbers too",
+          "icon": "dot",
+          "at_word": 12
+        },
+        {
+          "text": "Print calculation results",
+          "icon": "dot",
+          "at_word": 20
+        },
+        {
+          "text": "See math operations results",
+          "icon": "brain",
+          "at_word": 45
+        }
+      ]
+    },
+    {
+      "id": "experimenting-with-print",
+      "points": [
+        {
+          "text": "Experiment with print",
+          "icon": "sparkles",
+          "at_word": 9
+        },
+        {
+          "text": "Mix text and numbers",
+          "icon": "link",
+          "at_word": 17
+        },
+        {
+          "text": "Get creative with output",
+          "icon": "idea",
+          "at_word": 45
+        }
+      ]
+    },
+    {
+      "id": "whats-next",
+      "points": [
+        {
+          "text": "Next: Learn about variables",
+          "icon": "folder",
+          "at_word": 10
+        },
+        {
+          "text": "Store data for later use",
+          "icon": "database",
+          "at_word": 26
+        },
+        {
+          "text": "Take coding skills further",
+          "icon": "rocket",
+          "at_word": 46
+        }
+      ]
+    }
+  ]
+}

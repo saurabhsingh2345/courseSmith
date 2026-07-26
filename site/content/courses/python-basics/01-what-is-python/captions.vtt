@@ -1,0 +1,466 @@
+WEBVTT
+
+1
+00:00:00.031 --> 00:00:01.254
+Let's talk about Python.
+
+2
+00:00:01.775 --> 00:00:03.539
+It's a language, but not the kind we
+
+3
+00:00:03.579 --> 00:00:04.421
+speak every day.
+
+4
+00:00:04.461 --> 00:00:06.867
+Instead, it's a way to communicate with
+
+5
+00:00:06.927 --> 00:00:07.428
+computers.
+
+6
+00:00:08.069 --> 00:00:09.954
+You see, computers can't guess what we
+
+7
+00:00:09.994 --> 00:00:10.194
+mean.
+
+8
+00:00:10.675 --> 00:00:11.998
+They need clear instructions.
+
+9
+00:00:12.560 --> 00:00:15.005
+A programming language like Python gives
+
+10
+00:00:15.065 --> 00:00:16.669
+us a precise way to write those
+
+11
+00:00:16.749 --> 00:00:17.972
+instructions.
+
+12
+00:00:17.972 --> 00:00:20.535
+Python is popular because it reads almost
+
+13
+00:00:20.595 --> 00:00:22.657
+like English, making it easier for
+
+14
+00:00:22.717 --> 00:00:23.198
+beginners.
+
+15
+00:00:23.738 --> 00:00:26.061
+It was created by Guido van Rossum and
+
+16
+00:00:26.141 --> 00:00:27.643
+first released in 1991.
+
+17
+00:00:27.743 --> 00:00:31.707
+Interestingly, it’s named after Monty
+
+18
+00:00:31.747 --> 00:00:33.930
+Python, not the snake.
+
+19
+00:00:33.950 --> 00:00:36.372
+Now, let's look at how Python translates
+
+20
+00:00:36.432 --> 00:00:37.894
+our instructions into actions.
+
+21
+00:00:38.414 --> 00:00:41.752
+[DIAGRAM: python-translator] So, why do
+
+22
+00:00:41.772 --> 00:00:43.334
+many beginners start with Python?
+
+23
+00:00:43.874 --> 00:00:45.817
+First, it has very little ceremony.
+
+24
+00:00:46.378 --> 00:00:48.320
+You can write a single, readable line of
+
+25
+00:00:48.400 --> 00:00:49.662
+code that does real work.
+
+26
+00:00:50.162 --> 00:00:52.385
+Plus, there's a huge community out there.
+
+27
+00:00:52.906 --> 00:00:54.588
+Almost any question you might have has an
+
+28
+00:00:54.728 --> 00:00:55.489
+answer online.
+
+29
+00:00:56.030 --> 00:00:57.531
+And what’s great is that the same
+
+30
+00:00:57.612 --> 00:00:59.894
+language can scale from tiny scripts to
+
+31
+00:00:59.954 --> 00:01:01.476
+serious software.
+
+32
+00:01:01.496 --> 00:01:03.619
+It's flexible and powerful.
+
+33
+00:01:04.021 --> 00:01:06.625
+Python is used in many exciting areas.
+
+34
+00:01:07.185 --> 00:01:09.749
+For example, it powers websites and apps
+
+35
+00:01:09.829 --> 00:01:11.511
+like Instagram and Spotify.
+
+36
+00:01:12.192 --> 00:01:14.195
+It's also used for data analysis and
+
+37
+00:01:14.255 --> 00:01:16.398
+science, making it like spreadsheets on
+
+38
+00:01:16.458 --> 00:01:16.999
+steroids.
+
+39
+00:01:17.479 --> 00:01:19.983
+Python can automate boring tasks, like
+
+40
+00:01:20.043 --> 00:01:22.045
+renaming a thousand files in just a
+
+41
+00:01:22.085 --> 00:01:22.446
+second.
+
+42
+00:01:23.007 --> 00:01:24.809
+And when it comes to AI and machine
+
+43
+00:01:24.869 --> 00:01:26.752
+learning, most of that is written in
+
+44
+00:01:26.812 --> 00:01:27.733
+Python.
+
+45
+00:01:27.733 --> 00:01:30.196
+Now, let’s see a visual of where Python
+
+46
+00:01:30.276 --> 00:01:30.716
+is used.
+
+47
+00:01:31.317 --> 00:01:33.299
+[DIAGRAM: where-python-runs]
+
+48
+00:01:34.421 --> 00:01:35.322
+Ready to get started?
+
+49
+00:01:35.882 --> 00:01:38.045
+First, you'll need to install Python.
+
+50
+00:01:38.665 --> 00:01:41.849
+Go to python.org/downloads and grab the
+
+51
+00:01:41.889 --> 00:01:43.351
+latest version for your system.
+
+52
+00:01:43.991 --> 00:01:45.914
+If you're on Windows, make sure to check
+
+53
+00:01:45.954 --> 00:01:48.036
+the 'Add Python to PATH' box during
+
+54
+00:01:48.076 --> 00:01:48.737
+installation.
+
+55
+00:01:49.237 --> 00:01:51.620
+For macOS, the installer usually works
+
+56
+00:01:51.660 --> 00:01:53.282
+without extra steps.
+
+57
+00:01:53.282 --> 00:01:55.888
+Now, if you're using Linux, Python might
+
+58
+00:01:55.928 --> 00:01:58.373
+already be installed, but this can vary by
+
+59
+00:01:58.453 --> 00:01:59.095
+distribution.
+
+60
+00:01:59.556 --> 00:02:01.740
+To check if it’s installed, you can open
+
+61
+00:02:01.801 --> 00:02:04.045
+a terminal and type python3 --version.
+
+62
+00:02:04.667 --> 00:02:06.250
+This will show you the version if it’s
+
+63
+00:02:06.290 --> 00:02:07.052
+there.
+
+64
+00:02:07.555 --> 00:02:09.799
+Now, let's write our first line of Python.
+
+65
+00:02:10.380 --> 00:02:12.324
+A common first program is to make the
+
+66
+00:02:12.384 --> 00:02:13.446
+computer say hello.
+
+67
+00:02:13.486 --> 00:02:16.070
+To do this, we use a function called
+
+68
+00:02:16.210 --> 00:02:16.411
+print().
+
+69
+00:02:17.773 --> 00:02:19.837
+A function is like a tool that performs
+
+70
+00:02:19.857 --> 00:02:20.919
+a specific task.
+
+71
+00:02:21.360 --> 00:02:23.504
+With print(), we can show text on the
+
+72
+00:02:23.544 --> 00:02:23.884
+screen.
+
+73
+00:02:24.345 --> 00:02:25.607
+Here’s how it looks: print("Hello,
+
+74
+00:02:26.329 --> 00:02:28.492
+world!") When you run this, the computer
+
+75
+00:02:28.512 --> 00:02:30.155
+will display: Hello, world!
+
+76
+00:02:30.516 --> 00:02:32.179
+Let’s see this in action.
+
+77
+00:02:32.179 --> 00:02:35.135
+[DEMO: open the Python REPL with python3,
+
+78
+00:02:35.517 --> 00:02:37.708
+print a hello message, then print your own
+
+79
+00:02:37.789 --> 00:02:41.061
+name, and exit] Python can do math as
+
+80
+00:02:41.121 --> 00:02:41.321
+well!
+
+81
+00:02:41.642 --> 00:02:43.003
+You don’t need quotes for numbers.
+
+82
+00:02:43.544 --> 00:02:45.125
+Let’s start with a simple example.
+
+83
+00:02:45.586 --> 00:02:47.688
+You can use print() to show a number
+
+84
+00:02:47.748 --> 00:02:48.248
+directly.
+
+85
+00:02:48.729 --> 00:02:49.289
+For instance:
+
+86
+00:02:50.090 --> 00:02:53.053
+print(42) This will display: 42 Now, you
+
+87
+00:02:53.093 --> 00:02:54.474
+can also do calculations.
+
+88
+00:02:55.075 --> 00:02:57.417
+For example, if you write: print(7 * 6)
+
+89
+00:02:57.898 --> 00:03:00.140
+This will give you: 42 And if you
+
+90
+00:03:00.320 --> 00:03:00.460
+add:
+
+91
+00:03:01.501 --> 00:03:02.662
+print(10 + 5) You’ll see: 15.
+
+92
+00:03:03.964 --> 00:03:05.906
+This is a straightforward way to perform
+
+93
+00:03:05.966 --> 00:03:07.347
+calculations.
+
+94
+00:03:07.732 --> 00:03:09.453
+Let’s talk about how a program works.
+
+95
+00:03:10.074 --> 00:03:11.996
+A program is just a series of lines
+
+96
+00:03:12.036 --> 00:03:13.977
+that run one after another, from top to
+
+97
+00:03:14.037 --> 00:03:14.358
+bottom.
+
+98
+00:03:14.958 --> 00:03:17.741
+For example, if we write: name = "Ada"
+
+99
+00:03:17.801 --> 00:03:18.061
+print("Hello,",
+
+100
+00:03:19.022 --> 00:03:21.764
+name) print("Welcome to Python!") When you
+
+101
+00:03:21.824 --> 00:03:23.926
+run this, it will first greet Ada and
+
+102
+00:03:23.946 --> 00:03:25.347
+then welcome you to Python.
+
+103
+00:03:25.808 --> 00:03:28.210
+This shows how Python executes each line
+
+104
+00:03:28.270 --> 00:03:28.650
+in order.
+
+105
+00:03:29.251 --> 00:03:30.592
+Let’s put this into practice.
+
+106
+00:03:31.252 --> 00:03:34.055
+[DEMO: create a two-line script hello.py
+
+107
+00:03:34.115 --> 00:03:36.557
+with a heredoc and run it with python3
+
+108
+00:03:36.597 --> 00:03:38.901
+hello.py] What’s next?
+
+109
+00:03:39.242 --> 00:03:40.867
+In our next lesson, we’ll dive into
+
+110
+00:03:40.907 --> 00:03:42.893
+variables and how programs remember
+
+111
+00:03:42.933 --> 00:03:43.233
+things.
+
+112
+00:03:43.855 --> 00:03:46.102
+But before then, I encourage you to try
+
+113
+00:03:46.182 --> 00:03:49.010
+a challenge: make print() say your own
+
+114
+00:03:49.070 --> 00:03:49.311
+name.
+
+115
+00:03:49.852 --> 00:03:51.436
+It’s a fun way to practice what you've
+
+116
+00:03:51.477 --> 00:03:51.998
+learned.
+

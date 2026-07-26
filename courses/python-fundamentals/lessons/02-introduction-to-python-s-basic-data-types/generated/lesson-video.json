@@ -1,0 +1,242 @@
+{
+  "theme": {
+    "primary": "#2563eb",
+    "accent": "#f59e0b",
+    "background": "#ffffff",
+    "courseName": "Python Fundamentals",
+    "mode": "dark",
+    "bgTop": "#101828",
+    "bgBottom": "#070815",
+    "surface": "#1b2232",
+    "surfaceBorder": "#323c52",
+    "text": "#f2f4f8",
+    "textMuted": "#a6aebf",
+    "fontDisplay": "Space Grotesk",
+    "fontBody": "Inter",
+    "fontMono": "JetBrains Mono",
+    "grain": 0.04
+  },
+  "motion": {
+    "timing": {
+      "fast": 0.2,
+      "normal": 0.6,
+      "slow": 1,
+      "verySlow": 2
+    },
+    "easing": {
+      "entrance": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "exit": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "subtle": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "stagger": {
+      "words": 0.05,
+      "items": 0.08,
+      "connections": 0.12
+    }
+  },
+  "audioFile": "voiceover.wav",
+  "durationMs": 159639,
+  "scenes": [
+    {
+      "type": "title",
+      "startMs": 31,
+      "endMs": 12838,
+      "props": {
+        "heading": "Introduction to Python's basic data types",
+        "intro": true,
+        "outcomes": [
+          "Identify Python's basic data types",
+          "Create and manipulate strings, integers, floats, and booleans",
+          "Use data types in simple expressions"
+        ],
+        "subtitle": "Python Fundamentals"
+      }
+    },
+    {
+      "type": "diagram",
+      "startMs": 12838,
+      "endMs": 39603,
+      "props": {
+        "caption": "data-types-overview",
+        "kind": "mermaid",
+        "src": "diagrams/data-types-overview.svg",
+        "title": "What are data types?"
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 39603,
+      "endMs": 70130,
+      "props": {
+        "code": "print('Hello, ' + 'world!')",
+        "language": "python",
+        "output": "Hello, world!\n",
+        "title": "Understanding strings",
+        "trace": {
+          "code": "print('Hello, ' + 'world!')",
+          "lines": [
+            "print('Hello, ' + 'world!')"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 1,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "Hello, world!\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "Hello, world!\n"
+        }
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 70130,
+      "endMs": 98896,
+      "props": {
+        "code": "print(5 + 3.2)",
+        "language": "python",
+        "output": "8.2\n",
+        "title": "Exploring integers and floats",
+        "trace": {
+          "code": "print(5 + 3.2)",
+          "lines": [
+            "print(5 + 3.2)"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 1,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "8.2\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "8.2\n"
+        }
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 98896,
+      "endMs": 123449,
+      "props": {
+        "code": "print(3 \u003e 2)",
+        "language": "python",
+        "output": "True\n",
+        "title": "What are booleans?",
+        "trace": {
+          "code": "print(3 \u003e 2)",
+          "lines": [
+            "print(3 \u003e 2)"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 1,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "True\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "True\n"
+        }
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 123449,
+      "endMs": 143952,
+      "props": {
+        "items": [
+          {
+            "atMs": 123449,
+            "icon": "list",
+            "text": "Strings, Integers, Floats, Booleans"
+          },
+          {
+            "atMs": 134850,
+            "icon": "brain",
+            "text": "Foundation for programming"
+          }
+        ],
+        "title": "Overview of data types"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 143952,
+      "endMs": 159639,
+      "props": {
+        "items": [
+          {
+            "atMs": 143952,
+            "icon": "play",
+            "text": "Start using data types"
+          },
+          {
+            "atMs": 147038,
+            "icon": "folder",
+            "text": "Explore variables"
+          },
+          {
+            "atMs": 152207,
+            "icon": "rocket",
+            "text": "Create complex programs"
+          }
+        ],
+        "title": "Next steps in Python"
+      }
+    }
+  ],
+  "captions": null
+}

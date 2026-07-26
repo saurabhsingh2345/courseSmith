@@ -1,0 +1,386 @@
+WEBVTT
+
+1
+00:00:00.031 --> 00:00:02.455
+Last lesson's challenge was to make print
+
+2
+00:00:02.515 --> 00:00:03.556
+say your own name.
+
+3
+00:00:04.298 --> 00:00:06.261
+If you wrote your name straight inside
+
+4
+00:00:06.341 --> 00:00:08.804
+print, you had to repeat it every time.
+
+5
+00:00:08.844 --> 00:00:11.809
+But in the final script, you probably had
+
+6
+00:00:11.849 --> 00:00:12.710
+a line like this:
+
+7
+00:00:13.552 --> 00:00:14.814
+name = "Ada".
+
+8
+00:00:15.395 --> 00:00:16.937
+That line is a variable.
+
+9
+00:00:17.558 --> 00:00:19.982
+This lesson is all about what that line
+
+10
+00:00:20.122 --> 00:00:20.743
+really does.
+
+11
+00:00:21.584 --> 00:00:23.928
+A variable is how a program remembers a
+
+12
+00:00:23.988 --> 00:00:26.832
+value, so it can use it again later.
+
+13
+00:00:27.537 --> 00:00:30.060
+When you write name = "Ada", you're
+
+14
+00:00:30.120 --> 00:00:32.203
+storing the value "Ada" under the name
+
+15
+00:00:32.283 --> 00:00:32.563
+name.
+
+16
+00:00:33.404 --> 00:00:36.027
+Now, the equals sign here means "store
+
+17
+00:00:36.087 --> 00:00:38.390
+this", not "equals" like in math.
+
+18
+00:00:39.051 --> 00:00:40.392
+You put the name of the box on
+
+19
+00:00:40.413 --> 00:00:42.355
+the left, and the value on the right.
+
+20
+00:00:43.016 --> 00:00:45.318
+After that, whenever you write name, it
+
+21
+00:00:45.378 --> 00:00:47.161
+means whatever is in that box.
+
+22
+00:00:47.861 --> 00:00:49.984
+Let's look at that in a picture.
+
+23
+00:00:49.984 --> 00:00:52.371
+Here’s a diagram showing how it works.
+
+24
+00:00:53.013 --> 00:00:55.159
+You see that the label stays, but the
+
+25
+00:00:55.219 --> 00:00:56.463
+contents can change.
+
+26
+00:00:57.385 --> 00:00:59.571
+So when you run this code, it prints
+
+27
+00:00:59.612 --> 00:01:02.299
+Ada twice because it looks inside the box
+
+28
+00:01:02.379 --> 00:01:03.282
+named name.
+
+29
+00:01:04.105 --> 00:01:05.047
+When you write print("name"),
+
+30
+00:01:06.409 --> 00:01:07.571
+it shows the text name.
+
+31
+00:01:08.152 --> 00:01:09.093
+But if you write print(name),
+
+32
+00:01:10.015 --> 00:01:11.818
+it shows what the variable holds.
+
+33
+00:01:12.659 --> 00:01:14.823
+Quotes mean "these exact characters",
+
+34
+00:01:15.223 --> 00:01:17.126
+while no quotes mean "look inside the
+
+35
+00:01:17.167 --> 00:01:17.547
+box".
+
+36
+00:01:18.489 --> 00:01:20.752
+So if you run this code, you'll see
+
+37
+00:01:20.793 --> 00:01:22.696
+that the first print gives you the word
+
+38
+00:01:22.776 --> 00:01:25.040
+name, and the second one gives you the
+
+39
+00:01:25.080 --> 00:01:25.921
+value Ada.
+
+40
+00:01:26.802 --> 00:01:29.607
+It’s a simple but important distinction.
+
+41
+00:01:30.143 --> 00:01:32.245
+When choosing names for your variables,
+
+42
+00:01:32.685 --> 00:01:35.107
+remember that legal names can use letters,
+
+43
+00:01:35.448 --> 00:01:38.090
+digits, and underscores, but they can't
+
+44
+00:01:38.150 --> 00:01:39.011
+start with a digit.
+
+45
+00:01:39.912 --> 00:01:43.735
+Also, Python is case-sensitive, so age and
+
+46
+00:01:43.935 --> 00:01:45.517
+Age are two different boxes.
+
+47
+00:01:46.217 --> 00:01:48.399
+It's best to choose names that describe
+
+48
+00:01:48.459 --> 00:01:49.280
+what's inside.
+
+49
+00:01:49.981 --> 00:01:52.283
+For example, birth_year is clearer than
+
+50
+00:01:52.323 --> 00:01:52.863
+just by.
+
+51
+00:01:53.684 --> 00:01:56.226
+And if you have multi-word names, use
+
+52
+00:01:56.327 --> 00:01:58.909
+underscores, like favorite_color instead
+
+53
+00:01:58.949 --> 00:01:59.650
+of favoritecolor.
+
+54
+00:02:00.130 --> 00:02:03.754
+Assigning again replaces the old value.
+
+55
+00:02:04.395 --> 00:02:07.017
+The box keeps its label, but the contents
+
+56
+00:02:07.077 --> 00:02:07.718
+are swapped.
+
+57
+00:02:08.359 --> 00:02:11.322
+The old value is gone, and Python only
+
+58
+00:02:11.382 --> 00:02:13.144
+remembers the latest assignment.
+
+59
+00:02:13.825 --> 00:02:15.226
+Let's look at that in a picture.
+
+60
+00:02:16.127 --> 00:02:18.370
+This diagram shows how assigning again
+
+61
+00:02:18.410 --> 00:02:20.051
+replaces what was inside.
+
+62
+00:02:20.852 --> 00:02:22.954
+When you run this code, you’ll see that
+
+63
+00:02:22.974 --> 00:02:25.777
+the first print shows 0, and after we
+
+64
+00:02:25.838 --> 00:02:28.180
+assign again, it shows 10.
+
+65
+00:02:28.987 --> 00:02:31.650
+Everything from last lesson's math works
+
+66
+00:02:31.730 --> 00:02:32.811
+inside variables.
+
+67
+00:02:33.592 --> 00:02:35.495
+You can even use a variable's current
+
+68
+00:02:35.535 --> 00:02:37.056
+value to compute a new one.
+
+69
+00:02:37.797 --> 00:02:40.500
+For example, if you start with apples =
+
+70
+00:02:40.500 --> 00:02:43.965
+3 and then write apples = apples +
+
+71
+00:02:43.965 --> 00:02:46.928
+2, you’re adding 2 to the current value.
+
+72
+00:02:47.469 --> 00:02:49.831
+When you print apples, it gives you 5.
+
+73
+00:02:50.592 --> 00:02:52.294
+It’s like counting your apples and
+
+74
+00:02:52.374 --> 00:02:53.876
+finding out you have more than you
+
+75
+00:02:53.936 --> 00:02:54.657
+thought!
+
+76
+00:02:55.312 --> 00:02:58.197
+In real programs, you often mix several
+
+77
+00:02:58.237 --> 00:02:59.579
+variables in one line.
+
+78
+00:03:00.400 --> 00:03:02.423
+The print function can take multiple
+
+79
+00:03:02.504 --> 00:03:05.448
+things separated by commas, and it prints
+
+80
+00:03:05.508 --> 00:03:07.271
+them with spaces in between.
+
+81
+00:03:07.912 --> 00:03:10.857
+For instance, if you have name = "Ada"
+
+82
+00:03:10.897 --> 00:03:13.922
+and age = 12, you can print them
+
+83
+00:03:13.982 --> 00:03:14.323
+together.
+
+84
+00:03:15.244 --> 00:03:17.748
+This prints a nice sentence about Ada and
+
+85
+00:03:17.808 --> 00:03:18.309
+her age.
+
+86
+00:03:18.990 --> 00:03:20.953
+It’s a great way to share information in
+
+87
+00:03:20.993 --> 00:03:22.095
+a clear way.
+
+88
+00:03:22.818 --> 00:03:25.003
+In the next lesson, we’ll dive into text
+
+89
+00:03:25.083 --> 00:03:27.508
+itself and explore what strings can do,
+
+90
+00:03:27.548 --> 00:03:29.772
+from joining to changing case.
+
+91
+00:03:30.634 --> 00:03:32.879
+But before then, here’s a challenge for
+
+92
+00:03:32.919 --> 00:03:35.745
+you: create a script with two variables,
+
+93
+00:03:36.025 --> 00:03:38.170
+your name and your favorite number, and
+
+94
+00:03:38.230 --> 00:03:39.994
+print one sentence using both.
+
+95
+00:03:40.635 --> 00:03:42.419
+It’s a fun way to practice what you’ve
+
+96
+00:03:42.479 --> 00:03:43.020
+learned!
+

@@ -1,0 +1,4122 @@
+{
+  "source": "whisperx",
+  "words": [
+    {
+      "word": "Data",
+      "startMs": 31,
+      "endMs": 392
+    },
+    {
+      "word": "types",
+      "startMs": 452,
+      "endMs": 733
+    },
+    {
+      "word": "define",
+      "startMs": 793,
+      "endMs": 1173
+    },
+    {
+      "word": "the",
+      "startMs": 1214,
+      "endMs": 1274
+    },
+    {
+      "word": "kind",
+      "startMs": 1314,
+      "endMs": 1474
+    },
+    {
+      "word": "of",
+      "startMs": 1514,
+      "endMs": 1554
+    },
+    {
+      "word": "data",
+      "startMs": 1614,
+      "endMs": 1875
+    },
+    {
+      "word": "we",
+      "startMs": 1915,
+      "endMs": 2075
+    },
+    {
+      "word": "can",
+      "startMs": 2115,
+      "endMs": 2236
+    },
+    {
+      "word": "use",
+      "startMs": 2356,
+      "endMs": 2476
+    },
+    {
+      "word": "in",
+      "startMs": 2536,
+      "endMs": 2617
+    },
+    {
+      "word": "Python.",
+      "startMs": 2677,
+      "endMs": 3178
+    },
+    {
+      "word": "They",
+      "startMs": 3699,
+      "endMs": 3799
+    },
+    {
+      "word": "help",
+      "startMs": 3859,
+      "endMs": 4020
+    },
+    {
+      "word": "Python",
+      "startMs": 4080,
+      "endMs": 4541
+    },
+    {
+      "word": "understand",
+      "startMs": 4621,
+      "endMs": 5102
+    },
+    {
+      "word": "how",
+      "startMs": 5162,
+      "endMs": 5302
+    },
+    {
+      "word": "to",
+      "startMs": 5342,
+      "endMs": 5423
+    },
+    {
+      "word": "store",
+      "startMs": 5503,
+      "endMs": 5884
+    },
+    {
+      "word": "and",
+      "startMs": 5984,
+      "endMs": 6064
+    },
+    {
+      "word": "manipulate",
+      "startMs": 6104,
+      "endMs": 6605
+    },
+    {
+      "word": "data.",
+      "startMs": 6645,
+      "endMs": 6946
+    },
+    {
+      "word": "Common",
+      "startMs": 7607,
+      "endMs": 7928
+    },
+    {
+      "word": "data",
+      "startMs": 7968,
+      "endMs": 8208
+    },
+    {
+      "word": "types",
+      "startMs": 8249,
+      "endMs": 8529
+    },
+    {
+      "word": "include",
+      "startMs": 8609,
+      "endMs": 8930
+    },
+    {
+      "word": "strings,",
+      "startMs": 8990,
+      "endMs": 9431
+    },
+    {
+      "word": "integers,",
+      "startMs": 9812,
+      "endMs": 10233
+    },
+    {
+      "word": "floats,",
+      "startMs": 10574,
+      "endMs": 10934
+    },
+    {
+      "word": "and",
+      "startMs": 11095,
+      "endMs": 11175
+    },
+    {
+      "word": "booleans.",
+      "startMs": 11215,
+      "endMs": 11696
+    },
+    {
+      "word": "Let's",
+      "startMs": 12317,
+      "endMs": 12518
+    },
+    {
+      "word": "look",
+      "startMs": 12558,
+      "endMs": 12738
+    },
+    {
+      "word": "at",
+      "startMs": 12778,
+      "endMs": 12818
+    },
+    {
+      "word": "that",
+      "startMs": 12838,
+      "endMs": 13039
+    },
+    {
+      "word": "in",
+      "startMs": 13099,
+      "endMs": 13159
+    },
+    {
+      "word": "a",
+      "startMs": 13199,
+      "endMs": 13219
+    },
+    {
+      "word": "picture.",
+      "startMs": 13279,
+      "endMs": 13640
+    },
+    {
+      "word": "Here's",
+      "startMs": 14121,
+      "endMs": 14322
+    },
+    {
+      "word": "a",
+      "startMs": 14382,
+      "endMs": 14402
+    },
+    {
+      "word": "flowchart",
+      "startMs": 14442,
+      "endMs": 14903
+    },
+    {
+      "word": "showing",
+      "startMs": 14963,
+      "endMs": 15244
+    },
+    {
+      "word": "Python's",
+      "startMs": 15324,
+      "endMs": 15825
+    },
+    {
+      "word": "basic",
+      "startMs": 15945,
+      "endMs": 16286
+    },
+    {
+      "word": "data",
+      "startMs": 16346,
+      "endMs": 16586
+    },
+    {
+      "word": "types.",
+      "startMs": 16626,
+      "endMs": 17348
+    },
+    {
+      "word": "At",
+      "startMs": 17328,
+      "endMs": 17508
+    },
+    {
+      "word": "the",
+      "startMs": 17528,
+      "endMs": 17608
+    },
+    {
+      "word": "top,",
+      "startMs": 17669,
+      "endMs": 17969
+    },
+    {
+      "word": "we",
+      "startMs": 18109,
+      "endMs": 18209
+    },
+    {
+      "word": "have",
+      "startMs": 18269,
+      "endMs": 18390
+    },
+    {
+      "word": "Python",
+      "startMs": 18490,
+      "endMs": 18930
+    },
+    {
+      "word": "data",
+      "startMs": 18970,
+      "endMs": 19211
+    },
+    {
+      "word": "types",
+      "startMs": 19251,
+      "endMs": 19551
+    },
+    {
+      "word": "branching",
+      "startMs": 19832,
+      "endMs": 20272
+    },
+    {
+      "word": "down",
+      "startMs": 20313,
+      "endMs": 20533
+    },
+    {
+      "word": "to",
+      "startMs": 20593,
+      "endMs": 20673
+    },
+    {
+      "word": "strings,",
+      "startMs": 20753,
+      "endMs": 21194
+    },
+    {
+      "word": "integers,",
+      "startMs": 21534,
+      "endMs": 21935
+    },
+    {
+      "word": "floats,",
+      "startMs": 22356,
+      "endMs": 22736
+    },
+    {
+      "word": "and",
+      "startMs": 22876,
+      "endMs": 22956
+    },
+    {
+      "word": "booleans.",
+      "startMs": 23037,
+      "endMs": 23537
+    },
+    {
+      "word": "Each",
+      "startMs": 24319,
+      "endMs": 24479
+    },
+    {
+      "word": "type",
+      "startMs": 24559,
+      "endMs": 24819
+    },
+    {
+      "word": "has",
+      "startMs": 24859,
+      "endMs": 25000
+    },
+    {
+      "word": "a",
+      "startMs": 25040,
+      "endMs": 25080
+    },
+    {
+      "word": "brief",
+      "startMs": 25120,
+      "endMs": 25340
+    },
+    {
+      "word": "description.",
+      "startMs": 25400,
+      "endMs": 25921
+    },
+    {
+      "word": "Strings",
+      "startMs": 26462,
+      "endMs": 26882
+    },
+    {
+      "word": "are",
+      "startMs": 26922,
+      "endMs": 27063
+    },
+    {
+      "word": "for",
+      "startMs": 27103,
+      "endMs": 27183
+    },
+    {
+      "word": "text",
+      "startMs": 27243,
+      "endMs": 27483
+    },
+    {
+      "word": "data,",
+      "startMs": 27523,
+      "endMs": 27844
+    },
+    {
+      "word": "integers",
+      "startMs": 28265,
+      "endMs": 28625
+    },
+    {
+      "word": "are",
+      "startMs": 28645,
+      "endMs": 28805
+    },
+    {
+      "word": "whole",
+      "startMs": 28885,
+      "endMs": 29086
+    },
+    {
+      "word": "numbers,",
+      "startMs": 29146,
+      "endMs": 29526
+    },
+    {
+      "word": "floats",
+      "startMs": 30007,
+      "endMs": 30308
+    },
+    {
+      "word": "are",
+      "startMs": 30328,
+      "endMs": 30488
+    },
+    {
+      "word": "decimal",
+      "startMs": 30568,
+      "endMs": 30969
+    },
+    {
+      "word": "numbers,",
+      "startMs": 31049,
+      "endMs": 31429
+    },
+    {
+      "word": "and",
+      "startMs": 31750,
+      "endMs": 31830
+    },
+    {
+      "word": "booleans",
+      "startMs": 31890,
+      "endMs": 32351
+    },
+    {
+      "word": "represent",
+      "startMs": 32451,
+      "endMs": 32851
+    },
+    {
+      "word": "true",
+      "startMs": 32952,
+      "endMs": 33252
+    },
+    {
+      "word": "or",
+      "startMs": 33292,
+      "endMs": 33553
+    },
+    {
+      "word": "false",
+      "startMs": 33633,
+      "endMs": 33893
+    },
+    {
+      "word": "values.",
+      "startMs": 33933,
+      "endMs": 34394
+    },
+    {
+      "word": "Understanding",
+      "startMs": 35095,
+      "endMs": 35696
+    },
+    {
+      "word": "these",
+      "startMs": 35736,
+      "endMs": 35896
+    },
+    {
+      "word": "data",
+      "startMs": 35956,
+      "endMs": 36196
+    },
+    {
+      "word": "types",
+      "startMs": 36237,
+      "endMs": 36517
+    },
+    {
+      "word": "is",
+      "startMs": 36657,
+      "endMs": 36717
+    },
+    {
+      "word": "crucial",
+      "startMs": 36837,
+      "endMs": 37258
+    },
+    {
+      "word": "for",
+      "startMs": 37318,
+      "endMs": 37438
+    },
+    {
+      "word": "programming",
+      "startMs": 37498,
+      "endMs": 38019
+    },
+    {
+      "word": "effectively.",
+      "startMs": 38119,
+      "endMs": 39201
+    },
+    {
+      "word": "Strings",
+      "startMs": 39603,
+      "endMs": 40103
+    },
+    {
+      "word": "are",
+      "startMs": 40204,
+      "endMs": 40284
+    },
+    {
+      "word": "sequences",
+      "startMs": 40364,
+      "endMs": 40844
+    },
+    {
+      "word": "of",
+      "startMs": 40904,
+      "endMs": 40944
+    },
+    {
+      "word": "characters,",
+      "startMs": 41004,
+      "endMs": 41525
+    },
+    {
+      "word": "like",
+      "startMs": 41825,
+      "endMs": 41965
+    },
+    {
+      "word": "words",
+      "startMs": 42045,
+      "endMs": 42386
+    },
+    {
+      "word": "or",
+      "startMs": 42486,
+      "endMs": 42546
+    },
+    {
+      "word": "sentences.",
+      "startMs": 42646,
+      "endMs": 43186
+    },
+    {
+      "word": "They're",
+      "startMs": 43787,
+      "endMs": 43947
+    },
+    {
+      "word": "enclosed",
+      "startMs": 43987,
+      "endMs": 44427
+    },
+    {
+      "word": "in",
+      "startMs": 44507,
+      "endMs": 44567
+    },
+    {
+      "word": "single",
+      "startMs": 44608,
+      "endMs": 45088
+    },
+    {
+      "word": "or",
+      "startMs": 45128,
+      "endMs": 45328
+    },
+    {
+      "word": "double",
+      "startMs": 45408,
+      "endMs": 45648
+    },
+    {
+      "word": "quotes.",
+      "startMs": 45708,
+      "endMs": 46009
+    },
+    {
+      "word": "For",
+      "startMs": 46549,
+      "endMs": 46649
+    },
+    {
+      "word": "example,",
+      "startMs": 46709,
+      "endMs": 47150
+    },
+    {
+      "word": "you",
+      "startMs": 47370,
+      "endMs": 47470
+    },
+    {
+      "word": "can",
+      "startMs": 47510,
+      "endMs": 47630
+    },
+    {
+      "word": "write",
+      "startMs": 47690,
+      "endMs": 47910
+    },
+    {
+      "word": "hello",
+      "startMs": 47951,
+      "endMs": 48451
+    },
+    {
+      "word": "or",
+      "startMs": 48471,
+      "endMs": 48511
+    },
+    {
+      "word": "hello.",
+      "startMs": 48911,
+      "endMs": 49332
+    },
+    {
+      "word": "You",
+      "startMs": 49952,
+      "endMs": 50032
+    },
+    {
+      "word": "can",
+      "startMs": 50072,
+      "endMs": 50173
+    },
+    {
+      "word": "also",
+      "startMs": 50253,
+      "endMs": 50473
+    },
+    {
+      "word": "concatenate",
+      "startMs": 50533,
+      "endMs": 51093
+    },
+    {
+      "word": "strings",
+      "startMs": 51153,
+      "endMs": 51514
+    },
+    {
+      "word": "using",
+      "startMs": 51694,
+      "endMs": 51894
+    },
+    {
+      "word": "the",
+      "startMs": 51934,
+      "endMs": 52014
+    },
+    {
+      "word": "plus",
+      "startMs": 52074,
+      "endMs": 52415
+    },
+    {
+      "word": "operator.",
+      "startMs": 52695,
+      "endMs": 53135
+    },
+    {
+      "word": "This",
+      "startMs": 53636,
+      "endMs": 53776
+    },
+    {
+      "word": "means",
+      "startMs": 53856,
+      "endMs": 54076
+    },
+    {
+      "word": "you",
+      "startMs": 54116,
+      "endMs": 54216
+    },
+    {
+      "word": "can",
+      "startMs": 54256,
+      "endMs": 54356
+    },
+    {
+      "word": "join",
+      "startMs": 54396,
+      "endMs": 54637
+    },
+    {
+      "word": "two",
+      "startMs": 54697,
+      "endMs": 54877
+    },
+    {
+      "word": "strings",
+      "startMs": 54937,
+      "endMs": 55237
+    },
+    {
+      "word": "together.",
+      "startMs": 55297,
+      "endMs": 55677
+    },
+    {
+      "word": "For",
+      "startMs": 56098,
+      "endMs": 56198
+    },
+    {
+      "word": "instance,",
+      "startMs": 56258,
+      "endMs": 56678
+    },
+    {
+      "word": "if",
+      "startMs": 56899,
+      "endMs": 56959
+    },
+    {
+      "word": "you",
+      "startMs": 56999,
+      "endMs": 57099
+    },
+    {
+      "word": "write",
+      "startMs": 57139,
+      "endMs": 57319
+    },
+    {
+      "word": "print",
+      "startMs": 57379,
+      "endMs": 57579
+    },
+    {
+      "word": "hello",
+      "startMs": 57599,
+      "endMs": 57940
+    },
+    {
+      "word": "plus",
+      "startMs": 57980,
+      "endMs": 58600
+    },
+    {
+      "word": "world,",
+      "startMs": 58780,
+      "endMs": 59181
+    },
+    {
+      "word": "it",
+      "startMs": 59781,
+      "endMs": 59841
+    },
+    {
+      "word": "combines",
+      "startMs": 59881,
+      "endMs": 60282
+    },
+    {
+      "word": "those",
+      "startMs": 60322,
+      "endMs": 60522
+    },
+    {
+      "word": "two",
+      "startMs": 60602,
+      "endMs": 60782
+    },
+    {
+      "word": "strings",
+      "startMs": 60822,
+      "endMs": 61142
+    },
+    {
+      "word": "into",
+      "startMs": 61202,
+      "endMs": 61363
+    },
+    {
+      "word": "one.",
+      "startMs": 61543,
+      "endMs": 61643
+    },
+    {
+      "word": "The",
+      "startMs": 62163,
+      "endMs": 62243
+    },
+    {
+      "word": "output",
+      "startMs": 62384,
+      "endMs": 62724
+    },
+    {
+      "word": "will",
+      "startMs": 62764,
+      "endMs": 62884
+    },
+    {
+      "word": "be",
+      "startMs": 62924,
+      "endMs": 63024
+    },
+    {
+      "word": "hello",
+      "startMs": 63064,
+      "endMs": 63585
+    },
+    {
+      "word": "world.",
+      "startMs": 63625,
+      "endMs": 64145
+    },
+    {
+      "word": "So",
+      "startMs": 64686,
+      "endMs": 64866
+    },
+    {
+      "word": "strings",
+      "startMs": 65126,
+      "endMs": 65486
+    },
+    {
+      "word": "are",
+      "startMs": 65546,
+      "endMs": 65626
+    },
+    {
+      "word": "pretty",
+      "startMs": 65686,
+      "endMs": 65907
+    },
+    {
+      "word": "flexible",
+      "startMs": 65967,
+      "endMs": 66447
+    },
+    {
+      "word": "and",
+      "startMs": 66807,
+      "endMs": 66888
+    },
+    {
+      "word": "essential",
+      "startMs": 66928,
+      "endMs": 67368
+    },
+    {
+      "word": "for",
+      "startMs": 67588,
+      "endMs": 67708
+    },
+    {
+      "word": "handling",
+      "startMs": 67748,
+      "endMs": 68149
+    },
+    {
+      "word": "text",
+      "startMs": 68209,
+      "endMs": 68509
+    },
+    {
+      "word": "in",
+      "startMs": 68569,
+      "endMs": 68649
+    },
+    {
+      "word": "Python.",
+      "startMs": 68689,
+      "endMs": 69610
+    },
+    {
+      "word": "you",
+      "startMs": 69590,
+      "endMs": 69752
+    },
+    {
+      "word": "Integers",
+      "startMs": 70130,
+      "endMs": 70590
+    },
+    {
+      "word": "are",
+      "startMs": 70610,
+      "endMs": 70771
+    },
+    {
+      "word": "whole",
+      "startMs": 70851,
+      "endMs": 71051
+    },
+    {
+      "word": "numbers,",
+      "startMs": 71111,
+      "endMs": 71491
+    },
+    {
+      "word": "like",
+      "startMs": 71671,
+      "endMs": 71812
+    },
+    {
+      "word": "1,",
+      "startMs": 71832,
+      "endMs": 72132
+    },
+    {
+      "word": "2,",
+      "startMs": 72152,
+      "endMs": 72192
+    },
+    {
+      "word": "or",
+      "startMs": 72512,
+      "endMs": 72913
+    },
+    {
+      "word": "even",
+      "startMs": 73013,
+      "endMs": 73193
+    },
+    {
+      "word": "5.",
+      "startMs": 73213,
+      "endMs": 73613
+    },
+    {
+      "word": "They",
+      "startMs": 73653,
+      "endMs": 74294
+    },
+    {
+      "word": "don't",
+      "startMs": 74314,
+      "endMs": 74454
+    },
+    {
+      "word": "have",
+      "startMs": 74494,
+      "endMs": 74654
+    },
+    {
+      "word": "any",
+      "startMs": 74674,
+      "endMs": 74874
+    },
+    {
+      "word": "decimal",
+      "startMs": 74914,
+      "endMs": 75275
+    },
+    {
+      "word": "points.",
+      "startMs": 75335,
+      "endMs": 75615
+    },
+    {
+      "word": "On",
+      "startMs": 76235,
+      "endMs": 76296
+    },
+    {
+      "word": "the",
+      "startMs": 76316,
+      "endMs": 76396
+    },
+    {
+      "word": "other",
+      "startMs": 76436,
+      "endMs": 76576
+    },
+    {
+      "word": "hand,",
+      "startMs": 76616,
+      "endMs": 76876
+    },
+    {
+      "word": "floats",
+      "startMs": 77176,
+      "endMs": 77477
+    },
+    {
+      "word": "are",
+      "startMs": 77557,
+      "endMs": 77637
+    },
+    {
+      "word": "decimal",
+      "startMs": 77697,
+      "endMs": 78097
+    },
+    {
+      "word": "numbers,",
+      "startMs": 78137,
+      "endMs": 78498
+    },
+    {
+      "word": "like",
+      "startMs": 78878,
+      "endMs": 79018
+    },
+    {
+      "word": "3.14",
+      "startMs": 79038,
+      "endMs": 79238
+    },
+    {
+      "word": "or",
+      "startMs": 79258,
+      "endMs": 79298
+    },
+    {
+      "word": "0.001.",
+      "startMs": 79318,
+      "endMs": 80760
+    },
+    {
+      "word": "You",
+      "startMs": 81260,
+      "endMs": 81340
+    },
+    {
+      "word": "can",
+      "startMs": 81380,
+      "endMs": 81480
+    },
+    {
+      "word": "perform",
+      "startMs": 81520,
+      "endMs": 81941
+    },
+    {
+      "word": "arithmetic",
+      "startMs": 81961,
+      "endMs": 82641
+    },
+    {
+      "word": "operations",
+      "startMs": 82741,
+      "endMs": 83322
+    },
+    {
+      "word": "with",
+      "startMs": 83382,
+      "endMs": 83502
+    },
+    {
+      "word": "both",
+      "startMs": 83562,
+      "endMs": 83762
+    },
+    {
+      "word": "types,",
+      "startMs": 83822,
+      "endMs": 84143
+    },
+    {
+      "word": "which",
+      "startMs": 84483,
+      "endMs": 84623
+    },
+    {
+      "word": "is",
+      "startMs": 84703,
+      "endMs": 84763
+    },
+    {
+      "word": "really",
+      "startMs": 84863,
+      "endMs": 85104
+    },
+    {
+      "word": "useful.",
+      "startMs": 85224,
+      "endMs": 85504
+    },
+    {
+      "word": "For",
+      "startMs": 86064,
+      "endMs": 86165
+    },
+    {
+      "word": "example,",
+      "startMs": 86225,
+      "endMs": 86665
+    },
+    {
+      "word": "if",
+      "startMs": 86885,
+      "endMs": 86945
+    },
+    {
+      "word": "you",
+      "startMs": 86985,
+      "endMs": 87105
+    },
+    {
+      "word": "write",
+      "startMs": 87125,
+      "endMs": 87306
+    },
+    {
+      "word": "print",
+      "startMs": 87346,
+      "endMs": 87586
+    },
+    {
+      "word": "5",
+      "startMs": 87606,
+      "endMs": 88427
+    },
+    {
+      "word": "plus",
+      "startMs": 88487,
+      "endMs": 88727
+    },
+    {
+      "word": "3.2,",
+      "startMs": 88747,
+      "endMs": 88987
+    },
+    {
+      "word": "Python",
+      "startMs": 89047,
+      "endMs": 90448
+    },
+    {
+      "word": "adds",
+      "startMs": 90569,
+      "endMs": 90729
+    },
+    {
+      "word": "those",
+      "startMs": 90809,
+      "endMs": 90969
+    },
+    {
+      "word": "two",
+      "startMs": 91009,
+      "endMs": 91209
+    },
+    {
+      "word": "numbers",
+      "startMs": 91269,
+      "endMs": 91549
+    },
+    {
+      "word": "together.",
+      "startMs": 91609,
+      "endMs": 91970
+    },
+    {
+      "word": "The",
+      "startMs": 92570,
+      "endMs": 92650
+    },
+    {
+      "word": "result",
+      "startMs": 92690,
+      "endMs": 93031
+    },
+    {
+      "word": "will",
+      "startMs": 93051,
+      "endMs": 93191
+    },
+    {
+      "word": "be",
+      "startMs": 93211,
+      "endMs": 93291
+    },
+    {
+      "word": "8.2.",
+      "startMs": 93311,
+      "endMs": 93571
+    },
+    {
+      "word": "So,",
+      "startMs": 93711,
+      "endMs": 93891
+    },
+    {
+      "word": "integers",
+      "startMs": 95193,
+      "endMs": 95613
+    },
+    {
+      "word": "and",
+      "startMs": 95693,
+      "endMs": 95773
+    },
+    {
+      "word": "floats",
+      "startMs": 95833,
+      "endMs": 96154
+    },
+    {
+      "word": "are",
+      "startMs": 96414,
+      "endMs": 96494
+    },
+    {
+      "word": "vital",
+      "startMs": 96574,
+      "endMs": 96874
+    },
+    {
+      "word": "for",
+      "startMs": 96934,
+      "endMs": 97034
+    },
+    {
+      "word": "calculations",
+      "startMs": 97074,
+      "endMs": 97775
+    },
+    {
+      "word": "in",
+      "startMs": 97815,
+      "endMs": 97855
+    },
+    {
+      "word": "your",
+      "startMs": 97895,
+      "endMs": 97995
+    },
+    {
+      "word": "programs.",
+      "startMs": 98035,
+      "endMs": 98916
+    },
+    {
+      "word": "Booleans",
+      "startMs": 98896,
+      "endMs": 100098
+    },
+    {
+      "word": "represent",
+      "startMs": 100198,
+      "endMs": 100639
+    },
+    {
+      "word": "truth",
+      "startMs": 100719,
+      "endMs": 101000
+    },
+    {
+      "word": "values,",
+      "startMs": 101040,
+      "endMs": 101501
+    },
+    {
+      "word": "true",
+      "startMs": 101941,
+      "endMs": 102222
+    },
+    {
+      "word": "or",
+      "startMs": 102262,
+      "endMs": 102583
+    },
+    {
+      "word": "false.",
+      "startMs": 102683,
+      "endMs": 103003
+    },
+    {
+      "word": "They're",
+      "startMs": 103564,
+      "endMs": 103745
+    },
+    {
+      "word": "often",
+      "startMs": 103825,
+      "endMs": 104065
+    },
+    {
+      "word": "used",
+      "startMs": 104246,
+      "endMs": 104466
+    },
+    {
+      "word": "in",
+      "startMs": 104566,
+      "endMs": 104626
+    },
+    {
+      "word": "conditions",
+      "startMs": 104706,
+      "endMs": 105267
+    },
+    {
+      "word": "and",
+      "startMs": 105348,
+      "endMs": 105428
+    },
+    {
+      "word": "comparisons.",
+      "startMs": 105488,
+      "endMs": 106149
+    },
+    {
+      "word": "For",
+      "startMs": 106690,
+      "endMs": 106790
+    },
+    {
+      "word": "example,",
+      "startMs": 106850,
+      "endMs": 107271
+    },
+    {
+      "word": "you",
+      "startMs": 107592,
+      "endMs": 107692
+    },
+    {
+      "word": "might",
+      "startMs": 107732,
+      "endMs": 107892
+    },
+    {
+      "word": "check",
+      "startMs": 107952,
+      "endMs": 108213
+    },
+    {
+      "word": "if",
+      "startMs": 108293,
+      "endMs": 108353
+    },
+    {
+      "word": "something",
+      "startMs": 108433,
+      "endMs": 108774
+    },
+    {
+      "word": "is",
+      "startMs": 108854,
+      "endMs": 108914
+    },
+    {
+      "word": "greater",
+      "startMs": 108994,
+      "endMs": 109355
+    },
+    {
+      "word": "than",
+      "startMs": 109395,
+      "endMs": 109515
+    },
+    {
+      "word": "another",
+      "startMs": 109595,
+      "endMs": 109876
+    },
+    {
+      "word": "value.",
+      "startMs": 109916,
+      "endMs": 110276
+    },
+    {
+      "word": "You",
+      "startMs": 110857,
+      "endMs": 110938
+    },
+    {
+      "word": "can",
+      "startMs": 110978,
+      "endMs": 111078
+    },
+    {
+      "word": "use",
+      "startMs": 111178,
+      "endMs": 111278
+    },
+    {
+      "word": "Booleans",
+      "startMs": 111338,
+      "endMs": 111819
+    },
+    {
+      "word": "to",
+      "startMs": 111879,
+      "endMs": 111939
+    },
+    {
+      "word": "control",
+      "startMs": 111999,
+      "endMs": 112400
+    },
+    {
+      "word": "the",
+      "startMs": 112440,
+      "endMs": 112520
+    },
+    {
+      "word": "flow",
+      "startMs": 112580,
+      "endMs": 112841
+    },
+    {
+      "word": "of",
+      "startMs": 112901,
+      "endMs": 112941
+    },
+    {
+      "word": "your",
+      "startMs": 112981,
+      "endMs": 113101
+    },
+    {
+      "word": "program.",
+      "startMs": 113141,
+      "endMs": 113582
+    },
+    {
+      "word": "If",
+      "startMs": 114043,
+      "endMs": 114103
+    },
+    {
+      "word": "you",
+      "startMs": 114143,
+      "endMs": 114263
+    },
+    {
+      "word": "write",
+      "startMs": 114283,
+      "endMs": 114484
+    },
+    {
+      "word": "print",
+      "startMs": 114544,
+      "endMs": 114784
+    },
+    {
+      "word": "3-2,",
+      "startMs": 114804,
+      "endMs": 115285
+    },
+    {
+      "word": "Python",
+      "startMs": 116107,
+      "endMs": 116568
+    },
+    {
+      "word": "evaluates",
+      "startMs": 116608,
+      "endMs": 117149
+    },
+    {
+      "word": "that",
+      "startMs": 117209,
+      "endMs": 117329
+    },
+    {
+      "word": "expression",
+      "startMs": 117409,
+      "endMs": 117970
+    },
+    {
+      "word": "and",
+      "startMs": 118130,
+      "endMs": 118211
+    },
+    {
+      "word": "returns",
+      "startMs": 118271,
+      "endMs": 118671
+    },
+    {
+      "word": "true.",
+      "startMs": 118772,
+      "endMs": 119052
+    },
+    {
+      "word": "Booleans",
+      "startMs": 119793,
+      "endMs": 120274
+    },
+    {
+      "word": "are",
+      "startMs": 120374,
+      "endMs": 120455
+    },
+    {
+      "word": "essential",
+      "startMs": 120515,
+      "endMs": 120935
+    },
+    {
+      "word": "for",
+      "startMs": 120995,
+      "endMs": 121096
+    },
+    {
+      "word": "making",
+      "startMs": 121156,
+      "endMs": 121396
+    },
+    {
+      "word": "decisions",
+      "startMs": 121436,
+      "endMs": 121917
+    },
+    {
+      "word": "in",
+      "startMs": 121977,
+      "endMs": 122017
+    },
+    {
+      "word": "your",
+      "startMs": 122057,
+      "endMs": 122158
+    },
+    {
+      "word": "code.",
+      "startMs": 122198,
+      "endMs": 122979
+    },
+    {
+      "word": "Let's",
+      "startMs": 123449,
+      "endMs": 123709
+    },
+    {
+      "word": "summarize",
+      "startMs": 123750,
+      "endMs": 124230
+    },
+    {
+      "word": "the",
+      "startMs": 124270,
+      "endMs": 124371
+    },
+    {
+      "word": "basic",
+      "startMs": 124411,
+      "endMs": 124771
+    },
+    {
+      "word": "data",
+      "startMs": 124811,
+      "endMs": 125072
+    },
+    {
+      "word": "types",
+      "startMs": 125132,
+      "endMs": 125413
+    },
+    {
+      "word": "in",
+      "startMs": 125473,
+      "endMs": 125553
+    },
+    {
+      "word": "Python.",
+      "startMs": 125593,
+      "endMs": 126094
+    },
+    {
+      "word": "We",
+      "startMs": 126635,
+      "endMs": 126715
+    },
+    {
+      "word": "have",
+      "startMs": 126755,
+      "endMs": 126895
+    },
+    {
+      "word": "strings",
+      "startMs": 126935,
+      "endMs": 127276
+    },
+    {
+      "word": "for",
+      "startMs": 127336,
+      "endMs": 127456
+    },
+    {
+      "word": "text,",
+      "startMs": 127516,
+      "endMs": 128278
+    },
+    {
+      "word": "integers",
+      "startMs": 128298,
+      "endMs": 128679
+    },
+    {
+      "word": "for",
+      "startMs": 128739,
+      "endMs": 128839
+    },
+    {
+      "word": "whole",
+      "startMs": 128899,
+      "endMs": 129079
+    },
+    {
+      "word": "numbers,",
+      "startMs": 129119,
+      "endMs": 129500
+    },
+    {
+      "word": "floats",
+      "startMs": 129921,
+      "endMs": 130221
+    },
+    {
+      "word": "for",
+      "startMs": 130301,
+      "endMs": 130402
+    },
+    {
+      "word": "decimals,",
+      "startMs": 130462,
+      "endMs": 130963
+    },
+    {
+      "word": "and",
+      "startMs": 131323,
+      "endMs": 131403
+    },
+    {
+      "word": "booleans",
+      "startMs": 131464,
+      "endMs": 131944
+    },
+    {
+      "word": "for",
+      "startMs": 132025,
+      "endMs": 132145
+    },
+    {
+      "word": "true",
+      "startMs": 132225,
+      "endMs": 132526
+    },
+    {
+      "word": "or",
+      "startMs": 132566,
+      "endMs": 132766
+    },
+    {
+      "word": "false.",
+      "startMs": 132866,
+      "endMs": 133187
+    },
+    {
+      "word": "Understanding",
+      "startMs": 133928,
+      "endMs": 134529
+    },
+    {
+      "word": "these",
+      "startMs": 134589,
+      "endMs": 134770
+    },
+    {
+      "word": "types",
+      "startMs": 134850,
+      "endMs": 135130
+    },
+    {
+      "word": "is",
+      "startMs": 135291,
+      "endMs": 135351
+    },
+    {
+      "word": "essential",
+      "startMs": 135431,
+      "endMs": 135852
+    },
+    {
+      "word": "for",
+      "startMs": 135912,
+      "endMs": 136012
+    },
+    {
+      "word": "programming.",
+      "startMs": 136072,
+      "endMs": 136613
+    },
+    {
+      "word": "They",
+      "startMs": 137054,
+      "endMs": 137174
+    },
+    {
+      "word": "form",
+      "startMs": 137234,
+      "endMs": 137434
+    },
+    {
+      "word": "the",
+      "startMs": 137475,
+      "endMs": 137535
+    },
+    {
+      "word": "foundation",
+      "startMs": 137595,
+      "endMs": 138136
+    },
+    {
+      "word": "of",
+      "startMs": 138176,
+      "endMs": 138256
+    },
+    {
+      "word": "how",
+      "startMs": 138316,
+      "endMs": 138456
+    },
+    {
+      "word": "we",
+      "startMs": 138516,
+      "endMs": 138617
+    },
+    {
+      "word": "work",
+      "startMs": 138677,
+      "endMs": 138877
+    },
+    {
+      "word": "with",
+      "startMs": 138917,
+      "endMs": 139037
+    },
+    {
+      "word": "data",
+      "startMs": 139097,
+      "endMs": 139378
+    },
+    {
+      "word": "in",
+      "startMs": 139438,
+      "endMs": 139498
+    },
+    {
+      "word": "Python,",
+      "startMs": 139538,
+      "endMs": 139999
+    },
+    {
+      "word": "so",
+      "startMs": 140540,
+      "endMs": 140720
+    },
+    {
+      "word": "keep",
+      "startMs": 141141,
+      "endMs": 141342
+    },
+    {
+      "word": "these",
+      "startMs": 141382,
+      "endMs": 141562
+    },
+    {
+      "word": "in",
+      "startMs": 141642,
+      "endMs": 141702
+    },
+    {
+      "word": "mind",
+      "startMs": 141762,
+      "endMs": 142063
+    },
+    {
+      "word": "as",
+      "startMs": 142163,
+      "endMs": 142223
+    },
+    {
+      "word": "you",
+      "startMs": 142263,
+      "endMs": 142383
+    },
+    {
+      "word": "start",
+      "startMs": 142404,
+      "endMs": 142644
+    },
+    {
+      "word": "coding.",
+      "startMs": 142704,
+      "endMs": 143786
+    },
+    {
+      "word": "Now",
+      "startMs": 143952,
+      "endMs": 144233
+    },
+    {
+      "word": "that",
+      "startMs": 144313,
+      "endMs": 144433
+    },
+    {
+      "word": "you",
+      "startMs": 144473,
+      "endMs": 144573
+    },
+    {
+      "word": "know",
+      "startMs": 144633,
+      "endMs": 144753
+    },
+    {
+      "word": "the",
+      "startMs": 144814,
+      "endMs": 144894
+    },
+    {
+      "word": "basic",
+      "startMs": 144954,
+      "endMs": 145335
+    },
+    {
+      "word": "data",
+      "startMs": 145375,
+      "endMs": 145615
+    },
+    {
+      "word": "types,",
+      "startMs": 145655,
+      "endMs": 145976
+    },
+    {
+      "word": "you",
+      "startMs": 146356,
+      "endMs": 146457
+    },
+    {
+      "word": "can",
+      "startMs": 146497,
+      "endMs": 146617
+    },
+    {
+      "word": "start",
+      "startMs": 146657,
+      "endMs": 146917
+    },
+    {
+      "word": "using",
+      "startMs": 147038,
+      "endMs": 147258
+    },
+    {
+      "word": "them",
+      "startMs": 147298,
+      "endMs": 147398
+    },
+    {
+      "word": "in",
+      "startMs": 147418,
+      "endMs": 147478
+    },
+    {
+      "word": "your",
+      "startMs": 147498,
+      "endMs": 147619
+    },
+    {
+      "word": "programs.",
+      "startMs": 147659,
+      "endMs": 148140
+    },
+    {
+      "word": "Next,",
+      "startMs": 148881,
+      "endMs": 149202
+    },
+    {
+      "word": "we'll",
+      "startMs": 149502,
+      "endMs": 149642
+    },
+    {
+      "word": "explore",
+      "startMs": 149682,
+      "endMs": 150063
+    },
+    {
+      "word": "how",
+      "startMs": 150103,
+      "endMs": 150223
+    },
+    {
+      "word": "to",
+      "startMs": 150243,
+      "endMs": 150304
+    },
+    {
+      "word": "store",
+      "startMs": 150344,
+      "endMs": 150564
+    },
+    {
+      "word": "data",
+      "startMs": 150604,
+      "endMs": 150865
+    },
+    {
+      "word": "in",
+      "startMs": 150925,
+      "endMs": 151005
+    },
+    {
+      "word": "variables.",
+      "startMs": 151025,
+      "endMs": 151546
+    },
+    {
+      "word": "This",
+      "startMs": 152207,
+      "endMs": 152387
+    },
+    {
+      "word": "will",
+      "startMs": 152427,
+      "endMs": 152568
+    },
+    {
+      "word": "allow",
+      "startMs": 152628,
+      "endMs": 152848
+    },
+    {
+      "word": "you",
+      "startMs": 152908,
+      "endMs": 153008
+    },
+    {
+      "word": "to",
+      "startMs": 153069,
+      "endMs": 153129
+    },
+    {
+      "word": "create",
+      "startMs": 153209,
+      "endMs": 153529
+    },
+    {
+      "word": "more",
+      "startMs": 153549,
+      "endMs": 153770
+    },
+    {
+      "word": "complex",
+      "startMs": 153850,
+      "endMs": 154471
+    },
+    {
+      "word": "and",
+      "startMs": 154591,
+      "endMs": 154671
+    },
+    {
+      "word": "useful",
+      "startMs": 154772,
+      "endMs": 155052
+    },
+    {
+      "word": "programs.",
+      "startMs": 155112,
+      "endMs": 155613
+    },
+    {
+      "word": "So,",
+      "startMs": 156154,
+      "endMs": 156355
+    },
+    {
+      "word": "let's",
+      "startMs": 156575,
+      "endMs": 156775
+    },
+    {
+      "word": "get",
+      "startMs": 156815,
+      "endMs": 156936
+    },
+    {
+      "word": "ready",
+      "startMs": 156976,
+      "endMs": 157136
+    },
+    {
+      "word": "to",
+      "startMs": 157176,
+      "endMs": 157256
+    },
+    {
+      "word": "dive",
+      "startMs": 157316,
+      "endMs": 157557
+    },
+    {
+      "word": "into",
+      "startMs": 157597,
+      "endMs": 157737
+    },
+    {
+      "word": "the",
+      "startMs": 157777,
+      "endMs": 157837
+    },
+    {
+      "word": "next",
+      "startMs": 157857,
+      "endMs": 158078
+    },
+    {
+      "word": "topic.",
+      "startMs": 158138,
+      "endMs": 158839
+    }
+  ],
+  "sections": [
+    {
+      "id": "what-are-data-types",
+      "startMs": 31,
+      "endMs": 39201,
+      "wordStart": 0,
+      "wordEnd": 97,
+      "wer": 0
+    },
+    {
+      "id": "understanding-strings",
+      "startMs": 39603,
+      "endMs": 69610,
+      "wordStart": 97,
+      "wordEnd": 172,
+      "wer": 0.041666666666666664
+    },
+    {
+      "id": "exploring-integers-and-floats",
+      "startMs": 70130,
+      "endMs": 98916,
+      "wordStart": 173,
+      "wordEnd": 244,
+      "wer": 0.0410958904109589
+    },
+    {
+      "id": "what-are-booleans",
+      "startMs": 98896,
+      "endMs": 122979,
+      "wordStart": 244,
+      "wordEnd": 302,
+      "wer": 0
+    },
+    {
+      "id": "overview-of-data-types",
+      "startMs": 123449,
+      "endMs": 143786,
+      "wordStart": 302,
+      "wordEnd": 356,
+      "wer": 0
+    },
+    {
+      "id": "next-steps-in-python",
+      "startMs": 143952,
+      "endMs": 158839,
+      "wordStart": 356,
+      "wordEnd": 402,
+      "wer": 0
+    }
+  ],
+  "displayWords": [
+    {
+      "word": "Data",
+      "startMs": 31,
+      "endMs": 392
+    },
+    {
+      "word": "types",
+      "startMs": 452,
+      "endMs": 733
+    },
+    {
+      "word": "define",
+      "startMs": 793,
+      "endMs": 1173
+    },
+    {
+      "word": "the",
+      "startMs": 1214,
+      "endMs": 1274
+    },
+    {
+      "word": "kind",
+      "startMs": 1314,
+      "endMs": 1474
+    },
+    {
+      "word": "of",
+      "startMs": 1514,
+      "endMs": 1554
+    },
+    {
+      "word": "data",
+      "startMs": 1614,
+      "endMs": 1875
+    },
+    {
+      "word": "we",
+      "startMs": 1915,
+      "endMs": 2075
+    },
+    {
+      "word": "can",
+      "startMs": 2115,
+      "endMs": 2236
+    },
+    {
+      "word": "use",
+      "startMs": 2356,
+      "endMs": 2476
+    },
+    {
+      "word": "in",
+      "startMs": 2536,
+      "endMs": 2617
+    },
+    {
+      "word": "Python.",
+      "startMs": 2677,
+      "endMs": 3178
+    },
+    {
+      "word": "They",
+      "startMs": 3699,
+      "endMs": 3799
+    },
+    {
+      "word": "help",
+      "startMs": 3859,
+      "endMs": 4020
+    },
+    {
+      "word": "Python",
+      "startMs": 4080,
+      "endMs": 4541
+    },
+    {
+      "word": "understand",
+      "startMs": 4621,
+      "endMs": 5102
+    },
+    {
+      "word": "how",
+      "startMs": 5162,
+      "endMs": 5302
+    },
+    {
+      "word": "to",
+      "startMs": 5342,
+      "endMs": 5423
+    },
+    {
+      "word": "store",
+      "startMs": 5503,
+      "endMs": 5884
+    },
+    {
+      "word": "and",
+      "startMs": 5984,
+      "endMs": 6064
+    },
+    {
+      "word": "manipulate",
+      "startMs": 6104,
+      "endMs": 6605
+    },
+    {
+      "word": "data.",
+      "startMs": 6645,
+      "endMs": 6946
+    },
+    {
+      "word": "Common",
+      "startMs": 7607,
+      "endMs": 7928
+    },
+    {
+      "word": "data",
+      "startMs": 7968,
+      "endMs": 8208
+    },
+    {
+      "word": "types",
+      "startMs": 8249,
+      "endMs": 8529
+    },
+    {
+      "word": "include",
+      "startMs": 8609,
+      "endMs": 8930
+    },
+    {
+      "word": "strings,",
+      "startMs": 8990,
+      "endMs": 9431
+    },
+    {
+      "word": "integers,",
+      "startMs": 9812,
+      "endMs": 10233
+    },
+    {
+      "word": "floats,",
+      "startMs": 10574,
+      "endMs": 10934
+    },
+    {
+      "word": "and",
+      "startMs": 11095,
+      "endMs": 11175
+    },
+    {
+      "word": "booleans.",
+      "startMs": 11215,
+      "endMs": 11696
+    },
+    {
+      "word": "Let's",
+      "startMs": 12317,
+      "endMs": 12518
+    },
+    {
+      "word": "look",
+      "startMs": 12558,
+      "endMs": 12738
+    },
+    {
+      "word": "at",
+      "startMs": 12778,
+      "endMs": 12818
+    },
+    {
+      "word": "that",
+      "startMs": 12838,
+      "endMs": 13039
+    },
+    {
+      "word": "in",
+      "startMs": 13099,
+      "endMs": 13159
+    },
+    {
+      "word": "a",
+      "startMs": 13199,
+      "endMs": 13219
+    },
+    {
+      "word": "picture.",
+      "startMs": 13279,
+      "endMs": 13640
+    },
+    {
+      "word": "Here’s",
+      "startMs": 14121,
+      "endMs": 14322
+    },
+    {
+      "word": "a",
+      "startMs": 14382,
+      "endMs": 14402
+    },
+    {
+      "word": "flowchart",
+      "startMs": 14442,
+      "endMs": 14903
+    },
+    {
+      "word": "showing",
+      "startMs": 14963,
+      "endMs": 15244
+    },
+    {
+      "word": "Python's",
+      "startMs": 15324,
+      "endMs": 15825
+    },
+    {
+      "word": "basic",
+      "startMs": 15945,
+      "endMs": 16286
+    },
+    {
+      "word": "data",
+      "startMs": 16346,
+      "endMs": 16586
+    },
+    {
+      "word": "types.",
+      "startMs": 16626,
+      "endMs": 17348
+    },
+    {
+      "word": "At",
+      "startMs": 17348,
+      "endMs": 17508
+    },
+    {
+      "word": "the",
+      "startMs": 17528,
+      "endMs": 17608
+    },
+    {
+      "word": "top,",
+      "startMs": 17669,
+      "endMs": 17969
+    },
+    {
+      "word": "we",
+      "startMs": 18109,
+      "endMs": 18209
+    },
+    {
+      "word": "have",
+      "startMs": 18269,
+      "endMs": 18390
+    },
+    {
+      "word": "'Python",
+      "startMs": 18490,
+      "endMs": 18930
+    },
+    {
+      "word": "Data",
+      "startMs": 18970,
+      "endMs": 19211
+    },
+    {
+      "word": "Types',",
+      "startMs": 19251,
+      "endMs": 19551
+    },
+    {
+      "word": "branching",
+      "startMs": 19832,
+      "endMs": 20272
+    },
+    {
+      "word": "down",
+      "startMs": 20313,
+      "endMs": 20533
+    },
+    {
+      "word": "to",
+      "startMs": 20593,
+      "endMs": 20673
+    },
+    {
+      "word": "'Strings',",
+      "startMs": 20753,
+      "endMs": 21194
+    },
+    {
+      "word": "'Integers',",
+      "startMs": 21534,
+      "endMs": 21935
+    },
+    {
+      "word": "'Floats',",
+      "startMs": 22356,
+      "endMs": 22736
+    },
+    {
+      "word": "and",
+      "startMs": 22876,
+      "endMs": 22956
+    },
+    {
+      "word": "'Booleans'.",
+      "startMs": 23037,
+      "endMs": 23537
+    },
+    {
+      "word": "Each",
+      "startMs": 24319,
+      "endMs": 24479
+    },
+    {
+      "word": "type",
+      "startMs": 24559,
+      "endMs": 24819
+    },
+    {
+      "word": "has",
+      "startMs": 24859,
+      "endMs": 25000
+    },
+    {
+      "word": "a",
+      "startMs": 25040,
+      "endMs": 25080
+    },
+    {
+      "word": "brief",
+      "startMs": 25120,
+      "endMs": 25340
+    },
+    {
+      "word": "description.",
+      "startMs": 25400,
+      "endMs": 25921
+    },
+    {
+      "word": "Strings",
+      "startMs": 26462,
+      "endMs": 26882
+    },
+    {
+      "word": "are",
+      "startMs": 26922,
+      "endMs": 27063
+    },
+    {
+      "word": "for",
+      "startMs": 27103,
+      "endMs": 27183
+    },
+    {
+      "word": "text",
+      "startMs": 27243,
+      "endMs": 27483
+    },
+    {
+      "word": "data,",
+      "startMs": 27523,
+      "endMs": 27844
+    },
+    {
+      "word": "integers",
+      "startMs": 28265,
+      "endMs": 28625
+    },
+    {
+      "word": "are",
+      "startMs": 28645,
+      "endMs": 28805
+    },
+    {
+      "word": "whole",
+      "startMs": 28885,
+      "endMs": 29086
+    },
+    {
+      "word": "numbers,",
+      "startMs": 29146,
+      "endMs": 29526
+    },
+    {
+      "word": "floats",
+      "startMs": 30007,
+      "endMs": 30308
+    },
+    {
+      "word": "are",
+      "startMs": 30328,
+      "endMs": 30488
+    },
+    {
+      "word": "decimal",
+      "startMs": 30568,
+      "endMs": 30969
+    },
+    {
+      "word": "numbers,",
+      "startMs": 31049,
+      "endMs": 31429
+    },
+    {
+      "word": "and",
+      "startMs": 31750,
+      "endMs": 31830
+    },
+    {
+      "word": "booleans",
+      "startMs": 31890,
+      "endMs": 32351
+    },
+    {
+      "word": "represent",
+      "startMs": 32451,
+      "endMs": 32851
+    },
+    {
+      "word": "true",
+      "startMs": 32952,
+      "endMs": 33252
+    },
+    {
+      "word": "or",
+      "startMs": 33292,
+      "endMs": 33553
+    },
+    {
+      "word": "false",
+      "startMs": 33633,
+      "endMs": 33893
+    },
+    {
+      "word": "values.",
+      "startMs": 33933,
+      "endMs": 34394
+    },
+    {
+      "word": "Understanding",
+      "startMs": 35095,
+      "endMs": 35696
+    },
+    {
+      "word": "these",
+      "startMs": 35736,
+      "endMs": 35896
+    },
+    {
+      "word": "data",
+      "startMs": 35956,
+      "endMs": 36196
+    },
+    {
+      "word": "types",
+      "startMs": 36237,
+      "endMs": 36517
+    },
+    {
+      "word": "is",
+      "startMs": 36657,
+      "endMs": 36717
+    },
+    {
+      "word": "crucial",
+      "startMs": 36837,
+      "endMs": 37258
+    },
+    {
+      "word": "for",
+      "startMs": 37318,
+      "endMs": 37438
+    },
+    {
+      "word": "programming",
+      "startMs": 37498,
+      "endMs": 38019
+    },
+    {
+      "word": "effectively.",
+      "startMs": 38119,
+      "endMs": 39201
+    },
+    {
+      "word": "Strings",
+      "startMs": 39603,
+      "endMs": 40103
+    },
+    {
+      "word": "are",
+      "startMs": 40204,
+      "endMs": 40284
+    },
+    {
+      "word": "sequences",
+      "startMs": 40364,
+      "endMs": 40844
+    },
+    {
+      "word": "of",
+      "startMs": 40904,
+      "endMs": 40944
+    },
+    {
+      "word": "characters,",
+      "startMs": 41004,
+      "endMs": 41525
+    },
+    {
+      "word": "like",
+      "startMs": 41825,
+      "endMs": 41965
+    },
+    {
+      "word": "words",
+      "startMs": 42045,
+      "endMs": 42386
+    },
+    {
+      "word": "or",
+      "startMs": 42486,
+      "endMs": 42546
+    },
+    {
+      "word": "sentences.",
+      "startMs": 42646,
+      "endMs": 43186
+    },
+    {
+      "word": "They’re",
+      "startMs": 43787,
+      "endMs": 43947
+    },
+    {
+      "word": "enclosed",
+      "startMs": 43987,
+      "endMs": 44427
+    },
+    {
+      "word": "in",
+      "startMs": 44507,
+      "endMs": 44567
+    },
+    {
+      "word": "single",
+      "startMs": 44608,
+      "endMs": 45088
+    },
+    {
+      "word": "or",
+      "startMs": 45128,
+      "endMs": 45328
+    },
+    {
+      "word": "double",
+      "startMs": 45408,
+      "endMs": 45648
+    },
+    {
+      "word": "quotes.",
+      "startMs": 45708,
+      "endMs": 46009
+    },
+    {
+      "word": "For",
+      "startMs": 46549,
+      "endMs": 46649
+    },
+    {
+      "word": "example,",
+      "startMs": 46709,
+      "endMs": 47150
+    },
+    {
+      "word": "you",
+      "startMs": 47370,
+      "endMs": 47470
+    },
+    {
+      "word": "can",
+      "startMs": 47510,
+      "endMs": 47630
+    },
+    {
+      "word": "write",
+      "startMs": 47690,
+      "endMs": 47910
+    },
+    {
+      "word": "'Hello'",
+      "startMs": 47951,
+      "endMs": 48451
+    },
+    {
+      "word": "or",
+      "startMs": 48471,
+      "endMs": 48511
+    },
+    {
+      "word": "\"Hello\".",
+      "startMs": 48911,
+      "endMs": 49332
+    },
+    {
+      "word": "You",
+      "startMs": 49952,
+      "endMs": 50032
+    },
+    {
+      "word": "can",
+      "startMs": 50072,
+      "endMs": 50173
+    },
+    {
+      "word": "also",
+      "startMs": 50253,
+      "endMs": 50473
+    },
+    {
+      "word": "concatenate",
+      "startMs": 50533,
+      "endMs": 51093
+    },
+    {
+      "word": "strings",
+      "startMs": 51153,
+      "endMs": 51514
+    },
+    {
+      "word": "using",
+      "startMs": 51694,
+      "endMs": 51894
+    },
+    {
+      "word": "the",
+      "startMs": 51934,
+      "endMs": 52014
+    },
+    {
+      "word": "'+'",
+      "startMs": 52014,
+      "endMs": 52695
+    },
+    {
+      "word": "operator.",
+      "startMs": 52695,
+      "endMs": 53135
+    },
+    {
+      "word": "This",
+      "startMs": 53636,
+      "endMs": 53776
+    },
+    {
+      "word": "means",
+      "startMs": 53856,
+      "endMs": 54076
+    },
+    {
+      "word": "you",
+      "startMs": 54116,
+      "endMs": 54216
+    },
+    {
+      "word": "can",
+      "startMs": 54256,
+      "endMs": 54356
+    },
+    {
+      "word": "join",
+      "startMs": 54396,
+      "endMs": 54637
+    },
+    {
+      "word": "two",
+      "startMs": 54697,
+      "endMs": 54877
+    },
+    {
+      "word": "strings",
+      "startMs": 54937,
+      "endMs": 55237
+    },
+    {
+      "word": "together.",
+      "startMs": 55297,
+      "endMs": 55677
+    },
+    {
+      "word": "For",
+      "startMs": 56098,
+      "endMs": 56198
+    },
+    {
+      "word": "instance,",
+      "startMs": 56258,
+      "endMs": 56678
+    },
+    {
+      "word": "if",
+      "startMs": 56899,
+      "endMs": 56959
+    },
+    {
+      "word": "you",
+      "startMs": 56999,
+      "endMs": 57099
+    },
+    {
+      "word": "write",
+      "startMs": 57139,
+      "endMs": 57319
+    },
+    {
+      "word": "print('Hello,",
+      "startMs": 57379,
+      "endMs": 57579
+    },
+    {
+      "word": "'",
+      "startMs": 57579,
+      "endMs": 58179
+    },
+    {
+      "word": "+",
+      "startMs": 58179,
+      "endMs": 58780
+    },
+    {
+      "word": "'world!'),",
+      "startMs": 58780,
+      "endMs": 59181
+    },
+    {
+      "word": "it",
+      "startMs": 59781,
+      "endMs": 59841
+    },
+    {
+      "word": "combines",
+      "startMs": 59881,
+      "endMs": 60282
+    },
+    {
+      "word": "those",
+      "startMs": 60322,
+      "endMs": 60522
+    },
+    {
+      "word": "two",
+      "startMs": 60602,
+      "endMs": 60782
+    },
+    {
+      "word": "strings",
+      "startMs": 60822,
+      "endMs": 61142
+    },
+    {
+      "word": "into",
+      "startMs": 61202,
+      "endMs": 61363
+    },
+    {
+      "word": "one.",
+      "startMs": 61543,
+      "endMs": 61643
+    },
+    {
+      "word": "The",
+      "startMs": 62163,
+      "endMs": 62243
+    },
+    {
+      "word": "output",
+      "startMs": 62384,
+      "endMs": 62724
+    },
+    {
+      "word": "will",
+      "startMs": 62764,
+      "endMs": 62884
+    },
+    {
+      "word": "be",
+      "startMs": 62924,
+      "endMs": 63024
+    },
+    {
+      "word": "'Hello,",
+      "startMs": 63064,
+      "endMs": 63585
+    },
+    {
+      "word": "world!'.",
+      "startMs": 63625,
+      "endMs": 64145
+    },
+    {
+      "word": "So,",
+      "startMs": 64686,
+      "endMs": 64866
+    },
+    {
+      "word": "strings",
+      "startMs": 65126,
+      "endMs": 65486
+    },
+    {
+      "word": "are",
+      "startMs": 65546,
+      "endMs": 65626
+    },
+    {
+      "word": "pretty",
+      "startMs": 65686,
+      "endMs": 65907
+    },
+    {
+      "word": "flexible",
+      "startMs": 65967,
+      "endMs": 66447
+    },
+    {
+      "word": "and",
+      "startMs": 66807,
+      "endMs": 66888
+    },
+    {
+      "word": "essential",
+      "startMs": 66928,
+      "endMs": 67368
+    },
+    {
+      "word": "for",
+      "startMs": 67588,
+      "endMs": 67708
+    },
+    {
+      "word": "handling",
+      "startMs": 67748,
+      "endMs": 68149
+    },
+    {
+      "word": "text",
+      "startMs": 68209,
+      "endMs": 68509
+    },
+    {
+      "word": "in",
+      "startMs": 68569,
+      "endMs": 68649
+    },
+    {
+      "word": "Python.",
+      "startMs": 68689,
+      "endMs": 69610
+    },
+    {
+      "word": "Integers",
+      "startMs": 70130,
+      "endMs": 70590
+    },
+    {
+      "word": "are",
+      "startMs": 70610,
+      "endMs": 70771
+    },
+    {
+      "word": "whole",
+      "startMs": 70851,
+      "endMs": 71051
+    },
+    {
+      "word": "numbers,",
+      "startMs": 71111,
+      "endMs": 71491
+    },
+    {
+      "word": "like",
+      "startMs": 71671,
+      "endMs": 71812
+    },
+    {
+      "word": "1,",
+      "startMs": 71832,
+      "endMs": 72132
+    },
+    {
+      "word": "2,",
+      "startMs": 72152,
+      "endMs": 72192
+    },
+    {
+      "word": "or",
+      "startMs": 72512,
+      "endMs": 72913
+    },
+    {
+      "word": "even",
+      "startMs": 73013,
+      "endMs": 73193
+    },
+    {
+      "word": "-5.",
+      "startMs": 73213,
+      "endMs": 73613
+    },
+    {
+      "word": "They",
+      "startMs": 73653,
+      "endMs": 74294
+    },
+    {
+      "word": "don’t",
+      "startMs": 74314,
+      "endMs": 74454
+    },
+    {
+      "word": "have",
+      "startMs": 74494,
+      "endMs": 74654
+    },
+    {
+      "word": "any",
+      "startMs": 74674,
+      "endMs": 74874
+    },
+    {
+      "word": "decimal",
+      "startMs": 74914,
+      "endMs": 75275
+    },
+    {
+      "word": "points.",
+      "startMs": 75335,
+      "endMs": 75615
+    },
+    {
+      "word": "On",
+      "startMs": 76235,
+      "endMs": 76296
+    },
+    {
+      "word": "the",
+      "startMs": 76316,
+      "endMs": 76396
+    },
+    {
+      "word": "other",
+      "startMs": 76436,
+      "endMs": 76576
+    },
+    {
+      "word": "hand,",
+      "startMs": 76616,
+      "endMs": 76876
+    },
+    {
+      "word": "floats",
+      "startMs": 77176,
+      "endMs": 77477
+    },
+    {
+      "word": "are",
+      "startMs": 77557,
+      "endMs": 77637
+    },
+    {
+      "word": "decimal",
+      "startMs": 77697,
+      "endMs": 78097
+    },
+    {
+      "word": "numbers,",
+      "startMs": 78137,
+      "endMs": 78498
+    },
+    {
+      "word": "like",
+      "startMs": 78878,
+      "endMs": 79018
+    },
+    {
+      "word": "3.14",
+      "startMs": 79038,
+      "endMs": 79238
+    },
+    {
+      "word": "or",
+      "startMs": 79258,
+      "endMs": 79298
+    },
+    {
+      "word": "-0.001.",
+      "startMs": 79318,
+      "endMs": 80760
+    },
+    {
+      "word": "You",
+      "startMs": 81260,
+      "endMs": 81340
+    },
+    {
+      "word": "can",
+      "startMs": 81380,
+      "endMs": 81480
+    },
+    {
+      "word": "perform",
+      "startMs": 81520,
+      "endMs": 81941
+    },
+    {
+      "word": "arithmetic",
+      "startMs": 81961,
+      "endMs": 82641
+    },
+    {
+      "word": "operations",
+      "startMs": 82741,
+      "endMs": 83322
+    },
+    {
+      "word": "with",
+      "startMs": 83382,
+      "endMs": 83502
+    },
+    {
+      "word": "both",
+      "startMs": 83562,
+      "endMs": 83762
+    },
+    {
+      "word": "types,",
+      "startMs": 83822,
+      "endMs": 84143
+    },
+    {
+      "word": "which",
+      "startMs": 84483,
+      "endMs": 84623
+    },
+    {
+      "word": "is",
+      "startMs": 84703,
+      "endMs": 84763
+    },
+    {
+      "word": "really",
+      "startMs": 84863,
+      "endMs": 85104
+    },
+    {
+      "word": "useful.",
+      "startMs": 85224,
+      "endMs": 85504
+    },
+    {
+      "word": "For",
+      "startMs": 86064,
+      "endMs": 86165
+    },
+    {
+      "word": "example,",
+      "startMs": 86225,
+      "endMs": 86665
+    },
+    {
+      "word": "if",
+      "startMs": 86885,
+      "endMs": 86945
+    },
+    {
+      "word": "you",
+      "startMs": 86985,
+      "endMs": 87105
+    },
+    {
+      "word": "write",
+      "startMs": 87125,
+      "endMs": 87306
+    },
+    {
+      "word": "print(5",
+      "startMs": 88487,
+      "endMs": 88727
+    },
+    {
+      "word": "+",
+      "startMs": 88727,
+      "endMs": 88747
+    },
+    {
+      "word": "3.2),",
+      "startMs": 88747,
+      "endMs": 88987
+    },
+    {
+      "word": "Python",
+      "startMs": 89047,
+      "endMs": 90448
+    },
+    {
+      "word": "adds",
+      "startMs": 90569,
+      "endMs": 90729
+    },
+    {
+      "word": "those",
+      "startMs": 90809,
+      "endMs": 90969
+    },
+    {
+      "word": "two",
+      "startMs": 91009,
+      "endMs": 91209
+    },
+    {
+      "word": "numbers",
+      "startMs": 91269,
+      "endMs": 91549
+    },
+    {
+      "word": "together.",
+      "startMs": 91609,
+      "endMs": 91970
+    },
+    {
+      "word": "The",
+      "startMs": 92570,
+      "endMs": 92650
+    },
+    {
+      "word": "result",
+      "startMs": 92690,
+      "endMs": 93031
+    },
+    {
+      "word": "will",
+      "startMs": 93051,
+      "endMs": 93191
+    },
+    {
+      "word": "be",
+      "startMs": 93211,
+      "endMs": 93291
+    },
+    {
+      "word": "8.2.",
+      "startMs": 93311,
+      "endMs": 93571
+    },
+    {
+      "word": "So,",
+      "startMs": 93711,
+      "endMs": 93891
+    },
+    {
+      "word": "integers",
+      "startMs": 95193,
+      "endMs": 95613
+    },
+    {
+      "word": "and",
+      "startMs": 95693,
+      "endMs": 95773
+    },
+    {
+      "word": "floats",
+      "startMs": 95833,
+      "endMs": 96154
+    },
+    {
+      "word": "are",
+      "startMs": 96414,
+      "endMs": 96494
+    },
+    {
+      "word": "vital",
+      "startMs": 96574,
+      "endMs": 96874
+    },
+    {
+      "word": "for",
+      "startMs": 96934,
+      "endMs": 97034
+    },
+    {
+      "word": "calculations",
+      "startMs": 97074,
+      "endMs": 97775
+    },
+    {
+      "word": "in",
+      "startMs": 97815,
+      "endMs": 97855
+    },
+    {
+      "word": "your",
+      "startMs": 97895,
+      "endMs": 97995
+    },
+    {
+      "word": "programs.",
+      "startMs": 98035,
+      "endMs": 98916
+    },
+    {
+      "word": "Booleans",
+      "startMs": 98916,
+      "endMs": 100098
+    },
+    {
+      "word": "represent",
+      "startMs": 100198,
+      "endMs": 100639
+    },
+    {
+      "word": "truth",
+      "startMs": 100719,
+      "endMs": 101000
+    },
+    {
+      "word": "values:",
+      "startMs": 101040,
+      "endMs": 101501
+    },
+    {
+      "word": "True",
+      "startMs": 101941,
+      "endMs": 102222
+    },
+    {
+      "word": "or",
+      "startMs": 102262,
+      "endMs": 102583
+    },
+    {
+      "word": "False.",
+      "startMs": 102683,
+      "endMs": 103003
+    },
+    {
+      "word": "They’re",
+      "startMs": 103564,
+      "endMs": 103745
+    },
+    {
+      "word": "often",
+      "startMs": 103825,
+      "endMs": 104065
+    },
+    {
+      "word": "used",
+      "startMs": 104246,
+      "endMs": 104466
+    },
+    {
+      "word": "in",
+      "startMs": 104566,
+      "endMs": 104626
+    },
+    {
+      "word": "conditions",
+      "startMs": 104706,
+      "endMs": 105267
+    },
+    {
+      "word": "and",
+      "startMs": 105348,
+      "endMs": 105428
+    },
+    {
+      "word": "comparisons.",
+      "startMs": 105488,
+      "endMs": 106149
+    },
+    {
+      "word": "For",
+      "startMs": 106690,
+      "endMs": 106790
+    },
+    {
+      "word": "example,",
+      "startMs": 106850,
+      "endMs": 107271
+    },
+    {
+      "word": "you",
+      "startMs": 107592,
+      "endMs": 107692
+    },
+    {
+      "word": "might",
+      "startMs": 107732,
+      "endMs": 107892
+    },
+    {
+      "word": "check",
+      "startMs": 107952,
+      "endMs": 108213
+    },
+    {
+      "word": "if",
+      "startMs": 108293,
+      "endMs": 108353
+    },
+    {
+      "word": "something",
+      "startMs": 108433,
+      "endMs": 108774
+    },
+    {
+      "word": "is",
+      "startMs": 108854,
+      "endMs": 108914
+    },
+    {
+      "word": "greater",
+      "startMs": 108994,
+      "endMs": 109355
+    },
+    {
+      "word": "than",
+      "startMs": 109395,
+      "endMs": 109515
+    },
+    {
+      "word": "another",
+      "startMs": 109595,
+      "endMs": 109876
+    },
+    {
+      "word": "value.",
+      "startMs": 109916,
+      "endMs": 110276
+    },
+    {
+      "word": "You",
+      "startMs": 110857,
+      "endMs": 110938
+    },
+    {
+      "word": "can",
+      "startMs": 110978,
+      "endMs": 111078
+    },
+    {
+      "word": "use",
+      "startMs": 111178,
+      "endMs": 111278
+    },
+    {
+      "word": "booleans",
+      "startMs": 111338,
+      "endMs": 111819
+    },
+    {
+      "word": "to",
+      "startMs": 111879,
+      "endMs": 111939
+    },
+    {
+      "word": "control",
+      "startMs": 111999,
+      "endMs": 112400
+    },
+    {
+      "word": "the",
+      "startMs": 112440,
+      "endMs": 112520
+    },
+    {
+      "word": "flow",
+      "startMs": 112580,
+      "endMs": 112841
+    },
+    {
+      "word": "of",
+      "startMs": 112901,
+      "endMs": 112941
+    },
+    {
+      "word": "your",
+      "startMs": 112981,
+      "endMs": 113101
+    },
+    {
+      "word": "program.",
+      "startMs": 113141,
+      "endMs": 113582
+    },
+    {
+      "word": "If",
+      "startMs": 114043,
+      "endMs": 114103
+    },
+    {
+      "word": "you",
+      "startMs": 114143,
+      "endMs": 114263
+    },
+    {
+      "word": "write",
+      "startMs": 114283,
+      "endMs": 114484
+    },
+    {
+      "word": "print(3",
+      "startMs": 114804,
+      "endMs": 115285
+    },
+    {
+      "word": "\u003e",
+      "startMs": 115285,
+      "endMs": 115285
+    },
+    {
+      "word": "2),",
+      "startMs": 115285,
+      "endMs": 115285
+    },
+    {
+      "word": "Python",
+      "startMs": 116107,
+      "endMs": 116568
+    },
+    {
+      "word": "evaluates",
+      "startMs": 116608,
+      "endMs": 117149
+    },
+    {
+      "word": "that",
+      "startMs": 117209,
+      "endMs": 117329
+    },
+    {
+      "word": "expression",
+      "startMs": 117409,
+      "endMs": 117970
+    },
+    {
+      "word": "and",
+      "startMs": 118130,
+      "endMs": 118211
+    },
+    {
+      "word": "returns",
+      "startMs": 118271,
+      "endMs": 118671
+    },
+    {
+      "word": "True.",
+      "startMs": 118772,
+      "endMs": 119052
+    },
+    {
+      "word": "Booleans",
+      "startMs": 119793,
+      "endMs": 120274
+    },
+    {
+      "word": "are",
+      "startMs": 120374,
+      "endMs": 120455
+    },
+    {
+      "word": "essential",
+      "startMs": 120515,
+      "endMs": 120935
+    },
+    {
+      "word": "for",
+      "startMs": 120995,
+      "endMs": 121096
+    },
+    {
+      "word": "making",
+      "startMs": 121156,
+      "endMs": 121396
+    },
+    {
+      "word": "decisions",
+      "startMs": 121436,
+      "endMs": 121917
+    },
+    {
+      "word": "in",
+      "startMs": 121977,
+      "endMs": 122017
+    },
+    {
+      "word": "your",
+      "startMs": 122057,
+      "endMs": 122158
+    },
+    {
+      "word": "code.",
+      "startMs": 122198,
+      "endMs": 122979
+    },
+    {
+      "word": "Let’s",
+      "startMs": 123449,
+      "endMs": 123709
+    },
+    {
+      "word": "summarize",
+      "startMs": 123750,
+      "endMs": 124230
+    },
+    {
+      "word": "the",
+      "startMs": 124270,
+      "endMs": 124371
+    },
+    {
+      "word": "basic",
+      "startMs": 124411,
+      "endMs": 124771
+    },
+    {
+      "word": "data",
+      "startMs": 124811,
+      "endMs": 125072
+    },
+    {
+      "word": "types",
+      "startMs": 125132,
+      "endMs": 125413
+    },
+    {
+      "word": "in",
+      "startMs": 125473,
+      "endMs": 125553
+    },
+    {
+      "word": "Python.",
+      "startMs": 125593,
+      "endMs": 126094
+    },
+    {
+      "word": "We",
+      "startMs": 126635,
+      "endMs": 126715
+    },
+    {
+      "word": "have",
+      "startMs": 126755,
+      "endMs": 126895
+    },
+    {
+      "word": "strings",
+      "startMs": 126935,
+      "endMs": 127276
+    },
+    {
+      "word": "for",
+      "startMs": 127336,
+      "endMs": 127456
+    },
+    {
+      "word": "text,",
+      "startMs": 127516,
+      "endMs": 128278
+    },
+    {
+      "word": "integers",
+      "startMs": 128298,
+      "endMs": 128679
+    },
+    {
+      "word": "for",
+      "startMs": 128739,
+      "endMs": 128839
+    },
+    {
+      "word": "whole",
+      "startMs": 128899,
+      "endMs": 129079
+    },
+    {
+      "word": "numbers,",
+      "startMs": 129119,
+      "endMs": 129500
+    },
+    {
+      "word": "floats",
+      "startMs": 129921,
+      "endMs": 130221
+    },
+    {
+      "word": "for",
+      "startMs": 130301,
+      "endMs": 130402
+    },
+    {
+      "word": "decimals,",
+      "startMs": 130462,
+      "endMs": 130963
+    },
+    {
+      "word": "and",
+      "startMs": 131323,
+      "endMs": 131403
+    },
+    {
+      "word": "booleans",
+      "startMs": 131464,
+      "endMs": 131944
+    },
+    {
+      "word": "for",
+      "startMs": 132025,
+      "endMs": 132145
+    },
+    {
+      "word": "true",
+      "startMs": 132225,
+      "endMs": 132526
+    },
+    {
+      "word": "or",
+      "startMs": 132566,
+      "endMs": 132766
+    },
+    {
+      "word": "false.",
+      "startMs": 132866,
+      "endMs": 133187
+    },
+    {
+      "word": "Understanding",
+      "startMs": 133928,
+      "endMs": 134529
+    },
+    {
+      "word": "these",
+      "startMs": 134589,
+      "endMs": 134770
+    },
+    {
+      "word": "types",
+      "startMs": 134850,
+      "endMs": 135130
+    },
+    {
+      "word": "is",
+      "startMs": 135291,
+      "endMs": 135351
+    },
+    {
+      "word": "essential",
+      "startMs": 135431,
+      "endMs": 135852
+    },
+    {
+      "word": "for",
+      "startMs": 135912,
+      "endMs": 136012
+    },
+    {
+      "word": "programming.",
+      "startMs": 136072,
+      "endMs": 136613
+    },
+    {
+      "word": "They",
+      "startMs": 137054,
+      "endMs": 137174
+    },
+    {
+      "word": "form",
+      "startMs": 137234,
+      "endMs": 137434
+    },
+    {
+      "word": "the",
+      "startMs": 137475,
+      "endMs": 137535
+    },
+    {
+      "word": "foundation",
+      "startMs": 137595,
+      "endMs": 138136
+    },
+    {
+      "word": "of",
+      "startMs": 138176,
+      "endMs": 138256
+    },
+    {
+      "word": "how",
+      "startMs": 138316,
+      "endMs": 138456
+    },
+    {
+      "word": "we",
+      "startMs": 138516,
+      "endMs": 138617
+    },
+    {
+      "word": "work",
+      "startMs": 138677,
+      "endMs": 138877
+    },
+    {
+      "word": "with",
+      "startMs": 138917,
+      "endMs": 139037
+    },
+    {
+      "word": "data",
+      "startMs": 139097,
+      "endMs": 139378
+    },
+    {
+      "word": "in",
+      "startMs": 139438,
+      "endMs": 139498
+    },
+    {
+      "word": "Python.",
+      "startMs": 139538,
+      "endMs": 139999
+    },
+    {
+      "word": "So,",
+      "startMs": 140540,
+      "endMs": 140720
+    },
+    {
+      "word": "keep",
+      "startMs": 141141,
+      "endMs": 141342
+    },
+    {
+      "word": "these",
+      "startMs": 141382,
+      "endMs": 141562
+    },
+    {
+      "word": "in",
+      "startMs": 141642,
+      "endMs": 141702
+    },
+    {
+      "word": "mind",
+      "startMs": 141762,
+      "endMs": 142063
+    },
+    {
+      "word": "as",
+      "startMs": 142163,
+      "endMs": 142223
+    },
+    {
+      "word": "you",
+      "startMs": 142263,
+      "endMs": 142383
+    },
+    {
+      "word": "start",
+      "startMs": 142404,
+      "endMs": 142644
+    },
+    {
+      "word": "coding!",
+      "startMs": 142704,
+      "endMs": 143786
+    },
+    {
+      "word": "Now",
+      "startMs": 143952,
+      "endMs": 144233
+    },
+    {
+      "word": "that",
+      "startMs": 144313,
+      "endMs": 144433
+    },
+    {
+      "word": "you",
+      "startMs": 144473,
+      "endMs": 144573
+    },
+    {
+      "word": "know",
+      "startMs": 144633,
+      "endMs": 144753
+    },
+    {
+      "word": "the",
+      "startMs": 144814,
+      "endMs": 144894
+    },
+    {
+      "word": "basic",
+      "startMs": 144954,
+      "endMs": 145335
+    },
+    {
+      "word": "data",
+      "startMs": 145375,
+      "endMs": 145615
+    },
+    {
+      "word": "types,",
+      "startMs": 145655,
+      "endMs": 145976
+    },
+    {
+      "word": "you",
+      "startMs": 146356,
+      "endMs": 146457
+    },
+    {
+      "word": "can",
+      "startMs": 146497,
+      "endMs": 146617
+    },
+    {
+      "word": "start",
+      "startMs": 146657,
+      "endMs": 146917
+    },
+    {
+      "word": "using",
+      "startMs": 147038,
+      "endMs": 147258
+    },
+    {
+      "word": "them",
+      "startMs": 147298,
+      "endMs": 147398
+    },
+    {
+      "word": "in",
+      "startMs": 147418,
+      "endMs": 147478
+    },
+    {
+      "word": "your",
+      "startMs": 147498,
+      "endMs": 147619
+    },
+    {
+      "word": "programs.",
+      "startMs": 147659,
+      "endMs": 148140
+    },
+    {
+      "word": "Next,",
+      "startMs": 148881,
+      "endMs": 149202
+    },
+    {
+      "word": "we'll",
+      "startMs": 149502,
+      "endMs": 149642
+    },
+    {
+      "word": "explore",
+      "startMs": 149682,
+      "endMs": 150063
+    },
+    {
+      "word": "how",
+      "startMs": 150103,
+      "endMs": 150223
+    },
+    {
+      "word": "to",
+      "startMs": 150243,
+      "endMs": 150304
+    },
+    {
+      "word": "store",
+      "startMs": 150344,
+      "endMs": 150564
+    },
+    {
+      "word": "data",
+      "startMs": 150604,
+      "endMs": 150865
+    },
+    {
+      "word": "in",
+      "startMs": 150925,
+      "endMs": 151005
+    },
+    {
+      "word": "variables.",
+      "startMs": 151025,
+      "endMs": 151546
+    },
+    {
+      "word": "This",
+      "startMs": 152207,
+      "endMs": 152387
+    },
+    {
+      "word": "will",
+      "startMs": 152427,
+      "endMs": 152568
+    },
+    {
+      "word": "allow",
+      "startMs": 152628,
+      "endMs": 152848
+    },
+    {
+      "word": "you",
+      "startMs": 152908,
+      "endMs": 153008
+    },
+    {
+      "word": "to",
+      "startMs": 153069,
+      "endMs": 153129
+    },
+    {
+      "word": "create",
+      "startMs": 153209,
+      "endMs": 153529
+    },
+    {
+      "word": "more",
+      "startMs": 153549,
+      "endMs": 153770
+    },
+    {
+      "word": "complex",
+      "startMs": 153850,
+      "endMs": 154471
+    },
+    {
+      "word": "and",
+      "startMs": 154591,
+      "endMs": 154671
+    },
+    {
+      "word": "useful",
+      "startMs": 154772,
+      "endMs": 155052
+    },
+    {
+      "word": "programs.",
+      "startMs": 155112,
+      "endMs": 155613
+    },
+    {
+      "word": "So,",
+      "startMs": 156154,
+      "endMs": 156355
+    },
+    {
+      "word": "let’s",
+      "startMs": 156575,
+      "endMs": 156775
+    },
+    {
+      "word": "get",
+      "startMs": 156815,
+      "endMs": 156936
+    },
+    {
+      "word": "ready",
+      "startMs": 156976,
+      "endMs": 157136
+    },
+    {
+      "word": "to",
+      "startMs": 157176,
+      "endMs": 157256
+    },
+    {
+      "word": "dive",
+      "startMs": 157316,
+      "endMs": 157557
+    },
+    {
+      "word": "into",
+      "startMs": 157597,
+      "endMs": 157737
+    },
+    {
+      "word": "the",
+      "startMs": 157777,
+      "endMs": 157837
+    },
+    {
+      "word": "next",
+      "startMs": 157857,
+      "endMs": 158078
+    },
+    {
+      "word": "topic!",
+      "startMs": 158138,
+      "endMs": 158839
+    }
+  ],
+  "displaySections": [
+    {
+      "id": "what-are-data-types",
+      "startMs": 31,
+      "endMs": 39201,
+      "wordStart": 0,
+      "wordEnd": 97,
+      "wer": 0
+    },
+    {
+      "id": "understanding-strings",
+      "startMs": 39603,
+      "endMs": 69610,
+      "wordStart": 97,
+      "wordEnd": 172,
+      "wer": 0
+    },
+    {
+      "id": "exploring-integers-and-floats",
+      "startMs": 70130,
+      "endMs": 98916,
+      "wordStart": 172,
+      "wordEnd": 242,
+      "wer": 0
+    },
+    {
+      "id": "what-are-booleans",
+      "startMs": 98916,
+      "endMs": 122979,
+      "wordStart": 242,
+      "wordEnd": 301,
+      "wer": 0
+    },
+    {
+      "id": "overview-of-data-types",
+      "startMs": 123449,
+      "endMs": 143786,
+      "wordStart": 301,
+      "wordEnd": 355,
+      "wer": 0
+    },
+    {
+      "id": "next-steps-in-python",
+      "startMs": 143952,
+      "endMs": 158839,
+      "wordStart": 355,
+      "wordEnd": 401,
+      "wer": 0
+    }
+  ]
+}

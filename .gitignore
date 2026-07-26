@@ -1,0 +1,49 @@
+# Build output
+bin/
+dist/
+studio/dist/
+studio/node_modules/
+
+# Local engine state: LLM response cache + rate-limit bookkeeping.
+# Machine-local by design — a fresh clone regenerates it.
+.coursesmith/
+
+# Hugo build output
+site/public/
+site/resources/
+
+# Remotion renderer: dependencies, staged render/preview assets, outputs
+renderer/node_modules/
+renderer/public/jobs/
+renderer/public/preview/
+renderer/out/
+# ...and its downloaded headless-browser caches (150MB+ binaries)
+.remotion/
+test/.remotion/
+
+# whisperX alignment tool virtualenv
+tools/align/.venv/
+
+# Generated media is large and reproducible; generated text artifacts
+# (script.json, quiz.json, alignment.json, captions.vtt, reviews/,
+# diagrams/*.svg, lesson-video.json) stay versionable. Remove these lines
+# if you prefer committing media too.
+courses/*/lessons/*/generated/audio/
+courses/*/lessons/*/generated/video-segments/
+courses/*/lessons/*/generated/demos/*.mp4
+courses/*/lessons/*/generated/diagrams/attempts/*.png
+courses/*/lessons/*/generated/voiceover.wav
+courses/*/lessons/*/generated/final.mp4
+courses/*/lessons/*/generated/final-burned.mp4
+courses/*/lessons/*/generated/sections/
+courses/*/course.mp4
+courses/*/generated/*.pdf
+courses/*/generated/*-ebook.html
+courses/*/auditions/*.wav
+# Videos stay out of the repo; the deploy workflow serves the site without
+# them (set the videoBaseURL site param to point at a CDN — see
+# .github/workflows/deploy-site.yml).
+site/content/courses/*/*/final.mp4
+
+# OS noise
+.DS_Store

@@ -1,0 +1,10 @@
+{
+  "demos": [
+    {
+      "id": "demo-1",
+      "description": "In your terminal, create a list of fruits and use a for loop to print each fruit.",
+      "path": "demos/demo-1.mp4",
+      "durationMs": 25760
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "threshold": 6,
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        {
+          "id": "q1",
+          "distractors": [
+            {
+              "option_index": 0,
+              "plausibility": 6,
+              "misconception": "thinks conditionals are for repeating actions like loops"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "distractors": [
+            {
+              "option_index": 0,
+              "plausibility": 6,
+              "misconception": "thinks loops are for making decisions like conditionals"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 1,
+              "misconception": "none — this option is absurd"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks the print statement format is the issue"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 1,
+              "misconception": "none — this option is absurd"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks the range includes the upper limit"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 1,
+              "misconception": "none — this option is absurd"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "distractors": [
+            {
+              "option_index": 0,
+              "plausibility": 6,
+              "misconception": "thinks conditionals can end loops directly"
+            },
+            {
+              "option_index": 1,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 1,
+              "misconception": "none — this option is absurd"
+            }
+          ]
+        }
+      ],
+      "weak": [
+        "q1 option 2 (none — no beginner error produces this)",
+        "q1 option 3 (none — no beginner error produces this)",
+        "q2 option 2 (none — no beginner error produces this)",
+        "q2 option 3 (none — this option is absurd)",
+        "q3 option 2 (none — no beginner error produces this)",
+        "q3 option 3 (none — this option is absurd)",
+        "q4 option 2 (none — no beginner error produces this)",
+        "q4 option 3 (none — this option is absurd)",
+        "q5 option 1 (none — no beginner error produces this)",
+        "q5 option 3 (none — this option is absurd)"
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks conditionals are used to create loops"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks the numbers are concatenated as strings"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks a while loop can be created with this syntax"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 1,
+              "misconception": "none — this is not valid Python syntax"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 1,
+              "misconception": "none — this is not valid Python syntax"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 3,
+              "misconception": "thinks the print statement format is incorrect"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "thinks the variable x must be defined for the if statement to be valid"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 1,
+              "misconception": "none — this is not valid Python syntax"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks the range function includes the upper limit"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 1,
+              "misconception": "none — this is not valid Python syntax"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 1,
+              "misconception": "none — this is not valid Python syntax"
+            }
+          ]
+        }
+      ],
+      "weak": [
+        "q1 option 2 (none — no beginner error produces this)",
+        "q1 option 3 (none — no beginner error produces this)",
+        "q2 option 2 (none — no beginner error produces this)",
+        "q2 option 3 (none — no beginner error produces this)",
+        "q3 option 2 (none — this is not valid Python syntax)",
+        "q3 option 3 (none — this is not valid Python syntax)",
+        "q4 option 1 (thinks the print statement format is incorrect)",
+        "q4 option 2 (thinks the variable x must be defined for the if statement to be valid)",
+        "q4 option 3 (none — this is not valid Python syntax)",
+        "q5 option 2 (none — this is not valid Python syntax)",
+        "q5 option 3 (none — this is not valid Python syntax)"
+      ]
+    }
+  ],
+  "checked_at": "2026-07-20T10:34:56.069735Z"
+}

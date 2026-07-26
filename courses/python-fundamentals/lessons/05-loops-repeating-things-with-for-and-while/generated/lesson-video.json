@@ -1,0 +1,763 @@
+{
+  "theme": {
+    "primary": "#2563eb",
+    "accent": "#f59e0b",
+    "background": "#ffffff",
+    "courseName": "Python Fundamentals",
+    "mode": "dark",
+    "bgTop": "#101828",
+    "bgBottom": "#070815",
+    "surface": "#1b2232",
+    "surfaceBorder": "#323c52",
+    "text": "#f2f4f8",
+    "textMuted": "#a6aebf",
+    "fontDisplay": "Space Grotesk",
+    "fontBody": "Inter",
+    "fontMono": "JetBrains Mono",
+    "grain": 0.04
+  },
+  "motion": {
+    "timing": {
+      "fast": 0.2,
+      "normal": 0.6,
+      "slow": 1,
+      "verySlow": 2
+    },
+    "easing": {
+      "entrance": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "exit": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "subtle": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "stagger": {
+      "words": 0.05,
+      "items": 0.08,
+      "connections": 0.12
+    }
+  },
+  "audioFile": "voiceover.wav",
+  "durationMs": 164133,
+  "scenes": [
+    {
+      "type": "title",
+      "startMs": 31,
+      "endMs": 32110,
+      "props": {
+        "heading": "Loops: Repeating things with for and while",
+        "intro": true,
+        "outcomes": [
+          "Understand what loops are",
+          "Use for loops to iterate over lists",
+          "Use while loops to repeat actions conditionally"
+        ],
+        "subtitle": "Python Fundamentals"
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 32110,
+      "endMs": 43004,
+      "props": {
+        "code": "for number in range(5):\n    print(number)",
+        "language": "python",
+        "output": "0\n1\n2\n3\n4\n",
+        "title": "Using for loops",
+        "trace": {
+          "code": "for number in range(5):\n    print(number)",
+          "lines": [
+            "for number in range(5):",
+            "    print(number)"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "int",
+                    "repr": "0"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "int",
+                    "repr": "0"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n"
+            },
+            {
+              "step": 3,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "int",
+                    "repr": "1"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n"
+            },
+            {
+              "step": 4,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "int",
+                    "repr": "1"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n"
+            },
+            {
+              "step": 5,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "int",
+                    "repr": "2"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n"
+            },
+            {
+              "step": 6,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "int",
+                    "repr": "2"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n"
+            },
+            {
+              "step": 7,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "int",
+                    "repr": "3"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n"
+            },
+            {
+              "step": 8,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "int",
+                    "repr": "3"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n3\n"
+            },
+            {
+              "step": 9,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "int",
+                    "repr": "4"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n3\n"
+            },
+            {
+              "step": 10,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "int",
+                    "repr": "4"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n3\n4\n"
+            },
+            {
+              "step": 11,
+              "line": 1,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "number",
+                  "value": {
+                    "type": "int",
+                    "repr": "4"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n3\n4\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "0\n1\n2\n3\n4\n"
+        }
+      }
+    },
+    {
+      "type": "terminal",
+      "startMs": 43004,
+      "endMs": 63788,
+      "props": {
+        "durationMs": 25760,
+        "src": "demos/demo-1.mp4",
+        "title": "In your terminal, create a list of fruits and use a for loop to print each fruit."
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 63788,
+      "endMs": 94700,
+      "props": {
+        "code": "count = 0\nwhile count \u003c 5:\n    print(count)\n    count += 1",
+        "language": "python",
+        "output": "0\n1\n2\n3\n4\n",
+        "title": "Understanding while loops",
+        "trace": {
+          "code": "count = 0\nwhile count \u003c 5:\n    print(count)\n    count += 1",
+          "lines": [
+            "count = 0",
+            "while count \u003c 5:",
+            "    print(count)",
+            "    count += 1"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "0"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "0"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 3,
+              "line": 4,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "0"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n"
+            },
+            {
+              "step": 4,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "1"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n"
+            },
+            {
+              "step": 5,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "1"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n"
+            },
+            {
+              "step": 6,
+              "line": 4,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "1"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n"
+            },
+            {
+              "step": 7,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "2"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n"
+            },
+            {
+              "step": 8,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "2"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n"
+            },
+            {
+              "step": 9,
+              "line": 4,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "2"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n"
+            },
+            {
+              "step": 10,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "3"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n"
+            },
+            {
+              "step": 11,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "3"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n"
+            },
+            {
+              "step": 12,
+              "line": 4,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "3"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n3\n"
+            },
+            {
+              "step": 13,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "4"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n3\n"
+            },
+            {
+              "step": 14,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "4"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n3\n"
+            },
+            {
+              "step": 15,
+              "line": 4,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "4"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n3\n4\n"
+            },
+            {
+              "step": 16,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "5"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n3\n4\n"
+            },
+            {
+              "step": 17,
+              "line": 2,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "count",
+                  "value": {
+                    "type": "int",
+                    "repr": "5"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "0\n1\n2\n3\n4\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "0\n1\n2\n3\n4\n"
+        }
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 94700,
+      "endMs": 104374,
+      "props": {
+        "items": [
+          {
+            "atMs": 96603,
+            "icon": "check",
+            "text": "Use for known iterations"
+          },
+          {
+            "atMs": 99627,
+            "icon": "idea",
+            "text": "Use while for conditions"
+          },
+          {
+            "atMs": 105856,
+            "icon": "sparkles",
+            "text": "Simplify your code"
+          }
+        ],
+        "title": "When to use each loop"
+      }
+    },
+    {
+      "type": "diagram",
+      "startMs": 104374,
+      "endMs": 120383,
+      "props": {
+        "caption": "loop-types",
+        "kind": "mermaid",
+        "src": "diagrams/loop-types.svg",
+        "title": "When to use each loop"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 120383,
+      "endMs": 128314,
+      "props": {
+        "items": [
+          {
+            "atMs": 123848,
+            "icon": "code",
+            "text": "Create a for loop"
+          },
+          {
+            "atMs": 125831,
+            "icon": "code",
+            "text": "Create a while loop"
+          },
+          {
+            "atMs": 128154,
+            "icon": "gear",
+            "text": "Experiment with conditions"
+          }
+        ],
+        "title": "Practice with loops"
+      }
+    },
+    {
+      "type": "terminal",
+      "startMs": 128314,
+      "endMs": 145392,
+      "props": {
+        "durationMs": 25760,
+        "src": "demos/demo-1.mp4",
+        "title": "In your terminal, create a list of fruits and use a for loop to print each fruit."
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 145392,
+      "endMs": 164133,
+      "props": {
+        "items": [
+          {
+            "atMs": 147617,
+            "icon": "link",
+            "text": "Combine loops with conditionals"
+          },
+          {
+            "atMs": 149622,
+            "icon": "flag",
+            "text": "Learn break and continue"
+          },
+          {
+            "atMs": 152709,
+            "icon": "rocket",
+            "text": "Build complex programs"
+          }
+        ],
+        "title": "What’s next?"
+      }
+    }
+  ],
+  "captions": null
+}

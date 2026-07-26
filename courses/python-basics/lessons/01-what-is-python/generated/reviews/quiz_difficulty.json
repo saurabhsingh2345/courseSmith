@@ -1,0 +1,43 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "students": 10,
+  "questions": [
+    {
+      "id": "q1",
+      "correct_of": 7,
+      "rate": 0.7,
+      "reasoning": "the three who miss it pick B, thinking quotes are printed",
+      "verdict": "ok"
+    },
+    {
+      "id": "q2",
+      "correct_of": 4,
+      "rate": 0.4,
+      "reasoning": "the six who miss it choose options that don't handle the string conversion correctly, confusing the syntax",
+      "verdict": "ok"
+    },
+    {
+      "id": "q3",
+      "correct_of": 5,
+      "rate": 0.5,
+      "reasoning": "the five who miss it mistakenly think the issue is with parentheses or spaces, not realizing the quote is missing",
+      "verdict": "ok"
+    },
+    {
+      "id": "q4",
+      "correct_of": 8,
+      "rate": 0.8,
+      "reasoning": "the two who miss it guess incorrectly, with one thinking it would produce an error and the other miscalculating",
+      "verdict": "ok"
+    },
+    {
+      "id": "q5",
+      "correct_of": 6,
+      "rate": 0.6,
+      "reasoning": "the four who miss it choose well-known tech figures, confusing them with Python's creator",
+      "verdict": "ok"
+    }
+  ],
+  "flagged": null,
+  "checked_at": "2026-07-18T16:20:45.391168Z"
+}

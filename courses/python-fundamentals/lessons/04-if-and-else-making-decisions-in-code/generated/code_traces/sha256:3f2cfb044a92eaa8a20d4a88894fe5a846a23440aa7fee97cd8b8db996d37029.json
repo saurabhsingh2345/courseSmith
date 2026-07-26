@@ -1,0 +1,82 @@
+{
+  "code": "age = 16\nif age \u003e= 18:\n    print(\"You are an adult.\")\nelse:\n    print(\"You are a minor.\")",
+  "lines": [
+    "age = 16",
+    "if age \u003e= 18:",
+    "    print(\"You are an adult.\")",
+    "else:",
+    "    print(\"You are a minor.\")"
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "line": 1,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 1,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "age",
+          "value": {
+            "type": "int",
+            "repr": "16"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 2,
+      "line": 5,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "age",
+          "value": {
+            "type": "int",
+            "repr": "16"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 3,
+      "line": 5,
+      "event": "return",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "age",
+          "value": {
+            "type": "int",
+            "repr": "16"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "You are a minor.\n"
+    }
+  ],
+  "truncated": false,
+  "stdout": "You are a minor.\n"
+}

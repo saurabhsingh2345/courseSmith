@@ -1,0 +1,30 @@
+# Introduction to Python's basic data types
+
+## What are data types? [0:00]
+
+Data types define the kind of data we can use in Python. They help Python understand how to store and manipulate data. Common data types include strings, integers, floats, and booleans. Let's look at that in a picture. Here’s a flowchart showing Python's basic data types. At the top, we have 'Python Data Types', branching down to 'Strings', 'Integers', 'Floats', and 'Booleans'. Each type has a brief description. Strings are for text data, integers are whole numbers, floats are decimal numbers, and booleans represent true or false values. Understanding these data types is crucial for programming effectively.
+
+
+## Understanding strings [0:39]
+
+Strings are sequences of characters, like words or sentences. They’re enclosed in single or double quotes. For example, you can write 'Hello' or "Hello". You can also concatenate strings using the '+' operator. This means you can join two strings together. For instance, if you write print('Hello, ' + 'world!'), it combines those two strings into one. The output will be 'Hello, world!'. So, strings are pretty flexible and essential for handling text in Python.
+
+
+## Exploring integers and floats [1:10]
+
+Integers are whole numbers, like 1, 2, or even -5. They don’t have any decimal points. On the other hand, floats are decimal numbers, like 3.14 or -0.001. You can perform arithmetic operations with both types, which is really useful. For example, if you write print(5 + 3.2), Python adds those two numbers together. The result will be 8.2. So, integers and floats are vital for calculations in your programs.
+
+
+## What are booleans? [1:38]
+
+Booleans represent truth values: True or False. They’re often used in conditions and comparisons. For example, you might check if something is greater than another value. You can use booleans to control the flow of your program. If you write print(3 > 2), Python evaluates that expression and returns True. Booleans are essential for making decisions in your code.
+
+
+## Overview of data types [2:03]
+
+Let’s summarize the basic data types in Python. We have strings for text, integers for whole numbers, floats for decimals, and booleans for true or false. Understanding these types is essential for programming. They form the foundation of how we work with data in Python. So, keep these in mind as you start coding!
+
+
+## Next steps in Python [2:23]
+
+Now that you know the basic data types, you can start using them in your programs. Next, we'll explore how to store data in variables. This will allow you to create more complex and useful programs. So, let’s get ready to dive into the next topic!

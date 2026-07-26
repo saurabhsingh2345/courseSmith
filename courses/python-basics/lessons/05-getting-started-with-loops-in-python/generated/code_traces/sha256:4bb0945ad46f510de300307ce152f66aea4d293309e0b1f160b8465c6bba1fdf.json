@@ -1,0 +1,336 @@
+{
+  "code": "items = ['apple', 'banana', 'cherry']\nfor item in items:\n    print(item)",
+  "lines": [
+    "items = ['apple', 'banana', 'cherry']",
+    "for item in items:",
+    "    print(item)"
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "line": 1,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 1,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "items",
+          "value": {
+            "type": "list",
+            "repr": "['apple', 'banana', 'cherry']",
+            "items": [
+              {
+                "type": "str",
+                "repr": "'apple'"
+              },
+              {
+                "type": "str",
+                "repr": "'banana'"
+              },
+              {
+                "type": "str",
+                "repr": "'cherry'"
+              }
+            ]
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 2,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "items",
+          "value": {
+            "type": "list",
+            "repr": "['apple', 'banana', 'cherry']",
+            "items": [
+              {
+                "type": "str",
+                "repr": "'apple'"
+              },
+              {
+                "type": "str",
+                "repr": "'banana'"
+              },
+              {
+                "type": "str",
+                "repr": "'cherry'"
+              }
+            ]
+          }
+        },
+        {
+          "name": "item",
+          "value": {
+            "type": "str",
+            "repr": "'apple'"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 3,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "items",
+          "value": {
+            "type": "list",
+            "repr": "['apple', 'banana', 'cherry']",
+            "items": [
+              {
+                "type": "str",
+                "repr": "'apple'"
+              },
+              {
+                "type": "str",
+                "repr": "'banana'"
+              },
+              {
+                "type": "str",
+                "repr": "'cherry'"
+              }
+            ]
+          }
+        },
+        {
+          "name": "item",
+          "value": {
+            "type": "str",
+            "repr": "'apple'"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "apple\n"
+    },
+    {
+      "step": 4,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "items",
+          "value": {
+            "type": "list",
+            "repr": "['apple', 'banana', 'cherry']",
+            "items": [
+              {
+                "type": "str",
+                "repr": "'apple'"
+              },
+              {
+                "type": "str",
+                "repr": "'banana'"
+              },
+              {
+                "type": "str",
+                "repr": "'cherry'"
+              }
+            ]
+          }
+        },
+        {
+          "name": "item",
+          "value": {
+            "type": "str",
+            "repr": "'banana'"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "apple\n"
+    },
+    {
+      "step": 5,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "items",
+          "value": {
+            "type": "list",
+            "repr": "['apple', 'banana', 'cherry']",
+            "items": [
+              {
+                "type": "str",
+                "repr": "'apple'"
+              },
+              {
+                "type": "str",
+                "repr": "'banana'"
+              },
+              {
+                "type": "str",
+                "repr": "'cherry'"
+              }
+            ]
+          }
+        },
+        {
+          "name": "item",
+          "value": {
+            "type": "str",
+            "repr": "'banana'"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "apple\nbanana\n"
+    },
+    {
+      "step": 6,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "items",
+          "value": {
+            "type": "list",
+            "repr": "['apple', 'banana', 'cherry']",
+            "items": [
+              {
+                "type": "str",
+                "repr": "'apple'"
+              },
+              {
+                "type": "str",
+                "repr": "'banana'"
+              },
+              {
+                "type": "str",
+                "repr": "'cherry'"
+              }
+            ]
+          }
+        },
+        {
+          "name": "item",
+          "value": {
+            "type": "str",
+            "repr": "'cherry'"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "apple\nbanana\n"
+    },
+    {
+      "step": 7,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "items",
+          "value": {
+            "type": "list",
+            "repr": "['apple', 'banana', 'cherry']",
+            "items": [
+              {
+                "type": "str",
+                "repr": "'apple'"
+              },
+              {
+                "type": "str",
+                "repr": "'banana'"
+              },
+              {
+                "type": "str",
+                "repr": "'cherry'"
+              }
+            ]
+          }
+        },
+        {
+          "name": "item",
+          "value": {
+            "type": "str",
+            "repr": "'cherry'"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "apple\nbanana\ncherry\n"
+    },
+    {
+      "step": 8,
+      "line": 2,
+      "event": "return",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "items",
+          "value": {
+            "type": "list",
+            "repr": "['apple', 'banana', 'cherry']",
+            "items": [
+              {
+                "type": "str",
+                "repr": "'apple'"
+              },
+              {
+                "type": "str",
+                "repr": "'banana'"
+              },
+              {
+                "type": "str",
+                "repr": "'cherry'"
+              }
+            ]
+          }
+        },
+        {
+          "name": "item",
+          "value": {
+            "type": "str",
+            "repr": "'cherry'"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "apple\nbanana\ncherry\n"
+    }
+  ],
+  "truncated": false,
+  "stdout": "apple\nbanana\ncherry\n"
+}

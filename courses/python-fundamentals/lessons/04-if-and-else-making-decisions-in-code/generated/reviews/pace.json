@@ -1,0 +1,58 @@
+{
+  "target_wpm": 150,
+  "tolerance": 0.15,
+  "sections": [
+    {
+      "id": "understanding-conditional-statements",
+      "words": 45,
+      "duration_ms": 17317,
+      "wpm": 155.9161517583877,
+      "deviation": 0.039441011722584754,
+      "flagged": false
+    },
+    {
+      "id": "the-structure-of-if-statements",
+      "words": 68,
+      "duration_ms": 23155,
+      "wpm": 176.20384366227597,
+      "deviation": 0.1746922910818398,
+      "flagged": true
+    },
+    {
+      "id": "adding-else-statements",
+      "words": 49,
+      "duration_ms": 17959,
+      "wpm": 163.70621972270172,
+      "deviation": 0.09137479815134479,
+      "flagged": false
+    },
+    {
+      "id": "using-comparison-operators",
+      "words": 56,
+      "duration_ms": 20978,
+      "wpm": 160.16779483268184,
+      "deviation": 0.06778529888454557,
+      "flagged": false
+    },
+    {
+      "id": "flowchart-for-if-and-else-statements",
+      "words": 44,
+      "duration_ms": 16288,
+      "wpm": 162.08251473477407,
+      "deviation": 0.0805500982318271,
+      "flagged": false
+    },
+    {
+      "id": "whats-next",
+      "words": 44,
+      "duration_ms": 15781,
+      "wpm": 167.28977884798175,
+      "deviation": 0.11526519231987833,
+      "flagged": false
+    }
+  ],
+  "flagged": [
+    "the-structure-of-if-statements"
+  ],
+  "checked_at": "2026-07-26T13:57:36.917755Z"
+}

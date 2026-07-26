@@ -1,0 +1,38 @@
+{
+  "runner": "docker-sandbox",
+  "blocks": [
+    {
+      "source": "lesson.md",
+      "index": 0,
+      "code": "print(\"Hello, world!\")",
+      "claimed_output": "Hello, world!",
+      "hash": "sha256:cf205e0333ab48738d1255ab51757560b059421b882edd666d9b06f1e7dfbf9f",
+      "stdout": "Hello, world!\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-17T09:02:00.36535Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 1,
+      "code": "print(7 * 6)\nprint(10 + 5)",
+      "claimed_output": "42\n15",
+      "hash": "sha256:30b36027c310ac124de512a401f5e78f349371e6424d5db9eac255b79cc70999",
+      "stdout": "42\n15\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-17T09:02:00.490882Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 2,
+      "code": "name = \"Ada\"\nprint(\"Hello,\", name)\nprint(\"Welcome to Python!\")",
+      "claimed_output": "Hello, Ada\nWelcome to Python!",
+      "hash": "sha256:9af957f4d52fd41bda7f6cd6b2135242e77e73a12dbd44ac15a0bb0decb47903",
+      "stdout": "Hello, Ada\nWelcome to Python!\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-17T09:02:00.619849Z"
+    }
+  ]
+}

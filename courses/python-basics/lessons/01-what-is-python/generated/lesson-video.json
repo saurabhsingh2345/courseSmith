@@ -1,0 +1,3454 @@
+{
+  "theme": {
+    "primary": "#306998",
+    "accent": "#ffd43b",
+    "background": "#ffffff",
+    "courseName": "Python Basics",
+    "mode": "dark",
+    "bgTop": "#101d28",
+    "bgBottom": "#070c15",
+    "surface": "#1b2732",
+    "surfaceBorder": "#324452",
+    "text": "#f2f5f8",
+    "textMuted": "#a6b4bf",
+    "fontDisplay": "Space Grotesk",
+    "fontBody": "Inter",
+    "fontMono": "JetBrains Mono",
+    "grain": 0.04
+  },
+  "motion": {
+    "timing": {
+      "fast": 0.2,
+      "normal": 0.6,
+      "slow": 1,
+      "verySlow": 2
+    },
+    "easing": {
+      "entrance": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "exit": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "subtle": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "stagger": {
+      "words": 0.05,
+      "items": 0.08,
+      "connections": 0.12
+    }
+  },
+  "audioFile": "voiceover.wav",
+  "durationMs": 232798,
+  "scenes": [
+    {
+      "type": "title",
+      "startMs": 31,
+      "endMs": 12640,
+      "props": {
+        "heading": "What is Python?",
+        "intro": true,
+        "outcomes": [
+          "Explain what a programming language does",
+          "Install Python on your own computer",
+          "Run your very first line of Python"
+        ],
+        "subtitle": "Python Basics"
+      }
+    },
+    {
+      "type": "diagram",
+      "startMs": 12640,
+      "endMs": 41071,
+      "props": {
+        "caption": "python-translator",
+        "kind": "mermaid",
+        "src": "diagrams/python-translator.svg",
+        "title": "A language for talking to computers"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 41071,
+      "endMs": 64021,
+      "props": {
+        "items": [
+          {
+            "atMs": 44415,
+            "icon": "check",
+            "text": "Little ceremony"
+          },
+          {
+            "atMs": 47038,
+            "icon": "file",
+            "text": "Readable code"
+          },
+          {
+            "atMs": 51123,
+            "icon": "globe",
+            "text": "Huge community"
+          },
+          {
+            "atMs": 57091,
+            "icon": "gear",
+            "text": "Flexible and powerful"
+          }
+        ],
+        "title": "Why beginners start with Python"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 64021,
+      "endMs": 75036,
+      "props": {
+        "items": [
+          {
+            "atMs": 69288,
+            "icon": "monitor",
+            "text": "Powers websites and apps"
+          },
+          {
+            "atMs": 74115,
+            "icon": "database",
+            "text": "Data analysis and science"
+          },
+          {
+            "atMs": 80663,
+            "icon": "zap",
+            "text": "Automate boring tasks"
+          },
+          {
+            "atMs": 86812,
+            "icon": "brain",
+            "text": "AI and machine learning"
+          }
+        ],
+        "title": "Where Python is used in the real world"
+      }
+    },
+    {
+      "type": "diagram",
+      "startMs": 75036,
+      "endMs": 94421,
+      "props": {
+        "caption": "where-python-runs",
+        "kind": "mermaid",
+        "src": "diagrams/where-python-runs.svg",
+        "title": "Where Python is used in the real world"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 94421,
+      "endMs": 127555,
+      "props": {
+        "items": [
+          {
+            "atMs": 95882,
+            "icon": "wrench",
+            "text": "Install Python"
+          },
+          {
+            "atMs": 102990,
+            "icon": "check",
+            "text": "Add to PATH"
+          },
+          {
+            "atMs": 119997,
+            "icon": "terminal",
+            "text": "Check version in terminal"
+          }
+        ],
+        "title": "Installing Python"
+      },
+      "callouts": [
+        {
+          "atMs": 94421,
+          "durMs": 4000,
+          "shape": "arrow",
+          "x": 0.62,
+          "y": 0.55,
+          "label": "don't skip this box"
+        }
+      ]
+    },
+    {
+      "type": "code",
+      "startMs": 127555,
+      "endMs": 139857,
+      "props": {
+        "code": "print(\"Hello, world!\")",
+        "language": "python",
+        "output": "Hello, world!\n",
+        "title": "Your first line of Python",
+        "trace": {
+          "code": "print(\"Hello, world!\")",
+          "lines": [
+            "print(\"Hello, world!\")"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 1,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "Hello, world!\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "Hello, world!\n"
+        }
+      },
+      "callouts": [
+        {
+          "atMs": 127555,
+          "durMs": 4000,
+          "shape": "circle",
+          "x": 0.5,
+          "y": 0.42,
+          "label": "quotes matter!"
+        }
+      ]
+    },
+    {
+      "type": "terminal",
+      "startMs": 139857,
+      "endMs": 159820,
+      "props": {
+        "durationMs": 8640,
+        "src": "demos/demo-1.mp4",
+        "title": "open the Python REPL with python3, print a hello message, then print your own name, and exit"
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 159820,
+      "endMs": 187732,
+      "props": {
+        "code": "print(7 * 6)\nprint(10 + 5)",
+        "language": "python",
+        "output": "42\n15\n",
+        "title": "Python does math too",
+        "trace": {
+          "code": "print(7 * 6)\nprint(10 + 5)",
+          "lines": [
+            "print(7 * 6)",
+            "print(10 + 5)"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "42\n"
+            },
+            {
+              "step": 2,
+              "line": 2,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "42\n15\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "42\n15\n"
+        }
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 187732,
+      "endMs": 199322,
+      "props": {
+        "code": "name = \"Ada\"\nprint(\"Hello,\", name)\nprint(\"Welcome to Python!\")",
+        "language": "python",
+        "output": "Hello, Ada\nWelcome to Python!\n",
+        "title": "Putting lines together",
+        "trace": {
+          "code": "name = \"Ada\"\nprint(\"Hello,\", name)\nprint(\"Welcome to Python!\")",
+          "lines": [
+            "name = \"Ada\"",
+            "print(\"Hello,\", name)",
+            "print(\"Welcome to Python!\")"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "Hello, Ada\n"
+            },
+            {
+              "step": 3,
+              "line": 3,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "Hello, Ada\nWelcome to Python!\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "Hello, Ada\nWelcome to Python!\n"
+        }
+      }
+    },
+    {
+      "type": "terminal",
+      "startMs": 199322,
+      "endMs": 217718,
+      "props": {
+        "durationMs": 11680,
+        "src": "demos/demo-2.mp4",
+        "title": "create a two-line script hello.py with a heredoc and run it with python3 hello.py"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 217718,
+      "endMs": 232798,
+      "props": {
+        "items": [
+          {
+            "atMs": 219724,
+            "icon": "idea",
+            "text": "Next lesson: variables"
+          },
+          {
+            "atMs": 225620,
+            "icon": "heart",
+            "text": "Challenge: say your name"
+          }
+        ],
+        "title": "What's next"
+      }
+    }
+  ],
+  "captions": [
+    {
+      "word": "Let's",
+      "startMs": 31,
+      "endMs": 292
+    },
+    {
+      "word": "talk",
+      "startMs": 352,
+      "endMs": 552
+    },
+    {
+      "word": "about",
+      "startMs": 592,
+      "endMs": 753
+    },
+    {
+      "word": "Python.",
+      "startMs": 793,
+      "endMs": 1254
+    },
+    {
+      "word": "It's",
+      "startMs": 1775,
+      "endMs": 1895
+    },
+    {
+      "word": "a",
+      "startMs": 1935,
+      "endMs": 1955
+    },
+    {
+      "word": "language,",
+      "startMs": 2016,
+      "endMs": 2497
+    },
+    {
+      "word": "but",
+      "startMs": 2657,
+      "endMs": 2757
+    },
+    {
+      "word": "not",
+      "startMs": 2817,
+      "endMs": 2938
+    },
+    {
+      "word": "the",
+      "startMs": 2978,
+      "endMs": 3058
+    },
+    {
+      "word": "kind",
+      "startMs": 3118,
+      "endMs": 3399
+    },
+    {
+      "word": "we",
+      "startMs": 3439,
+      "endMs": 3539
+    },
+    {
+      "word": "speak",
+      "startMs": 3579,
+      "endMs": 3800
+    },
+    {
+      "word": "every",
+      "startMs": 3940,
+      "endMs": 4160
+    },
+    {
+      "word": "day.",
+      "startMs": 4201,
+      "endMs": 4421
+    },
+    {
+      "word": "Instead,",
+      "startMs": 4461,
+      "endMs": 5524
+    },
+    {
+      "word": "it's",
+      "startMs": 5584,
+      "endMs": 5864
+    },
+    {
+      "word": "a",
+      "startMs": 5924,
+      "endMs": 5945
+    },
+    {
+      "word": "way",
+      "startMs": 5985,
+      "endMs": 6085
+    },
+    {
+      "word": "to",
+      "startMs": 6125,
+      "endMs": 6185
+    },
+    {
+      "word": "communicate",
+      "startMs": 6225,
+      "endMs": 6726
+    },
+    {
+      "word": "with",
+      "startMs": 6766,
+      "endMs": 6867
+    },
+    {
+      "word": "computers.",
+      "startMs": 6927,
+      "endMs": 7428
+    },
+    {
+      "word": "You",
+      "startMs": 8069,
+      "endMs": 8170
+    },
+    {
+      "word": "see,",
+      "startMs": 8250,
+      "endMs": 8450
+    },
+    {
+      "word": "computers",
+      "startMs": 8631,
+      "endMs": 9112
+    },
+    {
+      "word": "can't",
+      "startMs": 9212,
+      "endMs": 9453
+    },
+    {
+      "word": "guess",
+      "startMs": 9493,
+      "endMs": 9673
+    },
+    {
+      "word": "what",
+      "startMs": 9713,
+      "endMs": 9813
+    },
+    {
+      "word": "we",
+      "startMs": 9853,
+      "endMs": 9954
+    },
+    {
+      "word": "mean.",
+      "startMs": 9994,
+      "endMs": 10194
+    },
+    {
+      "word": "They",
+      "startMs": 10675,
+      "endMs": 10776
+    },
+    {
+      "word": "need",
+      "startMs": 10816,
+      "endMs": 10976
+    },
+    {
+      "word": "clear",
+      "startMs": 11056,
+      "endMs": 11277
+    },
+    {
+      "word": "instructions.",
+      "startMs": 11357,
+      "endMs": 11998
+    },
+    {
+      "word": "A",
+      "startMs": 12560,
+      "endMs": 12580
+    },
+    {
+      "word": "programming",
+      "startMs": 12640,
+      "endMs": 13161
+    },
+    {
+      "word": "language",
+      "startMs": 13221,
+      "endMs": 13602
+    },
+    {
+      "word": "like",
+      "startMs": 13662,
+      "endMs": 13823
+    },
+    {
+      "word": "Python",
+      "startMs": 13903,
+      "endMs": 14424
+    },
+    {
+      "word": "gives",
+      "startMs": 14825,
+      "endMs": 15005
+    },
+    {
+      "word": "us",
+      "startMs": 15065,
+      "endMs": 15126
+    },
+    {
+      "word": "a",
+      "startMs": 15186,
+      "endMs": 15206
+    },
+    {
+      "word": "precise",
+      "startMs": 15286,
+      "endMs": 15807
+    },
+    {
+      "word": "way",
+      "startMs": 15867,
+      "endMs": 16028
+    },
+    {
+      "word": "to",
+      "startMs": 16068,
+      "endMs": 16148
+    },
+    {
+      "word": "write",
+      "startMs": 16208,
+      "endMs": 16408
+    },
+    {
+      "word": "those",
+      "startMs": 16469,
+      "endMs": 16669
+    },
+    {
+      "word": "instructions.",
+      "startMs": 16749,
+      "endMs": 17972
+    },
+    {
+      "word": "Python",
+      "startMs": 17972,
+      "endMs": 18593
+    },
+    {
+      "word": "is",
+      "startMs": 18693,
+      "endMs": 18753
+    },
+    {
+      "word": "popular",
+      "startMs": 18833,
+      "endMs": 19313
+    },
+    {
+      "word": "because",
+      "startMs": 19494,
+      "endMs": 19694
+    },
+    {
+      "word": "it",
+      "startMs": 19754,
+      "endMs": 19794
+    },
+    {
+      "word": "reads",
+      "startMs": 19854,
+      "endMs": 20094
+    },
+    {
+      "word": "almost",
+      "startMs": 20235,
+      "endMs": 20535
+    },
+    {
+      "word": "like",
+      "startMs": 20595,
+      "endMs": 20735
+    },
+    {
+      "word": "English,",
+      "startMs": 20775,
+      "endMs": 21196
+    },
+    {
+      "word": "making",
+      "startMs": 21656,
+      "endMs": 21916
+    },
+    {
+      "word": "it",
+      "startMs": 21956,
+      "endMs": 21996
+    },
+    {
+      "word": "easier",
+      "startMs": 22157,
+      "endMs": 22497
+    },
+    {
+      "word": "for",
+      "startMs": 22557,
+      "endMs": 22657
+    },
+    {
+      "word": "beginners.",
+      "startMs": 22717,
+      "endMs": 23198
+    },
+    {
+      "word": "It",
+      "startMs": 23738,
+      "endMs": 23798
+    },
+    {
+      "word": "was",
+      "startMs": 23838,
+      "endMs": 23939
+    },
+    {
+      "word": "created",
+      "startMs": 23999,
+      "endMs": 24359
+    },
+    {
+      "word": "by",
+      "startMs": 24419,
+      "endMs": 24519
+    },
+    {
+      "word": "Guido",
+      "startMs": 24599,
+      "endMs": 24940
+    },
+    {
+      "word": "van",
+      "startMs": 24980,
+      "endMs": 25160
+    },
+    {
+      "word": "Rossum",
+      "startMs": 25220,
+      "endMs": 25660
+    },
+    {
+      "word": "and",
+      "startMs": 26001,
+      "endMs": 26061
+    },
+    {
+      "word": "first",
+      "startMs": 26141,
+      "endMs": 26401
+    },
+    {
+      "word": "released",
+      "startMs": 26461,
+      "endMs": 26862
+    },
+    {
+      "word": "in",
+      "startMs": 26962,
+      "endMs": 27022
+    },
+    {
+      "word": "1991.",
+      "startMs": 27042,
+      "endMs": 27643
+    },
+    {
+      "word": "Interestingly,",
+      "startMs": 27743,
+      "endMs": 30105
+    },
+    {
+      "word": "it’s",
+      "startMs": 30546,
+      "endMs": 30666
+    },
+    {
+      "word": "named",
+      "startMs": 30726,
+      "endMs": 31006
+    },
+    {
+      "word": "after",
+      "startMs": 31026,
+      "endMs": 31327
+    },
+    {
+      "word": "Monty",
+      "startMs": 31367,
+      "endMs": 31707
+    },
+    {
+      "word": "Python,",
+      "startMs": 31747,
+      "endMs": 32268
+    },
+    {
+      "word": "not",
+      "startMs": 32648,
+      "endMs": 32788
+    },
+    {
+      "word": "the",
+      "startMs": 32808,
+      "endMs": 32908
+    },
+    {
+      "word": "snake.",
+      "startMs": 32948,
+      "endMs": 33930
+    },
+    {
+      "word": "Now,",
+      "startMs": 33950,
+      "endMs": 34150
+    },
+    {
+      "word": "let's",
+      "startMs": 34490,
+      "endMs": 34710
+    },
+    {
+      "word": "look",
+      "startMs": 34750,
+      "endMs": 34911
+    },
+    {
+      "word": "at",
+      "startMs": 34951,
+      "endMs": 34991
+    },
+    {
+      "word": "how",
+      "startMs": 35051,
+      "endMs": 35171
+    },
+    {
+      "word": "Python",
+      "startMs": 35251,
+      "endMs": 35752
+    },
+    {
+      "word": "translates",
+      "startMs": 35812,
+      "endMs": 36372
+    },
+    {
+      "word": "our",
+      "startMs": 36432,
+      "endMs": 36512
+    },
+    {
+      "word": "instructions",
+      "startMs": 36552,
+      "endMs": 37153
+    },
+    {
+      "word": "into",
+      "startMs": 37213,
+      "endMs": 37373
+    },
+    {
+      "word": "actions.",
+      "startMs": 37513,
+      "endMs": 37894
+    },
+    {
+      "word": "[DIAGRAM:",
+      "startMs": 38414,
+      "endMs": 38955
+    },
+    {
+      "word": "python-translator]",
+      "startMs": 39175,
+      "endMs": 40737
+    },
+    {
+      "word": "So,",
+      "startMs": 41071,
+      "endMs": 41391
+    },
+    {
+      "word": "why",
+      "startMs": 41492,
+      "endMs": 41632
+    },
+    {
+      "word": "do",
+      "startMs": 41652,
+      "endMs": 41752
+    },
+    {
+      "word": "many",
+      "startMs": 41772,
+      "endMs": 41932
+    },
+    {
+      "word": "beginners",
+      "startMs": 41992,
+      "endMs": 42373
+    },
+    {
+      "word": "start",
+      "startMs": 42433,
+      "endMs": 42673
+    },
+    {
+      "word": "with",
+      "startMs": 42713,
+      "endMs": 42793
+    },
+    {
+      "word": "Python?",
+      "startMs": 42853,
+      "endMs": 43334
+    },
+    {
+      "word": "First,",
+      "startMs": 43874,
+      "endMs": 44175
+    },
+    {
+      "word": "it",
+      "startMs": 44415,
+      "endMs": 44475
+    },
+    {
+      "word": "has",
+      "startMs": 44495,
+      "endMs": 44615
+    },
+    {
+      "word": "very",
+      "startMs": 44716,
+      "endMs": 44976
+    },
+    {
+      "word": "little",
+      "startMs": 45036,
+      "endMs": 45216
+    },
+    {
+      "word": "ceremony.",
+      "startMs": 45276,
+      "endMs": 45817
+    },
+    {
+      "word": "You",
+      "startMs": 46378,
+      "endMs": 46478
+    },
+    {
+      "word": "can",
+      "startMs": 46498,
+      "endMs": 46618
+    },
+    {
+      "word": "write",
+      "startMs": 46638,
+      "endMs": 46818
+    },
+    {
+      "word": "a",
+      "startMs": 46878,
+      "endMs": 46898
+    },
+    {
+      "word": "single,",
+      "startMs": 47038,
+      "endMs": 47399
+    },
+    {
+      "word": "readable",
+      "startMs": 47579,
+      "endMs": 47940
+    },
+    {
+      "word": "line",
+      "startMs": 48020,
+      "endMs": 48240
+    },
+    {
+      "word": "of",
+      "startMs": 48280,
+      "endMs": 48320
+    },
+    {
+      "word": "code",
+      "startMs": 48400,
+      "endMs": 48700
+    },
+    {
+      "word": "that",
+      "startMs": 48781,
+      "endMs": 48901
+    },
+    {
+      "word": "does",
+      "startMs": 48941,
+      "endMs": 49101
+    },
+    {
+      "word": "real",
+      "startMs": 49161,
+      "endMs": 49341
+    },
+    {
+      "word": "work.",
+      "startMs": 49421,
+      "endMs": 49662
+    },
+    {
+      "word": "Plus,",
+      "startMs": 50162,
+      "endMs": 50743
+    },
+    {
+      "word": "there's",
+      "startMs": 50763,
+      "endMs": 50963
+    },
+    {
+      "word": "a",
+      "startMs": 51003,
+      "endMs": 51023
+    },
+    {
+      "word": "huge",
+      "startMs": 51123,
+      "endMs": 51444
+    },
+    {
+      "word": "community",
+      "startMs": 51524,
+      "endMs": 51945
+    },
+    {
+      "word": "out",
+      "startMs": 52045,
+      "endMs": 52165
+    },
+    {
+      "word": "there.",
+      "startMs": 52205,
+      "endMs": 52385
+    },
+    {
+      "word": "Almost",
+      "startMs": 52906,
+      "endMs": 53206
+    },
+    {
+      "word": "any",
+      "startMs": 53286,
+      "endMs": 53406
+    },
+    {
+      "word": "question",
+      "startMs": 53466,
+      "endMs": 53847
+    },
+    {
+      "word": "you",
+      "startMs": 53907,
+      "endMs": 54007
+    },
+    {
+      "word": "might",
+      "startMs": 54067,
+      "endMs": 54207
+    },
+    {
+      "word": "have",
+      "startMs": 54227,
+      "endMs": 54327
+    },
+    {
+      "word": "has",
+      "startMs": 54368,
+      "endMs": 54508
+    },
+    {
+      "word": "an",
+      "startMs": 54548,
+      "endMs": 54588
+    },
+    {
+      "word": "answer",
+      "startMs": 54728,
+      "endMs": 54988
+    },
+    {
+      "word": "online.",
+      "startMs": 55088,
+      "endMs": 55489
+    },
+    {
+      "word": "And",
+      "startMs": 56030,
+      "endMs": 56110
+    },
+    {
+      "word": "what’s",
+      "startMs": 56150,
+      "endMs": 56330
+    },
+    {
+      "word": "great",
+      "startMs": 56410,
+      "endMs": 56690
+    },
+    {
+      "word": "is",
+      "startMs": 56851,
+      "endMs": 56911
+    },
+    {
+      "word": "that",
+      "startMs": 56951,
+      "endMs": 57071
+    },
+    {
+      "word": "the",
+      "startMs": 57091,
+      "endMs": 57211
+    },
+    {
+      "word": "same",
+      "startMs": 57271,
+      "endMs": 57531
+    },
+    {
+      "word": "language",
+      "startMs": 57612,
+      "endMs": 57992
+    },
+    {
+      "word": "can",
+      "startMs": 58052,
+      "endMs": 58192
+    },
+    {
+      "word": "scale",
+      "startMs": 58272,
+      "endMs": 58613
+    },
+    {
+      "word": "from",
+      "startMs": 58673,
+      "endMs": 58813
+    },
+    {
+      "word": "tiny",
+      "startMs": 58833,
+      "endMs": 59254
+    },
+    {
+      "word": "scripts",
+      "startMs": 59314,
+      "endMs": 59654
+    },
+    {
+      "word": "to",
+      "startMs": 59794,
+      "endMs": 59894
+    },
+    {
+      "word": "serious",
+      "startMs": 59954,
+      "endMs": 60335
+    },
+    {
+      "word": "software.",
+      "startMs": 60375,
+      "endMs": 61476
+    },
+    {
+      "word": "It's",
+      "startMs": 61496,
+      "endMs": 61617
+    },
+    {
+      "word": "flexible",
+      "startMs": 61717,
+      "endMs": 62197
+    },
+    {
+      "word": "and",
+      "startMs": 62418,
+      "endMs": 62498
+    },
+    {
+      "word": "powerful.",
+      "startMs": 62558,
+      "endMs": 63619
+    },
+    {
+      "word": "Python",
+      "startMs": 64021,
+      "endMs": 64582
+    },
+    {
+      "word": "is",
+      "startMs": 64722,
+      "endMs": 64782
+    },
+    {
+      "word": "used",
+      "startMs": 64962,
+      "endMs": 65163
+    },
+    {
+      "word": "in",
+      "startMs": 65263,
+      "endMs": 65303
+    },
+    {
+      "word": "many",
+      "startMs": 65423,
+      "endMs": 65683
+    },
+    {
+      "word": "exciting",
+      "startMs": 65763,
+      "endMs": 66184
+    },
+    {
+      "word": "areas.",
+      "startMs": 66284,
+      "endMs": 66625
+    },
+    {
+      "word": "For",
+      "startMs": 67185,
+      "endMs": 67285
+    },
+    {
+      "word": "example,",
+      "startMs": 67345,
+      "endMs": 67766
+    },
+    {
+      "word": "it",
+      "startMs": 68187,
+      "endMs": 68227
+    },
+    {
+      "word": "powers",
+      "startMs": 68307,
+      "endMs": 68667
+    },
+    {
+      "word": "websites",
+      "startMs": 68747,
+      "endMs": 69228
+    },
+    {
+      "word": "and",
+      "startMs": 69288,
+      "endMs": 69368
+    },
+    {
+      "word": "apps",
+      "startMs": 69568,
+      "endMs": 69749
+    },
+    {
+      "word": "like",
+      "startMs": 69829,
+      "endMs": 69969
+    },
+    {
+      "word": "Instagram",
+      "startMs": 70109,
+      "endMs": 70690
+    },
+    {
+      "word": "and",
+      "startMs": 70770,
+      "endMs": 70870
+    },
+    {
+      "word": "Spotify.",
+      "startMs": 70910,
+      "endMs": 71511
+    },
+    {
+      "word": "It's",
+      "startMs": 72192,
+      "endMs": 72292
+    },
+    {
+      "word": "also",
+      "startMs": 72352,
+      "endMs": 72613
+    },
+    {
+      "word": "used",
+      "startMs": 72773,
+      "endMs": 72953
+    },
+    {
+      "word": "for",
+      "startMs": 72993,
+      "endMs": 73113
+    },
+    {
+      "word": "data",
+      "startMs": 73173,
+      "endMs": 73434
+    },
+    {
+      "word": "analysis",
+      "startMs": 73494,
+      "endMs": 74035
+    },
+    {
+      "word": "and",
+      "startMs": 74115,
+      "endMs": 74195
+    },
+    {
+      "word": "science,",
+      "startMs": 74255,
+      "endMs": 74655
+    },
+    {
+      "word": "making",
+      "startMs": 75036,
+      "endMs": 75296
+    },
+    {
+      "word": "it",
+      "startMs": 75336,
+      "endMs": 75376
+    },
+    {
+      "word": "like",
+      "startMs": 75436,
+      "endMs": 75577
+    },
+    {
+      "word": "spreadsheets",
+      "startMs": 75637,
+      "endMs": 76197
+    },
+    {
+      "word": "on",
+      "startMs": 76318,
+      "endMs": 76398
+    },
+    {
+      "word": "steroids.",
+      "startMs": 76458,
+      "endMs": 76999
+    },
+    {
+      "word": "Python",
+      "startMs": 77479,
+      "endMs": 77960
+    },
+    {
+      "word": "can",
+      "startMs": 78000,
+      "endMs": 78120
+    },
+    {
+      "word": "automate",
+      "startMs": 78240,
+      "endMs": 78601
+    },
+    {
+      "word": "boring",
+      "startMs": 78681,
+      "endMs": 79001
+    },
+    {
+      "word": "tasks,",
+      "startMs": 79061,
+      "endMs": 79502
+    },
+    {
+      "word": "like",
+      "startMs": 79842,
+      "endMs": 79983
+    },
+    {
+      "word": "renaming",
+      "startMs": 80043,
+      "endMs": 80463
+    },
+    {
+      "word": "a",
+      "startMs": 80483,
+      "endMs": 80503
+    },
+    {
+      "word": "thousand",
+      "startMs": 80663,
+      "endMs": 81104
+    },
+    {
+      "word": "files",
+      "startMs": 81184,
+      "endMs": 81585
+    },
+    {
+      "word": "in",
+      "startMs": 81685,
+      "endMs": 81745
+    },
+    {
+      "word": "just",
+      "startMs": 81785,
+      "endMs": 81965
+    },
+    {
+      "word": "a",
+      "startMs": 82025,
+      "endMs": 82045
+    },
+    {
+      "word": "second.",
+      "startMs": 82085,
+      "endMs": 82446
+    },
+    {
+      "word": "And",
+      "startMs": 83007,
+      "endMs": 83087
+    },
+    {
+      "word": "when",
+      "startMs": 83127,
+      "endMs": 83227
+    },
+    {
+      "word": "it",
+      "startMs": 83267,
+      "endMs": 83307
+    },
+    {
+      "word": "comes",
+      "startMs": 83347,
+      "endMs": 83547
+    },
+    {
+      "word": "to",
+      "startMs": 83607,
+      "endMs": 83688
+    },
+    {
+      "word": "AI",
+      "startMs": 83848,
+      "endMs": 84248
+    },
+    {
+      "word": "and",
+      "startMs": 84348,
+      "endMs": 84429
+    },
+    {
+      "word": "machine",
+      "startMs": 84469,
+      "endMs": 84809
+    },
+    {
+      "word": "learning,",
+      "startMs": 84869,
+      "endMs": 85190
+    },
+    {
+      "word": "most",
+      "startMs": 85570,
+      "endMs": 85790
+    },
+    {
+      "word": "of",
+      "startMs": 85830,
+      "endMs": 85871
+    },
+    {
+      "word": "that",
+      "startMs": 85911,
+      "endMs": 86071
+    },
+    {
+      "word": "is",
+      "startMs": 86091,
+      "endMs": 86251
+    },
+    {
+      "word": "written",
+      "startMs": 86351,
+      "endMs": 86612
+    },
+    {
+      "word": "in",
+      "startMs": 86692,
+      "endMs": 86752
+    },
+    {
+      "word": "Python.",
+      "startMs": 86812,
+      "endMs": 87733
+    },
+    {
+      "word": "Now,",
+      "startMs": 87733,
+      "endMs": 88053
+    },
+    {
+      "word": "let’s",
+      "startMs": 88374,
+      "endMs": 88574
+    },
+    {
+      "word": "see",
+      "startMs": 88614,
+      "endMs": 88754
+    },
+    {
+      "word": "a",
+      "startMs": 88814,
+      "endMs": 88834
+    },
+    {
+      "word": "visual",
+      "startMs": 88914,
+      "endMs": 89315
+    },
+    {
+      "word": "of",
+      "startMs": 89395,
+      "endMs": 89435
+    },
+    {
+      "word": "where",
+      "startMs": 89495,
+      "endMs": 89655
+    },
+    {
+      "word": "Python",
+      "startMs": 89735,
+      "endMs": 90196
+    },
+    {
+      "word": "is",
+      "startMs": 90276,
+      "endMs": 90336
+    },
+    {
+      "word": "used.",
+      "startMs": 90496,
+      "endMs": 90716
+    },
+    {
+      "word": "[DIAGRAM:",
+      "startMs": 91317,
+      "endMs": 91878
+    },
+    {
+      "word": "where-python-runs]",
+      "startMs": 92358,
+      "endMs": 93299
+    },
+    {
+      "word": "Ready",
+      "startMs": 94421,
+      "endMs": 94621
+    },
+    {
+      "word": "to",
+      "startMs": 94661,
+      "endMs": 94721
+    },
+    {
+      "word": "get",
+      "startMs": 94761,
+      "endMs": 94901
+    },
+    {
+      "word": "started?",
+      "startMs": 94961,
+      "endMs": 95322
+    },
+    {
+      "word": "First,",
+      "startMs": 95882,
+      "endMs": 96183
+    },
+    {
+      "word": "you'll",
+      "startMs": 96463,
+      "endMs": 96643
+    },
+    {
+      "word": "need",
+      "startMs": 96683,
+      "endMs": 96843
+    },
+    {
+      "word": "to",
+      "startMs": 96883,
+      "endMs": 96984
+    },
+    {
+      "word": "install",
+      "startMs": 97064,
+      "endMs": 97484
+    },
+    {
+      "word": "Python.",
+      "startMs": 97544,
+      "endMs": 98045
+    },
+    {
+      "word": "Go",
+      "startMs": 98665,
+      "endMs": 98806
+    },
+    {
+      "word": "to",
+      "startMs": 98866,
+      "endMs": 98926
+    },
+    {
+      "word": "python.org/downloads",
+      "startMs": 98966,
+      "endMs": 101088
+    },
+    {
+      "word": "and",
+      "startMs": 101268,
+      "endMs": 101348
+    },
+    {
+      "word": "grab",
+      "startMs": 101429,
+      "endMs": 101729
+    },
+    {
+      "word": "the",
+      "startMs": 101749,
+      "endMs": 101849
+    },
+    {
+      "word": "latest",
+      "startMs": 101889,
+      "endMs": 102229
+    },
+    {
+      "word": "version",
+      "startMs": 102290,
+      "endMs": 102650
+    },
+    {
+      "word": "for",
+      "startMs": 102690,
+      "endMs": 102790
+    },
+    {
+      "word": "your",
+      "startMs": 102830,
+      "endMs": 102950
+    },
+    {
+      "word": "system.",
+      "startMs": 102990,
+      "endMs": 103351
+    },
+    {
+      "word": "If",
+      "startMs": 103991,
+      "endMs": 104052
+    },
+    {
+      "word": "you're",
+      "startMs": 104072,
+      "endMs": 104232
+    },
+    {
+      "word": "on",
+      "startMs": 104272,
+      "endMs": 104312
+    },
+    {
+      "word": "Windows,",
+      "startMs": 104392,
+      "endMs": 104832
+    },
+    {
+      "word": "make",
+      "startMs": 105213,
+      "endMs": 105353
+    },
+    {
+      "word": "sure",
+      "startMs": 105413,
+      "endMs": 105533
+    },
+    {
+      "word": "to",
+      "startMs": 105573,
+      "endMs": 105633
+    },
+    {
+      "word": "check",
+      "startMs": 105693,
+      "endMs": 105914
+    },
+    {
+      "word": "the",
+      "startMs": 105954,
+      "endMs": 106054
+    },
+    {
+      "word": "'Add",
+      "startMs": 106074,
+      "endMs": 106374
+    },
+    {
+      "word": "Python",
+      "startMs": 106414,
+      "endMs": 106915
+    },
+    {
+      "word": "to",
+      "startMs": 106975,
+      "endMs": 107055
+    },
+    {
+      "word": "PATH'",
+      "startMs": 107115,
+      "endMs": 107776
+    },
+    {
+      "word": "box",
+      "startMs": 107776,
+      "endMs": 107816
+    },
+    {
+      "word": "during",
+      "startMs": 107816,
+      "endMs": 108036
+    },
+    {
+      "word": "installation.",
+      "startMs": 108076,
+      "endMs": 108737
+    },
+    {
+      "word": "For",
+      "startMs": 109237,
+      "endMs": 109358
+    },
+    {
+      "word": "macOS,",
+      "startMs": 109398,
+      "endMs": 109638
+    },
+    {
+      "word": "the",
+      "startMs": 110178,
+      "endMs": 110279
+    },
+    {
+      "word": "installer",
+      "startMs": 110339,
+      "endMs": 110859
+    },
+    {
+      "word": "usually",
+      "startMs": 111019,
+      "endMs": 111320
+    },
+    {
+      "word": "works",
+      "startMs": 111380,
+      "endMs": 111620
+    },
+    {
+      "word": "without",
+      "startMs": 111660,
+      "endMs": 111941
+    },
+    {
+      "word": "extra",
+      "startMs": 112081,
+      "endMs": 112401
+    },
+    {
+      "word": "steps.",
+      "startMs": 112441,
+      "endMs": 113282
+    },
+    {
+      "word": "Now,",
+      "startMs": 113282,
+      "endMs": 113603
+    },
+    {
+      "word": "if",
+      "startMs": 113943,
+      "endMs": 113984
+    },
+    {
+      "word": "you're",
+      "startMs": 114024,
+      "endMs": 114164
+    },
+    {
+      "word": "using",
+      "startMs": 114224,
+      "endMs": 114404
+    },
+    {
+      "word": "Linux,",
+      "startMs": 114465,
+      "endMs": 114825
+    },
+    {
+      "word": "Python",
+      "startMs": 115186,
+      "endMs": 115687
+    },
+    {
+      "word": "might",
+      "startMs": 115747,
+      "endMs": 115888
+    },
+    {
+      "word": "already",
+      "startMs": 115928,
+      "endMs": 116269
+    },
+    {
+      "word": "be",
+      "startMs": 116329,
+      "endMs": 116429
+    },
+    {
+      "word": "installed,",
+      "startMs": 116509,
+      "endMs": 117030
+    },
+    {
+      "word": "but",
+      "startMs": 117371,
+      "endMs": 117471
+    },
+    {
+      "word": "this",
+      "startMs": 117491,
+      "endMs": 117692
+    },
+    {
+      "word": "can",
+      "startMs": 117752,
+      "endMs": 117892
+    },
+    {
+      "word": "vary",
+      "startMs": 117932,
+      "endMs": 118193
+    },
+    {
+      "word": "by",
+      "startMs": 118253,
+      "endMs": 118373
+    },
+    {
+      "word": "distribution.",
+      "startMs": 118453,
+      "endMs": 119095
+    },
+    {
+      "word": "To",
+      "startMs": 119556,
+      "endMs": 119656
+    },
+    {
+      "word": "check",
+      "startMs": 119716,
+      "endMs": 119937
+    },
+    {
+      "word": "if",
+      "startMs": 119997,
+      "endMs": 120057
+    },
+    {
+      "word": "it’s",
+      "startMs": 120117,
+      "endMs": 120237
+    },
+    {
+      "word": "installed,",
+      "startMs": 120317,
+      "endMs": 120839
+    },
+    {
+      "word": "you",
+      "startMs": 121199,
+      "endMs": 121320
+    },
+    {
+      "word": "can",
+      "startMs": 121340,
+      "endMs": 121460
+    },
+    {
+      "word": "open",
+      "startMs": 121540,
+      "endMs": 121740
+    },
+    {
+      "word": "a",
+      "startMs": 121801,
+      "endMs": 121821
+    },
+    {
+      "word": "terminal",
+      "startMs": 121921,
+      "endMs": 122362
+    },
+    {
+      "word": "and",
+      "startMs": 122482,
+      "endMs": 122562
+    },
+    {
+      "word": "type",
+      "startMs": 122622,
+      "endMs": 122883
+    },
+    {
+      "word": "python3",
+      "startMs": 123404,
+      "endMs": 123645
+    },
+    {
+      "word": "--version.",
+      "startMs": 123685,
+      "endMs": 124045
+    },
+    {
+      "word": "This",
+      "startMs": 124667,
+      "endMs": 124827
+    },
+    {
+      "word": "will",
+      "startMs": 124867,
+      "endMs": 125028
+    },
+    {
+      "word": "show",
+      "startMs": 125068,
+      "endMs": 125248
+    },
+    {
+      "word": "you",
+      "startMs": 125308,
+      "endMs": 125429
+    },
+    {
+      "word": "the",
+      "startMs": 125469,
+      "endMs": 125529
+    },
+    {
+      "word": "version",
+      "startMs": 125569,
+      "endMs": 125910
+    },
+    {
+      "word": "if",
+      "startMs": 125990,
+      "endMs": 126050
+    },
+    {
+      "word": "it’s",
+      "startMs": 126110,
+      "endMs": 126250
+    },
+    {
+      "word": "there.",
+      "startMs": 126290,
+      "endMs": 127052
+    },
+    {
+      "word": "Now,",
+      "startMs": 127555,
+      "endMs": 127896
+    },
+    {
+      "word": "let's",
+      "startMs": 128076,
+      "endMs": 128296
+    },
+    {
+      "word": "write",
+      "startMs": 128336,
+      "endMs": 128517
+    },
+    {
+      "word": "our",
+      "startMs": 128557,
+      "endMs": 128637
+    },
+    {
+      "word": "first",
+      "startMs": 128697,
+      "endMs": 128937
+    },
+    {
+      "word": "line",
+      "startMs": 128998,
+      "endMs": 129198
+    },
+    {
+      "word": "of",
+      "startMs": 129238,
+      "endMs": 129278
+    },
+    {
+      "word": "Python.",
+      "startMs": 129338,
+      "endMs": 129799
+    },
+    {
+      "word": "A",
+      "startMs": 130380,
+      "endMs": 130420
+    },
+    {
+      "word": "common",
+      "startMs": 130500,
+      "endMs": 130801
+    },
+    {
+      "word": "first",
+      "startMs": 130881,
+      "endMs": 131141
+    },
+    {
+      "word": "program",
+      "startMs": 131202,
+      "endMs": 131662
+    },
+    {
+      "word": "is",
+      "startMs": 131682,
+      "endMs": 131883
+    },
+    {
+      "word": "to",
+      "startMs": 131923,
+      "endMs": 132003
+    },
+    {
+      "word": "make",
+      "startMs": 132043,
+      "endMs": 132203
+    },
+    {
+      "word": "the",
+      "startMs": 132243,
+      "endMs": 132324
+    },
+    {
+      "word": "computer",
+      "startMs": 132384,
+      "endMs": 132844
+    },
+    {
+      "word": "say",
+      "startMs": 132905,
+      "endMs": 133065
+    },
+    {
+      "word": "hello.",
+      "startMs": 133125,
+      "endMs": 133446
+    },
+    {
+      "word": "To",
+      "startMs": 133486,
+      "endMs": 134127
+    },
+    {
+      "word": "do",
+      "startMs": 134167,
+      "endMs": 134287
+    },
+    {
+      "word": "this,",
+      "startMs": 134347,
+      "endMs": 134548
+    },
+    {
+      "word": "we",
+      "startMs": 134908,
+      "endMs": 135008
+    },
+    {
+      "word": "use",
+      "startMs": 135109,
+      "endMs": 135229
+    },
+    {
+      "word": "a",
+      "startMs": 135269,
+      "endMs": 135289
+    },
+    {
+      "word": "function",
+      "startMs": 135349,
+      "endMs": 135750
+    },
+    {
+      "word": "called",
+      "startMs": 135850,
+      "endMs": 136070
+    },
+    {
+      "word": "print().",
+      "startMs": 136210,
+      "endMs": 136411
+    },
+    {
+      "word": "A",
+      "startMs": 137773,
+      "endMs": 137813
+    },
+    {
+      "word": "function",
+      "startMs": 137873,
+      "endMs": 138294
+    },
+    {
+      "word": "is",
+      "startMs": 138414,
+      "endMs": 138454
+    },
+    {
+      "word": "like",
+      "startMs": 138515,
+      "endMs": 138615
+    },
+    {
+      "word": "a",
+      "startMs": 138675,
+      "endMs": 138695
+    },
+    {
+      "word": "tool",
+      "startMs": 138775,
+      "endMs": 139096
+    },
+    {
+      "word": "that",
+      "startMs": 139156,
+      "endMs": 139276
+    },
+    {
+      "word": "performs",
+      "startMs": 139336,
+      "endMs": 139837
+    },
+    {
+      "word": "a",
+      "startMs": 139857,
+      "endMs": 139877
+    },
+    {
+      "word": "specific",
+      "startMs": 139997,
+      "endMs": 140438
+    },
+    {
+      "word": "task.",
+      "startMs": 140498,
+      "endMs": 140919
+    },
+    {
+      "word": "With",
+      "startMs": 141360,
+      "endMs": 141480
+    },
+    {
+      "word": "print(),",
+      "startMs": 141560,
+      "endMs": 141740
+    },
+    {
+      "word": "we",
+      "startMs": 142442,
+      "endMs": 142542
+    },
+    {
+      "word": "can",
+      "startMs": 142582,
+      "endMs": 142682
+    },
+    {
+      "word": "show",
+      "startMs": 142742,
+      "endMs": 142922
+    },
+    {
+      "word": "text",
+      "startMs": 143003,
+      "endMs": 143303
+    },
+    {
+      "word": "on",
+      "startMs": 143363,
+      "endMs": 143403
+    },
+    {
+      "word": "the",
+      "startMs": 143443,
+      "endMs": 143504
+    },
+    {
+      "word": "screen.",
+      "startMs": 143544,
+      "endMs": 143884
+    },
+    {
+      "word": "Here’s",
+      "startMs": 144345,
+      "endMs": 144565
+    },
+    {
+      "word": "how",
+      "startMs": 144605,
+      "endMs": 144706
+    },
+    {
+      "word": "it",
+      "startMs": 144766,
+      "endMs": 144826
+    },
+    {
+      "word": "looks:",
+      "startMs": 144846,
+      "endMs": 145106
+    },
+    {
+      "word": "print(\"Hello,",
+      "startMs": 145347,
+      "endMs": 145607
+    },
+    {
+      "word": "world!\")",
+      "startMs": 146329,
+      "endMs": 146649
+    },
+    {
+      "word": "When",
+      "startMs": 147190,
+      "endMs": 147290
+    },
+    {
+      "word": "you",
+      "startMs": 147330,
+      "endMs": 147431
+    },
+    {
+      "word": "run",
+      "startMs": 147491,
+      "endMs": 147651
+    },
+    {
+      "word": "this,",
+      "startMs": 147691,
+      "endMs": 147891
+    },
+    {
+      "word": "the",
+      "startMs": 147992,
+      "endMs": 148072
+    },
+    {
+      "word": "computer",
+      "startMs": 148112,
+      "endMs": 148492
+    },
+    {
+      "word": "will",
+      "startMs": 148512,
+      "endMs": 148633
+    },
+    {
+      "word": "display:",
+      "startMs": 148673,
+      "endMs": 149073
+    },
+    {
+      "word": "Hello,",
+      "startMs": 149094,
+      "endMs": 149675
+    },
+    {
+      "word": "world!",
+      "startMs": 149735,
+      "endMs": 150155
+    },
+    {
+      "word": "Let’s",
+      "startMs": 150516,
+      "endMs": 150716
+    },
+    {
+      "word": "see",
+      "startMs": 150756,
+      "endMs": 150897
+    },
+    {
+      "word": "this",
+      "startMs": 150957,
+      "endMs": 151097
+    },
+    {
+      "word": "in",
+      "startMs": 151177,
+      "endMs": 151237
+    },
+    {
+      "word": "action.",
+      "startMs": 151338,
+      "endMs": 152179
+    },
+    {
+      "word": "[DEMO:",
+      "startMs": 152179,
+      "endMs": 152642
+    },
+    {
+      "word": "open",
+      "startMs": 153164,
+      "endMs": 153345
+    },
+    {
+      "word": "the",
+      "startMs": 153385,
+      "endMs": 153446
+    },
+    {
+      "word": "Python",
+      "startMs": 153486,
+      "endMs": 153868
+    },
+    {
+      "word": "REPL",
+      "startMs": 153928,
+      "endMs": 154190
+    },
+    {
+      "word": "with",
+      "startMs": 154230,
+      "endMs": 154351
+    },
+    {
+      "word": "python3,",
+      "startMs": 154853,
+      "endMs": 155135
+    },
+    {
+      "word": "print",
+      "startMs": 155517,
+      "endMs": 155698
+    },
+    {
+      "word": "a",
+      "startMs": 155718,
+      "endMs": 155738
+    },
+    {
+      "word": "hello",
+      "startMs": 155798,
+      "endMs": 156080
+    },
+    {
+      "word": "message,",
+      "startMs": 156140,
+      "endMs": 156562
+    },
+    {
+      "word": "then",
+      "startMs": 157025,
+      "endMs": 157165
+    },
+    {
+      "word": "print",
+      "startMs": 157246,
+      "endMs": 157407
+    },
+    {
+      "word": "your",
+      "startMs": 157447,
+      "endMs": 157567
+    },
+    {
+      "word": "own",
+      "startMs": 157608,
+      "endMs": 157708
+    },
+    {
+      "word": "name,",
+      "startMs": 157789,
+      "endMs": 158030
+    },
+    {
+      "word": "and",
+      "startMs": 158050,
+      "endMs": 158331
+    },
+    {
+      "word": "exit]",
+      "startMs": 158452,
+      "endMs": 159216
+    },
+    {
+      "word": "Python",
+      "startMs": 159820,
+      "endMs": 160300
+    },
+    {
+      "word": "can",
+      "startMs": 160341,
+      "endMs": 160461
+    },
+    {
+      "word": "do",
+      "startMs": 160521,
+      "endMs": 160621
+    },
+    {
+      "word": "math",
+      "startMs": 160701,
+      "endMs": 160941
+    },
+    {
+      "word": "as",
+      "startMs": 161001,
+      "endMs": 161061
+    },
+    {
+      "word": "well!",
+      "startMs": 161121,
+      "endMs": 161321
+    },
+    {
+      "word": "You",
+      "startMs": 161642,
+      "endMs": 161722
+    },
+    {
+      "word": "don’t",
+      "startMs": 161762,
+      "endMs": 161902
+    },
+    {
+      "word": "need",
+      "startMs": 161942,
+      "endMs": 162102
+    },
+    {
+      "word": "quotes",
+      "startMs": 162162,
+      "endMs": 162423
+    },
+    {
+      "word": "for",
+      "startMs": 162463,
+      "endMs": 162563
+    },
+    {
+      "word": "numbers.",
+      "startMs": 162623,
+      "endMs": 163003
+    },
+    {
+      "word": "Let’s",
+      "startMs": 163544,
+      "endMs": 163744
+    },
+    {
+      "word": "start",
+      "startMs": 163784,
+      "endMs": 164044
+    },
+    {
+      "word": "with",
+      "startMs": 164084,
+      "endMs": 164184
+    },
+    {
+      "word": "a",
+      "startMs": 164224,
+      "endMs": 164264
+    },
+    {
+      "word": "simple",
+      "startMs": 164344,
+      "endMs": 164625
+    },
+    {
+      "word": "example.",
+      "startMs": 164685,
+      "endMs": 165125
+    },
+    {
+      "word": "You",
+      "startMs": 165586,
+      "endMs": 165666
+    },
+    {
+      "word": "can",
+      "startMs": 165706,
+      "endMs": 165806
+    },
+    {
+      "word": "use",
+      "startMs": 165906,
+      "endMs": 166006
+    },
+    {
+      "word": "print()",
+      "startMs": 166066,
+      "endMs": 166246
+    },
+    {
+      "word": "to",
+      "startMs": 166967,
+      "endMs": 167067
+    },
+    {
+      "word": "show",
+      "startMs": 167127,
+      "endMs": 167307
+    },
+    {
+      "word": "a",
+      "startMs": 167347,
+      "endMs": 167427
+    },
+    {
+      "word": "number",
+      "startMs": 167488,
+      "endMs": 167688
+    },
+    {
+      "word": "directly.",
+      "startMs": 167748,
+      "endMs": 168248
+    },
+    {
+      "word": "For",
+      "startMs": 168729,
+      "endMs": 168829
+    },
+    {
+      "word": "instance:",
+      "startMs": 168869,
+      "endMs": 169289
+    },
+    {
+      "word": "print(42)",
+      "startMs": 170090,
+      "endMs": 170510
+    },
+    {
+      "word": "This",
+      "startMs": 170831,
+      "endMs": 171151
+    },
+    {
+      "word": "will",
+      "startMs": 171191,
+      "endMs": 171331
+    },
+    {
+      "word": "display:",
+      "startMs": 171371,
+      "endMs": 171752
+    },
+    {
+      "word": "42",
+      "startMs": 171772,
+      "endMs": 172492
+    },
+    {
+      "word": "Now,",
+      "startMs": 172713,
+      "endMs": 172893
+    },
+    {
+      "word": "you",
+      "startMs": 172953,
+      "endMs": 173053
+    },
+    {
+      "word": "can",
+      "startMs": 173093,
+      "endMs": 173173
+    },
+    {
+      "word": "also",
+      "startMs": 173253,
+      "endMs": 173493
+    },
+    {
+      "word": "do",
+      "startMs": 173553,
+      "endMs": 173674
+    },
+    {
+      "word": "calculations.",
+      "startMs": 173734,
+      "endMs": 174474
+    },
+    {
+      "word": "For",
+      "startMs": 175075,
+      "endMs": 175175
+    },
+    {
+      "word": "example,",
+      "startMs": 175215,
+      "endMs": 175636
+    },
+    {
+      "word": "if",
+      "startMs": 175756,
+      "endMs": 175816
+    },
+    {
+      "word": "you",
+      "startMs": 175856,
+      "endMs": 175976
+    },
+    {
+      "word": "write:",
+      "startMs": 176016,
+      "endMs": 176256
+    },
+    {
+      "word": "print(7",
+      "startMs": 177037,
+      "endMs": 177417
+    },
+    {
+      "word": "*",
+      "startMs": 177417,
+      "endMs": 177417
+    },
+    {
+      "word": "6)",
+      "startMs": 177417,
+      "endMs": 177417
+    },
+    {
+      "word": "This",
+      "startMs": 177898,
+      "endMs": 178038
+    },
+    {
+      "word": "will",
+      "startMs": 178078,
+      "endMs": 178218
+    },
+    {
+      "word": "give",
+      "startMs": 178258,
+      "endMs": 178398
+    },
+    {
+      "word": "you:",
+      "startMs": 178418,
+      "endMs": 178558
+    },
+    {
+      "word": "42",
+      "startMs": 178578,
+      "endMs": 179299
+    },
+    {
+      "word": "And",
+      "startMs": 179559,
+      "endMs": 179820
+    },
+    {
+      "word": "if",
+      "startMs": 179900,
+      "endMs": 179960
+    },
+    {
+      "word": "you",
+      "startMs": 180000,
+      "endMs": 180140
+    },
+    {
+      "word": "add:",
+      "startMs": 180320,
+      "endMs": 180460
+    },
+    {
+      "word": "print(10",
+      "startMs": 181501,
+      "endMs": 181762
+    },
+    {
+      "word": "+",
+      "startMs": 181762,
+      "endMs": 181802
+    },
+    {
+      "word": "5)",
+      "startMs": 181802,
+      "endMs": 182122
+    },
+    {
+      "word": "You’ll",
+      "startMs": 182162,
+      "endMs": 182362
+    },
+    {
+      "word": "see:",
+      "startMs": 182402,
+      "endMs": 182582
+    },
+    {
+      "word": "15.",
+      "startMs": 182602,
+      "endMs": 182662
+    },
+    {
+      "word": "This",
+      "startMs": 183964,
+      "endMs": 184124
+    },
+    {
+      "word": "is",
+      "startMs": 184204,
+      "endMs": 184284
+    },
+    {
+      "word": "a",
+      "startMs": 184344,
+      "endMs": 184364
+    },
+    {
+      "word": "straightforward",
+      "startMs": 184444,
+      "endMs": 185165
+    },
+    {
+      "word": "way",
+      "startMs": 185225,
+      "endMs": 185365
+    },
+    {
+      "word": "to",
+      "startMs": 185405,
+      "endMs": 185485
+    },
+    {
+      "word": "perform",
+      "startMs": 185525,
+      "endMs": 185906
+    },
+    {
+      "word": "calculations.",
+      "startMs": 185966,
+      "endMs": 187347
+    },
+    {
+      "word": "Let’s",
+      "startMs": 187732,
+      "endMs": 188032
+    },
+    {
+      "word": "talk",
+      "startMs": 188092,
+      "endMs": 188292
+    },
+    {
+      "word": "about",
+      "startMs": 188333,
+      "endMs": 188473
+    },
+    {
+      "word": "how",
+      "startMs": 188513,
+      "endMs": 188613
+    },
+    {
+      "word": "a",
+      "startMs": 188653,
+      "endMs": 188673
+    },
+    {
+      "word": "program",
+      "startMs": 188733,
+      "endMs": 189113
+    },
+    {
+      "word": "works.",
+      "startMs": 189173,
+      "endMs": 189453
+    },
+    {
+      "word": "A",
+      "startMs": 190074,
+      "endMs": 190094
+    },
+    {
+      "word": "program",
+      "startMs": 190154,
+      "endMs": 190614
+    },
+    {
+      "word": "is",
+      "startMs": 190695,
+      "endMs": 190755
+    },
+    {
+      "word": "just",
+      "startMs": 190815,
+      "endMs": 190975
+    },
+    {
+      "word": "a",
+      "startMs": 191055,
+      "endMs": 191075
+    },
+    {
+      "word": "series",
+      "startMs": 191155,
+      "endMs": 191495
+    },
+    {
+      "word": "of",
+      "startMs": 191555,
+      "endMs": 191595
+    },
+    {
+      "word": "lines",
+      "startMs": 191635,
+      "endMs": 191996
+    },
+    {
+      "word": "that",
+      "startMs": 192036,
+      "endMs": 192196
+    },
+    {
+      "word": "run",
+      "startMs": 192256,
+      "endMs": 192396
+    },
+    {
+      "word": "one",
+      "startMs": 192536,
+      "endMs": 192636
+    },
+    {
+      "word": "after",
+      "startMs": 192736,
+      "endMs": 192937
+    },
+    {
+      "word": "another,",
+      "startMs": 192977,
+      "endMs": 193257
+    },
+    {
+      "word": "from",
+      "startMs": 193297,
+      "endMs": 193537
+    },
+    {
+      "word": "top",
+      "startMs": 193617,
+      "endMs": 193857
+    },
+    {
+      "word": "to",
+      "startMs": 193917,
+      "endMs": 193977
+    },
+    {
+      "word": "bottom.",
+      "startMs": 194037,
+      "endMs": 194358
+    },
+    {
+      "word": "For",
+      "startMs": 194958,
+      "endMs": 195058
+    },
+    {
+      "word": "example,",
+      "startMs": 195118,
+      "endMs": 195539
+    },
+    {
+      "word": "if",
+      "startMs": 195679,
+      "endMs": 195739
+    },
+    {
+      "word": "we",
+      "startMs": 195779,
+      "endMs": 195879
+    },
+    {
+      "word": "write:",
+      "startMs": 195919,
+      "endMs": 196139
+    },
+    {
+      "word": "name",
+      "startMs": 196700,
+      "endMs": 196940
+    },
+    {
+      "word": "=",
+      "startMs": 196940,
+      "endMs": 197541
+    },
+    {
+      "word": "\"Ada\"",
+      "startMs": 197541,
+      "endMs": 197741
+    },
+    {
+      "word": "print(\"Hello,\",",
+      "startMs": 197801,
+      "endMs": 198061
+    },
+    {
+      "word": "name)",
+      "startMs": 199022,
+      "endMs": 199242
+    },
+    {
+      "word": "print(\"Welcome",
+      "startMs": 199322,
+      "endMs": 199582
+    },
+    {
+      "word": "to",
+      "startMs": 200303,
+      "endMs": 200363
+    },
+    {
+      "word": "Python!\")",
+      "startMs": 200403,
+      "endMs": 200863
+    },
+    {
+      "word": "When",
+      "startMs": 201524,
+      "endMs": 201624
+    },
+    {
+      "word": "you",
+      "startMs": 201664,
+      "endMs": 201764
+    },
+    {
+      "word": "run",
+      "startMs": 201824,
+      "endMs": 201964
+    },
+    {
+      "word": "this,",
+      "startMs": 202024,
+      "endMs": 202225
+    },
+    {
+      "word": "it",
+      "startMs": 202425,
+      "endMs": 202465
+    },
+    {
+      "word": "will",
+      "startMs": 202505,
+      "endMs": 202645
+    },
+    {
+      "word": "first",
+      "startMs": 202705,
+      "endMs": 202965
+    },
+    {
+      "word": "greet",
+      "startMs": 203065,
+      "endMs": 203285
+    },
+    {
+      "word": "Ada",
+      "startMs": 203406,
+      "endMs": 203666
+    },
+    {
+      "word": "and",
+      "startMs": 203846,
+      "endMs": 203926
+    },
+    {
+      "word": "then",
+      "startMs": 203946,
+      "endMs": 204086
+    },
+    {
+      "word": "welcome",
+      "startMs": 204166,
+      "endMs": 204547
+    },
+    {
+      "word": "you",
+      "startMs": 204587,
+      "endMs": 204707
+    },
+    {
+      "word": "to",
+      "startMs": 204747,
+      "endMs": 204807
+    },
+    {
+      "word": "Python.",
+      "startMs": 204867,
+      "endMs": 205347
+    },
+    {
+      "word": "This",
+      "startMs": 205808,
+      "endMs": 205948
+    },
+    {
+      "word": "shows",
+      "startMs": 206008,
+      "endMs": 206268
+    },
+    {
+      "word": "how",
+      "startMs": 206328,
+      "endMs": 206428
+    },
+    {
+      "word": "Python",
+      "startMs": 206508,
+      "endMs": 206989
+    },
+    {
+      "word": "executes",
+      "startMs": 207129,
+      "endMs": 207569
+    },
+    {
+      "word": "each",
+      "startMs": 207669,
+      "endMs": 207829
+    },
+    {
+      "word": "line",
+      "startMs": 207930,
+      "endMs": 208210
+    },
+    {
+      "word": "in",
+      "startMs": 208270,
+      "endMs": 208330
+    },
+    {
+      "word": "order.",
+      "startMs": 208430,
+      "endMs": 208650
+    },
+    {
+      "word": "Let’s",
+      "startMs": 209251,
+      "endMs": 209451
+    },
+    {
+      "word": "put",
+      "startMs": 209511,
+      "endMs": 209651
+    },
+    {
+      "word": "this",
+      "startMs": 209671,
+      "endMs": 209831
+    },
+    {
+      "word": "into",
+      "startMs": 209891,
+      "endMs": 210051
+    },
+    {
+      "word": "practice.",
+      "startMs": 210091,
+      "endMs": 210592
+    },
+    {
+      "word": "[DEMO:",
+      "startMs": 211252,
+      "endMs": 211613
+    },
+    {
+      "word": "create",
+      "startMs": 212093,
+      "endMs": 212353
+    },
+    {
+      "word": "a",
+      "startMs": 212413,
+      "endMs": 212453
+    },
+    {
+      "word": "two-line",
+      "startMs": 212534,
+      "endMs": 212994
+    },
+    {
+      "word": "script",
+      "startMs": 213054,
+      "endMs": 213354
+    },
+    {
+      "word": "hello.py",
+      "startMs": 213374,
+      "endMs": 214055
+    },
+    {
+      "word": "with",
+      "startMs": 214115,
+      "endMs": 214215
+    },
+    {
+      "word": "a",
+      "startMs": 214275,
+      "endMs": 214295
+    },
+    {
+      "word": "heredoc",
+      "startMs": 214335,
+      "endMs": 214815
+    },
+    {
+      "word": "and",
+      "startMs": 215156,
+      "endMs": 215236
+    },
+    {
+      "word": "run",
+      "startMs": 215336,
+      "endMs": 215496
+    },
+    {
+      "word": "it",
+      "startMs": 215556,
+      "endMs": 215616
+    },
+    {
+      "word": "with",
+      "startMs": 215656,
+      "endMs": 215756
+    },
+    {
+      "word": "python3",
+      "startMs": 216357,
+      "endMs": 216557
+    },
+    {
+      "word": "hello.py]",
+      "startMs": 216597,
+      "endMs": 217738
+    },
+    {
+      "word": "What’s",
+      "startMs": 217738,
+      "endMs": 218540
+    },
+    {
+      "word": "next?",
+      "startMs": 218600,
+      "endMs": 218901
+    },
+    {
+      "word": "In",
+      "startMs": 219242,
+      "endMs": 219302
+    },
+    {
+      "word": "our",
+      "startMs": 219363,
+      "endMs": 219443
+    },
+    {
+      "word": "next",
+      "startMs": 219483,
+      "endMs": 219663
+    },
+    {
+      "word": "lesson,",
+      "startMs": 219724,
+      "endMs": 220024
+    },
+    {
+      "word": "we’ll",
+      "startMs": 220185,
+      "endMs": 220365
+    },
+    {
+      "word": "dive",
+      "startMs": 220406,
+      "endMs": 220646
+    },
+    {
+      "word": "into",
+      "startMs": 220686,
+      "endMs": 220867
+    },
+    {
+      "word": "variables",
+      "startMs": 220907,
+      "endMs": 221448
+    },
+    {
+      "word": "and",
+      "startMs": 221589,
+      "endMs": 221669
+    },
+    {
+      "word": "how",
+      "startMs": 221709,
+      "endMs": 221830
+    },
+    {
+      "word": "programs",
+      "startMs": 221930,
+      "endMs": 222451
+    },
+    {
+      "word": "remember",
+      "startMs": 222491,
+      "endMs": 222893
+    },
+    {
+      "word": "things.",
+      "startMs": 222933,
+      "endMs": 223233
+    },
+    {
+      "word": "But",
+      "startMs": 223855,
+      "endMs": 223935
+    },
+    {
+      "word": "before",
+      "startMs": 223976,
+      "endMs": 224276
+    },
+    {
+      "word": "then,",
+      "startMs": 224337,
+      "endMs": 224537
+    },
+    {
+      "word": "I",
+      "startMs": 224557,
+      "endMs": 224998
+    },
+    {
+      "word": "encourage",
+      "startMs": 225079,
+      "endMs": 225580
+    },
+    {
+      "word": "you",
+      "startMs": 225620,
+      "endMs": 225720
+    },
+    {
+      "word": "to",
+      "startMs": 225781,
+      "endMs": 225841
+    },
+    {
+      "word": "try",
+      "startMs": 225901,
+      "endMs": 226102
+    },
+    {
+      "word": "a",
+      "startMs": 226182,
+      "endMs": 226202
+    },
+    {
+      "word": "challenge:",
+      "startMs": 226262,
+      "endMs": 226743
+    },
+    {
+      "word": "make",
+      "startMs": 227305,
+      "endMs": 227485
+    },
+    {
+      "word": "print()",
+      "startMs": 227546,
+      "endMs": 227706
+    },
+    {
+      "word": "say",
+      "startMs": 228448,
+      "endMs": 228609
+    },
+    {
+      "word": "your",
+      "startMs": 228669,
+      "endMs": 228809
+    },
+    {
+      "word": "own",
+      "startMs": 228889,
+      "endMs": 229010
+    },
+    {
+      "word": "name.",
+      "startMs": 229070,
+      "endMs": 229311
+    },
+    {
+      "word": "It’s",
+      "startMs": 229852,
+      "endMs": 229952
+    },
+    {
+      "word": "a",
+      "startMs": 229992,
+      "endMs": 230012
+    },
+    {
+      "word": "fun",
+      "startMs": 230113,
+      "endMs": 230313
+    },
+    {
+      "word": "way",
+      "startMs": 230353,
+      "endMs": 230474
+    },
+    {
+      "word": "to",
+      "startMs": 230514,
+      "endMs": 230574
+    },
+    {
+      "word": "practice",
+      "startMs": 230634,
+      "endMs": 231055
+    },
+    {
+      "word": "what",
+      "startMs": 231096,
+      "endMs": 231216
+    },
+    {
+      "word": "you've",
+      "startMs": 231256,
+      "endMs": 231436
+    },
+    {
+      "word": "learned.",
+      "startMs": 231477,
+      "endMs": 231998
+    }
+  ],
+  "captionEmphasis": [
+    3,
+    39,
+    66,
+    74,
+    101,
+    104,
+    128,
+    139,
+    148,
+    156,
+    161,
+    176,
+    184,
+    196,
+    212,
+    244,
+    252,
+    266,
+    286,
+    309,
+    324,
+    331,
+    346,
+    360,
+    372,
+    382,
+    392,
+    395,
+    407,
+    436,
+    446,
+    464,
+    483,
+    486,
+    509,
+    523,
+    534,
+    546,
+    548,
+    557,
+    568,
+    585,
+    589
+  ]
+}

@@ -1,0 +1,54 @@
+name: quality-gates
+
+# Workstream I umbrella: the broad build/typecheck gate plus the animation-timing
+# harness. The specialized gates live in their own workflows so they surface as
+# distinct required checks:
+#   - visual-regression.yml  pixel-diff of Remotion stills vs committed baselines
+#   - accessibility.yml       axe audit of the studio component library
+#   - learning-science.yml    quiz interleaving/difficulty invariants (Go + JSON)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+      - run: go vet ./...
+      - run: go test ./...
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: renderer typecheck
+        working-directory: renderer
+        run: npm ci && npx tsc --noEmit
+      - name: studio typecheck + tests + build
+        working-directory: studio
+        run: npm ci && npx tsc -b && npx vitest run && npx vite build
+
+  animation-timing:
+    runs-on: ubuntu-latest
+    needs: [go, frontend]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: install renderer deps (for headless render)
+        working-directory: renderer
+        run: npm ci
+      # Ratio-based (not pixel-exact) so it's platform-robust; asserts the D3
+      # reveal builds, doesn't flicker, and settles by the token-predicted frame.
+      - name: animation timing
+        run: node test/animation_timing.mjs

@@ -1,0 +1,59 @@
+# Deploys the course site to GitHub Pages on every push to main.
+#
+# Videos stay OUT of the repo (see .gitignore): the site builds and deploys
+# without them, and lesson pages fall back gracefully. To serve videos,
+# either run the deploy from a machine that has them locally, or set
+# HUGO_PARAMS_VIDEOBASEURL to a CDN/base URL that hosts
+# courses/<slug>/<lesson>/final.mp4 — the theme prefixes video sources with
+# site param `videoBaseURL` when it is set.
+name: deploy-site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "latest"
+          extended: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Build site (hugo + pagefind)
+        env:
+          # Optional CDN for videos kept out of the repo.
+          HUGO_PARAMS_VIDEOBASEURL: ${{ vars.VIDEO_BASE_URL }}
+        run: |
+          if [ -x site/build.sh ] || [ -f site/build.sh ]; then
+            (cd site && sh build.sh)
+          else
+            hugo --source site
+          fi
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

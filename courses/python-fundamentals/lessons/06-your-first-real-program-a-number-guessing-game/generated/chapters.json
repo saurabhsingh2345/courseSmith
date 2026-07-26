@@ -1,0 +1,38 @@
+[
+  {
+    "id": "what-were-building",
+    "title": "What Were Building",
+    "start_ms": 0,
+    "end_ms": 17142
+  },
+  {
+    "id": "picking-the-secret-number",
+    "title": "Picking the secret number",
+    "start_ms": 17142,
+    "end_ms": 46572
+  },
+  {
+    "id": "checking-a-guess-with-if-else",
+    "title": "Checking a guess with if-else",
+    "start_ms": 46572,
+    "end_ms": 69860
+  },
+  {
+    "id": "the-game-loop-guessing-until-its-right",
+    "title": "The Game Loop Guessing Until Its Right",
+    "start_ms": 69860,
+    "end_ms": 93991
+  },
+  {
+    "id": "what-your-program-just-did",
+    "title": "What your program just did",
+    "start_ms": 93991,
+    "end_ms": 112452
+  },
+  {
+    "id": "where-to-go-from-here",
+    "title": "Where to go from here",
+    "start_ms": 112452,
+    "end_ms": 133819
+  }
+]

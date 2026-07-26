@@ -1,0 +1,56 @@
+{
+  "sections": [
+    {
+      "id": "you-already-used-one",
+      "paragraphs": [
+        "Last lesson's challenge was to make print say your own name. If you wrote your name straight inside print, you had to repeat it every time. But in the final script, you probably had a line like this: name = \"Ada\". That line is a variable. This lesson is all about what that line really does. A variable is how a program remembers a value, so it can use it again later."
+      ]
+    },
+    {
+      "id": "giving-a-value-a-name",
+      "paragraphs": [
+        "When you write name = \"Ada\", you're storing the value \"Ada\" under the name name. Now, the equals sign here means \"store this\", not \"equals\" like in math. You put the name of the box on the left, and the value on the right. After that, whenever you write name, it means whatever is in that box. Let's look at that in a picture.",
+        "Here’s a diagram showing how it works. You see that the label stays, but the contents can change.",
+        "So when you run this code, it prints Ada twice because it looks inside the box named name."
+      ]
+    },
+    {
+      "id": "names-without-quotes-text-with-quotes",
+      "paragraphs": [
+        "When you write print(\"name\"), it shows the text name. But if you write print(name), it shows what the variable holds. Quotes mean \"these exact characters\", while no quotes mean \"look inside the box\".",
+        "So if you run this code, you'll see that the first print gives you the word name, and the second one gives you the value Ada. It’s a simple but important distinction."
+      ]
+    },
+    {
+      "id": "picking-good-names",
+      "paragraphs": [
+        "When choosing names for your variables, remember that legal names can use letters, digits, and underscores, but they can't start with a digit. Also, Python is case-sensitive, so age and Age are two different boxes. It's best to choose names that describe what's inside. For example, birth_year is clearer than just by. And if you have multi-word names, use underscores, like favorite_color instead of favoritecolor."
+      ]
+    },
+    {
+      "id": "changing-what-is-inside",
+      "paragraphs": [
+        "Assigning again replaces the old value. The box keeps its label, but the contents are swapped. The old value is gone, and Python only remembers the latest assignment. Let's look at that in a picture.",
+        "This diagram shows how assigning again replaces what was inside. When you run this code, you’ll see that the first print shows zero, and after we assign again, it shows ten."
+      ]
+    },
+    {
+      "id": "variables-can-hold-numbers-too",
+      "paragraphs": [
+        "Everything from last lesson's math works inside variables. You can even use a variable's current value to compute a new one. For example, if you start with apples = three and then write apples = apples + two, you’re adding two to the current value. When you print apples, it gives you five. It’s like counting your apples and finding out you have more than you thought!"
+      ]
+    },
+    {
+      "id": "variables-working-together",
+      "paragraphs": [
+        "In real programs, you often mix several variables in one line. The print function can take multiple things separated by commas, and it prints them with spaces in between. For instance, if you have name = \"Ada\" and age = twelve, you can print them together. This prints a nice sentence about Ada and her age. It’s a great way to share information in a clear way."
+      ]
+    },
+    {
+      "id": "whats-next",
+      "paragraphs": [
+        "In the next lesson, we’ll dive into text itself and explore what strings can do, from joining to changing case. But before then, here’s a challenge for you: create a script with two variables, your name and your favorite number, and print one sentence using both. It’s a fun way to practice what you’ve learned!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "lesson_id": "02-variables",
+  "source_hash": "sha256:80d4f1a54b73e72bc0cdaadc3de47868733b8c24e0e2917a542680e01dfb64d8",
+  "introduced": [
+    {
+      "name": "variable",
+      "term": "variable",
+      "section": "you-already-used-one",
+      "quote": "that line is what we call a variable"
+    },
+    {
+      "name": "variable",
+      "term": "name = \"Ada\"",
+      "section": "giving-a-value-a-name",
+      "quote": "When you write name = \"Ada\""
+    },
+    {
+      "name": "print function",
+      "term": "print()",
+      "section": "variables-working-together",
+      "quote": "The print() function can take multiple things"
+    }
+  ],
+  "used": [
+    {
+      "name": "string",
+      "term": "quotes",
+      "section": "names-without-quotes-text-with-quotes",
+      "quote": "Quotes mean \"these exact characters\""
+    },
+    {
+      "name": "integer",
+      "term": "numbers",
+      "section": "variables-can-hold-numbers-too",
+      "quote": "You can also use variables to hold numbers"
+    },
+    {
+      "name": "function call",
+      "term": "print(name)",
+      "section": "names-without-quotes-text-with-quotes",
+      "quote": "print(name) shows what the variable holds"
+    },
+    {
+      "name": "function call",
+      "term": "print()",
+      "section": "variables-working-together",
+      "quote": "print() can take several things"
+    }
+  ],
+  "extracted_at": "2026-07-17T13:14:06.702585Z"
+}

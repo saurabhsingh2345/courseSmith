@@ -1,0 +1,32 @@
+{
+  "code": "print(\"Hello, world!\")",
+  "lines": [
+    "print(\"Hello, world!\")"
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "line": 1,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 1,
+      "line": 1,
+      "event": "return",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "Hello, world!\n"
+    }
+  ],
+  "truncated": false,
+  "stdout": "Hello, world!\n"
+}

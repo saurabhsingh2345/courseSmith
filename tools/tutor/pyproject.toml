@@ -1,0 +1,19 @@
+[project]
+name = "coursesmith-tutor"
+version = "0.1.0"
+description = "Offline learning-science fitters for coursesmith (BKT params + IRT calibration)"
+requires-python = ">=3.9"
+# The shipped fitters (fit_bkt.py, calibrate_irt.py) are dependency-free so they
+# run with a stock Python. The heavier libraries are opt-in for production-scale
+# fitting; install with:  uv sync --extra models
+dependencies = []
+
+[project.optional-dependencies]
+models = [
+    "pyBKT>=1.4",   # per-concept BKT fit from pooled logs
+    "py-irt>=0.6",  # 2PL/3PL item calibration
+    "fsrs>=5.0",    # full FSRS-5 scheduler weights
+]
+
+[tool.pytest.ini_options]
+python_files = "test_*.py"

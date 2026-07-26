@@ -1,0 +1,144 @@
+{
+  "stages": {
+    "align": {
+      "input_hashes": {
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "script.json": "sha256:2a8c41b8039cd76f8a7b7e9813194ce5591511f5eacba8cc9c75f4f9142ea05e",
+        "tts_script.json": "sha256:1db1c26bc3af47bbf5f1deac3874f5cc5fd8ae4cb7b8f7e16eb1500c4549205b",
+        "voiceover.wav": "sha256:11408e25bea80a9df543ebec62c80b0fca6a1063c42686bbc98432a80c0ca86c"
+      },
+      "completed_at": "2026-07-26T14:26:39.317919Z"
+    },
+    "audio": {
+      "input_hashes": {
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "script.json": "sha256:2a8c41b8039cd76f8a7b7e9813194ce5591511f5eacba8cc9c75f4f9142ea05e",
+        "tts_fixes.json": "absent",
+        "tts_speed.json": "sha256:3ed3b410cb32c3e833600fbb5c09ed243e992e605fbbd4f8e9838a2057d32a91"
+      },
+      "completed_at": "2026-07-26T14:26:08.025228Z"
+    },
+    "captions": {
+      "input_hashes": {
+        "alignment.json": "sha256:89912b0002a6a0868f9265300487e92765f8f11a0b831dbc56a2ed45b7a5f47b",
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "prompts/caption_emphasis.tmpl": "sha256:f33623276f07db6f9eadf679412a542fcb35254afa5a27dea88112491b392d45"
+      },
+      "completed_at": "2026-07-26T14:26:39.321467Z"
+    },
+    "chapters": {
+      "input_hashes": {
+        "alignment.json": "sha256:89912b0002a6a0868f9265300487e92765f8f11a0b831dbc56a2ed45b7a5f47b",
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "script.json": "sha256:2a8c41b8039cd76f8a7b7e9813194ce5591511f5eacba8cc9c75f4f9142ea05e"
+      },
+      "completed_at": "2026-07-26T14:26:39.322927Z"
+    },
+    "demos": {
+      "input_hashes": {
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "prompts/demo_tape.tmpl": "sha256:212e46adcf311463a61f64f72306e969d6688414fd83646ac3994872f961ffaa",
+        "verification.json": "sha256:d88f8415659f1da70120dc14be8fbad1f6667edbf24ff07c59d27ec68b0fdf29"
+      },
+      "completed_at": "2026-07-26T14:24:46.307238Z"
+    },
+    "render": {
+      "input_hashes": {
+        "captions.vtt": "sha256:9893a1f6642e64423001b583f18d58c11f4a74b8baad25f9bb6fbf0580401b5f",
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "demos/manifest.json": "sha256:3f61803c779801c952a6314591a485fd6701a3b40b758bdd0f4ae866d793de72",
+        "diagrams/loop-types.svg": "sha256:2e40a112317f0e8ca1cdf3b5b49803a945d1589d0cb34e3d9307a434a87c0bad",
+        "lesson-video.json": "sha256:8eeaef90cfbfc41b8e5a30ab155611e450ebf11f9b09f383c3ba49d170c56618",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "recording.mp4": "absent",
+        "voiceover.wav": "sha256:11408e25bea80a9df543ebec62c80b0fca6a1063c42686bbc98432a80c0ca86c"
+      },
+      "completed_at": "2026-07-26T14:29:19.512332Z"
+    },
+    "review": {
+      "input_hashes": {
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "prompts/review_accuracy.tmpl": "sha256:b49b3cf5306ddc80832b9fc0e67c9a8ff5ecc46e326b4d737507b33fc39dab69",
+        "prompts/review_claims.tmpl": "sha256:0bd23e33dae924be42605c70a1c2e5a0ee9e926f00fff5c576b2a1417db7e5ef",
+        "prompts/review_pedagogy.tmpl": "sha256:9f829975dcbefb2d8a5dda7c9c891d041c3fd64192964fc6dde7f2524a1a4b94",
+        "prompts/review_tone.tmpl": "sha256:263b6621cdaaf0f17edfb62ff606234f1aefff29d41d338c70f6481e12c97157",
+        "prompts/script.tmpl": "sha256:e7072df0bce0a6f22dc404a357b5bfa714782c75fe376401d3e44c7acce0c694",
+        "script.json": "sha256:2a8c41b8039cd76f8a7b7e9813194ce5591511f5eacba8cc9c75f4f9142ea05e",
+        "verification.json": "sha256:d88f8415659f1da70120dc14be8fbad1f6667edbf24ff07c59d27ec68b0fdf29"
+      },
+      "completed_at": "2026-07-26T14:00:41.434896Z"
+    },
+    "scenegraph": {
+      "input_hashes": {
+        "alignment.json": "sha256:89912b0002a6a0868f9265300487e92765f8f11a0b831dbc56a2ed45b7a5f47b",
+        "captions_emphasis.json": "sha256:bd876ca814c6c3b3e0b7184056a412b32fed4f572c8727744ee105b09f8b3284",
+        "code_traces/manifest.json": "sha256:1562ec739ebd5ebc674682309dcd6924e2ed2774e7e03b9b5e214378f25b141e",
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "demos/manifest.json": "sha256:3f61803c779801c952a6314591a485fd6701a3b40b758bdd0f4ae866d793de72",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "script.json": "sha256:2a8c41b8039cd76f8a7b7e9813194ce5591511f5eacba8cc9c75f4f9142ea05e",
+        "storyboard.json": "sha256:8881b0860741ee92af80edfa1a562e045b5e4b4cf07e4b9fdaa354f12271f13d",
+        "verification.json": "sha256:d88f8415659f1da70120dc14be8fbad1f6667edbf24ff07c59d27ec68b0fdf29",
+        "video-plan.yaml": "absent"
+      },
+      "completed_at": "2026-07-26T14:26:39.326628Z"
+    },
+    "script": {
+      "input_hashes": {
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "prompts/script.tmpl": "sha256:e7072df0bce0a6f22dc404a357b5bfa714782c75fe376401d3e44c7acce0c694",
+        "review-notes": "absent"
+      },
+      "completed_at": "2026-07-26T13:59:21.523841Z"
+    },
+    "storyboard": {
+      "input_hashes": {
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "prompts/storyboard.tmpl": "sha256:29d038155e725382d6aa598bd5efce3459c51cbcd04ea9b6b5f7f8dc4422bdf0",
+        "script.json": "sha256:2a8c41b8039cd76f8a7b7e9813194ce5591511f5eacba8cc9c75f4f9142ea05e"
+      },
+      "completed_at": "2026-07-26T14:00:45.987717Z"
+    },
+    "trace": {
+      "input_hashes": {
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "verification.json": "sha256:d88f8415659f1da70120dc14be8fbad1f6667edbf24ff07c59d27ec68b0fdf29"
+      },
+      "completed_at": "2026-07-26T13:59:22.218587Z"
+    },
+    "verify": {
+      "input_hashes": {
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "script.json": "sha256:2a8c41b8039cd76f8a7b7e9813194ce5591511f5eacba8cc9c75f4f9142ea05e"
+      },
+      "completed_at": "2026-07-26T13:59:21.889443Z"
+    },
+    "visuals": {
+      "input_hashes": {
+        "config": "sha256:2c5c7ffd5825fa9cc39661fe371b61462f04e3c7d51a636799744a86c735c962",
+        "lesson.md": "sha256:9522ad5b328017872ee103b5b15d670f9057de82112edc46809dd439d7f9fc26",
+        "prompts/diagram_d2lang.tmpl": "sha256:e7fdb074e2c8bfbbcf826b05b876029a253dfa76971ac39c6052bfd48137ab16",
+        "prompts/diagram_d3.tmpl": "sha256:757d546fc2ada75123a78ee2cd0c92c7c921a20cef0ee3fc87a5dd7d35a0eab1",
+        "prompts/diagram_excalidraw.tmpl": "sha256:44d339d4b141546e8d200a10b102da72eddec8442ce62e362e5658c73bd2bc2c",
+        "prompts/diagram_mermaid.tmpl": "sha256:a10005a22bea145c2ca24bf6bcdc21610008abe49ff670536f177247a7a4b15a",
+        "prompts/diagram_style/0": "sha256:3ce16584c3d875b9be3e3de7354f29a556d3fd84b3ecdd16d6b146a4c05de0f8",
+        "prompts/diagram_style/1": "sha256:6b2c91fdc925e0b44d8fe5f966ca6016f8ca3259bcb117c07f54bcd0e32e7ab0",
+        "prompts/diagram_style/2": "sha256:ff23e9cb37f3afd4c9a0400193dbca4204b0e86b171edeb1d9a0c5e9863c885f",
+        "prompts/diagram_svg.tmpl": "sha256:05f5bcf9adf67090e78a66379cbc5b378cff0c0f5db1135ce320e9a6a4fa741c",
+        "prompts/diagram_visual_qa.tmpl": "sha256:5055bdc374519ca9b537e86e031605df0300cd9505baa1472df47dcdcc5a2ab3",
+        "prompts/review_rubric.tmpl": "sha256:d767698e6aa0ceeb2e2e8a5daaf39311a0c74618b85ab9eede2fac52593d8c52"
+      },
+      "completed_at": "2026-07-26T14:00:48.90989Z"
+    }
+  }
+}

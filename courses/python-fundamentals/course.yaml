@@ -1,0 +1,28 @@
+name: "Python Fundamentals"
+slug: python-fundamentals
+description: >
+  A complete beginner course: from your first print() to writing your first
+  real program. Six short video lessons, each building on the last.
+
+style:
+  voice: af_heart
+  tone: friendly, conversational teacher
+  pace_wpm: 150
+  audience: absolute beginners with no programming experience
+  language: en
+
+branding:
+  colors:
+    primary: "#2563eb"
+    accent: "#f59e0b"
+    background: "#ffffff"
+  diagram_style: clean, flat, rounded corners, generous whitespace
+
+pipeline:
+  llm_content: openai/gpt-4o-mini
+  llm_review: openai/gpt-4o-mini
+  review_threshold: 8
+  captions_model: whisper-large-v3
+  # The course is its videos: skip quiz/mistakes/exercises/site stages.
+  # Set false to generate the companion material too.
+  video_only: true

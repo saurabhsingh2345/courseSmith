@@ -1,0 +1,286 @@
+WEBVTT
+
+1
+00:00:00.031 --> 00:00:01.673
+Let’s start by talking about what the
+
+2
+00:00:01.733 --> 00:00:02.654
+print function does.
+
+3
+00:00:03.315 --> 00:00:05.617
+The print function is a tool in Python
+
+4
+00:00:05.938 --> 00:00:07.700
+that displays output on the screen.
+
+5
+00:00:08.400 --> 00:00:09.962
+It's one of the first things you'll use
+
+6
+00:00:10.022 --> 00:00:11.584
+when you start coding in Python.
+
+7
+00:00:12.024 --> 00:00:14.107
+You can print text, numbers, and more.
+
+8
+00:00:14.787 --> 00:00:16.629
+This function is essential for showing
+
+9
+00:00:16.690 --> 00:00:18.632
+results and messages while you work on
+
+10
+00:00:18.652 --> 00:00:19.873
+your programs.
+
+11
+00:00:19.893 --> 00:00:22.196
+So, it’s really important to understand
+
+12
+00:00:22.256 --> 00:00:23.457
+how it works.
+
+13
+00:00:23.808 --> 00:00:25.651
+Using the print function is pretty
+
+14
+00:00:25.751 --> 00:00:26.452
+straightforward.
+
+15
+00:00:26.953 --> 00:00:28.475
+You call it by writing print with
+
+16
+00:00:28.556 --> 00:00:29.197
+parentheses.
+
+17
+00:00:29.938 --> 00:00:32.362
+Inside those parentheses, you put the text
+
+18
+00:00:32.382 --> 00:00:34.124
+you want to display, and it should be
+
+19
+00:00:34.185 --> 00:00:35.326
+enclosed in quotes.
+
+20
+00:00:35.867 --> 00:00:37.269
+For example, if you write print('Hello,
+
+21
+00:00:37.890 --> 00:00:40.455
+World!'), it will display 'Hello, World!'
+
+22
+00:00:40.895 --> 00:00:41.396
+on the screen.
+
+23
+00:00:42.077 --> 00:00:43.139
+Let’s see that in action.
+
+24
+00:00:43.620 --> 00:00:45.042
+Here’s what it looks like in code.
+
+25
+00:00:45.503 --> 00:00:47.305
+When you run this, you’ll see the output
+
+26
+00:00:47.406 --> 00:00:48.087
+right below it.
+
+27
+00:00:48.587 --> 00:00:50.350
+It’s a simple way to make Python say
+
+28
+00:00:50.410 --> 00:00:51.452
+something.
+
+29
+00:00:51.719 --> 00:00:53.903
+You can also print multiple items at once.
+
+30
+00:00:54.504 --> 00:00:56.528
+To do this, separate each item with a
+
+31
+00:00:56.569 --> 00:00:56.969
+comma.
+
+32
+00:00:57.490 --> 00:00:59.154
+When you do this, they will be displayed
+
+33
+00:00:59.214 --> 00:01:00.336
+with a space in between.
+
+34
+00:01:00.817 --> 00:01:02.220
+For example, if you write print('Hello',
+
+35
+00:01:03.081 --> 00:01:05.266
+'World!'), it will print 'Hello World!'.
+
+36
+00:01:05.787 --> 00:01:07.350
+Let’s take a look at how that works
+
+37
+00:01:07.410 --> 00:01:08.011
+in practice.
+
+38
+00:01:08.632 --> 00:01:10.496
+Here’s the code, and when you run it,
+
+39
+00:01:10.716 --> 00:01:12.280
+you’ll see how the items are printed
+
+40
+00:01:12.320 --> 00:01:13.542
+together.
+
+41
+00:01:13.542 --> 00:01:15.384
+The print function can also display
+
+42
+00:01:15.464 --> 00:01:15.845
+numbers.
+
+43
+00:01:16.406 --> 00:01:18.288
+You can print the results of calculations
+
+44
+00:01:18.368 --> 00:01:18.869
+directly.
+
+45
+00:01:19.429 --> 00:01:20.771
+For instance, if you write
+
+46
+00:01:21.852 --> 00:01:23.735
+print(5 + 3), it will display 8.
+
+47
+00:01:24.235 --> 00:01:25.637
+This is a great way to see the
+
+48
+00:01:25.697 --> 00:01:27.800
+results of your math operations right on
+
+49
+00:01:27.840 --> 00:01:28.281
+the screen.
+
+50
+00:01:28.961 --> 00:01:30.343
+Let’s check that out with a quick
+
+51
+00:01:30.403 --> 00:01:30.824
+example.
+
+52
+00:01:31.404 --> 00:01:33.207
+Here’s the code you would use, and when
+
+53
+00:01:33.247 --> 00:01:35.850
+you run it, you’ll see the output.
+
+54
+00:01:35.850 --> 00:01:38.075
+Now it’s your turn to experiment with
+
+55
+00:01:38.095 --> 00:01:38.816
+the print function.
+
+56
+00:01:39.418 --> 00:01:41.182
+Try printing different types of data.
+
+57
+00:01:41.683 --> 00:01:43.506
+You can mix text and numbers in your
+
+58
+00:01:43.547 --> 00:01:44.188
+print statements.
+
+59
+00:01:44.809 --> 00:01:46.673
+The idea is to get creative with what
+
+60
+00:01:46.713 --> 00:01:47.896
+you display on the screen.
+
+61
+00:01:48.417 --> 00:01:49.640
+Let’s see an example of this.
+
+62
+00:01:50.061 --> 00:01:51.905
+You can open a terminal and type print('I
+
+63
+00:01:52.386 --> 00:01:55.392
+love Python!') to see how it works.
+
+64
+00:01:55.392 --> 00:01:57.681
+Now that you can print messages, the next
+
+65
+00:01:57.741 --> 00:01:59.448
+step is to learn about variables.
+
+66
+00:02:00.211 --> 00:02:02.340
+Variables are used to store data that you
+
+67
+00:02:02.380 --> 00:02:04.207
+can later use with the print function.
+
+68
+00:02:04.890 --> 00:02:06.858
+In the next lesson, we’ll cover how to
+
+69
+00:02:06.938 --> 00:02:08.384
+create and use variables.
+
+70
+00:02:08.926 --> 00:02:10.713
+This will help you take your coding skills
+
+71
+00:02:10.794 --> 00:02:11.878
+to the next level.
+

@@ -1,0 +1,4137 @@
+{
+  "source": "whisperx",
+  "words": [
+    {
+      "word": "Today,",
+      "startMs": 31,
+      "endMs": 412
+    },
+    {
+      "word": "we're",
+      "startMs": 432,
+      "endMs": 752
+    },
+    {
+      "word": "building",
+      "startMs": 792,
+      "endMs": 1153
+    },
+    {
+      "word": "a",
+      "startMs": 1173,
+      "endMs": 1193
+    },
+    {
+      "word": "number",
+      "startMs": 1393,
+      "endMs": 1674
+    },
+    {
+      "word": "guessing",
+      "startMs": 1734,
+      "endMs": 2055
+    },
+    {
+      "word": "game.",
+      "startMs": 2075,
+      "endMs": 2335
+    },
+    {
+      "word": "It's",
+      "startMs": 2816,
+      "endMs": 2916
+    },
+    {
+      "word": "a",
+      "startMs": 2956,
+      "endMs": 2976
+    },
+    {
+      "word": "classic",
+      "startMs": 3056,
+      "endMs": 3517
+    },
+    {
+      "word": "first",
+      "startMs": 3597,
+      "endMs": 3878
+    },
+    {
+      "word": "program.",
+      "startMs": 3938,
+      "endMs": 4379
+    },
+    {
+      "word": "In",
+      "startMs": 4920,
+      "endMs": 4980
+    },
+    {
+      "word": "this",
+      "startMs": 5020,
+      "endMs": 5180
+    },
+    {
+      "word": "game,",
+      "startMs": 5260,
+      "endMs": 5541
+    },
+    {
+      "word": "the",
+      "startMs": 5681,
+      "endMs": 5761
+    },
+    {
+      "word": "program",
+      "startMs": 5801,
+      "endMs": 6242
+    },
+    {
+      "word": "picks",
+      "startMs": 6302,
+      "endMs": 6483
+    },
+    {
+      "word": "a",
+      "startMs": 6543,
+      "endMs": 6563
+    },
+    {
+      "word": "secret",
+      "startMs": 6643,
+      "endMs": 6964
+    },
+    {
+      "word": "number,",
+      "startMs": 7004,
+      "endMs": 7284
+    },
+    {
+      "word": "and",
+      "startMs": 7625,
+      "endMs": 7705
+    },
+    {
+      "word": "the",
+      "startMs": 7725,
+      "endMs": 7805
+    },
+    {
+      "word": "player",
+      "startMs": 7845,
+      "endMs": 8146
+    },
+    {
+      "word": "tries",
+      "startMs": 8226,
+      "endMs": 8486
+    },
+    {
+      "word": "to",
+      "startMs": 8526,
+      "endMs": 8607
+    },
+    {
+      "word": "find",
+      "startMs": 8647,
+      "endMs": 8907
+    },
+    {
+      "word": "it.",
+      "startMs": 8967,
+      "endMs": 9047
+    },
+    {
+      "word": "We'll",
+      "startMs": 9608,
+      "endMs": 9749
+    },
+    {
+      "word": "use",
+      "startMs": 9829,
+      "endMs": 9929
+    },
+    {
+      "word": "everything",
+      "startMs": 10069,
+      "endMs": 10450
+    },
+    {
+      "word": "we've",
+      "startMs": 10470,
+      "endMs": 10690
+    },
+    {
+      "word": "learned",
+      "startMs": 10750,
+      "endMs": 10991
+    },
+    {
+      "word": "so",
+      "startMs": 11051,
+      "endMs": 11191
+    },
+    {
+      "word": "far.",
+      "startMs": 11251,
+      "endMs": 11492
+    },
+    {
+      "word": "Print",
+      "startMs": 11973,
+      "endMs": 12153
+    },
+    {
+      "word": "statements,",
+      "startMs": 12173,
+      "endMs": 12594
+    },
+    {
+      "word": "variables,",
+      "startMs": 12814,
+      "endMs": 13375
+    },
+    {
+      "word": "afelse",
+      "startMs": 13395,
+      "endMs": 13836
+    },
+    {
+      "word": "conditions,",
+      "startMs": 13856,
+      "endMs": 14377
+    },
+    {
+      "word": "and",
+      "startMs": 14477,
+      "endMs": 14557
+    },
+    {
+      "word": "loops.",
+      "startMs": 14597,
+      "endMs": 14878
+    },
+    {
+      "word": "It's",
+      "startMs": 15459,
+      "endMs": 15559
+    },
+    {
+      "word": "going",
+      "startMs": 15579,
+      "endMs": 15759
+    },
+    {
+      "word": "to",
+      "startMs": 15780,
+      "endMs": 15820
+    },
+    {
+      "word": "be",
+      "startMs": 15860,
+      "endMs": 15960
+    },
+    {
+      "word": "fun.",
+      "startMs": 16040,
+      "endMs": 17162
+    },
+    {
+      "word": "To",
+      "startMs": 17142,
+      "endMs": 17402
+    },
+    {
+      "word": "pick",
+      "startMs": 17462,
+      "endMs": 17623
+    },
+    {
+      "word": "a",
+      "startMs": 17663,
+      "endMs": 17683
+    },
+    {
+      "word": "secret",
+      "startMs": 17763,
+      "endMs": 18083
+    },
+    {
+      "word": "number,",
+      "startMs": 18143,
+      "endMs": 18423
+    },
+    {
+      "word": "we'll",
+      "startMs": 18704,
+      "endMs": 18864
+    },
+    {
+      "word": "use",
+      "startMs": 18984,
+      "endMs": 19104
+    },
+    {
+      "word": "the",
+      "startMs": 19144,
+      "endMs": 19244
+    },
+    {
+      "word": "random",
+      "startMs": 19324,
+      "endMs": 19685
+    },
+    {
+      "word": "module.",
+      "startMs": 19725,
+      "endMs": 20105
+    },
+    {
+      "word": "This",
+      "startMs": 20686,
+      "endMs": 20866
+    },
+    {
+      "word": "module",
+      "startMs": 20966,
+      "endMs": 21326
+    },
+    {
+      "word": "can",
+      "startMs": 21387,
+      "endMs": 21527
+    },
+    {
+      "word": "choose",
+      "startMs": 21587,
+      "endMs": 21847
+    },
+    {
+      "word": "a",
+      "startMs": 21907,
+      "endMs": 21927
+    },
+    {
+      "word": "number",
+      "startMs": 21987,
+      "endMs": 22227
+    },
+    {
+      "word": "for",
+      "startMs": 22288,
+      "endMs": 22428
+    },
+    {
+      "word": "us.",
+      "startMs": 22548,
+      "endMs": 22668
+    },
+    {
+      "word": "By",
+      "startMs": 23269,
+      "endMs": 23389
+    },
+    {
+      "word": "using",
+      "startMs": 23509,
+      "endMs": 23709
+    },
+    {
+      "word": "random",
+      "startMs": 23809,
+      "endMs": 24170
+    },
+    {
+      "word": "seed",
+      "startMs": 24210,
+      "endMs": 24390
+    },
+    {
+      "word": "parentheses,",
+      "startMs": 24410,
+      "endMs": 25030
+    },
+    {
+      "word": "we",
+      "startMs": 25411,
+      "endMs": 25511
+    },
+    {
+      "word": "can",
+      "startMs": 25551,
+      "endMs": 25671
+    },
+    {
+      "word": "make",
+      "startMs": 25711,
+      "endMs": 25871
+    },
+    {
+      "word": "the",
+      "startMs": 25891,
+      "endMs": 25991
+    },
+    {
+      "word": "choice",
+      "startMs": 26052,
+      "endMs": 26312
+    },
+    {
+      "word": "repeatable,",
+      "startMs": 26332,
+      "endMs": 26852
+    },
+    {
+      "word": "which",
+      "startMs": 27193,
+      "endMs": 27333
+    },
+    {
+      "word": "is",
+      "startMs": 27413,
+      "endMs": 27473
+    },
+    {
+      "word": "perfect",
+      "startMs": 27573,
+      "endMs": 27994
+    },
+    {
+      "word": "for",
+      "startMs": 28054,
+      "endMs": 28154
+    },
+    {
+      "word": "testing.",
+      "startMs": 28194,
+      "endMs": 28594
+    },
+    {
+      "word": "And",
+      "startMs": 29055,
+      "endMs": 29135
+    },
+    {
+      "word": "with",
+      "startMs": 29175,
+      "endMs": 29295
+    },
+    {
+      "word": "random-random,",
+      "startMs": 29355,
+      "endMs": 30136
+    },
+    {
+      "word": "1-10,",
+      "startMs": 30156,
+      "endMs": 30676
+    },
+    {
+      "word": "we",
+      "startMs": 31397,
+      "endMs": 31497
+    },
+    {
+      "word": "can",
+      "startMs": 31537,
+      "endMs": 31638
+    },
+    {
+      "word": "get",
+      "startMs": 31678,
+      "endMs": 31778
+    },
+    {
+      "word": "a",
+      "startMs": 31818,
+      "endMs": 31858
+    },
+    {
+      "word": "whole",
+      "startMs": 31918,
+      "endMs": 32098
+    },
+    {
+      "word": "number",
+      "startMs": 32158,
+      "endMs": 32398
+    },
+    {
+      "word": "from",
+      "startMs": 32458,
+      "endMs": 32599
+    },
+    {
+      "word": "1",
+      "startMs": 32619,
+      "endMs": 32639
+    },
+    {
+      "word": "to",
+      "startMs": 32899,
+      "endMs": 32979
+    },
+    {
+      "word": "10.",
+      "startMs": 32999,
+      "endMs": 33279
+    },
+    {
+      "word": "Let's",
+      "startMs": 33940,
+      "endMs": 34120
+    },
+    {
+      "word": "look",
+      "startMs": 34180,
+      "endMs": 34340
+    },
+    {
+      "word": "at",
+      "startMs": 34400,
+      "endMs": 34440
+    },
+    {
+      "word": "that",
+      "startMs": 34461,
+      "endMs": 34661
+    },
+    {
+      "word": "in",
+      "startMs": 34721,
+      "endMs": 34781
+    },
+    {
+      "word": "a",
+      "startMs": 34821,
+      "endMs": 34841
+    },
+    {
+      "word": "picture.",
+      "startMs": 34901,
+      "endMs": 35281
+    },
+    {
+      "word": "Here's",
+      "startMs": 35642,
+      "endMs": 35902
+    },
+    {
+      "word": "how",
+      "startMs": 35942,
+      "endMs": 36082
+    },
+    {
+      "word": "it",
+      "startMs": 36162,
+      "endMs": 36202
+    },
+    {
+      "word": "works.",
+      "startMs": 36242,
+      "endMs": 36543
+    },
+    {
+      "word": "First,",
+      "startMs": 37183,
+      "endMs": 37484
+    },
+    {
+      "word": "we",
+      "startMs": 37704,
+      "endMs": 37804
+    },
+    {
+      "word": "import",
+      "startMs": 37884,
+      "endMs": 38225
+    },
+    {
+      "word": "random.",
+      "startMs": 38285,
+      "endMs": 38685
+    },
+    {
+      "word": "Then",
+      "startMs": 39266,
+      "endMs": 39406
+    },
+    {
+      "word": "we",
+      "startMs": 39446,
+      "endMs": 39546
+    },
+    {
+      "word": "set",
+      "startMs": 39606,
+      "endMs": 39766
+    },
+    {
+      "word": "the",
+      "startMs": 39786,
+      "endMs": 39886
+    },
+    {
+      "word": "seed",
+      "startMs": 39946,
+      "endMs": 40167
+    },
+    {
+      "word": "to",
+      "startMs": 40227,
+      "endMs": 40307
+    },
+    {
+      "word": "7",
+      "startMs": 40327,
+      "endMs": 40607
+    },
+    {
+      "word": "and",
+      "startMs": 40727,
+      "endMs": 40927
+    },
+    {
+      "word": "pick",
+      "startMs": 40987,
+      "endMs": 41168
+    },
+    {
+      "word": "our",
+      "startMs": 41208,
+      "endMs": 41288
+    },
+    {
+      "word": "secret",
+      "startMs": 41348,
+      "endMs": 41648
+    },
+    {
+      "word": "number.",
+      "startMs": 41708,
+      "endMs": 41969
+    },
+    {
+      "word": "Finally,",
+      "startMs": 42469,
+      "endMs": 42849
+    },
+    {
+      "word": "we",
+      "startMs": 43130,
+      "endMs": 43250
+    },
+    {
+      "word": "print",
+      "startMs": 43290,
+      "endMs": 43470
+    },
+    {
+      "word": "a",
+      "startMs": 43510,
+      "endMs": 43530
+    },
+    {
+      "word": "message",
+      "startMs": 43570,
+      "endMs": 43971
+    },
+    {
+      "word": "to",
+      "startMs": 44091,
+      "endMs": 44171
+    },
+    {
+      "word": "confirm",
+      "startMs": 44211,
+      "endMs": 44611
+    },
+    {
+      "word": "the",
+      "startMs": 44651,
+      "endMs": 44732
+    },
+    {
+      "word": "number",
+      "startMs": 44772,
+      "endMs": 45012
+    },
+    {
+      "word": "is",
+      "startMs": 45112,
+      "endMs": 45172
+    },
+    {
+      "word": "chosen.",
+      "startMs": 45252,
+      "endMs": 46153
+    },
+    {
+      "word": "Next,",
+      "startMs": 46572,
+      "endMs": 47053
+    },
+    {
+      "word": "we",
+      "startMs": 47213,
+      "endMs": 47313
+    },
+    {
+      "word": "need",
+      "startMs": 47373,
+      "endMs": 47533
+    },
+    {
+      "word": "to",
+      "startMs": 47573,
+      "endMs": 47633
+    },
+    {
+      "word": "check",
+      "startMs": 47694,
+      "endMs": 47954
+    },
+    {
+      "word": "if",
+      "startMs": 48034,
+      "endMs": 48094
+    },
+    {
+      "word": "the",
+      "startMs": 48134,
+      "endMs": 48194
+    },
+    {
+      "word": "player's",
+      "startMs": 48234,
+      "endMs": 48595
+    },
+    {
+      "word": "guess",
+      "startMs": 48635,
+      "endMs": 48895
+    },
+    {
+      "word": "is",
+      "startMs": 48995,
+      "endMs": 49076
+    },
+    {
+      "word": "correct.",
+      "startMs": 49136,
+      "endMs": 49536
+    },
+    {
+      "word": "We",
+      "startMs": 50077,
+      "endMs": 50157
+    },
+    {
+      "word": "can",
+      "startMs": 50197,
+      "endMs": 50297
+    },
+    {
+      "word": "compare",
+      "startMs": 50337,
+      "endMs": 50678
+    },
+    {
+      "word": "the",
+      "startMs": 50718,
+      "endMs": 50798
+    },
+    {
+      "word": "guess",
+      "startMs": 50838,
+      "endMs": 51098
+    },
+    {
+      "word": "to",
+      "startMs": 51138,
+      "endMs": 51198
+    },
+    {
+      "word": "the",
+      "startMs": 51239,
+      "endMs": 51319
+    },
+    {
+      "word": "secret",
+      "startMs": 51379,
+      "endMs": 51699
+    },
+    {
+      "word": "number",
+      "startMs": 51759,
+      "endMs": 52040
+    },
+    {
+      "word": "using",
+      "startMs": 52380,
+      "endMs": 52600
+    },
+    {
+      "word": "the",
+      "startMs": 52641,
+      "endMs": 52701
+    },
+    {
+      "word": "equals",
+      "startMs": 52801,
+      "endMs": 53121
+    },
+    {
+      "word": "equals",
+      "startMs": 53261,
+      "endMs": 53562
+    },
+    {
+      "word": "operator.",
+      "startMs": 53602,
+      "endMs": 54143
+    },
+    {
+      "word": "If",
+      "startMs": 54743,
+      "endMs": 54804
+    },
+    {
+      "word": "they",
+      "startMs": 54844,
+      "endMs": 54964
+    },
+    {
+      "word": "match,",
+      "startMs": 55024,
+      "endMs": 55344
+    },
+    {
+      "word": "we",
+      "startMs": 55565,
+      "endMs": 55705
+    },
+    {
+      "word": "print",
+      "startMs": 55745,
+      "endMs": 55905
+    },
+    {
+      "word": "a",
+      "startMs": 55945,
+      "endMs": 55965
+    },
+    {
+      "word": "win",
+      "startMs": 56005,
+      "endMs": 56185
+    },
+    {
+      "word": "message.",
+      "startMs": 56246,
+      "endMs": 56646
+    },
+    {
+      "word": "If",
+      "startMs": 57307,
+      "endMs": 57387
+    },
+    {
+      "word": "not,",
+      "startMs": 57467,
+      "endMs": 57728
+    },
+    {
+      "word": "we",
+      "startMs": 57968,
+      "endMs": 58088
+    },
+    {
+      "word": "print",
+      "startMs": 58128,
+      "endMs": 58288
+    },
+    {
+      "word": "a",
+      "startMs": 58328,
+      "endMs": 58349
+    },
+    {
+      "word": "hint",
+      "startMs": 58409,
+      "endMs": 58629
+    },
+    {
+      "word": "to",
+      "startMs": 58669,
+      "endMs": 58749
+    },
+    {
+      "word": "try",
+      "startMs": 58789,
+      "endMs": 58989
+    },
+    {
+      "word": "again.",
+      "startMs": 59049,
+      "endMs": 59270
+    },
+    {
+      "word": "For",
+      "startMs": 59791,
+      "endMs": 59891
+    },
+    {
+      "word": "example,",
+      "startMs": 59951,
+      "endMs": 60371
+    },
+    {
+      "word": "if",
+      "startMs": 60612,
+      "endMs": 60672
+    },
+    {
+      "word": "our",
+      "startMs": 60732,
+      "endMs": 60812
+    },
+    {
+      "word": "secret",
+      "startMs": 60872,
+      "endMs": 61172
+    },
+    {
+      "word": "number",
+      "startMs": 61213,
+      "endMs": 61433
+    },
+    {
+      "word": "is",
+      "startMs": 61533,
+      "endMs": 61593
+    },
+    {
+      "word": "six",
+      "startMs": 61693,
+      "endMs": 61994
+    },
+    {
+      "word": "and",
+      "startMs": 62154,
+      "endMs": 62214
+    },
+    {
+      "word": "the",
+      "startMs": 62234,
+      "endMs": 62314
+    },
+    {
+      "word": "user",
+      "startMs": 62474,
+      "endMs": 62715
+    },
+    {
+      "word": "guess",
+      "startMs": 62755,
+      "endMs": 62995
+    },
+    {
+      "word": "is",
+      "startMs": 63015,
+      "endMs": 63075
+    },
+    {
+      "word": "four,",
+      "startMs": 63195,
+      "endMs": 63456
+    },
+    {
+      "word": "we",
+      "startMs": 63876,
+      "endMs": 63976
+    },
+    {
+      "word": "can",
+      "startMs": 64016,
+      "endMs": 64157
+    },
+    {
+      "word": "see",
+      "startMs": 64197,
+      "endMs": 64337
+    },
+    {
+      "word": "how",
+      "startMs": 64377,
+      "endMs": 64497
+    },
+    {
+      "word": "the",
+      "startMs": 64557,
+      "endMs": 64657
+    },
+    {
+      "word": "if-else",
+      "startMs": 64717,
+      "endMs": 65058
+    },
+    {
+      "word": "statement",
+      "startMs": 65078,
+      "endMs": 65438
+    },
+    {
+      "word": "works.",
+      "startMs": 65458,
+      "endMs": 65719
+    },
+    {
+      "word": "It",
+      "startMs": 66420,
+      "endMs": 66480
+    },
+    {
+      "word": "checks",
+      "startMs": 66540,
+      "endMs": 66800
+    },
+    {
+      "word": "the",
+      "startMs": 66840,
+      "endMs": 66921
+    },
+    {
+      "word": "guess",
+      "startMs": 66961,
+      "endMs": 67261
+    },
+    {
+      "word": "and",
+      "startMs": 67461,
+      "endMs": 67541
+    },
+    {
+      "word": "gives",
+      "startMs": 67581,
+      "endMs": 67802
+    },
+    {
+      "word": "feedback",
+      "startMs": 67842,
+      "endMs": 68282
+    },
+    {
+      "word": "accordingly.",
+      "startMs": 68363,
+      "endMs": 69424
+    },
+    {
+      "word": "Now",
+      "startMs": 69860,
+      "endMs": 70160
+    },
+    {
+      "word": "let's",
+      "startMs": 70301,
+      "endMs": 70521
+    },
+    {
+      "word": "talk",
+      "startMs": 70581,
+      "endMs": 70781
+    },
+    {
+      "word": "about",
+      "startMs": 70821,
+      "endMs": 70981
+    },
+    {
+      "word": "the",
+      "startMs": 71001,
+      "endMs": 71082
+    },
+    {
+      "word": "game",
+      "startMs": 71122,
+      "endMs": 71342
+    },
+    {
+      "word": "loop.",
+      "startMs": 71382,
+      "endMs": 71602
+    },
+    {
+      "word": "Since",
+      "startMs": 72123,
+      "endMs": 72283
+    },
+    {
+      "word": "a",
+      "startMs": 72323,
+      "endMs": 72343
+    },
+    {
+      "word": "program",
+      "startMs": 72403,
+      "endMs": 72844
+    },
+    {
+      "word": "can't",
+      "startMs": 72924,
+      "endMs": 73184
+    },
+    {
+      "word": "type,",
+      "startMs": 73244,
+      "endMs": 73525
+    },
+    {
+      "word": "we",
+      "startMs": 73885,
+      "endMs": 73985
+    },
+    {
+      "word": "give",
+      "startMs": 74025,
+      "endMs": 74165
+    },
+    {
+      "word": "it",
+      "startMs": 74205,
+      "endMs": 74246
+    },
+    {
+      "word": "a",
+      "startMs": 74286,
+      "endMs": 74306
+    },
+    {
+      "word": "list",
+      "startMs": 74346,
+      "endMs": 74526
+    },
+    {
+      "word": "of",
+      "startMs": 74566,
+      "endMs": 74626
+    },
+    {
+      "word": "guesses",
+      "startMs": 74646,
+      "endMs": 75047
+    },
+    {
+      "word": "to",
+      "startMs": 75127,
+      "endMs": 75207
+    },
+    {
+      "word": "work",
+      "startMs": 75267,
+      "endMs": 75447
+    },
+    {
+      "word": "with.",
+      "startMs": 75487,
+      "endMs": 75687
+    },
+    {
+      "word": "The",
+      "startMs": 76228,
+      "endMs": 76308
+    },
+    {
+      "word": "for",
+      "startMs": 76348,
+      "endMs": 76448
+    },
+    {
+      "word": "loop",
+      "startMs": 76468,
+      "endMs": 76669
+    },
+    {
+      "word": "will",
+      "startMs": 76689,
+      "endMs": 76829
+    },
+    {
+      "word": "try",
+      "startMs": 76869,
+      "endMs": 77089
+    },
+    {
+      "word": "each",
+      "startMs": 77129,
+      "endMs": 77369
+    },
+    {
+      "word": "guess",
+      "startMs": 77430,
+      "endMs": 77670
+    },
+    {
+      "word": "in",
+      "startMs": 77710,
+      "endMs": 77790
+    },
+    {
+      "word": "order,",
+      "startMs": 77870,
+      "endMs": 78090
+    },
+    {
+      "word": "just",
+      "startMs": 78431,
+      "endMs": 78611
+    },
+    {
+      "word": "like",
+      "startMs": 78671,
+      "endMs": 78811
+    },
+    {
+      "word": "a",
+      "startMs": 78851,
+      "endMs": 78871
+    },
+    {
+      "word": "player",
+      "startMs": 78951,
+      "endMs": 79272
+    },
+    {
+      "word": "would.",
+      "startMs": 79332,
+      "endMs": 79572
+    },
+    {
+      "word": "The",
+      "startMs": 80173,
+      "endMs": 80273
+    },
+    {
+      "word": "if-else",
+      "startMs": 80333,
+      "endMs": 80654
+    },
+    {
+      "word": "statement",
+      "startMs": 80694,
+      "endMs": 81094
+    },
+    {
+      "word": "decides",
+      "startMs": 81154,
+      "endMs": 81575
+    },
+    {
+      "word": "what",
+      "startMs": 81655,
+      "endMs": 81775
+    },
+    {
+      "word": "to",
+      "startMs": 81795,
+      "endMs": 81895
+    },
+    {
+      "word": "print",
+      "startMs": 81955,
+      "endMs": 82196
+    },
+    {
+      "word": "for",
+      "startMs": 82256,
+      "endMs": 82356
+    },
+    {
+      "word": "each",
+      "startMs": 82416,
+      "endMs": 82556
+    },
+    {
+      "word": "guess.",
+      "startMs": 82616,
+      "endMs": 82896
+    },
+    {
+      "word": "For",
+      "startMs": 83437,
+      "endMs": 83537
+    },
+    {
+      "word": "instance,",
+      "startMs": 83617,
+      "endMs": 84038
+    },
+    {
+      "word": "if",
+      "startMs": 84438,
+      "endMs": 84498
+    },
+    {
+      "word": "we",
+      "startMs": 84538,
+      "endMs": 84639
+    },
+    {
+      "word": "have",
+      "startMs": 84679,
+      "endMs": 84839
+    },
+    {
+      "word": "a",
+      "startMs": 84859,
+      "endMs": 84899
+    },
+    {
+      "word": "list",
+      "startMs": 84939,
+      "endMs": 85099
+    },
+    {
+      "word": "of",
+      "startMs": 85139,
+      "endMs": 85179
+    },
+    {
+      "word": "guesses,",
+      "startMs": 85239,
+      "endMs": 85640
+    },
+    {
+      "word": "the",
+      "startMs": 85680,
+      "endMs": 86161
+    },
+    {
+      "word": "program",
+      "startMs": 86201,
+      "endMs": 86641
+    },
+    {
+      "word": "will",
+      "startMs": 86681,
+      "endMs": 86821
+    },
+    {
+      "word": "check",
+      "startMs": 86881,
+      "endMs": 87102
+    },
+    {
+      "word": "each",
+      "startMs": 87202,
+      "endMs": 87362
+    },
+    {
+      "word": "one",
+      "startMs": 87562,
+      "endMs": 87662
+    },
+    {
+      "word": "against",
+      "startMs": 87743,
+      "endMs": 88043
+    },
+    {
+      "word": "the",
+      "startMs": 88083,
+      "endMs": 88183
+    },
+    {
+      "word": "secret",
+      "startMs": 88223,
+      "endMs": 88544
+    },
+    {
+      "word": "number",
+      "startMs": 88584,
+      "endMs": 88844
+    },
+    {
+      "word": "and",
+      "startMs": 89064,
+      "endMs": 89144
+    },
+    {
+      "word": "respond",
+      "startMs": 89204,
+      "endMs": 89665
+    },
+    {
+      "word": "accordingly.",
+      "startMs": 89725,
+      "endMs": 90246
+    },
+    {
+      "word": "This",
+      "startMs": 90286,
+      "endMs": 91127
+    },
+    {
+      "word": "makes",
+      "startMs": 91207,
+      "endMs": 91387
+    },
+    {
+      "word": "the",
+      "startMs": 91447,
+      "endMs": 91527
+    },
+    {
+      "word": "game",
+      "startMs": 91567,
+      "endMs": 91788
+    },
+    {
+      "word": "interactive",
+      "startMs": 91888,
+      "endMs": 92489
+    },
+    {
+      "word": "and",
+      "startMs": 92609,
+      "endMs": 92689
+    },
+    {
+      "word": "fun.",
+      "startMs": 92789,
+      "endMs": 93690
+    },
+    {
+      "word": "So",
+      "startMs": 93991,
+      "endMs": 94311
+    },
+    {
+      "word": "what",
+      "startMs": 94352,
+      "endMs": 94552
+    },
+    {
+      "word": "did",
+      "startMs": 94572,
+      "endMs": 94672
+    },
+    {
+      "word": "your",
+      "startMs": 94692,
+      "endMs": 94792
+    },
+    {
+      "word": "program",
+      "startMs": 94832,
+      "endMs": 95273
+    },
+    {
+      "word": "just",
+      "startMs": 95313,
+      "endMs": 95493
+    },
+    {
+      "word": "do?",
+      "startMs": 95533,
+      "endMs": 95694
+    },
+    {
+      "word": "It",
+      "startMs": 95734,
+      "endMs": 96234
+    },
+    {
+      "word": "picked",
+      "startMs": 96294,
+      "endMs": 96495
+    },
+    {
+      "word": "a",
+      "startMs": 96535,
+      "endMs": 96555
+    },
+    {
+      "word": "secret",
+      "startMs": 96655,
+      "endMs": 96976
+    },
+    {
+      "word": "number",
+      "startMs": 96996,
+      "endMs": 97336
+    },
+    {
+      "word": "and",
+      "startMs": 97416,
+      "endMs": 97496
+    },
+    {
+      "word": "stored",
+      "startMs": 97576,
+      "endMs": 97877
+    },
+    {
+      "word": "it",
+      "startMs": 97937,
+      "endMs": 97977
+    },
+    {
+      "word": "in",
+      "startMs": 98057,
+      "endMs": 98117
+    },
+    {
+      "word": "a",
+      "startMs": 98137,
+      "endMs": 98157
+    },
+    {
+      "word": "variable.",
+      "startMs": 98217,
+      "endMs": 98678
+    },
+    {
+      "word": "Then",
+      "startMs": 99339,
+      "endMs": 99539
+    },
+    {
+      "word": "it",
+      "startMs": 99559,
+      "endMs": 99599
+    },
+    {
+      "word": "looped",
+      "startMs": 100020,
+      "endMs": 100321
+    },
+    {
+      "word": "over",
+      "startMs": 100381,
+      "endMs": 100481
+    },
+    {
+      "word": "the",
+      "startMs": 100521,
+      "endMs": 100601
+    },
+    {
+      "word": "guesses",
+      "startMs": 100641,
+      "endMs": 100982
+    },
+    {
+      "word": "one",
+      "startMs": 101002,
+      "endMs": 101202
+    },
+    {
+      "word": "by",
+      "startMs": 101262,
+      "endMs": 101362
+    },
+    {
+      "word": "one.",
+      "startMs": 101402,
+      "endMs": 101683
+    },
+    {
+      "word": "For",
+      "startMs": 102263,
+      "endMs": 102364
+    },
+    {
+      "word": "each",
+      "startMs": 102444,
+      "endMs": 102584
+    },
+    {
+      "word": "guess,",
+      "startMs": 102644,
+      "endMs": 102945
+    },
+    {
+      "word": "it",
+      "startMs": 103205,
+      "endMs": 103245
+    },
+    {
+      "word": "made",
+      "startMs": 103305,
+      "endMs": 103465
+    },
+    {
+      "word": "a",
+      "startMs": 103505,
+      "endMs": 103525
+    },
+    {
+      "word": "decision",
+      "startMs": 103585,
+      "endMs": 104026
+    },
+    {
+      "word": "and",
+      "startMs": 104046,
+      "endMs": 104287
+    },
+    {
+      "word": "printed",
+      "startMs": 104347,
+      "endMs": 104627
+    },
+    {
+      "word": "the",
+      "startMs": 104667,
+      "endMs": 104747
+    },
+    {
+      "word": "result.",
+      "startMs": 104787,
+      "endMs": 105188
+    },
+    {
+      "word": "This",
+      "startMs": 105649,
+      "endMs": 105829
+    },
+    {
+      "word": "is",
+      "startMs": 106029,
+      "endMs": 106089
+    },
+    {
+      "word": "what",
+      "startMs": 106149,
+      "endMs": 106270
+    },
+    {
+      "word": "a",
+      "startMs": 106310,
+      "endMs": 106330
+    },
+    {
+      "word": "real",
+      "startMs": 106450,
+      "endMs": 106670
+    },
+    {
+      "word": "program",
+      "startMs": 106750,
+      "endMs": 107171
+    },
+    {
+      "word": "looks",
+      "startMs": 107211,
+      "endMs": 107431
+    },
+    {
+      "word": "like.",
+      "startMs": 107491,
+      "endMs": 107732
+    },
+    {
+      "word": "It",
+      "startMs": 108273,
+      "endMs": 108333
+    },
+    {
+      "word": "has",
+      "startMs": 108373,
+      "endMs": 108533
+    },
+    {
+      "word": "the",
+      "startMs": 108573,
+      "endMs": 108713
+    },
+    {
+      "word": "same",
+      "startMs": 108773,
+      "endMs": 109014
+    },
+    {
+      "word": "structure",
+      "startMs": 109094,
+      "endMs": 109554
+    },
+    {
+      "word": "as",
+      "startMs": 109575,
+      "endMs": 109855
+    },
+    {
+      "word": "the",
+      "startMs": 109875,
+      "endMs": 109975
+    },
+    {
+      "word": "software",
+      "startMs": 110035,
+      "endMs": 110496
+    },
+    {
+      "word": "you",
+      "startMs": 110556,
+      "endMs": 110636
+    },
+    {
+      "word": "use",
+      "startMs": 110756,
+      "endMs": 110897
+    },
+    {
+      "word": "every",
+      "startMs": 110917,
+      "endMs": 111217
+    },
+    {
+      "word": "day.",
+      "startMs": 111257,
+      "endMs": 111898
+    },
+    {
+      "word": "Now",
+      "startMs": 112452,
+      "endMs": 112672
+    },
+    {
+      "word": "that",
+      "startMs": 112732,
+      "endMs": 112832
+    },
+    {
+      "word": "you've",
+      "startMs": 112853,
+      "endMs": 113053
+    },
+    {
+      "word": "built",
+      "startMs": 113093,
+      "endMs": 113273
+    },
+    {
+      "word": "your",
+      "startMs": 113293,
+      "endMs": 113433
+    },
+    {
+      "word": "game,",
+      "startMs": 113453,
+      "endMs": 113754
+    },
+    {
+      "word": "where",
+      "startMs": 114074,
+      "endMs": 114214
+    },
+    {
+      "word": "do",
+      "startMs": 114234,
+      "endMs": 114294
+    },
+    {
+      "word": "you",
+      "startMs": 114314,
+      "endMs": 114394
+    },
+    {
+      "word": "go",
+      "startMs": 114414,
+      "endMs": 114535
+    },
+    {
+      "word": "from",
+      "startMs": 114595,
+      "endMs": 114715
+    },
+    {
+      "word": "here?",
+      "startMs": 114775,
+      "endMs": 114935
+    },
+    {
+      "word": "You",
+      "startMs": 115536,
+      "endMs": 115636
+    },
+    {
+      "word": "could",
+      "startMs": 115676,
+      "endMs": 115796
+    },
+    {
+      "word": "change",
+      "startMs": 115856,
+      "endMs": 116157
+    },
+    {
+      "word": "the",
+      "startMs": 116217,
+      "endMs": 116297
+    },
+    {
+      "word": "range",
+      "startMs": 116357,
+      "endMs": 116677
+    },
+    {
+      "word": "to",
+      "startMs": 116757,
+      "endMs": 116838
+    },
+    {
+      "word": "1,100",
+      "startMs": 116858,
+      "endMs": 117318
+    },
+    {
+      "word": "and",
+      "startMs": 117458,
+      "endMs": 117759
+    },
+    {
+      "word": "add",
+      "startMs": 118239,
+      "endMs": 118500
+    },
+    {
+      "word": "more",
+      "startMs": 118540,
+      "endMs": 118700
+    },
+    {
+      "word": "guesses.",
+      "startMs": 118760,
+      "endMs": 119160
+    },
+    {
+      "word": "You",
+      "startMs": 119821,
+      "endMs": 119921
+    },
+    {
+      "word": "might",
+      "startMs": 119961,
+      "endMs": 120102
+    },
+    {
+      "word": "also",
+      "startMs": 120202,
+      "endMs": 120442
+    },
+    {
+      "word": "want",
+      "startMs": 120502,
+      "endMs": 120622
+    },
+    {
+      "word": "to",
+      "startMs": 120662,
+      "endMs": 120702
+    },
+    {
+      "word": "count",
+      "startMs": 120763,
+      "endMs": 120923
+    },
+    {
+      "word": "the",
+      "startMs": 120963,
+      "endMs": 121043
+    },
+    {
+      "word": "attempts",
+      "startMs": 121103,
+      "endMs": 121463
+    },
+    {
+      "word": "with",
+      "startMs": 121523,
+      "endMs": 121624
+    },
+    {
+      "word": "a",
+      "startMs": 121684,
+      "endMs": 121704
+    },
+    {
+      "word": "variable",
+      "startMs": 121744,
+      "endMs": 122244
+    },
+    {
+      "word": "that",
+      "startMs": 122304,
+      "endMs": 122425
+    },
+    {
+      "word": "increases",
+      "startMs": 122505,
+      "endMs": 123085
+    },
+    {
+      "word": "by",
+      "startMs": 123186,
+      "endMs": 123306
+    },
+    {
+      "word": "one",
+      "startMs": 123326,
+      "endMs": 123626
+    },
+    {
+      "word": "each",
+      "startMs": 123706,
+      "endMs": 123866
+    },
+    {
+      "word": "loop.",
+      "startMs": 123906,
+      "endMs": 124587
+    },
+    {
+      "word": "And",
+      "startMs": 124607,
+      "endMs": 124687
+    },
+    {
+      "word": "when",
+      "startMs": 124728,
+      "endMs": 124828
+    },
+    {
+      "word": "you",
+      "startMs": 124848,
+      "endMs": 124968
+    },
+    {
+      "word": "run",
+      "startMs": 125008,
+      "endMs": 125168
+    },
+    {
+      "word": "Python",
+      "startMs": 125228,
+      "endMs": 125789
+    },
+    {
+      "word": "on",
+      "startMs": 125869,
+      "endMs": 125929
+    },
+    {
+      "word": "your",
+      "startMs": 125949,
+      "endMs": 126069
+    },
+    {
+      "word": "own",
+      "startMs": 126149,
+      "endMs": 126249
+    },
+    {
+      "word": "computer,",
+      "startMs": 126310,
+      "endMs": 126750
+    },
+    {
+      "word": "you",
+      "startMs": 127171,
+      "endMs": 127271
+    },
+    {
+      "word": "can",
+      "startMs": 127311,
+      "endMs": 127431
+    },
+    {
+      "word": "swap",
+      "startMs": 127491,
+      "endMs": 127751
+    },
+    {
+      "word": "the",
+      "startMs": 127791,
+      "endMs": 127892
+    },
+    {
+      "word": "guess",
+      "startMs": 127952,
+      "endMs": 128212
+    },
+    {
+      "word": "list",
+      "startMs": 128272,
+      "endMs": 128492
+    },
+    {
+      "word": "for",
+      "startMs": 128552,
+      "endMs": 128652
+    },
+    {
+      "word": "input",
+      "startMs": 128693,
+      "endMs": 129133
+    },
+    {
+      "word": "parentheses",
+      "startMs": 129173,
+      "endMs": 129794
+    },
+    {
+      "word": "to",
+      "startMs": 129914,
+      "endMs": 129974
+    },
+    {
+      "word": "make",
+      "startMs": 130034,
+      "endMs": 130154
+    },
+    {
+      "word": "it",
+      "startMs": 130214,
+      "endMs": 130255
+    },
+    {
+      "word": "truly",
+      "startMs": 130355,
+      "endMs": 130695
+    },
+    {
+      "word": "interactive.",
+      "startMs": 130775,
+      "endMs": 131396
+    },
+    {
+      "word": "The",
+      "startMs": 132017,
+      "endMs": 132097
+    },
+    {
+      "word": "possibilities",
+      "startMs": 132137,
+      "endMs": 132858
+    },
+    {
+      "word": "are",
+      "startMs": 132878,
+      "endMs": 133018
+    },
+    {
+      "word": "endless.",
+      "startMs": 133058,
+      "endMs": 133819
+    }
+  ],
+  "sections": [
+    {
+      "id": "what-were-building",
+      "startMs": 31,
+      "endMs": 17162,
+      "wordStart": 0,
+      "wordEnd": 47,
+      "wer": 0.041666666666666664
+    },
+    {
+      "id": "picking-the-secret-number",
+      "startMs": 17142,
+      "endMs": 46153,
+      "wordStart": 47,
+      "wordEnd": 133,
+      "wer": 0.022988505747126436
+    },
+    {
+      "id": "checking-a-guess-with-if-else",
+      "startMs": 46572,
+      "endMs": 69424,
+      "wordStart": 133,
+      "wordEnd": 205,
+      "wer": 0.027777777777777776
+    },
+    {
+      "id": "the-game-loop-guessing-until-its-right",
+      "startMs": 69860,
+      "endMs": 93690,
+      "wordStart": 205,
+      "wordEnd": 280,
+      "wer": 0
+    },
+    {
+      "id": "what-your-program-just-did",
+      "startMs": 93991,
+      "endMs": 111898,
+      "wordStart": 280,
+      "wordEnd": 338,
+      "wer": 0
+    },
+    {
+      "id": "where-to-go-from-here",
+      "startMs": 112452,
+      "endMs": 133819,
+      "wordStart": 338,
+      "wordEnd": 405,
+      "wer": 0.014492753623188406
+    }
+  ],
+  "displayWords": [
+    {
+      "word": "Today,",
+      "startMs": 31,
+      "endMs": 412
+    },
+    {
+      "word": "we're",
+      "startMs": 432,
+      "endMs": 752
+    },
+    {
+      "word": "building",
+      "startMs": 792,
+      "endMs": 1153
+    },
+    {
+      "word": "a",
+      "startMs": 1173,
+      "endMs": 1193
+    },
+    {
+      "word": "number",
+      "startMs": 1393,
+      "endMs": 1674
+    },
+    {
+      "word": "guessing",
+      "startMs": 1734,
+      "endMs": 2055
+    },
+    {
+      "word": "game.",
+      "startMs": 2075,
+      "endMs": 2335
+    },
+    {
+      "word": "It's",
+      "startMs": 2816,
+      "endMs": 2916
+    },
+    {
+      "word": "a",
+      "startMs": 2956,
+      "endMs": 2976
+    },
+    {
+      "word": "classic",
+      "startMs": 3056,
+      "endMs": 3517
+    },
+    {
+      "word": "first",
+      "startMs": 3597,
+      "endMs": 3878
+    },
+    {
+      "word": "program.",
+      "startMs": 3938,
+      "endMs": 4379
+    },
+    {
+      "word": "In",
+      "startMs": 4920,
+      "endMs": 4980
+    },
+    {
+      "word": "this",
+      "startMs": 5020,
+      "endMs": 5180
+    },
+    {
+      "word": "game,",
+      "startMs": 5260,
+      "endMs": 5541
+    },
+    {
+      "word": "the",
+      "startMs": 5681,
+      "endMs": 5761
+    },
+    {
+      "word": "program",
+      "startMs": 5801,
+      "endMs": 6242
+    },
+    {
+      "word": "picks",
+      "startMs": 6302,
+      "endMs": 6483
+    },
+    {
+      "word": "a",
+      "startMs": 6543,
+      "endMs": 6563
+    },
+    {
+      "word": "secret",
+      "startMs": 6643,
+      "endMs": 6964
+    },
+    {
+      "word": "number,",
+      "startMs": 7004,
+      "endMs": 7284
+    },
+    {
+      "word": "and",
+      "startMs": 7625,
+      "endMs": 7705
+    },
+    {
+      "word": "the",
+      "startMs": 7725,
+      "endMs": 7805
+    },
+    {
+      "word": "player",
+      "startMs": 7845,
+      "endMs": 8146
+    },
+    {
+      "word": "tries",
+      "startMs": 8226,
+      "endMs": 8486
+    },
+    {
+      "word": "to",
+      "startMs": 8526,
+      "endMs": 8607
+    },
+    {
+      "word": "find",
+      "startMs": 8647,
+      "endMs": 8907
+    },
+    {
+      "word": "it.",
+      "startMs": 8967,
+      "endMs": 9047
+    },
+    {
+      "word": "We'll",
+      "startMs": 9608,
+      "endMs": 9749
+    },
+    {
+      "word": "use",
+      "startMs": 9829,
+      "endMs": 9929
+    },
+    {
+      "word": "everything",
+      "startMs": 10069,
+      "endMs": 10450
+    },
+    {
+      "word": "we've",
+      "startMs": 10470,
+      "endMs": 10690
+    },
+    {
+      "word": "learned",
+      "startMs": 10750,
+      "endMs": 10991
+    },
+    {
+      "word": "so",
+      "startMs": 11051,
+      "endMs": 11191
+    },
+    {
+      "word": "far:",
+      "startMs": 11251,
+      "endMs": 11492
+    },
+    {
+      "word": "print",
+      "startMs": 11973,
+      "endMs": 12153
+    },
+    {
+      "word": "statements,",
+      "startMs": 12173,
+      "endMs": 12594
+    },
+    {
+      "word": "variables,",
+      "startMs": 12814,
+      "endMs": 13375
+    },
+    {
+      "word": "if-else",
+      "startMs": 13395,
+      "endMs": 13836
+    },
+    {
+      "word": "conditions,",
+      "startMs": 13856,
+      "endMs": 14377
+    },
+    {
+      "word": "and",
+      "startMs": 14477,
+      "endMs": 14557
+    },
+    {
+      "word": "loops.",
+      "startMs": 14597,
+      "endMs": 14878
+    },
+    {
+      "word": "It's",
+      "startMs": 15459,
+      "endMs": 15559
+    },
+    {
+      "word": "going",
+      "startMs": 15579,
+      "endMs": 15759
+    },
+    {
+      "word": "to",
+      "startMs": 15780,
+      "endMs": 15820
+    },
+    {
+      "word": "be",
+      "startMs": 15860,
+      "endMs": 15960
+    },
+    {
+      "word": "fun!",
+      "startMs": 16040,
+      "endMs": 17162
+    },
+    {
+      "word": "To",
+      "startMs": 17162,
+      "endMs": 17402
+    },
+    {
+      "word": "pick",
+      "startMs": 17462,
+      "endMs": 17623
+    },
+    {
+      "word": "a",
+      "startMs": 17663,
+      "endMs": 17683
+    },
+    {
+      "word": "secret",
+      "startMs": 17763,
+      "endMs": 18083
+    },
+    {
+      "word": "number,",
+      "startMs": 18143,
+      "endMs": 18423
+    },
+    {
+      "word": "we'll",
+      "startMs": 18704,
+      "endMs": 18864
+    },
+    {
+      "word": "use",
+      "startMs": 18984,
+      "endMs": 19104
+    },
+    {
+      "word": "the",
+      "startMs": 19144,
+      "endMs": 19244
+    },
+    {
+      "word": "random",
+      "startMs": 19324,
+      "endMs": 19685
+    },
+    {
+      "word": "module.",
+      "startMs": 19725,
+      "endMs": 20105
+    },
+    {
+      "word": "This",
+      "startMs": 20686,
+      "endMs": 20866
+    },
+    {
+      "word": "module",
+      "startMs": 20966,
+      "endMs": 21326
+    },
+    {
+      "word": "can",
+      "startMs": 21387,
+      "endMs": 21527
+    },
+    {
+      "word": "choose",
+      "startMs": 21587,
+      "endMs": 21847
+    },
+    {
+      "word": "a",
+      "startMs": 21907,
+      "endMs": 21927
+    },
+    {
+      "word": "number",
+      "startMs": 21987,
+      "endMs": 22227
+    },
+    {
+      "word": "for",
+      "startMs": 22288,
+      "endMs": 22428
+    },
+    {
+      "word": "us.",
+      "startMs": 22548,
+      "endMs": 22668
+    },
+    {
+      "word": "By",
+      "startMs": 23269,
+      "endMs": 23389
+    },
+    {
+      "word": "using",
+      "startMs": 23509,
+      "endMs": 23709
+    },
+    {
+      "word": "random.seed(),",
+      "startMs": 23809,
+      "endMs": 24390
+    },
+    {
+      "word": "we",
+      "startMs": 25411,
+      "endMs": 25511
+    },
+    {
+      "word": "can",
+      "startMs": 25551,
+      "endMs": 25671
+    },
+    {
+      "word": "make",
+      "startMs": 25711,
+      "endMs": 25871
+    },
+    {
+      "word": "the",
+      "startMs": 25891,
+      "endMs": 25991
+    },
+    {
+      "word": "choice",
+      "startMs": 26052,
+      "endMs": 26312
+    },
+    {
+      "word": "repeatable,",
+      "startMs": 26332,
+      "endMs": 26852
+    },
+    {
+      "word": "which",
+      "startMs": 27193,
+      "endMs": 27333
+    },
+    {
+      "word": "is",
+      "startMs": 27413,
+      "endMs": 27473
+    },
+    {
+      "word": "perfect",
+      "startMs": 27573,
+      "endMs": 27994
+    },
+    {
+      "word": "for",
+      "startMs": 28054,
+      "endMs": 28154
+    },
+    {
+      "word": "testing.",
+      "startMs": 28194,
+      "endMs": 28594
+    },
+    {
+      "word": "And",
+      "startMs": 29055,
+      "endMs": 29135
+    },
+    {
+      "word": "with",
+      "startMs": 29175,
+      "endMs": 29295
+    },
+    {
+      "word": "random.randint(1,",
+      "startMs": 29355,
+      "endMs": 30676
+    },
+    {
+      "word": "10),",
+      "startMs": 30676,
+      "endMs": 30676
+    },
+    {
+      "word": "we",
+      "startMs": 31397,
+      "endMs": 31497
+    },
+    {
+      "word": "can",
+      "startMs": 31537,
+      "endMs": 31638
+    },
+    {
+      "word": "get",
+      "startMs": 31678,
+      "endMs": 31778
+    },
+    {
+      "word": "a",
+      "startMs": 31818,
+      "endMs": 31858
+    },
+    {
+      "word": "whole",
+      "startMs": 31918,
+      "endMs": 32098
+    },
+    {
+      "word": "number",
+      "startMs": 32158,
+      "endMs": 32398
+    },
+    {
+      "word": "from",
+      "startMs": 32458,
+      "endMs": 32599
+    },
+    {
+      "word": "1",
+      "startMs": 32619,
+      "endMs": 32639
+    },
+    {
+      "word": "to",
+      "startMs": 32899,
+      "endMs": 32979
+    },
+    {
+      "word": "10.",
+      "startMs": 32999,
+      "endMs": 33279
+    },
+    {
+      "word": "Let's",
+      "startMs": 33940,
+      "endMs": 34120
+    },
+    {
+      "word": "look",
+      "startMs": 34180,
+      "endMs": 34340
+    },
+    {
+      "word": "at",
+      "startMs": 34400,
+      "endMs": 34440
+    },
+    {
+      "word": "that",
+      "startMs": 34461,
+      "endMs": 34661
+    },
+    {
+      "word": "in",
+      "startMs": 34721,
+      "endMs": 34781
+    },
+    {
+      "word": "a",
+      "startMs": 34821,
+      "endMs": 34841
+    },
+    {
+      "word": "picture.",
+      "startMs": 34901,
+      "endMs": 35281
+    },
+    {
+      "word": "Here's",
+      "startMs": 35642,
+      "endMs": 35902
+    },
+    {
+      "word": "how",
+      "startMs": 35942,
+      "endMs": 36082
+    },
+    {
+      "word": "it",
+      "startMs": 36162,
+      "endMs": 36202
+    },
+    {
+      "word": "works.",
+      "startMs": 36242,
+      "endMs": 36543
+    },
+    {
+      "word": "First,",
+      "startMs": 37183,
+      "endMs": 37484
+    },
+    {
+      "word": "we",
+      "startMs": 37704,
+      "endMs": 37804
+    },
+    {
+      "word": "import",
+      "startMs": 37884,
+      "endMs": 38225
+    },
+    {
+      "word": "random.",
+      "startMs": 38285,
+      "endMs": 38685
+    },
+    {
+      "word": "Then",
+      "startMs": 39266,
+      "endMs": 39406
+    },
+    {
+      "word": "we",
+      "startMs": 39446,
+      "endMs": 39546
+    },
+    {
+      "word": "set",
+      "startMs": 39606,
+      "endMs": 39766
+    },
+    {
+      "word": "the",
+      "startMs": 39786,
+      "endMs": 39886
+    },
+    {
+      "word": "seed",
+      "startMs": 39946,
+      "endMs": 40167
+    },
+    {
+      "word": "to",
+      "startMs": 40227,
+      "endMs": 40307
+    },
+    {
+      "word": "7",
+      "startMs": 40327,
+      "endMs": 40607
+    },
+    {
+      "word": "and",
+      "startMs": 40727,
+      "endMs": 40927
+    },
+    {
+      "word": "pick",
+      "startMs": 40987,
+      "endMs": 41168
+    },
+    {
+      "word": "our",
+      "startMs": 41208,
+      "endMs": 41288
+    },
+    {
+      "word": "secret",
+      "startMs": 41348,
+      "endMs": 41648
+    },
+    {
+      "word": "number.",
+      "startMs": 41708,
+      "endMs": 41969
+    },
+    {
+      "word": "Finally,",
+      "startMs": 42469,
+      "endMs": 42849
+    },
+    {
+      "word": "we",
+      "startMs": 43130,
+      "endMs": 43250
+    },
+    {
+      "word": "print",
+      "startMs": 43290,
+      "endMs": 43470
+    },
+    {
+      "word": "a",
+      "startMs": 43510,
+      "endMs": 43530
+    },
+    {
+      "word": "message",
+      "startMs": 43570,
+      "endMs": 43971
+    },
+    {
+      "word": "to",
+      "startMs": 44091,
+      "endMs": 44171
+    },
+    {
+      "word": "confirm",
+      "startMs": 44211,
+      "endMs": 44611
+    },
+    {
+      "word": "the",
+      "startMs": 44651,
+      "endMs": 44732
+    },
+    {
+      "word": "number",
+      "startMs": 44772,
+      "endMs": 45012
+    },
+    {
+      "word": "is",
+      "startMs": 45112,
+      "endMs": 45172
+    },
+    {
+      "word": "chosen.",
+      "startMs": 45252,
+      "endMs": 46153
+    },
+    {
+      "word": "Next,",
+      "startMs": 46572,
+      "endMs": 47053
+    },
+    {
+      "word": "we",
+      "startMs": 47213,
+      "endMs": 47313
+    },
+    {
+      "word": "need",
+      "startMs": 47373,
+      "endMs": 47533
+    },
+    {
+      "word": "to",
+      "startMs": 47573,
+      "endMs": 47633
+    },
+    {
+      "word": "check",
+      "startMs": 47694,
+      "endMs": 47954
+    },
+    {
+      "word": "if",
+      "startMs": 48034,
+      "endMs": 48094
+    },
+    {
+      "word": "the",
+      "startMs": 48134,
+      "endMs": 48194
+    },
+    {
+      "word": "player's",
+      "startMs": 48234,
+      "endMs": 48595
+    },
+    {
+      "word": "guess",
+      "startMs": 48635,
+      "endMs": 48895
+    },
+    {
+      "word": "is",
+      "startMs": 48995,
+      "endMs": 49076
+    },
+    {
+      "word": "correct.",
+      "startMs": 49136,
+      "endMs": 49536
+    },
+    {
+      "word": "We",
+      "startMs": 50077,
+      "endMs": 50157
+    },
+    {
+      "word": "can",
+      "startMs": 50197,
+      "endMs": 50297
+    },
+    {
+      "word": "compare",
+      "startMs": 50337,
+      "endMs": 50678
+    },
+    {
+      "word": "the",
+      "startMs": 50718,
+      "endMs": 50798
+    },
+    {
+      "word": "guess",
+      "startMs": 50838,
+      "endMs": 51098
+    },
+    {
+      "word": "to",
+      "startMs": 51138,
+      "endMs": 51198
+    },
+    {
+      "word": "the",
+      "startMs": 51239,
+      "endMs": 51319
+    },
+    {
+      "word": "secret",
+      "startMs": 51379,
+      "endMs": 51699
+    },
+    {
+      "word": "number",
+      "startMs": 51759,
+      "endMs": 52040
+    },
+    {
+      "word": "using",
+      "startMs": 52380,
+      "endMs": 52600
+    },
+    {
+      "word": "the",
+      "startMs": 52641,
+      "endMs": 52701
+    },
+    {
+      "word": "==",
+      "startMs": 52701,
+      "endMs": 53602
+    },
+    {
+      "word": "operator.",
+      "startMs": 53602,
+      "endMs": 54143
+    },
+    {
+      "word": "If",
+      "startMs": 54743,
+      "endMs": 54804
+    },
+    {
+      "word": "they",
+      "startMs": 54844,
+      "endMs": 54964
+    },
+    {
+      "word": "match,",
+      "startMs": 55024,
+      "endMs": 55344
+    },
+    {
+      "word": "we",
+      "startMs": 55565,
+      "endMs": 55705
+    },
+    {
+      "word": "print",
+      "startMs": 55745,
+      "endMs": 55905
+    },
+    {
+      "word": "a",
+      "startMs": 55945,
+      "endMs": 55965
+    },
+    {
+      "word": "win",
+      "startMs": 56005,
+      "endMs": 56185
+    },
+    {
+      "word": "message.",
+      "startMs": 56246,
+      "endMs": 56646
+    },
+    {
+      "word": "If",
+      "startMs": 57307,
+      "endMs": 57387
+    },
+    {
+      "word": "not,",
+      "startMs": 57467,
+      "endMs": 57728
+    },
+    {
+      "word": "we",
+      "startMs": 57968,
+      "endMs": 58088
+    },
+    {
+      "word": "print",
+      "startMs": 58128,
+      "endMs": 58288
+    },
+    {
+      "word": "a",
+      "startMs": 58328,
+      "endMs": 58349
+    },
+    {
+      "word": "hint",
+      "startMs": 58409,
+      "endMs": 58629
+    },
+    {
+      "word": "to",
+      "startMs": 58669,
+      "endMs": 58749
+    },
+    {
+      "word": "try",
+      "startMs": 58789,
+      "endMs": 58989
+    },
+    {
+      "word": "again.",
+      "startMs": 59049,
+      "endMs": 59270
+    },
+    {
+      "word": "For",
+      "startMs": 59791,
+      "endMs": 59891
+    },
+    {
+      "word": "example,",
+      "startMs": 59951,
+      "endMs": 60371
+    },
+    {
+      "word": "if",
+      "startMs": 60612,
+      "endMs": 60672
+    },
+    {
+      "word": "our",
+      "startMs": 60732,
+      "endMs": 60812
+    },
+    {
+      "word": "secret",
+      "startMs": 60872,
+      "endMs": 61172
+    },
+    {
+      "word": "number",
+      "startMs": 61213,
+      "endMs": 61433
+    },
+    {
+      "word": "is",
+      "startMs": 61533,
+      "endMs": 61593
+    },
+    {
+      "word": "6",
+      "startMs": 61693,
+      "endMs": 61994
+    },
+    {
+      "word": "and",
+      "startMs": 62154,
+      "endMs": 62214
+    },
+    {
+      "word": "the",
+      "startMs": 62234,
+      "endMs": 62314
+    },
+    {
+      "word": "user",
+      "startMs": 62474,
+      "endMs": 62715
+    },
+    {
+      "word": "guesses",
+      "startMs": 63015,
+      "endMs": 63075
+    },
+    {
+      "word": "4,",
+      "startMs": 63195,
+      "endMs": 63456
+    },
+    {
+      "word": "we",
+      "startMs": 63876,
+      "endMs": 63976
+    },
+    {
+      "word": "can",
+      "startMs": 64016,
+      "endMs": 64157
+    },
+    {
+      "word": "see",
+      "startMs": 64197,
+      "endMs": 64337
+    },
+    {
+      "word": "how",
+      "startMs": 64377,
+      "endMs": 64497
+    },
+    {
+      "word": "the",
+      "startMs": 64557,
+      "endMs": 64657
+    },
+    {
+      "word": "if-else",
+      "startMs": 64717,
+      "endMs": 65058
+    },
+    {
+      "word": "statement",
+      "startMs": 65078,
+      "endMs": 65438
+    },
+    {
+      "word": "works.",
+      "startMs": 65458,
+      "endMs": 65719
+    },
+    {
+      "word": "It",
+      "startMs": 66420,
+      "endMs": 66480
+    },
+    {
+      "word": "checks",
+      "startMs": 66540,
+      "endMs": 66800
+    },
+    {
+      "word": "the",
+      "startMs": 66840,
+      "endMs": 66921
+    },
+    {
+      "word": "guess",
+      "startMs": 66961,
+      "endMs": 67261
+    },
+    {
+      "word": "and",
+      "startMs": 67461,
+      "endMs": 67541
+    },
+    {
+      "word": "gives",
+      "startMs": 67581,
+      "endMs": 67802
+    },
+    {
+      "word": "feedback",
+      "startMs": 67842,
+      "endMs": 68282
+    },
+    {
+      "word": "accordingly.",
+      "startMs": 68363,
+      "endMs": 69424
+    },
+    {
+      "word": "Now,",
+      "startMs": 69860,
+      "endMs": 70160
+    },
+    {
+      "word": "let's",
+      "startMs": 70301,
+      "endMs": 70521
+    },
+    {
+      "word": "talk",
+      "startMs": 70581,
+      "endMs": 70781
+    },
+    {
+      "word": "about",
+      "startMs": 70821,
+      "endMs": 70981
+    },
+    {
+      "word": "the",
+      "startMs": 71001,
+      "endMs": 71082
+    },
+    {
+      "word": "game",
+      "startMs": 71122,
+      "endMs": 71342
+    },
+    {
+      "word": "loop.",
+      "startMs": 71382,
+      "endMs": 71602
+    },
+    {
+      "word": "Since",
+      "startMs": 72123,
+      "endMs": 72283
+    },
+    {
+      "word": "a",
+      "startMs": 72323,
+      "endMs": 72343
+    },
+    {
+      "word": "program",
+      "startMs": 72403,
+      "endMs": 72844
+    },
+    {
+      "word": "can't",
+      "startMs": 72924,
+      "endMs": 73184
+    },
+    {
+      "word": "type,",
+      "startMs": 73244,
+      "endMs": 73525
+    },
+    {
+      "word": "we",
+      "startMs": 73885,
+      "endMs": 73985
+    },
+    {
+      "word": "give",
+      "startMs": 74025,
+      "endMs": 74165
+    },
+    {
+      "word": "it",
+      "startMs": 74205,
+      "endMs": 74246
+    },
+    {
+      "word": "a",
+      "startMs": 74286,
+      "endMs": 74306
+    },
+    {
+      "word": "list",
+      "startMs": 74346,
+      "endMs": 74526
+    },
+    {
+      "word": "of",
+      "startMs": 74566,
+      "endMs": 74626
+    },
+    {
+      "word": "guesses",
+      "startMs": 74646,
+      "endMs": 75047
+    },
+    {
+      "word": "to",
+      "startMs": 75127,
+      "endMs": 75207
+    },
+    {
+      "word": "work",
+      "startMs": 75267,
+      "endMs": 75447
+    },
+    {
+      "word": "with.",
+      "startMs": 75487,
+      "endMs": 75687
+    },
+    {
+      "word": "The",
+      "startMs": 76228,
+      "endMs": 76308
+    },
+    {
+      "word": "for",
+      "startMs": 76348,
+      "endMs": 76448
+    },
+    {
+      "word": "loop",
+      "startMs": 76468,
+      "endMs": 76669
+    },
+    {
+      "word": "will",
+      "startMs": 76689,
+      "endMs": 76829
+    },
+    {
+      "word": "try",
+      "startMs": 76869,
+      "endMs": 77089
+    },
+    {
+      "word": "each",
+      "startMs": 77129,
+      "endMs": 77369
+    },
+    {
+      "word": "guess",
+      "startMs": 77430,
+      "endMs": 77670
+    },
+    {
+      "word": "in",
+      "startMs": 77710,
+      "endMs": 77790
+    },
+    {
+      "word": "order,",
+      "startMs": 77870,
+      "endMs": 78090
+    },
+    {
+      "word": "just",
+      "startMs": 78431,
+      "endMs": 78611
+    },
+    {
+      "word": "like",
+      "startMs": 78671,
+      "endMs": 78811
+    },
+    {
+      "word": "a",
+      "startMs": 78851,
+      "endMs": 78871
+    },
+    {
+      "word": "player",
+      "startMs": 78951,
+      "endMs": 79272
+    },
+    {
+      "word": "would.",
+      "startMs": 79332,
+      "endMs": 79572
+    },
+    {
+      "word": "The",
+      "startMs": 80173,
+      "endMs": 80273
+    },
+    {
+      "word": "if-else",
+      "startMs": 80333,
+      "endMs": 80654
+    },
+    {
+      "word": "statement",
+      "startMs": 80694,
+      "endMs": 81094
+    },
+    {
+      "word": "decides",
+      "startMs": 81154,
+      "endMs": 81575
+    },
+    {
+      "word": "what",
+      "startMs": 81655,
+      "endMs": 81775
+    },
+    {
+      "word": "to",
+      "startMs": 81795,
+      "endMs": 81895
+    },
+    {
+      "word": "print",
+      "startMs": 81955,
+      "endMs": 82196
+    },
+    {
+      "word": "for",
+      "startMs": 82256,
+      "endMs": 82356
+    },
+    {
+      "word": "each",
+      "startMs": 82416,
+      "endMs": 82556
+    },
+    {
+      "word": "guess.",
+      "startMs": 82616,
+      "endMs": 82896
+    },
+    {
+      "word": "For",
+      "startMs": 83437,
+      "endMs": 83537
+    },
+    {
+      "word": "instance,",
+      "startMs": 83617,
+      "endMs": 84038
+    },
+    {
+      "word": "if",
+      "startMs": 84438,
+      "endMs": 84498
+    },
+    {
+      "word": "we",
+      "startMs": 84538,
+      "endMs": 84639
+    },
+    {
+      "word": "have",
+      "startMs": 84679,
+      "endMs": 84839
+    },
+    {
+      "word": "a",
+      "startMs": 84859,
+      "endMs": 84899
+    },
+    {
+      "word": "list",
+      "startMs": 84939,
+      "endMs": 85099
+    },
+    {
+      "word": "of",
+      "startMs": 85139,
+      "endMs": 85179
+    },
+    {
+      "word": "guesses,",
+      "startMs": 85239,
+      "endMs": 85640
+    },
+    {
+      "word": "the",
+      "startMs": 85680,
+      "endMs": 86161
+    },
+    {
+      "word": "program",
+      "startMs": 86201,
+      "endMs": 86641
+    },
+    {
+      "word": "will",
+      "startMs": 86681,
+      "endMs": 86821
+    },
+    {
+      "word": "check",
+      "startMs": 86881,
+      "endMs": 87102
+    },
+    {
+      "word": "each",
+      "startMs": 87202,
+      "endMs": 87362
+    },
+    {
+      "word": "one",
+      "startMs": 87562,
+      "endMs": 87662
+    },
+    {
+      "word": "against",
+      "startMs": 87743,
+      "endMs": 88043
+    },
+    {
+      "word": "the",
+      "startMs": 88083,
+      "endMs": 88183
+    },
+    {
+      "word": "secret",
+      "startMs": 88223,
+      "endMs": 88544
+    },
+    {
+      "word": "number",
+      "startMs": 88584,
+      "endMs": 88844
+    },
+    {
+      "word": "and",
+      "startMs": 89064,
+      "endMs": 89144
+    },
+    {
+      "word": "respond",
+      "startMs": 89204,
+      "endMs": 89665
+    },
+    {
+      "word": "accordingly.",
+      "startMs": 89725,
+      "endMs": 90246
+    },
+    {
+      "word": "This",
+      "startMs": 90286,
+      "endMs": 91127
+    },
+    {
+      "word": "makes",
+      "startMs": 91207,
+      "endMs": 91387
+    },
+    {
+      "word": "the",
+      "startMs": 91447,
+      "endMs": 91527
+    },
+    {
+      "word": "game",
+      "startMs": 91567,
+      "endMs": 91788
+    },
+    {
+      "word": "interactive",
+      "startMs": 91888,
+      "endMs": 92489
+    },
+    {
+      "word": "and",
+      "startMs": 92609,
+      "endMs": 92689
+    },
+    {
+      "word": "fun!",
+      "startMs": 92789,
+      "endMs": 93690
+    },
+    {
+      "word": "So,",
+      "startMs": 93991,
+      "endMs": 94311
+    },
+    {
+      "word": "what",
+      "startMs": 94352,
+      "endMs": 94552
+    },
+    {
+      "word": "did",
+      "startMs": 94572,
+      "endMs": 94672
+    },
+    {
+      "word": "your",
+      "startMs": 94692,
+      "endMs": 94792
+    },
+    {
+      "word": "program",
+      "startMs": 94832,
+      "endMs": 95273
+    },
+    {
+      "word": "just",
+      "startMs": 95313,
+      "endMs": 95493
+    },
+    {
+      "word": "do?",
+      "startMs": 95533,
+      "endMs": 95694
+    },
+    {
+      "word": "It",
+      "startMs": 95734,
+      "endMs": 96234
+    },
+    {
+      "word": "picked",
+      "startMs": 96294,
+      "endMs": 96495
+    },
+    {
+      "word": "a",
+      "startMs": 96535,
+      "endMs": 96555
+    },
+    {
+      "word": "secret",
+      "startMs": 96655,
+      "endMs": 96976
+    },
+    {
+      "word": "number",
+      "startMs": 96996,
+      "endMs": 97336
+    },
+    {
+      "word": "and",
+      "startMs": 97416,
+      "endMs": 97496
+    },
+    {
+      "word": "stored",
+      "startMs": 97576,
+      "endMs": 97877
+    },
+    {
+      "word": "it",
+      "startMs": 97937,
+      "endMs": 97977
+    },
+    {
+      "word": "in",
+      "startMs": 98057,
+      "endMs": 98117
+    },
+    {
+      "word": "a",
+      "startMs": 98137,
+      "endMs": 98157
+    },
+    {
+      "word": "variable.",
+      "startMs": 98217,
+      "endMs": 98678
+    },
+    {
+      "word": "Then,",
+      "startMs": 99339,
+      "endMs": 99539
+    },
+    {
+      "word": "it",
+      "startMs": 99559,
+      "endMs": 99599
+    },
+    {
+      "word": "looped",
+      "startMs": 100020,
+      "endMs": 100321
+    },
+    {
+      "word": "over",
+      "startMs": 100381,
+      "endMs": 100481
+    },
+    {
+      "word": "the",
+      "startMs": 100521,
+      "endMs": 100601
+    },
+    {
+      "word": "guesses",
+      "startMs": 100641,
+      "endMs": 100982
+    },
+    {
+      "word": "one",
+      "startMs": 101002,
+      "endMs": 101202
+    },
+    {
+      "word": "by",
+      "startMs": 101262,
+      "endMs": 101362
+    },
+    {
+      "word": "one.",
+      "startMs": 101402,
+      "endMs": 101683
+    },
+    {
+      "word": "For",
+      "startMs": 102263,
+      "endMs": 102364
+    },
+    {
+      "word": "each",
+      "startMs": 102444,
+      "endMs": 102584
+    },
+    {
+      "word": "guess,",
+      "startMs": 102644,
+      "endMs": 102945
+    },
+    {
+      "word": "it",
+      "startMs": 103205,
+      "endMs": 103245
+    },
+    {
+      "word": "made",
+      "startMs": 103305,
+      "endMs": 103465
+    },
+    {
+      "word": "a",
+      "startMs": 103505,
+      "endMs": 103525
+    },
+    {
+      "word": "decision",
+      "startMs": 103585,
+      "endMs": 104026
+    },
+    {
+      "word": "and",
+      "startMs": 104046,
+      "endMs": 104287
+    },
+    {
+      "word": "printed",
+      "startMs": 104347,
+      "endMs": 104627
+    },
+    {
+      "word": "the",
+      "startMs": 104667,
+      "endMs": 104747
+    },
+    {
+      "word": "result.",
+      "startMs": 104787,
+      "endMs": 105188
+    },
+    {
+      "word": "This",
+      "startMs": 105649,
+      "endMs": 105829
+    },
+    {
+      "word": "is",
+      "startMs": 106029,
+      "endMs": 106089
+    },
+    {
+      "word": "what",
+      "startMs": 106149,
+      "endMs": 106270
+    },
+    {
+      "word": "a",
+      "startMs": 106310,
+      "endMs": 106330
+    },
+    {
+      "word": "real",
+      "startMs": 106450,
+      "endMs": 106670
+    },
+    {
+      "word": "program",
+      "startMs": 106750,
+      "endMs": 107171
+    },
+    {
+      "word": "looks",
+      "startMs": 107211,
+      "endMs": 107431
+    },
+    {
+      "word": "like",
+      "startMs": 107491,
+      "endMs": 107732
+    },
+    {
+      "word": "—",
+      "startMs": 107732,
+      "endMs": 108273
+    },
+    {
+      "word": "it",
+      "startMs": 108273,
+      "endMs": 108333
+    },
+    {
+      "word": "has",
+      "startMs": 108373,
+      "endMs": 108533
+    },
+    {
+      "word": "the",
+      "startMs": 108573,
+      "endMs": 108713
+    },
+    {
+      "word": "same",
+      "startMs": 108773,
+      "endMs": 109014
+    },
+    {
+      "word": "structure",
+      "startMs": 109094,
+      "endMs": 109554
+    },
+    {
+      "word": "as",
+      "startMs": 109575,
+      "endMs": 109855
+    },
+    {
+      "word": "the",
+      "startMs": 109875,
+      "endMs": 109975
+    },
+    {
+      "word": "software",
+      "startMs": 110035,
+      "endMs": 110496
+    },
+    {
+      "word": "you",
+      "startMs": 110556,
+      "endMs": 110636
+    },
+    {
+      "word": "use",
+      "startMs": 110756,
+      "endMs": 110897
+    },
+    {
+      "word": "every",
+      "startMs": 110917,
+      "endMs": 111217
+    },
+    {
+      "word": "day.",
+      "startMs": 111257,
+      "endMs": 111898
+    },
+    {
+      "word": "Now",
+      "startMs": 112452,
+      "endMs": 112672
+    },
+    {
+      "word": "that",
+      "startMs": 112732,
+      "endMs": 112832
+    },
+    {
+      "word": "you've",
+      "startMs": 112853,
+      "endMs": 113053
+    },
+    {
+      "word": "built",
+      "startMs": 113093,
+      "endMs": 113273
+    },
+    {
+      "word": "your",
+      "startMs": 113293,
+      "endMs": 113433
+    },
+    {
+      "word": "game,",
+      "startMs": 113453,
+      "endMs": 113754
+    },
+    {
+      "word": "where",
+      "startMs": 114074,
+      "endMs": 114214
+    },
+    {
+      "word": "do",
+      "startMs": 114234,
+      "endMs": 114294
+    },
+    {
+      "word": "you",
+      "startMs": 114314,
+      "endMs": 114394
+    },
+    {
+      "word": "go",
+      "startMs": 114414,
+      "endMs": 114535
+    },
+    {
+      "word": "from",
+      "startMs": 114595,
+      "endMs": 114715
+    },
+    {
+      "word": "here?",
+      "startMs": 114775,
+      "endMs": 114935
+    },
+    {
+      "word": "You",
+      "startMs": 115536,
+      "endMs": 115636
+    },
+    {
+      "word": "could",
+      "startMs": 115676,
+      "endMs": 115796
+    },
+    {
+      "word": "change",
+      "startMs": 115856,
+      "endMs": 116157
+    },
+    {
+      "word": "the",
+      "startMs": 116217,
+      "endMs": 116297
+    },
+    {
+      "word": "range",
+      "startMs": 116357,
+      "endMs": 116677
+    },
+    {
+      "word": "to",
+      "startMs": 116757,
+      "endMs": 116838
+    },
+    {
+      "word": "1-100",
+      "startMs": 116858,
+      "endMs": 117318
+    },
+    {
+      "word": "and",
+      "startMs": 117458,
+      "endMs": 117759
+    },
+    {
+      "word": "add",
+      "startMs": 118239,
+      "endMs": 118500
+    },
+    {
+      "word": "more",
+      "startMs": 118540,
+      "endMs": 118700
+    },
+    {
+      "word": "guesses.",
+      "startMs": 118760,
+      "endMs": 119160
+    },
+    {
+      "word": "You",
+      "startMs": 119821,
+      "endMs": 119921
+    },
+    {
+      "word": "might",
+      "startMs": 119961,
+      "endMs": 120102
+    },
+    {
+      "word": "also",
+      "startMs": 120202,
+      "endMs": 120442
+    },
+    {
+      "word": "want",
+      "startMs": 120502,
+      "endMs": 120622
+    },
+    {
+      "word": "to",
+      "startMs": 120662,
+      "endMs": 120702
+    },
+    {
+      "word": "count",
+      "startMs": 120763,
+      "endMs": 120923
+    },
+    {
+      "word": "the",
+      "startMs": 120963,
+      "endMs": 121043
+    },
+    {
+      "word": "attempts",
+      "startMs": 121103,
+      "endMs": 121463
+    },
+    {
+      "word": "with",
+      "startMs": 121523,
+      "endMs": 121624
+    },
+    {
+      "word": "a",
+      "startMs": 121684,
+      "endMs": 121704
+    },
+    {
+      "word": "variable",
+      "startMs": 121744,
+      "endMs": 122244
+    },
+    {
+      "word": "that",
+      "startMs": 122304,
+      "endMs": 122425
+    },
+    {
+      "word": "increases",
+      "startMs": 122505,
+      "endMs": 123085
+    },
+    {
+      "word": "by",
+      "startMs": 123186,
+      "endMs": 123306
+    },
+    {
+      "word": "1",
+      "startMs": 123326,
+      "endMs": 123626
+    },
+    {
+      "word": "each",
+      "startMs": 123706,
+      "endMs": 123866
+    },
+    {
+      "word": "loop.",
+      "startMs": 123906,
+      "endMs": 124587
+    },
+    {
+      "word": "And",
+      "startMs": 124607,
+      "endMs": 124687
+    },
+    {
+      "word": "when",
+      "startMs": 124728,
+      "endMs": 124828
+    },
+    {
+      "word": "you",
+      "startMs": 124848,
+      "endMs": 124968
+    },
+    {
+      "word": "run",
+      "startMs": 125008,
+      "endMs": 125168
+    },
+    {
+      "word": "Python",
+      "startMs": 125228,
+      "endMs": 125789
+    },
+    {
+      "word": "on",
+      "startMs": 125869,
+      "endMs": 125929
+    },
+    {
+      "word": "your",
+      "startMs": 125949,
+      "endMs": 126069
+    },
+    {
+      "word": "own",
+      "startMs": 126149,
+      "endMs": 126249
+    },
+    {
+      "word": "computer,",
+      "startMs": 126310,
+      "endMs": 126750
+    },
+    {
+      "word": "you",
+      "startMs": 127171,
+      "endMs": 127271
+    },
+    {
+      "word": "can",
+      "startMs": 127311,
+      "endMs": 127431
+    },
+    {
+      "word": "swap",
+      "startMs": 127491,
+      "endMs": 127751
+    },
+    {
+      "word": "the",
+      "startMs": 127791,
+      "endMs": 127892
+    },
+    {
+      "word": "guess",
+      "startMs": 127952,
+      "endMs": 128212
+    },
+    {
+      "word": "list",
+      "startMs": 128272,
+      "endMs": 128492
+    },
+    {
+      "word": "for",
+      "startMs": 128552,
+      "endMs": 128652
+    },
+    {
+      "word": "input()",
+      "startMs": 128693,
+      "endMs": 129133
+    },
+    {
+      "word": "to",
+      "startMs": 129914,
+      "endMs": 129974
+    },
+    {
+      "word": "make",
+      "startMs": 130034,
+      "endMs": 130154
+    },
+    {
+      "word": "it",
+      "startMs": 130214,
+      "endMs": 130255
+    },
+    {
+      "word": "truly",
+      "startMs": 130355,
+      "endMs": 130695
+    },
+    {
+      "word": "interactive.",
+      "startMs": 130775,
+      "endMs": 131396
+    },
+    {
+      "word": "The",
+      "startMs": 132017,
+      "endMs": 132097
+    },
+    {
+      "word": "possibilities",
+      "startMs": 132137,
+      "endMs": 132858
+    },
+    {
+      "word": "are",
+      "startMs": 132878,
+      "endMs": 133018
+    },
+    {
+      "word": "endless!",
+      "startMs": 133058,
+      "endMs": 133819
+    }
+  ],
+  "displaySections": [
+    {
+      "id": "what-were-building",
+      "startMs": 31,
+      "endMs": 17162,
+      "wordStart": 0,
+      "wordEnd": 47,
+      "wer": 0
+    },
+    {
+      "id": "picking-the-secret-number",
+      "startMs": 17162,
+      "endMs": 46153,
+      "wordStart": 47,
+      "wordEnd": 131,
+      "wer": 0
+    },
+    {
+      "id": "checking-a-guess-with-if-else",
+      "startMs": 46572,
+      "endMs": 69424,
+      "wordStart": 131,
+      "wordEnd": 201,
+      "wer": 0
+    },
+    {
+      "id": "the-game-loop-guessing-until-its-right",
+      "startMs": 69860,
+      "endMs": 93690,
+      "wordStart": 201,
+      "wordEnd": 276,
+      "wer": 0
+    },
+    {
+      "id": "what-your-program-just-did",
+      "startMs": 93991,
+      "endMs": 111898,
+      "wordStart": 276,
+      "wordEnd": 335,
+      "wer": 0
+    },
+    {
+      "id": "where-to-go-from-here",
+      "startMs": 112452,
+      "endMs": 133819,
+      "wordStart": 335,
+      "wordEnd": 401,
+      "wer": 0
+    }
+  ]
+}

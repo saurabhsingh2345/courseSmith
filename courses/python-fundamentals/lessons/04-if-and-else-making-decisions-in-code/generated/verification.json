@@ -1,0 +1,38 @@
+{
+  "runner": "docker-sandbox",
+  "blocks": [
+    {
+      "source": "lesson.md",
+      "index": 0,
+      "code": "age = 18\nif age \u003e= 18:\n    print(\"You are an adult.\")",
+      "claimed_output": "You are an adult.",
+      "hash": "sha256:4b639be52e7911796b643b84e2dac43cd90a6b43393daee250c4462d73fa6a90",
+      "stdout": "You are an adult.\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-26T13:54:55.965124Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 1,
+      "code": "age = 16\nif age \u003e= 18:\n    print(\"You are an adult.\")\nelse:\n    print(\"You are a minor.\")",
+      "claimed_output": "You are a minor.",
+      "hash": "sha256:3f2cfb044a92eaa8a20d4a88894fe5a846a23440aa7fee97cd8b8db996d37029",
+      "stdout": "You are a minor.\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-26T13:54:56.10559Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 2,
+      "code": "temperature = 30\nif temperature \u003e 25:\n    print(\"It's a hot day.\")\nelse:\n    print(\"It's a cool day.\")",
+      "claimed_output": "It's a hot day.",
+      "hash": "sha256:d11d6c5fd346a4d1291d7b116a635819d566b29306f259e4708a41422d970996",
+      "stdout": "It's a hot day.\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-26T13:54:56.253128Z"
+    }
+  ]
+}

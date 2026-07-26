@@ -1,0 +1,65 @@
+{
+  "source": "whisperx",
+  "overall_wer": 0.02527075812274368,
+  "threshold": 0.05,
+  "sections": [
+    {
+      "id": "you-already-used-one",
+      "words": 71,
+      "errors": 2,
+      "wer": 0.028169014084507043,
+      "flagged": false
+    },
+    {
+      "id": "giving-a-value-a-name",
+      "words": 99,
+      "errors": 4,
+      "wer": 0.04040404040404041,
+      "flagged": false
+    },
+    {
+      "id": "names-without-quotes-text-with-quotes",
+      "words": 65,
+      "errors": 1,
+      "wer": 0.015384615384615385,
+      "flagged": false
+    },
+    {
+      "id": "picking-good-names",
+      "words": 69,
+      "errors": 2,
+      "wer": 0.028985507246376812,
+      "flagged": false
+    },
+    {
+      "id": "changing-what-is-inside",
+      "words": 66,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "variables-can-hold-numbers-too",
+      "words": 64,
+      "errors": 3,
+      "wer": 0.046875,
+      "flagged": false
+    },
+    {
+      "id": "variables-working-together",
+      "words": 65,
+      "errors": 2,
+      "wer": 0.03076923076923077,
+      "flagged": false
+    },
+    {
+      "id": "whats-next",
+      "words": 55,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    }
+  ],
+  "flagged": null,
+  "checked_at": "2026-07-20T09:47:48.016459Z"
+}

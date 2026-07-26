@@ -1,0 +1,80 @@
+{
+  "code": "my_variable = 10\nmy_variable = my_variable + 5\nprint(my_variable)",
+  "lines": [
+    "my_variable = 10",
+    "my_variable = my_variable + 5",
+    "print(my_variable)"
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "line": 1,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 1,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "my_variable",
+          "value": {
+            "type": "int",
+            "repr": "10"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 2,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "my_variable",
+          "value": {
+            "type": "int",
+            "repr": "15"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 3,
+      "line": 3,
+      "event": "return",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "my_variable",
+          "value": {
+            "type": "int",
+            "repr": "15"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "15\n"
+    }
+  ],
+  "truncated": false,
+  "stdout": "15\n"
+}

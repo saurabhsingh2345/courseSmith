@@ -1,0 +1,71 @@
+{
+  "title": "What is Python? Quiz",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "recall",
+      "prompt": "What is Python?",
+      "options": [
+        "A programming language for communicating with computers",
+        "A type of snake",
+        "A type of computer hardware",
+        "A video game"
+      ],
+      "answer_index": 0,
+      "explanation": "Python is a programming language designed for writing instructions that computers can understand."
+    },
+    {
+      "id": "q2",
+      "type": "application",
+      "prompt": "Which of these would print your age?",
+      "options": [
+        "print('My age is', age)",
+        "print(age)",
+        "print('My age is' + age)",
+        "print('My age is ' + str(age))"
+      ],
+      "answer_index": 3,
+      "explanation": "The correct option converts the age to a string before concatenating it with text, ensuring it prints correctly."
+    },
+    {
+      "id": "q3",
+      "type": "debugging",
+      "prompt": "What is wrong with this code?\n```python\nprint('Hello, world!)\n```",
+      "options": [
+        "Missing a closing parenthesis",
+        "Missing a closing quote",
+        "Extra space in the function name",
+        "Nothing is wrong"
+      ],
+      "answer_index": 1,
+      "explanation": "The code is missing a closing quote for the string, which will cause a syntax error."
+    },
+    {
+      "id": "q4",
+      "type": "prediction",
+      "prompt": "What does this print?\n```python\nprint(7 * 6)\n```",
+      "review": true,
+      "options": [
+        "42",
+        "12",
+        "76",
+        "an error"
+      ],
+      "answer_index": 0,
+      "explanation": "The expression 7 * 6 calculates to 42, which is printed directly."
+    },
+    {
+      "id": "q5",
+      "type": "recall",
+      "prompt": "Who created Python?",
+      "options": [
+        "Linus Torvalds",
+        "Guido van Rossum",
+        "Bill Gates",
+        "Mark Zuckerberg"
+      ],
+      "answer_index": 1,
+      "explanation": "Python was created by Guido van Rossum, who first released it in 1991."
+    }
+  ]
+}

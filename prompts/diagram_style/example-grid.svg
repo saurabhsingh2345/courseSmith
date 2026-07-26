@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480">
+  <style>
+    svg { --surface: #1b2332; --border: #3a4a66; --text: #f2f5fa; --muted: #a6b2bf; --accent: #f5a623; }
+    .cell { fill: var(--surface); stroke: var(--border); stroke-width: 2.5; rx: 16; }
+    .cell-title { font-family: sans-serif; font-size: 24px; font-weight: 700; fill: var(--text); text-anchor: middle; }
+    .cell-note { font-family: sans-serif; font-size: 18px; fill: var(--muted); text-anchor: middle; }
+    .hub { fill: var(--accent); }
+    .hub-label { font-family: sans-serif; font-size: 22px; font-weight: 700; fill: #14100a; text-anchor: middle; }
+    .spoke { stroke: var(--border); stroke-width: 3; }
+  </style>
+  <g id="spokes">
+    <line class="spoke" x1="400" y1="240" x2="190" y2="130"/>
+    <line class="spoke" x1="400" y1="240" x2="610" y2="130"/>
+    <line class="spoke" x1="400" y1="240" x2="190" y2="360"/>
+    <line class="spoke" x1="400" y1="240" x2="610" y2="360"/>
+  </g>
+  <g id="quadrant-top-left">
+    <rect class="cell" x="70" y="70" width="240" height="120"/>
+    <text class="cell-title" x="190" y="120">Websites</text>
+    <text class="cell-note" x="190" y="155">servers and apps</text>
+  </g>
+  <g id="quadrant-top-right">
+    <rect class="cell" x="490" y="70" width="240" height="120"/>
+    <text class="cell-title" x="610" y="120">Data</text>
+    <text class="cell-note" x="610" y="155">analysis and science</text>
+  </g>
+  <g id="quadrant-bottom-left">
+    <rect class="cell" x="70" y="300" width="240" height="120"/>
+    <text class="cell-title" x="190" y="350">Automation</text>
+    <text class="cell-note" x="190" y="385">boring tasks, gone</text>
+  </g>
+  <g id="quadrant-bottom-right">
+    <rect class="cell" x="490" y="300" width="240" height="120"/>
+    <text class="cell-title" x="610" y="350">AI</text>
+    <text class="cell-note" x="610" y="385">machine learning</text>
+  </g>
+  <g id="hub">
+    <circle class="hub" cx="400" cy="240" r="58"/>
+    <text class="hub-label" x="400" y="248">Python</text>
+  </g>
+</svg>

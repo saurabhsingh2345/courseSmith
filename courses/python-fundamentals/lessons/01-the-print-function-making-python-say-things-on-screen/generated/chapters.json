@@ -1,0 +1,38 @@
+[
+  {
+    "id": "introduction-to-the-print-function",
+    "title": "Introduction to the print function",
+    "start_ms": 0,
+    "end_ms": 23808
+  },
+  {
+    "id": "basic-usage-of-print",
+    "title": "Basic usage of print",
+    "start_ms": 23808,
+    "end_ms": 51719
+  },
+  {
+    "id": "printing-multiple-items",
+    "title": "Printing multiple items",
+    "start_ms": 51719,
+    "end_ms": 73522
+  },
+  {
+    "id": "printing-numbers-and-calculations",
+    "title": "Printing numbers and calculations",
+    "start_ms": 73522,
+    "end_ms": 95830
+  },
+  {
+    "id": "experimenting-with-print",
+    "title": "Experimenting with print",
+    "start_ms": 95830,
+    "end_ms": 115372
+  },
+  {
+    "id": "whats-next",
+    "title": "Whats Next",
+    "start_ms": 115372,
+    "end_ms": 131878
+  }
+]

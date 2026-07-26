@@ -1,0 +1,27 @@
+{
+  "lesson_id": "01-what-is-python",
+  "source_hash": "sha256:8534e9381c413dffec5910b50ab411ea50a4b2974d1eeab734174bd54d5930b8",
+  "introduced": [
+    {
+      "name": "print function",
+      "term": "print function",
+      "section": "your-first-line-of-python",
+      "quote": "the print function takes whatever is inside the quotes"
+    }
+  ],
+  "used": [
+    {
+      "name": "string",
+      "term": "quotes",
+      "section": "your-first-line-of-python",
+      "quote": "whatever is inside the quotes"
+    },
+    {
+      "name": "variable",
+      "term": "variables",
+      "section": "what-s-next",
+      "quote": "we'll cover variables, which is how programs remember things"
+    }
+  ],
+  "extracted_at": "2026-07-17T13:14:01.544338Z"
+}

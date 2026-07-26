@@ -1,0 +1,236 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "threshold": 6,
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        {
+          "id": "q1",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks Python is named after the snake"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "distractors": [
+            {
+              "option_index": 0,
+              "plausibility": 6,
+              "misconception": "thinks the comma will automatically convert age to a string"
+            },
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks age can be printed directly without conversion"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 6,
+              "misconception": "thinks concatenation works without converting age to a string"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "distractors": [
+            {
+              "option_index": 0,
+              "plausibility": 6,
+              "misconception": "thinks the parenthesis is the only issue"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 1,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "distractors": [
+            {
+              "option_index": 0,
+              "plausibility": 6,
+              "misconception": "thinks Linus Torvalds is associated with programming languages"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 6,
+              "misconception": "thinks Bill Gates is known for creating programming languages"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 6,
+              "misconception": "thinks Mark Zuckerberg is involved in programming language development"
+            }
+          ]
+        }
+      ],
+      "weak": [
+        "q1 option 2 (none — no beginner error produces this)",
+        "q1 option 3 (none — no beginner error produces this)",
+        "q3 option 2 (none — no beginner error produces this)",
+        "q3 option 3 (none — no beginner error produces this)",
+        "q4 option 1 (none — no beginner error produces this)",
+        "q4 option 2 (none — no beginner error produces this)",
+        "q4 option 3 (none — no beginner error produces this)"
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks Python is just a type of snake"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks the numbers are concatenated as strings"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 9,
+              "misconception": "thinks quotes are not necessary for strings"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 6,
+              "misconception": "thinks the syntax is correct without quotes"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 9,
+              "misconception": "thinks commas can separate strings and numbers without quotes"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 9,
+              "misconception": "thinks the error is related to quotes or function usage"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks the output is a concatenation of the numbers"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        }
+      ],
+      "weak": [
+        "q1 option 2 (none — no beginner error produces this)",
+        "q1 option 3 (none — no beginner error produces this)",
+        "q2 option 2 (none — no beginner error produces this)",
+        "q2 option 3 (none — no beginner error produces this)",
+        "q4 option 2 (none — no beginner error produces this)",
+        "q4 option 3 (none — no beginner error produces this)",
+        "q5 option 2 (none — no beginner error produces this)",
+        "q5 option 3 (none — no beginner error produces this)"
+      ]
+    }
+  ],
+  "checked_at": "2026-07-18T16:20:44.920611Z"
+}

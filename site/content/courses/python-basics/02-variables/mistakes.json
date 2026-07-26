@@ -1,0 +1,30 @@
+{
+  "mistakes": [
+    {
+      "title": "Forgetting the quotes around text",
+      "explanation": "Beginners assume print(Hello) works because it reads naturally.",
+      "broken_code": "print(Hello)",
+      "traceback": "Traceback (most recent call last):\n  File \"\u003cstdin\u003e\", line 1, in \u003cmodule\u003e\nNameError: name 'Hello' is not defined",
+      "fix": "Wrap text in quotes so Python knows it is text, not a variable name.",
+      "fixed_code": "print(\"Hello\")"
+    },
+    {
+      "title": "Using a variable before assigning it",
+      "explanation": "Beginners may forget to assign a value to a variable before trying to use it, thinking that declaring it is enough.",
+      "broken_code": "print(score)",
+      "traceback": "Traceback (most recent call last):\n  File \"\u003cstdin\u003e\", line 1, in \u003cmodule\u003e\nNameError: name 'score' is not defined",
+      "fix": "Make sure to assign a value to the variable before using it in print().",
+      "fixed_code": "score = 0\nprint(score)"
+    },
+    {
+      "title": "Incorrect variable name format",
+      "explanation": "Beginners often try to start variable names with numbers or use spaces, not realizing the rules for valid names.",
+      "broken_code": "1st_variable = 10\nprint(1st_variable)",
+      "traceback": "File \"\u003cstdin\u003e\", line 1\n    1st_variable = 10\n    ^\nSyntaxError: invalid decimal literal",
+      "fix": "Start variable names with a letter or underscore, and avoid spaces.",
+      "fixed_code": "first_variable = 10\nprint(first_variable)"
+    }
+  ],
+  "runner": "docker-sandbox",
+  "generated_at": "2026-07-18T16:39:39.690812Z"
+}

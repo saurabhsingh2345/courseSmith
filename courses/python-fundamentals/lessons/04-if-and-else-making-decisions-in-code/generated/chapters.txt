@@ -1,0 +1,6 @@
+0:00 Understanding conditional statements
+0:17 The structure of if statements
+0:40 Adding else statements
+0:58 Using comparison operators
+1:19 Flowchart for if and else statements
+1:36 Whats Next

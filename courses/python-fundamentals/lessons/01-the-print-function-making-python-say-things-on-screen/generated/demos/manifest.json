@@ -1,0 +1,10 @@
+{
+  "demos": [
+    {
+      "id": "demo-1",
+      "description": "Open a terminal and type print('I love Python!') to see the output.",
+      "path": "demos/demo-1.mp4",
+      "durationMs": 19040
+    }
+  ]
+}

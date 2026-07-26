@@ -1,0 +1,4 @@
+name = "Course"
+license = "MIT"
+description = "Minimal clean theme for coursesmith-generated video courses"
+min_version = "0.112.0"

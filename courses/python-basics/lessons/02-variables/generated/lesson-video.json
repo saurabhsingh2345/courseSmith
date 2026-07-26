@@ -1,0 +1,3400 @@
+{
+  "theme": {
+    "primary": "#306998",
+    "accent": "#ffd43b",
+    "background": "#ffffff",
+    "courseName": "Python Basics",
+    "mode": "dark",
+    "bgTop": "#101d28",
+    "bgBottom": "#070c15",
+    "surface": "#1b2732",
+    "surfaceBorder": "#324452",
+    "text": "#f2f5f8",
+    "textMuted": "#a6b4bf",
+    "fontDisplay": "Space Grotesk",
+    "fontBody": "Inter",
+    "fontMono": "JetBrains Mono",
+    "grain": 0.04
+  },
+  "motion": {
+    "timing": {
+      "fast": 0.2,
+      "normal": 0.6,
+      "slow": 1,
+      "verySlow": 2
+    },
+    "easing": {
+      "entrance": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "exit": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "subtle": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "stagger": {
+      "words": 0.05,
+      "items": 0.08,
+      "connections": 0.12
+    }
+  },
+  "audioFile": "voiceover.wav",
+  "durationMs": 223820,
+  "scenes": [
+    {
+      "type": "title",
+      "startMs": 31,
+      "endMs": 27537,
+      "props": {
+        "heading": "Variables: how programs remember",
+        "intro": true,
+        "outcomes": [
+          "Store a value in a variable and use it later",
+          "Choose clear, legal variable names",
+          "Update a variable and predict what prints"
+        ],
+        "subtitle": "Python Basics"
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 27537,
+      "endMs": 43256,
+      "props": {
+        "code": "name = \"Ada\"\nprint(name)\nprint(name)",
+        "language": "python",
+        "output": "Ada\nAda\n",
+        "title": "Giving A Value A Name",
+        "trace": {
+          "code": "name = \"Ada\"\nprint(name)\nprint(name)",
+          "lines": [
+            "name = \"Ada\"",
+            "print(name)",
+            "print(name)"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "Ada\n"
+            },
+            {
+              "step": 3,
+              "line": 3,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "Ada\nAda\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "Ada\nAda\n"
+        }
+      },
+      "callouts": [
+        {
+          "atMs": 39491,
+          "durMs": 4000,
+          "shape": "circle",
+          "x": 0.38,
+          "y": 0.45,
+          "label": "no quotes on the left!"
+        }
+      ]
+    },
+    {
+      "type": "diagram",
+      "startMs": 43256,
+      "endMs": 64105,
+      "props": {
+        "caption": "labeled-box",
+        "kind": "mermaid",
+        "src": "diagrams/labeled-box.svg",
+        "title": "Giving A Value A Name"
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 64105,
+      "endMs": 90143,
+      "props": {
+        "code": "name = \"Ada\"\nprint(\"name\")\nprint(name)",
+        "language": "python",
+        "output": "name\nAda\n",
+        "title": "Names Without Quotes Text With Quotes",
+        "trace": {
+          "code": "name = \"Ada\"\nprint(\"name\")\nprint(name)",
+          "lines": [
+            "name = \"Ada\"",
+            "print(\"name\")",
+            "print(name)"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "name\n"
+            },
+            {
+              "step": 3,
+              "line": 3,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "name\nAda\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "name\nAda\n"
+        }
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 90143,
+      "endMs": 120130,
+      "props": {
+        "items": [
+          {
+            "atMs": 93786,
+            "icon": "check",
+            "text": "Use letters, digits, underscores"
+          },
+          {
+            "atMs": 100652,
+            "icon": "idea",
+            "text": "Descriptive names are clearer"
+          }
+        ],
+        "title": "Picking Good Names"
+      }
+    },
+    {
+      "type": "walkthrough",
+      "startMs": 120130,
+      "endMs": 139311,
+      "props": {
+        "file": "changing_what_is_inside.py",
+        "files": [
+          "giving_a_value_a_name.py",
+          "names_without_quotes_text_with_quotes.py",
+          "changing_what_is_inside.py",
+          "variables_can_hold_numbers_too.py",
+          "variables_working_together.py"
+        ],
+        "language": "python",
+        "project": "python-basics",
+        "steps": [
+          {
+            "atMs": 120130,
+            "code": "score = 0\nprint(score)",
+            "output": "0\n"
+          },
+          {
+            "atMs": 134558,
+            "code": "score = 0\nprint(score)\nscore = 10\nprint(score)",
+            "output": "0\n10\n"
+          }
+        ],
+        "title": "Changing What Is Inside"
+      },
+      "callouts": [
+        {
+          "atMs": 138410,
+          "durMs": 4000,
+          "shape": "arrow",
+          "x": 0.6,
+          "y": 0.5,
+          "label": "old value is gone"
+        }
+      ]
+    },
+    {
+      "type": "diagram",
+      "startMs": 139311,
+      "endMs": 148987,
+      "props": {
+        "caption": "reassignment",
+        "kind": "mermaid",
+        "src": "diagrams/reassignment.svg",
+        "title": "Changing What Is Inside"
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 148987,
+      "endMs": 175312,
+      "props": {
+        "code": "apples = 3\napples = apples + 2\nprint(apples)",
+        "language": "python",
+        "output": "5\n",
+        "title": "Variables Can Hold Numbers Too",
+        "trace": {
+          "code": "apples = 3\napples = apples + 2\nprint(apples)",
+          "lines": [
+            "apples = 3",
+            "apples = apples + 2",
+            "print(apples)"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "apples",
+                  "value": {
+                    "type": "int",
+                    "repr": "3"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "apples",
+                  "value": {
+                    "type": "int",
+                    "repr": "5"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 3,
+              "line": 3,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "apples",
+                  "value": {
+                    "type": "int",
+                    "repr": "5"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "5\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "5\n"
+        }
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 175312,
+      "endMs": 202818,
+      "props": {
+        "code": "name = \"Ada\"\nage = 12\nprint(name, \"is\", age)\nprint(name, \"turns\", age + 1, \"next year\")",
+        "language": "python",
+        "output": "Ada is 12\nAda turns 13 next year\n",
+        "title": "Variables Working Together",
+        "trace": {
+          "code": "name = \"Ada\"\nage = 12\nprint(name, \"is\", age)\nprint(name, \"turns\", age + 1, \"next year\")",
+          "lines": [
+            "name = \"Ada\"",
+            "age = 12",
+            "print(name, \"is\", age)",
+            "print(name, \"turns\", age + 1, \"next year\")"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                },
+                {
+                  "name": "age",
+                  "value": {
+                    "type": "int",
+                    "repr": "12"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 3,
+              "line": 4,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                },
+                {
+                  "name": "age",
+                  "value": {
+                    "type": "int",
+                    "repr": "12"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "Ada is 12\n"
+            },
+            {
+              "step": 4,
+              "line": 4,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "name",
+                  "value": {
+                    "type": "str",
+                    "repr": "'Ada'"
+                  }
+                },
+                {
+                  "name": "age",
+                  "value": {
+                    "type": "int",
+                    "repr": "12"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "Ada is 12\nAda turns 13 next year\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "Ada is 12\nAda turns 13 next year\n"
+        }
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 202818,
+      "endMs": 223820,
+      "props": {
+        "items": [
+          {
+            "atMs": 205904,
+            "icon": "sparkles",
+            "text": "Explore what strings can do"
+          },
+          {
+            "atMs": 218090,
+            "icon": "file",
+            "text": "Create a script with variables"
+          }
+        ],
+        "title": "Whats Next"
+      }
+    }
+  ],
+  "captions": [
+    {
+      "word": "Last",
+      "startMs": 31,
+      "endMs": 492
+    },
+    {
+      "word": "lesson's",
+      "startMs": 572,
+      "endMs": 992
+    },
+    {
+      "word": "challenge",
+      "startMs": 1113,
+      "endMs": 1613
+    },
+    {
+      "word": "was",
+      "startMs": 1674,
+      "endMs": 1814
+    },
+    {
+      "word": "to",
+      "startMs": 1854,
+      "endMs": 1914
+    },
+    {
+      "word": "make",
+      "startMs": 1974,
+      "endMs": 2134
+    },
+    {
+      "word": "print",
+      "startMs": 2194,
+      "endMs": 2455
+    },
+    {
+      "word": "say",
+      "startMs": 2515,
+      "endMs": 2735
+    },
+    {
+      "word": "your",
+      "startMs": 2755,
+      "endMs": 2955
+    },
+    {
+      "word": "own",
+      "startMs": 3076,
+      "endMs": 3196
+    },
+    {
+      "word": "name.",
+      "startMs": 3276,
+      "endMs": 3556
+    },
+    {
+      "word": "If",
+      "startMs": 4298,
+      "endMs": 4358
+    },
+    {
+      "word": "you",
+      "startMs": 4378,
+      "endMs": 4518
+    },
+    {
+      "word": "wrote",
+      "startMs": 4558,
+      "endMs": 4758
+    },
+    {
+      "word": "your",
+      "startMs": 4778,
+      "endMs": 4898
+    },
+    {
+      "word": "name",
+      "startMs": 4959,
+      "endMs": 5219
+    },
+    {
+      "word": "straight",
+      "startMs": 5339,
+      "endMs": 5700
+    },
+    {
+      "word": "inside",
+      "startMs": 5800,
+      "endMs": 6261
+    },
+    {
+      "word": "print,",
+      "startMs": 6341,
+      "endMs": 6641
+    },
+    {
+      "word": "you",
+      "startMs": 7042,
+      "endMs": 7162
+    },
+    {
+      "word": "had",
+      "startMs": 7202,
+      "endMs": 7362
+    },
+    {
+      "word": "to",
+      "startMs": 7402,
+      "endMs": 7462
+    },
+    {
+      "word": "repeat",
+      "startMs": 7522,
+      "endMs": 7883
+    },
+    {
+      "word": "it",
+      "startMs": 7943,
+      "endMs": 7983
+    },
+    {
+      "word": "every",
+      "startMs": 8023,
+      "endMs": 8384
+    },
+    {
+      "word": "time.",
+      "startMs": 8464,
+      "endMs": 8804
+    },
+    {
+      "word": "But",
+      "startMs": 8844,
+      "endMs": 9626
+    },
+    {
+      "word": "in",
+      "startMs": 9666,
+      "endMs": 9706
+    },
+    {
+      "word": "the",
+      "startMs": 9746,
+      "endMs": 9806
+    },
+    {
+      "word": "final",
+      "startMs": 9886,
+      "endMs": 10267
+    },
+    {
+      "word": "script,",
+      "startMs": 10327,
+      "endMs": 10727
+    },
+    {
+      "word": "you",
+      "startMs": 11008,
+      "endMs": 11168
+    },
+    {
+      "word": "probably",
+      "startMs": 11228,
+      "endMs": 11609
+    },
+    {
+      "word": "had",
+      "startMs": 11669,
+      "endMs": 11809
+    },
+    {
+      "word": "a",
+      "startMs": 11849,
+      "endMs": 11889
+    },
+    {
+      "word": "line",
+      "startMs": 11949,
+      "endMs": 12210
+    },
+    {
+      "word": "like",
+      "startMs": 12270,
+      "endMs": 12450
+    },
+    {
+      "word": "this:",
+      "startMs": 12490,
+      "endMs": 12710
+    },
+    {
+      "word": "name",
+      "startMs": 13552,
+      "endMs": 13852
+    },
+    {
+      "word": "=",
+      "startMs": 13852,
+      "endMs": 14533
+    },
+    {
+      "word": "\"Ada\".",
+      "startMs": 14533,
+      "endMs": 14814
+    },
+    {
+      "word": "That",
+      "startMs": 15395,
+      "endMs": 15615
+    },
+    {
+      "word": "line",
+      "startMs": 15695,
+      "endMs": 16036
+    },
+    {
+      "word": "is",
+      "startMs": 16056,
+      "endMs": 16256
+    },
+    {
+      "word": "a",
+      "startMs": 16276,
+      "endMs": 16316
+    },
+    {
+      "word": "variable.",
+      "startMs": 16376,
+      "endMs": 16937
+    },
+    {
+      "word": "This",
+      "startMs": 17558,
+      "endMs": 17738
+    },
+    {
+      "word": "lesson",
+      "startMs": 17818,
+      "endMs": 18199
+    },
+    {
+      "word": "is",
+      "startMs": 18339,
+      "endMs": 18399
+    },
+    {
+      "word": "all",
+      "startMs": 18639,
+      "endMs": 18780
+    },
+    {
+      "word": "about",
+      "startMs": 18840,
+      "endMs": 19080
+    },
+    {
+      "word": "what",
+      "startMs": 19140,
+      "endMs": 19260
+    },
+    {
+      "word": "that",
+      "startMs": 19321,
+      "endMs": 19541
+    },
+    {
+      "word": "line",
+      "startMs": 19641,
+      "endMs": 19982
+    },
+    {
+      "word": "really",
+      "startMs": 20122,
+      "endMs": 20382
+    },
+    {
+      "word": "does.",
+      "startMs": 20462,
+      "endMs": 20743
+    },
+    {
+      "word": "A",
+      "startMs": 21584,
+      "endMs": 21604
+    },
+    {
+      "word": "variable",
+      "startMs": 21684,
+      "endMs": 22245
+    },
+    {
+      "word": "is",
+      "startMs": 22285,
+      "endMs": 22465
+    },
+    {
+      "word": "how",
+      "startMs": 22525,
+      "endMs": 22666
+    },
+    {
+      "word": "a",
+      "startMs": 22746,
+      "endMs": 22766
+    },
+    {
+      "word": "program",
+      "startMs": 22846,
+      "endMs": 23367
+    },
+    {
+      "word": "remembers",
+      "startMs": 23427,
+      "endMs": 23847
+    },
+    {
+      "word": "a",
+      "startMs": 23908,
+      "endMs": 23928
+    },
+    {
+      "word": "value,",
+      "startMs": 23988,
+      "endMs": 24408
+    },
+    {
+      "word": "so",
+      "startMs": 24889,
+      "endMs": 25029
+    },
+    {
+      "word": "it",
+      "startMs": 25109,
+      "endMs": 25149
+    },
+    {
+      "word": "can",
+      "startMs": 25210,
+      "endMs": 25350
+    },
+    {
+      "word": "use",
+      "startMs": 25510,
+      "endMs": 25670
+    },
+    {
+      "word": "it",
+      "startMs": 25730,
+      "endMs": 25770
+    },
+    {
+      "word": "again",
+      "startMs": 25851,
+      "endMs": 26091
+    },
+    {
+      "word": "later.",
+      "startMs": 26171,
+      "endMs": 26832
+    },
+    {
+      "word": "When",
+      "startMs": 27537,
+      "endMs": 27677
+    },
+    {
+      "word": "you",
+      "startMs": 27717,
+      "endMs": 27857
+    },
+    {
+      "word": "write",
+      "startMs": 27897,
+      "endMs": 28098
+    },
+    {
+      "word": "name",
+      "startMs": 28138,
+      "endMs": 28438
+    },
+    {
+      "word": "=",
+      "startMs": 28438,
+      "endMs": 28979
+    },
+    {
+      "word": "\"Ada\",",
+      "startMs": 28979,
+      "endMs": 29499
+    },
+    {
+      "word": "you're",
+      "startMs": 29880,
+      "endMs": 30060
+    },
+    {
+      "word": "storing",
+      "startMs": 30120,
+      "endMs": 30461
+    },
+    {
+      "word": "the",
+      "startMs": 30481,
+      "endMs": 30561
+    },
+    {
+      "word": "value",
+      "startMs": 30601,
+      "endMs": 31001
+    },
+    {
+      "word": "\"Ada\"",
+      "startMs": 31282,
+      "endMs": 31482
+    },
+    {
+      "word": "under",
+      "startMs": 31662,
+      "endMs": 31802
+    },
+    {
+      "word": "the",
+      "startMs": 31842,
+      "endMs": 31922
+    },
+    {
+      "word": "name",
+      "startMs": 31982,
+      "endMs": 32203
+    },
+    {
+      "word": "name.",
+      "startMs": 32283,
+      "endMs": 32563
+    },
+    {
+      "word": "Now,",
+      "startMs": 33404,
+      "endMs": 33684
+    },
+    {
+      "word": "the",
+      "startMs": 33885,
+      "endMs": 33985
+    },
+    {
+      "word": "equals",
+      "startMs": 34125,
+      "endMs": 34425
+    },
+    {
+      "word": "sign",
+      "startMs": 34505,
+      "endMs": 34826
+    },
+    {
+      "word": "here",
+      "startMs": 34886,
+      "endMs": 35086
+    },
+    {
+      "word": "means",
+      "startMs": 35186,
+      "endMs": 35507
+    },
+    {
+      "word": "\"store",
+      "startMs": 35547,
+      "endMs": 36027
+    },
+    {
+      "word": "this\",",
+      "startMs": 36087,
+      "endMs": 36308
+    },
+    {
+      "word": "not",
+      "startMs": 36868,
+      "endMs": 37068
+    },
+    {
+      "word": "\"equals\"",
+      "startMs": 37249,
+      "endMs": 37609
+    },
+    {
+      "word": "like",
+      "startMs": 37689,
+      "endMs": 37849
+    },
+    {
+      "word": "in",
+      "startMs": 37889,
+      "endMs": 37950
+    },
+    {
+      "word": "math.",
+      "startMs": 38030,
+      "endMs": 38390
+    },
+    {
+      "word": "You",
+      "startMs": 39051,
+      "endMs": 39171
+    },
+    {
+      "word": "put",
+      "startMs": 39211,
+      "endMs": 39331
+    },
+    {
+      "word": "the",
+      "startMs": 39351,
+      "endMs": 39451
+    },
+    {
+      "word": "name",
+      "startMs": 39491,
+      "endMs": 39692
+    },
+    {
+      "word": "of",
+      "startMs": 39732,
+      "endMs": 39772
+    },
+    {
+      "word": "the",
+      "startMs": 39792,
+      "endMs": 39872
+    },
+    {
+      "word": "box",
+      "startMs": 39932,
+      "endMs": 40272
+    },
+    {
+      "word": "on",
+      "startMs": 40332,
+      "endMs": 40392
+    },
+    {
+      "word": "the",
+      "startMs": 40413,
+      "endMs": 40493
+    },
+    {
+      "word": "left,",
+      "startMs": 40553,
+      "endMs": 40873
+    },
+    {
+      "word": "and",
+      "startMs": 41173,
+      "endMs": 41254
+    },
+    {
+      "word": "the",
+      "startMs": 41294,
+      "endMs": 41354
+    },
+    {
+      "word": "value",
+      "startMs": 41414,
+      "endMs": 41794
+    },
+    {
+      "word": "on",
+      "startMs": 41894,
+      "endMs": 41934
+    },
+    {
+      "word": "the",
+      "startMs": 41974,
+      "endMs": 42054
+    },
+    {
+      "word": "right.",
+      "startMs": 42095,
+      "endMs": 42355
+    },
+    {
+      "word": "After",
+      "startMs": 43016,
+      "endMs": 43216
+    },
+    {
+      "word": "that,",
+      "startMs": 43256,
+      "endMs": 43516
+    },
+    {
+      "word": "whenever",
+      "startMs": 43656,
+      "endMs": 43977
+    },
+    {
+      "word": "you",
+      "startMs": 44037,
+      "endMs": 44157
+    },
+    {
+      "word": "write",
+      "startMs": 44197,
+      "endMs": 44397
+    },
+    {
+      "word": "name,",
+      "startMs": 44417,
+      "endMs": 44758
+    },
+    {
+      "word": "it",
+      "startMs": 45278,
+      "endMs": 45318
+    },
+    {
+      "word": "means",
+      "startMs": 45378,
+      "endMs": 45639
+    },
+    {
+      "word": "whatever",
+      "startMs": 45719,
+      "endMs": 46099
+    },
+    {
+      "word": "is",
+      "startMs": 46119,
+      "endMs": 46340
+    },
+    {
+      "word": "in",
+      "startMs": 46360,
+      "endMs": 46460
+    },
+    {
+      "word": "that",
+      "startMs": 46520,
+      "endMs": 46680
+    },
+    {
+      "word": "box.",
+      "startMs": 46720,
+      "endMs": 47161
+    },
+    {
+      "word": "Let's",
+      "startMs": 47861,
+      "endMs": 48062
+    },
+    {
+      "word": "look",
+      "startMs": 48122,
+      "endMs": 48282
+    },
+    {
+      "word": "at",
+      "startMs": 48322,
+      "endMs": 48362
+    },
+    {
+      "word": "that",
+      "startMs": 48402,
+      "endMs": 48622
+    },
+    {
+      "word": "in",
+      "startMs": 48642,
+      "endMs": 48743
+    },
+    {
+      "word": "a",
+      "startMs": 48783,
+      "endMs": 48803
+    },
+    {
+      "word": "picture.",
+      "startMs": 48863,
+      "endMs": 49984
+    },
+    {
+      "word": "Here’s",
+      "startMs": 49984,
+      "endMs": 50445
+    },
+    {
+      "word": "a",
+      "startMs": 50506,
+      "endMs": 50526
+    },
+    {
+      "word": "diagram",
+      "startMs": 50586,
+      "endMs": 51167
+    },
+    {
+      "word": "showing",
+      "startMs": 51208,
+      "endMs": 51629
+    },
+    {
+      "word": "how",
+      "startMs": 51689,
+      "endMs": 51829
+    },
+    {
+      "word": "it",
+      "startMs": 51910,
+      "endMs": 51970
+    },
+    {
+      "word": "works.",
+      "startMs": 52010,
+      "endMs": 52371
+    },
+    {
+      "word": "You",
+      "startMs": 53013,
+      "endMs": 53153
+    },
+    {
+      "word": "see",
+      "startMs": 53213,
+      "endMs": 53374
+    },
+    {
+      "word": "that",
+      "startMs": 53414,
+      "endMs": 53534
+    },
+    {
+      "word": "the",
+      "startMs": 53574,
+      "endMs": 53675
+    },
+    {
+      "word": "label",
+      "startMs": 53735,
+      "endMs": 54096
+    },
+    {
+      "word": "stays,",
+      "startMs": 54136,
+      "endMs": 54557
+    },
+    {
+      "word": "but",
+      "startMs": 54958,
+      "endMs": 55039
+    },
+    {
+      "word": "the",
+      "startMs": 55079,
+      "endMs": 55159
+    },
+    {
+      "word": "contents",
+      "startMs": 55219,
+      "endMs": 55761
+    },
+    {
+      "word": "can",
+      "startMs": 55821,
+      "endMs": 55981
+    },
+    {
+      "word": "change.",
+      "startMs": 56041,
+      "endMs": 56463
+    },
+    {
+      "word": "So",
+      "startMs": 57385,
+      "endMs": 57506
+    },
+    {
+      "word": "when",
+      "startMs": 57546,
+      "endMs": 57666
+    },
+    {
+      "word": "you",
+      "startMs": 57706,
+      "endMs": 57826
+    },
+    {
+      "word": "run",
+      "startMs": 57887,
+      "endMs": 58067
+    },
+    {
+      "word": "this",
+      "startMs": 58127,
+      "endMs": 58268
+    },
+    {
+      "word": "code,",
+      "startMs": 58348,
+      "endMs": 58669
+    },
+    {
+      "word": "it",
+      "startMs": 59170,
+      "endMs": 59230
+    },
+    {
+      "word": "prints",
+      "startMs": 59311,
+      "endMs": 59571
+    },
+    {
+      "word": "Ada",
+      "startMs": 59612,
+      "endMs": 59953
+    },
+    {
+      "word": "twice",
+      "startMs": 60033,
+      "endMs": 60454
+    },
+    {
+      "word": "because",
+      "startMs": 60815,
+      "endMs": 61016
+    },
+    {
+      "word": "it",
+      "startMs": 61056,
+      "endMs": 61096
+    },
+    {
+      "word": "looks",
+      "startMs": 61136,
+      "endMs": 61336
+    },
+    {
+      "word": "inside",
+      "startMs": 61397,
+      "endMs": 61818
+    },
+    {
+      "word": "the",
+      "startMs": 61838,
+      "endMs": 61918
+    },
+    {
+      "word": "box",
+      "startMs": 61958,
+      "endMs": 62299
+    },
+    {
+      "word": "named",
+      "startMs": 62379,
+      "endMs": 62640
+    },
+    {
+      "word": "name.",
+      "startMs": 62720,
+      "endMs": 63282
+    },
+    {
+      "word": "When",
+      "startMs": 64105,
+      "endMs": 64265
+    },
+    {
+      "word": "you",
+      "startMs": 64285,
+      "endMs": 64426
+    },
+    {
+      "word": "write",
+      "startMs": 64466,
+      "endMs": 64666
+    },
+    {
+      "word": "print(\"name\"),",
+      "startMs": 64746,
+      "endMs": 65047
+    },
+    {
+      "word": "it",
+      "startMs": 66409,
+      "endMs": 66469
+    },
+    {
+      "word": "shows",
+      "startMs": 66549,
+      "endMs": 66829
+    },
+    {
+      "word": "the",
+      "startMs": 66910,
+      "endMs": 66990
+    },
+    {
+      "word": "text",
+      "startMs": 67030,
+      "endMs": 67290
+    },
+    {
+      "word": "name.",
+      "startMs": 67350,
+      "endMs": 67571
+    },
+    {
+      "word": "But",
+      "startMs": 68152,
+      "endMs": 68232
+    },
+    {
+      "word": "if",
+      "startMs": 68292,
+      "endMs": 68352
+    },
+    {
+      "word": "you",
+      "startMs": 68372,
+      "endMs": 68532
+    },
+    {
+      "word": "write",
+      "startMs": 68572,
+      "endMs": 68773
+    },
+    {
+      "word": "print(name),",
+      "startMs": 68853,
+      "endMs": 69093
+    },
+    {
+      "word": "it",
+      "startMs": 70015,
+      "endMs": 70075
+    },
+    {
+      "word": "shows",
+      "startMs": 70175,
+      "endMs": 70476
+    },
+    {
+      "word": "what",
+      "startMs": 70536,
+      "endMs": 70656
+    },
+    {
+      "word": "the",
+      "startMs": 70676,
+      "endMs": 70756
+    },
+    {
+      "word": "variable",
+      "startMs": 70836,
+      "endMs": 71357
+    },
+    {
+      "word": "holds.",
+      "startMs": 71437,
+      "endMs": 71818
+    },
+    {
+      "word": "Quotes",
+      "startMs": 72659,
+      "endMs": 72980
+    },
+    {
+      "word": "mean",
+      "startMs": 73060,
+      "endMs": 73320
+    },
+    {
+      "word": "\"these",
+      "startMs": 73360,
+      "endMs": 73661
+    },
+    {
+      "word": "exact",
+      "startMs": 73761,
+      "endMs": 74182
+    },
+    {
+      "word": "characters\",",
+      "startMs": 74242,
+      "endMs": 74823
+    },
+    {
+      "word": "while",
+      "startMs": 75223,
+      "endMs": 75384
+    },
+    {
+      "word": "no",
+      "startMs": 75444,
+      "endMs": 75604
+    },
+    {
+      "word": "quotes",
+      "startMs": 75724,
+      "endMs": 76005
+    },
+    {
+      "word": "mean",
+      "startMs": 76065,
+      "endMs": 76285
+    },
+    {
+      "word": "\"look",
+      "startMs": 76325,
+      "endMs": 76626
+    },
+    {
+      "word": "inside",
+      "startMs": 76666,
+      "endMs": 77026
+    },
+    {
+      "word": "the",
+      "startMs": 77046,
+      "endMs": 77126
+    },
+    {
+      "word": "box\".",
+      "startMs": 77167,
+      "endMs": 77547
+    },
+    {
+      "word": "So",
+      "startMs": 78489,
+      "endMs": 78669
+    },
+    {
+      "word": "if",
+      "startMs": 78789,
+      "endMs": 78849
+    },
+    {
+      "word": "you",
+      "startMs": 78889,
+      "endMs": 79050
+    },
+    {
+      "word": "run",
+      "startMs": 79110,
+      "endMs": 79310
+    },
+    {
+      "word": "this",
+      "startMs": 79350,
+      "endMs": 79510
+    },
+    {
+      "word": "code,",
+      "startMs": 79591,
+      "endMs": 79911
+    },
+    {
+      "word": "you'll",
+      "startMs": 80352,
+      "endMs": 80572
+    },
+    {
+      "word": "see",
+      "startMs": 80612,
+      "endMs": 80752
+    },
+    {
+      "word": "that",
+      "startMs": 80793,
+      "endMs": 80913
+    },
+    {
+      "word": "the",
+      "startMs": 80953,
+      "endMs": 81053
+    },
+    {
+      "word": "first",
+      "startMs": 81173,
+      "endMs": 81474
+    },
+    {
+      "word": "print",
+      "startMs": 81574,
+      "endMs": 81834
+    },
+    {
+      "word": "gives",
+      "startMs": 81914,
+      "endMs": 82135
+    },
+    {
+      "word": "you",
+      "startMs": 82175,
+      "endMs": 82295
+    },
+    {
+      "word": "the",
+      "startMs": 82335,
+      "endMs": 82415
+    },
+    {
+      "word": "word",
+      "startMs": 82475,
+      "endMs": 82696
+    },
+    {
+      "word": "name,",
+      "startMs": 82776,
+      "endMs": 83036
+    },
+    {
+      "word": "and",
+      "startMs": 83617,
+      "endMs": 83697
+    },
+    {
+      "word": "the",
+      "startMs": 83717,
+      "endMs": 83817
+    },
+    {
+      "word": "second",
+      "startMs": 83878,
+      "endMs": 84178
+    },
+    {
+      "word": "one",
+      "startMs": 84318,
+      "endMs": 84418
+    },
+    {
+      "word": "gives",
+      "startMs": 84459,
+      "endMs": 84759
+    },
+    {
+      "word": "you",
+      "startMs": 84799,
+      "endMs": 84919
+    },
+    {
+      "word": "the",
+      "startMs": 84959,
+      "endMs": 85040
+    },
+    {
+      "word": "value",
+      "startMs": 85080,
+      "endMs": 85480
+    },
+    {
+      "word": "Ada.",
+      "startMs": 85640,
+      "endMs": 85921
+    },
+    {
+      "word": "It’s",
+      "startMs": 86802,
+      "endMs": 86923
+    },
+    {
+      "word": "a",
+      "startMs": 86963,
+      "endMs": 87003
+    },
+    {
+      "word": "simple",
+      "startMs": 87143,
+      "endMs": 87564
+    },
+    {
+      "word": "but",
+      "startMs": 87664,
+      "endMs": 87784
+    },
+    {
+      "word": "important",
+      "startMs": 87844,
+      "endMs": 88365
+    },
+    {
+      "word": "distinction.",
+      "startMs": 88425,
+      "endMs": 89607
+    },
+    {
+      "word": "When",
+      "startMs": 90143,
+      "endMs": 90343
+    },
+    {
+      "word": "choosing",
+      "startMs": 90423,
+      "endMs": 90864
+    },
+    {
+      "word": "names",
+      "startMs": 90944,
+      "endMs": 91244
+    },
+    {
+      "word": "for",
+      "startMs": 91304,
+      "endMs": 91424
+    },
+    {
+      "word": "your",
+      "startMs": 91444,
+      "endMs": 91584
+    },
+    {
+      "word": "variables,",
+      "startMs": 91644,
+      "endMs": 92245
+    },
+    {
+      "word": "remember",
+      "startMs": 92685,
+      "endMs": 93146
+    },
+    {
+      "word": "that",
+      "startMs": 93186,
+      "endMs": 93326
+    },
+    {
+      "word": "legal",
+      "startMs": 93366,
+      "endMs": 93706
+    },
+    {
+      "word": "names",
+      "startMs": 93786,
+      "endMs": 94107
+    },
+    {
+      "word": "can",
+      "startMs": 94207,
+      "endMs": 94327
+    },
+    {
+      "word": "use",
+      "startMs": 94447,
+      "endMs": 94567
+    },
+    {
+      "word": "letters,",
+      "startMs": 94607,
+      "endMs": 95107
+    },
+    {
+      "word": "digits,",
+      "startMs": 95448,
+      "endMs": 95868
+    },
+    {
+      "word": "and",
+      "startMs": 95988,
+      "endMs": 96068
+    },
+    {
+      "word": "underscores,",
+      "startMs": 96148,
+      "endMs": 96849
+    },
+    {
+      "word": "but",
+      "startMs": 97430,
+      "endMs": 97530
+    },
+    {
+      "word": "they",
+      "startMs": 97550,
+      "endMs": 97710
+    },
+    {
+      "word": "can't",
+      "startMs": 97790,
+      "endMs": 98090
+    },
+    {
+      "word": "start",
+      "startMs": 98150,
+      "endMs": 98410
+    },
+    {
+      "word": "with",
+      "startMs": 98450,
+      "endMs": 98551
+    },
+    {
+      "word": "a",
+      "startMs": 98611,
+      "endMs": 98631
+    },
+    {
+      "word": "digit.",
+      "startMs": 98671,
+      "endMs": 99011
+    },
+    {
+      "word": "Also,",
+      "startMs": 99912,
+      "endMs": 100252
+    },
+    {
+      "word": "Python",
+      "startMs": 100652,
+      "endMs": 101273
+    },
+    {
+      "word": "is",
+      "startMs": 101413,
+      "endMs": 101473
+    },
+    {
+      "word": "case-sensitive,",
+      "startMs": 101553,
+      "endMs": 102494
+    },
+    {
+      "word": "so",
+      "startMs": 102995,
+      "endMs": 103135
+    },
+    {
+      "word": "age",
+      "startMs": 103395,
+      "endMs": 103615
+    },
+    {
+      "word": "and",
+      "startMs": 103675,
+      "endMs": 103735
+    },
+    {
+      "word": "Age",
+      "startMs": 103935,
+      "endMs": 104156
+    },
+    {
+      "word": "are",
+      "startMs": 104196,
+      "endMs": 104356
+    },
+    {
+      "word": "two",
+      "startMs": 104396,
+      "endMs": 104616
+    },
+    {
+      "word": "different",
+      "startMs": 104656,
+      "endMs": 104936
+    },
+    {
+      "word": "boxes.",
+      "startMs": 104976,
+      "endMs": 105517
+    },
+    {
+      "word": "It's",
+      "startMs": 106217,
+      "endMs": 106338
+    },
+    {
+      "word": "best",
+      "startMs": 106418,
+      "endMs": 106658
+    },
+    {
+      "word": "to",
+      "startMs": 106698,
+      "endMs": 106778
+    },
+    {
+      "word": "choose",
+      "startMs": 106838,
+      "endMs": 107158
+    },
+    {
+      "word": "names",
+      "startMs": 107198,
+      "endMs": 107579
+    },
+    {
+      "word": "that",
+      "startMs": 107659,
+      "endMs": 107779
+    },
+    {
+      "word": "describe",
+      "startMs": 107839,
+      "endMs": 108399
+    },
+    {
+      "word": "what's",
+      "startMs": 108459,
+      "endMs": 108660
+    },
+    {
+      "word": "inside.",
+      "startMs": 108760,
+      "endMs": 109280
+    },
+    {
+      "word": "For",
+      "startMs": 109981,
+      "endMs": 110081
+    },
+    {
+      "word": "example,",
+      "startMs": 110141,
+      "endMs": 110601
+    },
+    {
+      "word": "birth_year",
+      "startMs": 110982,
+      "endMs": 111502
+    },
+    {
+      "word": "is",
+      "startMs": 111602,
+      "endMs": 111662
+    },
+    {
+      "word": "clearer",
+      "startMs": 111782,
+      "endMs": 112123
+    },
+    {
+      "word": "than",
+      "startMs": 112163,
+      "endMs": 112283
+    },
+    {
+      "word": "just",
+      "startMs": 112323,
+      "endMs": 112503
+    },
+    {
+      "word": "by.",
+      "startMs": 112583,
+      "endMs": 112863
+    },
+    {
+      "word": "And",
+      "startMs": 113684,
+      "endMs": 113764
+    },
+    {
+      "word": "if",
+      "startMs": 113844,
+      "endMs": 113904
+    },
+    {
+      "word": "you",
+      "startMs": 113944,
+      "endMs": 114065
+    },
+    {
+      "word": "have",
+      "startMs": 114125,
+      "endMs": 114265
+    },
+    {
+      "word": "multi-word",
+      "startMs": 114285,
+      "endMs": 115045
+    },
+    {
+      "word": "names,",
+      "startMs": 115125,
+      "endMs": 115506
+    },
+    {
+      "word": "use",
+      "startMs": 116086,
+      "endMs": 116226
+    },
+    {
+      "word": "underscores,",
+      "startMs": 116327,
+      "endMs": 117027
+    },
+    {
+      "word": "like",
+      "startMs": 117307,
+      "endMs": 117468
+    },
+    {
+      "word": "favorite_color",
+      "startMs": 117488,
+      "endMs": 117948
+    },
+    {
+      "word": "instead",
+      "startMs": 118549,
+      "endMs": 118909
+    },
+    {
+      "word": "of",
+      "startMs": 118949,
+      "endMs": 118989
+    },
+    {
+      "word": "favoritecolor.",
+      "startMs": 119069,
+      "endMs": 119650
+    },
+    {
+      "word": "Assigning",
+      "startMs": 120130,
+      "endMs": 121592
+    },
+    {
+      "word": "again",
+      "startMs": 121652,
+      "endMs": 121952
+    },
+    {
+      "word": "replaces",
+      "startMs": 121992,
+      "endMs": 122813
+    },
+    {
+      "word": "the",
+      "startMs": 122833,
+      "endMs": 122993
+    },
+    {
+      "word": "old",
+      "startMs": 123113,
+      "endMs": 123253
+    },
+    {
+      "word": "value.",
+      "startMs": 123313,
+      "endMs": 123754
+    },
+    {
+      "word": "The",
+      "startMs": 124395,
+      "endMs": 124475
+    },
+    {
+      "word": "box",
+      "startMs": 124535,
+      "endMs": 124895
+    },
+    {
+      "word": "keeps",
+      "startMs": 124975,
+      "endMs": 125215
+    },
+    {
+      "word": "its",
+      "startMs": 125296,
+      "endMs": 125396
+    },
+    {
+      "word": "label,",
+      "startMs": 125496,
+      "endMs": 125876
+    },
+    {
+      "word": "but",
+      "startMs": 126196,
+      "endMs": 126277
+    },
+    {
+      "word": "the",
+      "startMs": 126317,
+      "endMs": 126397
+    },
+    {
+      "word": "contents",
+      "startMs": 126457,
+      "endMs": 127017
+    },
+    {
+      "word": "are",
+      "startMs": 127077,
+      "endMs": 127158
+    },
+    {
+      "word": "swapped.",
+      "startMs": 127238,
+      "endMs": 127718
+    },
+    {
+      "word": "The",
+      "startMs": 128359,
+      "endMs": 128459
+    },
+    {
+      "word": "old",
+      "startMs": 128579,
+      "endMs": 128719
+    },
+    {
+      "word": "value",
+      "startMs": 128799,
+      "endMs": 129200
+    },
+    {
+      "word": "is",
+      "startMs": 129280,
+      "endMs": 129340
+    },
+    {
+      "word": "gone,",
+      "startMs": 129420,
+      "endMs": 129800
+    },
+    {
+      "word": "and",
+      "startMs": 130201,
+      "endMs": 130281
+    },
+    {
+      "word": "Python",
+      "startMs": 130361,
+      "endMs": 130942
+    },
+    {
+      "word": "only",
+      "startMs": 131122,
+      "endMs": 131322
+    },
+    {
+      "word": "remembers",
+      "startMs": 131382,
+      "endMs": 131843
+    },
+    {
+      "word": "the",
+      "startMs": 131883,
+      "endMs": 132003
+    },
+    {
+      "word": "latest",
+      "startMs": 132103,
+      "endMs": 132523
+    },
+    {
+      "word": "assignment.",
+      "startMs": 132603,
+      "endMs": 133144
+    },
+    {
+      "word": "Let's",
+      "startMs": 133825,
+      "endMs": 134025
+    },
+    {
+      "word": "look",
+      "startMs": 134085,
+      "endMs": 134245
+    },
+    {
+      "word": "at",
+      "startMs": 134285,
+      "endMs": 134345
+    },
+    {
+      "word": "that",
+      "startMs": 134365,
+      "endMs": 134565
+    },
+    {
+      "word": "in",
+      "startMs": 134605,
+      "endMs": 134706
+    },
+    {
+      "word": "a",
+      "startMs": 134746,
+      "endMs": 134766
+    },
+    {
+      "word": "picture.",
+      "startMs": 134826,
+      "endMs": 135226
+    },
+    {
+      "word": "This",
+      "startMs": 136127,
+      "endMs": 136287
+    },
+    {
+      "word": "diagram",
+      "startMs": 136367,
+      "endMs": 136928
+    },
+    {
+      "word": "shows",
+      "startMs": 137028,
+      "endMs": 137328
+    },
+    {
+      "word": "how",
+      "startMs": 137388,
+      "endMs": 137549
+    },
+    {
+      "word": "assigning",
+      "startMs": 137629,
+      "endMs": 138069
+    },
+    {
+      "word": "again",
+      "startMs": 138129,
+      "endMs": 138370
+    },
+    {
+      "word": "replaces",
+      "startMs": 138410,
+      "endMs": 139070
+    },
+    {
+      "word": "what",
+      "startMs": 139110,
+      "endMs": 139291
+    },
+    {
+      "word": "was",
+      "startMs": 139311,
+      "endMs": 139431
+    },
+    {
+      "word": "inside.",
+      "startMs": 139491,
+      "endMs": 140051
+    },
+    {
+      "word": "When",
+      "startMs": 140852,
+      "endMs": 140952
+    },
+    {
+      "word": "you",
+      "startMs": 140992,
+      "endMs": 141132
+    },
+    {
+      "word": "run",
+      "startMs": 141193,
+      "endMs": 141373
+    },
+    {
+      "word": "this",
+      "startMs": 141413,
+      "endMs": 141573
+    },
+    {
+      "word": "code,",
+      "startMs": 141633,
+      "endMs": 141973
+    },
+    {
+      "word": "you’ll",
+      "startMs": 142394,
+      "endMs": 142614
+    },
+    {
+      "word": "see",
+      "startMs": 142654,
+      "endMs": 142794
+    },
+    {
+      "word": "that",
+      "startMs": 142834,
+      "endMs": 142954
+    },
+    {
+      "word": "the",
+      "startMs": 142974,
+      "endMs": 143095
+    },
+    {
+      "word": "first",
+      "startMs": 143175,
+      "endMs": 143455
+    },
+    {
+      "word": "print",
+      "startMs": 143535,
+      "endMs": 143795
+    },
+    {
+      "word": "shows",
+      "startMs": 143895,
+      "endMs": 144176
+    },
+    {
+      "word": "0,",
+      "startMs": 144276,
+      "endMs": 144676
+    },
+    {
+      "word": "and",
+      "startMs": 145217,
+      "endMs": 145317
+    },
+    {
+      "word": "after",
+      "startMs": 145417,
+      "endMs": 145617
+    },
+    {
+      "word": "we",
+      "startMs": 145657,
+      "endMs": 145777
+    },
+    {
+      "word": "assign",
+      "startMs": 145838,
+      "endMs": 146158
+    },
+    {
+      "word": "again,",
+      "startMs": 146218,
+      "endMs": 146498
+    },
+    {
+      "word": "it",
+      "startMs": 146518,
+      "endMs": 146959
+    },
+    {
+      "word": "shows",
+      "startMs": 147059,
+      "endMs": 147399
+    },
+    {
+      "word": "10.",
+      "startMs": 147419,
+      "endMs": 148180
+    },
+    {
+      "word": "Everything",
+      "startMs": 148987,
+      "endMs": 149528
+    },
+    {
+      "word": "from",
+      "startMs": 149608,
+      "endMs": 149728
+    },
+    {
+      "word": "last",
+      "startMs": 149768,
+      "endMs": 150128
+    },
+    {
+      "word": "lesson's",
+      "startMs": 150208,
+      "endMs": 150649
+    },
+    {
+      "word": "math",
+      "startMs": 150969,
+      "endMs": 151310
+    },
+    {
+      "word": "works",
+      "startMs": 151370,
+      "endMs": 151650
+    },
+    {
+      "word": "inside",
+      "startMs": 151730,
+      "endMs": 152171
+    },
+    {
+      "word": "variables.",
+      "startMs": 152231,
+      "endMs": 152811
+    },
+    {
+      "word": "You",
+      "startMs": 153592,
+      "endMs": 153693
+    },
+    {
+      "word": "can",
+      "startMs": 153733,
+      "endMs": 153833
+    },
+    {
+      "word": "even",
+      "startMs": 153913,
+      "endMs": 154093
+    },
+    {
+      "word": "use",
+      "startMs": 154113,
+      "endMs": 154353
+    },
+    {
+      "word": "a",
+      "startMs": 154413,
+      "endMs": 154433
+    },
+    {
+      "word": "variable's",
+      "startMs": 154493,
+      "endMs": 155074
+    },
+    {
+      "word": "current",
+      "startMs": 155194,
+      "endMs": 155495
+    },
+    {
+      "word": "value",
+      "startMs": 155535,
+      "endMs": 155955
+    },
+    {
+      "word": "to",
+      "startMs": 156035,
+      "endMs": 156115
+    },
+    {
+      "word": "compute",
+      "startMs": 156175,
+      "endMs": 156576
+    },
+    {
+      "word": "a",
+      "startMs": 156616,
+      "endMs": 156656
+    },
+    {
+      "word": "new",
+      "startMs": 156696,
+      "endMs": 156816
+    },
+    {
+      "word": "one.",
+      "startMs": 156936,
+      "endMs": 157056
+    },
+    {
+      "word": "For",
+      "startMs": 157797,
+      "endMs": 157897
+    },
+    {
+      "word": "example,",
+      "startMs": 157957,
+      "endMs": 158418
+    },
+    {
+      "word": "if",
+      "startMs": 158939,
+      "endMs": 158999
+    },
+    {
+      "word": "you",
+      "startMs": 159039,
+      "endMs": 159179
+    },
+    {
+      "word": "start",
+      "startMs": 159199,
+      "endMs": 159439
+    },
+    {
+      "word": "with",
+      "startMs": 159479,
+      "endMs": 159579
+    },
+    {
+      "word": "apples",
+      "startMs": 159740,
+      "endMs": 160040
+    },
+    {
+      "word": "=",
+      "startMs": 160040,
+      "endMs": 160500
+    },
+    {
+      "word": "3",
+      "startMs": 160500,
+      "endMs": 160941
+    },
+    {
+      "word": "and",
+      "startMs": 160981,
+      "endMs": 161482
+    },
+    {
+      "word": "then",
+      "startMs": 161522,
+      "endMs": 161662
+    },
+    {
+      "word": "write",
+      "startMs": 161702,
+      "endMs": 162082
+    },
+    {
+      "word": "apples",
+      "startMs": 162263,
+      "endMs": 162563
+    },
+    {
+      "word": "=",
+      "startMs": 162563,
+      "endMs": 163063
+    },
+    {
+      "word": "apples",
+      "startMs": 163063,
+      "endMs": 163524
+    },
+    {
+      "word": "+",
+      "startMs": 163524,
+      "endMs": 163965
+    },
+    {
+      "word": "2,",
+      "startMs": 163965,
+      "endMs": 164245
+    },
+    {
+      "word": "you’re",
+      "startMs": 164806,
+      "endMs": 164986
+    },
+    {
+      "word": "adding",
+      "startMs": 165146,
+      "endMs": 165406
+    },
+    {
+      "word": "2",
+      "startMs": 165526,
+      "endMs": 165787
+    },
+    {
+      "word": "to",
+      "startMs": 165927,
+      "endMs": 166007
+    },
+    {
+      "word": "the",
+      "startMs": 166047,
+      "endMs": 166107
+    },
+    {
+      "word": "current",
+      "startMs": 166167,
+      "endMs": 166467
+    },
+    {
+      "word": "value.",
+      "startMs": 166507,
+      "endMs": 166928
+    },
+    {
+      "word": "When",
+      "startMs": 167469,
+      "endMs": 167589
+    },
+    {
+      "word": "you",
+      "startMs": 167609,
+      "endMs": 167729
+    },
+    {
+      "word": "print",
+      "startMs": 167769,
+      "endMs": 167969
+    },
+    {
+      "word": "apples,",
+      "startMs": 168089,
+      "endMs": 168450
+    },
+    {
+      "word": "it",
+      "startMs": 168870,
+      "endMs": 168930
+    },
+    {
+      "word": "gives",
+      "startMs": 168990,
+      "endMs": 169191
+    },
+    {
+      "word": "you",
+      "startMs": 169231,
+      "endMs": 169351
+    },
+    {
+      "word": "5.",
+      "startMs": 169431,
+      "endMs": 169831
+    },
+    {
+      "word": "It’s",
+      "startMs": 170592,
+      "endMs": 170692
+    },
+    {
+      "word": "like",
+      "startMs": 170752,
+      "endMs": 170893
+    },
+    {
+      "word": "counting",
+      "startMs": 170993,
+      "endMs": 171353
+    },
+    {
+      "word": "your",
+      "startMs": 171393,
+      "endMs": 171513
+    },
+    {
+      "word": "apples",
+      "startMs": 171654,
+      "endMs": 172034
+    },
+    {
+      "word": "and",
+      "startMs": 172214,
+      "endMs": 172294
+    },
+    {
+      "word": "finding",
+      "startMs": 172374,
+      "endMs": 172735
+    },
+    {
+      "word": "out",
+      "startMs": 172815,
+      "endMs": 172915
+    },
+    {
+      "word": "you",
+      "startMs": 172975,
+      "endMs": 173095
+    },
+    {
+      "word": "have",
+      "startMs": 173155,
+      "endMs": 173315
+    },
+    {
+      "word": "more",
+      "startMs": 173396,
+      "endMs": 173556
+    },
+    {
+      "word": "than",
+      "startMs": 173596,
+      "endMs": 173696
+    },
+    {
+      "word": "you",
+      "startMs": 173756,
+      "endMs": 173876
+    },
+    {
+      "word": "thought!",
+      "startMs": 173936,
+      "endMs": 174657
+    },
+    {
+      "word": "In",
+      "startMs": 175312,
+      "endMs": 175472
+    },
+    {
+      "word": "real",
+      "startMs": 175532,
+      "endMs": 175753
+    },
+    {
+      "word": "programs,",
+      "startMs": 175833,
+      "endMs": 176434
+    },
+    {
+      "word": "you",
+      "startMs": 176915,
+      "endMs": 177055
+    },
+    {
+      "word": "often",
+      "startMs": 177215,
+      "endMs": 177516
+    },
+    {
+      "word": "mix",
+      "startMs": 177576,
+      "endMs": 177756
+    },
+    {
+      "word": "several",
+      "startMs": 177856,
+      "endMs": 178197
+    },
+    {
+      "word": "variables",
+      "startMs": 178237,
+      "endMs": 178758
+    },
+    {
+      "word": "in",
+      "startMs": 178878,
+      "endMs": 178958
+    },
+    {
+      "word": "one",
+      "startMs": 178978,
+      "endMs": 179198
+    },
+    {
+      "word": "line.",
+      "startMs": 179258,
+      "endMs": 179579
+    },
+    {
+      "word": "The",
+      "startMs": 180400,
+      "endMs": 180480
+    },
+    {
+      "word": "print",
+      "startMs": 180520,
+      "endMs": 180741
+    },
+    {
+      "word": "function",
+      "startMs": 180781,
+      "endMs": 181262
+    },
+    {
+      "word": "can",
+      "startMs": 181422,
+      "endMs": 181562
+    },
+    {
+      "word": "take",
+      "startMs": 181622,
+      "endMs": 181802
+    },
+    {
+      "word": "multiple",
+      "startMs": 181963,
+      "endMs": 182423
+    },
+    {
+      "word": "things",
+      "startMs": 182504,
+      "endMs": 182864
+    },
+    {
+      "word": "separated",
+      "startMs": 183024,
+      "endMs": 183545
+    },
+    {
+      "word": "by",
+      "startMs": 183625,
+      "endMs": 183746
+    },
+    {
+      "word": "commas,",
+      "startMs": 183846,
+      "endMs": 184367
+    },
+    {
+      "word": "and",
+      "startMs": 184887,
+      "endMs": 184968
+    },
+    {
+      "word": "it",
+      "startMs": 185028,
+      "endMs": 185068
+    },
+    {
+      "word": "prints",
+      "startMs": 185148,
+      "endMs": 185448
+    },
+    {
+      "word": "them",
+      "startMs": 185508,
+      "endMs": 185649
+    },
+    {
+      "word": "with",
+      "startMs": 185729,
+      "endMs": 185849
+    },
+    {
+      "word": "spaces",
+      "startMs": 185949,
+      "endMs": 186470
+    },
+    {
+      "word": "in",
+      "startMs": 186590,
+      "endMs": 186670
+    },
+    {
+      "word": "between.",
+      "startMs": 186750,
+      "endMs": 187271
+    },
+    {
+      "word": "For",
+      "startMs": 187912,
+      "endMs": 188012
+    },
+    {
+      "word": "instance,",
+      "startMs": 188093,
+      "endMs": 188593
+    },
+    {
+      "word": "if",
+      "startMs": 189014,
+      "endMs": 189054
+    },
+    {
+      "word": "you",
+      "startMs": 189094,
+      "endMs": 189214
+    },
+    {
+      "word": "have",
+      "startMs": 189254,
+      "endMs": 189375
+    },
+    {
+      "word": "name",
+      "startMs": 189435,
+      "endMs": 189675
+    },
+    {
+      "word": "=",
+      "startMs": 189675,
+      "endMs": 190236
+    },
+    {
+      "word": "\"Ada\"",
+      "startMs": 190236,
+      "endMs": 190857
+    },
+    {
+      "word": "and",
+      "startMs": 190897,
+      "endMs": 191298
+    },
+    {
+      "word": "age",
+      "startMs": 191558,
+      "endMs": 191798
+    },
+    {
+      "word": "=",
+      "startMs": 191798,
+      "endMs": 192239
+    },
+    {
+      "word": "12,",
+      "startMs": 192239,
+      "endMs": 192780
+    },
+    {
+      "word": "you",
+      "startMs": 193261,
+      "endMs": 193381
+    },
+    {
+      "word": "can",
+      "startMs": 193421,
+      "endMs": 193541
+    },
+    {
+      "word": "print",
+      "startMs": 193601,
+      "endMs": 193782
+    },
+    {
+      "word": "them",
+      "startMs": 193802,
+      "endMs": 193922
+    },
+    {
+      "word": "together.",
+      "startMs": 193982,
+      "endMs": 194323
+    },
+    {
+      "word": "This",
+      "startMs": 195244,
+      "endMs": 195404
+    },
+    {
+      "word": "prints",
+      "startMs": 195524,
+      "endMs": 195765
+    },
+    {
+      "word": "a",
+      "startMs": 195825,
+      "endMs": 195865
+    },
+    {
+      "word": "nice",
+      "startMs": 195965,
+      "endMs": 196246
+    },
+    {
+      "word": "sentence",
+      "startMs": 196306,
+      "endMs": 196726
+    },
+    {
+      "word": "about",
+      "startMs": 196827,
+      "endMs": 197067
+    },
+    {
+      "word": "Ada",
+      "startMs": 197087,
+      "endMs": 197568
+    },
+    {
+      "word": "and",
+      "startMs": 197668,
+      "endMs": 197748
+    },
+    {
+      "word": "her",
+      "startMs": 197808,
+      "endMs": 197908
+    },
+    {
+      "word": "age.",
+      "startMs": 198069,
+      "endMs": 198309
+    },
+    {
+      "word": "It’s",
+      "startMs": 198990,
+      "endMs": 199110
+    },
+    {
+      "word": "a",
+      "startMs": 199130,
+      "endMs": 199170
+    },
+    {
+      "word": "great",
+      "startMs": 199210,
+      "endMs": 199431
+    },
+    {
+      "word": "way",
+      "startMs": 199471,
+      "endMs": 199611
+    },
+    {
+      "word": "to",
+      "startMs": 199671,
+      "endMs": 199751
+    },
+    {
+      "word": "share",
+      "startMs": 199811,
+      "endMs": 200052
+    },
+    {
+      "word": "information",
+      "startMs": 200112,
+      "endMs": 200753
+    },
+    {
+      "word": "in",
+      "startMs": 200793,
+      "endMs": 200953
+    },
+    {
+      "word": "a",
+      "startMs": 200993,
+      "endMs": 201033
+    },
+    {
+      "word": "clear",
+      "startMs": 201133,
+      "endMs": 201394
+    },
+    {
+      "word": "way.",
+      "startMs": 201474,
+      "endMs": 202095
+    },
+    {
+      "word": "In",
+      "startMs": 202818,
+      "endMs": 202958
+    },
+    {
+      "word": "the",
+      "startMs": 202998,
+      "endMs": 203059
+    },
+    {
+      "word": "next",
+      "startMs": 203119,
+      "endMs": 203299
+    },
+    {
+      "word": "lesson,",
+      "startMs": 203359,
+      "endMs": 203680
+    },
+    {
+      "word": "we’ll",
+      "startMs": 203980,
+      "endMs": 204141
+    },
+    {
+      "word": "dive",
+      "startMs": 204181,
+      "endMs": 204441
+    },
+    {
+      "word": "into",
+      "startMs": 204481,
+      "endMs": 204642
+    },
+    {
+      "word": "text",
+      "startMs": 204702,
+      "endMs": 205003
+    },
+    {
+      "word": "itself",
+      "startMs": 205083,
+      "endMs": 205504
+    },
+    {
+      "word": "and",
+      "startMs": 205744,
+      "endMs": 205824
+    },
+    {
+      "word": "explore",
+      "startMs": 205904,
+      "endMs": 206365
+    },
+    {
+      "word": "what",
+      "startMs": 206385,
+      "endMs": 206526
+    },
+    {
+      "word": "strings",
+      "startMs": 206626,
+      "endMs": 207047
+    },
+    {
+      "word": "can",
+      "startMs": 207127,
+      "endMs": 207267
+    },
+    {
+      "word": "do,",
+      "startMs": 207327,
+      "endMs": 207508
+    },
+    {
+      "word": "from",
+      "startMs": 207548,
+      "endMs": 208149
+    },
+    {
+      "word": "joining",
+      "startMs": 208269,
+      "endMs": 208730
+    },
+    {
+      "word": "to",
+      "startMs": 208831,
+      "endMs": 208931
+    },
+    {
+      "word": "changing",
+      "startMs": 209011,
+      "endMs": 209392
+    },
+    {
+      "word": "case.",
+      "startMs": 209452,
+      "endMs": 209772
+    },
+    {
+      "word": "But",
+      "startMs": 210634,
+      "endMs": 210734
+    },
+    {
+      "word": "before",
+      "startMs": 210775,
+      "endMs": 211115
+    },
+    {
+      "word": "then,",
+      "startMs": 211175,
+      "endMs": 211396
+    },
+    {
+      "word": "here’s",
+      "startMs": 211436,
+      "endMs": 212117
+    },
+    {
+      "word": "a",
+      "startMs": 212137,
+      "endMs": 212157
+    },
+    {
+      "word": "challenge",
+      "startMs": 212318,
+      "endMs": 212739
+    },
+    {
+      "word": "for",
+      "startMs": 212779,
+      "endMs": 212879
+    },
+    {
+      "word": "you:",
+      "startMs": 212919,
+      "endMs": 213079
+    },
+    {
+      "word": "create",
+      "startMs": 213821,
+      "endMs": 214142
+    },
+    {
+      "word": "a",
+      "startMs": 214182,
+      "endMs": 214202
+    },
+    {
+      "word": "script",
+      "startMs": 214282,
+      "endMs": 214623
+    },
+    {
+      "word": "with",
+      "startMs": 214683,
+      "endMs": 214803
+    },
+    {
+      "word": "two",
+      "startMs": 214903,
+      "endMs": 215063
+    },
+    {
+      "word": "variables,",
+      "startMs": 215144,
+      "endMs": 215745
+    },
+    {
+      "word": "your",
+      "startMs": 216025,
+      "endMs": 216186
+    },
+    {
+      "word": "name",
+      "startMs": 216246,
+      "endMs": 216547
+    },
+    {
+      "word": "and",
+      "startMs": 216587,
+      "endMs": 216767
+    },
+    {
+      "word": "your",
+      "startMs": 216787,
+      "endMs": 216927
+    },
+    {
+      "word": "favorite",
+      "startMs": 217008,
+      "endMs": 217348
+    },
+    {
+      "word": "number,",
+      "startMs": 217388,
+      "endMs": 217689
+    },
+    {
+      "word": "and",
+      "startMs": 218090,
+      "endMs": 218170
+    },
+    {
+      "word": "print",
+      "startMs": 218230,
+      "endMs": 218430
+    },
+    {
+      "word": "one",
+      "startMs": 218591,
+      "endMs": 218751
+    },
+    {
+      "word": "sentence",
+      "startMs": 218851,
+      "endMs": 219292
+    },
+    {
+      "word": "using",
+      "startMs": 219413,
+      "endMs": 219633
+    },
+    {
+      "word": "both.",
+      "startMs": 219713,
+      "endMs": 219994
+    },
+    {
+      "word": "It’s",
+      "startMs": 220635,
+      "endMs": 220775
+    },
+    {
+      "word": "a",
+      "startMs": 220795,
+      "endMs": 220835
+    },
+    {
+      "word": "fun",
+      "startMs": 220936,
+      "endMs": 221136
+    },
+    {
+      "word": "way",
+      "startMs": 221196,
+      "endMs": 221377
+    },
+    {
+      "word": "to",
+      "startMs": 221417,
+      "endMs": 221497
+    },
+    {
+      "word": "practice",
+      "startMs": 221557,
+      "endMs": 222038
+    },
+    {
+      "word": "what",
+      "startMs": 222098,
+      "endMs": 222218
+    },
+    {
+      "word": "you’ve",
+      "startMs": 222238,
+      "endMs": 222419
+    },
+    {
+      "word": "learned!",
+      "startMs": 222479,
+      "endMs": 223020
+    }
+  ],
+  "captionEmphasis": [
+    12,
+    40,
+    47,
+    57,
+    75,
+    82,
+    90,
+    93,
+    106,
+    162,
+    175,
+    190,
+    196,
+    218,
+    229,
+    239,
+    245,
+    261,
+    284,
+    298,
+    324,
+    361,
+    372,
+    397,
+    404,
+    416,
+    437,
+    441,
+    451,
+    469,
+    471,
+    473,
+    487,
+    494,
+    509,
+    528,
+    532,
+    541
+  ]
+}

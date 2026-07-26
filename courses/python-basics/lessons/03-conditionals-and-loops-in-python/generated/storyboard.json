@@ -1,0 +1,34 @@
+{
+  "sections": [
+    {
+      "id": "overview",
+      "points": [
+        {
+          "text": "Conditionals like traffic lights",
+          "icon": "flag",
+          "at_word": 10
+        },
+        {
+          "text": "Choose different paths",
+          "icon": "arrow",
+          "at_word": 23
+        },
+        {
+          "text": "Loops like a merry-go-round",
+          "icon": "play",
+          "at_word": 39
+        },
+        {
+          "text": "Repeat actions until met",
+          "icon": "repeat",
+          "at_word": 48
+        },
+        {
+          "text": "Dynamic and responsive",
+          "icon": "gear",
+          "at_word": 98
+        }
+      ]
+    }
+  ]
+}

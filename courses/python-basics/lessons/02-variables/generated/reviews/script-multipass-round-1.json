@@ -1,0 +1,219 @@
+{
+  "round": 1,
+  "model": "openai/gpt-4o-mini",
+  "artifact_hash": "sha256:00f62c9be8e4f76e33b3aef16817013b456ff16704637ff43194b027211a9fc4",
+  "claims": [
+    {
+      "claim": "name = 'Ada' stores the value 'Ada' under the name name",
+      "section": "giving-a-value-a-name",
+      "checkable": true,
+      "code": "name = 'Ada'; assert name == 'Ada'",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "the equals sign means 'store this', not 'equals' like in math",
+      "section": "giving-a-value-a-name",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "print('name') shows the text name",
+      "section": "names-without-quotes-text-with-quotes",
+      "checkable": true,
+      "code": "import io, contextlib; buf = io.StringIO(); print('name', file=buf); assert buf.getvalue() == 'name\\n'",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "print(name) shows what the variable holds",
+      "section": "names-without-quotes-text-with-quotes",
+      "checkable": true,
+      "code": "name = 'Ada'; assert name == 'Ada'",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "legal variable names can use letters, digits, and underscores, but can't start with a digit",
+      "section": "picking-good-names",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Python is case-sensitive",
+      "section": "picking-good-names",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "assigning again replaces the old value",
+      "section": "changing-what-is-inside",
+      "checkable": true,
+      "code": "score = 0; score = 10; assert score == 10",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "Python only remembers the latest assignment",
+      "section": "changing-what-is-inside",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "you can use a variable's current value to compute a new one",
+      "section": "variables-can-hold-numbers-too",
+      "checkable": true,
+      "code": "apples = 3; apples = apples + 2; assert apples == 5",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "the print function can take multiple things separated by commas",
+      "section": "variables-working-together",
+      "checkable": true,
+      "code": "name = 'Ada'; age = 12; assert (name, age) == ('Ada', 12)",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "print prints them with spaces in between",
+      "section": "variables-working-together",
+      "checkable": true,
+      "code": "import io; buf = io.StringIO(); print('Ada', 'is', 12, file=buf); assert buf.getvalue() == 'Ada is 12\\n'",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "you can print a sentence using two variables",
+      "section": "whats-next",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "the first print shows 0, and after we assign again, it shows 10",
+      "section": "changing-what-is-inside",
+      "checkable": true,
+      "code": "score = 0; assert score == 0; score = 10; assert score == 10",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "if you start with apples = 3 and then write apples = apples + 2, you’re adding 2 to the current value",
+      "section": "variables-can-hold-numbers-too",
+      "checkable": true,
+      "code": "apples = 3; apples += 2; assert apples == 5",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "this prints a nice sentence about Ada and her age",
+      "section": "variables-working-together",
+      "checkable": false,
+      "executed": false
+    }
+  ],
+  "accuracy": {
+    "score": 8,
+    "verdicts": [
+      {
+        "claim": "name = 'Ada' stores the value 'Ada' under the name name",
+        "verdict": "correct",
+        "citation": "verified execution"
+      },
+      {
+        "claim": "the equals sign means 'store this', not 'equals' like in math",
+        "verdict": "unsupported",
+        "citation": "the Python Language Reference describes assignment using the equals sign as 'assignment statements'"
+      },
+      {
+        "claim": "print('name') shows the text name",
+        "verdict": "correct",
+        "citation": "verified execution"
+      },
+      {
+        "claim": "print(name) shows what the variable holds",
+        "verdict": "correct",
+        "citation": "verified execution"
+      },
+      {
+        "claim": "legal variable names can use letters, digits, and underscores, but can't start with a digit",
+        "verdict": "unsupported",
+        "citation": "the Python Language Reference states that variable names must follow specific naming rules"
+      },
+      {
+        "claim": "Python is case-sensitive",
+        "verdict": "unsupported",
+        "citation": "the Python Language Reference notes that identifiers are case-sensitive"
+      },
+      {
+        "claim": "assigning again replaces the old value",
+        "verdict": "correct",
+        "citation": "verified execution"
+      },
+      {
+        "claim": "Python only remembers the latest assignment",
+        "verdict": "unsupported",
+        "citation": "the Python Language Reference explains that variables reference the most recent value assigned"
+      },
+      {
+        "claim": "you can use a variable's current value to compute a new one",
+        "verdict": "correct",
+        "citation": "verified execution"
+      },
+      {
+        "claim": "the print function can take multiple things separated by commas",
+        "verdict": "correct",
+        "citation": "verified execution"
+      },
+      {
+        "claim": "print prints them with spaces in between",
+        "verdict": "correct",
+        "citation": "verified execution"
+      },
+      {
+        "claim": "you can print a sentence using two variables",
+        "verdict": "unsupported",
+        "citation": "the Python Language Reference allows for printing multiple variables but does not specify sentence structure"
+      },
+      {
+        "claim": "the first print shows 0, and after we assign again, it shows 10",
+        "verdict": "correct",
+        "citation": "verified execution"
+      },
+      {
+        "claim": "if you start with apples = 3 and then write apples = apples + 2, you’re adding 2 to the current value",
+        "verdict": "correct",
+        "citation": "verified execution"
+      },
+      {
+        "claim": "this prints a nice sentence about Ada and her age",
+        "verdict": "unsupported",
+        "citation": "the Python Language Reference does not define 'nice sentence' but allows for formatted output"
+      }
+    ],
+    "critique": "The claim about the equals sign meaning 'store this' is unsupported; it should clarify that the equals sign is used for assignment in Python. The claims about legal variable names and case sensitivity are also unsupported; they should reference the specific rules outlined in the Python Language Reference. Additionally, the claim about printing a sentence using two variables is unsupported; it should specify that variables can be printed together but does not guarantee a complete sentence structure. Lastly, the claim about printing a nice sentence is unsupported; it should focus on the functionality of the print statement rather than subjective descriptions."
+  },
+  "pedagogy": {
+    "scores": {
+      "cognitive_load": 8,
+      "concept_ordering": 7,
+      "concrete_before_abstract": 8,
+      "worked_examples": 7
+    },
+    "score": 7,
+    "critique": "In section 'changing-what-is-inside', the concept of reassignment is introduced without a worked example showing the initial assignment and the reassignment step-by-step. Additionally, in section 'variables-can-hold-numbers-too', the phrase 'everything from last lesson's math works inside variables' is vague and could confuse beginners; it should be clarified with a concrete example of a previous math operation. Lastly, in section 'you-already-used-one', the term 'variable' is introduced before it is explicitly defined, which could lead to confusion; consider defining 'variable' immediately after mentioning the line 'name = \"Ada\"'."
+  },
+  "tone": {
+    "score": 8,
+    "critique": "The script generally maintains a warm and encouraging tone, but there are a few phrases that could be polished for clarity and to avoid any potential condescension. In the section 'names-without-quotes-text-with-quotes', the phrase 'It’s a simple but important distinction.' could be perceived as condescending. A more neutral replacement could be: 'This distinction is important to understand.' In the section 'variables-working-together', the phrase 'It’s a great way to share information in a clear way.' could be simplified to 'This allows for clear communication of information.' These adjustments would enhance the overall tone and clarity."
+  },
+  "weights": {
+    "accuracy": 0.5,
+    "pedagogy": 0.35,
+    "tone": 0.15
+  },
+  "weighted": 7.65,
+  "threshold": 8,
+  "passed": false,
+  "reviewed_at": "2026-07-18T16:36:29.595739Z"
+}

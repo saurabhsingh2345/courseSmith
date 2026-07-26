@@ -1,0 +1,15 @@
+{
+  "kind": "diagram:where-python-runs",
+  "round": 3,
+  "model": "openai/gpt-4o-mini",
+  "passed": false,
+  "issues": [
+    "The connector to 'Websites' overlaps the label 'Websites', making it hard to read.",
+    "The connector to 'Data \u0026 Science' overlaps the label 'Data \u0026 Science', making it hard to read.",
+    "The connector to 'Automation' overlaps the label 'Automation', making it hard to read.",
+    "The connector to 'AI \u0026 Machine Learning' overlaps the label 'AI \u0026 Machine Learning', making it hard to read."
+  ],
+  "svg_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/python-basics/lessons/01-what-is-python/generated/diagrams/attempts/where-python-runs-round-3.svg",
+  "png_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/python-basics/lessons/01-what-is-python/generated/diagrams/attempts/where-python-runs-round-3.png",
+  "checked_at": "2026-07-18T14:41:31Z"
+}

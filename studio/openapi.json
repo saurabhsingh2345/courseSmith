@@ -1,0 +1,264 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "coursesmith studio API",
+    "version": "1.0.0",
+    "description": "Local-first backend for the coursesmith Studio. Binds to localhost, no auth."
+  },
+  "paths": {
+    "/api/courses": {
+      "get": {
+        "operationId": "listCourses",
+        "responses": {
+          "200": {
+            "description": "All parseable courses",
+            "content": {"application/json": {"schema": {"type": "array", "items": {"$ref": "#/components/schemas/Course"}}}}
+          }
+        }
+      }
+    },
+    "/api/courses/{slug}": {
+      "get": {
+        "operationId": "getCourse",
+        "parameters": [{"name": "slug", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {
+          "200": {"description": "Course with lesson × stage matrix", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/CourseDetail"}}}},
+          "404": {"$ref": "#/components/responses/Error"}
+        }
+      }
+    },
+    "/api/lessons/{course}/{id}": {
+      "get": {
+        "operationId": "getLesson",
+        "parameters": [
+          {"name": "course", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {
+          "200": {"description": "Full lesson state", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/LessonDetail"}}}},
+          "404": {"$ref": "#/components/responses/Error"}
+        }
+      }
+    },
+    "/api/run": {
+      "get": {
+        "operationId": "getRunStatus",
+        "responses": {"200": {"description": "Current run", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/RunStatus"}}}}}
+      },
+      "post": {
+        "operationId": "startRun",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/RunRequest"}}}},
+        "responses": {
+          "202": {"description": "Run accepted", "content": {"application/json": {"schema": {"type": "object", "properties": {"run_id": {"type": "string"}}, "required": ["run_id"]}}}},
+          "404": {"$ref": "#/components/responses/Error"},
+          "409": {"$ref": "#/components/responses/Error"}
+        }
+      },
+      "delete": {
+        "operationId": "cancelRun",
+        "responses": {
+          "200": {"description": "Canceling"},
+          "409": {"$ref": "#/components/responses/Error"}
+        }
+      }
+    },
+    "/api/events": {
+      "get": {
+        "operationId": "streamEvents",
+        "description": "Server-sent events: run-started, stage-started, stage-finished, stage-failed, log, run-finished, run-failed, quota. Supports Last-Event-ID resume.",
+        "responses": {"200": {"description": "text/event-stream of Event objects", "content": {"text/event-stream": {"schema": {"$ref": "#/components/schemas/Event"}}}}}
+      }
+    },
+    "/api/feedback": {
+      "post": {
+        "operationId": "addFeedback",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/FeedbackRequest"}}}},
+        "responses": {
+          "200": {"description": "Note saved to review-notes.yaml"},
+          "400": {"$ref": "#/components/responses/Error"},
+          "404": {"$ref": "#/components/responses/Error"}
+        }
+      }
+    },
+    "/api/regenerate": {
+      "post": {
+        "operationId": "regenerate",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/RegenerateRequest"}}}},
+        "responses": {
+          "202": {"description": "Forced regeneration started", "content": {"application/json": {"schema": {"type": "object", "properties": {"run_id": {"type": "string"}, "stages": {"type": "array", "items": {"type": "string"}}}}}}},
+          "400": {"$ref": "#/components/responses/Error"},
+          "409": {"$ref": "#/components/responses/Error"}
+        }
+      }
+    },
+    "/api/quiz/{course}/{id}": {
+      "get": {
+        "operationId": "getQuiz",
+        "parameters": [
+          {"name": "course", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {"200": {"description": "Generated quiz + overrides + merged result", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/QuizWithOverrides"}}}}}
+      }
+    },
+    "/api/quiz-overrides/{course}/{id}": {
+      "put": {
+        "operationId": "putQuizOverrides",
+        "parameters": [
+          {"name": "course", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "id", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/QuizOverrides"}}}},
+        "responses": {"200": {"description": "Saved; returns overrides + merged quiz", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/QuizWithOverrides"}}}}}
+      }
+    },
+    "/api/ledger": {
+      "get": {
+        "operationId": "getLedger",
+        "responses": {"200": {"description": "Token/cost/quota data", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Ledger"}}}}}
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "Error": {"description": "Error", "content": {"application/json": {"schema": {"type": "object", "properties": {"error": {"type": "string"}}, "required": ["error"]}}}}
+    },
+    "schemas": {
+      "Course": {
+        "type": "object",
+        "properties": {"name": {"type": "string"}, "slug": {"type": "string"}, "description": {"type": "string"}, "lesson_count": {"type": "integer"}},
+        "required": ["name", "slug", "description", "lesson_count"]
+      },
+      "LessonSummary": {
+        "type": "object",
+        "properties": {"id": {"type": "string"}, "title": {"type": "string"}, "stages": {"type": "object", "additionalProperties": {"type": "string", "enum": ["done", "stale", "pending"]}}},
+        "required": ["id", "title", "stages"]
+      },
+      "CourseDetail": {
+        "allOf": [
+          {"$ref": "#/components/schemas/Course"},
+          {"type": "object", "properties": {"stage_order": {"type": "array", "items": {"type": "string"}}, "lessons": {"type": "array", "items": {"$ref": "#/components/schemas/LessonSummary"}}}, "required": ["stage_order", "lessons"]}
+        ]
+      },
+      "Artifact": {
+        "type": "object",
+        "properties": {"name": {"type": "string"}, "size": {"type": "integer"}, "url": {"type": "string"}},
+        "required": ["name", "size", "url"]
+      },
+      "LessonDetail": {
+        "type": "object",
+        "properties": {
+          "course": {"type": "string"}, "id": {"type": "string"}, "title": {"type": "string"},
+          "source": {"type": "string"},
+          "stages": {"type": "object", "additionalProperties": {"type": "string"}},
+          "stage_order": {"type": "array", "items": {"type": "string"}},
+          "artifacts": {"type": "array", "items": {"$ref": "#/components/schemas/Artifact"}},
+          "script": {"$ref": "#/components/schemas/Script"},
+          "quiz": {"$ref": "#/components/schemas/Quiz"},
+          "mistakes": {}, "exercises": {}, "chapters": {"type": "array", "items": {"$ref": "#/components/schemas/Chapter"}},
+          "alignment": {}, "reviews": {"type": "object", "additionalProperties": {}}
+        },
+        "required": ["course", "id", "title", "source", "stages", "stage_order", "artifacts"]
+      },
+      "Script": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "sections": {"type": "array", "items": {"type": "object", "properties": {
+            "id": {"type": "string"}, "narration": {"type": "string"}, "duration_est_sec": {"type": "integer"},
+            "cues": {"type": "array", "items": {"type": "object", "properties": {"type": {"type": "string"}, "ref": {"type": "string"}, "at_word": {"type": "integer"}}}}
+          }, "required": ["id", "narration"]}}
+        },
+        "required": ["title", "sections"]
+      },
+      "Quiz": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "questions": {"type": "array", "items": {"$ref": "#/components/schemas/Question"}}
+        },
+        "required": ["title", "questions"]
+      },
+      "Question": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"}, "type": {"type": "string", "enum": ["recall", "application", "debugging", "prediction"]},
+          "prompt": {"type": "string"}, "review": {"type": "boolean"},
+          "options": {"type": "array", "items": {"type": "string"}},
+          "answer_index": {"type": "integer"}, "explanation": {"type": "string"}
+        },
+        "required": ["id", "type", "prompt", "options", "answer_index", "explanation"]
+      },
+      "QuizOverrides": {
+        "type": "object",
+        "properties": {"questions": {"type": "array", "items": {"type": "object", "properties": {
+          "id": {"type": "string"}, "drop": {"type": "boolean"}, "prompt": {"type": "string"},
+          "options": {"type": "array", "items": {"type": "string"}}, "answer_index": {"type": "integer"}, "explanation": {"type": "string"}
+        }, "required": ["id"]}}},
+        "required": ["questions"]
+      },
+      "QuizWithOverrides": {
+        "type": "object",
+        "properties": {
+          "generated": {"$ref": "#/components/schemas/Quiz"},
+          "overrides": {"$ref": "#/components/schemas/QuizOverrides"},
+          "merged": {"$ref": "#/components/schemas/Quiz"}
+        }
+      },
+      "Chapter": {
+        "type": "object",
+        "properties": {"id": {"type": "string"}, "title": {"type": "string"}, "start_ms": {"type": "integer"}, "end_ms": {"type": "integer"}},
+        "required": ["id", "title", "start_ms", "end_ms"]
+      },
+      "RunRequest": {
+        "type": "object",
+        "properties": {"course": {"type": "string"}, "lesson": {"type": "string"}, "stage": {"type": "string"}, "force": {"type": "boolean"}},
+        "required": ["course", "lesson"]
+      },
+      "RunStatus": {
+        "type": "object",
+        "properties": {"running": {"type": "boolean"}, "run_id": {"type": "string"}, "course": {"type": "string"}, "lesson": {"type": "string"}, "stage": {"type": "string"}},
+        "required": ["running"]
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "type": {"type": "string", "enum": ["run-started", "stage-started", "stage-finished", "stage-skipped", "stage-failed", "log", "run-finished", "run-failed", "quota"]},
+          "run_id": {"type": "string"}, "course": {"type": "string"}, "lesson": {"type": "string"},
+          "stage": {"type": "string"}, "line": {"type": "string"}, "error": {"type": "string"},
+          "seq": {"type": "integer"}, "at": {"type": "string", "format": "date-time"}
+        },
+        "required": ["type", "seq", "at"]
+      },
+      "FeedbackRequest": {
+        "type": "object",
+        "properties": {"course": {"type": "string"}, "lesson": {"type": "string"}, "section": {"type": "string"}, "note": {"type": "string"}, "timestamp_ms": {"type": "integer"}},
+        "required": ["course", "lesson", "note"]
+      },
+      "RegenerateRequest": {
+        "type": "object",
+        "properties": {"course": {"type": "string"}, "lesson": {"type": "string"}, "artifact": {"type": "string", "enum": ["script", "quiz", "visuals", "mistakes", "exercises", "audio"]}, "section": {"type": "string"}, "note": {"type": "string"}},
+        "required": ["course", "lesson", "artifact"]
+      },
+      "LedgerRow": {
+        "type": "object",
+        "properties": {"day": {"type": "string"}, "provider": {"type": "string"}, "model": {"type": "string"}, "calls": {"type": "integer"}, "prompt_tokens": {"type": "integer"}, "completion_tokens": {"type": "integer"}, "cost_usd": {"type": "number"}},
+        "required": ["day", "provider", "model", "calls", "prompt_tokens", "completion_tokens", "cost_usd"]
+      },
+      "QuotaStatus": {
+        "type": "object",
+        "properties": {"provider": {"type": "string"}, "per_minute": {"type": "integer"}, "per_day": {"type": "integer"}, "day_used": {"type": "integer"}},
+        "required": ["provider", "per_minute", "per_day", "day_used"]
+      },
+      "Ledger": {
+        "type": "object",
+        "properties": {
+          "rows": {"type": "array", "items": {"$ref": "#/components/schemas/LedgerRow"}},
+          "total_cost_usd": {"type": "number"}, "total_calls": {"type": "integer"},
+          "quotas": {"type": "array", "items": {"$ref": "#/components/schemas/QuotaStatus"}}
+        },
+        "required": ["rows", "total_cost_usd", "total_calls", "quotas"]
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "runner": "docker-sandbox",
+  "traces": [
+    {
+      "hash": "sha256:545beeb823aa3d7f128cef8163b33e2fa5a35fd6c4eaeb30ea96fc86a9a4caba",
+      "file": "sha256:545beeb823aa3d7f128cef8163b33e2fa5a35fd6c4eaeb30ea96fc86a9a4caba.json",
+      "source": "lesson.md",
+      "index": 0,
+      "steps": 4
+    },
+    {
+      "hash": "sha256:1f24a9dcc1fb4858d25020eedf9743221e58a84f9cacb7d63160acd44670d50b",
+      "file": "sha256:1f24a9dcc1fb4858d25020eedf9743221e58a84f9cacb7d63160acd44670d50b.json",
+      "source": "lesson.md",
+      "index": 1,
+      "steps": 4
+    },
+    {
+      "hash": "sha256:a8c442f8ba20232eb98abb5cafa0562a6900ea4097f6802c6a99ff71c8dc97c0",
+      "file": "sha256:a8c442f8ba20232eb98abb5cafa0562a6900ea4097f6802c6a99ff71c8dc97c0.json",
+      "source": "lesson.md",
+      "index": 2,
+      "steps": 3
+    },
+    {
+      "hash": "sha256:25a3c00748f9127fdb9f661a4dcda35b5f1ad35980e9a377207ec15aba533b7e",
+      "file": "sha256:25a3c00748f9127fdb9f661a4dcda35b5f1ad35980e9a377207ec15aba533b7e.json",
+      "source": "lesson.md",
+      "index": 3,
+      "steps": 5
+    },
+    {
+      "hash": "sha256:af8d2dca995ec5594f9863d4e37d39b0e5bd024651cc636385f09d619d669bc2",
+      "file": "sha256:af8d2dca995ec5594f9863d4e37d39b0e5bd024651cc636385f09d619d669bc2.json",
+      "source": "lesson.md",
+      "index": 4,
+      "steps": 4
+    },
+    {
+      "hash": "sha256:c45c508bfc45e3ce798aaf23aee5fc11d875ac1d12fd0adc2fa4ba9d83eec077",
+      "file": "sha256:c45c508bfc45e3ce798aaf23aee5fc11d875ac1d12fd0adc2fa4ba9d83eec077.json",
+      "source": "lesson.md",
+      "index": 5,
+      "steps": 5
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "exercises": [
+    {
+      "slug": "greet-yourself",
+      "title": "Greet yourself",
+      "description": "Write a function `greet(name)` that returns a personalized greeting. For example, if you call `greet(\"Alice\")`, it should return `\"Hello, Alice!\"`.",
+      "starter_code": "def greet(name):\n    # TODO: return a greeting\n    ...",
+      "solution_code": "def greet(name):\n    return \"Hello, \" + name + \"!\"",
+      "test_code": "from exercise import greet\n\ndef test_greet():\n    assert greet(\"Ada\") == \"Hello, Ada!\"\n    assert greet(\"Bob\") == \"Hello, Bob!\"\n    assert greet(\"Alice\") == \"Hello, Alice!\""
+    },
+    {
+      "slug": "say-your-name",
+      "title": "Say your name",
+      "description": "Create a function `say_name()` that prints a greeting with your name. For example, if your name is 'Chris', it should print `\"Hello, Chris! Welcome to Python!\"`.",
+      "starter_code": "def say_name():\n    # TODO: print a greeting with your name\n    ...",
+      "solution_code": "def say_name():\n    print(\"Hello, Chris! Welcome to Python!\")",
+      "test_code": "from exercise import say_name\n\ndef test_say_name(capsys):\n    say_name()\n    captured = capsys.readouterr()\n    assert captured.out == \"Hello, Chris! Welcome to Python!\\n\""
+    }
+  ],
+  "runner": "docker-sandbox",
+  "generated_at": "2026-07-18T16:20:48.768152Z"
+}

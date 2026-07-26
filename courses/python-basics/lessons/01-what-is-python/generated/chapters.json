@@ -1,0 +1,50 @@
+[
+  {
+    "id": "a-language-for-talking-to-computers",
+    "title": "A language for talking to computers",
+    "start_ms": 0,
+    "end_ms": 41071
+  },
+  {
+    "id": "why-beginners-start-with-python",
+    "title": "Why beginners start with Python",
+    "start_ms": 41071,
+    "end_ms": 64021
+  },
+  {
+    "id": "where-python-is-used-in-the-real-world",
+    "title": "Where Python is used in the real world",
+    "start_ms": 64021,
+    "end_ms": 94421
+  },
+  {
+    "id": "installing-python",
+    "title": "Installing Python",
+    "start_ms": 94421,
+    "end_ms": 127555
+  },
+  {
+    "id": "your-first-line-of-python",
+    "title": "Your first line of Python",
+    "start_ms": 127555,
+    "end_ms": 159820
+  },
+  {
+    "id": "python-does-math-too",
+    "title": "Python does math too",
+    "start_ms": 159820,
+    "end_ms": 187732
+  },
+  {
+    "id": "putting-lines-together",
+    "title": "Putting lines together",
+    "start_ms": 187732,
+    "end_ms": 217718
+  },
+  {
+    "id": "whats-next",
+    "title": "Whats Next",
+    "start_ms": 217718,
+    "end_ms": 231998
+  }
+]

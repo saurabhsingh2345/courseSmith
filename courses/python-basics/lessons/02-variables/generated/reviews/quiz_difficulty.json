@@ -1,0 +1,57 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "students": 10,
+  "questions": [
+    {
+      "id": "q1",
+      "correct_of": 7,
+      "rate": 0.7,
+      "reasoning": "the three who miss it pick B, thinking a variable is related to errors.",
+      "verdict": "ok"
+    },
+    {
+      "id": "q2",
+      "correct_of": 8,
+      "rate": 0.8,
+      "reasoning": "the two who miss it choose 'age', misunderstanding that it prints the value, not the variable name.",
+      "verdict": "ok"
+    },
+    {
+      "id": "q3",
+      "correct_of": 6,
+      "rate": 0.6,
+      "reasoning": "the four who miss it choose options with incorrect syntax, confusing variable naming rules.",
+      "verdict": "ok"
+    },
+    {
+      "id": "q4",
+      "correct_of": 5,
+      "rate": 0.5,
+      "reasoning": "the five who miss it select 'No error', not recognizing the case sensitivity in variable names.",
+      "verdict": "ok"
+    },
+    {
+      "id": "q5",
+      "correct_of": 6,
+      "rate": 0.6,
+      "reasoning": "the four who miss it choose option A, thinking it retains the mathematical meaning.",
+      "verdict": "ok"
+    },
+    {
+      "id": "q6",
+      "correct_of": 9,
+      "rate": 0.9,
+      "reasoning": "the one who misses it selects 'an error', misunderstanding how print functions work.",
+      "verdict": "ok"
+    },
+    {
+      "id": "q7",
+      "correct_of": 7,
+      "rate": 0.7,
+      "reasoning": "the three who miss it choose options that incorrectly represent variable assignment.",
+      "verdict": "ok"
+    }
+  ],
+  "flagged": null,
+  "checked_at": "2026-07-18T16:39:35.39138Z"
+}

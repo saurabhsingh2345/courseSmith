@@ -1,0 +1,6 @@
+0:00 What are data types?
+0:39 Understanding strings
+1:10 Exploring integers and floats
+1:38 What are booleans?
+2:03 Overview of data types
+2:23 Next steps in Python

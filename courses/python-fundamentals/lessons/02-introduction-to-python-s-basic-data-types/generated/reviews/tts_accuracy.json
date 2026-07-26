@@ -1,0 +1,51 @@
+{
+  "source": "whisperx",
+  "overall_wer": 0.015,
+  "threshold": 0.05,
+  "sections": [
+    {
+      "id": "what-are-data-types",
+      "words": 97,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "understanding-strings",
+      "words": 72,
+      "errors": 3,
+      "wer": 0.041666666666666664,
+      "flagged": false
+    },
+    {
+      "id": "exploring-integers-and-floats",
+      "words": 73,
+      "errors": 3,
+      "wer": 0.0410958904109589,
+      "flagged": false
+    },
+    {
+      "id": "what-are-booleans",
+      "words": 58,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "overview-of-data-types",
+      "words": 54,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "next-steps-in-python",
+      "words": 46,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    }
+  ],
+  "flagged": null,
+  "checked_at": "2026-07-26T13:47:50.949668Z"
+}

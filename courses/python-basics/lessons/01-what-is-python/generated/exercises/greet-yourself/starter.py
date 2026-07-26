@@ -1,0 +1,3 @@
+def greet(name):
+    # TODO: return a greeting
+    ...

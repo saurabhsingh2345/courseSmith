@@ -1,0 +1,287 @@
+{
+  "theme": {
+    "primary": "#2563eb",
+    "accent": "#f59e0b",
+    "background": "#ffffff",
+    "courseName": "Python Fundamentals",
+    "mode": "dark",
+    "bgTop": "#101828",
+    "bgBottom": "#070815",
+    "surface": "#1b2232",
+    "surfaceBorder": "#323c52",
+    "text": "#f2f4f8",
+    "textMuted": "#a6aebf",
+    "fontDisplay": "Space Grotesk",
+    "fontBody": "Inter",
+    "fontMono": "JetBrains Mono",
+    "grain": 0.04
+  },
+  "motion": {
+    "timing": {
+      "fast": 0.2,
+      "normal": 0.6,
+      "slow": 1,
+      "verySlow": 2
+    },
+    "easing": {
+      "entrance": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "exit": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "subtle": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "stagger": {
+      "words": 0.05,
+      "items": 0.08,
+      "connections": 0.12
+    }
+  },
+  "audioFile": "voiceover.wav",
+  "durationMs": 132678,
+  "scenes": [
+    {
+      "type": "title",
+      "startMs": 31,
+      "endMs": 23808,
+      "props": {
+        "heading": "The print function: making Python say things on screen",
+        "intro": true,
+        "outcomes": [
+          "Understand the purpose of the print function",
+          "Use the print function to display text",
+          "Experiment with printing different types of data"
+        ],
+        "subtitle": "Python Fundamentals"
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 23808,
+      "endMs": 36668,
+      "props": {
+        "code": "print('Hello, World!')",
+        "language": "python",
+        "output": "Hello, World!\n",
+        "title": "Basic usage of print",
+        "trace": {
+          "code": "print('Hello, World!')",
+          "lines": [
+            "print('Hello, World!')"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 1,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "Hello, World!\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "Hello, World!\n"
+        }
+      }
+    },
+    {
+      "type": "terminal",
+      "startMs": 36668,
+      "endMs": 51719,
+      "props": {
+        "durationMs": 19040,
+        "src": "demos/demo-1.mp4",
+        "title": "Open a terminal and type print('I love Python!') to see the output."
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 51719,
+      "endMs": 62260,
+      "props": {
+        "code": "print('Hello', 'World!')",
+        "language": "python",
+        "output": "Hello World!\n",
+        "title": "Printing multiple items",
+        "trace": {
+          "code": "print('Hello', 'World!')",
+          "lines": [
+            "print('Hello', 'World!')"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 1,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "Hello World!\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "Hello World!\n"
+        }
+      }
+    },
+    {
+      "type": "terminal",
+      "startMs": 62260,
+      "endMs": 73522,
+      "props": {
+        "durationMs": 19040,
+        "src": "demos/demo-1.mp4",
+        "title": "Open a terminal and type print('I love Python!') to see the output."
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 73522,
+      "endMs": 85697,
+      "props": {
+        "code": "print(5 + 3)",
+        "language": "python",
+        "output": "8\n",
+        "title": "Printing numbers and calculations",
+        "trace": {
+          "code": "print(5 + 3)",
+          "lines": [
+            "print(5 + 3)"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 1,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "8\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "8\n"
+        }
+      }
+    },
+    {
+      "type": "terminal",
+      "startMs": 85697,
+      "endMs": 95830,
+      "props": {
+        "durationMs": 19040,
+        "src": "demos/demo-1.mp4",
+        "title": "Open a terminal and type print('I love Python!') to see the output."
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 95830,
+      "endMs": 102865,
+      "props": {
+        "items": [
+          {
+            "atMs": 98436,
+            "icon": "sparkles",
+            "text": "Experiment with print"
+          },
+          {
+            "atMs": 101823,
+            "icon": "link",
+            "text": "Mix text and numbers"
+          },
+          {
+            "atMs": 110061,
+            "icon": "idea",
+            "text": "Get creative with output"
+          }
+        ],
+        "title": "Experimenting with print"
+      }
+    },
+    {
+      "type": "terminal",
+      "startMs": 102865,
+      "endMs": 115372,
+      "props": {
+        "durationMs": 19040,
+        "src": "demos/demo-1.mp4",
+        "title": "Open a terminal and type print('I love Python!') to see the output."
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 115372,
+      "endMs": 118665,
+      "props": {
+        "items": [
+          {
+            "atMs": 118223,
+            "icon": "folder",
+            "text": "Next: Learn about variables"
+          },
+          {
+            "atMs": 123464,
+            "icon": "database",
+            "text": "Store data for later use"
+          },
+          {
+            "atMs": 129890,
+            "icon": "rocket",
+            "text": "Take coding skills further"
+          }
+        ],
+        "title": "What’s next?"
+      }
+    },
+    {
+      "type": "diagram",
+      "startMs": 118665,
+      "endMs": 132678,
+      "props": {
+        "caption": "print-function-overview",
+        "kind": "mermaid",
+        "src": "diagrams/print-function-overview.svg",
+        "title": "What’s next?"
+      }
+    }
+  ],
+  "captions": null
+}

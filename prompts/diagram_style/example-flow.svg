@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420">
+  <style>
+    svg { --surface: #1b2332; --border: #3a4a66; --text: #f2f5fa; --muted: #a6b2bf; --accent: #f5a623; }
+    .box { fill: var(--surface); stroke: var(--border); stroke-width: 2.5; rx: 14; }
+    .box-hot { fill: var(--surface); stroke: var(--accent); stroke-width: 3; rx: 14; }
+    .label { font-family: sans-serif; font-size: 22px; fill: var(--text); text-anchor: middle; }
+    .title { font-family: sans-serif; font-size: 26px; font-weight: 700; fill: var(--text); text-anchor: middle; }
+    .note { font-family: sans-serif; font-size: 17px; fill: var(--muted); text-anchor: middle; }
+    .arrow { stroke: var(--accent); stroke-width: 4; fill: none; marker-end: url(#head); }
+  </style>
+  <defs>
+    <marker id="head" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#f5a623"/>
+    </marker>
+  </defs>
+  <g id="heading">
+    <text class="title" x="400" y="52">A simple left-to-right flow</text>
+  </g>
+  <g id="step-one">
+    <rect class="box" x="60" y="150" width="180" height="110"/>
+    <text class="label" x="150" y="200">You write</text>
+    <text class="label" x="150" y="230">code</text>
+  </g>
+  <g id="step-two">
+    <rect class="box-hot" x="310" y="150" width="180" height="110"/>
+    <text class="label" x="400" y="200">Python runs</text>
+    <text class="label" x="400" y="230">each line</text>
+    <text class="note" x="400" y="300">one at a time, top to bottom</text>
+  </g>
+  <g id="step-three">
+    <rect class="box" x="560" y="150" width="180" height="110"/>
+    <text class="label" x="650" y="200">You see the</text>
+    <text class="label" x="650" y="230">result</text>
+  </g>
+  <g id="arrows">
+    <line class="arrow" x1="242" y1="205" x2="304" y2="205"/>
+    <line class="arrow" x1="492" y1="205" x2="554" y2="205"/>
+  </g>
+</svg>

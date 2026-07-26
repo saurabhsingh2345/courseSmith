@@ -1,0 +1,65 @@
+{
+  "title": "Getting started with loops in Python",
+  "sections": [
+    {
+      "id": "what-are-loops",
+      "narration": "Loops are a way for us to repeat actions in our code. Imagine a chef following a recipe. Instead of starting over each time, they can use a loop to repeat steps. This makes cooking more efficient. In programming, loops help us handle repetitive tasks, which can save us time and effort.",
+      "duration_est_sec": 30,
+      "cues": []
+    },
+    {
+      "id": "the-structure-of-a-loop",
+      "narration": "Let's break down the structure of a loop. First, we have something called a condition. A condition is like a question we ask. For example, 'Is the number less than five?' If the answer is yes, we perform an action. After that, we check the condition again. This keeps going until the answer is no. Let's look at that in a picture.",
+      "duration_est_sec": 42,
+      "cues": [
+        {
+          "type": "diagram",
+          "ref": "loop-structure",
+          "at_word": 19
+        }
+      ]
+    },
+    {
+      "id": "using-a-for-loop",
+      "narration": "Now, let’s talk about a for loop. A for loop lets us go through a sequence, like a list of items. For each item in the list, we can perform an action. For example, we can print each item. Here’s how it looks in code. We have a list of fruits, and we want to print each one. Watch this.",
+      "duration_est_sec": 30,
+      "cues": [
+        {
+          "type": "demo",
+          "ref": "Print each item in a list",
+          "at_word": 32
+        }
+      ]
+    },
+    {
+      "id": "using-a-while-loop",
+      "narration": "Next, we have a while loop. A while loop keeps running as long as a condition is true. For instance, we can start counting. If we don’t change our condition, the loop can run forever. That’s called an infinite loop. Here’s an example: we start counting from zero, and we keep going until we reach five. Let’s see how that works.",
+      "duration_est_sec": 42,
+      "cues": [
+        {
+          "type": "demo",
+          "ref": "Count from 0 to 4",
+          "at_word": 32
+        }
+      ]
+    },
+    {
+      "id": "practical-example-counting-items",
+      "narration": "Let’s use a loop to count items in a list. This will help us see how many items are in our list. We have a list of pets, and we want to count them. We start with a counter set to zero and add one for each pet we find. Here’s the code for that.",
+      "duration_est_sec": 30,
+      "cues": [
+        {
+          "type": "demo",
+          "ref": "Count pets in a list",
+          "at_word": 26
+        }
+      ]
+    },
+    {
+      "id": "whats-next",
+      "narration": "Now that we've started to explore the basics of loops, there’s more to discover. You can learn about nested loops, which are loops inside other loops. This opens up new possibilities for tackling complex tasks. Keep practicing, and you’ll be amazed at what you can create!",
+      "duration_est_sec": 30,
+      "cues": []
+    }
+  ]
+}

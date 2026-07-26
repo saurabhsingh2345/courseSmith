@@ -1,0 +1,123 @@
+{
+  "code": "secret_number = 6\nuser_guess = 4\nif user_guess == secret_number:\n    print('Congratulations! You guessed it!')\nelse:\n    print('Not quite — try again!')",
+  "lines": [
+    "secret_number = 6",
+    "user_guess = 4",
+    "if user_guess == secret_number:",
+    "    print('Congratulations! You guessed it!')",
+    "else:",
+    "    print('Not quite — try again!')"
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "line": 1,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 1,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "secret_number",
+          "value": {
+            "type": "int",
+            "repr": "6"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 2,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "secret_number",
+          "value": {
+            "type": "int",
+            "repr": "6"
+          }
+        },
+        {
+          "name": "user_guess",
+          "value": {
+            "type": "int",
+            "repr": "4"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 3,
+      "line": 6,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "secret_number",
+          "value": {
+            "type": "int",
+            "repr": "6"
+          }
+        },
+        {
+          "name": "user_guess",
+          "value": {
+            "type": "int",
+            "repr": "4"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 4,
+      "line": 6,
+      "event": "return",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "secret_number",
+          "value": {
+            "type": "int",
+            "repr": "6"
+          }
+        },
+        {
+          "name": "user_guess",
+          "value": {
+            "type": "int",
+            "repr": "4"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "Not quite — try again!\n"
+    }
+  ],
+  "truncated": false,
+  "stdout": "Not quite — try again!\n"
+}

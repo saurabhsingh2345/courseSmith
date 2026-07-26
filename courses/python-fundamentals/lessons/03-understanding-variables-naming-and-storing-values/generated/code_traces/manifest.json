@@ -1,0 +1,19 @@
+{
+  "runner": "docker-sandbox",
+  "traces": [
+    {
+      "hash": "sha256:2f213aff351e1f9b251773d53bf426cabb27fc19deb0e4f99cbefd93b576fe8d",
+      "file": "sha256:2f213aff351e1f9b251773d53bf426cabb27fc19deb0e4f99cbefd93b576fe8d.json",
+      "source": "lesson.md",
+      "index": 0,
+      "steps": 3
+    },
+    {
+      "hash": "sha256:ac917ac94f1689ce5ec902711623281a4f0d57965a290af50ab8ad1bc6cf31b7",
+      "file": "sha256:ac917ac94f1689ce5ec902711623281a4f0d57965a290af50ab8ad1bc6cf31b7.json",
+      "source": "lesson.md",
+      "index": 1,
+      "steps": 4
+    }
+  ]
+}

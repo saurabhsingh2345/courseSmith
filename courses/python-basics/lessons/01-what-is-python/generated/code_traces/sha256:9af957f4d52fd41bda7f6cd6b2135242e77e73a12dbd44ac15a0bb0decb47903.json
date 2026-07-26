@@ -1,0 +1,80 @@
+{
+  "code": "name = \"Ada\"\nprint(\"Hello,\", name)\nprint(\"Welcome to Python!\")",
+  "lines": [
+    "name = \"Ada\"",
+    "print(\"Hello,\", name)",
+    "print(\"Welcome to Python!\")"
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "line": 1,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 1,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "name",
+          "value": {
+            "type": "str",
+            "repr": "'Ada'"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 2,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "name",
+          "value": {
+            "type": "str",
+            "repr": "'Ada'"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "Hello, Ada\n"
+    },
+    {
+      "step": 3,
+      "line": 3,
+      "event": "return",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "name",
+          "value": {
+            "type": "str",
+            "repr": "'Ada'"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "Hello, Ada\nWelcome to Python!\n"
+    }
+  ],
+  "truncated": false,
+  "stdout": "Hello, Ada\nWelcome to Python!\n"
+}

@@ -1,0 +1,938 @@
+{
+  "theme": {
+    "primary": "#2563eb",
+    "accent": "#f59e0b",
+    "background": "#ffffff",
+    "courseName": "Python Fundamentals",
+    "mode": "dark",
+    "bgTop": "#101828",
+    "bgBottom": "#070815",
+    "surface": "#1b2232",
+    "surfaceBorder": "#323c52",
+    "text": "#f2f4f8",
+    "textMuted": "#a6aebf",
+    "fontDisplay": "Space Grotesk",
+    "fontBody": "Inter",
+    "fontMono": "JetBrains Mono",
+    "grain": 0.04
+  },
+  "motion": {
+    "timing": {
+      "fast": 0.2,
+      "normal": 0.6,
+      "slow": 1,
+      "verySlow": 2
+    },
+    "easing": {
+      "entrance": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "exit": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "subtle": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "stagger": {
+      "words": 0.05,
+      "items": 0.08,
+      "connections": 0.12
+    }
+  },
+  "audioFile": "voiceover.wav",
+  "durationMs": 134619,
+  "scenes": [
+    {
+      "type": "title",
+      "startMs": 31,
+      "endMs": 17142,
+      "props": {
+        "heading": "Your first real program: a number guessing game",
+        "intro": true,
+        "outcomes": [
+          "Combine print, variables, if-else, and loops",
+          "Build a complete number guessing game",
+          "Understand the flow of a simple program"
+        ],
+        "subtitle": "Python Fundamentals"
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 17142,
+      "endMs": 24210,
+      "props": {
+        "code": "import random\nrandom.seed(7)\nsecret_number = random.randint(1, 10)\nprint('The secret number is chosen!')",
+        "language": "python",
+        "output": "The secret number is chosen!\n",
+        "title": "Picking the secret number",
+        "trace": {
+          "code": "import random\nrandom.seed(7)\nsecret_number = random.randint(1, 10)\nprint('The secret number is chosen!')",
+          "lines": [
+            "import random",
+            "random.seed(7)",
+            "secret_number = random.randint(1, 10)",
+            "print('The secret number is chosen!')"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 3,
+              "line": 4,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 4,
+              "line": 4,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "The secret number is chosen!\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "The secret number is chosen!\n"
+        }
+      }
+    },
+    {
+      "type": "diagram",
+      "startMs": 24210,
+      "endMs": 46572,
+      "props": {
+        "caption": "number-guessing-game-flow",
+        "kind": "mermaid",
+        "src": "diagrams/number-guessing-game-flow.svg",
+        "title": "Picking the secret number"
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 46572,
+      "endMs": 69860,
+      "props": {
+        "code": "secret_number = 6\nuser_guess = 4\nif user_guess == secret_number:\n    print('Congratulations! You guessed it!')\nelse:\n    print('Not quite — try again!')",
+        "language": "python",
+        "output": "Not quite — try again!\n",
+        "title": "Checking a guess with if-else",
+        "trace": {
+          "code": "secret_number = 6\nuser_guess = 4\nif user_guess == secret_number:\n    print('Congratulations! You guessed it!')\nelse:\n    print('Not quite — try again!')",
+          "lines": [
+            "secret_number = 6",
+            "user_guess = 4",
+            "if user_guess == secret_number:",
+            "    print('Congratulations! You guessed it!')",
+            "else:",
+            "    print('Not quite — try again!')"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "4"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 3,
+              "line": 6,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "4"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 4,
+              "line": 6,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "4"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "Not quite — try again!\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "Not quite — try again!\n"
+        }
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 69860,
+      "endMs": 93991,
+      "props": {
+        "code": "import random\nrandom.seed(7)\nsecret_number = random.randint(1, 10)\nguesses = [2, 9, secret_number]\nfor user_guess in guesses:\n    if user_guess == secret_number:\n        print('Congratulations!', user_guess, 'is right!')\n    else:\n        print(user_guess, 'is too far off — try again!')",
+        "language": "python",
+        "output": "2 is too far off — try again!\n9 is too far off — try again!\nCongratulations! 6 is right!\n",
+        "title": "The game loop: guessing until it's right",
+        "trace": {
+          "code": "import random\nrandom.seed(7)\nsecret_number = random.randint(1, 10)\nguesses = [2, 9, secret_number]\nfor user_guess in guesses:\n    if user_guess == secret_number:\n        print('Congratulations!', user_guess, 'is right!')\n    else:\n        print(user_guess, 'is too far off — try again!')",
+          "lines": [
+            "import random",
+            "random.seed(7)",
+            "secret_number = random.randint(1, 10)",
+            "guesses = [2, 9, secret_number]",
+            "for user_guess in guesses:",
+            "    if user_guess == secret_number:",
+            "        print('Congratulations!', user_guess, 'is right!')",
+            "    else:",
+            "        print(user_guess, 'is too far off — try again!')"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 3,
+              "line": 4,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 4,
+              "line": 5,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "guesses",
+                  "value": {
+                    "type": "list",
+                    "repr": "[2, 9, 6]",
+                    "items": [
+                      {
+                        "type": "int",
+                        "repr": "2"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "9"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "6"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 5,
+              "line": 6,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "guesses",
+                  "value": {
+                    "type": "list",
+                    "repr": "[2, 9, 6]",
+                    "items": [
+                      {
+                        "type": "int",
+                        "repr": "2"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "9"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "6"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "2"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 6,
+              "line": 9,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "guesses",
+                  "value": {
+                    "type": "list",
+                    "repr": "[2, 9, 6]",
+                    "items": [
+                      {
+                        "type": "int",
+                        "repr": "2"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "9"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "6"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "2"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 7,
+              "line": 5,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "guesses",
+                  "value": {
+                    "type": "list",
+                    "repr": "[2, 9, 6]",
+                    "items": [
+                      {
+                        "type": "int",
+                        "repr": "2"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "9"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "6"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "2"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "2 is too far off — try again!\n"
+            },
+            {
+              "step": 8,
+              "line": 6,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "guesses",
+                  "value": {
+                    "type": "list",
+                    "repr": "[2, 9, 6]",
+                    "items": [
+                      {
+                        "type": "int",
+                        "repr": "2"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "9"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "6"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "9"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "2 is too far off — try again!\n"
+            },
+            {
+              "step": 9,
+              "line": 9,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "guesses",
+                  "value": {
+                    "type": "list",
+                    "repr": "[2, 9, 6]",
+                    "items": [
+                      {
+                        "type": "int",
+                        "repr": "2"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "9"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "6"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "9"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "2 is too far off — try again!\n"
+            },
+            {
+              "step": 10,
+              "line": 5,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "guesses",
+                  "value": {
+                    "type": "list",
+                    "repr": "[2, 9, 6]",
+                    "items": [
+                      {
+                        "type": "int",
+                        "repr": "2"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "9"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "6"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "9"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "2 is too far off — try again!\n9 is too far off — try again!\n"
+            },
+            {
+              "step": 11,
+              "line": 6,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "guesses",
+                  "value": {
+                    "type": "list",
+                    "repr": "[2, 9, 6]",
+                    "items": [
+                      {
+                        "type": "int",
+                        "repr": "2"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "9"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "6"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "2 is too far off — try again!\n9 is too far off — try again!\n"
+            },
+            {
+              "step": 12,
+              "line": 7,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "guesses",
+                  "value": {
+                    "type": "list",
+                    "repr": "[2, 9, 6]",
+                    "items": [
+                      {
+                        "type": "int",
+                        "repr": "2"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "9"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "6"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "2 is too far off — try again!\n9 is too far off — try again!\n"
+            },
+            {
+              "step": 13,
+              "line": 5,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "guesses",
+                  "value": {
+                    "type": "list",
+                    "repr": "[2, 9, 6]",
+                    "items": [
+                      {
+                        "type": "int",
+                        "repr": "2"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "9"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "6"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "2 is too far off — try again!\n9 is too far off — try again!\nCongratulations! 6 is right!\n"
+            },
+            {
+              "step": 14,
+              "line": 5,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "secret_number",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                },
+                {
+                  "name": "guesses",
+                  "value": {
+                    "type": "list",
+                    "repr": "[2, 9, 6]",
+                    "items": [
+                      {
+                        "type": "int",
+                        "repr": "2"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "9"
+                      },
+                      {
+                        "type": "int",
+                        "repr": "6"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "user_guess",
+                  "value": {
+                    "type": "int",
+                    "repr": "6"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "2 is too far off — try again!\n9 is too far off — try again!\nCongratulations! 6 is right!\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "2 is too far off — try again!\n9 is too far off — try again!\nCongratulations! 6 is right!\n"
+        }
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 93991,
+      "endMs": 112452,
+      "props": {
+        "items": [
+          {
+            "atMs": 95533,
+            "icon": "brain",
+            "text": "Picked a secret number"
+          },
+          {
+            "atMs": 97416,
+            "icon": "repeat",
+            "text": "Looped over guesses"
+          },
+          {
+            "atMs": 100020,
+            "icon": "idea",
+            "text": "Made decisions"
+          }
+        ],
+        "title": "What your program just did"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 112452,
+      "endMs": 134619,
+      "props": {
+        "items": [
+          {
+            "atMs": 114414,
+            "icon": "target",
+            "text": "Change range to 1-100"
+          },
+          {
+            "atMs": 117458,
+            "icon": "clock",
+            "text": "Count attempts"
+          },
+          {
+            "atMs": 123326,
+            "icon": "keyboard",
+            "text": "Make it interactive"
+          }
+        ],
+        "title": "Where to go from here"
+      }
+    }
+  ],
+  "captions": null
+}

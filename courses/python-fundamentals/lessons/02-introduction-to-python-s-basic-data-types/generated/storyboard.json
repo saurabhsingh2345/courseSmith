@@ -1,0 +1,124 @@
+{
+  "sections": [
+    {
+      "id": "what-are-data-types",
+      "points": [
+        {
+          "text": "Define data types",
+          "icon": "brain",
+          "at_word": 0
+        },
+        {
+          "text": "Common types: Strings, Integers, Floats, Booleans",
+          "icon": "list",
+          "at_word": 14
+        },
+        {
+          "text": "Crucial for programming",
+          "icon": "check",
+          "at_word": 49
+        }
+      ]
+    },
+    {
+      "id": "understanding-strings",
+      "points": [
+        {
+          "text": "Sequences of characters",
+          "icon": "dot",
+          "at_word": 0
+        },
+        {
+          "text": "Enclosed in quotes",
+          "icon": "dot",
+          "at_word": 9
+        },
+        {
+          "text": "Concatenate with '+'",
+          "icon": "dot",
+          "at_word": 21
+        },
+        {
+          "text": "Essential for text",
+          "icon": "heart",
+          "at_word": 36
+        }
+      ]
+    },
+    {
+      "id": "exploring-integers-and-floats",
+      "points": [
+        {
+          "text": "Whole numbers: Integers",
+          "icon": "code",
+          "at_word": 0
+        },
+        {
+          "text": "Decimal numbers: Floats",
+          "icon": "code",
+          "at_word": 15
+        },
+        {
+          "text": "Useful for calculations",
+          "icon": "gear",
+          "at_word": 41
+        }
+      ]
+    },
+    {
+      "id": "what-are-booleans",
+      "points": [
+        {
+          "text": "Truth values: True or False",
+          "icon": "flag",
+          "at_word": 0
+        },
+        {
+          "text": "Used in conditions",
+          "icon": "check",
+          "at_word": 12
+        },
+        {
+          "text": "Control flow of programs",
+          "icon": "target",
+          "at_word": 29
+        }
+      ]
+    },
+    {
+      "id": "overview-of-data-types",
+      "points": [
+        {
+          "text": "Strings, Integers, Floats, Booleans",
+          "icon": "list",
+          "at_word": 0
+        },
+        {
+          "text": "Foundation for programming",
+          "icon": "brain",
+          "at_word": 28
+        }
+      ]
+    },
+    {
+      "id": "next-steps-in-python",
+      "points": [
+        {
+          "text": "Start using data types",
+          "icon": "play",
+          "at_word": 0
+        },
+        {
+          "text": "Explore variables",
+          "icon": "folder",
+          "at_word": 11
+        },
+        {
+          "text": "Create complex programs",
+          "icon": "rocket",
+          "at_word": 25
+        }
+      ]
+    }
+  ]
+}

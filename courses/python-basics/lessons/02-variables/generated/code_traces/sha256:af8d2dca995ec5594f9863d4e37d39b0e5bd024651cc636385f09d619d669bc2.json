@@ -1,0 +1,80 @@
+{
+  "code": "apples = 3\napples = apples + 2\nprint(apples)",
+  "lines": [
+    "apples = 3",
+    "apples = apples + 2",
+    "print(apples)"
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "line": 1,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 1,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "apples",
+          "value": {
+            "type": "int",
+            "repr": "3"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 2,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "apples",
+          "value": {
+            "type": "int",
+            "repr": "5"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 3,
+      "line": 3,
+      "event": "return",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "apples",
+          "value": {
+            "type": "int",
+            "repr": "5"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "5\n"
+    }
+  ],
+  "truncated": false,
+  "stdout": "5\n"
+}

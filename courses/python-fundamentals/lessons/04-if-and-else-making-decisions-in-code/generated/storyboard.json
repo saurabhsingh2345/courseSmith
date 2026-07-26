@@ -1,0 +1,124 @@
+{
+  "sections": [
+    {
+      "id": "understanding-conditional-statements",
+      "points": [
+        {
+          "text": "Key part of programming",
+          "icon": "book",
+          "at_word": 5
+        },
+        {
+          "text": "Making decisions in code",
+          "icon": "brain",
+          "at_word": 10
+        },
+        {
+          "text": "'if' and 'else' statements",
+          "icon": "code",
+          "at_word": 41
+        }
+      ]
+    },
+    {
+      "id": "the-structure-of-if-statements",
+      "points": [
+        {
+          "text": "First step in decisions",
+          "icon": "check",
+          "at_word": 3
+        },
+        {
+          "text": "Checks a specific condition",
+          "icon": "target",
+          "at_word": 8
+        },
+        {
+          "text": "Runs associated code block",
+          "icon": "play",
+          "at_word": 20
+        }
+      ]
+    },
+    {
+      "id": "adding-else-statements",
+      "points": [
+        {
+          "text": "Alternative action",
+          "icon": "idea",
+          "at_word": 5
+        },
+        {
+          "text": "Combining if and else",
+          "icon": "link",
+          "at_word": 10
+        },
+        {
+          "text": "Cover both scenarios",
+          "icon": "layers",
+          "at_word": 16
+        }
+      ]
+    },
+    {
+      "id": "using-comparison-operators",
+      "points": [
+        {
+          "text": "Essential for conditions",
+          "icon": "gear",
+          "at_word": 5
+        },
+        {
+          "text": "Compare values",
+          "icon": "dot",
+          "at_word": 10
+        },
+        {
+          "text": "Common operators",
+          "icon": "list",
+          "at_word": 15
+        }
+      ]
+    },
+    {
+      "id": "flowchart-for-if-and-else-statements",
+      "points": [
+        {
+          "text": "Visualize logic",
+          "icon": "puzzle",
+          "at_word": 5
+        },
+        {
+          "text": "Flow from condition",
+          "icon": "arrow",
+          "at_word": 10
+        },
+        {
+          "text": "Plan your code",
+          "icon": "folder",
+          "at_word": 15
+        }
+      ]
+    },
+    {
+      "id": "whats-next",
+      "points": [
+        {
+          "text": "More to explore",
+          "icon": "rocket",
+          "at_word": 5
+        },
+        {
+          "text": "Dive into elif",
+          "icon": "zap",
+          "at_word": 12
+        },
+        {
+          "text": "Learn about loops",
+          "icon": "repeat",
+          "at_word": 18
+        }
+      ]
+    }
+  ]
+}

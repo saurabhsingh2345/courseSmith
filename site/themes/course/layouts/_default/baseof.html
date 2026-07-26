@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ site.Title }}</title>
+
+  {{- $desc := or .Description .Params.description site.Params.description }}
+  <meta name="description" content="{{ $desc }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  <meta property="og:site_name" content="{{ site.Title }}">
+  <meta property="og:title" content="{{ .Title | default site.Title }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ .Title | default site.Title }}">
+  <meta name="twitter:description" content="{{ $desc }}">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%231d4ed8'/%3E%3Cpath d='M6 4.5v7l5.5-3.5z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="{{ "css/course.css" | relURL }}">
+  {{ block "head-extra" . }}{{ end }}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="shell site-header-inner">
+      <a class="site-name" href="{{ "index.html" | relURL }}">
+        <svg class="site-mark" width="20" height="20" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect width="16" height="16" rx="3" fill="var(--accent)"/><path d="M6 4.5v7l5.5-3.5z" fill="#fff"/></svg>
+        <span>{{ site.Title }}</span>
+      </a>
+    </div>
+  </header>
+  <main class="site-main" id="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer class="site-footer">
+    <div class="shell">
+      <p>Built with coursesmith.</p>
+    </div>
+  </footer>
+</body>
+</html>

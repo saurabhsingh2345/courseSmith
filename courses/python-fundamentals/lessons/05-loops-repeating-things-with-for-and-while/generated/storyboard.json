@@ -1,0 +1,129 @@
+{
+  "sections": [
+    {
+      "id": "what-are-loops",
+      "points": [
+        {
+          "text": "Fundamental concept",
+          "icon": "brain",
+          "at_word": 5
+        },
+        {
+          "text": "Repeat actions",
+          "icon": "repeat",
+          "at_word": 10
+        },
+        {
+          "text": "Avoid repetition",
+          "icon": "check",
+          "at_word": 17
+        },
+        {
+          "text": "Two main types",
+          "icon": "list",
+          "at_word": 29
+        }
+      ]
+    },
+    {
+      "id": "using-for-loops",
+      "points": [
+        {
+          "text": "Great for sequences",
+          "icon": "list",
+          "at_word": 6
+        },
+        {
+          "text": "Iterate over items",
+          "icon": "arrow",
+          "at_word": 10
+        },
+        {
+          "text": "Perfect for repetition",
+          "icon": "repeat",
+          "at_word": 20
+        }
+      ]
+    },
+    {
+      "id": "understanding-while-loops",
+      "points": [
+        {
+          "text": "Repeat while true",
+          "icon": "repeat",
+          "at_word": 5
+        },
+        {
+          "text": "Condition-based",
+          "icon": "check",
+          "at_word": 12
+        },
+        {
+          "text": "Avoid infinite loops",
+          "icon": "bug",
+          "at_word": 23
+        }
+      ]
+    },
+    {
+      "id": "when-to-use-each-loop",
+      "points": [
+        {
+          "text": "Use for known iterations",
+          "icon": "check",
+          "at_word": 6
+        },
+        {
+          "text": "Use while for conditions",
+          "icon": "idea",
+          "at_word": 16
+        },
+        {
+          "text": "Simplify your code",
+          "icon": "sparkles",
+          "at_word": 30
+        }
+      ]
+    },
+    {
+      "id": "practice-with-loops",
+      "points": [
+        {
+          "text": "Create a for loop",
+          "icon": "code",
+          "at_word": 8
+        },
+        {
+          "text": "Create a while loop",
+          "icon": "code",
+          "at_word": 14
+        },
+        {
+          "text": "Experiment with conditions",
+          "icon": "gear",
+          "at_word": 20
+        }
+      ]
+    },
+    {
+      "id": "whats-next",
+      "points": [
+        {
+          "text": "Combine loops with conditionals",
+          "icon": "link",
+          "at_word": 5
+        },
+        {
+          "text": "Learn break and continue",
+          "icon": "flag",
+          "at_word": 10
+        },
+        {
+          "text": "Build complex programs",
+          "icon": "rocket",
+          "at_word": 15
+        }
+      ]
+    }
+  ]
+}

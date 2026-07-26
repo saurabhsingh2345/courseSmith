@@ -1,0 +1,3176 @@
+{
+  "source": "whisperx",
+  "words": [
+    {
+      "word": "A",
+      "startMs": 31,
+      "endMs": 131
+    },
+    {
+      "word": "variable",
+      "startMs": 171,
+      "endMs": 672
+    },
+    {
+      "word": "is",
+      "startMs": 812,
+      "endMs": 872
+    },
+    {
+      "word": "like",
+      "startMs": 952,
+      "endMs": 1092
+    },
+    {
+      "word": "a",
+      "startMs": 1112,
+      "endMs": 1172
+    },
+    {
+      "word": "container",
+      "startMs": 1213,
+      "endMs": 1733
+    },
+    {
+      "word": "for",
+      "startMs": 1833,
+      "endMs": 1953
+    },
+    {
+      "word": "storing",
+      "startMs": 2034,
+      "endMs": 2414
+    },
+    {
+      "word": "data",
+      "startMs": 2474,
+      "endMs": 2734
+    },
+    {
+      "word": "values.",
+      "startMs": 2795,
+      "endMs": 3215
+    },
+    {
+      "word": "It",
+      "startMs": 3856,
+      "endMs": 3896
+    },
+    {
+      "word": "has",
+      "startMs": 3936,
+      "endMs": 4056
+    },
+    {
+      "word": "a",
+      "startMs": 4096,
+      "endMs": 4136
+    },
+    {
+      "word": "name",
+      "startMs": 4176,
+      "endMs": 4357
+    },
+    {
+      "word": "that",
+      "startMs": 4377,
+      "endMs": 4537
+    },
+    {
+      "word": "you",
+      "startMs": 4577,
+      "endMs": 4717
+    },
+    {
+      "word": "use",
+      "startMs": 4837,
+      "endMs": 4977
+    },
+    {
+      "word": "to",
+      "startMs": 5017,
+      "endMs": 5097
+    },
+    {
+      "word": "reference",
+      "startMs": 5178,
+      "endMs": 5558
+    },
+    {
+      "word": "the",
+      "startMs": 5618,
+      "endMs": 5698
+    },
+    {
+      "word": "value",
+      "startMs": 5738,
+      "endMs": 6119
+    },
+    {
+      "word": "stored",
+      "startMs": 6179,
+      "endMs": 6479
+    },
+    {
+      "word": "inside.",
+      "startMs": 6559,
+      "endMs": 7040
+    },
+    {
+      "word": "Variables",
+      "startMs": 7681,
+      "endMs": 8201
+    },
+    {
+      "word": "can",
+      "startMs": 8262,
+      "endMs": 8382
+    },
+    {
+      "word": "hold",
+      "startMs": 8442,
+      "endMs": 8622
+    },
+    {
+      "word": "different",
+      "startMs": 8702,
+      "endMs": 8982
+    },
+    {
+      "word": "types",
+      "startMs": 9022,
+      "endMs": 9283
+    },
+    {
+      "word": "of",
+      "startMs": 9343,
+      "endMs": 9383
+    },
+    {
+      "word": "data,",
+      "startMs": 9423,
+      "endMs": 9743
+    },
+    {
+      "word": "like",
+      "startMs": 10044,
+      "endMs": 10184
+    },
+    {
+      "word": "numbers",
+      "startMs": 10284,
+      "endMs": 10705
+    },
+    {
+      "word": "or",
+      "startMs": 10865,
+      "endMs": 10945
+    },
+    {
+      "word": "text.",
+      "startMs": 11025,
+      "endMs": 11406
+    },
+    {
+      "word": "Let's",
+      "startMs": 11966,
+      "endMs": 12166
+    },
+    {
+      "word": "look",
+      "startMs": 12207,
+      "endMs": 12387
+    },
+    {
+      "word": "at",
+      "startMs": 12427,
+      "endMs": 12467
+    },
+    {
+      "word": "that",
+      "startMs": 12507,
+      "endMs": 12687
+    },
+    {
+      "word": "in",
+      "startMs": 12727,
+      "endMs": 12827
+    },
+    {
+      "word": "a",
+      "startMs": 12867,
+      "endMs": 12907
+    },
+    {
+      "word": "picture.",
+      "startMs": 12968,
+      "endMs": 13308
+    },
+    {
+      "word": "Here",
+      "startMs": 13829,
+      "endMs": 14049
+    },
+    {
+      "word": "you",
+      "startMs": 14269,
+      "endMs": 14369
+    },
+    {
+      "word": "can",
+      "startMs": 14389,
+      "endMs": 14509
+    },
+    {
+      "word": "see",
+      "startMs": 14570,
+      "endMs": 14730
+    },
+    {
+      "word": "how",
+      "startMs": 14770,
+      "endMs": 14890
+    },
+    {
+      "word": "a",
+      "startMs": 14950,
+      "endMs": 14970
+    },
+    {
+      "word": "variable",
+      "startMs": 15030,
+      "endMs": 15471
+    },
+    {
+      "word": "has",
+      "startMs": 15511,
+      "endMs": 15651
+    },
+    {
+      "word": "a",
+      "startMs": 15691,
+      "endMs": 15731
+    },
+    {
+      "word": "name",
+      "startMs": 15791,
+      "endMs": 16031
+    },
+    {
+      "word": "and",
+      "startMs": 16071,
+      "endMs": 16312
+    },
+    {
+      "word": "a",
+      "startMs": 16352,
+      "endMs": 16372
+    },
+    {
+      "word": "value.",
+      "startMs": 16432,
+      "endMs": 16792
+    },
+    {
+      "word": "The",
+      "startMs": 17373,
+      "endMs": 17473
+    },
+    {
+      "word": "name",
+      "startMs": 17513,
+      "endMs": 17754
+    },
+    {
+      "word": "helps",
+      "startMs": 17794,
+      "endMs": 18074
+    },
+    {
+      "word": "us",
+      "startMs": 18134,
+      "endMs": 18214
+    },
+    {
+      "word": "identify",
+      "startMs": 18314,
+      "endMs": 18875
+    },
+    {
+      "word": "what",
+      "startMs": 18915,
+      "endMs": 19055
+    },
+    {
+      "word": "we're",
+      "startMs": 19095,
+      "endMs": 19216
+    },
+    {
+      "word": "working",
+      "startMs": 19236,
+      "endMs": 19516
+    },
+    {
+      "word": "with,",
+      "startMs": 19556,
+      "endMs": 19736
+    },
+    {
+      "word": "and",
+      "startMs": 20237,
+      "endMs": 20317
+    },
+    {
+      "word": "the",
+      "startMs": 20337,
+      "endMs": 20417
+    },
+    {
+      "word": "value",
+      "startMs": 20477,
+      "endMs": 20838
+    },
+    {
+      "word": "is",
+      "startMs": 20918,
+      "endMs": 20978
+    },
+    {
+      "word": "the",
+      "startMs": 20998,
+      "endMs": 21098
+    },
+    {
+      "word": "actual",
+      "startMs": 21238,
+      "endMs": 21538
+    },
+    {
+      "word": "data",
+      "startMs": 21599,
+      "endMs": 21879
+    },
+    {
+      "word": "we",
+      "startMs": 22079,
+      "endMs": 22179
+    },
+    {
+      "word": "want",
+      "startMs": 22219,
+      "endMs": 22360
+    },
+    {
+      "word": "to",
+      "startMs": 22380,
+      "endMs": 22440
+    },
+    {
+      "word": "keep",
+      "startMs": 22480,
+      "endMs": 22660
+    },
+    {
+      "word": "track",
+      "startMs": 22720,
+      "endMs": 22980
+    },
+    {
+      "word": "of.",
+      "startMs": 23060,
+      "endMs": 23541
+    },
+    {
+      "word": "When",
+      "startMs": 24162,
+      "endMs": 24302
+    },
+    {
+      "word": "naming",
+      "startMs": 24362,
+      "endMs": 24623
+    },
+    {
+      "word": "variables,",
+      "startMs": 24683,
+      "endMs": 25184
+    },
+    {
+      "word": "it's",
+      "startMs": 25645,
+      "endMs": 25765
+    },
+    {
+      "word": "helpful",
+      "startMs": 25825,
+      "endMs": 26206
+    },
+    {
+      "word": "to",
+      "startMs": 26246,
+      "endMs": 26326
+    },
+    {
+      "word": "use",
+      "startMs": 26446,
+      "endMs": 26586
+    },
+    {
+      "word": "descriptive",
+      "startMs": 26647,
+      "endMs": 27188
+    },
+    {
+      "word": "names",
+      "startMs": 27268,
+      "endMs": 27588
+    },
+    {
+      "word": "that",
+      "startMs": 27668,
+      "endMs": 27789
+    },
+    {
+      "word": "reflect",
+      "startMs": 27849,
+      "endMs": 28229
+    },
+    {
+      "word": "the",
+      "startMs": 28270,
+      "endMs": 28330
+    },
+    {
+      "word": "value",
+      "startMs": 28390,
+      "endMs": 28730
+    },
+    {
+      "word": "stored.",
+      "startMs": 28770,
+      "endMs": 29111
+    },
+    {
+      "word": "You",
+      "startMs": 29792,
+      "endMs": 29893
+    },
+    {
+      "word": "can",
+      "startMs": 29913,
+      "endMs": 30033
+    },
+    {
+      "word": "start",
+      "startMs": 30093,
+      "endMs": 30333
+    },
+    {
+      "word": "with",
+      "startMs": 30373,
+      "endMs": 30494
+    },
+    {
+      "word": "a",
+      "startMs": 30534,
+      "endMs": 30574
+    },
+    {
+      "word": "letter",
+      "startMs": 30634,
+      "endMs": 30914
+    },
+    {
+      "word": "or",
+      "startMs": 30934,
+      "endMs": 31235
+    },
+    {
+      "word": "an",
+      "startMs": 31295,
+      "endMs": 31355
+    },
+    {
+      "word": "underscore,",
+      "startMs": 31415,
+      "endMs": 31936
+    },
+    {
+      "word": "and",
+      "startMs": 32357,
+      "endMs": 32437
+    },
+    {
+      "word": "then",
+      "startMs": 32477,
+      "endMs": 32597
+    },
+    {
+      "word": "use",
+      "startMs": 32758,
+      "endMs": 32898
+    },
+    {
+      "word": "letters,",
+      "startMs": 32958,
+      "endMs": 33339
+    },
+    {
+      "word": "numbers,",
+      "startMs": 33679,
+      "endMs": 34080
+    },
+    {
+      "word": "or",
+      "startMs": 34301,
+      "endMs": 34381
+    },
+    {
+      "word": "underscores",
+      "startMs": 34401,
+      "endMs": 35042
+    },
+    {
+      "word": "after",
+      "startMs": 35082,
+      "endMs": 35342
+    },
+    {
+      "word": "that.",
+      "startMs": 35383,
+      "endMs": 35583
+    },
+    {
+      "word": "Just",
+      "startMs": 36064,
+      "endMs": 36244
+    },
+    {
+      "word": "remember,",
+      "startMs": 36304,
+      "endMs": 36705
+    },
+    {
+      "word": "you",
+      "startMs": 37026,
+      "endMs": 37126
+    },
+    {
+      "word": "can't",
+      "startMs": 37186,
+      "endMs": 37426
+    },
+    {
+      "word": "use",
+      "startMs": 37526,
+      "endMs": 37627
+    },
+    {
+      "word": "spaces",
+      "startMs": 37667,
+      "endMs": 38108
+    },
+    {
+      "word": "or",
+      "startMs": 38148,
+      "endMs": 38348
+    },
+    {
+      "word": "other",
+      "startMs": 38368,
+      "endMs": 38649
+    },
+    {
+      "word": "special",
+      "startMs": 38689,
+      "endMs": 39009
+    },
+    {
+      "word": "characters,",
+      "startMs": 39069,
+      "endMs": 39590
+    },
+    {
+      "word": "except",
+      "startMs": 40051,
+      "endMs": 40372
+    },
+    {
+      "word": "for",
+      "startMs": 40412,
+      "endMs": 40532
+    },
+    {
+      "word": "underscores.",
+      "startMs": 40632,
+      "endMs": 41193
+    },
+    {
+      "word": "This",
+      "startMs": 41955,
+      "endMs": 42115
+    },
+    {
+      "word": "way,",
+      "startMs": 42195,
+      "endMs": 42395
+    },
+    {
+      "word": "your",
+      "startMs": 42456,
+      "endMs": 42756
+    },
+    {
+      "word": "variable",
+      "startMs": 42836,
+      "endMs": 43297
+    },
+    {
+      "word": "names",
+      "startMs": 43357,
+      "endMs": 43638
+    },
+    {
+      "word": "will",
+      "startMs": 43698,
+      "endMs": 43838
+    },
+    {
+      "word": "be",
+      "startMs": 43878,
+      "endMs": 43938
+    },
+    {
+      "word": "clear",
+      "startMs": 44018,
+      "endMs": 44339
+    },
+    {
+      "word": "and",
+      "startMs": 44539,
+      "endMs": 44620
+    },
+    {
+      "word": "easy",
+      "startMs": 44760,
+      "endMs": 44980
+    },
+    {
+      "word": "to",
+      "startMs": 45020,
+      "endMs": 45100
+    },
+    {
+      "word": "understand.",
+      "startMs": 45160,
+      "endMs": 46002
+    },
+    {
+      "word": "You",
+      "startMs": 46690,
+      "endMs": 46830
+    },
+    {
+      "word": "can",
+      "startMs": 46870,
+      "endMs": 46970
+    },
+    {
+      "word": "create",
+      "startMs": 47010,
+      "endMs": 47291
+    },
+    {
+      "word": "a",
+      "startMs": 47331,
+      "endMs": 47351
+    },
+    {
+      "word": "variable",
+      "startMs": 47391,
+      "endMs": 47831
+    },
+    {
+      "word": "using",
+      "startMs": 48051,
+      "endMs": 48272
+    },
+    {
+      "word": "the",
+      "startMs": 48312,
+      "endMs": 48412
+    },
+    {
+      "word": "assignment",
+      "startMs": 48472,
+      "endMs": 48912
+    },
+    {
+      "word": "operator,",
+      "startMs": 49033,
+      "endMs": 49473
+    },
+    {
+      "word": "which",
+      "startMs": 49893,
+      "endMs": 50034
+    },
+    {
+      "word": "is",
+      "startMs": 50094,
+      "endMs": 50154
+    },
+    {
+      "word": "the",
+      "startMs": 50194,
+      "endMs": 50274
+    },
+    {
+      "word": "equals",
+      "startMs": 50394,
+      "endMs": 50694
+    },
+    {
+      "word": "sign",
+      "startMs": 50794,
+      "endMs": 51115
+    },
+    {
+      "word": "equals.",
+      "startMs": 51155,
+      "endMs": 51695
+    },
+    {
+      "word": "For",
+      "startMs": 52356,
+      "endMs": 52456
+    },
+    {
+      "word": "example,",
+      "startMs": 52516,
+      "endMs": 52937
+    },
+    {
+      "word": "let's",
+      "startMs": 53337,
+      "endMs": 53537
+    },
+    {
+      "word": "say",
+      "startMs": 53577,
+      "endMs": 53738
+    },
+    {
+      "word": "we",
+      "startMs": 53798,
+      "endMs": 53898
+    },
+    {
+      "word": "want",
+      "startMs": 53938,
+      "endMs": 54078
+    },
+    {
+      "word": "to",
+      "startMs": 54098,
+      "endMs": 54138
+    },
+    {
+      "word": "create",
+      "startMs": 54198,
+      "endMs": 54478
+    },
+    {
+      "word": "a",
+      "startMs": 54518,
+      "endMs": 54538
+    },
+    {
+      "word": "variable",
+      "startMs": 54578,
+      "endMs": 55019
+    },
+    {
+      "word": "called",
+      "startMs": 55079,
+      "endMs": 55379
+    },
+    {
+      "word": "my",
+      "startMs": 55560,
+      "endMs": 55740
+    },
+    {
+      "word": "variable",
+      "startMs": 55800,
+      "endMs": 56260
+    },
+    {
+      "word": "and",
+      "startMs": 56601,
+      "endMs": 56681
+    },
+    {
+      "word": "store",
+      "startMs": 56761,
+      "endMs": 57001
+    },
+    {
+      "word": "the",
+      "startMs": 57021,
+      "endMs": 57101
+    },
+    {
+      "word": "value",
+      "startMs": 57141,
+      "endMs": 57482
+    },
+    {
+      "word": "10",
+      "startMs": 57502,
+      "endMs": 57762
+    },
+    {
+      "word": "in",
+      "startMs": 57822,
+      "endMs": 57882
+    },
+    {
+      "word": "it.",
+      "startMs": 57962,
+      "endMs": 58022
+    },
+    {
+      "word": "We",
+      "startMs": 58543,
+      "endMs": 58643
+    },
+    {
+      "word": "write",
+      "startMs": 58703,
+      "endMs": 58883
+    },
+    {
+      "word": "it",
+      "startMs": 58923,
+      "endMs": 58963
+    },
+    {
+      "word": "like",
+      "startMs": 59003,
+      "endMs": 59143
+    },
+    {
+      "word": "this.",
+      "startMs": 59163,
+      "endMs": 59384
+    },
+    {
+      "word": "My",
+      "startMs": 59924,
+      "endMs": 60024
+    },
+    {
+      "word": "variable",
+      "startMs": 60064,
+      "endMs": 60505
+    },
+    {
+      "word": "equals",
+      "startMs": 60605,
+      "endMs": 60885
+    },
+    {
+      "word": "10.",
+      "startMs": 60905,
+      "endMs": 61186
+    },
+    {
+      "word": "Now,",
+      "startMs": 61706,
+      "endMs": 61926
+    },
+    {
+      "word": "let's",
+      "startMs": 62147,
+      "endMs": 62347
+    },
+    {
+      "word": "see",
+      "startMs": 62387,
+      "endMs": 62527
+    },
+    {
+      "word": "how",
+      "startMs": 62567,
+      "endMs": 62687
+    },
+    {
+      "word": "this",
+      "startMs": 62767,
+      "endMs": 62907
+    },
+    {
+      "word": "looks",
+      "startMs": 62967,
+      "endMs": 63168
+    },
+    {
+      "word": "in",
+      "startMs": 63228,
+      "endMs": 63288
+    },
+    {
+      "word": "code.",
+      "startMs": 63348,
+      "endMs": 64109
+    },
+    {
+      "word": "When",
+      "startMs": 64129,
+      "endMs": 64249
+    },
+    {
+      "word": "we",
+      "startMs": 64289,
+      "endMs": 64369
+    },
+    {
+      "word": "run",
+      "startMs": 64409,
+      "endMs": 64609
+    },
+    {
+      "word": "this",
+      "startMs": 64649,
+      "endMs": 64789
+    },
+    {
+      "word": "code,",
+      "startMs": 64850,
+      "endMs": 65150
+    },
+    {
+      "word": "we",
+      "startMs": 65310,
+      "endMs": 65410
+    },
+    {
+      "word": "can",
+      "startMs": 65450,
+      "endMs": 65570
+    },
+    {
+      "word": "print",
+      "startMs": 65630,
+      "endMs": 65791
+    },
+    {
+      "word": "the",
+      "startMs": 65831,
+      "endMs": 65911
+    },
+    {
+      "word": "value",
+      "startMs": 65951,
+      "endMs": 66311
+    },
+    {
+      "word": "of",
+      "startMs": 66371,
+      "endMs": 66411
+    },
+    {
+      "word": "my",
+      "startMs": 66471,
+      "endMs": 66611
+    },
+    {
+      "word": "variable.",
+      "startMs": 66651,
+      "endMs": 67112
+    },
+    {
+      "word": "It",
+      "startMs": 67713,
+      "endMs": 67773
+    },
+    {
+      "word": "shows",
+      "startMs": 67853,
+      "endMs": 68093
+    },
+    {
+      "word": "us",
+      "startMs": 68173,
+      "endMs": 68253
+    },
+    {
+      "word": "10.",
+      "startMs": 68273,
+      "endMs": 68553
+    },
+    {
+      "word": "This",
+      "startMs": 69134,
+      "endMs": 69294
+    },
+    {
+      "word": "is",
+      "startMs": 69374,
+      "endMs": 69434
+    },
+    {
+      "word": "how",
+      "startMs": 69495,
+      "endMs": 69635
+    },
+    {
+      "word": "we",
+      "startMs": 69715,
+      "endMs": 69815
+    },
+    {
+      "word": "store",
+      "startMs": 69875,
+      "endMs": 70135
+    },
+    {
+      "word": "values",
+      "startMs": 70195,
+      "endMs": 70616
+    },
+    {
+      "word": "in",
+      "startMs": 70696,
+      "endMs": 70776
+    },
+    {
+      "word": "variables.",
+      "startMs": 70796,
+      "endMs": 71837
+    },
+    {
+      "word": "To",
+      "startMs": 72340,
+      "endMs": 72500
+    },
+    {
+      "word": "use",
+      "startMs": 72640,
+      "endMs": 72781
+    },
+    {
+      "word": "the",
+      "startMs": 72821,
+      "endMs": 72881
+    },
+    {
+      "word": "value",
+      "startMs": 72941,
+      "endMs": 73301
+    },
+    {
+      "word": "stored",
+      "startMs": 73341,
+      "endMs": 73642
+    },
+    {
+      "word": "in",
+      "startMs": 73682,
+      "endMs": 73722
+    },
+    {
+      "word": "a",
+      "startMs": 73762,
+      "endMs": 73782
+    },
+    {
+      "word": "variable,",
+      "startMs": 73822,
+      "endMs": 74262
+    },
+    {
+      "word": "you",
+      "startMs": 74563,
+      "endMs": 74683
+    },
+    {
+      "word": "simply",
+      "startMs": 74743,
+      "endMs": 75023
+    },
+    {
+      "word": "reference",
+      "startMs": 75123,
+      "endMs": 75504
+    },
+    {
+      "word": "its",
+      "startMs": 75584,
+      "endMs": 75724
+    },
+    {
+      "word": "name.",
+      "startMs": 75784,
+      "endMs": 76004
+    },
+    {
+      "word": "For",
+      "startMs": 76665,
+      "endMs": 76765
+    },
+    {
+      "word": "instance,",
+      "startMs": 76845,
+      "endMs": 77286
+    },
+    {
+      "word": "if",
+      "startMs": 77646,
+      "endMs": 77706
+    },
+    {
+      "word": "we",
+      "startMs": 77746,
+      "endMs": 77826
+    },
+    {
+      "word": "have",
+      "startMs": 77886,
+      "endMs": 78087
+    },
+    {
+      "word": "my",
+      "startMs": 78147,
+      "endMs": 78287
+    },
+    {
+      "word": "variable",
+      "startMs": 78367,
+      "endMs": 78868
+    },
+    {
+      "word": "set",
+      "startMs": 78928,
+      "endMs": 79108
+    },
+    {
+      "word": "to",
+      "startMs": 79128,
+      "endMs": 79228
+    },
+    {
+      "word": "10,",
+      "startMs": 79268,
+      "endMs": 79508
+    },
+    {
+      "word": "we",
+      "startMs": 79929,
+      "endMs": 80029
+    },
+    {
+      "word": "can",
+      "startMs": 80069,
+      "endMs": 80189
+    },
+    {
+      "word": "update",
+      "startMs": 80289,
+      "endMs": 80610
+    },
+    {
+      "word": "it",
+      "startMs": 80670,
+      "endMs": 80710
+    },
+    {
+      "word": "by",
+      "startMs": 80790,
+      "endMs": 80890
+    },
+    {
+      "word": "adding",
+      "startMs": 80930,
+      "endMs": 81270
+    },
+    {
+      "word": "5",
+      "startMs": 81290,
+      "endMs": 81631
+    },
+    {
+      "word": "to",
+      "startMs": 81691,
+      "endMs": 81791
+    },
+    {
+      "word": "it.",
+      "startMs": 81891,
+      "endMs": 81951
+    },
+    {
+      "word": "We",
+      "startMs": 82412,
+      "endMs": 82532
+    },
+    {
+      "word": "write,",
+      "startMs": 82572,
+      "endMs": 82812
+    },
+    {
+      "word": "my",
+      "startMs": 83373,
+      "endMs": 83473
+    },
+    {
+      "word": "variable",
+      "startMs": 83533,
+      "endMs": 83973
+    },
+    {
+      "word": "equals",
+      "startMs": 84074,
+      "endMs": 84374
+    },
+    {
+      "word": "my",
+      "startMs": 84434,
+      "endMs": 84554
+    },
+    {
+      "word": "variable",
+      "startMs": 84614,
+      "endMs": 85055
+    },
+    {
+      "word": "plus",
+      "startMs": 85115,
+      "endMs": 85355
+    },
+    {
+      "word": "5.",
+      "startMs": 85395,
+      "endMs": 85715
+    },
+    {
+      "word": "When",
+      "startMs": 86196,
+      "endMs": 86296
+    },
+    {
+      "word": "we",
+      "startMs": 86336,
+      "endMs": 86416
+    },
+    {
+      "word": "print",
+      "startMs": 86496,
+      "endMs": 86737
+    },
+    {
+      "word": "my",
+      "startMs": 86837,
+      "endMs": 86957
+    },
+    {
+      "word": "variable",
+      "startMs": 87017,
+      "endMs": 87477
+    },
+    {
+      "word": "again,",
+      "startMs": 87558,
+      "endMs": 87818
+    },
+    {
+      "word": "it",
+      "startMs": 88258,
+      "endMs": 88318
+    },
+    {
+      "word": "shows",
+      "startMs": 88399,
+      "endMs": 88639
+    },
+    {
+      "word": "us",
+      "startMs": 88699,
+      "endMs": 88779
+    },
+    {
+      "word": "15.",
+      "startMs": 88799,
+      "endMs": 89260
+    },
+    {
+      "word": "This",
+      "startMs": 89300,
+      "endMs": 90120
+    },
+    {
+      "word": "way,",
+      "startMs": 90201,
+      "endMs": 90381
+    },
+    {
+      "word": "you",
+      "startMs": 90601,
+      "endMs": 90701
+    },
+    {
+      "word": "can",
+      "startMs": 90761,
+      "endMs": 90881
+    },
+    {
+      "word": "see",
+      "startMs": 90941,
+      "endMs": 91082
+    },
+    {
+      "word": "how",
+      "startMs": 91142,
+      "endMs": 91282
+    },
+    {
+      "word": "easy",
+      "startMs": 91442,
+      "endMs": 91662
+    },
+    {
+      "word": "it",
+      "startMs": 91682,
+      "endMs": 91782
+    },
+    {
+      "word": "is",
+      "startMs": 91802,
+      "endMs": 91983
+    },
+    {
+      "word": "to",
+      "startMs": 92043,
+      "endMs": 92123
+    },
+    {
+      "word": "update",
+      "startMs": 92243,
+      "endMs": 92563
+    },
+    {
+      "word": "values",
+      "startMs": 92603,
+      "endMs": 93024
+    },
+    {
+      "word": "and",
+      "startMs": 93104,
+      "endMs": 93184
+    },
+    {
+      "word": "variables.",
+      "startMs": 93204,
+      "endMs": 94045
+    },
+    {
+      "word": "Now",
+      "startMs": 94767,
+      "endMs": 94988
+    },
+    {
+      "word": "that",
+      "startMs": 95028,
+      "endMs": 95149
+    },
+    {
+      "word": "you",
+      "startMs": 95189,
+      "endMs": 95290
+    },
+    {
+      "word": "know",
+      "startMs": 95330,
+      "endMs": 95471
+    },
+    {
+      "word": "about",
+      "startMs": 95551,
+      "endMs": 95772
+    },
+    {
+      "word": "variables,",
+      "startMs": 95833,
+      "endMs": 96335
+    },
+    {
+      "word": "next",
+      "startMs": 96737,
+      "endMs": 96938
+    },
+    {
+      "word": "you'll",
+      "startMs": 96959,
+      "endMs": 97140
+    },
+    {
+      "word": "explore",
+      "startMs": 97180,
+      "endMs": 97562
+    },
+    {
+      "word": "data",
+      "startMs": 97642,
+      "endMs": 97904
+    },
+    {
+      "word": "types",
+      "startMs": 97944,
+      "endMs": 98225
+    },
+    {
+      "word": "in",
+      "startMs": 98326,
+      "endMs": 98386
+    },
+    {
+      "word": "more",
+      "startMs": 98446,
+      "endMs": 98607
+    },
+    {
+      "word": "detail.",
+      "startMs": 98668,
+      "endMs": 99110
+    },
+    {
+      "word": "After",
+      "startMs": 99834,
+      "endMs": 100035
+    },
+    {
+      "word": "that,",
+      "startMs": 100075,
+      "endMs": 100296
+    },
+    {
+      "word": "we'll",
+      "startMs": 100698,
+      "endMs": 100859
+    },
+    {
+      "word": "learn",
+      "startMs": 100879,
+      "endMs": 101080
+    },
+    {
+      "word": "about",
+      "startMs": 101121,
+      "endMs": 101322
+    },
+    {
+      "word": "lists",
+      "startMs": 101382,
+      "endMs": 101724
+    },
+    {
+      "word": "and",
+      "startMs": 101864,
+      "endMs": 101945
+    },
+    {
+      "word": "how",
+      "startMs": 101985,
+      "endMs": 102086
+    },
+    {
+      "word": "to",
+      "startMs": 102126,
+      "endMs": 102186
+    },
+    {
+      "word": "store",
+      "startMs": 102226,
+      "endMs": 102468
+    },
+    {
+      "word": "multiple",
+      "startMs": 102508,
+      "endMs": 102990
+    },
+    {
+      "word": "values.",
+      "startMs": 103051,
+      "endMs": 103513
+    },
+    {
+      "word": "Understanding",
+      "startMs": 104217,
+      "endMs": 104820
+    },
+    {
+      "word": "variables",
+      "startMs": 104880,
+      "endMs": 105403
+    },
+    {
+      "word": "will",
+      "startMs": 105463,
+      "endMs": 105624
+    },
+    {
+      "word": "help",
+      "startMs": 105664,
+      "endMs": 105866
+    },
+    {
+      "word": "you",
+      "startMs": 105906,
+      "endMs": 106046
+    },
+    {
+      "word": "as",
+      "startMs": 106087,
+      "endMs": 106268
+    },
+    {
+      "word": "you",
+      "startMs": 106328,
+      "endMs": 106429
+    },
+    {
+      "word": "continue",
+      "startMs": 106489,
+      "endMs": 106971
+    },
+    {
+      "word": "your",
+      "startMs": 107032,
+      "endMs": 107152
+    },
+    {
+      "word": "programming",
+      "startMs": 107213,
+      "endMs": 107695
+    },
+    {
+      "word": "journey.",
+      "startMs": 107756,
+      "endMs": 108439
+    }
+  ],
+  "sections": [
+    {
+      "id": "what-is-a-variable",
+      "startMs": 31,
+      "endMs": 23541,
+      "wordStart": 0,
+      "wordEnd": 76,
+      "wer": 0
+    },
+    {
+      "id": "naming-variables",
+      "startMs": 24162,
+      "endMs": 46002,
+      "wordStart": 76,
+      "wordEnd": 133,
+      "wer": 0
+    },
+    {
+      "id": "creating-and-storing-values-in-variables",
+      "startMs": 46690,
+      "endMs": 71837,
+      "wordStart": 133,
+      "wordEnd": 210,
+      "wer": 0.013157894736842105
+    },
+    {
+      "id": "retrieving-values-from-variables",
+      "startMs": 72340,
+      "endMs": 94045,
+      "wordStart": 210,
+      "wordEnd": 275,
+      "wer": 0.015384615384615385
+    },
+    {
+      "id": "whats-next",
+      "startMs": 94767,
+      "endMs": 108439,
+      "wordStart": 275,
+      "wordEnd": 312,
+      "wer": 0
+    }
+  ],
+  "displayWords": [
+    {
+      "word": "A",
+      "startMs": 31,
+      "endMs": 131
+    },
+    {
+      "word": "variable",
+      "startMs": 171,
+      "endMs": 672
+    },
+    {
+      "word": "is",
+      "startMs": 812,
+      "endMs": 872
+    },
+    {
+      "word": "like",
+      "startMs": 952,
+      "endMs": 1092
+    },
+    {
+      "word": "a",
+      "startMs": 1112,
+      "endMs": 1172
+    },
+    {
+      "word": "container",
+      "startMs": 1213,
+      "endMs": 1733
+    },
+    {
+      "word": "for",
+      "startMs": 1833,
+      "endMs": 1953
+    },
+    {
+      "word": "storing",
+      "startMs": 2034,
+      "endMs": 2414
+    },
+    {
+      "word": "data",
+      "startMs": 2474,
+      "endMs": 2734
+    },
+    {
+      "word": "values.",
+      "startMs": 2795,
+      "endMs": 3215
+    },
+    {
+      "word": "It",
+      "startMs": 3856,
+      "endMs": 3896
+    },
+    {
+      "word": "has",
+      "startMs": 3936,
+      "endMs": 4056
+    },
+    {
+      "word": "a",
+      "startMs": 4096,
+      "endMs": 4136
+    },
+    {
+      "word": "name",
+      "startMs": 4176,
+      "endMs": 4357
+    },
+    {
+      "word": "that",
+      "startMs": 4377,
+      "endMs": 4537
+    },
+    {
+      "word": "you",
+      "startMs": 4577,
+      "endMs": 4717
+    },
+    {
+      "word": "use",
+      "startMs": 4837,
+      "endMs": 4977
+    },
+    {
+      "word": "to",
+      "startMs": 5017,
+      "endMs": 5097
+    },
+    {
+      "word": "reference",
+      "startMs": 5178,
+      "endMs": 5558
+    },
+    {
+      "word": "the",
+      "startMs": 5618,
+      "endMs": 5698
+    },
+    {
+      "word": "value",
+      "startMs": 5738,
+      "endMs": 6119
+    },
+    {
+      "word": "stored",
+      "startMs": 6179,
+      "endMs": 6479
+    },
+    {
+      "word": "inside.",
+      "startMs": 6559,
+      "endMs": 7040
+    },
+    {
+      "word": "Variables",
+      "startMs": 7681,
+      "endMs": 8201
+    },
+    {
+      "word": "can",
+      "startMs": 8262,
+      "endMs": 8382
+    },
+    {
+      "word": "hold",
+      "startMs": 8442,
+      "endMs": 8622
+    },
+    {
+      "word": "different",
+      "startMs": 8702,
+      "endMs": 8982
+    },
+    {
+      "word": "types",
+      "startMs": 9022,
+      "endMs": 9283
+    },
+    {
+      "word": "of",
+      "startMs": 9343,
+      "endMs": 9383
+    },
+    {
+      "word": "data,",
+      "startMs": 9423,
+      "endMs": 9743
+    },
+    {
+      "word": "like",
+      "startMs": 10044,
+      "endMs": 10184
+    },
+    {
+      "word": "numbers",
+      "startMs": 10284,
+      "endMs": 10705
+    },
+    {
+      "word": "or",
+      "startMs": 10865,
+      "endMs": 10945
+    },
+    {
+      "word": "text.",
+      "startMs": 11025,
+      "endMs": 11406
+    },
+    {
+      "word": "Let's",
+      "startMs": 11966,
+      "endMs": 12166
+    },
+    {
+      "word": "look",
+      "startMs": 12207,
+      "endMs": 12387
+    },
+    {
+      "word": "at",
+      "startMs": 12427,
+      "endMs": 12467
+    },
+    {
+      "word": "that",
+      "startMs": 12507,
+      "endMs": 12687
+    },
+    {
+      "word": "in",
+      "startMs": 12727,
+      "endMs": 12827
+    },
+    {
+      "word": "a",
+      "startMs": 12867,
+      "endMs": 12907
+    },
+    {
+      "word": "picture.",
+      "startMs": 12968,
+      "endMs": 13308
+    },
+    {
+      "word": "Here,",
+      "startMs": 13829,
+      "endMs": 14049
+    },
+    {
+      "word": "you",
+      "startMs": 14269,
+      "endMs": 14369
+    },
+    {
+      "word": "can",
+      "startMs": 14389,
+      "endMs": 14509
+    },
+    {
+      "word": "see",
+      "startMs": 14570,
+      "endMs": 14730
+    },
+    {
+      "word": "how",
+      "startMs": 14770,
+      "endMs": 14890
+    },
+    {
+      "word": "a",
+      "startMs": 14950,
+      "endMs": 14970
+    },
+    {
+      "word": "variable",
+      "startMs": 15030,
+      "endMs": 15471
+    },
+    {
+      "word": "has",
+      "startMs": 15511,
+      "endMs": 15651
+    },
+    {
+      "word": "a",
+      "startMs": 15691,
+      "endMs": 15731
+    },
+    {
+      "word": "name",
+      "startMs": 15791,
+      "endMs": 16031
+    },
+    {
+      "word": "and",
+      "startMs": 16071,
+      "endMs": 16312
+    },
+    {
+      "word": "a",
+      "startMs": 16352,
+      "endMs": 16372
+    },
+    {
+      "word": "value.",
+      "startMs": 16432,
+      "endMs": 16792
+    },
+    {
+      "word": "The",
+      "startMs": 17373,
+      "endMs": 17473
+    },
+    {
+      "word": "name",
+      "startMs": 17513,
+      "endMs": 17754
+    },
+    {
+      "word": "helps",
+      "startMs": 17794,
+      "endMs": 18074
+    },
+    {
+      "word": "us",
+      "startMs": 18134,
+      "endMs": 18214
+    },
+    {
+      "word": "identify",
+      "startMs": 18314,
+      "endMs": 18875
+    },
+    {
+      "word": "what",
+      "startMs": 18915,
+      "endMs": 19055
+    },
+    {
+      "word": "we're",
+      "startMs": 19095,
+      "endMs": 19216
+    },
+    {
+      "word": "working",
+      "startMs": 19236,
+      "endMs": 19516
+    },
+    {
+      "word": "with.",
+      "startMs": 19556,
+      "endMs": 19736
+    },
+    {
+      "word": "And",
+      "startMs": 20237,
+      "endMs": 20317
+    },
+    {
+      "word": "the",
+      "startMs": 20337,
+      "endMs": 20417
+    },
+    {
+      "word": "value",
+      "startMs": 20477,
+      "endMs": 20838
+    },
+    {
+      "word": "is",
+      "startMs": 20918,
+      "endMs": 20978
+    },
+    {
+      "word": "the",
+      "startMs": 20998,
+      "endMs": 21098
+    },
+    {
+      "word": "actual",
+      "startMs": 21238,
+      "endMs": 21538
+    },
+    {
+      "word": "data",
+      "startMs": 21599,
+      "endMs": 21879
+    },
+    {
+      "word": "we",
+      "startMs": 22079,
+      "endMs": 22179
+    },
+    {
+      "word": "want",
+      "startMs": 22219,
+      "endMs": 22360
+    },
+    {
+      "word": "to",
+      "startMs": 22380,
+      "endMs": 22440
+    },
+    {
+      "word": "keep",
+      "startMs": 22480,
+      "endMs": 22660
+    },
+    {
+      "word": "track",
+      "startMs": 22720,
+      "endMs": 22980
+    },
+    {
+      "word": "of.",
+      "startMs": 23060,
+      "endMs": 23541
+    },
+    {
+      "word": "When",
+      "startMs": 24162,
+      "endMs": 24302
+    },
+    {
+      "word": "naming",
+      "startMs": 24362,
+      "endMs": 24623
+    },
+    {
+      "word": "variables,",
+      "startMs": 24683,
+      "endMs": 25184
+    },
+    {
+      "word": "it's",
+      "startMs": 25645,
+      "endMs": 25765
+    },
+    {
+      "word": "helpful",
+      "startMs": 25825,
+      "endMs": 26206
+    },
+    {
+      "word": "to",
+      "startMs": 26246,
+      "endMs": 26326
+    },
+    {
+      "word": "use",
+      "startMs": 26446,
+      "endMs": 26586
+    },
+    {
+      "word": "descriptive",
+      "startMs": 26647,
+      "endMs": 27188
+    },
+    {
+      "word": "names",
+      "startMs": 27268,
+      "endMs": 27588
+    },
+    {
+      "word": "that",
+      "startMs": 27668,
+      "endMs": 27789
+    },
+    {
+      "word": "reflect",
+      "startMs": 27849,
+      "endMs": 28229
+    },
+    {
+      "word": "the",
+      "startMs": 28270,
+      "endMs": 28330
+    },
+    {
+      "word": "value",
+      "startMs": 28390,
+      "endMs": 28730
+    },
+    {
+      "word": "stored.",
+      "startMs": 28770,
+      "endMs": 29111
+    },
+    {
+      "word": "You",
+      "startMs": 29792,
+      "endMs": 29893
+    },
+    {
+      "word": "can",
+      "startMs": 29913,
+      "endMs": 30033
+    },
+    {
+      "word": "start",
+      "startMs": 30093,
+      "endMs": 30333
+    },
+    {
+      "word": "with",
+      "startMs": 30373,
+      "endMs": 30494
+    },
+    {
+      "word": "a",
+      "startMs": 30534,
+      "endMs": 30574
+    },
+    {
+      "word": "letter",
+      "startMs": 30634,
+      "endMs": 30914
+    },
+    {
+      "word": "or",
+      "startMs": 30934,
+      "endMs": 31235
+    },
+    {
+      "word": "an",
+      "startMs": 31295,
+      "endMs": 31355
+    },
+    {
+      "word": "underscore,",
+      "startMs": 31415,
+      "endMs": 31936
+    },
+    {
+      "word": "and",
+      "startMs": 32357,
+      "endMs": 32437
+    },
+    {
+      "word": "then",
+      "startMs": 32477,
+      "endMs": 32597
+    },
+    {
+      "word": "use",
+      "startMs": 32758,
+      "endMs": 32898
+    },
+    {
+      "word": "letters,",
+      "startMs": 32958,
+      "endMs": 33339
+    },
+    {
+      "word": "numbers,",
+      "startMs": 33679,
+      "endMs": 34080
+    },
+    {
+      "word": "or",
+      "startMs": 34301,
+      "endMs": 34381
+    },
+    {
+      "word": "underscores",
+      "startMs": 34401,
+      "endMs": 35042
+    },
+    {
+      "word": "after",
+      "startMs": 35082,
+      "endMs": 35342
+    },
+    {
+      "word": "that.",
+      "startMs": 35383,
+      "endMs": 35583
+    },
+    {
+      "word": "Just",
+      "startMs": 36064,
+      "endMs": 36244
+    },
+    {
+      "word": "remember,",
+      "startMs": 36304,
+      "endMs": 36705
+    },
+    {
+      "word": "you",
+      "startMs": 37026,
+      "endMs": 37126
+    },
+    {
+      "word": "can't",
+      "startMs": 37186,
+      "endMs": 37426
+    },
+    {
+      "word": "use",
+      "startMs": 37526,
+      "endMs": 37627
+    },
+    {
+      "word": "spaces",
+      "startMs": 37667,
+      "endMs": 38108
+    },
+    {
+      "word": "or",
+      "startMs": 38148,
+      "endMs": 38348
+    },
+    {
+      "word": "other",
+      "startMs": 38368,
+      "endMs": 38649
+    },
+    {
+      "word": "special",
+      "startMs": 38689,
+      "endMs": 39009
+    },
+    {
+      "word": "characters,",
+      "startMs": 39069,
+      "endMs": 39590
+    },
+    {
+      "word": "except",
+      "startMs": 40051,
+      "endMs": 40372
+    },
+    {
+      "word": "for",
+      "startMs": 40412,
+      "endMs": 40532
+    },
+    {
+      "word": "underscores.",
+      "startMs": 40632,
+      "endMs": 41193
+    },
+    {
+      "word": "This",
+      "startMs": 41955,
+      "endMs": 42115
+    },
+    {
+      "word": "way,",
+      "startMs": 42195,
+      "endMs": 42395
+    },
+    {
+      "word": "your",
+      "startMs": 42456,
+      "endMs": 42756
+    },
+    {
+      "word": "variable",
+      "startMs": 42836,
+      "endMs": 43297
+    },
+    {
+      "word": "names",
+      "startMs": 43357,
+      "endMs": 43638
+    },
+    {
+      "word": "will",
+      "startMs": 43698,
+      "endMs": 43838
+    },
+    {
+      "word": "be",
+      "startMs": 43878,
+      "endMs": 43938
+    },
+    {
+      "word": "clear",
+      "startMs": 44018,
+      "endMs": 44339
+    },
+    {
+      "word": "and",
+      "startMs": 44539,
+      "endMs": 44620
+    },
+    {
+      "word": "easy",
+      "startMs": 44760,
+      "endMs": 44980
+    },
+    {
+      "word": "to",
+      "startMs": 45020,
+      "endMs": 45100
+    },
+    {
+      "word": "understand.",
+      "startMs": 45160,
+      "endMs": 46002
+    },
+    {
+      "word": "You",
+      "startMs": 46690,
+      "endMs": 46830
+    },
+    {
+      "word": "can",
+      "startMs": 46870,
+      "endMs": 46970
+    },
+    {
+      "word": "create",
+      "startMs": 47010,
+      "endMs": 47291
+    },
+    {
+      "word": "a",
+      "startMs": 47331,
+      "endMs": 47351
+    },
+    {
+      "word": "variable",
+      "startMs": 47391,
+      "endMs": 47831
+    },
+    {
+      "word": "using",
+      "startMs": 48051,
+      "endMs": 48272
+    },
+    {
+      "word": "the",
+      "startMs": 48312,
+      "endMs": 48412
+    },
+    {
+      "word": "assignment",
+      "startMs": 48472,
+      "endMs": 48912
+    },
+    {
+      "word": "operator,",
+      "startMs": 49033,
+      "endMs": 49473
+    },
+    {
+      "word": "which",
+      "startMs": 49893,
+      "endMs": 50034
+    },
+    {
+      "word": "is",
+      "startMs": 50094,
+      "endMs": 50154
+    },
+    {
+      "word": "the",
+      "startMs": 50194,
+      "endMs": 50274
+    },
+    {
+      "word": "equals",
+      "startMs": 50394,
+      "endMs": 50694
+    },
+    {
+      "word": "sign",
+      "startMs": 50794,
+      "endMs": 51115
+    },
+    {
+      "word": "'='.",
+      "startMs": 51115,
+      "endMs": 52356
+    },
+    {
+      "word": "For",
+      "startMs": 52356,
+      "endMs": 52456
+    },
+    {
+      "word": "example,",
+      "startMs": 52516,
+      "endMs": 52937
+    },
+    {
+      "word": "let's",
+      "startMs": 53337,
+      "endMs": 53537
+    },
+    {
+      "word": "say",
+      "startMs": 53577,
+      "endMs": 53738
+    },
+    {
+      "word": "we",
+      "startMs": 53798,
+      "endMs": 53898
+    },
+    {
+      "word": "want",
+      "startMs": 53938,
+      "endMs": 54078
+    },
+    {
+      "word": "to",
+      "startMs": 54098,
+      "endMs": 54138
+    },
+    {
+      "word": "create",
+      "startMs": 54198,
+      "endMs": 54478
+    },
+    {
+      "word": "a",
+      "startMs": 54518,
+      "endMs": 54538
+    },
+    {
+      "word": "variable",
+      "startMs": 54578,
+      "endMs": 55019
+    },
+    {
+      "word": "called",
+      "startMs": 55079,
+      "endMs": 55379
+    },
+    {
+      "word": "'my_variable'",
+      "startMs": 55560,
+      "endMs": 56260
+    },
+    {
+      "word": "and",
+      "startMs": 56601,
+      "endMs": 56681
+    },
+    {
+      "word": "store",
+      "startMs": 56761,
+      "endMs": 57001
+    },
+    {
+      "word": "the",
+      "startMs": 57021,
+      "endMs": 57101
+    },
+    {
+      "word": "value",
+      "startMs": 57141,
+      "endMs": 57482
+    },
+    {
+      "word": "10",
+      "startMs": 57502,
+      "endMs": 57762
+    },
+    {
+      "word": "in",
+      "startMs": 57822,
+      "endMs": 57882
+    },
+    {
+      "word": "it.",
+      "startMs": 57962,
+      "endMs": 58022
+    },
+    {
+      "word": "We",
+      "startMs": 58543,
+      "endMs": 58643
+    },
+    {
+      "word": "write",
+      "startMs": 58703,
+      "endMs": 58883
+    },
+    {
+      "word": "it",
+      "startMs": 58923,
+      "endMs": 58963
+    },
+    {
+      "word": "like",
+      "startMs": 59003,
+      "endMs": 59143
+    },
+    {
+      "word": "this:",
+      "startMs": 59163,
+      "endMs": 59384
+    },
+    {
+      "word": "my_variable",
+      "startMs": 59924,
+      "endMs": 60505
+    },
+    {
+      "word": "equals",
+      "startMs": 60605,
+      "endMs": 60885
+    },
+    {
+      "word": "10.",
+      "startMs": 60905,
+      "endMs": 61186
+    },
+    {
+      "word": "Now,",
+      "startMs": 61706,
+      "endMs": 61926
+    },
+    {
+      "word": "let's",
+      "startMs": 62147,
+      "endMs": 62347
+    },
+    {
+      "word": "see",
+      "startMs": 62387,
+      "endMs": 62527
+    },
+    {
+      "word": "how",
+      "startMs": 62567,
+      "endMs": 62687
+    },
+    {
+      "word": "this",
+      "startMs": 62767,
+      "endMs": 62907
+    },
+    {
+      "word": "looks",
+      "startMs": 62967,
+      "endMs": 63168
+    },
+    {
+      "word": "in",
+      "startMs": 63228,
+      "endMs": 63288
+    },
+    {
+      "word": "code.",
+      "startMs": 63348,
+      "endMs": 64109
+    },
+    {
+      "word": "When",
+      "startMs": 64129,
+      "endMs": 64249
+    },
+    {
+      "word": "we",
+      "startMs": 64289,
+      "endMs": 64369
+    },
+    {
+      "word": "run",
+      "startMs": 64409,
+      "endMs": 64609
+    },
+    {
+      "word": "this",
+      "startMs": 64649,
+      "endMs": 64789
+    },
+    {
+      "word": "code,",
+      "startMs": 64850,
+      "endMs": 65150
+    },
+    {
+      "word": "we",
+      "startMs": 65310,
+      "endMs": 65410
+    },
+    {
+      "word": "can",
+      "startMs": 65450,
+      "endMs": 65570
+    },
+    {
+      "word": "print",
+      "startMs": 65630,
+      "endMs": 65791
+    },
+    {
+      "word": "the",
+      "startMs": 65831,
+      "endMs": 65911
+    },
+    {
+      "word": "value",
+      "startMs": 65951,
+      "endMs": 66311
+    },
+    {
+      "word": "of",
+      "startMs": 66371,
+      "endMs": 66411
+    },
+    {
+      "word": "'my_variable'.",
+      "startMs": 66471,
+      "endMs": 67112
+    },
+    {
+      "word": "It",
+      "startMs": 67713,
+      "endMs": 67773
+    },
+    {
+      "word": "shows",
+      "startMs": 67853,
+      "endMs": 68093
+    },
+    {
+      "word": "us",
+      "startMs": 68173,
+      "endMs": 68253
+    },
+    {
+      "word": "10.",
+      "startMs": 68273,
+      "endMs": 68553
+    },
+    {
+      "word": "This",
+      "startMs": 69134,
+      "endMs": 69294
+    },
+    {
+      "word": "is",
+      "startMs": 69374,
+      "endMs": 69434
+    },
+    {
+      "word": "how",
+      "startMs": 69495,
+      "endMs": 69635
+    },
+    {
+      "word": "we",
+      "startMs": 69715,
+      "endMs": 69815
+    },
+    {
+      "word": "store",
+      "startMs": 69875,
+      "endMs": 70135
+    },
+    {
+      "word": "values",
+      "startMs": 70195,
+      "endMs": 70616
+    },
+    {
+      "word": "in",
+      "startMs": 70696,
+      "endMs": 70776
+    },
+    {
+      "word": "variables.",
+      "startMs": 70796,
+      "endMs": 71837
+    },
+    {
+      "word": "To",
+      "startMs": 72340,
+      "endMs": 72500
+    },
+    {
+      "word": "use",
+      "startMs": 72640,
+      "endMs": 72781
+    },
+    {
+      "word": "the",
+      "startMs": 72821,
+      "endMs": 72881
+    },
+    {
+      "word": "value",
+      "startMs": 72941,
+      "endMs": 73301
+    },
+    {
+      "word": "stored",
+      "startMs": 73341,
+      "endMs": 73642
+    },
+    {
+      "word": "in",
+      "startMs": 73682,
+      "endMs": 73722
+    },
+    {
+      "word": "a",
+      "startMs": 73762,
+      "endMs": 73782
+    },
+    {
+      "word": "variable,",
+      "startMs": 73822,
+      "endMs": 74262
+    },
+    {
+      "word": "you",
+      "startMs": 74563,
+      "endMs": 74683
+    },
+    {
+      "word": "simply",
+      "startMs": 74743,
+      "endMs": 75023
+    },
+    {
+      "word": "reference",
+      "startMs": 75123,
+      "endMs": 75504
+    },
+    {
+      "word": "its",
+      "startMs": 75584,
+      "endMs": 75724
+    },
+    {
+      "word": "name.",
+      "startMs": 75784,
+      "endMs": 76004
+    },
+    {
+      "word": "For",
+      "startMs": 76665,
+      "endMs": 76765
+    },
+    {
+      "word": "instance,",
+      "startMs": 76845,
+      "endMs": 77286
+    },
+    {
+      "word": "if",
+      "startMs": 77646,
+      "endMs": 77706
+    },
+    {
+      "word": "we",
+      "startMs": 77746,
+      "endMs": 77826
+    },
+    {
+      "word": "have",
+      "startMs": 77886,
+      "endMs": 78087
+    },
+    {
+      "word": "'my_variable'",
+      "startMs": 78147,
+      "endMs": 78868
+    },
+    {
+      "word": "set",
+      "startMs": 78928,
+      "endMs": 79108
+    },
+    {
+      "word": "to",
+      "startMs": 79128,
+      "endMs": 79228
+    },
+    {
+      "word": "10,",
+      "startMs": 79268,
+      "endMs": 79508
+    },
+    {
+      "word": "we",
+      "startMs": 79929,
+      "endMs": 80029
+    },
+    {
+      "word": "can",
+      "startMs": 80069,
+      "endMs": 80189
+    },
+    {
+      "word": "update",
+      "startMs": 80289,
+      "endMs": 80610
+    },
+    {
+      "word": "it",
+      "startMs": 80670,
+      "endMs": 80710
+    },
+    {
+      "word": "by",
+      "startMs": 80790,
+      "endMs": 80890
+    },
+    {
+      "word": "adding",
+      "startMs": 80930,
+      "endMs": 81270
+    },
+    {
+      "word": "5",
+      "startMs": 81290,
+      "endMs": 81631
+    },
+    {
+      "word": "to",
+      "startMs": 81691,
+      "endMs": 81791
+    },
+    {
+      "word": "it.",
+      "startMs": 81891,
+      "endMs": 81951
+    },
+    {
+      "word": "We",
+      "startMs": 82412,
+      "endMs": 82532
+    },
+    {
+      "word": "write:",
+      "startMs": 82572,
+      "endMs": 82812
+    },
+    {
+      "word": "my_variable",
+      "startMs": 83373,
+      "endMs": 83973
+    },
+    {
+      "word": "equals",
+      "startMs": 84074,
+      "endMs": 84374
+    },
+    {
+      "word": "my_variable",
+      "startMs": 84434,
+      "endMs": 85055
+    },
+    {
+      "word": "plus",
+      "startMs": 85115,
+      "endMs": 85355
+    },
+    {
+      "word": "5.",
+      "startMs": 85395,
+      "endMs": 85715
+    },
+    {
+      "word": "When",
+      "startMs": 86196,
+      "endMs": 86296
+    },
+    {
+      "word": "we",
+      "startMs": 86336,
+      "endMs": 86416
+    },
+    {
+      "word": "print",
+      "startMs": 86496,
+      "endMs": 86737
+    },
+    {
+      "word": "'my_variable'",
+      "startMs": 86837,
+      "endMs": 87477
+    },
+    {
+      "word": "again,",
+      "startMs": 87558,
+      "endMs": 87818
+    },
+    {
+      "word": "it",
+      "startMs": 88258,
+      "endMs": 88318
+    },
+    {
+      "word": "shows",
+      "startMs": 88399,
+      "endMs": 88639
+    },
+    {
+      "word": "us",
+      "startMs": 88699,
+      "endMs": 88779
+    },
+    {
+      "word": "15.",
+      "startMs": 88799,
+      "endMs": 89260
+    },
+    {
+      "word": "This",
+      "startMs": 89300,
+      "endMs": 90120
+    },
+    {
+      "word": "way,",
+      "startMs": 90201,
+      "endMs": 90381
+    },
+    {
+      "word": "you",
+      "startMs": 90601,
+      "endMs": 90701
+    },
+    {
+      "word": "can",
+      "startMs": 90761,
+      "endMs": 90881
+    },
+    {
+      "word": "see",
+      "startMs": 90941,
+      "endMs": 91082
+    },
+    {
+      "word": "how",
+      "startMs": 91142,
+      "endMs": 91282
+    },
+    {
+      "word": "easy",
+      "startMs": 91442,
+      "endMs": 91662
+    },
+    {
+      "word": "it",
+      "startMs": 91682,
+      "endMs": 91782
+    },
+    {
+      "word": "is",
+      "startMs": 91802,
+      "endMs": 91983
+    },
+    {
+      "word": "to",
+      "startMs": 92043,
+      "endMs": 92123
+    },
+    {
+      "word": "update",
+      "startMs": 92243,
+      "endMs": 92563
+    },
+    {
+      "word": "values",
+      "startMs": 92603,
+      "endMs": 93024
+    },
+    {
+      "word": "in",
+      "startMs": 93104,
+      "endMs": 93184
+    },
+    {
+      "word": "variables.",
+      "startMs": 93204,
+      "endMs": 94045
+    },
+    {
+      "word": "Now",
+      "startMs": 94767,
+      "endMs": 94988
+    },
+    {
+      "word": "that",
+      "startMs": 95028,
+      "endMs": 95149
+    },
+    {
+      "word": "you",
+      "startMs": 95189,
+      "endMs": 95290
+    },
+    {
+      "word": "know",
+      "startMs": 95330,
+      "endMs": 95471
+    },
+    {
+      "word": "about",
+      "startMs": 95551,
+      "endMs": 95772
+    },
+    {
+      "word": "variables,",
+      "startMs": 95833,
+      "endMs": 96335
+    },
+    {
+      "word": "next",
+      "startMs": 96737,
+      "endMs": 96938
+    },
+    {
+      "word": "you'll",
+      "startMs": 96959,
+      "endMs": 97140
+    },
+    {
+      "word": "explore",
+      "startMs": 97180,
+      "endMs": 97562
+    },
+    {
+      "word": "data",
+      "startMs": 97642,
+      "endMs": 97904
+    },
+    {
+      "word": "types",
+      "startMs": 97944,
+      "endMs": 98225
+    },
+    {
+      "word": "in",
+      "startMs": 98326,
+      "endMs": 98386
+    },
+    {
+      "word": "more",
+      "startMs": 98446,
+      "endMs": 98607
+    },
+    {
+      "word": "detail.",
+      "startMs": 98668,
+      "endMs": 99110
+    },
+    {
+      "word": "After",
+      "startMs": 99834,
+      "endMs": 100035
+    },
+    {
+      "word": "that,",
+      "startMs": 100075,
+      "endMs": 100296
+    },
+    {
+      "word": "we'll",
+      "startMs": 100698,
+      "endMs": 100859
+    },
+    {
+      "word": "learn",
+      "startMs": 100879,
+      "endMs": 101080
+    },
+    {
+      "word": "about",
+      "startMs": 101121,
+      "endMs": 101322
+    },
+    {
+      "word": "lists",
+      "startMs": 101382,
+      "endMs": 101724
+    },
+    {
+      "word": "and",
+      "startMs": 101864,
+      "endMs": 101945
+    },
+    {
+      "word": "how",
+      "startMs": 101985,
+      "endMs": 102086
+    },
+    {
+      "word": "to",
+      "startMs": 102126,
+      "endMs": 102186
+    },
+    {
+      "word": "store",
+      "startMs": 102226,
+      "endMs": 102468
+    },
+    {
+      "word": "multiple",
+      "startMs": 102508,
+      "endMs": 102990
+    },
+    {
+      "word": "values.",
+      "startMs": 103051,
+      "endMs": 103513
+    },
+    {
+      "word": "Understanding",
+      "startMs": 104217,
+      "endMs": 104820
+    },
+    {
+      "word": "variables",
+      "startMs": 104880,
+      "endMs": 105403
+    },
+    {
+      "word": "will",
+      "startMs": 105463,
+      "endMs": 105624
+    },
+    {
+      "word": "help",
+      "startMs": 105664,
+      "endMs": 105866
+    },
+    {
+      "word": "you",
+      "startMs": 105906,
+      "endMs": 106046
+    },
+    {
+      "word": "as",
+      "startMs": 106087,
+      "endMs": 106268
+    },
+    {
+      "word": "you",
+      "startMs": 106328,
+      "endMs": 106429
+    },
+    {
+      "word": "continue",
+      "startMs": 106489,
+      "endMs": 106971
+    },
+    {
+      "word": "your",
+      "startMs": 107032,
+      "endMs": 107152
+    },
+    {
+      "word": "programming",
+      "startMs": 107213,
+      "endMs": 107695
+    },
+    {
+      "word": "journey.",
+      "startMs": 107756,
+      "endMs": 108439
+    }
+  ],
+  "displaySections": [
+    {
+      "id": "what-is-a-variable",
+      "startMs": 31,
+      "endMs": 23541,
+      "wordStart": 0,
+      "wordEnd": 76,
+      "wer": 0
+    },
+    {
+      "id": "naming-variables",
+      "startMs": 24162,
+      "endMs": 46002,
+      "wordStart": 76,
+      "wordEnd": 133,
+      "wer": 0
+    },
+    {
+      "id": "creating-and-storing-values-in-variables",
+      "startMs": 46690,
+      "endMs": 71837,
+      "wordStart": 133,
+      "wordEnd": 207,
+      "wer": 0
+    },
+    {
+      "id": "retrieving-values-from-variables",
+      "startMs": 72340,
+      "endMs": 94045,
+      "wordStart": 207,
+      "wordEnd": 268,
+      "wer": 0
+    },
+    {
+      "id": "whats-next",
+      "startMs": 94767,
+      "endMs": 108439,
+      "wordStart": 268,
+      "wordEnd": 305,
+      "wer": 0
+    }
+  ]
+}

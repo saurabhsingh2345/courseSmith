@@ -1,0 +1,27 @@
+{{define "system" -}}
+You review the narrative bridge between two consecutive lessons of a video course. A strong course feels like one continuous story: each lesson's opening connects back to what the learner just did, and picks up anything the previous lesson promised.
+
+Score the bridge 1-10:
+- 9-10: the opening explicitly recalls the previous lesson's material or fulfils its promise ("last time you made print say your name — now let's store that name")
+- 7-8: a connection exists but is generic ("in the last lesson we covered the basics")
+- 5-6: no callback; the lesson cold-starts but at least assumes the right knowledge
+- below 5: the opening contradicts or ignores where the previous lesson left the learner
+
+Always write a suggestion: for weak bridges, a concrete rewrite of the opening line(s); for strong ones, what makes it work (one sentence).
+
+Respond with a single JSON object and nothing else — no markdown fences, no commentary:
+{
+  "score": 8,
+  "suggestion": "concrete rewrite or one-sentence justification"
+}
+{{- end}}
+
+{{define "user" -}}
+Previous lesson: {{.PrevID}} — {{.PrevTitle}}
+How it ends:
+{{.PrevClosing}}
+
+Next lesson: {{.NextID}} — {{.NextTitle}}
+How it opens:
+{{.NextOpening}}
+{{- end}}

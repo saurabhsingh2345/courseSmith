@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <style>
+    svg { --surface: #1b2332; --border: #3a4a66; --text: #f2f5fa; --muted: #a6b2bf; --accent: #f5a623; }
+    .panel { fill: #151c29; stroke: var(--border); stroke-width: 1.5; rx: 18; }
+    .slot { fill: var(--surface); stroke: var(--border); stroke-width: 2.5; rx: 10; }
+    .code { font-family: monospace; font-size: 22px; fill: var(--text); }
+    .tag { font-family: sans-serif; font-size: 18px; font-weight: 700; fill: #14100a; text-anchor: middle; }
+    .tag-bg { fill: var(--accent); rx: 10; }
+    .caption { font-family: sans-serif; font-size: 20px; fill: var(--muted); text-anchor: middle; }
+    .pointer { stroke: var(--accent); stroke-width: 3; fill: none; }
+  </style>
+  <g id="panel-group">
+    <rect class="panel" x="80" y="60" width="640" height="220"/>
+  </g>
+  <g id="value-slot">
+    <rect class="slot" x="140" y="120" width="200" height="90"/>
+    <text class="code" x="170" y="175">x = 5</text>
+  </g>
+  <g id="value-slot-2">
+    <rect class="slot" x="440" y="120" width="220" height="90"/>
+    <text class="code" x="462" y="175">name = "Al"</text>
+  </g>
+  <g id="annotation">
+    <rect class="tag-bg" x="180" y="242" width="130" height="34"/>
+    <text class="tag" x="245" y="266">a number</text>
+    <path class="pointer" d="M 245 240 L 240 214"/>
+  </g>
+  <g id="caption-group">
+    <text class="caption" x="400" y="340">Each variable is a labeled box holding one value.</text>
+  </g>
+</svg>

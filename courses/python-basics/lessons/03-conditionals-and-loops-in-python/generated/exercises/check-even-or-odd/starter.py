@@ -1,0 +1,3 @@
+def check_even_or_odd(number):
+    # TODO: return 'Even' or 'Odd' based on the number
+    ...

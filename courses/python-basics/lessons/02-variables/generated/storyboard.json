@@ -1,0 +1,119 @@
+{
+  "sections": [
+    {
+      "id": "you-already-used-one",
+      "points": [
+        {
+          "text": "A variable remembers values",
+          "icon": "brain",
+          "at_word": 18
+        }
+      ]
+    },
+    {
+      "id": "giving-a-value-a-name",
+      "points": [
+        {
+          "text": "Store this value",
+          "icon": "box",
+          "at_word": 10
+        },
+        {
+          "text": "Label stays, contents change",
+          "icon": "layers",
+          "at_word": 36
+        }
+      ]
+    },
+    {
+      "id": "names-without-quotes-text-with-quotes",
+      "points": [
+        {
+          "text": "Quotes mean exact characters",
+          "icon": "dot",
+          "at_word": 9
+        },
+        {
+          "text": "No quotes look inside box",
+          "icon": "box",
+          "at_word": 15
+        }
+      ]
+    },
+    {
+      "id": "picking-good-names",
+      "points": [
+        {
+          "text": "Use letters, digits, underscores",
+          "icon": "check",
+          "at_word": 9
+        },
+        {
+          "text": "Descriptive names are clearer",
+          "icon": "idea",
+          "at_word": 24
+        }
+      ]
+    },
+    {
+      "id": "changing-what-is-inside",
+      "points": [
+        {
+          "text": "Assigning replaces old value",
+          "icon": "wrench",
+          "at_word": 5
+        },
+        {
+          "text": "Latest assignment is remembered",
+          "icon": "clock",
+          "at_word": 15
+        }
+      ]
+    },
+    {
+      "id": "variables-can-hold-numbers-too",
+      "points": [
+        {
+          "text": "Use current value to compute",
+          "icon": "code",
+          "at_word": 15
+        },
+        {
+          "text": "Counting apples example",
+          "icon": "dot",
+          "at_word": 36
+        }
+      ]
+    },
+    {
+      "id": "variables-working-together",
+      "points": [
+        {
+          "text": "Mix several variables",
+          "icon": "link",
+          "at_word": 10
+        },
+        {
+          "text": "Print with spaces in between",
+          "icon": "message",
+          "at_word": 30
+        }
+      ]
+    },
+    {
+      "id": "whats-next",
+      "points": [
+        {
+          "text": "Explore what strings can do",
+          "icon": "sparkles",
+          "at_word": 10
+        },
+        {
+          "text": "Create a script with variables",
+          "icon": "file",
+          "at_word": 40
+        }
+      ]
+    }
+  ]
+}

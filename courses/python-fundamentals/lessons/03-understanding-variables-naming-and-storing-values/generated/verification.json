@@ -1,0 +1,27 @@
+{
+  "runner": "docker-sandbox",
+  "blocks": [
+    {
+      "source": "lesson.md",
+      "index": 0,
+      "code": "my_variable = 10\nprint(my_variable)",
+      "claimed_output": "10",
+      "hash": "sha256:2f213aff351e1f9b251773d53bf426cabb27fc19deb0e4f99cbefd93b576fe8d",
+      "stdout": "10\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-26T13:50:41.411253Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 1,
+      "code": "my_variable = 10\nmy_variable = my_variable + 5\nprint(my_variable)",
+      "claimed_output": "15",
+      "hash": "sha256:ac917ac94f1689ce5ec902711623281a4f0d57965a290af50ab8ad1bc6cf31b7",
+      "stdout": "15\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-26T13:50:41.57894Z"
+    }
+  ]
+}

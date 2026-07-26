@@ -1,0 +1,12 @@
+{
+  "kind": "diagram:loop-structure",
+  "round": 2,
+  "model": "openai/gpt-4o",
+  "passed": false,
+  "issues": [
+    "Text 'Is the number \u0026lt; 5?' contains HTML entity instead of '\u003c' symbol"
+  ],
+  "svg_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/python-basics/lessons/05-getting-started-with-loops-in-python/generated/diagrams/attempts/loop-structure-round-2.svg",
+  "png_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/python-basics/lessons/05-getting-started-with-loops-in-python/generated/diagrams/attempts/loop-structure-round-2.png",
+  "checked_at": "2026-07-26T13:22:31Z"
+}

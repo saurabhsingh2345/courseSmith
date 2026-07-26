@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article class="lesson">
+  <p class="lesson-course"><a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a></p>
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  <nav class="lesson-nav">
+    {{ with .PrevInSection }}<a class="prev" href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>{{ end }}
+    {{ with .NextInSection }}<a class="next" href="{{ .RelPermalink }}">{{ .Title }} &rarr;</a>{{ end }}
+  </nav>
+</article>
+{{ end }}

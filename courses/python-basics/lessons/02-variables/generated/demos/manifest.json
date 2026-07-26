@@ -1,0 +1,16 @@
+{
+  "demos": [
+    {
+      "id": "demo-1",
+      "description": "open the Python REPL with python3, create a variable mood = \"curious\", print it, reassign mood = \"confident\", print it again, and exit",
+      "path": "demos/demo-1.mp4",
+      "durationMs": 10240
+    },
+    {
+      "id": "demo-2",
+      "description": "create a script about_me.py with a heredoc containing name and age variables and a print that combines them, then run it with python3 about_me.py",
+      "path": "demos/demo-2.mp4",
+      "durationMs": 13720
+    }
+  ]
+}

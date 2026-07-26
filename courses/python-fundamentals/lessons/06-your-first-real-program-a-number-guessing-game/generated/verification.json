@@ -1,0 +1,38 @@
+{
+  "runner": "docker-sandbox",
+  "blocks": [
+    {
+      "source": "lesson.md",
+      "index": 0,
+      "code": "import random\nrandom.seed(7)\nsecret_number = random.randint(1, 10)\nprint('The secret number is chosen!')",
+      "claimed_output": "The secret number is chosen!",
+      "hash": "sha256:ca9b5b18508212a552e0f1972f2f533feca79b9dc1bb570ae3c32442d3f03e30",
+      "stdout": "The secret number is chosen!\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-26T14:07:18.800399Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 1,
+      "code": "secret_number = 6\nuser_guess = 4\nif user_guess == secret_number:\n    print('Congratulations! You guessed it!')\nelse:\n    print('Not quite — try again!')",
+      "claimed_output": "Not quite — try again!",
+      "hash": "sha256:4fdc41e227892d5609c21bb1ebdca382c5cb7c414ec7d9d53e2b6aa8640879fb",
+      "stdout": "Not quite — try again!\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-26T14:07:18.933062Z"
+    },
+    {
+      "source": "lesson.md",
+      "index": 2,
+      "code": "import random\nrandom.seed(7)\nsecret_number = random.randint(1, 10)\nguesses = [2, 9, secret_number]\nfor user_guess in guesses:\n    if user_guess == secret_number:\n        print('Congratulations!', user_guess, 'is right!')\n    else:\n        print(user_guess, 'is too far off — try again!')",
+      "claimed_output": "2 is too far off — try again!\n9 is too far off — try again!\nCongratulations! 6 is right!",
+      "hash": "sha256:faf81b3263951376ad6833bfbf3e5fd50682a4e233eedaa93015a0db1dc0cd13",
+      "stdout": "2 is too far off — try again!\n9 is too far off — try again!\nCongratulations! 6 is right!\n",
+      "exit_code": 0,
+      "output_matches": true,
+      "verified_at": "2026-07-26T14:07:19.072866Z"
+    }
+  ]
+}

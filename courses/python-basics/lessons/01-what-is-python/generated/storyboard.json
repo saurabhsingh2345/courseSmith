@@ -1,0 +1,174 @@
+{
+  "sections": [
+    {
+      "id": "a-language-for-talking-to-computers",
+      "points": [
+        {
+          "text": "Communicate with computers",
+          "icon": "brain",
+          "at_word": 10
+        },
+        {
+          "text": "Precise instructions",
+          "icon": "code",
+          "at_word": 22
+        },
+        {
+          "text": "Reads like English",
+          "icon": "book",
+          "at_word": 38
+        },
+        {
+          "text": "Created in 1991",
+          "icon": "clock",
+          "at_word": 53
+        }
+      ]
+    },
+    {
+      "id": "why-beginners-start-with-python",
+      "points": [
+        {
+          "text": "Little ceremony",
+          "icon": "check",
+          "at_word": 9
+        },
+        {
+          "text": "Readable code",
+          "icon": "file",
+          "at_word": 18
+        },
+        {
+          "text": "Huge community",
+          "icon": "globe",
+          "at_word": 30
+        },
+        {
+          "text": "Flexible and powerful",
+          "icon": "gear",
+          "at_word": 49
+        }
+      ]
+    },
+    {
+      "id": "where-python-is-used-in-the-real-world",
+      "points": [
+        {
+          "text": "Powers websites and apps",
+          "icon": "monitor",
+          "at_word": 12
+        },
+        {
+          "text": "Data analysis and science",
+          "icon": "database",
+          "at_word": 24
+        },
+        {
+          "text": "Automate boring tasks",
+          "icon": "zap",
+          "at_word": 40
+        },
+        {
+          "text": "AI and machine learning",
+          "icon": "brain",
+          "at_word": 61
+        }
+      ]
+    },
+    {
+      "id": "installing-python",
+      "points": [
+        {
+          "text": "Install Python",
+          "icon": "wrench",
+          "at_word": 4
+        },
+        {
+          "text": "Add to PATH",
+          "icon": "check",
+          "at_word": 22
+        },
+        {
+          "text": "Check version in terminal",
+          "icon": "terminal",
+          "at_word": 66
+        }
+      ]
+    },
+    {
+      "id": "your-first-line-of-python",
+      "points": [
+        {
+          "text": "First line of Python",
+          "icon": "play",
+          "at_word": 5
+        },
+        {
+          "text": "Use print() function",
+          "icon": "code",
+          "at_word": 22
+        },
+        {
+          "text": "Display text on screen",
+          "icon": "monitor",
+          "at_word": 34
+        }
+      ]
+    },
+    {
+      "id": "python-does-math-too",
+      "points": [
+        {
+          "text": "Python does math",
+          "icon": "star",
+          "at_word": 0
+        },
+        {
+          "text": "Show numbers directly",
+          "icon": "file",
+          "at_word": 12
+        },
+        {
+          "text": "Perform calculations",
+          "icon": "gear",
+          "at_word": 28
+        }
+      ]
+    },
+    {
+      "id": "putting-lines-together",
+      "points": [
+        {
+          "text": "Series of lines",
+          "icon": "layers",
+          "at_word": 8
+        },
+        {
+          "text": "Run top to bottom",
+          "icon": "arrow",
+          "at_word": 18
+        },
+        {
+          "text": "Execute each line",
+          "icon": "check",
+          "at_word": 38
+        }
+      ]
+    },
+    {
+      "id": "whats-next",
+      "points": [
+        {
+          "text": "Next lesson: variables",
+          "icon": "idea",
+          "at_word": 5
+        },
+        {
+          "text": "Challenge: say your name",
+          "icon": "heart",
+          "at_word": 20
+        }
+      ]
+    }
+  ]
+}

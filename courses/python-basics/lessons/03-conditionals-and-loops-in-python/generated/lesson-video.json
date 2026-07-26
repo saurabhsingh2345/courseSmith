@@ -1,0 +1,626 @@
+{
+  "theme": {
+    "primary": "#306998",
+    "accent": "#ffd43b",
+    "background": "#ffffff",
+    "courseName": "Python Basics",
+    "mode": "dark",
+    "bgTop": "#101d28",
+    "bgBottom": "#070c15",
+    "surface": "#1b2732",
+    "surfaceBorder": "#324452",
+    "text": "#f2f5f8",
+    "textMuted": "#a6b4bf",
+    "fontDisplay": "Space Grotesk",
+    "fontBody": "Inter",
+    "fontMono": "JetBrains Mono",
+    "grain": 0.04
+  },
+  "motion": {
+    "timing": {
+      "fast": 0.2,
+      "normal": 0.6,
+      "slow": 1,
+      "verySlow": 2
+    },
+    "easing": {
+      "entrance": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "exit": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "subtle": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "stagger": {
+      "words": 0.05,
+      "items": 0.08,
+      "connections": 0.12
+    }
+  },
+  "audioFile": "voiceover.wav",
+  "durationMs": 42110,
+  "scenes": [
+    {
+      "type": "title",
+      "startMs": 31,
+      "endMs": 42110,
+      "props": {
+        "heading": "Conditionals and loops in python",
+        "intro": true,
+        "outcomes": null,
+        "subtitle": "Python Basics"
+      }
+    }
+  ],
+  "captions": [
+    {
+      "word": "Today,",
+      "startMs": 31,
+      "endMs": 372
+    },
+    {
+      "word": "we're",
+      "startMs": 412,
+      "endMs": 692
+    },
+    {
+      "word": "diving",
+      "startMs": 752,
+      "endMs": 1113
+    },
+    {
+      "word": "into",
+      "startMs": 1173,
+      "endMs": 1313
+    },
+    {
+      "word": "the",
+      "startMs": 1333,
+      "endMs": 1413
+    },
+    {
+      "word": "world",
+      "startMs": 1454,
+      "endMs": 1674
+    },
+    {
+      "word": "of",
+      "startMs": 1734,
+      "endMs": 1774
+    },
+    {
+      "word": "conditionals",
+      "startMs": 1854,
+      "endMs": 2455
+    },
+    {
+      "word": "and",
+      "startMs": 2576,
+      "endMs": 2656
+    },
+    {
+      "word": "loops",
+      "startMs": 2736,
+      "endMs": 3016
+    },
+    {
+      "word": "in",
+      "startMs": 3117,
+      "endMs": 3177
+    },
+    {
+      "word": "Python.",
+      "startMs": 3237,
+      "endMs": 3718
+    },
+    {
+      "word": "Think",
+      "startMs": 4198,
+      "endMs": 4339
+    },
+    {
+      "word": "of",
+      "startMs": 4399,
+      "endMs": 4439
+    },
+    {
+      "word": "conditionals",
+      "startMs": 4499,
+      "endMs": 5120
+    },
+    {
+      "word": "like",
+      "startMs": 5200,
+      "endMs": 5361
+    },
+    {
+      "word": "traffic",
+      "startMs": 5421,
+      "endMs": 5761
+    },
+    {
+      "word": "lights.",
+      "startMs": 5801,
+      "endMs": 6062
+    },
+    {
+      "word": "They",
+      "startMs": 6623,
+      "endMs": 6743
+    },
+    {
+      "word": "help",
+      "startMs": 6803,
+      "endMs": 6943
+    },
+    {
+      "word": "your",
+      "startMs": 6983,
+      "endMs": 7084
+    },
+    {
+      "word": "program",
+      "startMs": 7124,
+      "endMs": 7544
+    },
+    {
+      "word": "decide",
+      "startMs": 7585,
+      "endMs": 8005
+    },
+    {
+      "word": "what",
+      "startMs": 8065,
+      "endMs": 8186
+    },
+    {
+      "word": "to",
+      "startMs": 8226,
+      "endMs": 8306
+    },
+    {
+      "word": "do",
+      "startMs": 8346,
+      "endMs": 8466
+    },
+    {
+      "word": "next.",
+      "startMs": 8526,
+      "endMs": 8867
+    },
+    {
+      "word": "If",
+      "startMs": 9368,
+      "endMs": 9448
+    },
+    {
+      "word": "the",
+      "startMs": 9488,
+      "endMs": 9568
+    },
+    {
+      "word": "light",
+      "startMs": 9628,
+      "endMs": 9849
+    },
+    {
+      "word": "is",
+      "startMs": 9929,
+      "endMs": 10009
+    },
+    {
+      "word": "green,",
+      "startMs": 10069,
+      "endMs": 10410
+    },
+    {
+      "word": "you",
+      "startMs": 10610,
+      "endMs": 10730
+    },
+    {
+      "word": "go.",
+      "startMs": 10770,
+      "endMs": 10971
+    },
+    {
+      "word": "If",
+      "startMs": 11011,
+      "endMs": 11692
+    },
+    {
+      "word": "it’s",
+      "startMs": 11752,
+      "endMs": 11892
+    },
+    {
+      "word": "red,",
+      "startMs": 11972,
+      "endMs": 12213
+    },
+    {
+      "word": "you",
+      "startMs": 12433,
+      "endMs": 12553
+    },
+    {
+      "word": "stop.",
+      "startMs": 12573,
+      "endMs": 12874
+    },
+    {
+      "word": "Similarly,",
+      "startMs": 13415,
+      "endMs": 13936
+    },
+    {
+      "word": "in",
+      "startMs": 13976,
+      "endMs": 14196
+    },
+    {
+      "word": "programming,",
+      "startMs": 14276,
+      "endMs": 14837
+    },
+    {
+      "word": "conditionals",
+      "startMs": 15238,
+      "endMs": 15859
+    },
+    {
+      "word": "let",
+      "startMs": 15919,
+      "endMs": 16040
+    },
+    {
+      "word": "your",
+      "startMs": 16060,
+      "endMs": 16200
+    },
+    {
+      "word": "code",
+      "startMs": 16260,
+      "endMs": 16541
+    },
+    {
+      "word": "choose",
+      "startMs": 16621,
+      "endMs": 16901
+    },
+    {
+      "word": "different",
+      "startMs": 16961,
+      "endMs": 17222
+    },
+    {
+      "word": "paths",
+      "startMs": 17282,
+      "endMs": 17683
+    },
+    {
+      "word": "based",
+      "startMs": 17803,
+      "endMs": 18063
+    },
+    {
+      "word": "on",
+      "startMs": 18143,
+      "endMs": 18203
+    },
+    {
+      "word": "certain",
+      "startMs": 18304,
+      "endMs": 18544
+    },
+    {
+      "word": "conditions.",
+      "startMs": 18584,
+      "endMs": 19626
+    },
+    {
+      "word": "Now,",
+      "startMs": 19626,
+      "endMs": 19987
+    },
+    {
+      "word": "loops",
+      "startMs": 20348,
+      "endMs": 20629
+    },
+    {
+      "word": "are",
+      "startMs": 20729,
+      "endMs": 20810
+    },
+    {
+      "word": "like",
+      "startMs": 20850,
+      "endMs": 20990
+    },
+    {
+      "word": "a",
+      "startMs": 21030,
+      "endMs": 21050
+    },
+    {
+      "word": "merry-go-round.",
+      "startMs": 21110,
+      "endMs": 21732
+    },
+    {
+      "word": "They",
+      "startMs": 22294,
+      "endMs": 22414
+    },
+    {
+      "word": "allow",
+      "startMs": 22474,
+      "endMs": 22715
+    },
+    {
+      "word": "you",
+      "startMs": 22775,
+      "endMs": 22896
+    },
+    {
+      "word": "to",
+      "startMs": 22936,
+      "endMs": 22996
+    },
+    {
+      "word": "repeat",
+      "startMs": 23056,
+      "endMs": 23357
+    },
+    {
+      "word": "actions",
+      "startMs": 23497,
+      "endMs": 23859
+    },
+    {
+      "word": "until",
+      "startMs": 24119,
+      "endMs": 24340
+    },
+    {
+      "word": "a",
+      "startMs": 24400,
+      "endMs": 24420
+    },
+    {
+      "word": "certain",
+      "startMs": 24480,
+      "endMs": 24741
+    },
+    {
+      "word": "condition",
+      "startMs": 24781,
+      "endMs": 25203
+    },
+    {
+      "word": "is",
+      "startMs": 25223,
+      "endMs": 25363
+    },
+    {
+      "word": "met.",
+      "startMs": 25423,
+      "endMs": 25604
+    },
+    {
+      "word": "Imagine",
+      "startMs": 26145,
+      "endMs": 26567
+    },
+    {
+      "word": "riding",
+      "startMs": 26687,
+      "endMs": 26968
+    },
+    {
+      "word": "the",
+      "startMs": 27008,
+      "endMs": 27088
+    },
+    {
+      "word": "merry-go-round",
+      "startMs": 27108,
+      "endMs": 27730
+    },
+    {
+      "word": "until",
+      "startMs": 27870,
+      "endMs": 28091
+    },
+    {
+      "word": "you",
+      "startMs": 28131,
+      "endMs": 28211
+    },
+    {
+      "word": "decide",
+      "startMs": 28252,
+      "endMs": 28552
+    },
+    {
+      "word": "to",
+      "startMs": 28572,
+      "endMs": 28633
+    },
+    {
+      "word": "get",
+      "startMs": 28673,
+      "endMs": 28793
+    },
+    {
+      "word": "off.",
+      "startMs": 28934,
+      "endMs": 29054
+    },
+    {
+      "word": "That’s",
+      "startMs": 29736,
+      "endMs": 29977
+    },
+    {
+      "word": "how",
+      "startMs": 30037,
+      "endMs": 30157
+    },
+    {
+      "word": "loops",
+      "startMs": 30217,
+      "endMs": 30478
+    },
+    {
+      "word": "work—they",
+      "startMs": 30518,
+      "endMs": 30779
+    },
+    {
+      "word": "keep",
+      "startMs": 31301,
+      "endMs": 31501
+    },
+    {
+      "word": "going",
+      "startMs": 31581,
+      "endMs": 31922
+    },
+    {
+      "word": "until",
+      "startMs": 32043,
+      "endMs": 32223
+    },
+    {
+      "word": "you",
+      "startMs": 32263,
+      "endMs": 32364
+    },
+    {
+      "word": "tell",
+      "startMs": 32404,
+      "endMs": 32564
+    },
+    {
+      "word": "them",
+      "startMs": 32604,
+      "endMs": 32725
+    },
+    {
+      "word": "to",
+      "startMs": 32765,
+      "endMs": 32845
+    },
+    {
+      "word": "stop.",
+      "startMs": 32905,
+      "endMs": 33206
+    },
+    {
+      "word": "Together,",
+      "startMs": 33848,
+      "endMs": 34249
+    },
+    {
+      "word": "conditionals",
+      "startMs": 34650,
+      "endMs": 35252
+    },
+    {
+      "word": "and",
+      "startMs": 35332,
+      "endMs": 35393
+    },
+    {
+      "word": "loops",
+      "startMs": 35453,
+      "endMs": 35714
+    },
+    {
+      "word": "help",
+      "startMs": 35774,
+      "endMs": 35994
+    },
+    {
+      "word": "make",
+      "startMs": 36055,
+      "endMs": 36195
+    },
+    {
+      "word": "your",
+      "startMs": 36235,
+      "endMs": 36335
+    },
+    {
+      "word": "programs",
+      "startMs": 36375,
+      "endMs": 36857
+    },
+    {
+      "word": "more",
+      "startMs": 36937,
+      "endMs": 37098
+    },
+    {
+      "word": "dynamic",
+      "startMs": 37158,
+      "endMs": 37659
+    },
+    {
+      "word": "and",
+      "startMs": 37780,
+      "endMs": 37840
+    },
+    {
+      "word": "responsive.",
+      "startMs": 37900,
+      "endMs": 38502
+    },
+    {
+      "word": "Let’s",
+      "startMs": 39003,
+      "endMs": 39204
+    },
+    {
+      "word": "explore",
+      "startMs": 39264,
+      "endMs": 39625
+    },
+    {
+      "word": "how",
+      "startMs": 39665,
+      "endMs": 39766
+    },
+    {
+      "word": "to",
+      "startMs": 39806,
+      "endMs": 39846
+    },
+    {
+      "word": "use",
+      "startMs": 39986,
+      "endMs": 40107
+    },
+    {
+      "word": "them",
+      "startMs": 40147,
+      "endMs": 40287
+    },
+    {
+      "word": "in",
+      "startMs": 40347,
+      "endMs": 40407
+    },
+    {
+      "word": "Python.",
+      "startMs": 40448,
+      "endMs": 41310
+    }
+  ],
+  "captionEmphasis": [
+    12,
+    14,
+    47,
+    56,
+    102
+  ]
+}

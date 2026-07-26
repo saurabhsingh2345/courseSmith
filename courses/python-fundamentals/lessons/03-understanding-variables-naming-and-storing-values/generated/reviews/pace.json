@@ -1,0 +1,51 @@
+{
+  "target_wpm": 150,
+  "tolerance": 0.15,
+  "sections": [
+    {
+      "id": "what-is-a-variable",
+      "words": 76,
+      "duration_ms": 23510,
+      "wpm": 193.9600170140366,
+      "deviation": 0.2930667800935773,
+      "flagged": true
+    },
+    {
+      "id": "naming-variables",
+      "words": 57,
+      "duration_ms": 21840,
+      "wpm": 156.5934065934066,
+      "deviation": 0.04395604395604399,
+      "flagged": false
+    },
+    {
+      "id": "creating-and-storing-values-in-variables",
+      "words": 73,
+      "duration_ms": 25147,
+      "wpm": 174.17584602537082,
+      "deviation": 0.16117230683580544,
+      "flagged": true
+    },
+    {
+      "id": "retrieving-values-from-variables",
+      "words": 61,
+      "duration_ms": 21705,
+      "wpm": 168.6247408431237,
+      "deviation": 0.12416493895415802,
+      "flagged": false
+    },
+    {
+      "id": "whats-next",
+      "words": 37,
+      "duration_ms": 13672,
+      "wpm": 162.37565827969573,
+      "deviation": 0.08250438853130485,
+      "flagged": false
+    }
+  ],
+  "flagged": [
+    "what-is-a-variable",
+    "creating-and-storing-values-in-variables"
+  ],
+  "checked_at": "2026-07-26T13:53:13.709454Z"
+}

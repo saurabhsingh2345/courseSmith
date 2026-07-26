@@ -1,0 +1,43 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "students": 10,
+  "questions": [
+    {
+      "id": "q1",
+      "correct_of": 7,
+      "rate": 0.7,
+      "reasoning": "the three who miss it pick A or C, confusing conditionals with loops or data storage.",
+      "verdict": "ok"
+    },
+    {
+      "id": "q2",
+      "correct_of": 6,
+      "rate": 0.6,
+      "reasoning": "the four who miss it select A or C, misunderstanding the primary function of loops.",
+      "verdict": "ok"
+    },
+    {
+      "id": "q3",
+      "correct_of": 8,
+      "rate": 0.8,
+      "reasoning": "the two who miss it incorrectly think the variable x is not defined.",
+      "verdict": "ok"
+    },
+    {
+      "id": "q4",
+      "correct_of": 5,
+      "rate": 0.5,
+      "reasoning": "the five who miss it select B or D, misinterpreting the range function and its output.",
+      "verdict": "ok"
+    },
+    {
+      "id": "q5",
+      "correct_of": 4,
+      "rate": 0.4,
+      "reasoning": "the six who miss it choose A or D, not grasping how conditionals and loops interact.",
+      "verdict": "ok"
+    }
+  ],
+  "flagged": null,
+  "checked_at": "2026-07-20T10:34:56.488411Z"
+}

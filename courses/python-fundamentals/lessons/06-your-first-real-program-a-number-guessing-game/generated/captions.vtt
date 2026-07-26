@@ -1,0 +1,278 @@
+WEBVTT
+
+1
+00:00:00.031 --> 00:00:02.055
+Today, we're building a number guessing
+
+2
+00:00:02.075 --> 00:00:02.335
+game.
+
+3
+00:00:02.816 --> 00:00:04.379
+It's a classic first program.
+
+4
+00:00:04.920 --> 00:00:06.964
+In this game, the program picks a secret
+
+5
+00:00:07.004 --> 00:00:09.047
+number, and the player tries to find it.
+
+6
+00:00:09.608 --> 00:00:11.492
+We'll use everything we've learned so far:
+
+7
+00:00:11.973 --> 00:00:13.836
+print statements, variables, if-else
+
+8
+00:00:13.856 --> 00:00:14.878
+conditions, and loops.
+
+9
+00:00:15.459 --> 00:00:17.162
+It's going to be fun!
+
+10
+00:00:17.162 --> 00:00:19.244
+To pick a secret number, we'll use the
+
+11
+00:00:19.324 --> 00:00:20.105
+random module.
+
+12
+00:00:20.686 --> 00:00:22.668
+This module can choose a number for us.
+
+13
+00:00:23.269 --> 00:00:24.390
+By using random.seed(),
+
+14
+00:00:25.411 --> 00:00:27.333
+we can make the choice repeatable, which
+
+15
+00:00:27.413 --> 00:00:28.594
+is perfect for testing.
+
+16
+00:00:29.055 --> 00:00:31.778
+And with random.randint(1, 10), we can get
+
+17
+00:00:31.818 --> 00:00:33.279
+a whole number from 1 to 10.
+
+18
+00:00:33.940 --> 00:00:35.281
+Let's look at that in a picture.
+
+19
+00:00:35.642 --> 00:00:36.543
+Here's how it works.
+
+20
+00:00:37.183 --> 00:00:38.685
+First, we import random.
+
+21
+00:00:39.266 --> 00:00:40.927
+Then we set the seed to 7 and
+
+22
+00:00:40.987 --> 00:00:41.969
+pick our secret number.
+
+23
+00:00:42.469 --> 00:00:44.732
+Finally, we print a message to confirm the
+
+24
+00:00:44.772 --> 00:00:46.153
+number is chosen.
+
+25
+00:00:46.572 --> 00:00:48.595
+Next, we need to check if the player's
+
+26
+00:00:48.635 --> 00:00:49.536
+guess is correct.
+
+27
+00:00:50.077 --> 00:00:51.699
+We can compare the guess to the secret
+
+28
+00:00:51.759 --> 00:00:54.143
+number using the == operator.
+
+29
+00:00:54.743 --> 00:00:56.646
+If they match, we print a win message.
+
+30
+00:00:57.307 --> 00:00:58.989
+If not, we print a hint to try
+
+31
+00:00:59.049 --> 00:00:59.270
+again.
+
+32
+00:00:59.791 --> 00:01:01.994
+For example, if our secret number is 6
+
+33
+00:01:02.154 --> 00:01:04.337
+and the user guesses 4, we can see
+
+34
+00:01:04.377 --> 00:01:05.719
+how the if-else statement works.
+
+35
+00:01:06.420 --> 00:01:08.282
+It checks the guess and gives feedback
+
+36
+00:01:08.363 --> 00:01:09.424
+accordingly.
+
+37
+00:01:09.860 --> 00:01:11.602
+Now, let's talk about the game loop.
+
+38
+00:01:12.123 --> 00:01:14.246
+Since a program can't type, we give it
+
+39
+00:01:14.286 --> 00:01:15.687
+a list of guesses to work with.
+
+40
+00:01:16.228 --> 00:01:17.790
+The for loop will try each guess in
+
+41
+00:01:17.870 --> 00:01:19.572
+order, just like a player would.
+
+42
+00:01:20.173 --> 00:01:21.895
+The if-else statement decides what to
+
+43
+00:01:21.955 --> 00:01:22.896
+print for each guess.
+
+44
+00:01:23.437 --> 00:01:25.179
+For instance, if we have a list of
+
+45
+00:01:25.239 --> 00:01:27.662
+guesses, the program will check each one
+
+46
+00:01:27.743 --> 00:01:29.665
+against the secret number and respond
+
+47
+00:01:29.725 --> 00:01:30.246
+accordingly.
+
+48
+00:01:30.286 --> 00:01:33.690
+This makes the game interactive and fun!
+
+49
+00:01:33.991 --> 00:01:35.694
+So, what did your program just do?
+
+50
+00:01:35.734 --> 00:01:37.977
+It picked a secret number and stored it
+
+51
+00:01:38.057 --> 00:01:38.678
+in a variable.
+
+52
+00:01:39.339 --> 00:01:41.362
+Then, it looped over the guesses one by
+
+53
+00:01:41.402 --> 00:01:41.683
+one.
+
+54
+00:01:42.263 --> 00:01:44.287
+For each guess, it made a decision and
+
+55
+00:01:44.347 --> 00:01:45.188
+printed the result.
+
+56
+00:01:45.649 --> 00:01:47.732
+This is what a real program looks like
+
+57
+00:01:47.732 --> 00:01:49.975
+— it has the same structure as the
+
+58
+00:01:50.035 --> 00:01:51.898
+software you use every day.
+
+59
+00:01:52.452 --> 00:01:54.294
+Now that you've built your game, where do
+
+60
+00:01:54.314 --> 00:01:54.935
+you go from here?
+
+61
+00:01:55.536 --> 00:01:57.759
+You could change the range to 1-100 and
+
+62
+00:01:58.239 --> 00:01:59.160
+add more guesses.
+
+63
+00:01:59.821 --> 00:02:01.463
+You might also want to count the attempts
+
+64
+00:02:01.523 --> 00:02:03.866
+with a variable that increases by 1 each
+
+65
+00:02:03.906 --> 00:02:04.587
+loop.
+
+66
+00:02:04.607 --> 00:02:06.249
+And when you run Python on your own
+
+67
+00:02:06.310 --> 00:02:08.652
+computer, you can swap the guess list for
+
+68
+00:02:08.693 --> 00:02:11.396
+input() to make it truly interactive.
+
+69
+00:02:12.017 --> 00:02:13.819
+The possibilities are endless!
+

@@ -1,0 +1,7 @@
+flowchart TD
+    A["Pick a secret number"] --> B["Take the next guess"]
+    B --> C{"Check the guess"}
+    C -->|correct| D["Print congratulations"]
+    C -->|wrong| E["Print try again"]
+    E --> B
+    D --> F["End game"]

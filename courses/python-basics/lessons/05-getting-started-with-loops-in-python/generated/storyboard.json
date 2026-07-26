@@ -1,0 +1,124 @@
+{
+  "sections": [
+    {
+      "id": "what-are-loops",
+      "points": [
+        {
+          "text": "Repeat actions in code",
+          "icon": "repeat",
+          "at_word": 6
+        },
+        {
+          "text": "Like a chef's recipe",
+          "icon": "book",
+          "at_word": 12
+        },
+        {
+          "text": "Saves time and effort",
+          "icon": "clock",
+          "at_word": 44
+        }
+      ]
+    },
+    {
+      "id": "the-structure-of-a-loop",
+      "points": [
+        {
+          "text": "Condition is a question",
+          "icon": "dot",
+          "at_word": 8
+        },
+        {
+          "text": "Check condition again",
+          "icon": "check",
+          "at_word": 36
+        },
+        {
+          "text": "Repeats until false",
+          "icon": "repeat",
+          "at_word": 50
+        }
+      ]
+    },
+    {
+      "id": "using-a-for-loop",
+      "points": [
+        {
+          "text": "Go through a sequence",
+          "icon": "list",
+          "at_word": 7
+        },
+        {
+          "text": "Perform an action",
+          "icon": "play",
+          "at_word": 17
+        },
+        {
+          "text": "Print each item",
+          "icon": "dot",
+          "at_word": 30
+        }
+      ]
+    },
+    {
+      "id": "using-a-while-loop",
+      "points": [
+        {
+          "text": "Runs as long as true",
+          "icon": "target",
+          "at_word": 8
+        },
+        {
+          "text": "Can run forever",
+          "icon": "dot",
+          "at_word": 23
+        },
+        {
+          "text": "Counting from zero",
+          "icon": "dot",
+          "at_word": 43
+        }
+      ]
+    },
+    {
+      "id": "practical-example-counting-items",
+      "points": [
+        {
+          "text": "Count items in a list",
+          "icon": "list",
+          "at_word": 8
+        },
+        {
+          "text": "Counter set to zero",
+          "icon": "check",
+          "at_word": 22
+        },
+        {
+          "text": "Add one for each pet",
+          "icon": "heart",
+          "at_word": 38
+        }
+      ]
+    },
+    {
+      "id": "whats-next",
+      "points": [
+        {
+          "text": "Explore nested loops",
+          "icon": "layers",
+          "at_word": 10
+        },
+        {
+          "text": "Tackle complex tasks",
+          "icon": "puzzle",
+          "at_word": 30
+        },
+        {
+          "text": "Keep practicing",
+          "icon": "brain",
+          "at_word": 42
+        }
+      ]
+    }
+  ]
+}

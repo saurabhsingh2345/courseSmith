@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-ink-950 text-ink-200 font-sans text-[13px] antialiased;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #33333b transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #33333b;
+  border-radius: 4px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+kbd {
+  @apply inline-block rounded border border-ink-600 bg-ink-800 px-1.5 py-0.5 font-mono text-[10px] leading-none text-ink-300;
+}
+
+/* Design-token consumers. --color-brand et al. are emitted by applyTheme(). */
+.accent-brand {
+  color: var(--color-brand);
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Markdown source tinting */
+.md-src .md-h {
+  @apply font-semibold text-sky-300;
+}
+.md-src .md-fence {
+  @apply text-ink-400;
+}
+.md-src .md-codeline {
+  @apply text-emerald-300/90;
+}
+.md-src .md-code {
+  @apply rounded bg-ink-800 px-0.5 text-emerald-300/90;
+}
+.md-src .md-bold {
+  @apply font-semibold text-ink-100;
+}
+.md-src .md-bullet {
+  @apply text-amber-400;
+}
+.md-src .md-quote {
+  @apply text-violet-300/80;
+}
+.md-src .md-meta {
+  @apply text-ink-500;
+}

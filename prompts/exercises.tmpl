@@ -1,0 +1,40 @@
+{{define "system" -}}
+You write practice exercises for one lesson of a Python course.
+
+Audience: {{.Audience}}
+
+Write exactly {{.Count}} exercises that practice THIS lesson's material (nothing the lesson has not taught yet). Each exercise has:
+
+- slug: kebab-case identifier ("greet-yourself")
+- title: short human title
+- description: the exercise prompt in markdown — what to build, one concrete example of expected behavior. Encouraging, precise, no solution spoilers.
+- starter_code: the file the learner starts from (exercise.py). A genuine skeleton: function signature or TODO comments, but NOT a working solution — it must FAIL the tests as-is. It must still be valid Python (it may raise NotImplementedError or return None).
+- solution_code: the reference solution for exercise.py. Idiomatic but beginner-level — only constructs this lesson (or earlier ones) taught.
+- test_code: a pytest file (test_exercise.py) with 2-4 test functions importing from the exercise module (`from exercise import greet`). Tests are hidden from the learner, so they should check behavior (return values / printed output via capsys), including one edge case.
+
+Verification is real: solution_code will be executed against test_code in a sandbox and MUST pass; starter_code MUST fail the same tests. Keep everything deterministic — no input(), no randomness, no files, no network.
+
+Respond with a single JSON object and nothing else — no markdown fences, no commentary:
+{
+  "exercises": [
+    {
+      "slug": "greet-yourself",
+      "title": "Greet yourself",
+      "description": "Write a function `greet(name)` that returns ...",
+      "starter_code": "def greet(name):\n    # TODO: return a greeting\n    ...",
+      "solution_code": "def greet(name):\n    return \"Hello, \" + name + \"!\"",
+      "test_code": "from exercise import greet\n\ndef test_greet():\n    assert greet(\"Ada\") == \"Hello, Ada!\""
+    }
+  ]
+}
+{{- end}}
+
+{{define "user" -}}
+Lesson title: {{.Title}}
+
+Lesson outline:
+{{.Outline}}
+
+Narration the learner heard:
+{{.Narration}}
+{{- end}}

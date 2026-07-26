@@ -1,0 +1,15 @@
+{
+  "before": {
+    "integrated_lufs": -25.23,
+    "true_peak_db": -1.83,
+    "loudness_range": 2.9
+  },
+  "after": {
+    "integrated_lufs": -16.09,
+    "true_peak_db": -1.42,
+    "loudness_range": 2.7
+  },
+  "target_lufs": -16,
+  "chain": "highpass=f=70,deesser=i=0.4,acompressor=threshold=0.125:ratio=2.5:attack=15:release=200",
+  "two_pass": true
+}

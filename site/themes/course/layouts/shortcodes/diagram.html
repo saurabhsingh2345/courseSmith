@@ -1,0 +1,12 @@
+{{- /* Inlines an SVG diagram from the page bundle so it inherits page fonts
+       and needs no extra request.
+       Usage: {{</* diagram src="diagrams/memory-model.svg" caption="..." */>}} */ -}}
+{{- $svg := .Page.Resources.Get (.Get "src") -}}
+{{- with $svg -}}
+<figure class="diagram">
+  {{ .Content | safeHTML }}
+  {{- with $.Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>
+{{- else -}}
+<p class="missing-asset">Diagram {{ .Get "src" }} not found.</p>
+{{- end -}}

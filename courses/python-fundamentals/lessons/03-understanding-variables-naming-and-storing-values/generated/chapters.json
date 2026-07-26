@@ -1,0 +1,32 @@
+[
+  {
+    "id": "what-is-a-variable",
+    "title": "What is a variable?",
+    "start_ms": 0,
+    "end_ms": 24162
+  },
+  {
+    "id": "naming-variables",
+    "title": "Naming variables",
+    "start_ms": 24162,
+    "end_ms": 46690
+  },
+  {
+    "id": "creating-and-storing-values-in-variables",
+    "title": "Creating and storing values in variables",
+    "start_ms": 46690,
+    "end_ms": 72340
+  },
+  {
+    "id": "retrieving-values-from-variables",
+    "title": "Retrieving values from variables",
+    "start_ms": 72340,
+    "end_ms": 94767
+  },
+  {
+    "id": "whats-next",
+    "title": "Whats Next",
+    "start_ms": 94767,
+    "end_ms": 108439
+  }
+]

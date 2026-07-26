@@ -1,0 +1,6 @@
+0:00 The print function: making Python say things on screen
+2:12 Introduction to Python's basic data types
+4:52 Understanding variables: naming and storing values
+6:41 If and else: making decisions in code
+8:34 Loops: Repeating things with for and while
+11:18 Your first real program: a number guessing game

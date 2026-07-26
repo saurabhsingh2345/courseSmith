@@ -1,0 +1,63 @@
+{
+  "target_wpm": 150,
+  "tolerance": 0.15,
+  "sections": [
+    {
+      "id": "introduction-to-the-print-function",
+      "words": 69,
+      "duration_ms": 23426,
+      "wpm": 176.726713907624,
+      "deviation": 0.17817809271749335,
+      "flagged": true
+    },
+    {
+      "id": "basic-usage-of-print",
+      "words": 80,
+      "duration_ms": 27644,
+      "wpm": 173.63623209376357,
+      "deviation": 0.15757488062509045,
+      "flagged": true
+    },
+    {
+      "id": "printing-multiple-items",
+      "words": 68,
+      "duration_ms": 21823,
+      "wpm": 186.95871328414975,
+      "deviation": 0.2463914218943317,
+      "flagged": true
+    },
+    {
+      "id": "printing-numbers-and-calculations",
+      "words": 66,
+      "duration_ms": 22328,
+      "wpm": 177.35578645646723,
+      "deviation": 0.18237190970978154,
+      "flagged": true
+    },
+    {
+      "id": "experimenting-with-print",
+      "words": 60,
+      "duration_ms": 19562,
+      "wpm": 184.0302627543196,
+      "deviation": 0.22686841836213073,
+      "flagged": true
+    },
+    {
+      "id": "whats-next",
+      "words": 53,
+      "duration_ms": 16506,
+      "wpm": 192.6572155579789,
+      "deviation": 0.2843814370531927,
+      "flagged": true
+    }
+  ],
+  "flagged": [
+    "introduction-to-the-print-function",
+    "basic-usage-of-print",
+    "printing-multiple-items",
+    "printing-numbers-and-calculations",
+    "experimenting-with-print",
+    "whats-next"
+  ],
+  "checked_at": "2026-07-26T13:43:06.542388Z"
+}

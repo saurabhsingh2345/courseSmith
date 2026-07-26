@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.031 --> 00:00:01.774
+Today, we're diving into the world of
+
+2
+00:00:01.854 --> 00:00:03.718
+conditionals and loops in Python.
+
+3
+00:00:04.198 --> 00:00:06.062
+Think of conditionals like traffic lights.
+
+4
+00:00:06.623 --> 00:00:08.466
+They help your program decide what to do
+
+5
+00:00:08.526 --> 00:00:08.867
+next.
+
+6
+00:00:09.368 --> 00:00:10.971
+If the light is green, you go.
+
+7
+00:00:11.011 --> 00:00:12.874
+If it’s red, you stop.
+
+8
+00:00:13.415 --> 00:00:15.859
+Similarly, in programming, conditionals
+
+9
+00:00:15.919 --> 00:00:18.063
+let your code choose different paths based
+
+10
+00:00:18.143 --> 00:00:19.626
+on certain conditions.
+
+11
+00:00:19.626 --> 00:00:21.732
+Now, loops are like a merry-go-round.
+
+12
+00:00:22.294 --> 00:00:24.420
+They allow you to repeat actions until a
+
+13
+00:00:24.480 --> 00:00:25.604
+certain condition is met.
+
+14
+00:00:26.145 --> 00:00:28.091
+Imagine riding the merry-go-round until
+
+15
+00:00:28.131 --> 00:00:29.054
+you decide to get off.
+
+16
+00:00:29.736 --> 00:00:31.922
+That’s how loops work—they keep going
+
+17
+00:00:32.043 --> 00:00:33.206
+until you tell them to stop.
+
+18
+00:00:33.848 --> 00:00:36.195
+Together, conditionals and loops help make
+
+19
+00:00:36.235 --> 00:00:38.502
+your programs more dynamic and responsive.
+
+20
+00:00:39.003 --> 00:00:41.310
+Let’s explore how to use them in Python.
+

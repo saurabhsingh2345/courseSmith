@@ -1,0 +1,12 @@
+{{- /* Renders an interactive quiz from a quiz.json page resource.
+       Usage: {{</* quiz src="quiz.json" */>}} */ -}}
+{{- $quiz := .Page.Resources.Get (.Get "src") -}}
+{{- with $quiz -}}
+<div class="quiz" data-quiz>
+  <script type="application/json" data-quiz-data>{{ .Content | safeJS }}</script>
+  <noscript><p>Enable JavaScript to take the quiz.</p></noscript>
+</div>
+<script src="{{ "js/quiz.js" | relURL }}" defer></script>
+{{- else -}}
+<p class="missing-asset">Quiz not available for this lesson yet.</p>
+{{- end -}}

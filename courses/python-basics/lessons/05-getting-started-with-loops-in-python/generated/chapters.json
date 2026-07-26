@@ -1,0 +1,38 @@
+[
+  {
+    "id": "what-are-loops",
+    "title": "What are loops?",
+    "start_ms": 0,
+    "end_ms": 18340
+  },
+  {
+    "id": "the-structure-of-a-loop",
+    "title": "The structure of a loop",
+    "start_ms": 18340,
+    "end_ms": 38472
+  },
+  {
+    "id": "using-a-for-loop",
+    "title": "Using a for loop",
+    "start_ms": 38472,
+    "end_ms": 55398
+  },
+  {
+    "id": "using-a-while-loop",
+    "title": "Using a while loop",
+    "start_ms": 55398,
+    "end_ms": 75412
+  },
+  {
+    "id": "practical-example-counting-items",
+    "title": "Practical example: counting items",
+    "start_ms": 75412,
+    "end_ms": 90616
+  },
+  {
+    "id": "whats-next",
+    "title": "Whats Next",
+    "start_ms": 90616,
+    "end_ms": 106971
+  }
+]

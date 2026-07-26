@@ -1,0 +1,30 @@
+# Your first real program: a number guessing game
+
+## What Were Building [0:00]
+
+Today, we're building a number guessing game. It's a classic first program. In this game, the program picks a secret number, and the player tries to find it. We'll use everything we've learned so far: print statements, variables, if-else conditions, and loops. It's going to be fun!
+
+
+## Picking the secret number [0:17]
+
+To pick a secret number, we'll use the random module. This module can choose a number for us. By using random.seed(), we can make the choice repeatable, which is perfect for testing. And with random.randint(1, 10), we can get a whole number from 1 to 10. Let's look at that in a picture. Here's how it works. First, we import random. Then we set the seed to 7 and pick our secret number. Finally, we print a message to confirm the number is chosen.
+
+
+## Checking a guess with if-else [0:46]
+
+Next, we need to check if the player's guess is correct. We can compare the guess to the secret number using the == operator. If they match, we print a win message. If not, we print a hint to try again. For example, if our secret number is 6 and the user guesses 4, we can see how the if-else statement works. It checks the guess and gives feedback accordingly.
+
+
+## The Game Loop Guessing Until Its Right [1:09]
+
+Now, let's talk about the game loop. Since a program can't type, we give it a list of guesses to work with. The for loop will try each guess in order, just like a player would. The if-else statement decides what to print for each guess. For instance, if we have a list of guesses, the program will check each one against the secret number and respond accordingly. This makes the game interactive and fun!
+
+
+## What your program just did [1:33]
+
+So, what did your program just do? It picked a secret number and stored it in a variable. Then, it looped over the guesses one by one. For each guess, it made a decision and printed the result. This is what a real program looks like — it has the same structure as the software you use every day.
+
+
+## Where to go from here [1:52]
+
+Now that you've built your game, where do you go from here? You could change the range to 1-100 and add more guesses. You might also want to count the attempts with a variable that increases by 1 each loop. And when you run Python on your own computer, you can swap the guess list for input() to make it truly interactive. The possibilities are endless!

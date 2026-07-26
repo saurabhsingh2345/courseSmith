@@ -1,0 +1,16 @@
+{
+  "demos": [
+    {
+      "id": "demo-1",
+      "description": "open the Python REPL with python3, print a hello message, then print your own name, and exit",
+      "path": "demos/demo-1.mp4",
+      "durationMs": 8640
+    },
+    {
+      "id": "demo-2",
+      "description": "create a two-line script hello.py with a heredoc and run it with python3 hello.py",
+      "path": "demos/demo-2.mp4",
+      "durationMs": 11680
+    }
+  ]
+}

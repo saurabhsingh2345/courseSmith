@@ -1,0 +1,6 @@
+0:00 What are loops?
+0:18 The structure of a loop
+0:38 Using a for loop
+0:55 Using a while loop
+1:15 Practical example: counting items
+1:30 Whats Next

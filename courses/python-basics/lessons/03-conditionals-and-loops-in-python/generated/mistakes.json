@@ -1,0 +1,30 @@
+{
+  "mistakes": [
+    {
+      "title": "Forgetting the colon after if statement",
+      "explanation": "Beginners often forget to add a colon at the end of an if statement, thinking it's not necessary since they are used to other programming languages that may not require it.",
+      "broken_code": "score = 10\nif score == 10\n    print(\"ten\")",
+      "traceback": "File \"\u003cstdin\u003e\", line 2\n    if score == 10\n                  ^\nSyntaxError: expected ':'",
+      "fix": "Always remember to add a colon ':' at the end of your if statements. Python will tell you there's a syntax error when it sees the missing colon.",
+      "fixed_code": "score = 10\nif score == 10:\n    print(\"ten\")"
+    },
+    {
+      "title": "Incorrect indentation in the if block",
+      "explanation": "Beginners may not realize that Python uses indentation to define blocks of code, leading to confusion when they don't indent correctly.",
+      "broken_code": "score = 10\nif score == 10:\nprint(\"ten\")",
+      "traceback": "File \"\u003cstdin\u003e\", line 3\n    print(\"ten\")\n    ^^^^^\nIndentationError: expected an indented block after 'if' statement on line 2",
+      "fix": "Make sure to indent the code inside the if block. Python raises an IndentationError when it expects an indented block but doesn't find one.",
+      "fixed_code": "score = 10\nif score == 10:\n    print(\"ten\")"
+    },
+    {
+      "title": "Using a loop variable after the loop with an empty list",
+      "explanation": "Beginners might try to use a loop variable outside of the loop without realizing that the list was empty, leading to confusion about the variable's existence.",
+      "broken_code": "my_list = []\nfor item in my_list:\n    print(item)\nprint(item)",
+      "traceback": "Traceback (most recent call last):\n  File \"\u003cstdin\u003e\", line 4, in \u003cmodule\u003e\nNameError: name 'item' is not defined. Did you mean: 'iter'?",
+      "fix": "Be aware that the loop variable is only defined within the loop. Python raises a NameError when you try to access it outside if the loop didn't run.",
+      "fixed_code": "my_list = []\nfor item in my_list:\n    print(item)\n# The variable 'item' is not used here since the list is empty."
+    }
+  ],
+  "runner": "docker-sandbox",
+  "generated_at": "2026-07-20T10:35:03.126775Z"
+}

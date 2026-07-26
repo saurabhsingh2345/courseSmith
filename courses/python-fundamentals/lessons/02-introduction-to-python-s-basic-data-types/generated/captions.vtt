@@ -1,0 +1,326 @@
+WEBVTT
+
+1
+00:00:00.031 --> 00:00:02.075
+Data types define the kind of data we
+
+2
+00:00:02.115 --> 00:00:03.178
+can use in Python.
+
+3
+00:00:03.699 --> 00:00:05.884
+They help Python understand how to store
+
+4
+00:00:05.984 --> 00:00:06.946
+and manipulate data.
+
+5
+00:00:07.607 --> 00:00:09.431
+Common data types include strings,
+
+6
+00:00:09.812 --> 00:00:11.696
+integers, floats, and booleans.
+
+7
+00:00:12.317 --> 00:00:13.640
+Let's look at that in a picture.
+
+8
+00:00:14.121 --> 00:00:15.825
+Here’s a flowchart showing Python's
+
+9
+00:00:15.945 --> 00:00:17.348
+basic data types.
+
+10
+00:00:17.348 --> 00:00:19.551
+At the top, we have 'Python Data Types',
+
+11
+00:00:19.832 --> 00:00:21.935
+branching down to 'Strings', 'Integers',
+
+12
+00:00:22.356 --> 00:00:23.537
+'Floats', and 'Booleans'.
+
+13
+00:00:24.319 --> 00:00:25.921
+Each type has a brief description.
+
+14
+00:00:26.462 --> 00:00:28.805
+Strings are for text data, integers are
+
+15
+00:00:28.885 --> 00:00:31.429
+whole numbers, floats are decimal numbers,
+
+16
+00:00:31.750 --> 00:00:33.893
+and booleans represent true or false
+
+17
+00:00:33.933 --> 00:00:34.394
+values.
+
+18
+00:00:35.095 --> 00:00:37.258
+Understanding these data types is crucial
+
+19
+00:00:37.318 --> 00:00:39.201
+for programming effectively.
+
+20
+00:00:39.603 --> 00:00:41.965
+Strings are sequences of characters, like
+
+21
+00:00:42.045 --> 00:00:43.186
+words or sentences.
+
+22
+00:00:43.787 --> 00:00:45.648
+They’re enclosed in single or double
+
+23
+00:00:45.708 --> 00:00:46.009
+quotes.
+
+24
+00:00:46.549 --> 00:00:48.511
+For example, you can write 'Hello' or
+
+25
+00:00:48.911 --> 00:00:49.332
+"Hello".
+
+26
+00:00:49.952 --> 00:00:52.014
+You can also concatenate strings using the
+
+27
+00:00:52.014 --> 00:00:53.135
+'+' operator.
+
+28
+00:00:53.636 --> 00:00:55.237
+This means you can join two strings
+
+29
+00:00:55.297 --> 00:00:55.677
+together.
+
+30
+00:00:56.098 --> 00:00:58.179
+For instance, if you write print('Hello, '
+
+31
+00:00:58.179 --> 00:01:01.142
++ 'world!'), it combines those two strings
+
+32
+00:01:01.202 --> 00:01:01.643
+into one.
+
+33
+00:01:02.163 --> 00:01:04.145
+The output will be 'Hello, world!'.
+
+34
+00:01:04.686 --> 00:01:06.888
+So, strings are pretty flexible and
+
+35
+00:01:06.928 --> 00:01:09.610
+essential for handling text in Python.
+
+36
+00:01:10.130 --> 00:01:12.913
+Integers are whole numbers, like 1, 2, or
+
+37
+00:01:13.013 --> 00:01:13.613
+even -5.
+
+38
+00:01:13.653 --> 00:01:15.615
+They don’t have any decimal points.
+
+39
+00:01:16.235 --> 00:01:18.097
+On the other hand, floats are decimal
+
+40
+00:01:18.137 --> 00:01:20.760
+numbers, like 3.14 or -0.001.
+
+41
+00:01:21.260 --> 00:01:23.502
+You can perform arithmetic operations with
+
+42
+00:01:23.562 --> 00:01:25.504
+both types, which is really useful.
+
+43
+00:01:26.064 --> 00:01:27.306
+For example, if you write
+
+44
+00:01:28.487 --> 00:01:31.209
+print(5 + 3.2), Python adds those two
+
+45
+00:01:31.269 --> 00:01:31.970
+numbers together.
+
+46
+00:01:32.570 --> 00:01:33.571
+The result will be 8.2.
+
+47
+00:01:33.711 --> 00:01:33.891
+So,
+
+48
+00:01:35.193 --> 00:01:37.034
+integers and floats are vital for
+
+49
+00:01:37.074 --> 00:01:38.916
+calculations in your programs.
+
+50
+00:01:38.916 --> 00:01:42.583
+Booleans represent truth values: True or
+
+51
+00:01:42.683 --> 00:01:43.003
+False.
+
+52
+00:01:43.564 --> 00:01:45.428
+They’re often used in conditions and
+
+53
+00:01:45.488 --> 00:01:46.149
+comparisons.
+
+54
+00:01:46.690 --> 00:01:48.774
+For example, you might check if something
+
+55
+00:01:48.854 --> 00:01:50.276
+is greater than another value.
+
+56
+00:01:50.857 --> 00:01:52.841
+You can use booleans to control the flow
+
+57
+00:01:52.901 --> 00:01:53.582
+of your program.
+
+58
+00:01:54.043 --> 00:01:55.285
+If you write print(3 > 2),
+
+59
+00:01:56.107 --> 00:01:58.211
+Python evaluates that expression and
+
+60
+00:01:58.271 --> 00:01:59.052
+returns True.
+
+61
+00:01:59.793 --> 00:02:01.396
+Booleans are essential for making
+
+62
+00:02:01.436 --> 00:02:02.979
+decisions in your code.
+
+63
+00:02:03.449 --> 00:02:05.553
+Let’s summarize the basic data types in
+
+64
+00:02:05.593 --> 00:02:06.094
+Python.
+
+65
+00:02:06.635 --> 00:02:08.839
+We have strings for text, integers for
+
+66
+00:02:08.899 --> 00:02:11.403
+whole numbers, floats for decimals, and
+
+67
+00:02:11.464 --> 00:02:13.187
+booleans for true or false.
+
+68
+00:02:13.928 --> 00:02:16.012
+Understanding these types is essential for
+
+69
+00:02:16.072 --> 00:02:16.613
+programming.
+
+70
+00:02:17.054 --> 00:02:18.877
+They form the foundation of how we work
+
+71
+00:02:18.917 --> 00:02:19.999
+with data in Python.
+
+72
+00:02:20.540 --> 00:02:22.644
+So, keep these in mind as you start
+
+73
+00:02:22.704 --> 00:02:23.786
+coding!
+
+74
+00:02:23.952 --> 00:02:25.976
+Now that you know the basic data types,
+
+75
+00:02:26.356 --> 00:02:28.140
+you can start using them in your programs.
+
+76
+00:02:28.881 --> 00:02:31.005
+Next, we'll explore how to store data in
+
+77
+00:02:31.025 --> 00:02:31.546
+variables.
+
+78
+00:02:32.207 --> 00:02:34.471
+This will allow you to create more complex
+
+79
+00:02:34.591 --> 00:02:35.613
+and useful programs.
+
+80
+00:02:36.154 --> 00:02:37.837
+So, let’s get ready to dive into the
+
+81
+00:02:37.857 --> 00:02:38.839
+next topic!
+

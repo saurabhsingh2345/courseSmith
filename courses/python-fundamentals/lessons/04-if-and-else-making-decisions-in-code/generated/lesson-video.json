@@ -1,0 +1,395 @@
+{
+  "theme": {
+    "primary": "#2563eb",
+    "accent": "#f59e0b",
+    "background": "#ffffff",
+    "courseName": "Python Fundamentals",
+    "mode": "dark",
+    "bgTop": "#101828",
+    "bgBottom": "#070815",
+    "surface": "#1b2232",
+    "surfaceBorder": "#323c52",
+    "text": "#f2f4f8",
+    "textMuted": "#a6aebf",
+    "fontDisplay": "Space Grotesk",
+    "fontBody": "Inter",
+    "fontMono": "JetBrains Mono",
+    "grain": 0.04
+  },
+  "motion": {
+    "timing": {
+      "fast": 0.2,
+      "normal": 0.6,
+      "slow": 1,
+      "verySlow": 2
+    },
+    "easing": {
+      "entrance": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "exit": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "subtle": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "stagger": {
+      "words": 0.05,
+      "items": 0.08,
+      "connections": 0.12
+    }
+  },
+  "audioFile": "voiceover.wav",
+  "durationMs": 112597,
+  "scenes": [
+    {
+      "type": "title",
+      "startMs": 31,
+      "endMs": 17328,
+      "props": {
+        "heading": "If and else: making decisions in code",
+        "intro": true,
+        "outcomes": [
+          "Understand the concept of conditional statements",
+          "Write if and else statements in Python",
+          "Use comparison operators to make decisions"
+        ],
+        "subtitle": "Python Fundamentals"
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 17328,
+      "endMs": 40463,
+      "props": {
+        "code": "age = 18\nif age \u003e= 18:\n    print(\"You are an adult.\")",
+        "language": "python",
+        "output": "You are an adult.\n",
+        "title": "The structure of if statements",
+        "trace": {
+          "code": "age = 18\nif age \u003e= 18:\n    print(\"You are an adult.\")",
+          "lines": [
+            "age = 18",
+            "if age \u003e= 18:",
+            "    print(\"You are an adult.\")"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "age",
+                  "value": {
+                    "type": "int",
+                    "repr": "18"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "age",
+                  "value": {
+                    "type": "int",
+                    "repr": "18"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 3,
+              "line": 3,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "age",
+                  "value": {
+                    "type": "int",
+                    "repr": "18"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "You are an adult.\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "You are an adult.\n"
+        }
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 40463,
+      "endMs": 58402,
+      "props": {
+        "code": "age = 16\nif age \u003e= 18:\n    print(\"You are an adult.\")\nelse:\n    print(\"You are a minor.\")",
+        "language": "python",
+        "output": "You are a minor.\n",
+        "title": "Adding else statements",
+        "trace": {
+          "code": "age = 16\nif age \u003e= 18:\n    print(\"You are an adult.\")\nelse:\n    print(\"You are a minor.\")",
+          "lines": [
+            "age = 16",
+            "if age \u003e= 18:",
+            "    print(\"You are an adult.\")",
+            "else:",
+            "    print(\"You are a minor.\")"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "age",
+                  "value": {
+                    "type": "int",
+                    "repr": "16"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 5,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "age",
+                  "value": {
+                    "type": "int",
+                    "repr": "16"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 3,
+              "line": 5,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "age",
+                  "value": {
+                    "type": "int",
+                    "repr": "16"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "You are a minor.\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "You are a minor.\n"
+        }
+      }
+    },
+    {
+      "type": "code",
+      "startMs": 58402,
+      "endMs": 79360,
+      "props": {
+        "code": "temperature = 30\nif temperature \u003e 25:\n    print(\"It's a hot day.\")\nelse:\n    print(\"It's a cool day.\")",
+        "language": "python",
+        "output": "It's a hot day.\n",
+        "title": "Using comparison operators",
+        "trace": {
+          "code": "temperature = 30\nif temperature \u003e 25:\n    print(\"It's a hot day.\")\nelse:\n    print(\"It's a cool day.\")",
+          "lines": [
+            "temperature = 30",
+            "if temperature \u003e 25:",
+            "    print(\"It's a hot day.\")",
+            "else:",
+            "    print(\"It's a cool day.\")"
+          ],
+          "steps": [
+            {
+              "step": 0,
+              "line": 1,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 1,
+              "line": 2,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "temperature",
+                  "value": {
+                    "type": "int",
+                    "repr": "30"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 2,
+              "line": 3,
+              "event": "line",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "temperature",
+                  "value": {
+                    "type": "int",
+                    "repr": "30"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": ""
+            },
+            {
+              "step": 3,
+              "line": 3,
+              "event": "return",
+              "func": "\u003cmodule\u003e",
+              "vars": [
+                {
+                  "name": "temperature",
+                  "value": {
+                    "type": "int",
+                    "repr": "30"
+                  }
+                }
+              ],
+              "stack": [
+                "\u003cmodule\u003e"
+              ],
+              "stdout": "It's a hot day.\n"
+            }
+          ],
+          "truncated": false,
+          "stdout": "It's a hot day.\n"
+        }
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 79360,
+      "endMs": 87193,
+      "props": {
+        "items": [
+          {
+            "atMs": 80963,
+            "icon": "puzzle",
+            "text": "Visualize logic"
+          },
+          {
+            "atMs": 82405,
+            "icon": "arrow",
+            "text": "Flow from condition"
+          },
+          {
+            "atMs": 84489,
+            "icon": "folder",
+            "text": "Plan your code"
+          }
+        ],
+        "title": "Flowchart for if and else statements"
+      }
+    },
+    {
+      "type": "diagram",
+      "startMs": 87193,
+      "endMs": 96016,
+      "props": {
+        "caption": "if-else-flowchart",
+        "kind": "mermaid",
+        "src": "diagrams/if-else-flowchart.svg",
+        "title": "Flowchart for if and else statements"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 96016,
+      "endMs": 112597,
+      "props": {
+        "items": [
+          {
+            "atMs": 96799,
+            "icon": "rocket",
+            "text": "More to explore"
+          },
+          {
+            "atMs": 98907,
+            "icon": "zap",
+            "text": "Dive into elif"
+          },
+          {
+            "atMs": 101417,
+            "icon": "repeat",
+            "text": "Learn about loops"
+          }
+        ],
+        "title": "What's next?"
+      }
+    }
+  ],
+  "captions": null
+}

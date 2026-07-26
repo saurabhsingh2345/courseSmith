@@ -1,0 +1,51 @@
+{
+  "source": "whisperx",
+  "overall_wer": 0,
+  "threshold": 0.05,
+  "sections": [
+    {
+      "id": "what-are-loops",
+      "words": 52,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "the-structure-of-a-loop",
+      "words": 62,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "using-a-for-loop",
+      "words": 60,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "using-a-while-loop",
+      "words": 61,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "practical-example-counting-items",
+      "words": 55,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "whats-next",
+      "words": 46,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    }
+  ],
+  "flagged": null,
+  "checked_at": "2026-07-26T13:19:44.570537Z"
+}

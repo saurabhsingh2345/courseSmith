@@ -1,0 +1,14 @@
+{
+  "kind": "diagram:loop-structure",
+  "round": 1,
+  "model": "openai/gpt-4o",
+  "passed": false,
+  "issues": [
+    "label 'is true?' overlaps the connector line",
+    "label 'is false?' overlaps the connector line",
+    "bottom part of the diagram is missing, including 'Action' and 'End Loop'"
+  ],
+  "svg_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/python-basics/lessons/05-getting-started-with-loops-in-python/generated/diagrams/attempts/loop-structure-round-1.svg",
+  "png_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/python-basics/lessons/05-getting-started-with-loops-in-python/generated/diagrams/attempts/loop-structure-round-1.png",
+  "checked_at": "2026-07-26T13:22:26Z"
+}

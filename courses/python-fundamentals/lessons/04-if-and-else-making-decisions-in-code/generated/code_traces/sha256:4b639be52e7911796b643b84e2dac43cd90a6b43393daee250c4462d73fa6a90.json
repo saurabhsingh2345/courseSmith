@@ -1,0 +1,80 @@
+{
+  "code": "age = 18\nif age \u003e= 18:\n    print(\"You are an adult.\")",
+  "lines": [
+    "age = 18",
+    "if age \u003e= 18:",
+    "    print(\"You are an adult.\")"
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "line": 1,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 1,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "age",
+          "value": {
+            "type": "int",
+            "repr": "18"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 2,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "age",
+          "value": {
+            "type": "int",
+            "repr": "18"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 3,
+      "line": 3,
+      "event": "return",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "age",
+          "value": {
+            "type": "int",
+            "repr": "18"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "You are an adult.\n"
+    }
+  ],
+  "truncated": false,
+  "stdout": "You are an adult.\n"
+}

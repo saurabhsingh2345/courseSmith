@@ -1,0 +1,347 @@
+{
+  "code": "count = 0\nwhile count \u003c 5:\n    print(count)\n    count += 1",
+  "lines": [
+    "count = 0",
+    "while count \u003c 5:",
+    "    print(count)",
+    "    count += 1"
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "line": 1,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 1,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "0"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 2,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "0"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 3,
+      "line": 4,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "0"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n"
+    },
+    {
+      "step": 4,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "1"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n"
+    },
+    {
+      "step": 5,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "1"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n"
+    },
+    {
+      "step": 6,
+      "line": 4,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "1"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n1\n"
+    },
+    {
+      "step": 7,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "2"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n1\n"
+    },
+    {
+      "step": 8,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "2"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n1\n"
+    },
+    {
+      "step": 9,
+      "line": 4,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "2"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n1\n2\n"
+    },
+    {
+      "step": 10,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "3"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n1\n2\n"
+    },
+    {
+      "step": 11,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "3"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n1\n2\n"
+    },
+    {
+      "step": 12,
+      "line": 4,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "3"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n1\n2\n3\n"
+    },
+    {
+      "step": 13,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "4"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n1\n2\n3\n"
+    },
+    {
+      "step": 14,
+      "line": 3,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "4"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n1\n2\n3\n"
+    },
+    {
+      "step": 15,
+      "line": 4,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "4"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n1\n2\n3\n4\n"
+    },
+    {
+      "step": 16,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "5"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n1\n2\n3\n4\n"
+    },
+    {
+      "step": 17,
+      "line": 2,
+      "event": "return",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "count",
+          "value": {
+            "type": "int",
+            "repr": "5"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n1\n2\n3\n4\n"
+    }
+  ],
+  "truncated": false,
+  "stdout": "0\n1\n2\n3\n4\n"
+}

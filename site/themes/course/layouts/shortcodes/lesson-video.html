@@ -1,0 +1,16 @@
+{{- /* Embeds the lesson MP4 from the page bundle with a WebVTT captions track.
+       Usage: {{</* lesson-video src="final.mp4" captions="captions.vtt" */>}} */ -}}
+{{- $video := .Page.Resources.Get (.Get "src") -}}
+{{- $captions := .Page.Resources.Get (.Get "captions") -}}
+{{- with $video -}}
+<video class="lesson-video" controls preload="metadata">
+  <source src="{{ .RelPermalink }}" type="video/mp4">
+  {{- with $captions }}
+  <track kind="captions" src="{{ .RelPermalink }}" srclang="en" label="English" default>
+  {{- end }}
+  Your browser does not support HTML video.
+  <a href="{{ .RelPermalink }}">Download the lesson video</a>.
+</video>
+{{- else -}}
+<p class="missing-asset">Video not available for this lesson yet.</p>
+{{- end -}}

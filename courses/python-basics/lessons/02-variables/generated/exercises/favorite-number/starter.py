@@ -1,0 +1,3 @@
+def favorite_number(name, number):
+    # TODO: return a favorite number sentence
+    ...

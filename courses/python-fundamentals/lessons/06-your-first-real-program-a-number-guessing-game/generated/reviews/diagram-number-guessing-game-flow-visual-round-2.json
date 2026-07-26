@@ -1,0 +1,14 @@
+{
+  "kind": "diagram:number-guessing-game-flow",
+  "round": 2,
+  "model": "openai/gpt-4o",
+  "passed": false,
+  "issues": [
+    "Diagram is incomplete; missing 'correct' and 'wrong' decision paths",
+    "Missing 'Print congratulations' and 'End game' steps",
+    "Missing 'Print try again' step"
+  ],
+  "svg_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/python-fundamentals/lessons/06-your-first-real-program-a-number-guessing-game/generated/diagrams/attempts/number-guessing-game-flow-round-2.svg",
+  "png_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/python-fundamentals/lessons/06-your-first-real-program-a-number-guessing-game/generated/diagrams/attempts/number-guessing-game-flow-round-2.png",
+  "checked_at": "2026-07-26T14:09:04Z"
+}

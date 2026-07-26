@@ -1,0 +1,62 @@
+{
+  "target_wpm": 150,
+  "tolerance": 0.15,
+  "sections": [
+    {
+      "id": "what-were-building",
+      "words": 47,
+      "duration_ms": 17131,
+      "wpm": 164.61385791839356,
+      "deviation": 0.09742571945595709,
+      "flagged": false
+    },
+    {
+      "id": "picking-the-secret-number",
+      "words": 85,
+      "duration_ms": 29011,
+      "wpm": 175.79538795629244,
+      "deviation": 0.17196925304194963,
+      "flagged": true
+    },
+    {
+      "id": "checking-a-guess-with-if-else",
+      "words": 71,
+      "duration_ms": 22852,
+      "wpm": 186.41694381235777,
+      "deviation": 0.2427796254157185,
+      "flagged": true
+    },
+    {
+      "id": "the-game-loop-guessing-until-its-right",
+      "words": 75,
+      "duration_ms": 23830,
+      "wpm": 188.83759966428872,
+      "deviation": 0.2589173310952581,
+      "flagged": true
+    },
+    {
+      "id": "what-your-program-just-did",
+      "words": 58,
+      "duration_ms": 17907,
+      "wpm": 194.33740995141565,
+      "deviation": 0.29558273300943766,
+      "flagged": true
+    },
+    {
+      "id": "where-to-go-from-here",
+      "words": 68,
+      "duration_ms": 21367,
+      "wpm": 190.94865914728317,
+      "deviation": 0.2729910609818878,
+      "flagged": true
+    }
+  ],
+  "flagged": [
+    "picking-the-secret-number",
+    "checking-a-guess-with-if-else",
+    "the-game-loop-guessing-until-its-right",
+    "what-your-program-just-did",
+    "where-to-go-from-here"
+  ],
+  "checked_at": "2026-07-26T14:10:33.767089Z"
+}

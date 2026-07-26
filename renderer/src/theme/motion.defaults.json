@@ -1,0 +1,18 @@
+{
+  "timing": {
+    "fast": 0.2,
+    "normal": 0.6,
+    "slow": 1,
+    "verySlow": 2
+  },
+  "easing": {
+    "entrance": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+    "exit": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "subtle": "cubic-bezier(0.4, 0, 0.2, 1)"
+  },
+  "stagger": {
+    "words": 0.05,
+    "items": 0.08,
+    "connections": 0.12
+  }
+}

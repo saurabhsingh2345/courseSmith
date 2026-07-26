@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 570 270" font-family="system-ui, sans-serif">
+<style>
+  .lesson { font-size: 14px; font-weight: 600; fill: #111827; }
+  .lesson-sub { font-size: 11px; fill: #6b7280; }
+  .concept { fill: #ffffff; stroke: #306998; stroke-width: 1.5; }
+  .concept.violated { stroke: #dc2626; stroke-width: 2.5; }
+  .concept-label { font-size: 12px; fill: #111827; }
+  .edge { stroke: #ffd43b; stroke-width: 1.2; fill: none; opacity: 0.55; }
+  .edge.violated { stroke: #dc2626; opacity: 0.9; }
+  .legend { font-size: 11px; fill: #6b7280; }
+</style>
+<rect width="570" height="270" fill="#ffffff"/>
+<text class="lesson" x="30" y="22" font-size="16">Python Basics — concept map</text>
+<path class="edge violated" stroke-dasharray="4 3" d="M 420 240 L 420 92"/>
+<path class="edge violated" stroke-dasharray="4 3" d="M 420 240 L 420 92"/>
+<path class="edge violated" stroke-dasharray="4 3" d="M 150 240 L 150 92"/>
+<path class="edge violated" stroke-dasharray="4 3" d="M 420 240 L 420 92"/>
+<path class="edge violated" d="M 532 115 C 572 115, 150 120, 150 90"/>
+<text class="lesson" x="30" y="54">01-what-is-python</text>
+<text class="lesson-sub" x="30" y="72">introduces 1 concept(s)</text>
+<text class="lesson" x="300" y="54">02-variables</text>
+<text class="lesson-sub" x="300" y="72">introduces 3 concept(s)</text>
+<rect class="concept" x="30" y="100" width="224" height="30" rx="6"/>
+<text class="concept-label" x="38" y="119">print function</text>
+<rect class="concept violated" x="300" y="100" width="224" height="30" rx="6"/>
+<text class="concept-label" x="308" y="119">variable</text>
+<rect class="concept" x="300" y="140" width="224" height="30" rx="6"/>
+<text class="concept-label" x="308" y="159">print function</text>
+<text class="legend" x="30" y="260">edges: concept → lessons that require it · red = used before taught</text>
+</svg>

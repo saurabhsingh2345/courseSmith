@@ -1,0 +1,294 @@
+WEBVTT
+
+1
+00:00:00.031 --> 00:00:02.615
+Loops are a fundamental concept in
+
+2
+00:00:02.735 --> 00:00:03.456
+programming.
+
+3
+00:00:04.097 --> 00:00:06.641
+They help us repeat actions in our code.
+
+4
+00:00:07.382 --> 00:00:10.006
+This means we can avoid writing the same
+
+5
+00:00:10.127 --> 00:00:11.929
+code over and over again.
+
+6
+00:00:11.969 --> 00:00:15.475
+Imagine having to print numbers from one
+
+7
+00:00:15.555 --> 00:00:16.036
+to ten.
+
+8
+00:00:16.657 --> 00:00:18.600
+Without loops, you'd have to write ten
+
+9
+00:00:18.640 --> 00:00:20.082
+print statements!
+
+10
+00:00:20.082 --> 00:00:22.150
+But with loops, we can do it in
+
+11
+00:00:22.230 --> 00:00:23.294
+just a few lines.
+
+12
+00:00:23.876 --> 00:00:26.346
+There are two main types of loops: for
+
+13
+00:00:26.426 --> 00:00:27.771
+loops and while loops.
+
+14
+00:00:28.594 --> 00:00:31.405
+Each has its own strengths and uses.
+
+15
+00:00:32.110 --> 00:00:34.213
+Now, let’s dive into for loops.
+
+16
+00:00:34.934 --> 00:00:37.256
+For loops are great because they iterate
+
+17
+00:00:37.417 --> 00:00:40.140
+over a sequence, like a list.
+
+18
+00:00:40.160 --> 00:00:42.383
+They execute a block of code for each
+
+19
+00:00:42.583 --> 00:00:43.765
+item in that sequence.
+
+20
+00:00:44.425 --> 00:00:46.808
+This makes them perfect for tasks that
+
+21
+00:00:46.868 --> 00:00:49.371
+require repetition over collections.
+
+22
+00:00:50.132 --> 00:00:52.636
+For example, if we want to print numbers
+
+23
+00:00:52.696 --> 00:00:55.119
+from zero to four, we can use a
+
+24
+00:00:55.199 --> 00:00:57.021
+for loop like this.
+
+25
+00:00:57.021 --> 00:00:59.644
+For number in range five, we print the
+
+26
+00:00:59.704 --> 00:01:00.024
+number.
+
+27
+00:01:00.665 --> 00:01:02.487
+Let’s take a look at that in action.
+
+28
+00:01:03.788 --> 00:01:06.350
+Next up, we have while loops.
+
+29
+00:01:06.370 --> 00:01:08.893
+While loops repeat as long as a condition
+
+30
+00:01:09.033 --> 00:01:09.514
+is true.
+
+31
+00:01:09.574 --> 00:01:12.677
+This is really useful when we don’t know
+
+32
+00:01:12.717 --> 00:01:14.819
+how many times we need to repeat
+
+33
+00:01:14.899 --> 00:01:15.299
+something.
+
+34
+00:01:15.940 --> 00:01:18.382
+For instance, we can use a while loop
+
+35
+00:01:18.443 --> 00:01:20.164
+to count from zero to four.
+
+36
+00:01:20.865 --> 00:01:22.907
+But we need to be careful!
+
+37
+00:01:22.907 --> 00:01:25.655
+If we forget to update our condition, we
+
+38
+00:01:25.736 --> 00:01:27.681
+might end up with an infinite loop.
+
+39
+00:01:28.424 --> 00:01:30.750
+So always ensure your loop has a way
+
+40
+00:01:30.791 --> 00:01:31.352
+to stop.
+
+41
+00:01:31.954 --> 00:01:33.960
+Here’s how that looks in code.
+
+42
+00:01:34.700 --> 00:01:36.923
+So, when should you use each type of
+
+43
+00:01:36.963 --> 00:01:37.324
+loop?
+
+44
+00:01:37.965 --> 00:01:39.747
+For loops are best when you know the
+
+45
+00:01:39.807 --> 00:01:41.750
+number of iterations in advance.
+
+46
+00:01:42.551 --> 00:01:44.514
+They’re straightforward and easy to
+
+47
+00:01:44.594 --> 00:01:44.895
+read.
+
+48
+00:01:45.596 --> 00:01:48.219
+On the other hand, while loops shine when
+
+49
+00:01:48.259 --> 00:01:50.262
+you need to repeat something based on a
+
+50
+00:01:50.322 --> 00:01:50.903
+condition.
+
+51
+00:01:51.564 --> 00:01:53.487
+Choosing the right loop can really
+
+52
+00:01:53.607 --> 00:01:55.890
+simplify your code and make it more
+
+53
+00:01:55.951 --> 00:01:56.491
+efficient.
+
+54
+00:01:57.292 --> 00:01:59.796
+Let’s visualize these concepts.
+
+55
+00:02:00.383 --> 00:02:02.105
+Now it’s time to practice!
+
+56
+00:02:02.826 --> 00:02:05.530
+Try creating a for loop that prints items
+
+57
+00:02:05.550 --> 00:02:06.952
+in a list.
+
+58
+00:02:06.972 --> 00:02:09.275
+You can also create a while loop that
+
+59
+00:02:09.375 --> 00:02:10.677
+counts down from ten.
+
+60
+00:02:10.717 --> 00:02:13.842
+This is a great way to experiment with
+
+61
+00:02:13.922 --> 00:02:15.864
+different conditions and collections.
+
+62
+00:02:16.565 --> 00:02:19.249
+Remember, the more you practice, the more
+
+63
+00:02:19.349 --> 00:02:21.873
+comfortable you’ll become with loops.
+
+64
+00:02:21.893 --> 00:02:23.575
+Let’s see how you can do this in
+
+65
+00:02:23.615 --> 00:02:24.957
+your terminal.
+
+66
+00:02:25.392 --> 00:02:26.214
+What’s next?
+
+67
+00:02:26.755 --> 00:02:29.261
+In our upcoming lessons, we’ll explore
+
+68
+00:02:29.321 --> 00:02:31.586
+how to combine loops with conditionals.
+
+69
+00:02:32.448 --> 00:02:34.473
+You’ll learn how to break and continue
+
+70
+00:02:34.573 --> 00:02:36.878
+in loops, which will help you build more
+
+71
+00:02:36.958 --> 00:02:38.221
+complex programs.
+
+72
+00:02:38.903 --> 00:02:41.489
+I’m excited to see what you create using
+
+73
+00:02:41.509 --> 00:02:43.333
+loops and conditions!
+

@@ -1,0 +1,22 @@
+{
+  "exercises": [
+    {
+      "slug": "greet-yourself",
+      "title": "Greet yourself",
+      "description": "Write a function `greet(name)` that returns a greeting message. For example, if you call `greet(\"Ada\")`, it should return \"Hello, Ada!\"",
+      "starter_code": "def greet(name):\n    # TODO: return a greeting\n    ...",
+      "solution_code": "",
+      "test_code": "from exercise import greet\n\ndef test_greet():\n    assert greet(\"Ada\") == \"Hello, Ada!\"\n\ndef test_greet_empty():\n    assert greet(\"\") == \"Hello, !\""
+    },
+    {
+      "slug": "favorite-number",
+      "title": "Share your favorite number",
+      "description": "Create a function `favorite_number(name, number)` that returns a sentence about your favorite number. For example, `favorite_number(\"Ada\", 7)` should return \"Ada's favorite number is 7.\"",
+      "starter_code": "def favorite_number(name, number):\n    # TODO: return a favorite number sentence\n    ...",
+      "solution_code": "",
+      "test_code": "from exercise import favorite_number\n\ndef test_favorite_number():\n    assert favorite_number(\"Ada\", 7) == \"Ada's favorite number is 7.\"\n\ndef test_favorite_number_zero():\n    assert favorite_number(\"Ada\", 0) == \"Ada's favorite number is 0.\""
+    }
+  ],
+  "runner": "docker-sandbox",
+  "generated_at": "2026-07-18T16:39:45.841318Z"
+}

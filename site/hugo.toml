@@ -1,0 +1,26 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en"
+title = "Coursesmith Courses"
+theme = "course"
+
+# The bundled site must work when opened straight from disk (file://), so every
+# generated URL is rewritten relative to the page that references it.
+relativeURLs = true
+canonifyURLs = false
+
+# Content files carry no dates; fall back to file modification time so
+# schema.org uploadDate and the sitemap have real values.
+[frontmatter]
+  date = [":fileModTime", ":default"]
+  lastmod = [":fileModTime", ":default"]
+
+[markup.goldmark.renderer]
+  # Lesson pages embed inline SVG figures.
+  unsafe = true
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[params]
+  description = "Video courses generated with coursesmith: lessons, synced transcripts, quizzes, and exercises."

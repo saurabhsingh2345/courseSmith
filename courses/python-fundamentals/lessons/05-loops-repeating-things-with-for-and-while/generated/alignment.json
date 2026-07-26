@@ -1,0 +1,4167 @@
+{
+  "source": "whisperx",
+  "words": [
+    {
+      "word": "Loops",
+      "startMs": 31,
+      "endMs": 512
+    },
+    {
+      "word": "are",
+      "startMs": 692,
+      "endMs": 772
+    },
+    {
+      "word": "a",
+      "startMs": 832,
+      "endMs": 852
+    },
+    {
+      "word": "fundamental",
+      "startMs": 1033,
+      "endMs": 1654
+    },
+    {
+      "word": "concept",
+      "startMs": 1734,
+      "endMs": 2395
+    },
+    {
+      "word": "in",
+      "startMs": 2555,
+      "endMs": 2615
+    },
+    {
+      "word": "programming.",
+      "startMs": 2735,
+      "endMs": 3456
+    },
+    {
+      "word": "They",
+      "startMs": 4097,
+      "endMs": 4217
+    },
+    {
+      "word": "help",
+      "startMs": 4278,
+      "endMs": 4458
+    },
+    {
+      "word": "us",
+      "startMs": 4558,
+      "endMs": 4638
+    },
+    {
+      "word": "repeat",
+      "startMs": 4758,
+      "endMs": 5159
+    },
+    {
+      "word": "actions",
+      "startMs": 5359,
+      "endMs": 5820
+    },
+    {
+      "word": "in",
+      "startMs": 5980,
+      "endMs": 6040
+    },
+    {
+      "word": "our",
+      "startMs": 6100,
+      "endMs": 6181
+    },
+    {
+      "word": "code.",
+      "startMs": 6261,
+      "endMs": 6641
+    },
+    {
+      "word": "This",
+      "startMs": 7382,
+      "endMs": 7563
+    },
+    {
+      "word": "means",
+      "startMs": 7683,
+      "endMs": 8023
+    },
+    {
+      "word": "we",
+      "startMs": 8284,
+      "endMs": 8364
+    },
+    {
+      "word": "can",
+      "startMs": 8404,
+      "endMs": 8524
+    },
+    {
+      "word": "avoid",
+      "startMs": 8584,
+      "endMs": 8985
+    },
+    {
+      "word": "writing",
+      "startMs": 9005,
+      "endMs": 9486
+    },
+    {
+      "word": "the",
+      "startMs": 9546,
+      "endMs": 9646
+    },
+    {
+      "word": "same",
+      "startMs": 9726,
+      "endMs": 10006
+    },
+    {
+      "word": "code",
+      "startMs": 10127,
+      "endMs": 10507
+    },
+    {
+      "word": "over",
+      "startMs": 10547,
+      "endMs": 11088
+    },
+    {
+      "word": "and",
+      "startMs": 11168,
+      "endMs": 11228
+    },
+    {
+      "word": "over",
+      "startMs": 11349,
+      "endMs": 11549
+    },
+    {
+      "word": "again.",
+      "startMs": 11629,
+      "endMs": 11929
+    },
+    {
+      "word": "Imagine",
+      "startMs": 11969,
+      "endMs": 13412
+    },
+    {
+      "word": "having",
+      "startMs": 13452,
+      "endMs": 13832
+    },
+    {
+      "word": "to",
+      "startMs": 13892,
+      "endMs": 13953
+    },
+    {
+      "word": "print",
+      "startMs": 14053,
+      "endMs": 14293
+    },
+    {
+      "word": "numbers",
+      "startMs": 14413,
+      "endMs": 14834
+    },
+    {
+      "word": "from",
+      "startMs": 14954,
+      "endMs": 15114
+    },
+    {
+      "word": "one",
+      "startMs": 15134,
+      "endMs": 15475
+    },
+    {
+      "word": "to",
+      "startMs": 15555,
+      "endMs": 15675
+    },
+    {
+      "word": "ten.",
+      "startMs": 15735,
+      "endMs": 16036
+    },
+    {
+      "word": "Without",
+      "startMs": 16657,
+      "endMs": 16997
+    },
+    {
+      "word": "loops,",
+      "startMs": 17077,
+      "endMs": 17418
+    },
+    {
+      "word": "you'd",
+      "startMs": 17498,
+      "endMs": 17678
+    },
+    {
+      "word": "have",
+      "startMs": 17718,
+      "endMs": 17859
+    },
+    {
+      "word": "to",
+      "startMs": 17899,
+      "endMs": 17959
+    },
+    {
+      "word": "write",
+      "startMs": 18019,
+      "endMs": 18239
+    },
+    {
+      "word": "ten",
+      "startMs": 18279,
+      "endMs": 18600
+    },
+    {
+      "word": "print",
+      "startMs": 18640,
+      "endMs": 18860
+    },
+    {
+      "word": "statements.",
+      "startMs": 18920,
+      "endMs": 20082
+    },
+    {
+      "word": "But",
+      "startMs": 20062,
+      "endMs": 20283
+    },
+    {
+      "word": "with",
+      "startMs": 20323,
+      "endMs": 20464
+    },
+    {
+      "word": "loops,",
+      "startMs": 20524,
+      "endMs": 21226
+    },
+    {
+      "word": "we",
+      "startMs": 21246,
+      "endMs": 21367
+    },
+    {
+      "word": "can",
+      "startMs": 21407,
+      "endMs": 21548
+    },
+    {
+      "word": "do",
+      "startMs": 21608,
+      "endMs": 21789
+    },
+    {
+      "word": "it",
+      "startMs": 21889,
+      "endMs": 21929
+    },
+    {
+      "word": "in",
+      "startMs": 21969,
+      "endMs": 22150
+    },
+    {
+      "word": "just",
+      "startMs": 22230,
+      "endMs": 22431
+    },
+    {
+      "word": "a",
+      "startMs": 22491,
+      "endMs": 22511
+    },
+    {
+      "word": "few",
+      "startMs": 22592,
+      "endMs": 22752
+    },
+    {
+      "word": "lines.",
+      "startMs": 22853,
+      "endMs": 23294
+    },
+    {
+      "word": "There",
+      "startMs": 23876,
+      "endMs": 24017
+    },
+    {
+      "word": "are",
+      "startMs": 24037,
+      "endMs": 24137
+    },
+    {
+      "word": "two",
+      "startMs": 24218,
+      "endMs": 24439
+    },
+    {
+      "word": "main",
+      "startMs": 24559,
+      "endMs": 24820
+    },
+    {
+      "word": "types",
+      "startMs": 24900,
+      "endMs": 25222
+    },
+    {
+      "word": "of",
+      "startMs": 25282,
+      "endMs": 25322
+    },
+    {
+      "word": "loops,",
+      "startMs": 25362,
+      "endMs": 25764
+    },
+    {
+      "word": "for",
+      "startMs": 26205,
+      "endMs": 26346
+    },
+    {
+      "word": "loops",
+      "startMs": 26426,
+      "endMs": 26788
+    },
+    {
+      "word": "and",
+      "startMs": 26948,
+      "endMs": 27028
+    },
+    {
+      "word": "while",
+      "startMs": 27109,
+      "endMs": 27390
+    },
+    {
+      "word": "loops.",
+      "startMs": 27430,
+      "endMs": 27771
+    },
+    {
+      "word": "Each",
+      "startMs": 28594,
+      "endMs": 28795
+    },
+    {
+      "word": "has",
+      "startMs": 28855,
+      "endMs": 29056
+    },
+    {
+      "word": "its",
+      "startMs": 29136,
+      "endMs": 29237
+    },
+    {
+      "word": "own",
+      "startMs": 29438,
+      "endMs": 29578
+    },
+    {
+      "word": "strengths",
+      "startMs": 29699,
+      "endMs": 30160
+    },
+    {
+      "word": "and",
+      "startMs": 30321,
+      "endMs": 30401
+    },
+    {
+      "word": "uses.",
+      "startMs": 30562,
+      "endMs": 31405
+    },
+    {
+      "word": "Now,",
+      "startMs": 32110,
+      "endMs": 32531
+    },
+    {
+      "word": "let's",
+      "startMs": 32731,
+      "endMs": 32991
+    },
+    {
+      "word": "dive",
+      "startMs": 33071,
+      "endMs": 33352
+    },
+    {
+      "word": "into",
+      "startMs": 33392,
+      "endMs": 33652
+    },
+    {
+      "word": "for",
+      "startMs": 33712,
+      "endMs": 33832
+    },
+    {
+      "word": "loops.",
+      "startMs": 33892,
+      "endMs": 34213
+    },
+    {
+      "word": "For",
+      "startMs": 34934,
+      "endMs": 35054
+    },
+    {
+      "word": "loops",
+      "startMs": 35114,
+      "endMs": 35394
+    },
+    {
+      "word": "are",
+      "startMs": 35474,
+      "endMs": 35574
+    },
+    {
+      "word": "great",
+      "startMs": 35654,
+      "endMs": 35995
+    },
+    {
+      "word": "because",
+      "startMs": 36095,
+      "endMs": 36435
+    },
+    {
+      "word": "they",
+      "startMs": 36495,
+      "endMs": 36656
+    },
+    {
+      "word": "iterate",
+      "startMs": 36836,
+      "endMs": 37256
+    },
+    {
+      "word": "over",
+      "startMs": 37417,
+      "endMs": 37637
+    },
+    {
+      "word": "a",
+      "startMs": 37697,
+      "endMs": 37737
+    },
+    {
+      "word": "sequence,",
+      "startMs": 37817,
+      "endMs": 38338
+    },
+    {
+      "word": "like",
+      "startMs": 38678,
+      "endMs": 38858
+    },
+    {
+      "word": "a",
+      "startMs": 38918,
+      "endMs": 38959
+    },
+    {
+      "word": "list.",
+      "startMs": 39019,
+      "endMs": 40140
+    },
+    {
+      "word": "They",
+      "startMs": 40160,
+      "endMs": 40300
+    },
+    {
+      "word": "execute",
+      "startMs": 40420,
+      "endMs": 40921
+    },
+    {
+      "word": "a",
+      "startMs": 40981,
+      "endMs": 41001
+    },
+    {
+      "word": "block",
+      "startMs": 41041,
+      "endMs": 41341
+    },
+    {
+      "word": "of",
+      "startMs": 41382,
+      "endMs": 41422
+    },
+    {
+      "word": "code",
+      "startMs": 41542,
+      "endMs": 41902
+    },
+    {
+      "word": "for",
+      "startMs": 41962,
+      "endMs": 42082
+    },
+    {
+      "word": "each",
+      "startMs": 42203,
+      "endMs": 42383
+    },
+    {
+      "word": "item",
+      "startMs": 42583,
+      "endMs": 42823
+    },
+    {
+      "word": "in",
+      "startMs": 42903,
+      "endMs": 42964
+    },
+    {
+      "word": "that",
+      "startMs": 43004,
+      "endMs": 43184
+    },
+    {
+      "word": "sequence.",
+      "startMs": 43264,
+      "endMs": 43765
+    },
+    {
+      "word": "This",
+      "startMs": 44425,
+      "endMs": 44626
+    },
+    {
+      "word": "makes",
+      "startMs": 44726,
+      "endMs": 44926
+    },
+    {
+      "word": "them",
+      "startMs": 44986,
+      "endMs": 45126
+    },
+    {
+      "word": "perfect",
+      "startMs": 45226,
+      "endMs": 45707
+    },
+    {
+      "word": "for",
+      "startMs": 45847,
+      "endMs": 45967
+    },
+    {
+      "word": "tasks",
+      "startMs": 46047,
+      "endMs": 46608
+    },
+    {
+      "word": "that",
+      "startMs": 46668,
+      "endMs": 46808
+    },
+    {
+      "word": "require",
+      "startMs": 46868,
+      "endMs": 47429
+    },
+    {
+      "word": "repetition",
+      "startMs": 47509,
+      "endMs": 48210
+    },
+    {
+      "word": "over",
+      "startMs": 48250,
+      "endMs": 48571
+    },
+    {
+      "word": "collections.",
+      "startMs": 48611,
+      "endMs": 49371
+    },
+    {
+      "word": "For",
+      "startMs": 50132,
+      "endMs": 50253
+    },
+    {
+      "word": "example,",
+      "startMs": 50313,
+      "endMs": 50833
+    },
+    {
+      "word": "if",
+      "startMs": 51374,
+      "endMs": 51454
+    },
+    {
+      "word": "we",
+      "startMs": 51494,
+      "endMs": 51634
+    },
+    {
+      "word": "want",
+      "startMs": 51674,
+      "endMs": 51855
+    },
+    {
+      "word": "to",
+      "startMs": 51875,
+      "endMs": 51935
+    },
+    {
+      "word": "print",
+      "startMs": 51995,
+      "endMs": 52175
+    },
+    {
+      "word": "numbers",
+      "startMs": 52235,
+      "endMs": 52636
+    },
+    {
+      "word": "from",
+      "startMs": 52696,
+      "endMs": 52836
+    },
+    {
+      "word": "zero",
+      "startMs": 52956,
+      "endMs": 53376
+    },
+    {
+      "word": "to",
+      "startMs": 53457,
+      "endMs": 53537
+    },
+    {
+      "word": "four,",
+      "startMs": 53637,
+      "endMs": 53977
+    },
+    {
+      "word": "we",
+      "startMs": 54418,
+      "endMs": 54538
+    },
+    {
+      "word": "can",
+      "startMs": 54578,
+      "endMs": 54718
+    },
+    {
+      "word": "use",
+      "startMs": 54858,
+      "endMs": 55019
+    },
+    {
+      "word": "a",
+      "startMs": 55059,
+      "endMs": 55119
+    },
+    {
+      "word": "for",
+      "startMs": 55199,
+      "endMs": 55339
+    },
+    {
+      "word": "loop",
+      "startMs": 55439,
+      "endMs": 55719
+    },
+    {
+      "word": "like",
+      "startMs": 55800,
+      "endMs": 56000
+    },
+    {
+      "word": "this.",
+      "startMs": 56080,
+      "endMs": 57021
+    },
+    {
+      "word": "For",
+      "startMs": 57001,
+      "endMs": 57261
+    },
+    {
+      "word": "number",
+      "startMs": 57341,
+      "endMs": 57642
+    },
+    {
+      "word": "in",
+      "startMs": 57722,
+      "endMs": 57802
+    },
+    {
+      "word": "range",
+      "startMs": 57882,
+      "endMs": 58262
+    },
+    {
+      "word": "five,",
+      "startMs": 58342,
+      "endMs": 58783
+    },
+    {
+      "word": "we",
+      "startMs": 59123,
+      "endMs": 59243
+    },
+    {
+      "word": "print",
+      "startMs": 59343,
+      "endMs": 59544
+    },
+    {
+      "word": "the",
+      "startMs": 59564,
+      "endMs": 59644
+    },
+    {
+      "word": "number.",
+      "startMs": 59704,
+      "endMs": 60024
+    },
+    {
+      "word": "Let's",
+      "startMs": 60665,
+      "endMs": 60925
+    },
+    {
+      "word": "take",
+      "startMs": 60985,
+      "endMs": 61165
+    },
+    {
+      "word": "a",
+      "startMs": 61185,
+      "endMs": 61225
+    },
+    {
+      "word": "look",
+      "startMs": 61285,
+      "endMs": 61445
+    },
+    {
+      "word": "at",
+      "startMs": 61486,
+      "endMs": 61526
+    },
+    {
+      "word": "that",
+      "startMs": 61546,
+      "endMs": 61766
+    },
+    {
+      "word": "in",
+      "startMs": 61806,
+      "endMs": 61946
+    },
+    {
+      "word": "action.",
+      "startMs": 62126,
+      "endMs": 62487
+    },
+    {
+      "word": "Next",
+      "startMs": 63788,
+      "endMs": 64108
+    },
+    {
+      "word": "up,",
+      "startMs": 64288,
+      "endMs": 64388
+    },
+    {
+      "word": "we",
+      "startMs": 64609,
+      "endMs": 64709
+    },
+    {
+      "word": "have",
+      "startMs": 64789,
+      "endMs": 64969
+    },
+    {
+      "word": "while",
+      "startMs": 65029,
+      "endMs": 65269
+    },
+    {
+      "word": "loops.",
+      "startMs": 65309,
+      "endMs": 66350
+    },
+    {
+      "word": "While",
+      "startMs": 66370,
+      "endMs": 66571
+    },
+    {
+      "word": "loops",
+      "startMs": 66651,
+      "endMs": 66951
+    },
+    {
+      "word": "repeat",
+      "startMs": 67071,
+      "endMs": 67512
+    },
+    {
+      "word": "as",
+      "startMs": 67692,
+      "endMs": 67752
+    },
+    {
+      "word": "long",
+      "startMs": 67852,
+      "endMs": 68112
+    },
+    {
+      "word": "as",
+      "startMs": 68172,
+      "endMs": 68232
+    },
+    {
+      "word": "a",
+      "startMs": 68252,
+      "endMs": 68312
+    },
+    {
+      "word": "condition",
+      "startMs": 68352,
+      "endMs": 68893
+    },
+    {
+      "word": "is",
+      "startMs": 69033,
+      "endMs": 69093
+    },
+    {
+      "word": "true.",
+      "startMs": 69233,
+      "endMs": 69514
+    },
+    {
+      "word": "This",
+      "startMs": 69574,
+      "endMs": 70595
+    },
+    {
+      "word": "is",
+      "startMs": 70775,
+      "endMs": 70855
+    },
+    {
+      "word": "really",
+      "startMs": 71035,
+      "endMs": 71335
+    },
+    {
+      "word": "useful",
+      "startMs": 71355,
+      "endMs": 71956
+    },
+    {
+      "word": "when",
+      "startMs": 72036,
+      "endMs": 72156
+    },
+    {
+      "word": "we",
+      "startMs": 72196,
+      "endMs": 72296
+    },
+    {
+      "word": "don't",
+      "startMs": 72336,
+      "endMs": 72497
+    },
+    {
+      "word": "know",
+      "startMs": 72537,
+      "endMs": 72677
+    },
+    {
+      "word": "how",
+      "startMs": 72717,
+      "endMs": 72937
+    },
+    {
+      "word": "many",
+      "startMs": 73017,
+      "endMs": 73217
+    },
+    {
+      "word": "times",
+      "startMs": 73337,
+      "endMs": 73798
+    },
+    {
+      "word": "we",
+      "startMs": 73898,
+      "endMs": 73998
+    },
+    {
+      "word": "need",
+      "startMs": 74058,
+      "endMs": 74278
+    },
+    {
+      "word": "to",
+      "startMs": 74318,
+      "endMs": 74398
+    },
+    {
+      "word": "repeat",
+      "startMs": 74459,
+      "endMs": 74819
+    },
+    {
+      "word": "something.",
+      "startMs": 74899,
+      "endMs": 75299
+    },
+    {
+      "word": "For",
+      "startMs": 75940,
+      "endMs": 76060
+    },
+    {
+      "word": "instance,",
+      "startMs": 76180,
+      "endMs": 76721
+    },
+    {
+      "word": "we",
+      "startMs": 77041,
+      "endMs": 77141
+    },
+    {
+      "word": "can",
+      "startMs": 77201,
+      "endMs": 77301
+    },
+    {
+      "word": "use",
+      "startMs": 77422,
+      "endMs": 77562
+    },
+    {
+      "word": "a",
+      "startMs": 77622,
+      "endMs": 77642
+    },
+    {
+      "word": "while",
+      "startMs": 77742,
+      "endMs": 78082
+    },
+    {
+      "word": "loop",
+      "startMs": 78122,
+      "endMs": 78382
+    },
+    {
+      "word": "to",
+      "startMs": 78443,
+      "endMs": 78523
+    },
+    {
+      "word": "count",
+      "startMs": 78603,
+      "endMs": 78923
+    },
+    {
+      "word": "from",
+      "startMs": 78983,
+      "endMs": 79123
+    },
+    {
+      "word": "zero",
+      "startMs": 79243,
+      "endMs": 79604
+    },
+    {
+      "word": "to",
+      "startMs": 79624,
+      "endMs": 79764
+    },
+    {
+      "word": "four,",
+      "startMs": 79864,
+      "endMs": 80164
+    },
+    {
+      "word": "but",
+      "startMs": 80865,
+      "endMs": 80965
+    },
+    {
+      "word": "we",
+      "startMs": 81025,
+      "endMs": 81145
+    },
+    {
+      "word": "need",
+      "startMs": 81205,
+      "endMs": 81426
+    },
+    {
+      "word": "to",
+      "startMs": 81466,
+      "endMs": 81526
+    },
+    {
+      "word": "be",
+      "startMs": 81566,
+      "endMs": 81666
+    },
+    {
+      "word": "careful.",
+      "startMs": 81726,
+      "endMs": 82907
+    },
+    {
+      "word": "If",
+      "startMs": 82887,
+      "endMs": 83108
+    },
+    {
+      "word": "we",
+      "startMs": 83148,
+      "endMs": 83288
+    },
+    {
+      "word": "forget",
+      "startMs": 83348,
+      "endMs": 83669
+    },
+    {
+      "word": "to",
+      "startMs": 83689,
+      "endMs": 83790
+    },
+    {
+      "word": "update",
+      "startMs": 83970,
+      "endMs": 84331
+    },
+    {
+      "word": "our",
+      "startMs": 84391,
+      "endMs": 84472
+    },
+    {
+      "word": "condition,",
+      "startMs": 84512,
+      "endMs": 85053
+    },
+    {
+      "word": "we",
+      "startMs": 85114,
+      "endMs": 85655
+    },
+    {
+      "word": "might",
+      "startMs": 85736,
+      "endMs": 85936
+    },
+    {
+      "word": "end",
+      "startMs": 86117,
+      "endMs": 86257
+    },
+    {
+      "word": "up",
+      "startMs": 86357,
+      "endMs": 86418
+    },
+    {
+      "word": "with",
+      "startMs": 86498,
+      "endMs": 86618
+    },
+    {
+      "word": "an",
+      "startMs": 86678,
+      "endMs": 86718
+    },
+    {
+      "word": "infinite",
+      "startMs": 86899,
+      "endMs": 87340
+    },
+    {
+      "word": "loop.",
+      "startMs": 87421,
+      "endMs": 87681
+    },
+    {
+      "word": "So",
+      "startMs": 88424,
+      "endMs": 88544
+    },
+    {
+      "word": "always",
+      "startMs": 88584,
+      "endMs": 89146
+    },
+    {
+      "word": "ensure",
+      "startMs": 89166,
+      "endMs": 89707
+    },
+    {
+      "word": "your",
+      "startMs": 89768,
+      "endMs": 89928
+    },
+    {
+      "word": "loop",
+      "startMs": 89968,
+      "endMs": 90249
+    },
+    {
+      "word": "has",
+      "startMs": 90349,
+      "endMs": 90490
+    },
+    {
+      "word": "a",
+      "startMs": 90550,
+      "endMs": 90570
+    },
+    {
+      "word": "way",
+      "startMs": 90630,
+      "endMs": 90750
+    },
+    {
+      "word": "to",
+      "startMs": 90791,
+      "endMs": 90871
+    },
+    {
+      "word": "stop.",
+      "startMs": 90951,
+      "endMs": 91352
+    },
+    {
+      "word": "Here's",
+      "startMs": 91954,
+      "endMs": 92295
+    },
+    {
+      "word": "how",
+      "startMs": 92375,
+      "endMs": 92536
+    },
+    {
+      "word": "that",
+      "startMs": 92616,
+      "endMs": 92777
+    },
+    {
+      "word": "looks",
+      "startMs": 92817,
+      "endMs": 93037
+    },
+    {
+      "word": "in",
+      "startMs": 93097,
+      "endMs": 93178
+    },
+    {
+      "word": "code.",
+      "startMs": 93238,
+      "endMs": 93960
+    },
+    {
+      "word": "So,",
+      "startMs": 94700,
+      "endMs": 95081
+    },
+    {
+      "word": "when",
+      "startMs": 95341,
+      "endMs": 95521
+    },
+    {
+      "word": "should",
+      "startMs": 95561,
+      "endMs": 95741
+    },
+    {
+      "word": "you",
+      "startMs": 95762,
+      "endMs": 95862
+    },
+    {
+      "word": "use",
+      "startMs": 96042,
+      "endMs": 96162
+    },
+    {
+      "word": "each",
+      "startMs": 96182,
+      "endMs": 96483
+    },
+    {
+      "word": "type",
+      "startMs": 96603,
+      "endMs": 96823
+    },
+    {
+      "word": "of",
+      "startMs": 96883,
+      "endMs": 96923
+    },
+    {
+      "word": "loop?",
+      "startMs": 96963,
+      "endMs": 97324
+    },
+    {
+      "word": "For",
+      "startMs": 97965,
+      "endMs": 98085
+    },
+    {
+      "word": "loops",
+      "startMs": 98145,
+      "endMs": 98445
+    },
+    {
+      "word": "are",
+      "startMs": 98505,
+      "endMs": 98606
+    },
+    {
+      "word": "best",
+      "startMs": 98666,
+      "endMs": 99046
+    },
+    {
+      "word": "when",
+      "startMs": 99146,
+      "endMs": 99267
+    },
+    {
+      "word": "you",
+      "startMs": 99287,
+      "endMs": 99387
+    },
+    {
+      "word": "know",
+      "startMs": 99427,
+      "endMs": 99587
+    },
+    {
+      "word": "the",
+      "startMs": 99627,
+      "endMs": 99747
+    },
+    {
+      "word": "number",
+      "startMs": 99807,
+      "endMs": 100048
+    },
+    {
+      "word": "of",
+      "startMs": 100088,
+      "endMs": 100148
+    },
+    {
+      "word": "iterations",
+      "startMs": 100168,
+      "endMs": 101009
+    },
+    {
+      "word": "in",
+      "startMs": 101049,
+      "endMs": 101189
+    },
+    {
+      "word": "advance.",
+      "startMs": 101249,
+      "endMs": 101750
+    },
+    {
+      "word": "They're",
+      "startMs": 102551,
+      "endMs": 102732
+    },
+    {
+      "word": "straightforward",
+      "startMs": 102792,
+      "endMs": 103633
+    },
+    {
+      "word": "and",
+      "startMs": 103773,
+      "endMs": 103853
+    },
+    {
+      "word": "easy",
+      "startMs": 104053,
+      "endMs": 104354
+    },
+    {
+      "word": "to",
+      "startMs": 104374,
+      "endMs": 104514
+    },
+    {
+      "word": "read.",
+      "startMs": 104594,
+      "endMs": 104895
+    },
+    {
+      "word": "On",
+      "startMs": 105596,
+      "endMs": 105656
+    },
+    {
+      "word": "the",
+      "startMs": 105696,
+      "endMs": 105776
+    },
+    {
+      "word": "other",
+      "startMs": 105856,
+      "endMs": 106036
+    },
+    {
+      "word": "hand,",
+      "startMs": 106116,
+      "endMs": 106457
+    },
+    {
+      "word": "while",
+      "startMs": 106938,
+      "endMs": 107138
+    },
+    {
+      "word": "loops",
+      "startMs": 107218,
+      "endMs": 107538
+    },
+    {
+      "word": "shine",
+      "startMs": 107639,
+      "endMs": 108019
+    },
+    {
+      "word": "when",
+      "startMs": 108119,
+      "endMs": 108219
+    },
+    {
+      "word": "you",
+      "startMs": 108259,
+      "endMs": 108360
+    },
+    {
+      "word": "need",
+      "startMs": 108400,
+      "endMs": 108580
+    },
+    {
+      "word": "to",
+      "startMs": 108640,
+      "endMs": 108720
+    },
+    {
+      "word": "repeat",
+      "startMs": 108780,
+      "endMs": 109201
+    },
+    {
+      "word": "something",
+      "startMs": 109261,
+      "endMs": 109581
+    },
+    {
+      "word": "based",
+      "startMs": 109682,
+      "endMs": 110022
+    },
+    {
+      "word": "on",
+      "startMs": 110142,
+      "endMs": 110202
+    },
+    {
+      "word": "a",
+      "startMs": 110242,
+      "endMs": 110262
+    },
+    {
+      "word": "condition,",
+      "startMs": 110322,
+      "endMs": 110903
+    },
+    {
+      "word": "choosing",
+      "startMs": 111564,
+      "endMs": 112005
+    },
+    {
+      "word": "the",
+      "startMs": 112045,
+      "endMs": 112165
+    },
+    {
+      "word": "right",
+      "startMs": 112245,
+      "endMs": 112486
+    },
+    {
+      "word": "loop",
+      "startMs": 112546,
+      "endMs": 112806
+    },
+    {
+      "word": "can",
+      "startMs": 112966,
+      "endMs": 113126
+    },
+    {
+      "word": "really",
+      "startMs": 113207,
+      "endMs": 113487
+    },
+    {
+      "word": "simplify",
+      "startMs": 113607,
+      "endMs": 114168
+    },
+    {
+      "word": "your",
+      "startMs": 114208,
+      "endMs": 114348
+    },
+    {
+      "word": "code",
+      "startMs": 114408,
+      "endMs": 114809
+    },
+    {
+      "word": "and",
+      "startMs": 114829,
+      "endMs": 115310
+    },
+    {
+      "word": "make",
+      "startMs": 115370,
+      "endMs": 115530
+    },
+    {
+      "word": "it",
+      "startMs": 115590,
+      "endMs": 115630
+    },
+    {
+      "word": "more",
+      "startMs": 115690,
+      "endMs": 115890
+    },
+    {
+      "word": "efficient.",
+      "startMs": 115951,
+      "endMs": 116491
+    },
+    {
+      "word": "Let's",
+      "startMs": 117292,
+      "endMs": 117533
+    },
+    {
+      "word": "visualize",
+      "startMs": 117613,
+      "endMs": 118214
+    },
+    {
+      "word": "these",
+      "startMs": 118254,
+      "endMs": 118474
+    },
+    {
+      "word": "concepts.",
+      "startMs": 118554,
+      "endMs": 119796
+    },
+    {
+      "word": "Now",
+      "startMs": 120383,
+      "endMs": 120723
+    },
+    {
+      "word": "it's",
+      "startMs": 120804,
+      "endMs": 120944
+    },
+    {
+      "word": "time",
+      "startMs": 121004,
+      "endMs": 121324
+    },
+    {
+      "word": "to",
+      "startMs": 121384,
+      "endMs": 121464
+    },
+    {
+      "word": "practice.",
+      "startMs": 121525,
+      "endMs": 122105
+    },
+    {
+      "word": "Try",
+      "startMs": 122826,
+      "endMs": 123127
+    },
+    {
+      "word": "creating",
+      "startMs": 123247,
+      "endMs": 123708
+    },
+    {
+      "word": "a",
+      "startMs": 123788,
+      "endMs": 123808
+    },
+    {
+      "word": "for",
+      "startMs": 123848,
+      "endMs": 124028
+    },
+    {
+      "word": "loop",
+      "startMs": 124048,
+      "endMs": 124328
+    },
+    {
+      "word": "that",
+      "startMs": 124409,
+      "endMs": 124549
+    },
+    {
+      "word": "prints",
+      "startMs": 124649,
+      "endMs": 124949
+    },
+    {
+      "word": "items",
+      "startMs": 125150,
+      "endMs": 125530
+    },
+    {
+      "word": "in",
+      "startMs": 125550,
+      "endMs": 125750
+    },
+    {
+      "word": "a",
+      "startMs": 125831,
+      "endMs": 125851
+    },
+    {
+      "word": "list.",
+      "startMs": 125931,
+      "endMs": 126952
+    },
+    {
+      "word": "You",
+      "startMs": 126972,
+      "endMs": 127072
+    },
+    {
+      "word": "can",
+      "startMs": 127112,
+      "endMs": 127212
+    },
+    {
+      "word": "also",
+      "startMs": 127353,
+      "endMs": 127653
+    },
+    {
+      "word": "create",
+      "startMs": 127773,
+      "endMs": 128134
+    },
+    {
+      "word": "a",
+      "startMs": 128154,
+      "endMs": 128174
+    },
+    {
+      "word": "while",
+      "startMs": 128314,
+      "endMs": 128614
+    },
+    {
+      "word": "loop",
+      "startMs": 128674,
+      "endMs": 128995
+    },
+    {
+      "word": "that",
+      "startMs": 129135,
+      "endMs": 129275
+    },
+    {
+      "word": "counts",
+      "startMs": 129375,
+      "endMs": 129696
+    },
+    {
+      "word": "down",
+      "startMs": 129776,
+      "endMs": 130056
+    },
+    {
+      "word": "from",
+      "startMs": 130137,
+      "endMs": 130297
+    },
+    {
+      "word": "10.",
+      "startMs": 130317,
+      "endMs": 130677
+    },
+    {
+      "word": "This",
+      "startMs": 130717,
+      "endMs": 131759
+    },
+    {
+      "word": "is",
+      "startMs": 131879,
+      "endMs": 131959
+    },
+    {
+      "word": "a",
+      "startMs": 132019,
+      "endMs": 132039
+    },
+    {
+      "word": "great",
+      "startMs": 132179,
+      "endMs": 132460
+    },
+    {
+      "word": "way",
+      "startMs": 132540,
+      "endMs": 132680
+    },
+    {
+      "word": "to",
+      "startMs": 132740,
+      "endMs": 132820
+    },
+    {
+      "word": "experiment",
+      "startMs": 132900,
+      "endMs": 133661
+    },
+    {
+      "word": "with",
+      "startMs": 133721,
+      "endMs": 133842
+    },
+    {
+      "word": "different",
+      "startMs": 133922,
+      "endMs": 134202
+    },
+    {
+      "word": "conditions",
+      "startMs": 134242,
+      "endMs": 134863
+    },
+    {
+      "word": "and",
+      "startMs": 135003,
+      "endMs": 135083
+    },
+    {
+      "word": "collections.",
+      "startMs": 135143,
+      "endMs": 135864
+    },
+    {
+      "word": "Remember,",
+      "startMs": 136565,
+      "endMs": 137086
+    },
+    {
+      "word": "the",
+      "startMs": 137326,
+      "endMs": 137427
+    },
+    {
+      "word": "more",
+      "startMs": 137467,
+      "endMs": 137667
+    },
+    {
+      "word": "you",
+      "startMs": 137707,
+      "endMs": 137867
+    },
+    {
+      "word": "practice,",
+      "startMs": 137927,
+      "endMs": 138508
+    },
+    {
+      "word": "the",
+      "startMs": 138989,
+      "endMs": 139069
+    },
+    {
+      "word": "more",
+      "startMs": 139109,
+      "endMs": 139249
+    },
+    {
+      "word": "comfortable",
+      "startMs": 139349,
+      "endMs": 139870
+    },
+    {
+      "word": "you'll",
+      "startMs": 139910,
+      "endMs": 140090
+    },
+    {
+      "word": "become",
+      "startMs": 140130,
+      "endMs": 140471
+    },
+    {
+      "word": "with",
+      "startMs": 140511,
+      "endMs": 140651
+    },
+    {
+      "word": "loops.",
+      "startMs": 140731,
+      "endMs": 141873
+    },
+    {
+      "word": "Let's",
+      "startMs": 141893,
+      "endMs": 142093
+    },
+    {
+      "word": "see",
+      "startMs": 142133,
+      "endMs": 142273
+    },
+    {
+      "word": "how",
+      "startMs": 142333,
+      "endMs": 142474
+    },
+    {
+      "word": "you",
+      "startMs": 142554,
+      "endMs": 142674
+    },
+    {
+      "word": "can",
+      "startMs": 142734,
+      "endMs": 142854
+    },
+    {
+      "word": "do",
+      "startMs": 142934,
+      "endMs": 143094
+    },
+    {
+      "word": "this",
+      "startMs": 143155,
+      "endMs": 143355
+    },
+    {
+      "word": "in",
+      "startMs": 143535,
+      "endMs": 143575
+    },
+    {
+      "word": "your",
+      "startMs": 143615,
+      "endMs": 143775
+    },
+    {
+      "word": "terminal.",
+      "startMs": 143835,
+      "endMs": 144957
+    },
+    {
+      "word": "What's",
+      "startMs": 145392,
+      "endMs": 145733
+    },
+    {
+      "word": "next?",
+      "startMs": 145813,
+      "endMs": 146214
+    },
+    {
+      "word": "In",
+      "startMs": 146755,
+      "endMs": 146795
+    },
+    {
+      "word": "our",
+      "startMs": 146855,
+      "endMs": 146976
+    },
+    {
+      "word": "upcoming",
+      "startMs": 147076,
+      "endMs": 147537
+    },
+    {
+      "word": "lessons,",
+      "startMs": 147617,
+      "endMs": 148138
+    },
+    {
+      "word": "we'll",
+      "startMs": 148559,
+      "endMs": 148720
+    },
+    {
+      "word": "explore",
+      "startMs": 148760,
+      "endMs": 149261
+    },
+    {
+      "word": "how",
+      "startMs": 149321,
+      "endMs": 149441
+    },
+    {
+      "word": "to",
+      "startMs": 149501,
+      "endMs": 149562
+    },
+    {
+      "word": "combine",
+      "startMs": 149622,
+      "endMs": 150083
+    },
+    {
+      "word": "loops",
+      "startMs": 150123,
+      "endMs": 150564
+    },
+    {
+      "word": "with",
+      "startMs": 150644,
+      "endMs": 150764
+    },
+    {
+      "word": "conditionals.",
+      "startMs": 150844,
+      "endMs": 151586
+    },
+    {
+      "word": "You'll",
+      "startMs": 152448,
+      "endMs": 152669
+    },
+    {
+      "word": "learn",
+      "startMs": 152709,
+      "endMs": 152909
+    },
+    {
+      "word": "how",
+      "startMs": 152969,
+      "endMs": 153110
+    },
+    {
+      "word": "to",
+      "startMs": 153150,
+      "endMs": 153230
+    },
+    {
+      "word": "break",
+      "startMs": 153290,
+      "endMs": 153611
+    },
+    {
+      "word": "and",
+      "startMs": 153751,
+      "endMs": 153831
+    },
+    {
+      "word": "continue",
+      "startMs": 153891,
+      "endMs": 154473
+    },
+    {
+      "word": "in",
+      "startMs": 154573,
+      "endMs": 154633
+    },
+    {
+      "word": "loops,",
+      "startMs": 154693,
+      "endMs": 155054
+    },
+    {
+      "word": "which",
+      "startMs": 155515,
+      "endMs": 155655
+    },
+    {
+      "word": "will",
+      "startMs": 155696,
+      "endMs": 155856
+    },
+    {
+      "word": "help",
+      "startMs": 155916,
+      "endMs": 156096
+    },
+    {
+      "word": "you",
+      "startMs": 156157,
+      "endMs": 156277
+    },
+    {
+      "word": "build",
+      "startMs": 156337,
+      "endMs": 156598
+    },
+    {
+      "word": "more",
+      "startMs": 156638,
+      "endMs": 156878
+    },
+    {
+      "word": "complex",
+      "startMs": 156958,
+      "endMs": 157520
+    },
+    {
+      "word": "programs.",
+      "startMs": 157600,
+      "endMs": 158221
+    },
+    {
+      "word": "I'm",
+      "startMs": 158903,
+      "endMs": 159043
+    },
+    {
+      "word": "excited",
+      "startMs": 159103,
+      "endMs": 159584
+    },
+    {
+      "word": "to",
+      "startMs": 159605,
+      "endMs": 159725
+    },
+    {
+      "word": "see",
+      "startMs": 159785,
+      "endMs": 159945
+    },
+    {
+      "word": "what",
+      "startMs": 159985,
+      "endMs": 160106
+    },
+    {
+      "word": "you",
+      "startMs": 160146,
+      "endMs": 160286
+    },
+    {
+      "word": "create",
+      "startMs": 160346,
+      "endMs": 160767
+    },
+    {
+      "word": "using",
+      "startMs": 161228,
+      "endMs": 161489
+    },
+    {
+      "word": "loops",
+      "startMs": 161509,
+      "endMs": 161950
+    },
+    {
+      "word": "and",
+      "startMs": 162070,
+      "endMs": 162130
+    },
+    {
+      "word": "conditions.",
+      "startMs": 162190,
+      "endMs": 163333
+    }
+  ],
+  "sections": [
+    {
+      "id": "what-are-loops",
+      "startMs": 31,
+      "endMs": 31405,
+      "wordStart": 0,
+      "wordEnd": 77,
+      "wer": 0
+    },
+    {
+      "id": "using-for-loops",
+      "startMs": 32110,
+      "endMs": 62487,
+      "wordStart": 77,
+      "wordEnd": 156,
+      "wer": 0
+    },
+    {
+      "id": "understanding-while-loops",
+      "startMs": 63788,
+      "endMs": 93960,
+      "wordStart": 156,
+      "wordEnd": 239,
+      "wer": 0
+    },
+    {
+      "id": "when-to-use-each-loop",
+      "startMs": 94700,
+      "endMs": 119796,
+      "wordStart": 239,
+      "wordEnd": 302,
+      "wer": 0
+    },
+    {
+      "id": "practice-with-loops",
+      "startMs": 120383,
+      "endMs": 144957,
+      "wordStart": 302,
+      "wordEnd": 364,
+      "wer": 0
+    },
+    {
+      "id": "whats-next",
+      "startMs": 145392,
+      "endMs": 163333,
+      "wordStart": 364,
+      "wordEnd": 406,
+      "wer": 0
+    }
+  ],
+  "displayWords": [
+    {
+      "word": "Loops",
+      "startMs": 31,
+      "endMs": 512
+    },
+    {
+      "word": "are",
+      "startMs": 692,
+      "endMs": 772
+    },
+    {
+      "word": "a",
+      "startMs": 832,
+      "endMs": 852
+    },
+    {
+      "word": "fundamental",
+      "startMs": 1033,
+      "endMs": 1654
+    },
+    {
+      "word": "concept",
+      "startMs": 1734,
+      "endMs": 2395
+    },
+    {
+      "word": "in",
+      "startMs": 2555,
+      "endMs": 2615
+    },
+    {
+      "word": "programming.",
+      "startMs": 2735,
+      "endMs": 3456
+    },
+    {
+      "word": "They",
+      "startMs": 4097,
+      "endMs": 4217
+    },
+    {
+      "word": "help",
+      "startMs": 4278,
+      "endMs": 4458
+    },
+    {
+      "word": "us",
+      "startMs": 4558,
+      "endMs": 4638
+    },
+    {
+      "word": "repeat",
+      "startMs": 4758,
+      "endMs": 5159
+    },
+    {
+      "word": "actions",
+      "startMs": 5359,
+      "endMs": 5820
+    },
+    {
+      "word": "in",
+      "startMs": 5980,
+      "endMs": 6040
+    },
+    {
+      "word": "our",
+      "startMs": 6100,
+      "endMs": 6181
+    },
+    {
+      "word": "code.",
+      "startMs": 6261,
+      "endMs": 6641
+    },
+    {
+      "word": "This",
+      "startMs": 7382,
+      "endMs": 7563
+    },
+    {
+      "word": "means",
+      "startMs": 7683,
+      "endMs": 8023
+    },
+    {
+      "word": "we",
+      "startMs": 8284,
+      "endMs": 8364
+    },
+    {
+      "word": "can",
+      "startMs": 8404,
+      "endMs": 8524
+    },
+    {
+      "word": "avoid",
+      "startMs": 8584,
+      "endMs": 8985
+    },
+    {
+      "word": "writing",
+      "startMs": 9005,
+      "endMs": 9486
+    },
+    {
+      "word": "the",
+      "startMs": 9546,
+      "endMs": 9646
+    },
+    {
+      "word": "same",
+      "startMs": 9726,
+      "endMs": 10006
+    },
+    {
+      "word": "code",
+      "startMs": 10127,
+      "endMs": 10507
+    },
+    {
+      "word": "over",
+      "startMs": 10547,
+      "endMs": 11088
+    },
+    {
+      "word": "and",
+      "startMs": 11168,
+      "endMs": 11228
+    },
+    {
+      "word": "over",
+      "startMs": 11349,
+      "endMs": 11549
+    },
+    {
+      "word": "again.",
+      "startMs": 11629,
+      "endMs": 11929
+    },
+    {
+      "word": "Imagine",
+      "startMs": 11969,
+      "endMs": 13412
+    },
+    {
+      "word": "having",
+      "startMs": 13452,
+      "endMs": 13832
+    },
+    {
+      "word": "to",
+      "startMs": 13892,
+      "endMs": 13953
+    },
+    {
+      "word": "print",
+      "startMs": 14053,
+      "endMs": 14293
+    },
+    {
+      "word": "numbers",
+      "startMs": 14413,
+      "endMs": 14834
+    },
+    {
+      "word": "from",
+      "startMs": 14954,
+      "endMs": 15114
+    },
+    {
+      "word": "one",
+      "startMs": 15134,
+      "endMs": 15475
+    },
+    {
+      "word": "to",
+      "startMs": 15555,
+      "endMs": 15675
+    },
+    {
+      "word": "ten.",
+      "startMs": 15735,
+      "endMs": 16036
+    },
+    {
+      "word": "Without",
+      "startMs": 16657,
+      "endMs": 16997
+    },
+    {
+      "word": "loops,",
+      "startMs": 17077,
+      "endMs": 17418
+    },
+    {
+      "word": "you'd",
+      "startMs": 17498,
+      "endMs": 17678
+    },
+    {
+      "word": "have",
+      "startMs": 17718,
+      "endMs": 17859
+    },
+    {
+      "word": "to",
+      "startMs": 17899,
+      "endMs": 17959
+    },
+    {
+      "word": "write",
+      "startMs": 18019,
+      "endMs": 18239
+    },
+    {
+      "word": "ten",
+      "startMs": 18279,
+      "endMs": 18600
+    },
+    {
+      "word": "print",
+      "startMs": 18640,
+      "endMs": 18860
+    },
+    {
+      "word": "statements!",
+      "startMs": 18920,
+      "endMs": 20082
+    },
+    {
+      "word": "But",
+      "startMs": 20082,
+      "endMs": 20283
+    },
+    {
+      "word": "with",
+      "startMs": 20323,
+      "endMs": 20464
+    },
+    {
+      "word": "loops,",
+      "startMs": 20524,
+      "endMs": 21226
+    },
+    {
+      "word": "we",
+      "startMs": 21246,
+      "endMs": 21367
+    },
+    {
+      "word": "can",
+      "startMs": 21407,
+      "endMs": 21548
+    },
+    {
+      "word": "do",
+      "startMs": 21608,
+      "endMs": 21789
+    },
+    {
+      "word": "it",
+      "startMs": 21889,
+      "endMs": 21929
+    },
+    {
+      "word": "in",
+      "startMs": 21969,
+      "endMs": 22150
+    },
+    {
+      "word": "just",
+      "startMs": 22230,
+      "endMs": 22431
+    },
+    {
+      "word": "a",
+      "startMs": 22491,
+      "endMs": 22511
+    },
+    {
+      "word": "few",
+      "startMs": 22592,
+      "endMs": 22752
+    },
+    {
+      "word": "lines.",
+      "startMs": 22853,
+      "endMs": 23294
+    },
+    {
+      "word": "There",
+      "startMs": 23876,
+      "endMs": 24017
+    },
+    {
+      "word": "are",
+      "startMs": 24037,
+      "endMs": 24137
+    },
+    {
+      "word": "two",
+      "startMs": 24218,
+      "endMs": 24439
+    },
+    {
+      "word": "main",
+      "startMs": 24559,
+      "endMs": 24820
+    },
+    {
+      "word": "types",
+      "startMs": 24900,
+      "endMs": 25222
+    },
+    {
+      "word": "of",
+      "startMs": 25282,
+      "endMs": 25322
+    },
+    {
+      "word": "loops:",
+      "startMs": 25362,
+      "endMs": 25764
+    },
+    {
+      "word": "for",
+      "startMs": 26205,
+      "endMs": 26346
+    },
+    {
+      "word": "loops",
+      "startMs": 26426,
+      "endMs": 26788
+    },
+    {
+      "word": "and",
+      "startMs": 26948,
+      "endMs": 27028
+    },
+    {
+      "word": "while",
+      "startMs": 27109,
+      "endMs": 27390
+    },
+    {
+      "word": "loops.",
+      "startMs": 27430,
+      "endMs": 27771
+    },
+    {
+      "word": "Each",
+      "startMs": 28594,
+      "endMs": 28795
+    },
+    {
+      "word": "has",
+      "startMs": 28855,
+      "endMs": 29056
+    },
+    {
+      "word": "its",
+      "startMs": 29136,
+      "endMs": 29237
+    },
+    {
+      "word": "own",
+      "startMs": 29438,
+      "endMs": 29578
+    },
+    {
+      "word": "strengths",
+      "startMs": 29699,
+      "endMs": 30160
+    },
+    {
+      "word": "and",
+      "startMs": 30321,
+      "endMs": 30401
+    },
+    {
+      "word": "uses.",
+      "startMs": 30562,
+      "endMs": 31405
+    },
+    {
+      "word": "Now,",
+      "startMs": 32110,
+      "endMs": 32531
+    },
+    {
+      "word": "let’s",
+      "startMs": 32731,
+      "endMs": 32991
+    },
+    {
+      "word": "dive",
+      "startMs": 33071,
+      "endMs": 33352
+    },
+    {
+      "word": "into",
+      "startMs": 33392,
+      "endMs": 33652
+    },
+    {
+      "word": "for",
+      "startMs": 33712,
+      "endMs": 33832
+    },
+    {
+      "word": "loops.",
+      "startMs": 33892,
+      "endMs": 34213
+    },
+    {
+      "word": "For",
+      "startMs": 34934,
+      "endMs": 35054
+    },
+    {
+      "word": "loops",
+      "startMs": 35114,
+      "endMs": 35394
+    },
+    {
+      "word": "are",
+      "startMs": 35474,
+      "endMs": 35574
+    },
+    {
+      "word": "great",
+      "startMs": 35654,
+      "endMs": 35995
+    },
+    {
+      "word": "because",
+      "startMs": 36095,
+      "endMs": 36435
+    },
+    {
+      "word": "they",
+      "startMs": 36495,
+      "endMs": 36656
+    },
+    {
+      "word": "iterate",
+      "startMs": 36836,
+      "endMs": 37256
+    },
+    {
+      "word": "over",
+      "startMs": 37417,
+      "endMs": 37637
+    },
+    {
+      "word": "a",
+      "startMs": 37697,
+      "endMs": 37737
+    },
+    {
+      "word": "sequence,",
+      "startMs": 37817,
+      "endMs": 38338
+    },
+    {
+      "word": "like",
+      "startMs": 38678,
+      "endMs": 38858
+    },
+    {
+      "word": "a",
+      "startMs": 38918,
+      "endMs": 38959
+    },
+    {
+      "word": "list.",
+      "startMs": 39019,
+      "endMs": 40140
+    },
+    {
+      "word": "They",
+      "startMs": 40160,
+      "endMs": 40300
+    },
+    {
+      "word": "execute",
+      "startMs": 40420,
+      "endMs": 40921
+    },
+    {
+      "word": "a",
+      "startMs": 40981,
+      "endMs": 41001
+    },
+    {
+      "word": "block",
+      "startMs": 41041,
+      "endMs": 41341
+    },
+    {
+      "word": "of",
+      "startMs": 41382,
+      "endMs": 41422
+    },
+    {
+      "word": "code",
+      "startMs": 41542,
+      "endMs": 41902
+    },
+    {
+      "word": "for",
+      "startMs": 41962,
+      "endMs": 42082
+    },
+    {
+      "word": "each",
+      "startMs": 42203,
+      "endMs": 42383
+    },
+    {
+      "word": "item",
+      "startMs": 42583,
+      "endMs": 42823
+    },
+    {
+      "word": "in",
+      "startMs": 42903,
+      "endMs": 42964
+    },
+    {
+      "word": "that",
+      "startMs": 43004,
+      "endMs": 43184
+    },
+    {
+      "word": "sequence.",
+      "startMs": 43264,
+      "endMs": 43765
+    },
+    {
+      "word": "This",
+      "startMs": 44425,
+      "endMs": 44626
+    },
+    {
+      "word": "makes",
+      "startMs": 44726,
+      "endMs": 44926
+    },
+    {
+      "word": "them",
+      "startMs": 44986,
+      "endMs": 45126
+    },
+    {
+      "word": "perfect",
+      "startMs": 45226,
+      "endMs": 45707
+    },
+    {
+      "word": "for",
+      "startMs": 45847,
+      "endMs": 45967
+    },
+    {
+      "word": "tasks",
+      "startMs": 46047,
+      "endMs": 46608
+    },
+    {
+      "word": "that",
+      "startMs": 46668,
+      "endMs": 46808
+    },
+    {
+      "word": "require",
+      "startMs": 46868,
+      "endMs": 47429
+    },
+    {
+      "word": "repetition",
+      "startMs": 47509,
+      "endMs": 48210
+    },
+    {
+      "word": "over",
+      "startMs": 48250,
+      "endMs": 48571
+    },
+    {
+      "word": "collections.",
+      "startMs": 48611,
+      "endMs": 49371
+    },
+    {
+      "word": "For",
+      "startMs": 50132,
+      "endMs": 50253
+    },
+    {
+      "word": "example,",
+      "startMs": 50313,
+      "endMs": 50833
+    },
+    {
+      "word": "if",
+      "startMs": 51374,
+      "endMs": 51454
+    },
+    {
+      "word": "we",
+      "startMs": 51494,
+      "endMs": 51634
+    },
+    {
+      "word": "want",
+      "startMs": 51674,
+      "endMs": 51855
+    },
+    {
+      "word": "to",
+      "startMs": 51875,
+      "endMs": 51935
+    },
+    {
+      "word": "print",
+      "startMs": 51995,
+      "endMs": 52175
+    },
+    {
+      "word": "numbers",
+      "startMs": 52235,
+      "endMs": 52636
+    },
+    {
+      "word": "from",
+      "startMs": 52696,
+      "endMs": 52836
+    },
+    {
+      "word": "zero",
+      "startMs": 52956,
+      "endMs": 53376
+    },
+    {
+      "word": "to",
+      "startMs": 53457,
+      "endMs": 53537
+    },
+    {
+      "word": "four,",
+      "startMs": 53637,
+      "endMs": 53977
+    },
+    {
+      "word": "we",
+      "startMs": 54418,
+      "endMs": 54538
+    },
+    {
+      "word": "can",
+      "startMs": 54578,
+      "endMs": 54718
+    },
+    {
+      "word": "use",
+      "startMs": 54858,
+      "endMs": 55019
+    },
+    {
+      "word": "a",
+      "startMs": 55059,
+      "endMs": 55119
+    },
+    {
+      "word": "for",
+      "startMs": 55199,
+      "endMs": 55339
+    },
+    {
+      "word": "loop",
+      "startMs": 55439,
+      "endMs": 55719
+    },
+    {
+      "word": "like",
+      "startMs": 55800,
+      "endMs": 56000
+    },
+    {
+      "word": "this.",
+      "startMs": 56080,
+      "endMs": 57021
+    },
+    {
+      "word": "For",
+      "startMs": 57021,
+      "endMs": 57261
+    },
+    {
+      "word": "number",
+      "startMs": 57341,
+      "endMs": 57642
+    },
+    {
+      "word": "in",
+      "startMs": 57722,
+      "endMs": 57802
+    },
+    {
+      "word": "range",
+      "startMs": 57882,
+      "endMs": 58262
+    },
+    {
+      "word": "five,",
+      "startMs": 58342,
+      "endMs": 58783
+    },
+    {
+      "word": "we",
+      "startMs": 59123,
+      "endMs": 59243
+    },
+    {
+      "word": "print",
+      "startMs": 59343,
+      "endMs": 59544
+    },
+    {
+      "word": "the",
+      "startMs": 59564,
+      "endMs": 59644
+    },
+    {
+      "word": "number.",
+      "startMs": 59704,
+      "endMs": 60024
+    },
+    {
+      "word": "Let’s",
+      "startMs": 60665,
+      "endMs": 60925
+    },
+    {
+      "word": "take",
+      "startMs": 60985,
+      "endMs": 61165
+    },
+    {
+      "word": "a",
+      "startMs": 61185,
+      "endMs": 61225
+    },
+    {
+      "word": "look",
+      "startMs": 61285,
+      "endMs": 61445
+    },
+    {
+      "word": "at",
+      "startMs": 61486,
+      "endMs": 61526
+    },
+    {
+      "word": "that",
+      "startMs": 61546,
+      "endMs": 61766
+    },
+    {
+      "word": "in",
+      "startMs": 61806,
+      "endMs": 61946
+    },
+    {
+      "word": "action.",
+      "startMs": 62126,
+      "endMs": 62487
+    },
+    {
+      "word": "Next",
+      "startMs": 63788,
+      "endMs": 64108
+    },
+    {
+      "word": "up,",
+      "startMs": 64288,
+      "endMs": 64388
+    },
+    {
+      "word": "we",
+      "startMs": 64609,
+      "endMs": 64709
+    },
+    {
+      "word": "have",
+      "startMs": 64789,
+      "endMs": 64969
+    },
+    {
+      "word": "while",
+      "startMs": 65029,
+      "endMs": 65269
+    },
+    {
+      "word": "loops.",
+      "startMs": 65309,
+      "endMs": 66350
+    },
+    {
+      "word": "While",
+      "startMs": 66370,
+      "endMs": 66571
+    },
+    {
+      "word": "loops",
+      "startMs": 66651,
+      "endMs": 66951
+    },
+    {
+      "word": "repeat",
+      "startMs": 67071,
+      "endMs": 67512
+    },
+    {
+      "word": "as",
+      "startMs": 67692,
+      "endMs": 67752
+    },
+    {
+      "word": "long",
+      "startMs": 67852,
+      "endMs": 68112
+    },
+    {
+      "word": "as",
+      "startMs": 68172,
+      "endMs": 68232
+    },
+    {
+      "word": "a",
+      "startMs": 68252,
+      "endMs": 68312
+    },
+    {
+      "word": "condition",
+      "startMs": 68352,
+      "endMs": 68893
+    },
+    {
+      "word": "is",
+      "startMs": 69033,
+      "endMs": 69093
+    },
+    {
+      "word": "true.",
+      "startMs": 69233,
+      "endMs": 69514
+    },
+    {
+      "word": "This",
+      "startMs": 69574,
+      "endMs": 70595
+    },
+    {
+      "word": "is",
+      "startMs": 70775,
+      "endMs": 70855
+    },
+    {
+      "word": "really",
+      "startMs": 71035,
+      "endMs": 71335
+    },
+    {
+      "word": "useful",
+      "startMs": 71355,
+      "endMs": 71956
+    },
+    {
+      "word": "when",
+      "startMs": 72036,
+      "endMs": 72156
+    },
+    {
+      "word": "we",
+      "startMs": 72196,
+      "endMs": 72296
+    },
+    {
+      "word": "don’t",
+      "startMs": 72336,
+      "endMs": 72497
+    },
+    {
+      "word": "know",
+      "startMs": 72537,
+      "endMs": 72677
+    },
+    {
+      "word": "how",
+      "startMs": 72717,
+      "endMs": 72937
+    },
+    {
+      "word": "many",
+      "startMs": 73017,
+      "endMs": 73217
+    },
+    {
+      "word": "times",
+      "startMs": 73337,
+      "endMs": 73798
+    },
+    {
+      "word": "we",
+      "startMs": 73898,
+      "endMs": 73998
+    },
+    {
+      "word": "need",
+      "startMs": 74058,
+      "endMs": 74278
+    },
+    {
+      "word": "to",
+      "startMs": 74318,
+      "endMs": 74398
+    },
+    {
+      "word": "repeat",
+      "startMs": 74459,
+      "endMs": 74819
+    },
+    {
+      "word": "something.",
+      "startMs": 74899,
+      "endMs": 75299
+    },
+    {
+      "word": "For",
+      "startMs": 75940,
+      "endMs": 76060
+    },
+    {
+      "word": "instance,",
+      "startMs": 76180,
+      "endMs": 76721
+    },
+    {
+      "word": "we",
+      "startMs": 77041,
+      "endMs": 77141
+    },
+    {
+      "word": "can",
+      "startMs": 77201,
+      "endMs": 77301
+    },
+    {
+      "word": "use",
+      "startMs": 77422,
+      "endMs": 77562
+    },
+    {
+      "word": "a",
+      "startMs": 77622,
+      "endMs": 77642
+    },
+    {
+      "word": "while",
+      "startMs": 77742,
+      "endMs": 78082
+    },
+    {
+      "word": "loop",
+      "startMs": 78122,
+      "endMs": 78382
+    },
+    {
+      "word": "to",
+      "startMs": 78443,
+      "endMs": 78523
+    },
+    {
+      "word": "count",
+      "startMs": 78603,
+      "endMs": 78923
+    },
+    {
+      "word": "from",
+      "startMs": 78983,
+      "endMs": 79123
+    },
+    {
+      "word": "zero",
+      "startMs": 79243,
+      "endMs": 79604
+    },
+    {
+      "word": "to",
+      "startMs": 79624,
+      "endMs": 79764
+    },
+    {
+      "word": "four.",
+      "startMs": 79864,
+      "endMs": 80164
+    },
+    {
+      "word": "But",
+      "startMs": 80865,
+      "endMs": 80965
+    },
+    {
+      "word": "we",
+      "startMs": 81025,
+      "endMs": 81145
+    },
+    {
+      "word": "need",
+      "startMs": 81205,
+      "endMs": 81426
+    },
+    {
+      "word": "to",
+      "startMs": 81466,
+      "endMs": 81526
+    },
+    {
+      "word": "be",
+      "startMs": 81566,
+      "endMs": 81666
+    },
+    {
+      "word": "careful!",
+      "startMs": 81726,
+      "endMs": 82907
+    },
+    {
+      "word": "If",
+      "startMs": 82907,
+      "endMs": 83108
+    },
+    {
+      "word": "we",
+      "startMs": 83148,
+      "endMs": 83288
+    },
+    {
+      "word": "forget",
+      "startMs": 83348,
+      "endMs": 83669
+    },
+    {
+      "word": "to",
+      "startMs": 83689,
+      "endMs": 83790
+    },
+    {
+      "word": "update",
+      "startMs": 83970,
+      "endMs": 84331
+    },
+    {
+      "word": "our",
+      "startMs": 84391,
+      "endMs": 84472
+    },
+    {
+      "word": "condition,",
+      "startMs": 84512,
+      "endMs": 85053
+    },
+    {
+      "word": "we",
+      "startMs": 85114,
+      "endMs": 85655
+    },
+    {
+      "word": "might",
+      "startMs": 85736,
+      "endMs": 85936
+    },
+    {
+      "word": "end",
+      "startMs": 86117,
+      "endMs": 86257
+    },
+    {
+      "word": "up",
+      "startMs": 86357,
+      "endMs": 86418
+    },
+    {
+      "word": "with",
+      "startMs": 86498,
+      "endMs": 86618
+    },
+    {
+      "word": "an",
+      "startMs": 86678,
+      "endMs": 86718
+    },
+    {
+      "word": "infinite",
+      "startMs": 86899,
+      "endMs": 87340
+    },
+    {
+      "word": "loop.",
+      "startMs": 87421,
+      "endMs": 87681
+    },
+    {
+      "word": "So",
+      "startMs": 88424,
+      "endMs": 88544
+    },
+    {
+      "word": "always",
+      "startMs": 88584,
+      "endMs": 89146
+    },
+    {
+      "word": "ensure",
+      "startMs": 89166,
+      "endMs": 89707
+    },
+    {
+      "word": "your",
+      "startMs": 89768,
+      "endMs": 89928
+    },
+    {
+      "word": "loop",
+      "startMs": 89968,
+      "endMs": 90249
+    },
+    {
+      "word": "has",
+      "startMs": 90349,
+      "endMs": 90490
+    },
+    {
+      "word": "a",
+      "startMs": 90550,
+      "endMs": 90570
+    },
+    {
+      "word": "way",
+      "startMs": 90630,
+      "endMs": 90750
+    },
+    {
+      "word": "to",
+      "startMs": 90791,
+      "endMs": 90871
+    },
+    {
+      "word": "stop.",
+      "startMs": 90951,
+      "endMs": 91352
+    },
+    {
+      "word": "Here’s",
+      "startMs": 91954,
+      "endMs": 92295
+    },
+    {
+      "word": "how",
+      "startMs": 92375,
+      "endMs": 92536
+    },
+    {
+      "word": "that",
+      "startMs": 92616,
+      "endMs": 92777
+    },
+    {
+      "word": "looks",
+      "startMs": 92817,
+      "endMs": 93037
+    },
+    {
+      "word": "in",
+      "startMs": 93097,
+      "endMs": 93178
+    },
+    {
+      "word": "code.",
+      "startMs": 93238,
+      "endMs": 93960
+    },
+    {
+      "word": "So,",
+      "startMs": 94700,
+      "endMs": 95081
+    },
+    {
+      "word": "when",
+      "startMs": 95341,
+      "endMs": 95521
+    },
+    {
+      "word": "should",
+      "startMs": 95561,
+      "endMs": 95741
+    },
+    {
+      "word": "you",
+      "startMs": 95762,
+      "endMs": 95862
+    },
+    {
+      "word": "use",
+      "startMs": 96042,
+      "endMs": 96162
+    },
+    {
+      "word": "each",
+      "startMs": 96182,
+      "endMs": 96483
+    },
+    {
+      "word": "type",
+      "startMs": 96603,
+      "endMs": 96823
+    },
+    {
+      "word": "of",
+      "startMs": 96883,
+      "endMs": 96923
+    },
+    {
+      "word": "loop?",
+      "startMs": 96963,
+      "endMs": 97324
+    },
+    {
+      "word": "For",
+      "startMs": 97965,
+      "endMs": 98085
+    },
+    {
+      "word": "loops",
+      "startMs": 98145,
+      "endMs": 98445
+    },
+    {
+      "word": "are",
+      "startMs": 98505,
+      "endMs": 98606
+    },
+    {
+      "word": "best",
+      "startMs": 98666,
+      "endMs": 99046
+    },
+    {
+      "word": "when",
+      "startMs": 99146,
+      "endMs": 99267
+    },
+    {
+      "word": "you",
+      "startMs": 99287,
+      "endMs": 99387
+    },
+    {
+      "word": "know",
+      "startMs": 99427,
+      "endMs": 99587
+    },
+    {
+      "word": "the",
+      "startMs": 99627,
+      "endMs": 99747
+    },
+    {
+      "word": "number",
+      "startMs": 99807,
+      "endMs": 100048
+    },
+    {
+      "word": "of",
+      "startMs": 100088,
+      "endMs": 100148
+    },
+    {
+      "word": "iterations",
+      "startMs": 100168,
+      "endMs": 101009
+    },
+    {
+      "word": "in",
+      "startMs": 101049,
+      "endMs": 101189
+    },
+    {
+      "word": "advance.",
+      "startMs": 101249,
+      "endMs": 101750
+    },
+    {
+      "word": "They’re",
+      "startMs": 102551,
+      "endMs": 102732
+    },
+    {
+      "word": "straightforward",
+      "startMs": 102792,
+      "endMs": 103633
+    },
+    {
+      "word": "and",
+      "startMs": 103773,
+      "endMs": 103853
+    },
+    {
+      "word": "easy",
+      "startMs": 104053,
+      "endMs": 104354
+    },
+    {
+      "word": "to",
+      "startMs": 104374,
+      "endMs": 104514
+    },
+    {
+      "word": "read.",
+      "startMs": 104594,
+      "endMs": 104895
+    },
+    {
+      "word": "On",
+      "startMs": 105596,
+      "endMs": 105656
+    },
+    {
+      "word": "the",
+      "startMs": 105696,
+      "endMs": 105776
+    },
+    {
+      "word": "other",
+      "startMs": 105856,
+      "endMs": 106036
+    },
+    {
+      "word": "hand,",
+      "startMs": 106116,
+      "endMs": 106457
+    },
+    {
+      "word": "while",
+      "startMs": 106938,
+      "endMs": 107138
+    },
+    {
+      "word": "loops",
+      "startMs": 107218,
+      "endMs": 107538
+    },
+    {
+      "word": "shine",
+      "startMs": 107639,
+      "endMs": 108019
+    },
+    {
+      "word": "when",
+      "startMs": 108119,
+      "endMs": 108219
+    },
+    {
+      "word": "you",
+      "startMs": 108259,
+      "endMs": 108360
+    },
+    {
+      "word": "need",
+      "startMs": 108400,
+      "endMs": 108580
+    },
+    {
+      "word": "to",
+      "startMs": 108640,
+      "endMs": 108720
+    },
+    {
+      "word": "repeat",
+      "startMs": 108780,
+      "endMs": 109201
+    },
+    {
+      "word": "something",
+      "startMs": 109261,
+      "endMs": 109581
+    },
+    {
+      "word": "based",
+      "startMs": 109682,
+      "endMs": 110022
+    },
+    {
+      "word": "on",
+      "startMs": 110142,
+      "endMs": 110202
+    },
+    {
+      "word": "a",
+      "startMs": 110242,
+      "endMs": 110262
+    },
+    {
+      "word": "condition.",
+      "startMs": 110322,
+      "endMs": 110903
+    },
+    {
+      "word": "Choosing",
+      "startMs": 111564,
+      "endMs": 112005
+    },
+    {
+      "word": "the",
+      "startMs": 112045,
+      "endMs": 112165
+    },
+    {
+      "word": "right",
+      "startMs": 112245,
+      "endMs": 112486
+    },
+    {
+      "word": "loop",
+      "startMs": 112546,
+      "endMs": 112806
+    },
+    {
+      "word": "can",
+      "startMs": 112966,
+      "endMs": 113126
+    },
+    {
+      "word": "really",
+      "startMs": 113207,
+      "endMs": 113487
+    },
+    {
+      "word": "simplify",
+      "startMs": 113607,
+      "endMs": 114168
+    },
+    {
+      "word": "your",
+      "startMs": 114208,
+      "endMs": 114348
+    },
+    {
+      "word": "code",
+      "startMs": 114408,
+      "endMs": 114809
+    },
+    {
+      "word": "and",
+      "startMs": 114829,
+      "endMs": 115310
+    },
+    {
+      "word": "make",
+      "startMs": 115370,
+      "endMs": 115530
+    },
+    {
+      "word": "it",
+      "startMs": 115590,
+      "endMs": 115630
+    },
+    {
+      "word": "more",
+      "startMs": 115690,
+      "endMs": 115890
+    },
+    {
+      "word": "efficient.",
+      "startMs": 115951,
+      "endMs": 116491
+    },
+    {
+      "word": "Let’s",
+      "startMs": 117292,
+      "endMs": 117533
+    },
+    {
+      "word": "visualize",
+      "startMs": 117613,
+      "endMs": 118214
+    },
+    {
+      "word": "these",
+      "startMs": 118254,
+      "endMs": 118474
+    },
+    {
+      "word": "concepts.",
+      "startMs": 118554,
+      "endMs": 119796
+    },
+    {
+      "word": "Now",
+      "startMs": 120383,
+      "endMs": 120723
+    },
+    {
+      "word": "it’s",
+      "startMs": 120804,
+      "endMs": 120944
+    },
+    {
+      "word": "time",
+      "startMs": 121004,
+      "endMs": 121324
+    },
+    {
+      "word": "to",
+      "startMs": 121384,
+      "endMs": 121464
+    },
+    {
+      "word": "practice!",
+      "startMs": 121525,
+      "endMs": 122105
+    },
+    {
+      "word": "Try",
+      "startMs": 122826,
+      "endMs": 123127
+    },
+    {
+      "word": "creating",
+      "startMs": 123247,
+      "endMs": 123708
+    },
+    {
+      "word": "a",
+      "startMs": 123788,
+      "endMs": 123808
+    },
+    {
+      "word": "for",
+      "startMs": 123848,
+      "endMs": 124028
+    },
+    {
+      "word": "loop",
+      "startMs": 124048,
+      "endMs": 124328
+    },
+    {
+      "word": "that",
+      "startMs": 124409,
+      "endMs": 124549
+    },
+    {
+      "word": "prints",
+      "startMs": 124649,
+      "endMs": 124949
+    },
+    {
+      "word": "items",
+      "startMs": 125150,
+      "endMs": 125530
+    },
+    {
+      "word": "in",
+      "startMs": 125550,
+      "endMs": 125750
+    },
+    {
+      "word": "a",
+      "startMs": 125831,
+      "endMs": 125851
+    },
+    {
+      "word": "list.",
+      "startMs": 125931,
+      "endMs": 126952
+    },
+    {
+      "word": "You",
+      "startMs": 126972,
+      "endMs": 127072
+    },
+    {
+      "word": "can",
+      "startMs": 127112,
+      "endMs": 127212
+    },
+    {
+      "word": "also",
+      "startMs": 127353,
+      "endMs": 127653
+    },
+    {
+      "word": "create",
+      "startMs": 127773,
+      "endMs": 128134
+    },
+    {
+      "word": "a",
+      "startMs": 128154,
+      "endMs": 128174
+    },
+    {
+      "word": "while",
+      "startMs": 128314,
+      "endMs": 128614
+    },
+    {
+      "word": "loop",
+      "startMs": 128674,
+      "endMs": 128995
+    },
+    {
+      "word": "that",
+      "startMs": 129135,
+      "endMs": 129275
+    },
+    {
+      "word": "counts",
+      "startMs": 129375,
+      "endMs": 129696
+    },
+    {
+      "word": "down",
+      "startMs": 129776,
+      "endMs": 130056
+    },
+    {
+      "word": "from",
+      "startMs": 130137,
+      "endMs": 130297
+    },
+    {
+      "word": "ten.",
+      "startMs": 130317,
+      "endMs": 130677
+    },
+    {
+      "word": "This",
+      "startMs": 130717,
+      "endMs": 131759
+    },
+    {
+      "word": "is",
+      "startMs": 131879,
+      "endMs": 131959
+    },
+    {
+      "word": "a",
+      "startMs": 132019,
+      "endMs": 132039
+    },
+    {
+      "word": "great",
+      "startMs": 132179,
+      "endMs": 132460
+    },
+    {
+      "word": "way",
+      "startMs": 132540,
+      "endMs": 132680
+    },
+    {
+      "word": "to",
+      "startMs": 132740,
+      "endMs": 132820
+    },
+    {
+      "word": "experiment",
+      "startMs": 132900,
+      "endMs": 133661
+    },
+    {
+      "word": "with",
+      "startMs": 133721,
+      "endMs": 133842
+    },
+    {
+      "word": "different",
+      "startMs": 133922,
+      "endMs": 134202
+    },
+    {
+      "word": "conditions",
+      "startMs": 134242,
+      "endMs": 134863
+    },
+    {
+      "word": "and",
+      "startMs": 135003,
+      "endMs": 135083
+    },
+    {
+      "word": "collections.",
+      "startMs": 135143,
+      "endMs": 135864
+    },
+    {
+      "word": "Remember,",
+      "startMs": 136565,
+      "endMs": 137086
+    },
+    {
+      "word": "the",
+      "startMs": 137326,
+      "endMs": 137427
+    },
+    {
+      "word": "more",
+      "startMs": 137467,
+      "endMs": 137667
+    },
+    {
+      "word": "you",
+      "startMs": 137707,
+      "endMs": 137867
+    },
+    {
+      "word": "practice,",
+      "startMs": 137927,
+      "endMs": 138508
+    },
+    {
+      "word": "the",
+      "startMs": 138989,
+      "endMs": 139069
+    },
+    {
+      "word": "more",
+      "startMs": 139109,
+      "endMs": 139249
+    },
+    {
+      "word": "comfortable",
+      "startMs": 139349,
+      "endMs": 139870
+    },
+    {
+      "word": "you’ll",
+      "startMs": 139910,
+      "endMs": 140090
+    },
+    {
+      "word": "become",
+      "startMs": 140130,
+      "endMs": 140471
+    },
+    {
+      "word": "with",
+      "startMs": 140511,
+      "endMs": 140651
+    },
+    {
+      "word": "loops.",
+      "startMs": 140731,
+      "endMs": 141873
+    },
+    {
+      "word": "Let’s",
+      "startMs": 141893,
+      "endMs": 142093
+    },
+    {
+      "word": "see",
+      "startMs": 142133,
+      "endMs": 142273
+    },
+    {
+      "word": "how",
+      "startMs": 142333,
+      "endMs": 142474
+    },
+    {
+      "word": "you",
+      "startMs": 142554,
+      "endMs": 142674
+    },
+    {
+      "word": "can",
+      "startMs": 142734,
+      "endMs": 142854
+    },
+    {
+      "word": "do",
+      "startMs": 142934,
+      "endMs": 143094
+    },
+    {
+      "word": "this",
+      "startMs": 143155,
+      "endMs": 143355
+    },
+    {
+      "word": "in",
+      "startMs": 143535,
+      "endMs": 143575
+    },
+    {
+      "word": "your",
+      "startMs": 143615,
+      "endMs": 143775
+    },
+    {
+      "word": "terminal.",
+      "startMs": 143835,
+      "endMs": 144957
+    },
+    {
+      "word": "What’s",
+      "startMs": 145392,
+      "endMs": 145733
+    },
+    {
+      "word": "next?",
+      "startMs": 145813,
+      "endMs": 146214
+    },
+    {
+      "word": "In",
+      "startMs": 146755,
+      "endMs": 146795
+    },
+    {
+      "word": "our",
+      "startMs": 146855,
+      "endMs": 146976
+    },
+    {
+      "word": "upcoming",
+      "startMs": 147076,
+      "endMs": 147537
+    },
+    {
+      "word": "lessons,",
+      "startMs": 147617,
+      "endMs": 148138
+    },
+    {
+      "word": "we’ll",
+      "startMs": 148559,
+      "endMs": 148720
+    },
+    {
+      "word": "explore",
+      "startMs": 148760,
+      "endMs": 149261
+    },
+    {
+      "word": "how",
+      "startMs": 149321,
+      "endMs": 149441
+    },
+    {
+      "word": "to",
+      "startMs": 149501,
+      "endMs": 149562
+    },
+    {
+      "word": "combine",
+      "startMs": 149622,
+      "endMs": 150083
+    },
+    {
+      "word": "loops",
+      "startMs": 150123,
+      "endMs": 150564
+    },
+    {
+      "word": "with",
+      "startMs": 150644,
+      "endMs": 150764
+    },
+    {
+      "word": "conditionals.",
+      "startMs": 150844,
+      "endMs": 151586
+    },
+    {
+      "word": "You’ll",
+      "startMs": 152448,
+      "endMs": 152669
+    },
+    {
+      "word": "learn",
+      "startMs": 152709,
+      "endMs": 152909
+    },
+    {
+      "word": "how",
+      "startMs": 152969,
+      "endMs": 153110
+    },
+    {
+      "word": "to",
+      "startMs": 153150,
+      "endMs": 153230
+    },
+    {
+      "word": "break",
+      "startMs": 153290,
+      "endMs": 153611
+    },
+    {
+      "word": "and",
+      "startMs": 153751,
+      "endMs": 153831
+    },
+    {
+      "word": "continue",
+      "startMs": 153891,
+      "endMs": 154473
+    },
+    {
+      "word": "in",
+      "startMs": 154573,
+      "endMs": 154633
+    },
+    {
+      "word": "loops,",
+      "startMs": 154693,
+      "endMs": 155054
+    },
+    {
+      "word": "which",
+      "startMs": 155515,
+      "endMs": 155655
+    },
+    {
+      "word": "will",
+      "startMs": 155696,
+      "endMs": 155856
+    },
+    {
+      "word": "help",
+      "startMs": 155916,
+      "endMs": 156096
+    },
+    {
+      "word": "you",
+      "startMs": 156157,
+      "endMs": 156277
+    },
+    {
+      "word": "build",
+      "startMs": 156337,
+      "endMs": 156598
+    },
+    {
+      "word": "more",
+      "startMs": 156638,
+      "endMs": 156878
+    },
+    {
+      "word": "complex",
+      "startMs": 156958,
+      "endMs": 157520
+    },
+    {
+      "word": "programs.",
+      "startMs": 157600,
+      "endMs": 158221
+    },
+    {
+      "word": "I’m",
+      "startMs": 158903,
+      "endMs": 159043
+    },
+    {
+      "word": "excited",
+      "startMs": 159103,
+      "endMs": 159584
+    },
+    {
+      "word": "to",
+      "startMs": 159605,
+      "endMs": 159725
+    },
+    {
+      "word": "see",
+      "startMs": 159785,
+      "endMs": 159945
+    },
+    {
+      "word": "what",
+      "startMs": 159985,
+      "endMs": 160106
+    },
+    {
+      "word": "you",
+      "startMs": 160146,
+      "endMs": 160286
+    },
+    {
+      "word": "create",
+      "startMs": 160346,
+      "endMs": 160767
+    },
+    {
+      "word": "using",
+      "startMs": 161228,
+      "endMs": 161489
+    },
+    {
+      "word": "loops",
+      "startMs": 161509,
+      "endMs": 161950
+    },
+    {
+      "word": "and",
+      "startMs": 162070,
+      "endMs": 162130
+    },
+    {
+      "word": "conditions!",
+      "startMs": 162190,
+      "endMs": 163333
+    }
+  ],
+  "displaySections": [
+    {
+      "id": "what-are-loops",
+      "startMs": 31,
+      "endMs": 31405,
+      "wordStart": 0,
+      "wordEnd": 77,
+      "wer": 0
+    },
+    {
+      "id": "using-for-loops",
+      "startMs": 32110,
+      "endMs": 62487,
+      "wordStart": 77,
+      "wordEnd": 156,
+      "wer": 0
+    },
+    {
+      "id": "understanding-while-loops",
+      "startMs": 63788,
+      "endMs": 93960,
+      "wordStart": 156,
+      "wordEnd": 239,
+      "wer": 0
+    },
+    {
+      "id": "when-to-use-each-loop",
+      "startMs": 94700,
+      "endMs": 119796,
+      "wordStart": 239,
+      "wordEnd": 302,
+      "wer": 0
+    },
+    {
+      "id": "practice-with-loops",
+      "startMs": 120383,
+      "endMs": 144957,
+      "wordStart": 302,
+      "wordEnd": 364,
+      "wer": 0
+    },
+    {
+      "id": "whats-next",
+      "startMs": 145392,
+      "endMs": 163333,
+      "wordStart": 364,
+      "wordEnd": 406,
+      "wer": 0
+    }
+  ]
+}

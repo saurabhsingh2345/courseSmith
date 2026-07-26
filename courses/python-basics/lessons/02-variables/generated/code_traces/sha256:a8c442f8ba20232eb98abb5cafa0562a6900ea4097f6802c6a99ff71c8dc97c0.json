@@ -1,0 +1,60 @@
+{
+  "code": "score = 0\nprint(score)",
+  "lines": [
+    "score = 0",
+    "print(score)"
+  ],
+  "steps": [
+    {
+      "step": 0,
+      "line": 1,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 1,
+      "line": 2,
+      "event": "line",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "score",
+          "value": {
+            "type": "int",
+            "repr": "0"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": ""
+    },
+    {
+      "step": 2,
+      "line": 2,
+      "event": "return",
+      "func": "\u003cmodule\u003e",
+      "vars": [
+        {
+          "name": "score",
+          "value": {
+            "type": "int",
+            "repr": "0"
+          }
+        }
+      ],
+      "stack": [
+        "\u003cmodule\u003e"
+      ],
+      "stdout": "0\n"
+    }
+  ],
+  "truncated": false,
+  "stdout": "0\n"
+}

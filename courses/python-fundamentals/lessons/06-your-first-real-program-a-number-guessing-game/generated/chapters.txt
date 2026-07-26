@@ -1,0 +1,6 @@
+0:00 What Were Building
+0:17 Picking the secret number
+0:46 Checking a guess with if-else
+1:09 The Game Loop Guessing Until Its Right
+1:33 What your program just did
+1:52 Where to go from here

@@ -1,0 +1,318 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "threshold": 6,
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        {
+          "id": "q1",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks a variable is an error type"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 6,
+              "misconception": "thinks a function is needed to print text"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 6,
+              "misconception": "thinks a variable is related to mathematical operations"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks the variable name is printed instead of its value"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 6,
+              "misconception": "thinks the code will produce an error"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 8,
+              "misconception": "thinks spaces are allowed in variable names"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 6,
+              "misconception": "thinks variables can be assigned without quotes"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 6,
+              "misconception": "thinks camelCase is the correct format for variable names"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks a TypeError is related to variable names"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 6,
+              "misconception": "thinks a SyntaxError is produced by incorrect syntax"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "distractors": [
+            {
+              "option_index": 0,
+              "plausibility": 6,
+              "misconception": "thinks the equals sign functions like in math"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 6,
+              "misconception": "thinks the equals sign is used for comparison"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks the variable name is printed instead of its value"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 8,
+              "misconception": "thinks quotes are printed too"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 8,
+              "misconception": "thinks you can update a variable by adding to it directly"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 6,
+              "misconception": "thinks you can assign a value by adding two numbers directly"
+            }
+          ]
+        }
+      ],
+      "weak": [
+        "q2 option 2 (none — no beginner error produces this)",
+        "q4 option 3 (none — no beginner error produces this)",
+        "q5 option 3 (none — no beginner error produces this)",
+        "q6 option 3 (none — no beginner error produces this)",
+        "q7 option 2 (none — no beginner error produces this)"
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks variables are functions that perform actions"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 6,
+              "misconception": "thinks variables can be errors"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q2",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 6,
+              "misconception": "thinks the numbers are concatenated as strings"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q3",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 8,
+              "misconception": "thinks quotes indicate a variable"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q4",
+          "distractors": [
+            {
+              "option_index": 1,
+              "plausibility": 9,
+              "misconception": "thinks variable names are case-insensitive"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q5",
+          "distractors": [
+            {
+              "option_index": 0,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 1,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q6",
+          "distractors": [
+            {
+              "option_index": 0,
+              "plausibility": 8,
+              "misconception": "thinks quotes indicate a variable"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 6,
+              "misconception": "thinks parentheses are needed for variables"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            }
+          ]
+        },
+        {
+          "id": "q7",
+          "distractors": [
+            {
+              "option_index": 0,
+              "plausibility": 6,
+              "misconception": "thinks only letters are allowed"
+            },
+            {
+              "option_index": 2,
+              "plausibility": 3,
+              "misconception": "none — no beginner error produces this"
+            },
+            {
+              "option_index": 3,
+              "plausibility": 6,
+              "misconception": "thinks digits can be used but not at the start"
+            }
+          ]
+        }
+      ],
+      "weak": [
+        "q1 option 3 (none — no beginner error produces this)",
+        "q2 option 2 (none — no beginner error produces this)",
+        "q2 option 3 (none — no beginner error produces this)",
+        "q3 option 2 (none — no beginner error produces this)",
+        "q3 option 3 (none — no beginner error produces this)",
+        "q4 option 2 (none — no beginner error produces this)",
+        "q4 option 3 (none — no beginner error produces this)",
+        "q5 option 0 (none — no beginner error produces this)",
+        "q5 option 1 (none — no beginner error produces this)",
+        "q5 option 3 (none — no beginner error produces this)",
+        "q6 option 3 (none — no beginner error produces this)",
+        "q7 option 2 (none — no beginner error produces this)"
+      ]
+    }
+  ],
+  "checked_at": "2026-07-18T16:39:03.037938Z"
+}

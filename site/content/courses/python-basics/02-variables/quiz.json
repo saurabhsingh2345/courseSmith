@@ -1,0 +1,97 @@
+{
+  "title": "Variables: how programs remember - Quiz",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "recall",
+      "prompt": "What is a variable in programming?",
+      "options": [
+        "A way to remember a value",
+        "A type of error",
+        "A function that prints text",
+        "A mathematical operation"
+      ],
+      "answer_index": 0,
+      "explanation": "A variable is a way for a program to remember a value so it can use it again later."
+    },
+    {
+      "id": "q2",
+      "type": "prediction",
+      "prompt": "In a story, Ada is 12 years old. What does this code print?\n```python\nage = 12\nprint(age)\n```",
+      "review": true,
+      "options": [
+        "12",
+        "Ada",
+        "age",
+        "an error"
+      ],
+      "answer_index": 0,
+      "explanation": "The code assigns the number 12 to the variable age and then prints that value."
+    },
+    {
+      "id": "q3",
+      "type": "application",
+      "prompt": "If you want to store your favorite color in a variable, which line would you use?",
+      "options": [
+        "favorite_color = 'blue'",
+        "favorite color = 'blue'",
+        "favorite_color = blue",
+        "favoriteColor = 'blue'"
+      ],
+      "answer_index": 0,
+      "explanation": "The correct syntax requires an underscore for multi-word variable names and quotes around the string value."
+    },
+    {
+      "id": "q4",
+      "type": "debugging",
+      "prompt": "What error does this code produce?\n```python\nscore = 10\nprint(Score)\n```",
+      "options": [
+        "NameError",
+        "TypeError",
+        "SyntaxError",
+        "No error"
+      ],
+      "answer_index": 0,
+      "explanation": "The code produces a NameError because 'Score' is not defined; variable names are case-sensitive."
+    },
+    {
+      "id": "q5",
+      "type": "recall",
+      "prompt": "What does the equals sign '=' do when assigning a variable?",
+      "options": [
+        "It means 'equals' like in math",
+        "It stores a value",
+        "It compares two values",
+        "It adds two numbers"
+      ],
+      "answer_index": 1,
+      "explanation": "In variable assignment, the equals sign means 'store this', not 'equals' as in math."
+    },
+    {
+      "id": "q6",
+      "type": "debugging",
+      "prompt": "What does this code print?\n```python\nmood = 'happy'\nprint(mood)\n```",
+      "options": [
+        "happy",
+        "mood",
+        "'happy'",
+        "an error"
+      ],
+      "answer_index": 0,
+      "explanation": "The code prints 'happy' because it outputs the value stored in the variable mood."
+    },
+    {
+      "id": "q7",
+      "type": "application",
+      "prompt": "If you want to change the value of a variable named 'score' from 5 to 15, which line would you use?",
+      "options": [
+        "score = 15",
+        "score = score + 10",
+        "score + 10 = 15",
+        "score = 5 + 15"
+      ],
+      "answer_index": 0,
+      "explanation": "You can directly assign a new value to the variable using 'score = 15'."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "target_wpm": 145,
+  "tolerance": 0.15,
+  "sections": [
+    {
+      "id": "what-are-loops",
+      "words": 52,
+      "duration_ms": 17924,
+      "wpm": 174.06828832849808,
+      "deviation": 0.20047095398964196,
+      "flagged": true
+    },
+    {
+      "id": "the-structure-of-a-loop",
+      "words": 62,
+      "duration_ms": 19764,
+      "wpm": 188.22100789313902,
+      "deviation": 0.298075916504407,
+      "flagged": true
+    },
+    {
+      "id": "using-a-for-loop",
+      "words": 60,
+      "duration_ms": 16288,
+      "wpm": 221.02161100196463,
+      "deviation": 0.5242869724273422,
+      "flagged": true
+    },
+    {
+      "id": "using-a-while-loop",
+      "words": 61,
+      "duration_ms": 20034,
+      "wpm": 182.68942797244685,
+      "deviation": 0.2599270894651507,
+      "flagged": true
+    },
+    {
+      "id": "practical-example-counting-items",
+      "words": 55,
+      "duration_ms": 15224,
+      "wpm": 216.76300578034684,
+      "deviation": 0.4949172812437713,
+      "flagged": true
+    },
+    {
+      "id": "whats-next",
+      "words": 46,
+      "duration_ms": 16355,
+      "wpm": 168.7557321919902,
+      "deviation": 0.163832635806829,
+      "flagged": true
+    }
+  ],
+  "flagged": [
+    "what-are-loops",
+    "the-structure-of-a-loop",
+    "using-a-for-loop",
+    "using-a-while-loop",
+    "practical-example-counting-items",
+    "whats-next"
+  ],
+  "checked_at": "2026-07-26T13:19:44.570869Z"
+}

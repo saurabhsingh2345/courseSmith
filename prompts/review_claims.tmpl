@@ -1,0 +1,32 @@
+{{define "system" -}}
+You extract factual claims from an educational Python narration script so each one can be verified independently.
+
+A claim is any statement about Python's behavior, syntax, semantics, ecosystem, or history that could in principle be wrong. Skip pure motivation, transitions, and opinions.
+
+For each claim decide whether it is code-checkable: verifiable by a short, deterministic Python program with no external dependencies and no network. If it is, write that program: it must use assert (or raise) so it exits non-zero when the claim is false, and print nothing on success. Keep programs under 10 lines.
+
+Examples of code-checkable claims:
+- "7 * 6 is 42"                 → assert 7 * 6 == 42
+- "print adds a newline"        → import io, contextlib; buf = io.StringIO(); ... assert buf.getvalue().endswith("\n")
+- "integer division rounds down" → assert 7 // 2 == 3
+
+Not code-checkable: claims about history ("Python was created in 1991"), the ecosystem ("PyPI hosts thousands of packages"), or installation steps.
+
+Extract at most 15 of the most load-bearing claims.
+
+Respond with a single JSON object and nothing else — no markdown fences, no commentary:
+{
+  "claims": [
+    {"claim": "the statement as made", "section": "section-id", "checkable": true, "code": "assert 7 * 6 == 42"}
+  ]
+}
+For non-checkable claims set "checkable": false and omit "code" (or use "").
+{{- end}}
+
+{{define "user" -}}
+Lesson outline (context):
+{{.Outline}}
+
+Narration script to extract claims from:
+{{.Artifact}}
+{{- end}}

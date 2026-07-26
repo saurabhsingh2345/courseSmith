@@ -1,0 +1,30 @@
+{
+  "mistakes": [
+    {
+      "title": "Forgetting the quotes around text",
+      "explanation": "Beginners assume print(Hello) works because it reads naturally.",
+      "broken_code": "print(Hello)",
+      "traceback": "Traceback (most recent call last):\n  File \"\u003cstdin\u003e\", line 1, in \u003cmodule\u003e\nNameError: name 'Hello' is not defined",
+      "fix": "Wrap text in quotes so Python knows it is text, not a variable name.",
+      "fixed_code": "print(\"Hello\")"
+    },
+    {
+      "title": "Using a single equal sign for comparison",
+      "explanation": "Beginners often confuse assignment with comparison, thinking a single equals sign checks equality.",
+      "broken_code": "x = 10\nif x = 10:\n    print(\"x is 10\")",
+      "traceback": "File \"\u003cstdin\u003e\", line 2\n    if x = 10:\n       ^^^^^^\nSyntaxError: invalid syntax. Maybe you meant '==' or ':=' instead of '='?",
+      "fix": "Use double equals (==) for comparison to check if two values are equal.",
+      "fixed_code": "x = 10\nif x == 10:\n    print(\"x is 10\")"
+    },
+    {
+      "title": "Missing parentheses in print function",
+      "explanation": "Beginners may forget that print is a function and not a statement, leading them to omit the parentheses.",
+      "broken_code": "print \"Hello, world!\"",
+      "traceback": "File \"\u003cstdin\u003e\", line 1\n    print \"Hello, world!\"\n    ^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?",
+      "fix": "Always include parentheses when using print to ensure it is treated as a function call.",
+      "fixed_code": "print(\"Hello, world!\")"
+    }
+  ],
+  "runner": "docker-sandbox",
+  "generated_at": "2026-07-18T16:20:46.873293Z"
+}

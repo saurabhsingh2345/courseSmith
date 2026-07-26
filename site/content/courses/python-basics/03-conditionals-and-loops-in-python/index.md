@@ -1,0 +1,15 @@
+---
+title: "Conditionals  and loops in python"
+weight: 3
+duration_sec: 41
+---
+
+{{< lesson-video src="final.mp4" captions="captions.vtt" >}}
+
+## Overview
+
+Today, we're diving into the world of conditionals and loops in Python. Think of conditionals like traffic lights. They help your program decide what to do next. If the light is green, you go. If it’s red, you stop. Similarly, in programming, conditionals let your code choose different paths based on certain conditions. Now, loops are like a merry-go-round. They allow you to repeat actions until a certain condition is met. Imagine riding the merry-go-round until you decide to get off. That’s how loops work—they keep going until you tell them to stop. Together, conditionals and loops help make your programs more dynamic and responsive. Let’s explore how to use them in Python.
+
+## Check your understanding
+
+{{< quiz src="quiz.json" >}}

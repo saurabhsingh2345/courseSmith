@@ -1,0 +1,71 @@
+{
+  "title": "Conditionals and Loops in Python Quiz",
+  "questions": [
+    {
+      "id": "q1",
+      "type": "recall",
+      "prompt": "What are conditionals in Python?",
+      "options": [
+        "They allow the program to repeat actions.",
+        "They help the program decide what to do next based on conditions.",
+        "They are used to store data.",
+        "They are a type of error in programming."
+      ],
+      "answer_index": 1,
+      "explanation": "Conditionals help the program choose different paths based on specific conditions, just like traffic lights."
+    },
+    {
+      "id": "q2",
+      "type": "application",
+      "prompt": "Which of these describes the purpose of loops in Python?",
+      "options": [
+        "To make decisions based on conditions.",
+        "To repeat actions until a certain condition is met.",
+        "To create variables to store data.",
+        "To stop the program from running."
+      ],
+      "answer_index": 1,
+      "explanation": "Loops are designed to repeat actions until a specified condition is met, similar to riding a merry-go-round."
+    },
+    {
+      "id": "q3",
+      "type": "debugging",
+      "prompt": "What is wrong with this code?\n```python\nif x \u003e 10\n    print('x is greater than 10')```",
+      "options": [
+        "There is a syntax error due to a missing colon.",
+        "The print statement is incorrectly formatted.",
+        "The variable x is not defined.",
+        "The condition is always false."
+      ],
+      "answer_index": 0,
+      "explanation": "The code is missing a colon at the end of the if statement, which is required in Python syntax."
+    },
+    {
+      "id": "q4",
+      "type": "prediction",
+      "prompt": "What does this print?\n```python\nfor i in range(3):\n    print(i)\n```",
+      "review": true,
+      "options": [
+        "0\n1\n2",
+        "0\n1\n2\n3",
+        "1\n2\n3",
+        "an error"
+      ],
+      "answer_index": 0,
+      "explanation": "The loop iterates three times, printing the values 0, 1, and 2, each on a new line."
+    },
+    {
+      "id": "q5",
+      "type": "recall",
+      "prompt": "How do conditionals and loops work together in Python?",
+      "options": [
+        "Conditionals can be used to end loops.",
+        "Loops can be used to create conditionals.",
+        "Conditionals help determine when loops should run.",
+        "Loops can only run without any conditionals."
+      ],
+      "answer_index": 2,
+      "explanation": "Conditionals can determine when a loop should continue or stop, making them work together effectively."
+    }
+  ]
+}

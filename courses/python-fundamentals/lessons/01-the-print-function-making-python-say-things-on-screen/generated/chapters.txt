@@ -1,0 +1,6 @@
+0:00 Introduction to the print function
+0:23 Basic usage of print
+0:51 Printing multiple items
+1:13 Printing numbers and calculations
+1:35 Experimenting with print
+1:55 Whats Next
