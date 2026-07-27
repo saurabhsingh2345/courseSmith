@@ -252,6 +252,10 @@ export function LessonPage() {
 /**
  * The lesson video and its per-section clips as first-class downloads: a
  * player for final.mp4 with a download link, then one row per section chunk.
+ *
+ * The saved name is the server's `download_name`, not the URL's last segment —
+ * on disk every lesson's video is `final.mp4`, which is a fine pipeline
+ * contract and a terrible thing to have six of in one folder.
  */
 function VideoDownloads({ artifacts }: { artifacts: ArtifactFile[] }) {
   const final = artifacts.find((a) => a.name === "final.mp4");
@@ -269,7 +273,7 @@ function VideoDownloads({ artifacts }: { artifacts: ArtifactFile[] }) {
             <span className="text-ink-300">Full lesson</span>
             <a
               href={final.url}
-              download
+              download={final.download_name}
               className="rounded bg-sky-600 px-3 py-1 font-medium text-white hover:bg-sky-500"
             >
               Download ({formatBytes(final.size)})
@@ -292,7 +296,7 @@ function VideoDownloads({ artifacts }: { artifacts: ArtifactFile[] }) {
                 </span>
                 <a
                   href={a.url}
-                  download
+                  download={a.download_name}
                   className="text-[12px] text-sky-300 hover:underline"
                 >
                   download ({formatBytes(a.size)})

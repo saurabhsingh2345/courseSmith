@@ -238,6 +238,8 @@ export interface components {
             name: string;
             size: number;
             url: string;
+            /** @description What this file should be saved as: <course>-<lesson>[-<part>].<ext>, so a folder of downloads sorts by course and lesson instead of being six copies of final.mp4. */
+            download_name: string;
         };
         SnippetTemplateInfo: {
             name: string;

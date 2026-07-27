@@ -129,7 +129,6 @@ function TabChip({ label, active, onClick }: { label: string; active: boolean; o
 }
 
 function ArtifactCard({ artifact, category }: { artifact: ArtifactFile; category: Category }) {
-  const base = artifact.name.split("/").pop() ?? artifact.name;
   return (
     <div className="overflow-hidden rounded-lg border border-ink-800 bg-ink-900">
       <Preview artifact={artifact} category={category} />
@@ -139,7 +138,7 @@ function ArtifactCard({ artifact, category }: { artifact: ArtifactFile; category
         </div>
         <div className="mt-0.5 text-[11px] text-ink-500">{formatBytes(artifact.size)}</div>
         <div className="mt-2">
-          <DownloadButton url={artifact.url} filename={base} size={artifact.size} />
+          <DownloadButton url={artifact.url} filename={artifact.download_name} size={artifact.size} />
         </div>
       </div>
     </div>
