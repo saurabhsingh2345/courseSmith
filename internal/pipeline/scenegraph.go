@@ -40,6 +40,9 @@ const (
 	// SceneCast is one shot of a character explaining something: a posed,
 	// breathing person beside a kinetic headline.
 	SceneCast = "cast"
+	// SceneStory is one shot of a directed piece: a staged arrangement of
+	// character and objects, framed by a moving camera.
+	SceneStory = "story"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file
@@ -119,13 +122,13 @@ type SceneTheme struct {
 	CourseName string `json:"courseName"`
 
 	// Derived design tokens (Go-owned; renderer falls back when absent).
-	Mode          string  `json:"mode,omitempty"`          // "dark" (default) | "light"
-	BgTop         string  `json:"bgTop,omitempty"`         // scene gradient start
-	BgBottom      string  `json:"bgBottom,omitempty"`      // scene gradient end
-	Surface       string  `json:"surface,omitempty"`       // card fill
-	SurfaceBorder string  `json:"surfaceBorder,omitempty"` // card hairline
-	Text          string  `json:"text,omitempty"`          // main text on bg
-	TextMuted     string  `json:"textMuted,omitempty"`     // secondary text
+	Mode          string `json:"mode,omitempty"`          // "dark" (default) | "light"
+	BgTop         string `json:"bgTop,omitempty"`         // scene gradient start
+	BgBottom      string `json:"bgBottom,omitempty"`      // scene gradient end
+	Surface       string `json:"surface,omitempty"`       // card fill
+	SurfaceBorder string `json:"surfaceBorder,omitempty"` // card hairline
+	Text          string `json:"text,omitempty"`          // main text on bg
+	TextMuted     string `json:"textMuted,omitempty"`     // secondary text
 	// Mass is the body fill of drawn artwork, and Ink is the shading laid over
 	// a mass to give it a lit and an unlit face. They are a pair and they flip
 	// together: on the dark stage a mass is near-white, on paper it is a
@@ -137,11 +140,11 @@ type SceneTheme struct {
 	// AccentText is the accent adjusted to be legible as text on this mode's
 	// background. Accent itself stays the brand colour and is what fills and
 	// strokes use; only type takes this one. See readableOn.
-	AccentText string `json:"accentText,omitempty"`
-	FontDisplay   string  `json:"fontDisplay,omitempty"`   // headings
-	FontBody      string  `json:"fontBody,omitempty"`      // body/captions
-	FontMono      string  `json:"fontMono,omitempty"`      // code
-	Grain         float64 `json:"grain,omitempty"`         // film-grain opacity 0..1
+	AccentText  string  `json:"accentText,omitempty"`
+	FontDisplay string  `json:"fontDisplay,omitempty"` // headings
+	FontBody    string  `json:"fontBody,omitempty"`    // body/captions
+	FontMono    string  `json:"fontMono,omitempty"`    // code
+	Grain       float64 `json:"grain,omitempty"`       // film-grain opacity 0..1
 }
 
 // Scene is one visual span of the lesson video.
@@ -217,7 +220,6 @@ func headingsFromOutline(body string) map[string]string {
 	}
 	return out
 }
-
 
 // cueTimestamp resolves a cue's at_word (section-relative index) to the
 // timestamp of that word, clamped into the section's span.
@@ -609,9 +611,9 @@ func finishSceneGraph(e *Env, l *project.Lesson, graph *SceneGraph) error {
 	for _, s := range graph.Scenes {
 		types[s.Type]++
 	}
-	fmt.Fprintf(e.out(), "    %d scenes (%d title, %d points, %d code, %d walkthrough, %d whiteboard, %d flow, %d illustration, %d cast, %d diagram, %d terminal), %d captions, %.1fs\n",
+	fmt.Fprintf(e.out(), "    %d scenes (%d title, %d points, %d code, %d walkthrough, %d whiteboard, %d flow, %d illustration, %d cast, %d story, %d diagram, %d terminal), %d captions, %.1fs\n",
 		len(graph.Scenes), types[SceneTitle], types[ScenePoints], types[SceneCode], types[SceneWalkthrough],
-		types[SceneWhiteboard], types[SceneFlow], types[SceneIllustration], types[SceneCast], types[SceneDiagram], types[SceneTerminal],
+		types[SceneWhiteboard], types[SceneFlow], types[SceneIllustration], types[SceneCast], types[SceneStory], types[SceneDiagram], types[SceneTerminal],
 		len(graph.Captions), float64(graph.DurationMs)/1000)
 	return nil
 }

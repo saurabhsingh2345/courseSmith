@@ -39,6 +39,11 @@ type SnippetTemplate struct {
 	// NeedsCode makes the verify stage part of this template's pipeline, so
 	// any code shown is code that really ran.
 	NeedsCode bool
+	// DefaultTargetSec is the runtime this template aims for when the request
+	// does not say (0 = defaultSnippetTargetSec). A template with a beat floor
+	// well above the shared one needs its own default, or the standard 45s
+	// budget cannot fund the beats its own validator demands.
+	DefaultTargetSec int
 
 	// Plan produces the clip's design. Nil uses planSnippetDefault, which
 	// renders PromptFile and decodes a SnippetPlan — enough for every
@@ -271,6 +276,7 @@ type beatFields struct {
 	Focus  bool
 	Art    bool
 	Cast   bool
+	Shot   bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -293,6 +299,8 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "art"
 		case !owned.Cast && b.Cast != nil:
 			set = "cast"
+		case !owned.Shot && b.Shot != nil:
+			set = "shot"
 		default:
 			continue
 		}

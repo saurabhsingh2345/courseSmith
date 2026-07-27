@@ -85,7 +85,8 @@ export type SceneType =
   | 'whiteboard'
   | 'flow'
   | 'illustration'
-  | 'cast';
+  | 'cast'
+  | 'story';
 
 export type Scene = {
   type: SceneType;

@@ -89,10 +89,17 @@ type SnippetSpec struct {
 }
 
 // ResolvedTargetSec returns the runtime to aim for, defaulted and clamped.
+// The default comes from the template when it declares one. A story has a beat
+// floor of eight; funding that from the shared 45-second budget would demand
+// eight beats of barely more than the ten-word minimum, so the template that
+// sets the floor also sets the runtime that can pay for it.
 func (s SnippetSpec) ResolvedTargetSec() int {
 	t := s.TargetSec
 	if t == 0 {
 		t = defaultSnippetTargetSec
+		if tpl, ok := SnippetTemplates[s.Template]; ok && tpl.DefaultTargetSec > 0 {
+			t = tpl.DefaultTargetSec
+		}
 	}
 	return min(max(t, minSnippetTargetSec), maxSnippetTargetSec)
 }
@@ -183,6 +190,37 @@ type SnippetBeat struct {
 	// Cast is this beat's direction for the character: what they do and how
 	// they feel about what is being said. Like Art, one beat is one shot.
 	Cast *CastBeat `json:"cast,omitempty"`
+
+	// --- story template ---
+	// Shot is how this beat is staged and shot. Produced by the director
+	// stage, not by the writer — see snippet_story.go.
+	Shot *ShotBeat `json:"shot,omitempty"`
+}
+
+// ShotBeat stages one beat of a story: where things stand, how the camera
+// moves, and what the character is doing.
+//
+// The model chooses only from closed vocabularies. Every coordinate belongs to
+// the renderer, which is what stops a director putting a character on top of
+// its own caption.
+type ShotBeat struct {
+	// BeatID ties a shot to its written beat. The director is handed the
+	// script and answers per-id rather than positionally, so a reordered or
+	// short reply is caught instead of being silently mis-applied.
+	BeatID string `json:"beat_id"`
+	// Staging is the arrangement: hero | duo | object | pair | empty.
+	Staging string `json:"staging"`
+	// Camera is the move: hold | push | pull | pan | rise | drift.
+	Camera string `json:"camera"`
+	// Pose and Expression direct the character, on the stagings that have one.
+	Pose       string `json:"pose,omitempty"`
+	Expression string `json:"expression,omitempty"`
+	// Prop, and PropB for a "pair" comparison, name figures from the
+	// illustration vocabulary.
+	Prop  string `json:"prop,omitempty"`
+	PropB string `json:"prop_b,omitempty"`
+	// Caption is the supporting line under the headline. Optional.
+	Caption string `json:"caption,omitempty"`
 }
 
 // CastBeat directs the character for one shot.

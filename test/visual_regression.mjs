@@ -47,6 +47,10 @@ const TARGETS = [
   // Mid-clip, so the frame catches a settled pose with its prop up rather than
   // the entrance.
   { id: "CastViz", frame: 200 },
+  // Deep into the third shot, so the camera has travelled most of a push and
+  // the frame proves the world-space staging composes under a moved camera —
+  // which a frame-0 capture cannot.
+  { id: "StoryViz", frame: 340 },
   { id: "D3Viz", frame: 130 },
   { id: "MemoryViz", frame: 90 },
   { id: "LessonVideo", frame: 15 },

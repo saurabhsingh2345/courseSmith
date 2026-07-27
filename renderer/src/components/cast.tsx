@@ -70,6 +70,16 @@ export const CAST_BOX = {w: 200, h: 260};
  */
 export const CAST_VIEW = {x: 24, y: 12, w: 152, h: 244};
 
+/**
+ * Where the soles are, as a fraction of CAST_VIEW's height.
+ *
+ * A scene that stands a character on a floor line has to know this. Treating
+ * the bottom of the drawing box as the feet leaves the figure hovering by the
+ * margin the box carries for `celebrate`'s raised arms — which reads, exactly,
+ * as a character floating.
+ */
+export const CAST_FEET = (239 - 12) / 244;
+
 // Skeleton proportions, in the 200x260 box.
 const RIG = {
   hipY: 152,

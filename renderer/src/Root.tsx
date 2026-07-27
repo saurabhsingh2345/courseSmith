@@ -338,6 +338,108 @@ const castVizProps: LessonVideoProps = {
   captions: [],
 };
 
+// A demo of the story scene, so `remotion still StoryViz` renders it standalone.
+// Six shots covering every staging and five of the six camera moves, because
+// this template's whole claim is that consecutive shots differ — a single frame
+// can only prove one of them composes.
+const storyVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [
+    {
+      type: 'story',
+      startMs: 0,
+      endMs: 5000,
+      props: {
+        headline: 'Your query reads every single row',
+        caption: 'Ten million rows, one at a time.',
+        staging: 'duo',
+        camera: 'push',
+        pose: 'defeated',
+        prevPose: 'idle',
+        expression: 'concerned',
+        prop: 'stack',
+        durationMs: 5000,
+      },
+    },
+    {
+      type: 'story',
+      startMs: 5000,
+      endMs: 10000,
+      props: {
+        headline: "Scanning is fine until it isn't",
+        caption: 'It gets slower exactly as fast as you grow.',
+        staging: 'object',
+        camera: 'hold',
+        prevPose: 'defeated',
+        prop: 'clock',
+        durationMs: 5000,
+      },
+    },
+    {
+      type: 'story',
+      startMs: 10000,
+      endMs: 15000,
+      props: {
+        headline: 'An index is a sorted copy',
+        caption: 'One column, kept in order, nothing more.',
+        staging: 'hero',
+        camera: 'push',
+        pose: 'point',
+        prevPose: 'defeated',
+        expression: 'neutral',
+        durationMs: 5000,
+      },
+    },
+    {
+      type: 'story',
+      startMs: 15000,
+      endMs: 20000,
+      props: {
+        headline: 'Sorted means you can skip',
+        caption: 'Halve the search space, then halve it again.',
+        staging: 'pair',
+        camera: 'pan',
+        prevPose: 'point',
+        prop: 'chart',
+        propB: 'network',
+        durationMs: 5000,
+      },
+    },
+    {
+      type: 'story',
+      startMs: 20000,
+      endMs: 25000,
+      props: {
+        headline: 'Every write pays for it',
+        caption: 'The order has to be maintained on the way in.',
+        staging: 'duo',
+        camera: 'drift',
+        pose: 'think',
+        prevPose: 'point',
+        expression: 'thinking',
+        prop: 'gears',
+        durationMs: 5000,
+      },
+    },
+    {
+      type: 'story',
+      startMs: 25000,
+      endMs: 30000,
+      props: {
+        headline: 'One line, a thousand times faster',
+        caption: 'You are not searching harder. You are searching less.',
+        staging: 'empty',
+        camera: 'pull',
+        prevPose: 'think',
+        durationMs: 5000,
+      },
+    },
+  ],
+  captions: [],
+};
+
 // A demo of the VS Code walkthrough scene, so `remotion still VSCodeViz`
 // renders it standalone.
 const vscodeVizProps: LessonVideoProps = {
@@ -440,6 +542,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(castVizProps.durationMs)}
       defaultProps={castVizProps}
+    />
+    <Composition
+      id="StoryViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(storyVizProps.durationMs)}
+      defaultProps={storyVizProps}
     />
     <Composition
       id="PointsViz"

@@ -552,6 +552,46 @@ call failed having never seen both constraints at once.
   it, which is exactly what a rig is for avoiding. It is checked on *normalized*
   names, so two beats that both fall back to `idle` still collide.
 
+- **`story`** (`snippet_story.go`) — the long one: a directed piece of one to
+  two minutes, staged shot by shot. Eight to fourteen beats, its own 90-second
+  default runtime (the shared 45s cannot fund a beat floor of eight without
+  writing every beat at the ten-word minimum).
+
+  **The plan is two LLM calls, and that is the whole design.** The writer and
+  the director are different jobs, and one call doing both does neither: asked
+  to invent narration *and* stage it, a model spends its attention on the words
+  and stages everything identically — fourteen beats of "person left, object
+  right", which is a slideshow with a presenter in it. So call one writes the
+  script and nothing else (the prompt is tested for not even mentioning staging
+  vocabulary). Call two is handed the finished script, every beat at once in
+  order, and does only direction. It can see the arc, which is the point: you
+  cannot decide *this* is the beat to push in on unless you can see the beats
+  either side of it. The two calls cache independently, so tuning the director
+  prompt does not re-pay for the script.
+
+  The director picks from closed vocabularies — five **stagings** (hero, duo,
+  object, pair, empty) and six **camera moves** (hold, push, pull, pan, rise,
+  drift) — and the renderer owns every coordinate. Rules, all enforced: no cut
+  may repeat *both* staging and camera (repeating one is fine and is how a scene
+  gets built); at least a third of shots carry the presenter; at least half move
+  the camera; at least three stagings across the piece.
+
+  **The camera is real.** `renderer/src/components/camera.ts` lays the shot out
+  on a world 1.34× the frame and points a camera (x, y, zoom) at part of it,
+  eased over the shot's *own* duration — which is why a long beat gets a slow
+  move. The backdrop tracks at 0.42×, because depth on a flat stage is entirely
+  differential motion: matched to the camera it is painted on the front element,
+  unmoving it is wallpaper behind a cutout. Amplitudes are deliberately small (a
+  14% push over eight seconds); the first pass used roughly double and every
+  shot read as a zoom effect rather than as a camera.
+
+  Two staging bugs worth remembering: a character stands on the floor line by
+  its **soles** (`CAST_FEET`), not by the bottom of its drawing box — that box
+  carries headroom for `celebrate`'s raised arms and using it directly leaves
+  the figure visibly hovering. And a shot with no presenter must not advance the
+  pose the next one eases from, or the character teleports across the
+  intervening object shots.
+
 **Cross-template field guards.** `SnippetBeat` is the union of what every
 template needs, so `beatFields` declares ownership once per template and
 `rejectForeignBeatFields` fails loudly when a plan sets a field its template
@@ -575,6 +615,5 @@ luminance of paper. The pairs are asserted around the hue circle in both modes
 by formula and the first sight of a bad pair would otherwise be a finished
 video. Captions and mode are both per-snippet: CLI flags and Studio controls.
 
-**Next templates** (planned, not built): data & maps (world-atlas TopoJSON +
-d3-geo + Observable Plot), and `story` — a longer, directed piece using the
-character rig with camera moves and shape morphing.
+**Next template** (planned, not built): data & maps — world-atlas TopoJSON +
+d3-geo + Observable Plot.
