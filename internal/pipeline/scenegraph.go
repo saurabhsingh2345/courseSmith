@@ -37,6 +37,9 @@ const (
 	// word beside a flat-vector figure. Unlike the board and the diagram it
 	// does not accumulate — a clip is a run of these, one per beat.
 	SceneIllustration = "illustration"
+	// SceneCast is one shot of a character explaining something: a posed,
+	// breathing person beside a kinetic headline.
+	SceneCast = "cast"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file
@@ -606,9 +609,9 @@ func finishSceneGraph(e *Env, l *project.Lesson, graph *SceneGraph) error {
 	for _, s := range graph.Scenes {
 		types[s.Type]++
 	}
-	fmt.Fprintf(e.out(), "    %d scenes (%d title, %d points, %d code, %d walkthrough, %d whiteboard, %d flow, %d illustration, %d diagram, %d terminal), %d captions, %.1fs\n",
+	fmt.Fprintf(e.out(), "    %d scenes (%d title, %d points, %d code, %d walkthrough, %d whiteboard, %d flow, %d illustration, %d cast, %d diagram, %d terminal), %d captions, %.1fs\n",
 		len(graph.Scenes), types[SceneTitle], types[ScenePoints], types[SceneCode], types[SceneWalkthrough],
-		types[SceneWhiteboard], types[SceneFlow], types[SceneIllustration], types[SceneDiagram], types[SceneTerminal],
+		types[SceneWhiteboard], types[SceneFlow], types[SceneIllustration], types[SceneCast], types[SceneDiagram], types[SceneTerminal],
 		len(graph.Captions), float64(graph.DurationMs)/1000)
 	return nil
 }

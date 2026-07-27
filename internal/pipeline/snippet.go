@@ -178,6 +178,29 @@ type SnippetBeat struct {
 	// the headline carries the emphasis, and the line under it. Unlike the
 	// board and the diagram, nothing here accumulates — one beat is one shot.
 	Art *ArtBeat `json:"art,omitempty"`
+
+	// --- cast template ---
+	// Cast is this beat's direction for the character: what they do and how
+	// they feel about what is being said. Like Art, one beat is one shot.
+	Cast *CastBeat `json:"cast,omitempty"`
+}
+
+// CastBeat directs the character for one shot.
+//
+// The beat's Heading is the headline, as in ArtBeat — the on-screen phrase and
+// the beat's label are the same thing rather than two things to keep in step.
+type CastBeat struct {
+	// Pose is a name from the closed pose vocabulary (see CastPoseNames);
+	// anything else degrades to "idle".
+	Pose string `json:"pose"`
+	// Expression is a name from the closed expression vocabulary; anything
+	// else degrades to "neutral".
+	Expression string `json:"expression,omitempty"`
+	// Prop optionally puts one of the illustration figures above the
+	// character — the thing they are talking about.
+	Prop string `json:"prop,omitempty"`
+	// Caption is the supporting line under the headline. Optional.
+	Caption string `json:"caption,omitempty"`
 }
 
 // ArtBeat is one kinetic-typography shot: a figure, and the phrasing that

@@ -1,6 +1,6 @@
 import {Composition, staticFile} from 'remotion';
 import {LessonVideo} from './LessonVideo';
-import {FigureSheet} from './components/FigureSheet';
+import {FigureSheet, CastSheet} from './components/FigureSheet';
 import {FPS, LessonVideoProps, CodeTrace, msToFrame} from './types';
 import execTrace from './fixtures/execTrace.json';
 
@@ -272,6 +272,72 @@ const illustrationLightProps: LessonVideoProps = {
   ],
 };
 
+// A demo of the cast scene, so `remotion still CastViz` renders it standalone.
+// Four shots, because the pose *change* is the template — a single frame can
+// only show that a pose exists, not that the character moves between them.
+const castVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 16000,
+  scenes: [
+    {
+      type: 'cast',
+      startMs: 0,
+      endMs: 4000,
+      props: {
+        headline: 'Nobody reads a five hundred line diff',
+        caption: 'It sits for three days and gets a thumbs up nobody means.',
+        pose: 'defeated',
+        prevPose: 'idle',
+        expression: 'concerned',
+        flip: false,
+      },
+    },
+    {
+      type: 'cast',
+      startMs: 4000,
+      endMs: 8000,
+      props: {
+        headline: 'The size is the problem',
+        caption: 'Reviewers lose the thread by the second file.',
+        pose: 'think',
+        prevPose: 'defeated',
+        expression: 'thinking',
+        prop: 'stack',
+        flip: true,
+      },
+    },
+    {
+      type: 'cast',
+      startMs: 8000,
+      endMs: 12000,
+      props: {
+        headline: 'Ship it in slices',
+        caption: 'Four small reviews beat one big one on every measure.',
+        pose: 'point',
+        prevPose: 'think',
+        expression: 'neutral',
+        prop: 'chart',
+        flip: false,
+      },
+    },
+    {
+      type: 'cast',
+      startMs: 12000,
+      endMs: 16000,
+      props: {
+        headline: 'Faster, and actually reviewed',
+        caption: 'Real comments instead of a rubber stamp.',
+        pose: 'celebrate',
+        prevPose: 'point',
+        expression: 'happy',
+        flip: true,
+      },
+    },
+  ],
+  captions: [],
+};
+
 // A demo of the VS Code walkthrough scene, so `remotion still VSCodeViz`
 // renders it standalone.
 const vscodeVizProps: LessonVideoProps = {
@@ -341,6 +407,14 @@ export const RemotionRoot: React.FC = () => {
       durationInFrames={300}
     />
     <Composition
+      id="CastSheet"
+      component={CastSheet}
+      fps={FPS}
+      width={1000}
+      height={1300}
+      durationInFrames={300}
+    />
+    <Composition
       id="IllustrationViz"
       component={LessonVideo}
       fps={FPS}
@@ -357,6 +431,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(illustrationLightProps.durationMs)}
       defaultProps={illustrationLightProps}
+    />
+    <Composition
+      id="CastViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(castVizProps.durationMs)}
+      defaultProps={castVizProps}
     />
     <Composition
       id="PointsViz"

@@ -44,6 +44,9 @@ const TARGETS = [
   // default config exercises, so without a baseline every scene that quietly
   // assumed a dark stage regresses silently.
   { id: "IllustrationLightViz", frame: 75 },
+  // Mid-clip, so the frame catches a settled pose with its prop up rather than
+  // the entrance.
+  { id: "CastViz", frame: 200 },
   { id: "D3Viz", frame: 130 },
   { id: "MemoryViz", frame: 90 },
   { id: "LessonVideo", frame: 15 },

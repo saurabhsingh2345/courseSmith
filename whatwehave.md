@@ -525,6 +525,33 @@ call failed having never seen both constraints at once.
   letter, or vanish because it was painted in the shading colour on a dark
   stage. Both happened.
 
+- **`cast`** (`snippet_cast.go`) — a character explains it. Same
+  one-beat-one-shot shape as `illustration`, and the difference is the whole
+  reason it exists: an object shows what a thing *is*, a person shows how to
+  *feel* about it. Slumped shoulders are "this is the problem", a shrug is
+  "nobody's sure", an arm thrown out is "here it is" — the register an explainer
+  opens and closes on, which no diagram can reach.
+
+  The rig (`renderer/src/components/cast.tsx`) is forward kinematics from the
+  hips: shoulders, elbows, hips, knees, head tilt, torso lean. Few enough joints
+  that a pose is hand-written and readable, enough for everything an explainer
+  needs. Poses **interpolate**, which is the point — each scene is told the
+  previous beat's pose, so the character *moves* from thinking to pointing
+  rather than cutting between two drawings of itself. Breathing and blinking run
+  underneath every held pose.
+
+  Angles are **outward-positive on both sides**, the rig negating the left. The
+  first pass used raw screen-clockwise angles for both, which means a positive
+  left-arm angle swings across the chest: every symmetric pose came out with the
+  arms crossed and the walk cycle scissored its own legs. Poses are authored by
+  hand, so the convention has to be the one that makes a hand-written pose mean
+  what it looks like it means.
+
+  One enforced rule: **no two consecutive beats may share a pose**. A character
+  holding still across two beats is a photograph with the text changing beside
+  it, which is exactly what a rig is for avoiding. It is checked on *normalized*
+  names, so two beats that both fall back to `idle` still collide.
+
 **Cross-template field guards.** `SnippetBeat` is the union of what every
 template needs, so `beatFields` declares ownership once per template and
 `rejectForeignBeatFields` fails loudly when a plan sets a field its template
@@ -535,5 +562,19 @@ up from Remotion's 30s). A frame measures ~100ms, but a busy machine missed the
 deadline once and aborted an otherwise-finished clip. The budget was raised
 rather than the scenes made cheaper, because the scenes are not the problem.
 
+**Light and dark.** `style.mode` picks which set of lightness targets the
+branding hue runs through (`videotheme.go`). Both modes emit the same token
+names, so no scene asks which mode it is in — a scene that has to branch on mode
+is a scene with a colour hardcoded in it. Three tokens exist because the
+polarity flip breaks the others: `mass`/`ink` (artwork body fill and its
+shading, which flip together so shading stays shading), and `accentText` — the
+accent walked down in lightness until it is legible as *type*, since a brand
+accent is chosen for a dark stage and a saturated yellow is very nearly the
+luminance of paper. The pairs are asserted around the hue circle in both modes
+(`videotheme_contrast_test.go`) rather than eyeballed, because they are derived
+by formula and the first sight of a bad pair would otherwise be a finished
+video. Captions and mode are both per-snippet: CLI flags and Studio controls.
+
 **Next templates** (planned, not built): data & maps (world-atlas TopoJSON +
-d3-geo + Observable Plot) and a flat-vector character cast.
+d3-geo + Observable Plot), and `story` — a longer, directed piece using the
+character rig with camera moves and shape morphing.

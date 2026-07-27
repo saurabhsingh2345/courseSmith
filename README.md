@@ -300,13 +300,16 @@ coursesmith snippet templates           list the visual templates a clip can use
                                         (vscode: an editor types code and runs it;
                                          whiteboard: a hand-drawn board fills in;
                                          flow: layered boxes with moving traffic;
-                                         illustration: kinetic type + flat art)
+                                         illustration: kinetic type + flat art;
+                                         cast: a character who reacts)
 coursesmith snippet new <prompt>        plan and render one standalone clip
     --template <name>                   which template it looks like (required)
     --seconds <n>                       approximate runtime to aim for (default 45)
     --code-language <lang>              language for code templates (python)
     --title <text>                      override the model's title
     --model <provider/model>            planning model, e.g. openai/gpt-4o-mini
+    --captions on|off                   burn the caption track into the video
+    --mode light|dark                   video polarity (default dark)
     --plan-only                         stop after planning; no TTS, no render
 coursesmith snippet run <id>            re-run a snippet (stages skip as usual)
 coursesmith snippet list                every snippet and whether it's rendered
