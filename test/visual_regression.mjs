@@ -30,6 +30,16 @@ const TARGETS = [
   { id: "ExecViz", frame: 60 },
   { id: "PointsViz", frame: 140 },
   { id: "VSCodeViz", frame: 200 },
+  // The same editor in light mode, with the terminal drawer open. The editor
+  // carries its own palette rather than the design system's, so it is the one
+  // scene where light mode cannot be inferred from any other baseline — and
+  // the drawer is the half of the template that had no coverage at all.
+  { id: "VSCodeLightViz", frame: 460 },
+  // The workspace template's payoff: the code and the terminal framed
+  // together, with the output the program really printed. It is the one shot
+  // that exercises the camera, the multi-file tabs and the executed project at
+  // once.
+  { id: "WorkspaceViz", frame: 690 },
   // Late enough that every box is drawn and settled, so the frame catches the
   // finished board rather than a mid-stroke moment.
   { id: "WhiteboardViz", frame: 390 },
@@ -51,10 +61,11 @@ const TARGETS = [
   // the frame proves the world-space staging composes under a moved camera —
   // which a frame-0 capture cannot.
   { id: "StoryViz", frame: 340 },
-  // Inside the map shot's first highlight window: the kind with an external
+  // Inside the map shot's highlight window: the kind with an external
   // dependency (the world atlas), whose failure mode is a country that quietly
-  // does not appear.
-  { id: "DataViz", frame: 830 },
+  // does not appear. It is the last of the thirteen kinds the demo walks, six
+  // seconds each — so the frame moves whenever a kind is added ahead of it.
+  { id: "DataViz", frame: 2250 },
   { id: "D3Viz", frame: 130 },
   { id: "MemoryViz", frame: 90 },
   { id: "LessonVideo", frame: 15 },

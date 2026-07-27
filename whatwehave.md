@@ -416,6 +416,100 @@ line, and the whole thing stays clear of the caption card. `TitleCard` now
 renders its subtitle in intro mode — it was being silently dropped, so every
 snippet's hook went missing.
 
+**The editor has its own palette, and it has two.** Every colour in
+`VSCodeScene` used to be a hard-coded dark literal, so in light mode the scene
+was a dark editor punched into a paper page. There is a `Chrome` record per
+mode now — surfaces, hairlines, chrome text, the active-line band, the minimap
+column, the shell prompt — plus the Shiki theme, because dark-plus tokens on a
+white editor are their own kind of unreadable (its comment green and string
+orange are both picked to sit on `#1e1e1e`).
+
+These are deliberately **not** design-system tokens. An editor painted in
+`surface` and `mass` is a courseSmith panel with code in it; the credibility of
+this template comes from looking like the tool on the viewer's second monitor.
+What it does take from the theme is the mode, the primary (status bar, and the
+active-item rail in light mode — the accent is a saturated yellow picked for
+the dark stage and is a highlighter stroke nobody can see on light chrome) and
+the accent (the caret, and the rail on dark).
+
+Two smaller things that were wrong for the same reason nobody had looked: the
+**minimap** was one grey bar per line, which would look identical whatever the
+file said — it draws one block per *token* now, coloured by that token, with
+indentation preserved and a viewport box that only appears when the file is
+actually longer than the pane. And the **demo had no run step**, so the
+terminal drawer — half of what this template is for — had no composition and no
+baseline. It has both now, in light mode, which is where a regression in it
+would otherwise have hidden.
+
+**Runtimes go down to 10 seconds, and the beat count comes from the budget.**
+The shared beat range was a fixed 3-7, and every snippet prompt also calibrates
+a beat at "about forty words" — so a three-beat floor is a 120-word floor. A
+20-second clip's *ceiling* is 89 words. The two rules contradicted each other
+and no plan could satisfy both; in the field this showed up as a plan walking
+128 → 114 → 96 → 93 words across three correction rounds and failing, converging
+on a floor the instructions themselves imposed.
+
+`beatBounds` derives the count from the narration budget instead, and hands the
+prompt the per-beat number that budget actually affords — so the number the
+model is told to write and the number it is scored against are the same number
+at every runtime, not just above 45 seconds:
+
+| runtime | budget @175wpm | beats | words/beat |
+|---|---|---|---|
+| 10s | 21-44 | 2 | 14 |
+| 20s | 43-89 | 2 | 29 |
+| 45s | 98-203 | 3 | 43 |
+| 120s | 262-542 | 7 | 50 |
+
+The beat floor is two rather than three: two beats is one cut, which is the
+least that still makes this a film rather than a held shot, and it is what
+makes a ten-second clip expressible at all. `story` keeps its own 8-14 range
+and recomputes its own per-beat number against it — inheriting the shared
+arithmetic gave it a figure that multiplied straight past its own ceiling.
+
+Two smaller fixes fell out of the same investigation. The word-budget error
+said "rewrite with fuller sentences" in **both** directions, so a plan 40 words
+over its ceiling was told three times running to write more; the advice now
+points the way the plan has to move. And the calibration paragraph in all seven
+prompts no longer quotes a fixed forty words — it quotes the runtime's own
+arithmetic.
+
+**Downloads are named after their titles, not `final.mp4`.** On disk every
+lesson's video is `final.mp4` and that name is a contract — compile
+concatenates it, the Hugo page embeds it, chapters splits it. It is also the
+worst possible thing to have six of in a Downloads folder. The studio's
+artifact route rebuilds the name on the way out (`downloadName`):
+
+    Python Fundamentals 01 The print function making Python say things on screen.mp4
+    Python Fundamentals 01 The print function … - 03 printing multiple items.mp4
+    Applications of Python.mp4
+
+It is built from the **titles** — the words the user sees in the studio — and
+not from the directory names, and for snippets that distinction is the entire
+point. A snippet's directory id is a slug of its *prompt* (`uniqueSnippetID`),
+so the clip titled "Applications of Python" lives in a folder called
+`hand-drawn-whiteboard-animation-illustrating-pyt-2`. Naming the download after
+the directory swaps one unhelpful filename for another. A lesson leads with its
+course and number so a folder sorts into teaching order; a snippet is one clip
+with one title, and its course is always "snippets", so its title is the whole
+name.
+
+Spaces and capitals survive — reading as the title *is* the improvement, and
+"Applications of Python.mp4" is worth more than "applications-of-python.mp4".
+What does not survive is the set Windows rejects (`/ \ : * ? " < > |`), dropped
+rather than replaced so "language?.mp4" becomes "language.mp4" and not
+"language-.mp4"; titles are model-written prose and really do contain question
+marks and colons. Over-long names lose whole *words* from the middle, keeping
+the head that says which lesson and the tail that says which part.
+
+It ships as `Content-Disposition: inline` — **not** `attachment`, because the
+same URL is the `<video>` element's src and the download link's href, and
+`attachment` stops the player ever showing a frame. Browsers take the filename
+from the header in preference to an anchor's `download` attribute, so the one
+header names the file on every path out: the UI, a right-click, `curl`. The
+same string is also returned as the artifact's `download_name` so the UI passes
+it explicitly rather than reimplementing the rule and drifting from it.
+
 **Surfaces.** `coursesmith snippet templates | new | run | list`, plus
 `/api/snippet-templates`, `/api/snippets` (CRUD) and a Studio **Snippets** page:
 template gallery, prompt, runtime picker, one button, and a player + beat
@@ -507,8 +601,16 @@ call failed having never seen both constraints at once.
   figure that assembles and then freezes is a slide no matter how good the
   entrance was. It also means the artwork speaks the design system's palette
   instead of being recoloured towards it, and there is no third-party asset
-  licence to track. Eleven figures, closed vocabulary, `spark` as the fallback,
-  drift-tested against Go the same way the icon vocabulary is.
+  licence to track. A hundred and one figures now, closed vocabulary, `spark` as
+  the fallback, drift-tested against Go the same way the icon vocabulary is.
+
+  The drawings live in themed modules under `artwork/` — tech, product, science,
+  nature, work, abstract — over a shared `kit` that owns the box, the two clocks
+  and the staggered entrance. One file holding a hundred figures was a file
+  nobody could find anything in, and factoring the boilerplate out is what keeps
+  each figure down to the part that is actually interesting: its mechanism. What
+  stays in `artwork.tsx` is the vocabulary itself, because that is the thing Go
+  mirrors.
 
   Two rules earn their keep. The emphasis must **occur in its own beat's
   heading** — it is a stroke drawn under part of the headline, so a phrase that
@@ -528,29 +630,90 @@ call failed having never seen both constraints at once.
 - **`cast`** (`snippet_cast.go`) — a character explains it. Same
   one-beat-one-shot shape as `illustration`, and the difference is the whole
   reason it exists: an object shows what a thing *is*, a person shows how to
-  *feel* about it. Slumped shoulders are "this is the problem", a shrug is
-  "nobody's sure", an arm thrown out is "here it is" — the register an explainer
+  *feel* about it. A hand to the chin is "hold on", a shrug is
+  "nobody's sure", a raised finger is "here it is" — the register an explainer
   opens and closes on, which no diagram can reach.
 
-  The rig (`renderer/src/components/cast.tsx`) is forward kinematics from the
-  hips: shoulders, elbows, hips, knees, head tilt, torso lean. Few enough joints
-  that a pose is hand-written and readable, enough for everything an explainer
-  needs. Poses **interpolate**, which is the point — each scene is told the
-  previous beat's pose, so the character *moves* from thinking to pointing
-  rather than cutting between two drawings of itself. Breathing and blinking run
-  underneath every held pose.
+  **The character is Open Peeps** (CC0, Pablo Stanley, via the MIT `react-peeps`
+  package), composed in `renderer/src/components/cast.tsx`. It replaced a
+  skeleton rig that drew a person from eleven joint angles, and the trade is the
+  opposite of the one `artwork.tsx` makes for objects — deliberately. The rig
+  could do *anything*: any pose was eleven numbers and poses interpolated. What
+  it could not do was look like a person somebody drew, and next to the
+  illustration template's artwork it read as the cheap thing on the stage.
+  Nobody knows what a "correct" rocket looks like, so a built one is just a
+  rocket; everybody knows what a person looks like. **Objects are worth owning,
+  people are worth importing.**
 
-  Angles are **outward-positive on both sides**, the rig negating the left. The
-  first pass used raw screen-clockwise angles for both, which means a positive
-  left-arm angle swings across the chest: every symmetric pose came out with the
-  arms crossed and the walk cycle scissored its own legs. Poses are authored by
-  hand, so the convention has to be the one that makes a hand-written pose mean
-  what it looks like it means.
+  The cost is that the vocabulary is no longer ours to invent — a pose exists
+  exactly when somebody drew it *and* can be coloured. `wave`, `celebrate`,
+  `defeated` and `walk` went because no drawing of them exists; `explain`,
+  `coffee` and `phone` went for the colour reason below. Six remain: `idle`,
+  `point`, `think`, `shrug`, `confident`, `reading`. The register `defeated`
+  carried moved to the face as `sad`, where it reads better than a slump ever
+  did, and the eight expressions are now where most of the range lives. Not
+  offering a name the artwork cannot satisfy is the same rule the snippet
+  runtimes follow, and for the same reason: a pose Go allows and the artwork
+  lacks renders as somebody standing still through the beat that was meant to
+  be its punchline.
+
+  **The offset table** is what makes ten drawings behave like one character.
+  Every pose is framed around the head axis rather than around its own bounds,
+  with a fixed vertical crop, so the head is in the same place at the same size
+  in every shot and only the arms change — a shrug simply gets a wider frame,
+  and the scene lets it overhang into the gutter rather than shrinking the
+  person. The numbers in it were measured off the rendered artwork (rasterise
+  each part, scan for its ink) rather than guessed. Each pose also carries a
+  `headPlay`: how freely the head may breathe on it. `think` rests a hand
+  against the jaw, and a head that drifts a few pixels off its own knuckles is
+  an error the eye catches instantly.
+
+  What survives from the rig is the thing that actually made it look alive.
+  Breathing, a head tilt and a blink run over the artwork, and a pose change
+  between beats dissolves and settles rather than cutting. The blink is a face
+  swap to `EyesClosed` for an eighth of a second — Open Peeps has no eyelid
+  layer, and at that duration nobody resolves the mouth changing too.
+
+  **Four colours, and which busts are usable follows from them.** A peep is
+  three layers — body, hair, face — each carrying its own pair, so skin, hair,
+  garment and ink can each be their own value. The first version passed one pair
+  to all three, painting skin, hands and shirt one flat colour: it rendered, it
+  was legible, and it looked like a sticker rather than a person. That was the
+  single biggest thing wrong with the character and it was wiring, not the
+  artwork.
+
+  The catch is that the body layer's `backgroundColor` paints the hands *and*
+  any garment the illustrator filled with it, and the two cannot be separated.
+  Every bust was classified by rendering it in two loud colours and counting
+  pixels; the split is clean at about 55%. On a stroke-filled bust background is
+  free to be a skin tone and everything lands. On a background-filled one,
+  keeping the hands right dresses the character in their own skin and keeping
+  the garment right hides their hands in their shirt. **That is why POSES is the
+  list it is** — and why `explain`, the most useful gesture in the set, is not
+  in it. Pose and outfit stay fused, so the neckline and pattern still change
+  between beats; what the restriction buys is that the *colour* does not, which
+  is what the eye actually tracks as "the same person".
+
+  **The cast is eight presenters** (`CASTS`), each a skin tone, a hair colour
+  and a hairstyle, picked deterministically from the clip's seed so two snippets
+  are visibly presented by two different people and no frame disagrees with its
+  neighbour about who is on screen. Hair colours are held above about 20%
+  lightness because the hair's outer edge is the silhouette against the dark
+  stage. The garment is the theme primary for everyone: that is where the brand
+  lives, and people are told apart by face and hair anyway.
 
   One enforced rule: **no two consecutive beats may share a pose**. A character
   holding still across two beats is a photograph with the text changing beside
-  it, which is exactly what a rig is for avoiding. It is checked on *normalized*
-  names, so two beats that both fall back to `idle` still collide.
+  it. It is checked on *normalized* names, so two beats that both fall back to
+  `idle` still collide.
+
+  `CastSheet` (a development composition, no baseline) renders every pose and
+  every expression on one frame. A character fails differently from a figure:
+  the artwork is somebody else's and always renders, so the failures are ones
+  only an eye catches — a head drifted off the hand resting against it, a pose
+  clipped by its frame, a face saying something other than the word it is filed
+  under. It is also what caught the poop emoji drawn on the laptop lid of the
+  `Geek` bust, which is why there is no `typing` pose.
 
 - **`story`** (`snippet_story.go`) — the long one: a directed piece of one to
   two minutes, staged shot by shot. Eight to fourteen beats, its own 90-second
@@ -605,9 +768,34 @@ than a dirty flag — so browsing keeps swapping the demo, and one typed
 character makes the box theirs. A Go test fails if a registered template has no
 preview.
 
-- **`data`** (`snippet_data.go`) — real numbers on one chart or world map. Four
-  kinds: `bars` (horizontal, the only orientation where a real label fits
-  unrotated), `line`, `donut`, and `map`.
+- **`data`** (`snippet_data.go`) — real numbers on one chart or world map.
+  Thirteen kinds, because the shape of a dataset is not a style choice: parts of
+  a whole, a value over a sequence, and two variables against each other are
+  three different claims, and drawing any of them as bars states the wrong one.
+
+  One number per label: `bars` (horizontal, the only orientation where a real
+  label fits unrotated), `line`, `area`, `donut`, `waffle`, `treemap`, `funnel`,
+  `gauge`, `kpi`, `map`. Several numbers per label, declared as named `series`:
+  `stackedbars`, `groupedbars`, `scatter`. `series` means the *parts* of a label
+  on the bar kinds and the two *axes* on a scatter — one field rather than two,
+  because both are "one number per named dimension".
+
+  Every kind is written against one context object, which is what keeps thirteen
+  of them honest with each other: `dim`, `tint` and `grow` are computed once, so
+  a highlight looks the same on a treemap tile, a scatter dot and a country. A
+  kind that had to invent its own idea of emphasis would be a second design
+  sharing a file with the first.
+
+  What each kind is allowed to claim is checked, not suggested. A `funnel` whose
+  values rise is rejected — drawn from data that widens it is a picture of a
+  funnel with numbers written on it, which is worse than no chart because it
+  looks like it means something. `donut` and `waffle` must total above zero,
+  since both assert their values are shares of one thing. Several kinds cap
+  points below the shared ceiling (5 for `waffle`, `gauge` and `kpi`, 6 for
+  `funnel` and `groupedbars`, 8 for `treemap`) because the drawing runs out of
+  room before the reader does. And a point whose `values` row is short of the
+  declared series is an error rather than a pad: a stacked bar missing its third
+  segment renders perfectly and states a total that is not the total.
 
   The chart is declared **once for the whole clip** and the beats only move the
   *emphasis* around it. A chart per beat was the obvious alternative and it

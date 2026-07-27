@@ -287,7 +287,7 @@ const castVizProps: LessonVideoProps = {
       props: {
         headline: 'Nobody reads a five hundred line diff',
         caption: 'It sits for three days and gets a thumbs up nobody means.',
-        pose: 'defeated',
+        pose: 'idle',
         prevPose: 'idle',
         expression: 'concerned',
         flip: false,
@@ -300,7 +300,7 @@ const castVizProps: LessonVideoProps = {
       props: {
         headline: 'The size is the problem',
         caption: 'Reviewers lose the thread by the second file.',
-        pose: 'think',
+        pose: 'shrug',
         prevPose: 'defeated',
         expression: 'thinking',
         prop: 'stack',
@@ -328,7 +328,7 @@ const castVizProps: LessonVideoProps = {
       props: {
         headline: 'Faster, and actually reviewed',
         caption: 'Real comments instead of a rubber stamp.',
-        pose: 'celebrate',
+        pose: 'confident',
         prevPose: 'point',
         expression: 'happy',
         flip: true,
@@ -356,7 +356,7 @@ const storyVizProps: LessonVideoProps = {
         caption: 'Ten million rows, one at a time.',
         staging: 'duo',
         camera: 'push',
-        pose: 'defeated',
+        pose: 'idle',
         prevPose: 'idle',
         expression: 'concerned',
         prop: 'stack',
@@ -416,7 +416,7 @@ const storyVizProps: LessonVideoProps = {
         caption: 'The order has to be maintained on the way in.',
         staging: 'duo',
         camera: 'drift',
-        pose: 'think',
+        pose: 'shrug',
         prevPose: 'point',
         expression: 'thinking',
         prop: 'gears',
@@ -441,115 +441,239 @@ const storyVizProps: LessonVideoProps = {
 };
 
 // A demo of the data scene, so `remotion still DataViz` renders it standalone.
-// The world map, because it is the kind with an external dependency (the atlas)
-// and the one whose failure mode — a country that silently does not appear —
-// only shows up in a render.
+//
+// Every kind in the vocabulary, six seconds each, rather than a hand-picked
+// few. Thirteen kinds share one context object and one idea of what a
+// highlight looks like (DataScene.tsx), and the way that stops being true is
+// one kind quietly growing its own layout — which nothing catches except
+// looking at all of them next to each other.
+const dataChartDemos: {kind: string; title: string; unit: string; series?: string[]; points: {label: string; value?: number; values?: number[]}[]}[] = [
+  {
+    kind: 'bars',
+    title: 'Where the time actually goes',
+    unit: 'ms',
+    points: [
+      {label: 'Database', value: 412},
+      {label: 'Template render', value: 96},
+      {label: 'Auth check', value: 41},
+      {label: 'Serialization', value: 28},
+      {label: 'Routing', value: 9},
+    ],
+  },
+  {
+    kind: 'stackedbars',
+    title: 'What each request spends',
+    unit: 'ms',
+    series: ['Database', 'Render', 'Network'],
+    points: [
+      {label: 'Search', values: [310, 84, 40]},
+      {label: 'Checkout', values: [120, 210, 66]},
+      {label: 'Home', values: [40, 66, 22]},
+      {label: 'Profile', values: [88, 40, 18]},
+    ],
+  },
+  {
+    kind: 'groupedbars',
+    title: 'Before and after the cache',
+    unit: 'ms',
+    series: ['Before', 'After'],
+    points: [
+      {label: 'Search', values: [310, 96]},
+      {label: 'Checkout', values: [420, 180]},
+      {label: 'Home', values: [140, 44]},
+    ],
+  },
+  {
+    kind: 'line',
+    title: 'Build time, release by release',
+    unit: 's',
+    points: [
+      {label: 'v1.0', value: 42},
+      {label: 'v1.4', value: 61},
+      {label: 'v2.0', value: 128},
+      {label: 'v2.3', value: 96},
+      {label: 'v3.0', value: 38},
+    ],
+  },
+  {
+    kind: 'area',
+    title: 'Storage used, month by month',
+    unit: 'GB',
+    points: [
+      {label: 'Jan', value: 120},
+      {label: 'Mar', value: 180},
+      {label: 'May', value: 340},
+      {label: 'Jul', value: 520},
+      {label: 'Sep', value: 610},
+    ],
+  },
+  {
+    kind: 'scatter',
+    title: 'Team size against shipping',
+    unit: '',
+    series: ['Team size', 'Deploys per week'],
+    points: [
+      {label: 'Payments', values: [6, 22]},
+      {label: 'Search', values: [14, 9]},
+      {label: 'Growth', values: [4, 31]},
+      {label: 'Platform', values: [11, 14]},
+      {label: 'Mobile', values: [8, 6]},
+    ],
+  },
+  {
+    kind: 'donut',
+    title: 'What the bundle is made of',
+    unit: 'kB',
+    points: [
+      {label: 'Dependencies', value: 540},
+      {label: 'Application', value: 180},
+      {label: 'Polyfills', value: 96},
+      {label: 'Styles', value: 44},
+    ],
+  },
+  {
+    kind: 'waffle',
+    title: 'Who finishes the tutorial',
+    unit: '%',
+    points: [
+      {label: 'Finished', value: 34},
+      {label: 'Stopped early', value: 47},
+      {label: 'Never started', value: 19},
+    ],
+  },
+  {
+    kind: 'gauge',
+    title: 'How full each disk is',
+    unit: '%',
+    points: [
+      {label: 'Primary', value: 88},
+      {label: 'Replica', value: 61},
+      {label: 'Archive', value: 24},
+    ],
+  },
+  {
+    kind: 'treemap',
+    title: 'Every megabyte we ship',
+    unit: 'kB',
+    points: [
+      {label: 'React', value: 142},
+      {label: 'Charts', value: 96},
+      {label: 'Icons', value: 62},
+      {label: 'Date maths', value: 44},
+      {label: 'Analytics', value: 28},
+      {label: 'Our code', value: 210},
+    ],
+  },
+  {
+    kind: 'funnel',
+    title: 'From visit to purchase',
+    unit: '',
+    points: [
+      {label: 'Visited', value: 10000},
+      {label: 'Signed up', value: 3200},
+      {label: 'Added to cart', value: 940},
+      {label: 'Paid', value: 310},
+    ],
+  },
+  {
+    kind: 'kpi',
+    title: 'The quarter in three numbers',
+    unit: '',
+    points: [
+      {label: 'Deploys per day', value: 41},
+      {label: 'Median review, hours', value: 3.5},
+      {label: 'Rollbacks', value: 2},
+    ],
+  },
+  {
+    kind: 'map',
+    title: 'Where the cables land',
+    unit: '',
+    points: [
+      {label: 'United States of America', value: 88},
+      {label: 'United Kingdom', value: 61},
+      {label: 'Japan', value: 47},
+      {label: 'Brazil', value: 26},
+      {label: 'India', value: 35},
+      {label: 'Australia', value: 18},
+    ],
+  },
+];
+
+const DATA_DEMO_MS = 6000;
+
 const dataVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
-  durationMs: 32000,
+  durationMs: dataChartDemos.length * DATA_DEMO_MS,
+  scenes: dataChartDemos.map((demo, i) => {
+    const startMs = i * DATA_DEMO_MS;
+    const endMs = startMs + DATA_DEMO_MS;
+    // The last two points are lit halfway through, so every kind is seen both
+    // at rest and under a highlight.
+    const litFrom = startMs + DATA_DEMO_MS / 2;
+    return {
+      type: 'data',
+      startMs,
+      endMs,
+      props: {
+        title: demo.title,
+        kind: demo.kind,
+        unit: demo.unit,
+        ...(demo.series ? {series: demo.series} : {}),
+        points: demo.points.map((p) => ({
+          label: p.label,
+          value: p.values ? p.values.reduce((a, b) => a + b, 0) : (p.value ?? 0),
+          ...(p.values ? {values: p.values} : {}),
+        })),
+        highlight: [
+          {startMs: litFrom, endMs, labels: demo.points.slice(-2).map((p) => p.label)},
+        ],
+        captions: [
+          {startMs, endMs: litFrom, text: `Kind: ${demo.kind}. Nothing highlighted yet.`},
+          {startMs: litFrom, endMs, text: `Kind: ${demo.kind}. The last two points are lit.`},
+        ],
+      },
+    };
+  }),
+  captions: [],
+};
+
+// A demo of the workspace scene, so `remotion still WorkspaceViz` renders it
+// standalone. The output below is what this program really prints — the plan
+// stage runs the file set through the sandbox, so a fixture that lied about it
+// would be lying about the one thing this template guarantees.
+const workspaceVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 24000,
   scenes: [
     {
-      type: 'data',
+      type: 'workspace',
       startMs: 0,
-      endMs: 8000,
-      props: {
-        title: 'Where the time actually goes',
-        kind: 'bars',
-        unit: 'ms',
-        points: [
-          {label: 'Database', value: 412},
-          {label: 'Template render', value: 96},
-          {label: 'Auth check', value: 41},
-          {label: 'Serialization', value: 28},
-          {label: 'Routing', value: 9},
-        ],
-        highlight: [
-          {startMs: 2500, endMs: 5500, labels: ['Database']},
-          {startMs: 5500, endMs: 8000, labels: ['Routing', 'Serialization']},
-        ],
-        captions: [
-          {startMs: 0, endMs: 2500, text: 'A single request, broken down by where the milliseconds land.'},
-          {startMs: 2500, endMs: 5500, text: 'One line of the trace is four fifths of the wait.'},
-          {startMs: 5500, endMs: 8000, text: 'Everything people usually optimise is down here.'},
-        ],
-      },
-    },
-    {
-      type: 'data',
-      startMs: 8000,
-      endMs: 16000,
-      props: {
-        title: 'Latency after the index',
-        kind: 'line',
-        unit: 'ms',
-        points: [
-          {label: 'Mon', value: 412},
-          {label: 'Tue', value: 388},
-          {label: 'Wed', value: 121},
-          {label: 'Thu', value: 44},
-          {label: 'Fri', value: 39},
-        ],
-        highlight: [
-          {startMs: 10500, endMs: 13500, labels: ['Wed']},
-          {startMs: 13500, endMs: 16000, labels: ['Fri']},
-        ],
-        captions: [
-          {startMs: 8000, endMs: 10500, text: 'Five days of the same endpoint.'},
-          {startMs: 10500, endMs: 13500, text: 'The index shipped on Wednesday morning.'},
-          {startMs: 13500, endMs: 16000, text: 'It has not drifted back since.'},
-        ],
-      },
-    },
-    {
-      type: 'data',
-      startMs: 16000,
       endMs: 24000,
       props: {
-        title: 'What the cache holds',
-        kind: 'donut',
-        unit: '%',
-        points: [
-          {label: 'Session data', value: 46},
-          {label: 'Rendered pages', value: 28},
-          {label: 'Query results', value: 19},
-          {label: 'Everything else', value: 7},
+        title: 'Share one function across files',
+        project: 'greet',
+        entry: 'main.py',
+        command: 'python3 main.py',
+        output: 'Hello, Ada!\nHello, Alan!',
+        files: [
+          {path: 'greet.py', code: 'def hello(who):\n    return f"Hello, {who}!"\n'},
+          {
+            path: 'main.py',
+            code: 'from greet import hello\n\nfor name in ["Ada", "Alan"]:\n    print(hello(name))\n',
+          },
         ],
-        highlight: [
-          {startMs: 18500, endMs: 21500, labels: ['Session data']},
-          {startMs: 21500, endMs: 24000, labels: ['Query results']},
-        ],
-        captions: [
-          {startMs: 16000, endMs: 18500, text: 'Every byte in the cache, by what put it there.'},
-          {startMs: 18500, endMs: 21500, text: 'Sessions are half of it and nobody planned that.'},
-          {startMs: 21500, endMs: 24000, text: 'The part you meant to cache is a fifth.'},
-        ],
-      },
-    },
-    {
-      type: 'data',
-      startMs: 24000,
-      endMs: 32000,
-      props: {
-        title: 'Where the cables land',
-        kind: 'map',
-        unit: '',
-        points: [
-          {label: 'United States of America', value: 88},
-          {label: 'United Kingdom', value: 61},
-          {label: 'Japan', value: 47},
-          {label: 'Brazil', value: 26},
-          {label: 'India', value: 35},
-          {label: 'Australia', value: 18},
-        ],
-        highlight: [
-          {startMs: 26500, endMs: 29500, labels: ['United States of America', 'United Kingdom']},
-          {startMs: 29500, endMs: 32000, labels: ['India', 'Japan']},
-        ],
-        captions: [
-          {startMs: 24000, endMs: 26500, text: 'Every continent is joined by fewer cables than you would guess.'},
-          {startMs: 26500, endMs: 29500, text: 'Two landing points carry most of the Atlantic.'},
-          {startMs: 29500, endMs: 32000, text: 'The Pacific side is growing fastest.'},
+        steps: [
+          {startMs: 0, endMs: 5000, file: 'greet.py', through: 0, focus: 'tree', run: false,
+           caption: 'Start with the piece you want to reuse.'},
+          {startMs: 5000, endMs: 10000, file: 'greet.py', through: 0, focus: 'code', run: false},
+          {startMs: 10000, endMs: 14000, file: 'main.py', through: 1, focus: 'tabs', run: false,
+           caption: 'One line, and the function is here.'},
+          {startMs: 14000, endMs: 19000, file: 'main.py', through: 0, focus: 'code', run: false},
+          {startMs: 19000, endMs: 24000, file: 'main.py', through: 0, focus: 'terminal', run: true,
+           caption: 'The output is real — this actually ran.'},
         ],
       },
     },
@@ -558,16 +682,18 @@ const dataVizProps: LessonVideoProps = {
 };
 
 // A demo of the VS Code walkthrough scene, so `remotion still VSCodeViz`
-// renders it standalone.
+// renders it standalone. There is a light-mode twin below: the editor carries
+// its own palette rather than the design system's, so it is the one scene where
+// "does light mode work" cannot be inferred from any other composition.
 const vscodeVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
-  durationMs: 12000,
+  durationMs: 18000,
   scenes: [
     {
       type: 'walkthrough',
       startMs: 0,
-      endMs: 12000,
+      endMs: 18000,
       props: {
         title: 'Build the greeting step by step',
         file: 'greeting.py',
@@ -578,12 +704,29 @@ const vscodeVizProps: LessonVideoProps = {
           {code: 'name = "Ada"\nprint("Hello, " + name)', atMs: 0},
           {code: 'name = "Ada"\n\ndef greet(who):\n    return "Hello, " + who\n\nprint(greet(name))', atMs: 5000},
           {code: 'name = "Ada"\n\ndef greet(who, excited=False):\n    suffix = "!" if excited else "."\n    return "Hello, " + who + suffix\n\nprint(greet(name, excited=True))', atMs: 9000},
+          // The run step. Without one in the demo the terminal drawer — the
+          // half of this template that shows the code actually doing something
+          // — had no composition and no baseline, so a regression in it could
+          // only be found by watching a real clip.
+          {
+            code: 'name = "Ada"\n\ndef greet(who, excited=False):\n    suffix = "!" if excited else "."\n    return "Hello, " + who + suffix\n\nprint(greet(name, excited=True))',
+            atMs: 13000,
+            run: true,
+            command: 'python3 greeting.py',
+            output: 'Hello, Ada!',
+          },
         ],
       },
     },
   ],
   captions: [],
 };
+
+const vscodeLightProps: LessonVideoProps = {
+  ...vscodeVizProps,
+  theme: {...illustrationLightProps.theme},
+};
+
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -621,17 +764,35 @@ export const RemotionRoot: React.FC = () => {
       id="FigureSheet"
       component={FigureSheet}
       fps={FPS}
-      width={1400}
-      height={1120}
+      width={1700}
+      height={1800}
       durationInFrames={300}
     />
     <Composition
       id="CastSheet"
       component={CastSheet}
       fps={FPS}
-      width={1000}
-      height={1300}
+      width={1600}
+      height={1360}
       durationInFrames={300}
+    />
+    <Composition
+      id="WorkspaceViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(workspaceVizProps.durationMs)}
+      defaultProps={workspaceVizProps}
+    />
+    <Composition
+      id="VSCodeLightViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(vscodeLightProps.durationMs)}
+      defaultProps={vscodeLightProps}
     />
     <Composition
       id="IllustrationViz"

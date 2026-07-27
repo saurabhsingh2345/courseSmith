@@ -27,12 +27,13 @@ const OUT = join(__dirname, "..", "studio", "public", "template-previews");
 // different vocabularies and guessing between them would break silently.
 const SOURCES = {
   vscode: "VSCodeViz-200",
+  workspace: "WorkspaceViz-690",
   whiteboard: "WhiteboardViz-390",
   flow: "FlowViz-400",
   illustration: "IllustrationViz-250",
   cast: "CastViz-200",
   story: "StoryViz-340",
-  data: "DataViz-830",
+  data: "DataViz-2250",
 };
 
 // 480x270 is 2x a card at its widest, so it stays crisp on a retina display
