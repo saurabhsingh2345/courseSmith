@@ -32,6 +32,7 @@ const SOURCES = {
   illustration: "IllustrationViz-250",
   cast: "CastViz-200",
   story: "StoryViz-340",
+  data: "DataViz-830",
 };
 
 // 480x270 is 2x a card at its widest, so it stays crisp on a retina display

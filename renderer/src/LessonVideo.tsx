@@ -18,6 +18,7 @@ import {FlowScene} from './components/FlowScene';
 import {IllustrationScene} from './components/IllustrationScene';
 import {CastScene} from './components/CastScene';
 import {StoryScene} from './components/StoryScene';
+import {DataScene} from './components/DataScene';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
 import {resolveMotion, secondsToFrames} from './theme/motion';
@@ -87,6 +88,8 @@ const sceneContent = (
       return <CastScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'story':
       return <StoryScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'data':
+      return <DataScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       return null;
   }

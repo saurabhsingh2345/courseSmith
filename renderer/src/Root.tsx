@@ -440,6 +440,123 @@ const storyVizProps: LessonVideoProps = {
   captions: [],
 };
 
+// A demo of the data scene, so `remotion still DataViz` renders it standalone.
+// The world map, because it is the kind with an external dependency (the atlas)
+// and the one whose failure mode — a country that silently does not appear —
+// only shows up in a render.
+const dataVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 32000,
+  scenes: [
+    {
+      type: 'data',
+      startMs: 0,
+      endMs: 8000,
+      props: {
+        title: 'Where the time actually goes',
+        kind: 'bars',
+        unit: 'ms',
+        points: [
+          {label: 'Database', value: 412},
+          {label: 'Template render', value: 96},
+          {label: 'Auth check', value: 41},
+          {label: 'Serialization', value: 28},
+          {label: 'Routing', value: 9},
+        ],
+        highlight: [
+          {startMs: 2500, endMs: 5500, labels: ['Database']},
+          {startMs: 5500, endMs: 8000, labels: ['Routing', 'Serialization']},
+        ],
+        captions: [
+          {startMs: 0, endMs: 2500, text: 'A single request, broken down by where the milliseconds land.'},
+          {startMs: 2500, endMs: 5500, text: 'One line of the trace is four fifths of the wait.'},
+          {startMs: 5500, endMs: 8000, text: 'Everything people usually optimise is down here.'},
+        ],
+      },
+    },
+    {
+      type: 'data',
+      startMs: 8000,
+      endMs: 16000,
+      props: {
+        title: 'Latency after the index',
+        kind: 'line',
+        unit: 'ms',
+        points: [
+          {label: 'Mon', value: 412},
+          {label: 'Tue', value: 388},
+          {label: 'Wed', value: 121},
+          {label: 'Thu', value: 44},
+          {label: 'Fri', value: 39},
+        ],
+        highlight: [
+          {startMs: 10500, endMs: 13500, labels: ['Wed']},
+          {startMs: 13500, endMs: 16000, labels: ['Fri']},
+        ],
+        captions: [
+          {startMs: 8000, endMs: 10500, text: 'Five days of the same endpoint.'},
+          {startMs: 10500, endMs: 13500, text: 'The index shipped on Wednesday morning.'},
+          {startMs: 13500, endMs: 16000, text: 'It has not drifted back since.'},
+        ],
+      },
+    },
+    {
+      type: 'data',
+      startMs: 16000,
+      endMs: 24000,
+      props: {
+        title: 'What the cache holds',
+        kind: 'donut',
+        unit: '%',
+        points: [
+          {label: 'Session data', value: 46},
+          {label: 'Rendered pages', value: 28},
+          {label: 'Query results', value: 19},
+          {label: 'Everything else', value: 7},
+        ],
+        highlight: [
+          {startMs: 18500, endMs: 21500, labels: ['Session data']},
+          {startMs: 21500, endMs: 24000, labels: ['Query results']},
+        ],
+        captions: [
+          {startMs: 16000, endMs: 18500, text: 'Every byte in the cache, by what put it there.'},
+          {startMs: 18500, endMs: 21500, text: 'Sessions are half of it and nobody planned that.'},
+          {startMs: 21500, endMs: 24000, text: 'The part you meant to cache is a fifth.'},
+        ],
+      },
+    },
+    {
+      type: 'data',
+      startMs: 24000,
+      endMs: 32000,
+      props: {
+        title: 'Where the cables land',
+        kind: 'map',
+        unit: '',
+        points: [
+          {label: 'United States of America', value: 88},
+          {label: 'United Kingdom', value: 61},
+          {label: 'Japan', value: 47},
+          {label: 'Brazil', value: 26},
+          {label: 'India', value: 35},
+          {label: 'Australia', value: 18},
+        ],
+        highlight: [
+          {startMs: 26500, endMs: 29500, labels: ['United States of America', 'United Kingdom']},
+          {startMs: 29500, endMs: 32000, labels: ['India', 'Japan']},
+        ],
+        captions: [
+          {startMs: 24000, endMs: 26500, text: 'Every continent is joined by fewer cables than you would guess.'},
+          {startMs: 26500, endMs: 29500, text: 'Two landing points carry most of the Atlantic.'},
+          {startMs: 29500, endMs: 32000, text: 'The Pacific side is growing fastest.'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 // A demo of the VS Code walkthrough scene, so `remotion still VSCodeViz`
 // renders it standalone.
 const vscodeVizProps: LessonVideoProps = {
@@ -551,6 +668,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(storyVizProps.durationMs)}
       defaultProps={storyVizProps}
+    />
+    <Composition
+      id="DataViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(dataVizProps.durationMs)}
+      defaultProps={dataVizProps}
     />
     <Composition
       id="PointsViz"

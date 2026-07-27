@@ -277,6 +277,7 @@ type beatFields struct {
 	Art    bool
 	Cast   bool
 	Shot   bool
+	Data   bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -301,6 +302,8 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "cast"
 		case !owned.Shot && b.Shot != nil:
 			set = "shot"
+		case !owned.Data && b.Data != nil:
+			set = "data"
 		default:
 			continue
 		}
