@@ -235,6 +235,43 @@ const illustrationVizProps: LessonVideoProps = {
   captions: [],
 };
 
+// The same illustration clip in light mode, with the tokens Go derives for
+// style.mode: light. It has its own baseline because light mode is the branch
+// nobody's default config exercises — every scene that quietly assumed a dark
+// stage looks fine until this frame is rendered.
+const illustrationLightProps: LessonVideoProps = {
+  ...illustrationVizProps,
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    mode: 'light',
+    bgTop: '#fafbfc',
+    bgBottom: '#ebeef4',
+    surface: '#ffffff',
+    surfaceBorder: '#d3dce3',
+    text: '#13222f',
+    textMuted: '#4b6071',
+    mass: '#8ea2b4',
+    ink: '#1c354a',
+    accentText: '#8d6e00',
+    grain: 0.01,
+  },
+  // Captions on, so the panel that used to be a hardcoded near-black slab is
+  // actually in frame.
+  captions: [
+    {word: 'Your', startMs: 200, endMs: 500},
+    {word: 'app', startMs: 500, endMs: 800},
+    {word: 'is', startMs: 800, endMs: 1000},
+    {word: 'doing', startMs: 1000, endMs: 1400},
+    {word: 'the', startMs: 1400, endMs: 1600},
+    {word: 'same', startMs: 1600, endMs: 2000},
+    {word: 'work', startMs: 2000, endMs: 2400},
+    {word: 'twice', startMs: 2400, endMs: 3000},
+  ],
+};
+
 // A demo of the VS Code walkthrough scene, so `remotion still VSCodeViz`
 // renders it standalone.
 const vscodeVizProps: LessonVideoProps = {
@@ -311,6 +348,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(illustrationVizProps.durationMs)}
       defaultProps={illustrationVizProps}
+    />
+    <Composition
+      id="IllustrationLightViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(illustrationLightProps.durationMs)}
+      defaultProps={illustrationLightProps}
     />
     <Composition
       id="PointsViz"

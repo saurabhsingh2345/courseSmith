@@ -163,13 +163,22 @@ export const FlowScene: React.FC<{
               every node is the same flat fill and the only thing separating a
               lit node from a dim one is its border colour. */}
           <filter id="flow-elev" x="-25%" y="-25%" width="150%" height="150%">
-            <feDropShadow dx="0" dy="10" stdDeviation="14" floodColor="#04070d" floodOpacity="0.55" />
+            <feDropShadow
+              dx="0"
+              dy="10"
+              stdDeviation="14"
+              floodColor={theme.ink}
+              floodOpacity={theme.mode === 'light' ? 0.18 : 0.55}
+            />
           </filter>
-          {/* Top-edge light, so a box has a lit face rather than a flat one. */}
+          {/* Top-edge light, so a box has a lit face rather than a flat one.
+              On paper the card is already lighter than the stage, so the same
+              white wash flattens it — the light mode leans on the shadow for
+              elevation and only shades the bottom edge. */}
           <linearGradient id="flow-sheen" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.07" />
-            <stop offset="55%" stopColor="#ffffff" stopOpacity="0.015" />
-            <stop offset="100%" stopColor="#000000" stopOpacity="0.06" />
+            <stop offset="0%" stopColor="#ffffff" stopOpacity={theme.mode === 'light' ? 0 : 0.07} />
+            <stop offset="55%" stopColor="#ffffff" stopOpacity={theme.mode === 'light' ? 0 : 0.015} />
+            <stop offset="100%" stopColor={theme.ink} stopOpacity={theme.mode === 'light' ? 0.04 : 0.06} />
           </linearGradient>
         </defs>
 

@@ -9,7 +9,7 @@ import (
 )
 
 func d2TestTheme() SceneTheme {
-	return deriveVideoTheme(config.Colors{Primary: "#2563eb", Accent: "#f5b841", Background: "#f8fafc"}, config.Fonts{}, "test")
+	return deriveVideoTheme(config.Colors{Primary: "#2563eb", Accent: "#f5b841", Background: "#f8fafc"}, config.Fonts{}, "test", "")
 }
 
 func TestCompileD2ProducesSVG(t *testing.T) {

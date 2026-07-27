@@ -267,6 +267,10 @@ export interface components {
             code_language?: string;
             voice?: string;
             plan_only?: boolean;
+            /** @enum {string} */
+            captions?: "on" | "off";
+            /** @enum {string} */
+            mode?: "dark" | "light";
         };
         CreateSnippetResponse: components["schemas"]["SnippetSummary"] & {
             run_id?: string;

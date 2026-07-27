@@ -67,6 +67,8 @@ func newSnippetNewCmd() *cobra.Command {
 		codeLang    string
 		voice       string
 		model       string
+		captions    string
+		mode        string
 		planOnly    bool
 		concurrency int
 	)
@@ -90,6 +92,14 @@ func newSnippetNewCmd() *cobra.Command {
 			}
 			if model != "" {
 				spec.Config.Pipeline.LLMContent = model
+			}
+			// Both ride the ordinary per-snippet config override, so they layer
+			// over the snippets course the same way the voice does.
+			if captions != "" {
+				spec.Config.Style.Captions = captions
+			}
+			if mode != "" {
+				spec.Config.Style.Mode = mode
 			}
 			course, lesson, err := pipeline.CreateSnippet(".", spec)
 			if err != nil {
@@ -121,6 +131,8 @@ func newSnippetNewCmd() *cobra.Command {
 	cmd.Flags().StringVar(&codeLang, "code-language", "", "programming language for code templates (default python)")
 	cmd.Flags().StringVar(&voice, "voice", "", "TTS voice id (default: the snippets course voice)")
 	cmd.Flags().StringVar(&model, "model", "", "planning model as provider/model, e.g. openai/gpt-4o-mini (default: the course's llm_content)")
+	cmd.Flags().StringVar(&captions, "captions", "", "burn the caption track into the video: on | off (default: the snippets course setting)")
+	cmd.Flags().StringVar(&mode, "mode", "", "light or dark video (default dark)")
 	cmd.Flags().BoolVar(&planOnly, "plan-only", false, "stop after planning; do not synthesize or render")
 	cmd.Flags().IntVar(&concurrency, "concurrency", 0, "parallel browser tabs for the Remotion render (0 = auto)")
 	_ = cmd.MarkFlagRequired("template")

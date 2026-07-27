@@ -87,8 +87,12 @@ export const CaptionTrack: React.FC<{
       <div
         style={{
           marginBottom: 64,
-          backgroundColor: 'rgba(6, 10, 18, 0.72)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
+          // The caption panel is glass over whatever the stage is, so both its
+          // fill and its hairline come from the mode's own tokens. Hardcoding
+          // a near-black pill put a dark slab across the bottom of every
+          // paper-mode frame.
+          backgroundColor: theme.mode === 'light' ? `${theme.surface}e6` : `${theme.ink}b8`,
+          border: `1px solid ${theme.mode === 'light' ? `${theme.ink}1f` : `${theme.text}14`}`,
           backdropFilter: 'blur(12px)',
           borderRadius: 18,
           padding: '20px 40px',
@@ -119,12 +123,12 @@ export const CaptionTrack: React.FC<{
           });
           const scale = active ? 1 + 0.06 * wordSpring : 1;
           const color = isKey
-            ? theme.accent
+            ? theme.accentText
             : active
-              ? theme.accent
+              ? theme.accentText
               : spoken
-                ? '#f6f8fc'
-                : 'rgba(220, 228, 240, 0.62)';
+                ? theme.text
+                : `${theme.textMuted}9e`;
           return (
             <span
               key={w.index}
@@ -137,7 +141,9 @@ export const CaptionTrack: React.FC<{
                 display: 'inline-block',
                 transform: `scale(${scale})`,
                 transformOrigin: 'center bottom',
-                textShadow: '0 2px 14px rgba(0,0,0,0.45)',
+                // Lift off the glass on the dark stage; on paper the same
+                // shadow only smudges dark text.
+                textShadow: theme.mode === 'light' ? 'none' : '0 2px 14px rgba(0,0,0,0.45)',
               }}
             >
               {w.word}

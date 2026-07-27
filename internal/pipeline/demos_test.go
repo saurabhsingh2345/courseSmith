@@ -117,7 +117,7 @@ func TestLintTapeBody(t *testing.T) {
 }
 
 func TestTapeHeader(t *testing.T) {
-	theme := deriveVideoTheme(config.Colors{Primary: "#306998", Accent: "#ffd43b", Background: "#ffffff"}, config.Fonts{}, "t")
+	theme := deriveVideoTheme(config.Colors{Primary: "#306998", Accent: "#ffd43b", Background: "#ffffff"}, config.Fonts{}, "t", "")
 	h := tapeHeader("demo-1", theme)
 	for _, want := range []string{
 		"Output demos/demo-1.mp4",

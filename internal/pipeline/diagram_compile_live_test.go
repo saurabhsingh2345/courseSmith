@@ -29,7 +29,7 @@ func TestRenderMermaidLive(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), 90*time.Second)
 	defer cancel()
 
-	theme := deriveVideoTheme(config.Colors{Primary: "#2563eb", Accent: "#f5b841", Background: "#f8fafc"}, config.Fonts{}, "live")
+	theme := deriveVideoTheme(config.Colors{Primary: "#2563eb", Accent: "#f5b841", Background: "#f8fafc"}, config.Fonts{}, "live", "")
 	svg, err := r.RenderMermaid(ctx, "flowchart TD\n  A[Start] --> B{Empty?}\n  B -->|yes| C[Grow]\n  B -->|no| D[Append]", theme)
 	if err != nil {
 		t.Fatalf("RenderMermaid failed: %v", err)
@@ -64,7 +64,7 @@ func TestRenderExcalidrawLive(t *testing.T) {
 	defer cancel()
 
 	sceneJSON, _ := json.Marshal(validScene())
-	theme := deriveVideoTheme(config.Colors{Primary: "#2563eb", Accent: "#f5b841", Background: "#f8fafc"}, config.Fonts{}, "live")
+	theme := deriveVideoTheme(config.Colors{Primary: "#2563eb", Accent: "#f5b841", Background: "#f8fafc"}, config.Fonts{}, "live", "")
 	svg, err := r.RenderExcalidraw(ctx, sceneJSON, theme)
 	if err != nil {
 		t.Fatalf("RenderExcalidraw failed: %v", err)

@@ -98,12 +98,16 @@ export const IllustrationScene: React.FC<{
 
   const words = useMemo(() => headlineWords(headline, emphasis), [headline, emphasis]);
 
+  // Every one of these is a token, and that is the whole of what makes the
+  // figures work in both modes: `mass` flips to a mid-tone on paper so a body
+  // is still a shape, and `ink` stays darker than it so the shaded faces stay
+  // shading rather than becoming highlights.
   const palette: FigurePalette = {
     accent: theme.accent,
     primary: theme.primary,
-    ink: '#0a1220',
-    soft: '#dbe4f2',
-    line: theme.textMuted,
+    ink: theme.ink,
+    soft: theme.mass,
+    line: theme.line,
   };
 
   const figureSize = Math.min(STAGE_W * FIGURE_COL * 0.94, STAGE_H * 0.7, 520);
@@ -200,7 +204,9 @@ export const IllustrationScene: React.FC<{
                 display: 'inline-block',
                 opacity: enter,
                 transform: `translateY(${(1 - enter) * 30}px)`,
-                color: word.mark ? theme.accent : theme.text,
+                // accentText, not accent: the emphasised word IS type, and a
+                // brand yellow set on paper is unreadable.
+                color: word.mark ? theme.accentText : theme.text,
               }}
             >
               {/* A marker stroke swept in under the word, left to right.
@@ -220,7 +226,7 @@ export const IllustrationScene: React.FC<{
                     right: words[i + 1]?.mark ? '-0.34em' : '-0.05em',
                     bottom: '0.06em',
                     height: '0.13em',
-                    background: theme.accent,
+                    background: theme.accentText,
                     opacity: 0.85,
                     borderRadius: 999,
                     transform: `scaleX(${markP})`,

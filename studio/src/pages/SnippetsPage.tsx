@@ -37,6 +37,43 @@ const TARGETS = [
   { sec: 75, label: "~75s", hint: "Walk it through" },
 ];
 
+/**
+ * A segmented control.
+ *
+ * The runtime picker was the only one of these, written inline. Three of them
+ * inline is three places to get the dark-shell colours wrong — and the base
+ * Button's "secondary" variant resolves to the light-mode surface token, so it
+ * renders as a white pill here and cannot be used.
+ */
+function Segmented<T extends string | number>({
+  value,
+  options,
+  onChange,
+}: {
+  value: T;
+  options: { value: T; label: string; hint?: string }[];
+  onChange: (v: T) => void;
+}) {
+  return (
+    <div className="flex rounded-lg border border-ink-800 p-0.5">
+      {options.map((o) => (
+        <button
+          key={String(o.value)}
+          type="button"
+          onClick={() => onChange(o.value)}
+          title={o.hint}
+          className={[
+            "rounded-md px-3 py-1.5 text-[13px] transition-colors",
+            value === o.value ? "bg-ink-800 text-ink-100" : "text-ink-400 hover:text-ink-200",
+          ].join(" ")}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 /** Small monospace chip used for template metadata. */
 function Chip({ children }: { children: React.ReactNode }) {
   return (
@@ -212,6 +249,8 @@ export function SnippetsPage() {
   const [prompt, setPrompt] = useState("");
   const [template, setTemplate] = useState<string | null>(null);
   const [targetSec, setTargetSec] = useState(45);
+  const [captions, setCaptions] = useState<"off" | "on">("off");
+  const [mode, setMode] = useState<"dark" | "light">("dark");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [open, setOpen] = useState<string | null>(null);
@@ -237,6 +276,8 @@ export function SnippetsPage() {
         prompt: text,
         template: chosen,
         target_sec: targetSec,
+        captions,
+        mode,
         plan_only: planOnly,
       });
       setPrompt("");
@@ -290,24 +331,27 @@ export function SnippetsPage() {
         />
 
         <div className="mt-3 flex flex-wrap items-center gap-3">
-          <div className="flex rounded-lg border border-ink-800 p-0.5">
-            {TARGETS.map((t) => (
-              <button
-                key={t.sec}
-                type="button"
-                onClick={() => setTargetSec(t.sec)}
-                title={t.hint}
-                className={[
-                  "rounded-md px-3 py-1.5 text-[13px] transition-colors",
-                  targetSec === t.sec
-                    ? "bg-ink-800 text-ink-100"
-                    : "text-ink-400 hover:text-ink-200",
-                ].join(" ")}
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
+          <Segmented
+            value={targetSec}
+            onChange={setTargetSec}
+            options={TARGETS.map((t) => ({ value: t.sec, label: t.label, hint: t.hint }))}
+          />
+          <Segmented
+            value={mode}
+            onChange={setMode}
+            options={[
+              { value: "dark", label: "Dark", hint: "The default editorial look" },
+              { value: "light", label: "Light", hint: "A paper-white clip, same branding" },
+            ]}
+          />
+          <Segmented
+            value={captions}
+            onChange={setCaptions}
+            options={[
+              { value: "off", label: "No captions", hint: "The .vtt sidecar is still written" },
+              { value: "on", label: "Captions", hint: "Burn the karaoke caption track into the video" },
+            ]}
+          />
 
           <button
             type="button"

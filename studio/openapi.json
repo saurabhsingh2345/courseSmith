@@ -209,7 +209,9 @@
         "properties": {
           "prompt": {"type": "string"}, "template": {"type": "string"}, "title": {"type": "string"},
           "target_sec": {"type": "integer"}, "code_language": {"type": "string"},
-          "voice": {"type": "string"}, "plan_only": {"type": "boolean"}
+          "voice": {"type": "string"}, "plan_only": {"type": "boolean"},
+          "captions": {"type": "string", "enum": ["on", "off"]},
+          "mode": {"type": "string", "enum": ["dark", "light"]}
         },
         "required": ["prompt", "template"]
       },

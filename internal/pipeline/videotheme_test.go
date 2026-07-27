@@ -38,7 +38,7 @@ func TestHexToHSLBadInputDegrades(t *testing.T) {
 
 func TestDeriveVideoTheme(t *testing.T) {
 	colors := config.Colors{Primary: "#306998", Accent: "#ffd43b", Background: "#ffffff"}
-	th := deriveVideoTheme(colors, config.Fonts{}, "Python Basics")
+	th := deriveVideoTheme(colors, config.Fonts{}, "Python Basics", "")
 
 	if th.Primary != "#306998" || th.Accent != "#ffd43b" || th.Background != "#ffffff" {
 		t.Errorf("legacy fields must pass through unchanged: %+v", th)
@@ -79,7 +79,7 @@ func TestDeriveVideoTheme(t *testing.T) {
 }
 
 func TestDeriveVideoThemeFontOverrides(t *testing.T) {
-	th := deriveVideoTheme(config.Colors{Primary: "#2563eb"}, config.Fonts{Display: "Sora", Mono: "Fira Code"}, "C")
+	th := deriveVideoTheme(config.Colors{Primary: "#2563eb"}, config.Fonts{Display: "Sora", Mono: "Fira Code"}, "C", "")
 	if th.FontDisplay != "Sora" {
 		t.Errorf("FontDisplay = %q, want Sora", th.FontDisplay)
 	}

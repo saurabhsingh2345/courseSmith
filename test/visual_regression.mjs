@@ -40,6 +40,10 @@ const TARGETS = [
   // still running — so the frame covers the alternated layout, the marker
   // stroke and an assembled figure at once.
   { id: "IllustrationViz", frame: 250 },
+  // The same shot in light mode, with captions on. Light mode is the branch no
+  // default config exercises, so without a baseline every scene that quietly
+  // assumed a dark stage regresses silently.
+  { id: "IllustrationLightViz", frame: 75 },
   { id: "D3Viz", frame: 130 },
   { id: "MemoryViz", frame: 90 },
   { id: "LessonVideo", frame: 15 },

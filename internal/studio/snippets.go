@@ -66,6 +66,11 @@ type CreateSnippetRequest struct {
 	// CodeLanguage applies to code-bearing templates ("" = python).
 	CodeLanguage string `json:"code_language,omitempty"`
 	Voice        string `json:"voice,omitempty"`
+	// Captions burns the caption track into the video: "on" | "off".
+	// "" takes the snippets course setting.
+	Captions string `json:"captions,omitempty"`
+	// Mode is the video's polarity: "light" | "dark". "" is dark.
+	Mode string `json:"mode,omitempty"`
 	// PlanOnly stops after planning, for reviewing the design before paying
 	// for TTS and a render.
 	PlanOnly bool `json:"plan_only,omitempty"`
@@ -170,9 +175,13 @@ func (s *Server) handleSnippetCreate(w http.ResponseWriter, r *http.Request) {
 		TargetSec:    req.TargetSec,
 		CodeLanguage: req.CodeLanguage,
 	}
-	if req.Voice != "" {
-		spec.Config = config.Config{Style: config.Style{Voice: req.Voice}}
-	}
+	// One assignment rather than three: building the override per-field
+	// overwrote whichever of them was set first.
+	spec.Config = config.Config{Style: config.Style{
+		Voice:    req.Voice,
+		Captions: req.Captions,
+		Mode:     req.Mode,
+	}}
 	if err := spec.Validate(); err != nil {
 		writeError(w, http.StatusBadRequest, err)
 		return

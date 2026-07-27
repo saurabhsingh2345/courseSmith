@@ -123,6 +123,18 @@ type SceneTheme struct {
 	SurfaceBorder string  `json:"surfaceBorder,omitempty"` // card hairline
 	Text          string  `json:"text,omitempty"`          // main text on bg
 	TextMuted     string  `json:"textMuted,omitempty"`     // secondary text
+	// Mass is the body fill of drawn artwork, and Ink is the shading laid over
+	// a mass to give it a lit and an unlit face. They are a pair and they flip
+	// together: on the dark stage a mass is near-white, on paper it is a
+	// mid-tone, and in both cases Ink is darker than Mass so the same shading
+	// code works either way. A figure painted in a literal colour instead of
+	// these is a figure that vanishes in one of the two modes.
+	Mass string `json:"mass,omitempty"`
+	Ink  string `json:"ink,omitempty"`
+	// AccentText is the accent adjusted to be legible as text on this mode's
+	// background. Accent itself stays the brand colour and is what fills and
+	// strokes use; only type takes this one. See readableOn.
+	AccentText string `json:"accentText,omitempty"`
 	FontDisplay   string  `json:"fontDisplay,omitempty"`   // headings
 	FontBody      string  `json:"fontBody,omitempty"`      // body/captions
 	FontMono      string  `json:"fontMono,omitempty"`      // code
@@ -270,7 +282,7 @@ func buildSceneGraph(
 	}
 
 	graph := &SceneGraph{
-		Theme:     deriveVideoTheme(colors, cfg.Branding.Fonts, course.Name),
+		Theme:     deriveVideoTheme(colors, cfg.Branding.Fonts, course.Name, cfg.Style.Mode),
 		Motion:    arch.Motion, // DefaultMotion() + the archetype's philosophy
 		AudioFile: VoiceoverFileName,
 	}

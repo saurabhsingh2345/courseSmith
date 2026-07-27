@@ -47,6 +47,13 @@ type Style struct {
 	// omitempty so the field's introduction doesn't change config
 	// fingerprints recorded before it existed.
 	Captions string `yaml:"captions,omitempty"`
+	// Mode is the video's light/dark polarity: "" or "dark" is the default
+	// editorial look, "light" derives a paper-white counterpart from the same
+	// branding colours. It changes only the derived tokens — every scene reads
+	// those, so no scene knows which mode it is rendering in.
+	// omitempty so the field's introduction doesn't change config
+	// fingerprints recorded before it existed.
+	Mode string `yaml:"mode,omitempty"`
 }
 
 // Audio controls voiceover post-production in the audio stage.
@@ -182,6 +189,9 @@ func Merge(base, over Config) Config {
 	}
 	if over.Style.Captions != "" {
 		out.Style.Captions = over.Style.Captions
+	}
+	if over.Style.Mode != "" {
+		out.Style.Mode = over.Style.Mode
 	}
 	if len(over.Style.Pronunciations) > 0 {
 		merged := make(map[string]string, len(base.Style.Pronunciations)+len(over.Style.Pronunciations))
