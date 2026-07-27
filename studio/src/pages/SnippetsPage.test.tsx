@@ -18,6 +18,8 @@ const TEMPLATES: SnippetTemplateInfo[] = [
     description: "An editor opens, code types itself in, and the terminal runs it for real.",
     example: "How for loops work in Python",
     shows_code: true,
+    min_target_sec: 0,
+    default_target_sec: 0,
   },
   {
     name: "whiteboard",
@@ -25,6 +27,8 @@ const TEMPLATES: SnippetTemplateInfo[] = [
     description: "A hand-drawn board that fills in as you talk.",
     example: "Why HTTP caching matters",
     shows_code: false,
+    min_target_sec: 0,
+    default_target_sec: 0,
   },
 ];
 
@@ -210,4 +214,38 @@ it("sends an edited title, and omits an empty one", async () => {
   fireEvent.click(screen.getByRole("button", { name: "Generate clip" }));
   await waitFor(() => expect(create).toHaveBeenCalledTimes(2));
   expect(create.mock.calls[1][0].title).toBe("My Own Title");
+});
+
+// A template that cannot be short must not be offered a short runtime. Offering
+// one cost a real user three correction rounds and a day's token budget to find
+// out that eight beats do not fit in twenty seconds.
+it("only offers runtimes the chosen template can satisfy", async () => {
+  vi.spyOn(api, "snippetTemplates").mockResolvedValue([
+    ...TEMPLATES,
+    {
+      name: "story",
+      title: "Directed short",
+      description: "A one-to-two-minute piece.",
+      example: "How a database index finds your row",
+      shows_code: false,
+      min_target_sec: 60,
+      default_target_sec: 90,
+    },
+  ]);
+  vi.spyOn(api, "snippets").mockResolvedValue(SNIPPETS);
+  vi.spyOn(api, "runStatus").mockResolvedValue({ running: false });
+
+  renderPage();
+  await screen.findByText("Directed short");
+
+  // The short runtimes are on offer for the default template...
+  expect(screen.queryByRole("button", { name: "~20s" })).toBeTruthy();
+
+  fireEvent.click(screen.getByRole("button", { name: /Directed short/ }));
+
+  // ...and gone once a template that cannot be short is chosen.
+  expect(screen.queryByRole("button", { name: "~20s" })).toBeNull();
+  expect(screen.queryByRole("button", { name: "~45s" })).toBeNull();
+  expect(screen.queryByRole("button", { name: "~75s" })).toBeTruthy();
+  expect(screen.queryByRole("button", { name: "~2 min" })).toBeTruthy();
 });

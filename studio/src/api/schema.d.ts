@@ -245,6 +245,8 @@ export interface components {
             description: string;
             example: string;
             shows_code: boolean;
+            min_target_sec?: number;
+            default_target_sec?: number;
         };
         SnippetSummary: {
             id: string;

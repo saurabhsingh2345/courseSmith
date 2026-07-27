@@ -4,6 +4,7 @@ import {FPS} from '../types';
 import {ResolvedTheme} from '../theme/theme';
 import {FIGURE_BOX, figureFor, type FigurePalette} from './artwork';
 import {CAST_FEET, CAST_VIEW, Character, livePose, poseByName, type CastPalette, type Expression} from './cast';
+import {CAPTION_SAFE, FRAME_H, SAFE_X} from './Stage';
 import {WORLD, camAt, camTransform, parallaxCam} from './camera';
 
 // StoryScene is one shot of a directed piece.
@@ -277,14 +278,23 @@ export const StoryScene: React.FC<{
           </div>
         )}
 
-        {/* Type: a centred lower third, or the middle of the stage when there
-            is nothing else on it. */}
+      </AbsoluteFill>
+
+      {/* Type is a lower third, and a lower third does not ride the camera.
+          Keeping it in world space had it drift and — worse — scale outward
+          under a push, straight through the band the burned-in captions live
+          in. It is frame-space now, inside the caption-safe margin, which is
+          both correct film grammar and the only way it can be guaranteed not
+          to collide. */}
+      <AbsoluteFill style={{pointerEvents: 'none'}}>
         <div
           style={{
             position: 'absolute',
-            left: WORLD.w * 0.1,
-            width: WORLD.w * 0.8,
-            top: plan.typeCentred ? WORLD.h * 0.4 : WORLD.h * BAND.typeY,
+            left: SAFE_X,
+            right: SAFE_X,
+            ...(plan.typeCentred
+              ? {top: '38%'}
+              : {bottom: CAPTION_SAFE + 28}),
             textAlign: 'center',
           }}
         >

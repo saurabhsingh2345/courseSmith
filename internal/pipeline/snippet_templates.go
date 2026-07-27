@@ -44,6 +44,14 @@ type SnippetTemplate struct {
 	// well above the shared one needs its own default, or the standard 45s
 	// budget cannot fund the beats its own validator demands.
 	DefaultTargetSec int
+	// MinTargetSec is the shortest runtime this template can actually satisfy
+	// (0 = the shared floor). A default is a suggestion and callers override it;
+	// this is the arithmetic. `story` needs eight beats, and eight beats of the
+	// ten-word minimum cannot be written inside a twenty-second word budget — so
+	// asking for one is not a plan that comes out badly, it is a plan that
+	// cannot come out at all, and the correction loop burns three rounds and a
+	// token budget discovering that.
+	MinTargetSec int
 
 	// Plan produces the clip's design. Nil uses planSnippetDefault, which
 	// renders PromptFile and decodes a SnippetPlan — enough for every

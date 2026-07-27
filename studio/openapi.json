@@ -185,7 +185,8 @@
         "type": "object",
         "properties": {
           "name": {"type": "string"}, "title": {"type": "string"}, "description": {"type": "string"},
-          "example": {"type": "string"}, "shows_code": {"type": "boolean"}
+          "example": {"type": "string"}, "shows_code": {"type": "boolean"},
+          "min_target_sec": {"type": "integer"}, "default_target_sec": {"type": "integer"}
         },
         "required": ["name", "title", "description", "example", "shows_code"]
       },

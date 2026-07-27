@@ -50,9 +50,12 @@ func init() {
 		// budget eight beats could only be funded by writing every one of them
 		// at the ten-word minimum.
 		DefaultTargetSec: 90,
-		Plan:             planStorySnippet,
-		Validate:         validateStoryPlan,
-		Scenes:           storyScenes,
+		// Eight beats is the floor; at 175 wpm a minute is the least that funds
+		// them at a length worth watching.
+		MinTargetSec: 60,
+		Plan:         planStorySnippet,
+		Validate:     validateStoryPlan,
+		Scenes:       storyScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
 			return map[string]any{
 				"MinStoryBeats": minStoryBeats,

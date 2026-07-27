@@ -31,10 +31,14 @@ const QUIET_BTN = "rounded px-2 py-1 text-ink-500 hover:bg-ink-800 hover:text-in
 
 // Runtimes are targets the plan aims at, not guarantees: the model writes to
 // what the topic needs and can run over, so the labels say "about".
+/** The shared default when a template does not ask for its own. */
+const DEFAULT_TARGET_SEC = 45;
+
 const TARGETS = [
   { sec: 20, label: "~20s", hint: "One idea" },
   { sec: 45, label: "~45s", hint: "Idea + example" },
   { sec: 75, label: "~75s", hint: "Walk it through" },
+  { sec: 120, label: "~2 min", hint: "A directed short with an arc" },
 ];
 
 /**
@@ -267,7 +271,7 @@ export function SnippetsPage() {
   const [prompt, setPrompt] = useState("");
   const [title, setTitle] = useState("");
   const [template, setTemplate] = useState<string | null>(null);
-  const [targetSec, setTargetSec] = useState(45);
+  const [targetSec, setTargetSec] = useState<number | null>(null);
   const [captions, setCaptions] = useState<"off" | "on">("off");
   const [mode, setMode] = useState<"dark" | "light">("dark");
   const [busy, setBusy] = useState(false);
@@ -284,6 +288,29 @@ export function SnippetsPage() {
   // choice the user has no opinion about yet.
   const chosen = template ?? templates.data?.[0]?.name ?? null;
   const chosenTemplate = templates.data?.find((t) => t.name === chosen);
+
+  /**
+   * The runtimes this template can actually satisfy.
+   *
+   * Not every template can be any length. `story` is built from eight or more
+   * beats, so a twenty-second story is not a short clip — it is a plan whose
+   * own rules contradict each other, and it fails after three correction
+   * rounds having spent a chunk of the day's tokens finding out. Offering the
+   * option was the bug; the picker now only shows what the template can do.
+   */
+  const runtimes = TARGETS.filter((t) => t.sec >= (chosenTemplate?.min_target_sec ?? 0));
+  // Prefer the template's own default, then the shared one if this template
+  // can satisfy it, and only then the shortest it can. Falling straight to the
+  // shortest made every template default to the briefest clip it allowed.
+  const fallbackRuntime =
+    chosenTemplate?.default_target_sec ||
+    runtimes.find((t) => t.sec === DEFAULT_TARGET_SEC)?.sec ||
+    runtimes[0]?.sec ||
+    DEFAULT_TARGET_SEC;
+  // An explicit choice wins, but only while it is still valid for the template
+  // the user has since picked.
+  const effectiveTargetSec =
+    targetSec !== null && runtimes.some((t) => t.sec === targetSec) ? targetSec : fallbackRuntime;
 
   /**
    * Picking a template fills the prompt with that template's own example.
@@ -319,13 +346,14 @@ export function SnippetsPage() {
         prompt: text,
         title: title.trim() || undefined,
         template: chosen,
-        target_sec: targetSec,
+        target_sec: effectiveTargetSec,
         captions,
         mode,
         plan_only: planOnly,
       });
       setPrompt("");
       setTitle("");
+      setTargetSec(null);
       setOpen(created.id);
       snippets.reload();
     } catch (err) {
@@ -391,9 +419,19 @@ export function SnippetsPage() {
 
         <div className="mt-3 flex flex-wrap items-center gap-3">
           <Segmented
-            value={targetSec}
+            value={effectiveTargetSec}
             onChange={setTargetSec}
-            options={TARGETS.map((t) => ({ value: t.sec, label: t.label, hint: t.hint }))}
+            options={
+              runtimes.length > 0
+                ? runtimes.map((t) => ({ value: t.sec, label: t.label, hint: t.hint }))
+                : [
+                    {
+                      value: fallbackRuntime,
+                      label: `~${fallbackRuntime}s`,
+                      hint: "This template's own length",
+                    },
+                  ]
+            }
           />
           <Segmented
             value={mode}

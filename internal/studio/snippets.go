@@ -34,6 +34,13 @@ type SnippetTemplateInfo struct {
 	// ShowsCode marks templates whose clips execute code for real, which is
 	// the difference the gallery needs to communicate.
 	ShowsCode bool `json:"shows_code"`
+	// MinTargetSec and DefaultTargetSec are the runtimes this template can
+	// actually satisfy. The picker needs them: `story` is built from eight or
+	// more beats, so a twenty-second story is not a short clip, it is a plan
+	// whose own rules contradict each other. Offering the option at all cost a
+	// user three correction rounds and a day's token budget to find out.
+	MinTargetSec     int `json:"min_target_sec"`
+	DefaultTargetSec int `json:"default_target_sec"`
 }
 
 // SnippetSummary is one row of the snippet list.
@@ -86,11 +93,13 @@ func (s *Server) handleSnippetTemplates(w http.ResponseWriter, _ *http.Request) 
 	out := make([]SnippetTemplateInfo, 0, len(pipeline.SnippetTemplates))
 	for _, t := range pipeline.SnippetTemplateList() {
 		out = append(out, SnippetTemplateInfo{
-			Name:        t.Name,
-			Title:       t.Title,
-			Description: t.Description,
-			Example:     t.Example,
-			ShowsCode:   t.NeedsCode,
+			Name:             t.Name,
+			Title:            t.Title,
+			Description:      t.Description,
+			Example:          t.Example,
+			ShowsCode:        t.NeedsCode,
+			MinTargetSec:     t.MinTargetSec,
+			DefaultTargetSec: t.DefaultTargetSec,
 		})
 	}
 	writeJSON(w, http.StatusOK, out)

@@ -126,6 +126,14 @@ func (s SnippetSpec) Validate() error {
 	if s.TargetSec != 0 && (s.TargetSec < minSnippetTargetSec || s.TargetSec > maxSnippetTargetSec) {
 		return fmt.Errorf("target_sec %d is out of range (%d-%d)", s.TargetSec, minSnippetTargetSec, maxSnippetTargetSec)
 	}
+	// Caught here rather than three correction rounds later: a runtime below a
+	// template's floor is not a clip that plans badly, it is one whose rules
+	// contradict each other, and the model cannot be told anything that helps.
+	if tpl, ok := SnippetTemplates[s.Template]; ok && s.TargetSec != 0 &&
+		tpl.MinTargetSec > 0 && s.TargetSec < tpl.MinTargetSec {
+		return fmt.Errorf("the %s template needs at least %d seconds (asked for %d) — it is built from %d or more beats and a shorter clip cannot fund them",
+			s.Template, tpl.MinTargetSec, s.TargetSec, minStoryBeats)
+	}
 	return nil
 }
 
@@ -457,6 +465,12 @@ style:
   captions: "on"
 pipeline:
   video_only: true
+  # Snippet planning runs on gpt-4o-mini rather than the default Groq model.
+  # Groq's free tier is 100k tokens per day and one snippet plan is ~14k, so a
+  # handful of clips — or one clip whose plan needs correction rounds —
+  # exhausts the day and every later plan fails on a 429 that looks like a bug
+  # in the planner. gpt-4o-mini plans these as well and is not rationed.
+  llm_content: openai/gpt-4o-mini
 `
 
 // EnsureSnippetsCourse creates (or opens) the synthetic snippets course under
