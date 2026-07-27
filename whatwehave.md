@@ -1,8 +1,8 @@
 # What We Have — courseSmith
 
 _A living snapshot of the project: what it is, everything that's built, what's
-left, and where it's going. Last updated 2026-07-27 (snippets: the short-form
-surface and its template catalog — see §9)._
+left, and where it's going. Last updated 2026-07-28 (snippets: the short-form
+surface and its eight-template catalog, now including `workspace` — see §9)._
 
 ---
 
@@ -224,6 +224,12 @@ coursesmith export-review <course>   SME review docs
 coursesmith build-site               hugo (+ pagefind) build
 coursesmith bundle                   offline zip (videos included)
 coursesmith ebook                    print-styled PDF companion
+coursesmith compile-course <course>  join lesson finals into course.mp4
+coursesmith snippet templates        the template catalog
+coursesmith snippet new <prompt>     plan + render a clip
+    --template (required) | --seconds | --mode | --captions | --plan-only
+coursesmith snippet run <id>         re-run one (up-to-date stages skipped)
+coursesmith snippet list             every snippet and its state
 ```
 
 ---
@@ -242,8 +248,10 @@ coursesmith ebook                    print-styled PDF companion
 - **Single content provider proven.** Router supports OpenAI-compatible
   providers but the content path is validated mainly against Groq
   llama-3.3-70b + gpt-4o-mini reviews.
-- **Not a git repo.** No version history/CI beyond the site-deploy workflow;
-  no release tagging.
+- **No release tagging.** It is a git repo now, with history, PR merges, and
+  five GitHub Actions workflows (`quality-gates`, `visual-regression`,
+  `accessibility`, `learning-science`, `deploy-site`) — but nothing is versioned
+  or tagged, so there is no "known-good build" to point anyone at.
 - **Studio is early** (v0.1.0). Core run/monitor/quiz-edit flows exist; deeper
   editing (script/diagram authoring in-browser) is not there yet.
 - **Graceful-degradation paths are less tested** than the happy path (no Node →
@@ -269,8 +277,10 @@ Natural next moves, roughly in priority order:
    path (Kokoro + whisperX are already local).
 5. **Publishing polish** — richer Hugo theme, search (pagefind) tuning, LMS/SCORM
    or YouTube-upload export alongside the ebook/bundle outputs.
-6. **Repo hygiene** — `git init`, CI for `make test` / `make lint`, and tagged
-   releases so the pipeline itself is reproducible.
+6. **Repo hygiene** — tagged releases so the pipeline itself is reproducible
+   (`git init` and CI are done: `quality-gates` runs `go vet` / `go test`, the
+   renderer and studio typechecks, vitest and the animation-timing gate, and
+   `visual-regression` enforces the baselines).
 7. **Broader subjects** — the sandbox and verify gates are Python-first;
    generalizing execution verification to other languages would open up the
    engine beyond Python courses.
@@ -293,7 +303,10 @@ studio/              React + Vite + Tailwind studio UI
 site/                Hugo skeleton + course theme
 sandbox/             Docker image for code verification + VHS demos
 tools/align/         whisperX venv (word-level timing)
+test/                visual-regression baselines + gallery-preview builder
+docs/                plans + tool research
 courses/             python-basics sample course
+.github/workflows/   quality-gates, visual-regression, a11y, deploy-site
 ```
 
 **Build:** `make build` · **Test:** `make test` · **Lint:** `make lint`
@@ -397,6 +410,18 @@ system — a template only decides what fills the frame.
   runs it. The terminal output is not written by the model: the plan's code goes
   through the ordinary verify stage and the scene shows what the interpreter
   really printed. A beat that runs unverified code fails the build.
+
+  One rule a plan can break silently, so it is checked
+  (`checkBufferCarriesForward`): a beat's `code` is the **whole file as of that
+  beat**, not the lines the beat adds. The prompt says so and models still hand
+  back a diff — a beat defining the variables followed by a beat holding only
+  the `print()` calls. It reads fine as a plan and fails twice downstream:
+  verify executes each buffer state alone, so the second dies on a `NameError`;
+  and the editor types whatever the buffer says, so a buffer that dropped its
+  history would wipe the file mid-thought and retype — the jump cut this
+  template exists to avoid. The test is "most of the previous buffer survives",
+  not "is a prefix of", because editing a few lines is legitimate and reads
+  well; replacing all of them does not.
 
 **Enforced length.** Models systematically under-write to a seconds target (they
 have no clock) — a 45s request came back as 58 words, half a video. The word
@@ -826,6 +851,61 @@ preview.
   atlas does not have, and Antarctica being accepted by Go while the renderer
   refused to draw it.
 
+- **`workspace`** (`snippet_workspace.go`, `WorkspaceScene.tsx`) — the `vscode`
+  template's bigger sibling, and the difference is the *presentation*, not the
+  code. `vscode` is a window floating on the brand stage, which is the right
+  frame for eight lines that read large and sit still. This one fills the
+  screen, has no stage behind it, and **moves**: it zooms into the function
+  being written, pans to the tree when a file opens, pulls back for the wide
+  shot, and drops to the terminal for the payoff. Reach for it when the clip
+  should feel like a screen recording, when the code is longer than a window
+  holds, or when there is more than one file.
+
+  Two things follow from "screen recording" and they are the whole design. **One
+  scene spans the clip** — a scene per beat remounts the editor every few
+  seconds, and a remount is a cut; nobody cuts in the middle of a capture, so
+  the beats are timed steps inside one continuous editor (the same shape `data`
+  uses, for the same reason). And **the camera moves rather than the layout**:
+  everything lays out once at frame size and a transform picks the part worth
+  looking at, so panning and zooming cost nothing because the content never
+  re-flows. A file longer than the pane scrolls, and the camera follows the line
+  being written. The code area is sized from the *longest* file in the project
+  plus headroom, so switching tabs does not make the layout jump — and a
+  four-line program does not sit five hundred blank pixels above the terminal
+  proving it works.
+
+  The model never supplies a coordinate. It names a **subject** — `wide`,
+  `code`, `tree`, `tabs`, `terminal` — and the geometry turns that into a
+  camera. Same bargain the story template's staging makes, for the same reason:
+  a model handed x/y frames the gap between two panels. A drift test keeps the
+  Go vocabulary and the renderer's switch equal. Bounds: 1–4 files (four,
+  because a fifth tab is a tab nobody looks at), ≤40 lines each (the cap is
+  reading time, not screen space, since the pane scrolls), and a 30s minimum
+  runtime — a zoom that has to finish in a second is a cut, so below that the
+  template's reason for existing does not fit. Default 60s.
+
+  **Multi-file needed real execution.** Both sandbox runners piped a single
+  script through stdin, so `import greet` was a guaranteed
+  `ModuleNotFoundError`. New `CodeRunner.RunProject(files, entry)` writes the
+  set to a directory and runs the entry point there: under Docker a
+  **read-only** bind mount (the program has no business editing its own source,
+  and a clip that quietly rewrote the file it just showed would be lying about
+  what ran), a temp dir on the host runner, and paths refused if they climb out
+  of it — they come from a model, and Docker would contain that where the host
+  path would not.
+
+  The project runs **inside the planner's correction loop**, not downstream in
+  verify, which executes each fenced block alone where the import fails. A
+  program that raises comes back to the model as its own traceback; one that
+  prints nothing is rejected, because the terminal is the payoff. That is what
+  lets this template be pointed at something complicated — the loop that catches
+  it is execution, not taste. Also enforced: every beat names a file the project
+  has, some beat sets `run`, and the *first* beat does not (running the program
+  before any of it is on screen).
+
+  Several files are supported, **not required**. Insisting on a second produced
+  exactly the thing nobody wants: a module invented to satisfy a validator.
+
 **Cross-template field guards.** `SnippetBeat` is the union of what every
 template needs, so `beatFields` declares ownership once per template and
 `rejectForeignBeatFields` fails loudly when a plan sets a field its template
@@ -849,5 +929,23 @@ luminance of paper. The pairs are asserted around the hue circle in both modes
 by formula and the first sight of a bad pair would otherwise be a finished
 video. Captions and mode are both per-snippet: CLI flags and Studio controls.
 
-**Next template** (planned, not built): data & maps — world-atlas TopoJSON +
-d3-geo + Observable Plot.
+**Every template has a picture of itself.** `Root.tsx` carries a development
+composition per scene type, and the visual-regression suite records a baseline
+from each: fifteen baselines, all 0px-deterministic, and the eight gallery
+previews are downscaled from them. Two of them exist because a scene cannot be
+checked by reading. There is a **light-mode VS Code twin**, since the editor
+carries its own palette and is the one scene whose light mode cannot be
+inferred from any other baseline; and `FigureSheet` / `CastSheet` render the
+whole artwork and pose vocabularies on one frame.
+
+Re-recording them closed two gaps that had been invisible. The VS Code demo had
+no run step, so the terminal drawer — half of what that template is for — had no
+composition and no baseline. And the cast and story fixtures still named poses
+retired when the character moved to Open Peeps; those fall back to `idle`, so
+those beats had been rendering as a motionless character and the baselines had
+locked it in. A baseline is only a regression test for what it actually
+exercises.
+
+**The catalog is eight templates** — `vscode`, `workspace`, `whiteboard`,
+`flow`, `illustration`, `cast`, `story`, `data` — spanning code, hand-drawn
+board, systems diagram, kinetic type, presenter, directed short, and data.
