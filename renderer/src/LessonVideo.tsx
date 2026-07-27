@@ -8,7 +8,7 @@ import {D3Diagram} from './components/D3Diagram';
 import {PointsScene} from './components/PointsScene';
 import {PythonExecutionViz} from './components/PythonExecutionViz';
 import {MemoryLayout} from './components/MemoryLayout';
-import {SceneBackground} from './components/SceneBackground';
+import {SceneBackground, type Surface} from './components/SceneBackground';
 import {SectionTransition} from './components/SectionTransition';
 import {TerminalScene} from './components/TerminalScene';
 import {TitleCard} from './components/TitleCard';
@@ -98,9 +98,41 @@ const sceneContent = (
   }
 };
 
+/**
+ * Which backdrop this video stands on, from the scenes in it.
+ *
+ * A snippet is one template start to finish, so its scenes agree and it gets
+ * that template's surface. A lesson mixes title, code, diagram, terminal and
+ * points, and mixed content gets the neutral one — a course that switched
+ * backdrop every time it showed a diagram would be a course that flickers.
+ *
+ * Derived rather than passed, so a new template gets a considered backdrop by
+ * adding one line here instead of by remembering to thread a prop from Go.
+ */
+const surfaceFor = (scenes: Scene[]): Surface => {
+  // The title card is the same card whatever follows it, so it does not get a
+  // vote — otherwise every snippet would be "mixed" and land on the default.
+  const kinds = new Set(scenes.map((s) => s.type).filter((t) => t !== 'title'));
+  if (kinds.size !== 1) return 'default';
+  switch ([...kinds][0]) {
+    case 'whiteboard':
+      return 'paper';
+    case 'flow':
+      return 'blueprint';
+    case 'cast':
+    case 'story':
+      return 'spotlight';
+    case 'data':
+      return 'clean';
+    default:
+      return 'default';
+  }
+};
+
 export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
   const {assetBase, audioFile, scenes, captions, captionEmphasis, motion} = props;
   const theme = useMemo(() => resolveTheme(props.theme), [props.theme]);
+  const surface = useMemo(() => surfaceFor(scenes), [scenes]);
   // Scenes cross-dissolve. Every sequence but the last is extended past its
   // scene end by `cross` frames, so the outgoing scene is still mounted and
   // fading while the incoming one fades in on top of it (later siblings paint
@@ -110,7 +142,7 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
   const cross = secondsToFrames(FPS, resolveMotion(motion).timing.normal);
   return (
     <AbsoluteFill style={{fontFamily: theme.fontBody}}>
-      <SceneBackground theme={theme} />
+      <SceneBackground theme={theme} surface={surface} />
       {audioFile ? <Audio src={staticFile(`${assetBase ?? ''}/${audioFile}`)} /> : null}
       {scenes.map((scene, i) => {
         const from = msToFrame(scene.startMs);
