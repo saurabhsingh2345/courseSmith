@@ -15,7 +15,7 @@ func storyPlan() *SnippetPlan {
 	shots := []struct {
 		id, heading, staging, camera, pose, prop, propB string
 	}{
-		{"the-slow-query", "Your query reads every row", "duo", "push", "defeated", "stack", ""},
+		{"the-slow-query", "Your query reads every row", "duo", "push", "reading", "stack", ""},
 		{"why-scanning-fails", "Scanning is fine until it is not", "object", "hold", "", "clock", ""},
 		{"the-turn", "An index is a sorted copy", "hero", "push", "point", "", ""},
 		{"the-mechanism", "Sorted means you can skip", "pair", "pan", "", "chart", "network"},
@@ -182,8 +182,8 @@ func TestStoryScenes(t *testing.T) {
 	}
 	// A shot with no presenter must not advance the pose the next one eases
 	// from, or the character teleports across the intervening object shots.
-	if got := scenes[2].Props["prevPose"]; got != "defeated" {
-		t.Errorf("hero shot after an object shot has prevPose %v, want the last posed shot's (defeated)", got)
+	if got := scenes[2].Props["prevPose"]; got != "reading" {
+		t.Errorf("hero shot after an object shot has prevPose %v, want the last posed shot's (reading)", got)
 	}
 	if _, set := scenes[7].Props["prop"]; set {
 		t.Error("an empty staging should not carry a prop")

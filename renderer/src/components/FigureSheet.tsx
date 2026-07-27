@@ -2,7 +2,18 @@ import {useCurrentFrame} from 'remotion';
 import {AbsoluteFill} from 'remotion';
 import {FPS} from '../types';
 import {FIGURES, FIGURE_BOX} from './artwork';
-import {CAST_BOX, Character, POSES, POSE_NAMES, livePose, type Expression} from './cast';
+import {
+  CASTS,
+  Character,
+  EXPRESSION_NAMES,
+  castFor,
+  castPaletteFor,
+  POSE_NAMES,
+  aspectFor,
+  faceByName,
+  poseByName,
+  viewBoxFor,
+} from './cast';
 
 // A contact sheet of every figure in the vocabulary, on one frame.
 //
@@ -16,7 +27,7 @@ import {CAST_BOX, Character, POSES, POSE_NAMES, livePose, type Expression} from 
 // It is a development composition, not a scene: nothing in the pipeline emits
 // it and it carries no baseline.
 
-const CELL = 300;
+const CELL = 148;
 
 export const FigureSheet: React.FC = () => {
   const frame = useCurrentFrame();
@@ -37,8 +48,8 @@ export const FigureSheet: React.FC = () => {
         flexWrap: 'wrap',
         alignContent: 'center',
         justifyContent: 'center',
-        gap: 24,
-        padding: 40,
+        gap: 6,
+        padding: 20,
       }}
     >
       {names.map((name) => {
@@ -48,7 +59,7 @@ export const FigureSheet: React.FC = () => {
             <svg width={CELL} height={CELL} viewBox={`0 0 ${FIGURE_BOX} ${FIGURE_BOX}`}>
               <Figure build={1} t={frame / FPS} palette={palette} />
             </svg>
-            <div style={{color: '#a2aec4', fontFamily: 'monospace', fontSize: 22, marginTop: -18}}>
+            <div style={{color: '#a2aec4', fontFamily: 'monospace', fontSize: 15, marginTop: -22}}>
               {name}
             </div>
           </div>
@@ -58,24 +69,54 @@ export const FigureSheet: React.FC = () => {
   );
 };
 
-// The same idea for the character rig: every pose on one frame.
+// The same idea for the character: every pose on one frame, and every
+// expression on the next.
 //
-// A rig fails differently from a figure — the geometry is always "valid", so
-// the failure is a limb bending the wrong way or a hand landing inside the
-// torso, which no test can see and no amount of reading the angles will catch.
+// A character fails differently from a figure. The artwork is always "valid" —
+// it is somebody else's drawing and it renders — so the failures are ones only
+// an eye catches: a head that has drifted off the hand resting against it, a
+// pose whose arms are clipped by the frame it was given, a face that says
+// something other than the word it is filed under. None of those are things a
+// test can assert, and all of them are obvious in one still.
+const CAST_CELL_H = 230;
+
 export const CastSheet: React.FC = () => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
-  const palette = {
-    skin: '#f0c8a8',
-    hair: '#3b2a24',
-    top: '#4f8fd0',
-    bottom: '#2f4560',
-    ink: '#16202e',
+  // The dark stage's tokens, since that is where the character's colours are
+  // hardest — see castPaletteFor.
+  // The dark stage's tokens, since that is where the character's colours are
+  // hardest — see castPaletteFor.
+  const theme = {ink: '#16202e', primary: '#4f8fd0'};
+
+  const cell = (
+    label: string,
+    poseName: string,
+    expression: string,
+    presenter = castFor('sheet'),
+  ) => {
+    const pose = poseByName(poseName);
+    const palette = castPaletteFor(theme, presenter);
+    return (
+      <div key={label} style={{textAlign: 'center'}}>
+        <svg
+          width={CAST_CELL_H * aspectFor(pose)}
+          height={CAST_CELL_H}
+          viewBox={viewBoxFor(pose)}
+        >
+          <Character
+            pose={pose}
+            face={faceByName(expression)}
+            character={presenter}
+            palette={palette}
+            t={t}
+            seed={label}
+          />
+        </svg>
+        <div style={{color: '#a2aec4', fontFamily: 'monospace', fontSize: 19}}>{label}</div>
+      </div>
+    );
   };
-  const expressions: Expression[] = [
-    'neutral', 'point', 'thinking', 'happy', 'happy', 'thinking', 'neutral', 'concerned', 'neutral',
-  ].map((e) => (e === 'point' ? 'neutral' : e)) as Expression[];
 
   return (
     <AbsoluteFill
@@ -85,26 +126,15 @@ export const CastSheet: React.FC = () => {
         flexWrap: 'wrap',
         alignContent: 'center',
         justifyContent: 'center',
-        gap: 16,
-        padding: 32,
+        gap: 10,
+        padding: 24,
       }}
     >
-      {POSE_NAMES.map((name, i) => (
-        <div key={name} style={{width: CELL, textAlign: 'center'}}>
-          <svg width={CELL} height={CELL * (CAST_BOX.h / CAST_BOX.w)} viewBox={`0 0 ${CAST_BOX.w} ${CAST_BOX.h}`}>
-            <Character
-              pose={livePose(POSES[name], t, name === 'walk', name)}
-              expression={expressions[i % expressions.length]}
-              palette={palette}
-              t={t}
-              seed={name}
-            />
-          </svg>
-          <div style={{color: '#a2aec4', fontFamily: 'monospace', fontSize: 20, marginTop: -20}}>
-            {name}
-          </div>
-        </div>
-      ))}
+      {POSE_NAMES.map((name) => cell(name, name, 'neutral'))}
+      {EXPRESSION_NAMES.map((name) => cell(name, 'idle', name))}
+      {/* And the cast itself: one idle each, so it is obvious at a glance
+          whether two presenters actually read as two people. */}
+      {CASTS.map((c, i) => cell(`cast ${i}`, 'idle', 'happy', c))}
     </AbsoluteFill>
   );
 };

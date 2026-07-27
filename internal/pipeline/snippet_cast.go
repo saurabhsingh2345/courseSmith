@@ -8,15 +8,16 @@ package pipeline
 // It is the illustration template's sibling — same one-beat-one-shot shape,
 // same kinetic headline — and the difference is the point. An object can show
 // what a thing *is*; only a person can show how to *feel* about it. "This is
-// the problem" is a slumped figure, "I'm not sure" is a shrug, "here it is" is
-// a point. That register is what an explainer opens and closes on, and neither
+// the problem" is a sad face, "I'm not sure" is a shrug, "here it is" is a
+// point. That register is what an explainer opens and closes on, and neither
 // the diagram nor the board nor a floating rocket can do it.
 //
 // As everywhere else in the catalog, the model does not draw. It picks a pose
-// and an expression from closed vocabularies and the rig (renderer's cast.tsx)
-// does forward kinematics. That is what makes a pose *change* possible at all:
-// the poses interpolate, so the character moves from thinking to pointing
-// instead of cutting between two drawings of themselves.
+// and an expression from closed vocabularies and the renderer (cast.tsx)
+// assembles the character from Open Peeps parts. What the vocabularies can
+// offer is therefore what somebody drew, which is a real constraint and the
+// reason this file's lists are shorter and stranger than they would be if we
+// had invented them — see castPoseVocab.
 
 import (
 	"fmt"
@@ -49,28 +50,54 @@ func init() {
 const snippetCastTemplateName = "snippet_cast.tmpl"
 
 // castPoseVocab mirrors POSES in renderer/src/components/cast.tsx; a drift test
-// keeps the two identical. A pose Go allows and the rig does not have would
-// silently fall back to `idle`, so the character would simply stand there
+// keeps the two identical. A pose Go allows and the renderer does not have
+// would silently fall back to `idle`, so the character would simply stand there
 // through the beat that was supposed to be its punchline.
+//
+// This list is no longer ours to choose. The character used to be drawn from a
+// skeleton, so a pose was whatever eleven joint angles we cared to write down;
+// it is Open Peeps artwork now, so a pose exists exactly when somebody drew it.
+// `wave`, `celebrate`, `defeated` and `walk` were dropped because no drawing of
+// them exists. `think` was dropped because its only drawing has the character
+// holding a knife (see castPoseAliases). `explain`, `coffee` and `phone` were
+// dropped because their drawings cannot be coloured: Open Peeps fills those garments with the same
+// value that paints the hands, so keeping the hands right dresses the character
+// in their own skin. Offering a name the artwork cannot satisfy is how a model
+// ends up asking for a shot that silently renders as somebody standing still.
 var castPoseVocab = map[string]bool{
 	"idle":      true,
 	"point":     true,
-	"think":     true,
-	"wave":      true,
-	"celebrate": true,
 	"shrug":     true,
 	"confident": true,
-	"defeated":  true,
-	"walk":      true,
+	"reading":   true,
 }
 
-// castExpressionVocab mirrors the Expression union in cast.tsx.
+// castPoseAliases redirect a retired name to the pose that replaced it.
+//
+// `think` was backed by the only hand-to-chin drawing in the set, and that
+// hand is holding a knife — Open Peeps calls the bust `Killer`, which is the
+// clue the filename gave and the thumbnail hid. Dropping the name outright
+// would send every plan that already uses it to the `idle` fallback, losing
+// the gesture as well as the knife; the raised finger is the honest
+// replacement, since the beat `think` was written for is the one where an idea
+// lands.
+var castPoseAliases = map[string]string{
+	"think": "point",
+}
+
+// castExpressionVocab mirrors FACES in cast.tsx.
+//
+// `sad` and `serious` are here because the register the dropped `defeated` pose
+// carried had to go somewhere, and a face carries it better than a slump did.
 var castExpressionVocab = map[string]bool{
 	"neutral":   true,
 	"happy":     true,
 	"thinking":  true,
 	"surprised": true,
 	"concerned": true,
+	"sad":       true,
+	"serious":   true,
+	"talking":   true,
 }
 
 func sortedKeys(m map[string]bool) []string {
@@ -92,6 +119,9 @@ func normalizeCastPose(name string) string {
 	n := strings.ToLower(strings.TrimSpace(name))
 	if castPoseVocab[n] {
 		return n
+	}
+	if to, ok := castPoseAliases[n]; ok {
+		return to
 	}
 	return "idle"
 }
