@@ -123,6 +123,27 @@ func TestValidateVSCodePlan(t *testing.T) {
 			t.Fatalf("want beat-length error, got %v", err)
 		}
 	})
+	// The failure this catches: a beat hands back the lines it adds rather than
+	// the whole file. Verify runs each buffer state on its own, so the second
+	// one dies on a NameError and the clip cannot be published.
+	t.Run("later beat sends a diff instead of the whole file", func(t *testing.T) {
+		p := vscodePlan()
+		p.Beats[1].Code = "integer_var = 42\nfloat_var = 3.14"
+		p.Beats[2].Code = "print(integer_var)\nprint(float_var)"
+		if err := p.Validate(); err == nil || !strings.Contains(err.Error(), "rewrites the file instead of editing it") {
+			t.Fatalf("want whole-file error, got %v", err)
+		}
+	})
+	// Editing a few lines is what the template is for; only replacing the file
+	// wholesale is a mistake.
+	t.Run("later beat edits a line and keeps the rest", func(t *testing.T) {
+		p := vscodePlan()
+		p.Beats[1].Code = "for i in range(3):\n    print(i)\nprint('done')"
+		p.Beats[2].Code = "for i in range(5):\n    print(i)\nprint('done')"
+		if err := p.Validate(); err != nil {
+			t.Fatalf("want valid, got %v", err)
+		}
+	})
 }
 
 // A snippet's lesson.md must be an ordinary lesson: it has to load with the
@@ -566,5 +587,71 @@ func TestCheckBeatShapeReportsShortBeats(t *testing.T) {
 	}
 	if !strings.Contains(err.Error(), "minimum") {
 		t.Errorf("want minimum advice:\n%s", err)
+	}
+}
+
+// The beat count has to come from the runtime, because every snippet prompt
+// also calibrates a beat at about forty words. A fixed three-beat floor is
+// therefore a 120-word floor, which a short clip's ceiling is below — and a
+// plan cannot satisfy both. This is the arithmetic that made 20-second clips
+// fail in the field, so it is pinned rather than described.
+func TestBeatBoundsFitTheWordBudget(t *testing.T) {
+	for _, tc := range []struct{ sec, pace int }{
+		{10, 150}, {10, 175}, {20, 150}, {20, 175},
+		{45, 150}, {45, 175}, {75, 150}, {120, 175}, {180, 175},
+	} {
+		want, minWords, maxWords := wordBudget(tc.sec, tc.pace)
+		minBeats, maxBeats, suggest, perBeat := beatBounds(want)
+
+		// The suggested shape must fit inside the budget it was derived from,
+		// or the prompt is asking for something it will then reject.
+		if got := suggest * perBeat; got > maxWords {
+			t.Errorf("%ds@%dwpm: %d beats x %d words = %d, over the %d ceiling",
+				tc.sec, tc.pace, suggest, perBeat, got, maxWords)
+		}
+		// And the smallest legal plan must be able to reach the floor.
+		if got := maxBeats * maxWordsPerBeat; got < minWords {
+			t.Errorf("%ds@%dwpm: %d beats x %d words = %d, under the %d floor",
+				tc.sec, tc.pace, maxBeats, maxWordsPerBeat, got, minWords)
+		}
+		// Every beat the budget suggests must clear the per-beat minimum, or
+		// the plan is rejected for beats it was told to write.
+		if perBeat < minWordsPerBeat {
+			t.Errorf("%ds@%dwpm: budget affords %d words a beat, below the %d minimum",
+				tc.sec, tc.pace, perBeat, minWordsPerBeat)
+		}
+		if minBeats < floorSnippetBeats || maxBeats > maxSnippetBeats || minBeats > maxBeats {
+			t.Errorf("%ds@%dwpm: beat range %d-%d is not sane", tc.sec, tc.pace, minBeats, maxBeats)
+		}
+	}
+}
+
+// The regression that prompted all of this: a 20-second clip at the snippets
+// course's pace was told to write three beats against an 89-word ceiling.
+func TestShortClipsAreNotAskedForImpossiblePlans(t *testing.T) {
+	want, _, maxWords := wordBudget(20, 175)
+	_, _, suggest, perBeat := beatBounds(want)
+	if suggest*perBeat > maxWords {
+		t.Fatalf("a 20s clip is still asked for %d beats x %d words against a %d ceiling",
+			suggest, perBeat, maxWords)
+	}
+	if suggest > 2 {
+		t.Errorf("a 20s clip suggests %d beats; at ~%d words each that is more than the runtime holds", suggest, perBeat)
+	}
+}
+
+// 10 seconds has to be a runtime a caller can actually ask for.
+func TestTenSecondSnippetIsAccepted(t *testing.T) {
+	spec := SnippetSpec{Prompt: "Why tabs beat spaces", Template: "illustration", TargetSec: 10}
+	if err := spec.Validate(); err != nil {
+		t.Fatalf("a 10s snippet should be allowed: %v", err)
+	}
+	if got := spec.ResolvedTargetSec(); got != 10 {
+		t.Errorf("ResolvedTargetSec = %d, want 10", got)
+	}
+	// …but not for a template whose own floor is higher.
+	story := SnippetSpec{Prompt: "Why tabs beat spaces", Template: "story", TargetSec: 10}
+	if err := story.Validate(); err == nil {
+		t.Error("the story template should still refuse 10 seconds — it needs eight beats")
 	}
 }

@@ -10,7 +10,7 @@ Target runtime: about {{.TargetSec}} seconds.
 
 LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the drawing is timed to the voice, so half the narration means half a video.
 
-Calibration: this paragraph you are reading right now runs about forty words. Every beat's narration should feel at least this substantial — two or three real sentences that explain why, not one clipped line that only names the step. Terse is the failure mode here, not verbosity.
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. Write real sentences that explain why, not clipped lines that only name the step. BOTH edges are enforced: under {{.MinWords}} words the clip is half a video, over {{.MaxWords}} it does not fit the runtime.
 
 Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats — for this runtime, about {{.SuggestBeats}} beats is right. Each beat is one narrated step of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words.
 

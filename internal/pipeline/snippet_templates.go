@@ -140,6 +140,7 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 	}
 	target := spec.ResolvedTargetSec()
 	wantWords, minWords, maxWords := wordBudget(target, pace)
+	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords)
 	return map[string]any{
 		"Prompt":          spec.Prompt,
 		"Title":           spec.Title,
@@ -154,9 +155,13 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 		"Language":        cfg.Style.Language,
 		"CodeLanguage":    spec.ResolvedCodeLanguage(),
 		"PaceWPM":         pace,
-		"MinBeats":        minSnippetBeats,
-		"MaxBeats":        maxSnippetBeats,
-		"SuggestBeats":    suggestBeats(wantWords),
+		"MinBeats":        minBeats,
+		"MaxBeats":        maxBeats,
+		"SuggestBeats":    suggest,
+		// The words one beat affords at *this* runtime. Every prompt calibrates
+		// against it, so the number the model is told to write and the number
+		// it is scored against are the same number.
+		"WordsPerBeat": perBeat,
 		// Headline and caption bounds are shared rather than per-template:
 		// four prompts reference them and only three templates were supplying
 		// them, so `story` rendered {{.MinHeadlineWords}} against a map that
@@ -169,28 +174,47 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 	}
 }
 
-// suggestBeats is how many beats the requested runtime actually affords.
+// beatBounds sizes the beat count against the narration budget, and says how
+// many words each beat then affords.
 //
-// The beat range alone is not enough guidance. A 75-second clip is about 218
-// words, and a model that picks the low end of "3 to 7" has to write 55 words a
-// beat — right against the 60-word ceiling, so it trips the cap by writing
-// one sentence more than it planned to. Telling it the count the budget
-// supports moves the fix upstream of the correction loop, which is where a fix
-// is free.
+// A fixed 3-7 range was right for the runtimes this started with and is a
+// *contradiction* below about thirty seconds. Every one of these prompts also
+// calibrates a beat at roughly forty words, so a three-beat floor is a
+// hundred-and-twenty-word floor — more than a 20-second clip's entire ceiling
+// of eighty-nine. The model obeys the concrete per-beat number, blows the
+// total, and the correction rounds cannot rescue it because nothing it could
+// write satisfies both rules at once. Observed in the wild as a plan walking
+// 128 → 114 → 96 → 93 words across three rounds and failing: it was converging
+// on a floor the instructions themselves imposed.
 //
-// Forty words a beat is the divisor because that is what the calibration
-// paragraph in every one of these prompts asks for, so the arithmetic the model
-// is given agrees with the example it is shown.
-func suggestBeats(targetWords int) int {
-	n := targetWords / 40
-	return min(max(n, minSnippetBeats), maxSnippetBeats)
+// So the count comes from the budget. `wordsPerBeat` is the same arithmetic
+// run back the other way, and it is what the prompts calibrate against now —
+// which means the number the model is told to hit and the number it is scored
+// against are the same number at every runtime, instead of only above 45s.
+func beatBounds(targetWords int) (minBeats, maxBeats, suggest, wordsPerBeat int) {
+	if targetWords <= 0 {
+		// A plan built by hand (a test, a fixture) has no budget to size
+		// against; fall back to the range that was fixed before this existed.
+		return floorSnippetBeats, maxSnippetBeats, idealWordsPerBeat, idealWordsPerBeat
+	}
+	suggest = min(max((targetWords+idealWordsPerBeat/2)/idealWordsPerBeat, floorSnippetBeats), maxSnippetBeats)
+	minBeats = min(max(suggest-1, floorSnippetBeats), maxSnippetBeats)
+	maxBeats = min(max(suggest+2, minBeats), maxSnippetBeats)
+	return minBeats, maxBeats, suggest, targetWords / suggest
 }
 
-// Beat-count bounds. Fewer than three and the clip is a single held shot;
-// more than seven in under three minutes and nothing lands.
+// Beat-count bounds.
+//
+// The floor is two rather than three: two beats is one cut, which is the least
+// that still makes this a film rather than a held shot, and it is what lets a
+// ten- or twenty-second clip exist at all. Above seven in under three minutes
+// nothing lands.
 const (
-	minSnippetBeats = 3
-	maxSnippetBeats = 7
+	floorSnippetBeats = 2
+	maxSnippetBeats   = 7
+	// idealWordsPerBeat is how much narration one visual comfortably holds —
+	// the divisor that turns a word budget into a beat count.
+	idealWordsPerBeat = 40
 )
 
 // Per-beat narration bounds. Under ten words a beat is a caption, not a
@@ -262,15 +286,38 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	// A plan has more independent numeric rules than anything else the pipeline
 	// asks for — beat count, per-beat words, total words, and whatever the
 	// template adds on top. One correction round is not enough to land them all.
+	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords)
 	err = e.completeJSONRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, nil, 0.5, 6144, snippetPlanRepairRounds, &plan, func() error {
 		plan.Template = spec.Template // so Validate dispatches to this template
+		// The budget the prompt quoted, so the shared validators score the plan
+		// against the same beat range the model was asked for.
+		plan.targetWords = wantWords
 		if err := plan.Validate(); err != nil {
 			return err
 		}
-		if n := narrationWords(&plan); n < minWords || n > maxWords {
+		// A multi-file plan is executed here, in the correction loop, rather
+		// than downstream in verify — verify runs each fenced block on its
+		// own, where `import greet` is a ModuleNotFoundError. Running it here
+		// means a program that does not work comes back to the model as its
+		// own traceback and gets another attempt, which is the whole reason
+		// this template can be pointed at something complicated.
+		if err := e.runPlannedProject(ctx, &plan); err != nil {
+			return err
+		}
+		// The advice has to point the way the plan actually needs to move. One
+		// message served both directions and it said "rewrite with fuller
+		// sentences" — which is right when the plan is short and is pushing the
+		// wrong way when it is long. A 20-second clip that came back at 128
+		// words against an 89-word ceiling was being told, three rounds
+		// running, to write more.
+		if n := narrationWords(&plan); n < minWords {
 			return fmt.Errorf(
-				"narration totals %d words but a %ds clip needs %d-%d (aim for %d) — rewrite with fuller sentences, do not add beats past %d",
-				n, target, minWords, maxWords, wantWords, maxSnippetBeats)
+				"narration totals %d words but a %ds clip needs %d-%d (aim for %d) — rewrite with fuller sentences, about %d words per beat; do not add beats past %d",
+				n, target, minWords, maxWords, wantWords, perBeat, maxBeats)
+		} else if n > maxWords {
+			return fmt.Errorf(
+				"narration totals %d words but a %ds clip needs %d-%d (aim for %d) — cut it back to about %d words per beat across %d beat(s); say less, do not drop below %d beats",
+				n, target, minWords, maxWords, wantWords, perBeat, suggest, minBeats)
 		}
 		return nil
 	})
@@ -297,8 +344,9 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 // is one visual, so sixty words is not a style guide, it is how long any single
 // image stays interesting.
 func checkBeatShape(p *SnippetPlan) error {
-	if n := len(p.Beats); n < minSnippetBeats || n > maxSnippetBeats {
-		return fmt.Errorf("plan has %d beats, want %d-%d", n, minSnippetBeats, maxSnippetBeats)
+	minBeats, maxBeats, _, _ := beatBounds(p.targetWords)
+	if n := len(p.Beats); n < minBeats || n > maxBeats {
+		return fmt.Errorf("plan has %d beats, want %d-%d", n, minBeats, maxBeats)
 	}
 
 	var long, short []string
@@ -350,6 +398,7 @@ type beatFields struct {
 	Cast   bool
 	Shot   bool
 	Data   bool
+	Work   bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -376,6 +425,8 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "shot"
 		case !owned.Data && b.Data != nil:
 			set = "data"
+		case !owned.Work && b.Work != nil:
+			set = "work"
 		default:
 			continue
 		}

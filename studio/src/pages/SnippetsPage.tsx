@@ -35,10 +35,14 @@ const QUIET_BTN = "rounded px-2 py-1 text-ink-500 hover:bg-ink-800 hover:text-in
 const DEFAULT_TARGET_SEC = 45;
 
 const TARGETS = [
+  { sec: 10, label: "~10s", hint: "A hook, one line" },
   { sec: 20, label: "~20s", hint: "One idea" },
+  { sec: 30, label: "~30s", hint: "Idea, with a turn" },
   { sec: 45, label: "~45s", hint: "Idea + example" },
-  { sec: 75, label: "~75s", hint: "Walk it through" },
-  { sec: 120, label: "~2 min", hint: "A directed short with an arc" },
+  { sec: 60, label: "~60s", hint: "Room to explain" },
+  { sec: 90, label: "~90s", hint: "A short with an arc" },
+  { sec: 120, label: "~2 min", hint: "A directed short" },
+  { sec: 180, label: "~3 min", hint: "The long form" },
 ];
 
 /**
