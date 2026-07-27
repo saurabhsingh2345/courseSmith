@@ -6,6 +6,38 @@
   color-scheme: dark;
 }
 
+/* Opt out of the theme: a region that is dark in both modes.
+
+   The ramp inverts because most of the studio is chrome, and chrome should
+   follow the reader's preference. A terminal is not chrome. Log output is read
+   as a terminal — green on black is what the thing being imitated looks like,
+   and a white log pane reads as a text field somebody pasted output into.
+
+   The markdown source editors deliberately do NOT opt out: an editor in a light
+   theme is light, which is what every editor with a light theme looks like. The
+   distinction is imitation — a terminal imitates a terminal, an editor pane is
+   just this app's own surface with a monospace font on it.
+
+   Not a colour in sight: it re-points each step at the always-dark ramp that
+   applyTheme() emits alongside the themed one, so there is no second copy of
+   the palette here to fall out of step with tokens.ts. Everything inside keeps
+   using `bg-ink-950` / `text-ink-300` and simply resolves them darkly. */
+.surface-dark {
+  color-scheme: dark;
+  --ink-950: var(--ink-dark-950);
+  --ink-900: var(--ink-dark-900);
+  --ink-850: var(--ink-dark-850);
+  --ink-800: var(--ink-dark-800);
+  --ink-750: var(--ink-dark-750);
+  --ink-700: var(--ink-dark-700);
+  --ink-600: var(--ink-dark-600);
+  --ink-500: var(--ink-dark-500);
+  --ink-400: var(--ink-dark-400);
+  --ink-300: var(--ink-dark-300);
+  --ink-200: var(--ink-dark-200);
+  --ink-100: var(--ink-dark-100);
+}
+
 html,
 body,
 #root {
@@ -18,14 +50,14 @@ body {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #33333b transparent;
+  scrollbar-color: var(--ink-600) transparent;
 }
 *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 *::-webkit-scrollbar-thumb {
-  background: #33333b;
+  background: var(--ink-600);
   border-radius: 4px;
 }
 *::-webkit-scrollbar-track {
@@ -34,6 +66,32 @@ body {
 
 kbd {
   @apply inline-block rounded border border-ink-600 bg-ink-800 px-1.5 py-0.5 font-mono text-[10px] leading-none text-ink-300;
+}
+
+/* The entrance the video uses for a list of points, so the Templates page can
+   demonstrate the motion language with the language itself. Duration, easing
+   and stagger are applied inline from the motion tokens — only the shape of the
+   move lives here. */
+@keyframes cs-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Motion is an enhancement, never the only signal that something arrived. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Design-token consumers. --color-brand et al. are emitted by applyTheme(). */

@@ -205,7 +205,7 @@ export function CourseEditorPage() {
                   if (e.key === "Enter") void addLesson();
                 }}
                 placeholder="New lesson title"
-                className="flex-1 rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-100 placeholder:text-ink-600"
+                className="flex-1 rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-100 placeholder:text-ink-500"
               />
               <button
                 onClick={() => void addLesson()}

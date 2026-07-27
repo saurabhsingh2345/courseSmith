@@ -190,7 +190,7 @@ function Stat({
     <div className="rounded-lg border border-ink-800 bg-ink-900 p-3">
       <div className="text-[11px] uppercase tracking-wide text-ink-500">{label}</div>
       <div className={"text-xl font-semibold " + color}>{value}</div>
-      {hint && <div className="text-[11px] text-ink-600">{hint}</div>}
+      {hint && <div className="text-[11px] text-ink-500">{hint}</div>}
     </div>
   );
 }

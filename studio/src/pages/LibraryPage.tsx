@@ -62,7 +62,7 @@ function Diagrams() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Name"
-            className="flex-1 rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-100 placeholder:text-ink-600"
+            className="flex-1 rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-100 placeholder:text-ink-500"
           />
           <select
             value={kind}
@@ -81,7 +81,7 @@ function Diagrams() {
           onChange={(e) => setSource(e.target.value)}
           rows={3}
           placeholder="Diagram source (e.g. Mermaid syntax or a prompt)"
-          className="mb-2 w-full rounded border border-ink-800 bg-ink-950 px-2 py-1.5 font-mono text-[12px] text-ink-200 placeholder:text-ink-600"
+          className="mb-2 w-full rounded border border-ink-800 bg-ink-950 px-2 py-1.5 font-mono text-[12px] text-ink-200 placeholder:text-ink-500"
         />
         {err && <ErrorNote error={err} />}
         <button
@@ -168,7 +168,7 @@ function Questions() {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Question prompt"
-            className="flex-1 rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-100 placeholder:text-ink-600"
+            className="flex-1 rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-100 placeholder:text-ink-500"
           />
           <select
             value={type}
@@ -186,7 +186,7 @@ function Questions() {
           value={options}
           onChange={(e) => setOptions(e.target.value)}
           placeholder="Options, comma-separated"
-          className="w-full rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-100 placeholder:text-ink-600"
+          className="w-full rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-100 placeholder:text-ink-500"
         />
         <div className="flex items-center gap-2">
           <label className="text-[12px] text-ink-400">
@@ -204,7 +204,7 @@ function Questions() {
           value={explanation}
           onChange={(e) => setExplanation(e.target.value)}
           placeholder="Explanation"
-          className="w-full rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-200 placeholder:text-ink-600"
+          className="w-full rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-200 placeholder:text-ink-500"
         />
         {err && <ErrorNote error={err} />}
         <button

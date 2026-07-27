@@ -230,7 +230,7 @@ export function LessonPage() {
               onChange={(e) => setNote(e.target.value)}
               placeholder="Leave a note — appended to review-notes.yaml for the next revision pass."
               rows={3}
-              className="w-full rounded-lg border border-ink-800 bg-ink-900 p-2 text-ink-200 placeholder:text-ink-600"
+              className="w-full rounded-lg border border-ink-800 bg-ink-900 p-2 text-ink-200 placeholder:text-ink-500"
             />
             <div className="mt-2 flex items-center gap-3">
               <button

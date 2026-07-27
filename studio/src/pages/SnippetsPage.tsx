@@ -401,7 +401,7 @@ export function SnippetsPage() {
         </label>
         <textarea
           id="snippet-prompt"
-          className="min-h-[84px] w-full resize-y rounded-lg border border-ink-800 bg-ink-950 p-3 text-[14px] text-ink-100 placeholder:text-ink-600 focus:border-brand focus:outline-none"
+          className="min-h-[84px] w-full resize-y rounded-lg border border-ink-800 bg-ink-950 p-3 text-[14px] text-ink-100 placeholder:text-ink-500 focus:border-brand focus:outline-none"
           placeholder={chosenTemplate?.example ?? "How for loops work in Python"}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
@@ -411,11 +411,11 @@ export function SnippetsPage() {
           className="mb-2 mt-4 block text-[11px] uppercase tracking-wide text-ink-500"
           htmlFor="snippet-title"
         >
-          Title <span className="normal-case tracking-normal text-ink-600">— optional, the model writes one otherwise</span>
+          Title <span className="normal-case tracking-normal text-ink-500">— optional, the model writes one otherwise</span>
         </label>
         <input
           id="snippet-title"
-          className="w-full rounded-lg border border-ink-800 bg-ink-950 p-3 text-[14px] text-ink-100 placeholder:text-ink-600 focus:border-brand focus:outline-none"
+          className="w-full rounded-lg border border-ink-800 bg-ink-950 p-3 text-[14px] text-ink-100 placeholder:text-ink-500 focus:border-brand focus:outline-none"
           placeholder="Leave empty to let the model title it"
           value={title}
           onChange={(e) => setTitle(e.target.value)}

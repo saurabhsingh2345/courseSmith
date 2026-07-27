@@ -95,7 +95,7 @@ export function ComposePage() {
           }}
           rows={3}
           placeholder="e.g. make a lesson on loops in python"
-          className="w-full resize-none rounded border border-ink-800 bg-ink-950 px-3 py-2 text-ink-100 placeholder:text-ink-600"
+          className="w-full resize-none rounded border border-ink-800 bg-ink-950 px-3 py-2 text-ink-100 placeholder:text-ink-500"
         />
         <div className="mt-3 flex flex-wrap items-center gap-3">
           <select
@@ -131,7 +131,7 @@ export function ComposePage() {
           >
             {busy === "draft" ? "Drafting…" : "Draft only"}
           </button>
-          <span className="text-[11px] text-ink-600">
+          <span className="text-[11px] text-ink-500">
             Draft only parks it below for review; nothing generates until you file it.
           </span>
         </div>
@@ -198,7 +198,7 @@ function DraftCard({
         <button onClick={onOpen} className="min-w-0 text-left">
           <div className="font-medium text-ink-100 hover:underline">{draft.title}</div>
           {draft.summary && <div className="mt-1 text-ink-400">{draft.summary}</div>}
-          <div className="mt-2 truncate text-[11px] text-ink-600">“{draft.prompt}”</div>
+          <div className="mt-2 truncate text-[11px] text-ink-500">“{draft.prompt}”</div>
         </button>
         <FilePicker draft={draft} courses={courses} onChanged={onChanged} />
       </div>
@@ -246,7 +246,7 @@ function FilePicker({
             if (e.key === "Escape") setNewCourse(null);
           }}
           placeholder="New course name"
-          className="w-full rounded border border-ink-800 bg-ink-950 px-2 py-1 text-ink-100 placeholder:text-ink-600"
+          className="w-full rounded border border-ink-800 bg-ink-950 px-2 py-1 text-ink-100 placeholder:text-ink-500"
         />
         <div className="mt-2 flex gap-2">
           <button
@@ -331,7 +331,7 @@ function DraftSheet({
         <div className="flex items-center justify-between border-b border-ink-800 p-4">
           <div className="min-w-0">
             <div className="truncate font-medium text-ink-100">{draft.title}</div>
-            <div className="truncate text-[11px] text-ink-600">“{draft.prompt}”</div>
+            <div className="truncate text-[11px] text-ink-500">“{draft.prompt}”</div>
           </div>
           <button onClick={onClose} className="px-2 text-ink-400 hover:text-ink-200">
             Close
@@ -359,7 +359,7 @@ function DraftSheet({
           <button onClick={() => void discard()} className="text-ink-400 hover:text-rose-400">
             Discard draft
           </button>
-          <span className="ml-auto text-[11px] text-ink-600">
+          <span className="ml-auto text-[11px] text-ink-500">
             Close and use “File into…” to put it in a course.
           </span>
         </div>

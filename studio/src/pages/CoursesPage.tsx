@@ -69,7 +69,7 @@ export function CoursesPage() {
                 if (e.key === "Enter") void create();
               }}
               placeholder="e.g. Bash for Beginners"
-              className="w-full rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-100 placeholder:text-ink-600"
+              className="w-full rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-100 placeholder:text-ink-500"
             />
             {name.trim() && (
               <div className="mt-1 text-[11px] text-ink-500">
@@ -79,14 +79,14 @@ export function CoursesPage() {
           </div>
           <div className="mb-3">
             <label className="mb-1 block text-[11px] uppercase tracking-wide text-ink-500">
-              Description <span className="text-ink-600">(optional)</span>
+              Description <span className="text-ink-500">(optional)</span>
             </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={2}
               placeholder="One or two sentences about the course."
-              className="w-full rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-200 placeholder:text-ink-600"
+              className="w-full rounded border border-ink-800 bg-ink-950 px-2 py-1.5 text-ink-200 placeholder:text-ink-500"
             />
           </div>
           {createErr && <ErrorNote error={createErr} />}

@@ -109,7 +109,7 @@ export function AdaptiveConfigPage() {
               {c ? "✓" : "✗"}
             </span>
           ))}
-          {responses.length === 0 && <span className="text-[12px] text-ink-600">No responses.</span>}
+          {responses.length === 0 && <span className="text-[12px] text-ink-500">No responses.</span>}
         </div>
 
         <button
@@ -135,7 +135,7 @@ export function AdaptiveConfigPage() {
                       title={v.toFixed(2)}
                     />
                   </div>
-                  <span className="text-[10px] text-ink-600">{Math.round(v * 100)}</span>
+                  <span className="text-[10px] text-ink-500">{Math.round(v * 100)}</span>
                 </div>
               ))}
             </div>

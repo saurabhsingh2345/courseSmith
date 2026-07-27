@@ -89,7 +89,7 @@ export function GenerationPage() {
 
           <label className="block">
             <span className="mb-1 block text-[11px] uppercase tracking-wide text-ink-500">
-              From stage <span className="text-ink-600">(optional)</span>
+              From stage <span className="text-ink-500">(optional)</span>
             </span>
             <select
               value={fromStage}
@@ -162,13 +162,13 @@ export function GenerationPage() {
 
       {/* Logs */}
       <div className="mb-2 text-[11px] uppercase tracking-wide text-ink-500">Logs</div>
-      <div className="h-[360px] overflow-auto rounded-lg border border-ink-800 bg-ink-950 p-3 font-mono text-[12px] text-ink-300">
+      <div className="surface-dark h-[360px] overflow-auto rounded-lg border border-ink-800 bg-ink-950 p-3 font-mono text-[12px] text-ink-300">
         {gen.logs.length === 0 ? (
-          <div className="text-ink-600">No output yet — start a run to stream logs.</div>
+          <div className="text-ink-500">No output yet — start a run to stream logs.</div>
         ) : (
           gen.logs.map((l) => (
             <div key={l.seq} className="whitespace-pre-wrap">
-              {l.stage ? <span className="text-ink-600">[{l.stage}] </span> : null}
+              {l.stage ? <span className="text-ink-500">[{l.stage}] </span> : null}
               {l.line}
             </div>
           ))

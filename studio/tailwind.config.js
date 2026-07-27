@@ -43,19 +43,30 @@ export default {
         border: "var(--color-border)",
         fg: "var(--color-text)",
         muted: "var(--color-muted)",
+        // The ink ramp is ordered by depth, not lightness (see tokens.ts), and
+        // applyTheme() rewrites these vars per mode — so `bg-ink-900` is the
+        // surface behind content in both themes and no page needs a `dark:`
+        // variant. A region that must stay dark whatever the mode opts out with
+        // `.surface-dark`.
+        //
+        // The fallback in each var() is the dark value, and it is what paints
+        // the first frame: the stylesheet is in <head> and applyTheme() runs
+        // from a module, so without it every ink colour resolves to nothing for
+        // the frame before React boots and the page flashes unstyled. The
+        // ink.test.ts drift test asserts these equal tokens.colors.ink[*].dark.
         ink: {
-          950: "#09090b",
-          900: "#0e0e11",
-          850: "#131316",
-          800: "#18181c",
-          750: "#1e1e23",
-          700: "#26262c",
-          600: "#33333b",
-          500: "#4c4c56",
-          400: "#71717c",
-          300: "#9d9da8",
-          200: "#c6c6cf",
-          100: "#e6e6ec"
+          950: "var(--ink-950, #09090b)",
+          900: "var(--ink-900, #0e0e11)",
+          850: "var(--ink-850, #131316)",
+          800: "var(--ink-800, #18181c)",
+          750: "var(--ink-750, #1e1e23)",
+          700: "var(--ink-700, #26262c)",
+          600: "var(--ink-600, #33333b)",
+          500: "var(--ink-500, #7a7a86)",
+          400: "var(--ink-400, #8e8e9a)",
+          300: "var(--ink-300, #9d9da8)",
+          200: "var(--ink-200, #c6c6cf)",
+          100: "var(--ink-100, #e6e6ec)"
         }
       },
       animation: {
