@@ -1,14 +1,16 @@
 import {useEffect, useMemo, useState} from 'react';
-import {continueRender, delayRender, interpolate, random, useCurrentFrame} from 'remotion';
+import {continueRender, delayRender, interpolate, random, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {codeToTokens, ThemedToken} from 'shiki';
 import {
   Blocks,
   Bug,
+  ChevronRight,
   FileCode2,
   Files,
   FolderOpen,
   GitBranch,
   Search,
+  X,
 } from 'lucide-react';
 import {FPS} from '../types';
 import {ResolvedTheme} from '../theme/theme';
@@ -16,24 +18,85 @@ import {SceneHeader} from './SceneHeader';
 import {Stage} from './Stage';
 
 // VSCodeScene is the "VS Code walkthrough": a synthesized editor — activity
-// bar, file tree, tabs, minimap, status bar — whose code evolves through
-// timed steps. Step 1 types itself in; later steps swap the buffer and flash
-// the changed lines. Everything is frame-driven (research: the only
-// deterministic approach; real editors and screen capture are wall-clock).
-// The chrome is VS Code-like but carries no Microsoft branding.
+// bar, file tree, tabs, minimap, integrated terminal, status bar — whose code
+// evolves through timed steps.
+//
+// With `intro` on (the snippet path) it plays the full opening: the window
+// scales up out of nothing, the file is picked out of the tree, its tab slides
+// in, and only then does the cursor start typing. Mid-lesson (`intro` off) the
+// editor is simply already there, because cutting to a fresh window every time
+// a lesson shows code reads as a restart.
+//
+// A step marked `run` opens the integrated terminal under the editor: the
+// command types itself, then the output streams in line by line. That output
+// comes from the verify stage — it is what the interpreter really printed.
+//
+// Everything is frame-driven (research: the only deterministic approach; real
+// editors and screen capture are wall-clock). The chrome is VS Code-like but
+// carries no Microsoft branding.
 
-const WINDOW_W = 1660;
-// Bounded so title bar + editor + terminal drawer + status bar + the scene
-// header still clear STAGE_H: 9*44+60 editor, 46 title, 38 status, ~160
-// terminal, ~90 header = 700 of the 816 available.
-const EDITOR_MAX_LINES = 9;
-const LINE_H = 44;
-const FONT_SIZE = 27;
+// Window geometry.
+//
+// The proportions matter more than the raw size: a 1680-wide window holding
+// six lines of code is a letterbox strip, and it reads as small no matter how
+// much of the frame it covers. 1520 × ~560 is roughly a real editor window, so
+// the same code reads noticeably larger.
+//
+// The editor pane is a constant eight lines. It does not resize between steps
+// (a window that changes shape mid-clip reads as a jump cut) and it does not
+// hug short files (a three-line pane looks like a screenshot of a mistake —
+// real editors show empty rows below the code).
+//
+// Height budget, against Stage's 896 usable: 91 header + 46 title bar +
+// 382 editor pane + 250 terminal + 38 status = 807, putting the window's
+// bottom edge at y=871 — clear of the caption card's top at y=919. Snippets
+// render with captions on, so that clearance is not optional; Stage's
+// CAPTION_SAFE assumes captions are off and does not reserve enough on its
+// own.
+const WINDOW_W = 1520;
+const EDITOR_LINES = 7;
+const LINE_H = 46;
+const FONT_SIZE = 29;
+const TERMINAL_H = 250;
+const TAB_BAR_H = 46;
+const EDITOR_PAD_TOP = 14;
+const SIDEBAR_W = 226;
+const ACTIVITY_W = 58;
+const MINIMAP_W = 78;
+const GUTTER_W = 74;
 const BG = '#1a1e26';
 const CHROME = '#12151b';
 const SIDEBAR = '#161a21';
+const PANEL = '#101319';
 const FALLBACK_TOKEN = '#d4d4d8';
 const TYPING_PORTION = 0.7; // of the first step's window
+
+// Opening choreography. The window scales up from the scene's first frame;
+// the file is then picked out of the tree and its tab opens, timed backwards
+// from the first keystroke so the gesture lands right before typing however
+// long the intro narration ran.
+const INTRO = {
+  windowInFrames: 18,
+  // Frames before the first keystroke that each phase begins/ends.
+  treeHoverBefore: [26, 20],
+  treeClickBefore: [20, 12],
+  tabInBefore: [14, 3],
+} as const;
+
+// Terminal choreography, in frames from the moment the step's run begins.
+const RUN = {
+  drawerFrames: 14,
+  commandStart: 9,
+  framesPerChar: 1.5,
+  outputGap: 9,
+  framesPerOutputLine: 2.5,
+  // Chrome inside the drawer: the panel tab row plus its padding.
+  tabsH: 44,
+  padH: 14,
+  lineHeight: 1.42,
+  minFont: 15,
+  maxFont: 26,
+} as const;
 
 // Every chrome label (tree rows, tabs, title bar) clips rather than overflows.
 // Flex children default to min-width:auto, so a long file name would otherwise
@@ -45,7 +108,21 @@ const ELLIPSIS: React.CSSProperties = {
   textOverflow: 'ellipsis',
 };
 
-type WalkStep = {code: string; atMs: number; output?: string};
+type WalkStep = {
+  code: string;
+  atMs: number;
+  output?: string;
+  /** Execute the file during this step (opens the terminal drawer). */
+  run?: boolean;
+  /** When the terminal opens; defaults to the step's own start. */
+  runAtMs?: number;
+  /** The command the terminal types, e.g. "python3 loops.py". */
+  command?: string;
+};
+
+/** Frames from the scene's start for an absolute scene-graph timestamp. */
+const framesFrom = (sceneStartMs: number, atMs: number): number =>
+  Math.round(((atMs - sceneStartMs) / 1000) * FPS);
 type TokenLine = ThemedToken[];
 
 /** Per-character stream of one step's tokens, for the typing phase. */
@@ -87,6 +164,12 @@ const changedLines = (prev: string, cur: string): Set<number> => {
   return out;
 };
 
+/** Leading-space depth of a line, in 4-space indent units. */
+const indentDepth = (line: string): number => {
+  const spaces = line.length - line.trimStart().length;
+  return Math.floor(spaces / 4);
+};
+
 export const VSCodeScene: React.FC<{
   theme: ResolvedTheme;
   sceneStartMs: number;
@@ -94,6 +177,7 @@ export const VSCodeScene: React.FC<{
   props: Record<string, unknown>;
 }> = ({theme, sceneStartMs, durationInFrames, props}) => {
   const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
   const nowMs = sceneStartMs + (frame / FPS) * 1000;
 
   const title = String(props.title ?? '');
@@ -102,6 +186,7 @@ export const VSCodeScene: React.FC<{
   const project = String(props.project ?? 'workspace');
   const files = Array.isArray(props.files) ? (props.files as string[]) : [file];
   const steps = Array.isArray(props.steps) ? (props.steps as WalkStep[]) : [];
+  const intro = props.intro === true;
 
   const [tokens, setTokens] = useState<TokenLine[][] | null>(null);
   const [handle] = useState(() => delayRender('vscode-highlight'));
@@ -138,6 +223,20 @@ export const VSCodeScene: React.FC<{
     return idx;
   }, [steps, nowMs]);
 
+  // When the first character lands. The planner supplies it (typeAtMs) so the
+  // opening gesture fills exactly the gap the intro narration left; without it
+  // the scene starts typing at once, which is the lesson path.
+  const typeStartFrame =
+    typeof props.typeAtMs === 'number'
+      ? Math.max(0, framesFrom(sceneStartMs, props.typeAtMs))
+      : 0;
+
+  // Typing is measured from step 0's own start, so the scene-relative
+  // typeAtMs becomes a delay inside that step.
+  const typeDelay = steps.length
+    ? Math.max(0, typeStartFrame - framesFrom(sceneStartMs, steps[0].atMs))
+    : 0;
+
   // Typing plan for step 0 (chars + reveal frames), computed once.
   const typing = useMemo(() => {
     if (!tokens || tokens.length === 0) {
@@ -145,10 +244,13 @@ export const VSCodeScene: React.FC<{
     }
     const chars = flatten(tokens[0]);
     const step0EndMs = steps.length > 1 ? steps[1].atMs : sceneStartMs + (durationInFrames / FPS) * 1000;
-    const windowFrames = Math.max(1, Math.round(((step0EndMs - steps[0].atMs) / 1000) * FPS));
+    const windowFrames = Math.max(
+      1,
+      Math.round(((step0EndMs - steps[0].atMs) / 1000) * FPS) - typeDelay,
+    );
     const typingFrames = Math.max(1, Math.floor(windowFrames * TYPING_PORTION));
     return {chars, reveal: charRevealFrames(chars, typingFrames)};
-  }, [tokens, steps, sceneStartMs, durationInFrames]);
+  }, [tokens, steps, sceneStartMs, durationInFrames, typeDelay]);
 
   if (!tokens || tokens.length === 0) {
     return null;
@@ -158,15 +260,38 @@ export const VSCodeScene: React.FC<{
   const stepStartFrame = Math.round(((step.atMs - sceneStartMs) / 1000) * FPS);
   const framesIntoStep = frame - stepStartFrame;
 
-  // Editor content: step 0 types in; later steps swap + flash changed lines.
+  // --- opening choreography -------------------------------------------------
+  // Phases are timed backwards from the first keystroke, so a long intro beat
+  // holds on the open window rather than stretching the gesture into slow
+  // motion. Clamped to non-negative in case the intro is very short.
+  const before = ([from, to]: readonly [number, number]) => {
+    if (!intro) {
+      return 1;
+    }
+    const start = Math.max(0, typeStartFrame - from);
+    const end = Math.max(start + 1, typeStartFrame - to);
+    return interpolate(frame, [start, end], [0, 1], {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+    });
+  };
+  const windowIn = intro
+    ? spring({frame, fps, config: {damping: 200, mass: 0.7}, durationInFrames: INTRO.windowInFrames})
+    : 1;
+  const treeHover = before(INTRO.treeHoverBefore);
+  const treeClick = before(INTRO.treeClickBefore);
+  const tabIn = before(INTRO.tabInBefore);
+
+  // --- editor content -------------------------------------------------------
   const stepTokens = tokens[Math.min(stepIdx, tokens.length - 1)];
   let visibleLines: TokenLine[] = stepTokens;
   let cursorLine = -1;
   let cursorOn = false;
   let typingDone = true;
   if (stepIdx === 0 && typing) {
+    const framesTyping = framesIntoStep - typeDelay;
     let visibleCount = 0;
-    while (visibleCount < typing.chars.length && typing.reveal[visibleCount] <= framesIntoStep) {
+    while (visibleCount < typing.chars.length && typing.reveal[visibleCount] <= framesTyping) {
       visibleCount++;
     }
     typingDone = visibleCount >= typing.chars.length;
@@ -179,9 +304,8 @@ export const VSCodeScene: React.FC<{
       }
     }
     visibleLines = lines.map((ln) => ln.map((c) => ({content: c.ch, color: c.color, offset: 0})));
-    // Merge adjacent same-color chars is cosmetic only; skip for determinism.
     cursorLine = lines.length - 1;
-    cursorOn = !typingDone && frame % 18 < 11;
+    cursorOn = !typingDone && frame % 16 < 9;
   }
 
   const changed = stepIdx > 0 ? changedLines(steps[stepIdx - 1].code, step.code) : new Set<number>();
@@ -192,7 +316,6 @@ export const VSCodeScene: React.FC<{
 
   const totalLines = visibleLines.length;
   const activeLine = stepIdx === 0 ? cursorLine : Math.min(...(changed.size ? [...changed] : [0]));
-  const scroll = Math.max(0, Math.min((activeLine < 0 ? totalLines : activeLine) - (EDITOR_MAX_LINES - 4), totalLines - EDITOR_MAX_LINES));
 
   const col = (() => {
     if (stepIdx !== 0 || !typing) return 1;
@@ -200,10 +323,62 @@ export const VSCodeScene: React.FC<{
     return (lastLine?.reduce((n, t) => n + t.content.length, 0) ?? 0) + 1;
   })();
 
-  // The window hugs the tallest step (+ a breathing row) instead of always
-  // showing EDITOR_MAX_LINES — short snippets shouldn't float in a void.
-  const tallestStep = Math.max(...steps.map((s) => s.code.split('\n').length), 1);
-  const editorLines = Math.min(EDITOR_MAX_LINES, tallestStep + 1);
+  const editorLines = EDITOR_LINES;
+  const editorPaneH = editorLines * LINE_H + TAB_BAR_H + EDITOR_PAD_TOP;
+
+  // --- terminal drawer ------------------------------------------------------
+  // A step with output but no explicit run is the lesson path: the terminal
+  // simply belongs to the step, opening as it begins.
+  const runs = step.run === true || (step.run === undefined && Boolean(step.output));
+  const runAtMs = step.runAtMs ?? step.atMs;
+  const framesIntoRun = frame - framesFrom(sceneStartMs, runAtMs);
+  const drawer =
+    runs && framesIntoRun >= 0
+      ? spring({
+          frame: framesIntoRun,
+          fps,
+          config: {damping: 200, mass: 0.55},
+          durationInFrames: RUN.drawerFrames,
+        })
+      : 0;
+  const terminalH = TERMINAL_H * drawer;
+
+  const command = step.command ?? `python3 ${file}`;
+  const commandChars = Math.max(
+    0,
+    Math.floor((framesIntoRun - RUN.commandStart) / RUN.framesPerChar),
+  );
+  const typedCommand = command.slice(0, commandChars);
+  const commandDone = commandChars >= command.length;
+  const commandEndFrame = RUN.commandStart + command.length * RUN.framesPerChar;
+  const outputLines = (step.output ?? '').trimEnd().split('\n');
+  // The drawer is a fixed height, so long output has to be typeset to fit
+  // rather than clipped. Clipping loses the last line — which, in a clip built
+  // around running the code, is usually the punchline.
+  const terminalFont = Math.max(
+    RUN.minFont,
+    Math.min(
+      RUN.maxFont,
+      Math.floor((TERMINAL_H - RUN.tabsH - RUN.padH) / ((outputLines.length + 1) * RUN.lineHeight)),
+    ),
+  );
+  const visibleOutput = commandDone
+    ? Math.max(
+        0,
+        Math.floor((framesIntoRun - commandEndFrame - RUN.outputGap) / RUN.framesPerOutputLine),
+      )
+    : 0;
+  // The accent glow behind the window swells as the program runs — the one
+  // moment in the clip that deserves emphasis.
+  const runGlow = drawer * interpolate(framesIntoRun, [0, 24], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
+  const scroll = Math.max(
+    0,
+    Math.min((activeLine < 0 ? totalLines : activeLine) - (editorLines - 3), totalLines - editorLines),
+  );
 
   const ACTIVITY: {Icon: typeof Files; active?: boolean}[] = [
     {Icon: Files, active: true},
@@ -213,18 +388,34 @@ export const VSCodeScene: React.FC<{
     {Icon: Blocks},
   ];
 
+  const codeLines = step.code.split('\n');
+
   return (
     <Stage>
       <SceneHeader theme={theme} title={title} size="compact" marginBottom={26} />
-      <div style={{width: WINDOW_W, maxWidth: '100%'}}>
+      <div style={{width: WINDOW_W, maxWidth: '100%', position: 'relative'}}>
+        {/* Accent bloom behind the window; swells while the program runs. */}
         <div
           style={{
+            position: 'absolute',
+            inset: -60,
+            borderRadius: 80,
+            background: `radial-gradient(60% 55% at 50% 82%, ${theme.accent}, transparent 70%)`,
+            opacity: 0.05 + runGlow * 0.16,
+            filter: 'blur(60px)',
+          }}
+        />
+        <div
+          style={{
+            position: 'relative',
             borderRadius: 16,
             overflow: 'hidden',
             border: `1px solid ${theme.surfaceBorder}`,
             boxShadow: '0 44px 110px rgba(0,0,0,0.6)',
             backgroundColor: BG,
             fontFamily: theme.fontMono,
+            opacity: windowIn,
+            transform: `translateY(${(1 - windowIn) * 38}px) scale(${0.955 + windowIn * 0.045})`,
           }}
         >
           {/* Title bar */}
@@ -248,6 +439,7 @@ export const VSCodeScene: React.FC<{
                 fontFamily: theme.fontBody,
                 fontSize: 19,
                 color: 'rgba(255,255,255,0.45)',
+                opacity: tabIn,
                 ...ELLIPSIS,
               }}
             >
@@ -255,11 +447,12 @@ export const VSCodeScene: React.FC<{
             </div>
             <div style={{width: 60}} />
           </div>
-          <div style={{display: 'flex', height: editorLines * LINE_H + 46 + 14}}>
+          <div style={{display: 'flex', height: editorPaneH + terminalH}}>
             {/* Activity bar */}
             <div
               style={{
-                width: 62,
+                width: ACTIVITY_W,
+                flexShrink: 0,
                 backgroundColor: CHROME,
                 display: 'flex',
                 flexDirection: 'column',
@@ -273,20 +466,20 @@ export const VSCodeScene: React.FC<{
                   key={i}
                   style={{
                     borderLeft: `2px solid ${active ? theme.accent : 'transparent'}`,
-                    paddingLeft: 0,
                     width: '100%',
                     display: 'flex',
                     justifyContent: 'center',
                   }}
                 >
-                  <Icon size={27} color={active ? '#e8ecf3' : 'rgba(255,255,255,0.32)'} strokeWidth={1.8} />
+                  <Icon size={25} color={active ? '#e8ecf3' : 'rgba(255,255,255,0.32)'} strokeWidth={1.8} />
                 </div>
               ))}
             </div>
             {/* File tree */}
             <div
               style={{
-                width: 264,
+                width: SIDEBAR_W,
+                flexShrink: 0,
                 backgroundColor: SIDEBAR,
                 borderRight: '1px solid rgba(255,255,255,0.05)',
                 padding: '14px 0',
@@ -311,7 +504,10 @@ export const VSCodeScene: React.FC<{
                 <span style={ELLIPSIS}>{project}</span>
               </div>
               {files.map((f) => {
-                const active = f === file;
+                const isTarget = f === file;
+                // The opening gesture: the row lights under a hover, then the
+                // click lands and it becomes the selected file.
+                const selected = isTarget ? Math.max(treeHover * 0.45, treeClick) : 0;
                 return (
                   <div
                     key={f}
@@ -320,8 +516,11 @@ export const VSCodeScene: React.FC<{
                       alignItems: 'center',
                       gap: 9,
                       padding: '6px 16px 6px 34px',
-                      color: active ? '#e8ecf3' : 'rgba(255,255,255,0.44)',
-                      backgroundColor: active ? 'rgba(255,255,255,0.07)' : 'transparent',
+                      color: `rgba(232,236,243,${0.44 + selected * 0.56})`,
+                      backgroundColor: `rgba(255,255,255,${selected * 0.07})`,
+                      borderLeft: `2px solid ${
+                        selected > 0.6 ? theme.accent : 'transparent'
+                      }`,
                       // Without this the row grows to fit the name and the
                       // text spills across the editor column underneath.
                       minWidth: 0,
@@ -329,7 +528,7 @@ export const VSCodeScene: React.FC<{
                   >
                     <FileCode2
                       size={19}
-                      color={active ? '#4fc1ff' : 'rgba(255,255,255,0.36)'}
+                      color={selected > 0.6 ? '#4fc1ff' : 'rgba(255,255,255,0.36)'}
                       strokeWidth={1.8}
                       style={{flexShrink: 0}}
                     />
@@ -340,56 +539,91 @@ export const VSCodeScene: React.FC<{
             </div>
             {/* Editor column */}
             <div style={{flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0}}>
-              {/* Tab bar */}
-              <div style={{display: 'flex', height: 46, backgroundColor: CHROME, minWidth: 0}}>
+              {/* Tab bar — the tab slides in as the file opens */}
+              <div style={{display: 'flex', height: TAB_BAR_H, backgroundColor: CHROME, minWidth: 0, flexShrink: 0}}>
                 <div
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     gap: 9,
-                    padding: '0 24px',
+                    padding: '0 20px',
                     backgroundColor: BG,
                     borderTop: `2px solid ${theme.accent}`,
                     color: '#e8ecf3',
                     fontFamily: theme.fontBody,
                     fontSize: 20,
                     minWidth: 0,
+                    opacity: tabIn,
+                    transform: `translateX(${(1 - tabIn) * -22}px)`,
                   }}
                 >
                   <FileCode2 size={19} color="#4fc1ff" strokeWidth={1.8} style={{flexShrink: 0}} />
                   <span style={ELLIPSIS}>{file}</span>
+                  <X size={17} color="rgba(255,255,255,0.35)" strokeWidth={2.2} style={{flexShrink: 0}} />
                 </div>
               </div>
               {/* Editor + minimap */}
-              <div style={{display: 'flex', flex: 1, overflow: 'hidden', paddingTop: 14}}>
+              <div
+                style={{
+                  display: 'flex',
+                  height: editorPaneH - TAB_BAR_H,
+                  flexShrink: 0,
+                  overflow: 'hidden',
+                  paddingTop: EDITOR_PAD_TOP,
+                  opacity: tabIn,
+                }}
+              >
                 <div style={{flex: 1, overflow: 'hidden', minWidth: 0}}>
                   <div style={{transform: `translateY(${-scroll * LINE_H}px)`}}>
                     {visibleLines.map((line, li) => {
                       const isChanged = changed.has(li);
+                      const isActive = li === activeLine && !typingDone;
+                      const text = line.map((t) => t.content).join('');
+                      const depth = indentDepth(codeLines[li] ?? text);
                       return (
                         <div
                           key={li}
                           style={{
                             display: 'flex',
                             height: LINE_H,
-                            backgroundColor: isChanged ? `rgba(255, 212, 59, ${0.16 * flash})` : 'transparent',
+                            position: 'relative',
+                            backgroundColor: isChanged
+                              ? `rgba(255, 212, 59, ${0.16 * flash})`
+                              : isActive
+                                ? 'rgba(255,255,255,0.035)'
+                                : 'transparent',
                           }}
                         >
                           <span
                             style={{
-                              width: 74,
+                              width: GUTTER_W,
                               flexShrink: 0,
                               textAlign: 'right',
                               paddingRight: 24,
                               fontSize: 22,
                               lineHeight: `${LINE_H}px`,
-                              color: 'rgba(255,255,255,0.24)',
+                              color: isActive ? 'rgba(255,255,255,0.55)' : 'rgba(255,255,255,0.24)',
                               userSelect: 'none',
                             }}
                           >
                             {li + 1}
                           </span>
-                          <span style={{fontSize: FONT_SIZE, lineHeight: `${LINE_H}px`, whiteSpace: 'pre'}}>
+                          <span style={{position: 'relative', fontSize: FONT_SIZE, lineHeight: `${LINE_H}px`, whiteSpace: 'pre'}}>
+                            {/* Indent guides — the detail that separates a
+                                real editor from a code card. */}
+                            {Array.from({length: depth}, (_, d) => (
+                              <span
+                                key={d}
+                                style={{
+                                  position: 'absolute',
+                                  left: d * 4 * (FONT_SIZE * 0.6) + 1,
+                                  top: 6,
+                                  bottom: 6,
+                                  width: 1,
+                                  backgroundColor: 'rgba(255,255,255,0.09)',
+                                }}
+                              />
+                            ))}
                             {line.map((t, ti) => (
                               <span key={ti} style={{color: t.color ?? FALLBACK_TOKEN}}>
                                 {t.content}
@@ -399,7 +633,7 @@ export const VSCodeScene: React.FC<{
                               <span
                                 style={{
                                   display: 'inline-block',
-                                  width: 14,
+                                  width: 3,
                                   height: 32,
                                   marginLeft: 1,
                                   verticalAlign: 'text-bottom',
@@ -414,8 +648,8 @@ export const VSCodeScene: React.FC<{
                   </div>
                 </div>
                 {/* Minimap: one bar per line, width ∝ length */}
-                <div style={{width: 96, flexShrink: 0, padding: '4px 14px 0 6px', opacity: 0.55}}>
-                  {steps[stepIdx].code.split('\n').slice(0, 44).map((ln, i) => (
+                <div style={{width: MINIMAP_W, flexShrink: 0, padding: '4px 14px 0 6px', opacity: 0.55}}>
+                  {codeLines.slice(0, 44).map((ln, i) => (
                     <div
                       key={i}
                       style={{
@@ -429,51 +663,109 @@ export const VSCodeScene: React.FC<{
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
-          {/* Integrated terminal: the current step's really-executed output */}
-          {step.output ? (
-            <div
-              style={{
-                borderTop: '1px solid rgba(255,255,255,0.07)',
-                backgroundColor: CHROME,
-                padding: '14px 24px 18px',
-                opacity: interpolate(framesIntoStep, [14, 30], [0, 1], {
-                  extrapolateLeft: 'clamp',
-                  extrapolateRight: 'clamp',
-                }),
-              }}
-            >
+              {/* Integrated terminal: slides up, types the command, streams
+                  the output the interpreter really produced. */}
               <div
                 style={{
-                  fontFamily: theme.fontBody,
-                  fontSize: 16,
-                  letterSpacing: 2.4,
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.4)',
-                  marginBottom: 8,
-                }}
-              >
-                Terminal
-              </div>
-              <pre
-                style={{
-                  margin: 0,
-                  whiteSpace: 'pre-wrap',
-                  fontSize: 24,
-                  lineHeight: 1.45,
-                  color: '#d6dde6',
-                  maxHeight: 150,
+                  height: terminalH,
                   overflow: 'hidden',
+                  backgroundColor: PANEL,
+                  borderTop: `1px solid rgba(255,255,255,${0.09 * drawer})`,
+                  flexShrink: 0,
                 }}
               >
-                <span style={{color: '#28c840'}}>$ </span>python3 {file}
-                {'\n'}
-                {step.output.trimEnd()}
-              </pre>
+                <div
+                  style={{
+                    padding: `0 24px ${RUN.padH}px`,
+                    height: TERMINAL_H,
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 26,
+                      height: RUN.tabsH,
+                      flexShrink: 0,
+                      fontFamily: theme.fontBody,
+                      fontSize: 15,
+                      letterSpacing: 1.8,
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    {['Problems', 'Output', 'Terminal'].map((tab) => {
+                      const active = tab === 'Terminal';
+                      return (
+                        <span
+                          key={tab}
+                          style={{
+                            color: active ? '#e8ecf3' : 'rgba(255,255,255,0.34)',
+                            borderBottom: `2px solid ${active ? theme.accent : 'transparent'}`,
+                            paddingBottom: 6,
+                          }}
+                        >
+                          {tab}
+                        </span>
+                      );
+                    })}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: terminalFont,
+                      lineHeight: RUN.lineHeight,
+                      color: '#d6dde6',
+                      paddingTop: 8,
+                    }}
+                  >
+                    <div style={{display: 'flex', alignItems: 'baseline', gap: 10}}>
+                      <ChevronRight
+                        size={terminalFont * 0.82}
+                        color="#28c840"
+                        strokeWidth={3}
+                        style={{flexShrink: 0}}
+                      />
+                      <span style={{whiteSpace: 'pre'}}>
+                        {typedCommand}
+                        {!commandDone && framesIntoRun >= RUN.commandStart ? (
+                          <span
+                            style={{
+                              display: 'inline-block',
+                              width: Math.round(terminalFont * 0.5),
+                              height: terminalFont,
+                              verticalAlign: 'text-bottom',
+                              backgroundColor: frame % 16 < 9 ? theme.accent : 'transparent',
+                            }}
+                          />
+                        ) : null}
+                      </span>
+                    </div>
+                    {outputLines.slice(0, visibleOutput).map((ln, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          whiteSpace: 'pre-wrap',
+                          opacity: interpolate(
+                            framesIntoRun,
+                            [
+                              commandEndFrame + RUN.outputGap + i * RUN.framesPerOutputLine,
+                              commandEndFrame + RUN.outputGap + i * RUN.framesPerOutputLine + 4,
+                            ],
+                            [0, 1],
+                            {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'},
+                          ),
+                        }}
+                      >
+                        {ln}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
-          ) : null}
+          </div>
           {/* Status bar */}
           <div
             style={{

@@ -285,8 +285,8 @@ func TestScriptStageFailsAfterRetry(t *testing.T) {
 	env, _ := runEnv(t, fake)
 
 	err := env.RunLesson(context.Background(), course, lesson, RunOptions{Stage: project.StageScript})
-	if err == nil || !strings.Contains(err.Error(), "invalid after retry") {
-		t.Fatalf("error = %v, want invalid-after-retry", err)
+	if err == nil || !strings.Contains(err.Error(), "invalid after 1 correction round") {
+		t.Fatalf("error = %v, want invalid-after-correction-round", err)
 	}
 
 	cfg := config.Resolve(course.Config, lesson.FrontMatter.Overrides(), config.Config{})
@@ -522,8 +522,11 @@ func TestRunnerFullPipelineAndSkip(t *testing.T) {
 	if !strings.Contains(out, "up to date") {
 		t.Errorf("output missing skip notices:\n%s", out)
 	}
-	if got := strings.Count(out, "up to date"); got != len(stageFuncs) {
-		t.Errorf("skipped %d stages, want all %d implemented:\n%s", got, len(stageFuncs), out)
+	// Every lesson stage must have been skipped. The count is against the
+	// lesson stage order, not stageFuncs, because stageFuncs also holds
+	// stages only the snippet pipeline runs.
+	if got := strings.Count(out, "up to date"); got != len(project.StageOrder) {
+		t.Errorf("skipped %d stages, want all %d lesson stages:\n%s", got, len(project.StageOrder), out)
 	}
 }
 

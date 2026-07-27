@@ -72,7 +72,15 @@ export type D3DiagramSpec = {
   edges: D3Edge[];
 };
 
-export type SceneType = 'title' | 'code' | 'diagram' | 'terminal' | 'points' | 'walkthrough';
+export type SceneType =
+  | 'title'
+  | 'code'
+  | 'diagram'
+  | 'terminal'
+  | 'points'
+  | 'walkthrough'
+  | 'whiteboard'
+  | 'flow';
 
 export type Scene = {
   type: SceneType;

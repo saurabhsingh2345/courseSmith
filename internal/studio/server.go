@@ -58,6 +58,12 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("PUT /api/drafts/{id}", s.handleDraftUpdate)
 	mux.HandleFunc("DELETE /api/drafts/{id}", s.handleDraftDelete)
 	mux.HandleFunc("POST /api/drafts/{id}/assign", s.handleDraftAssign)
+	// Short-form: prompt + visual template → one standalone clip.
+	mux.HandleFunc("GET /api/snippet-templates", s.handleSnippetTemplates)
+	mux.HandleFunc("GET /api/snippets", s.handleSnippetsList)
+	mux.HandleFunc("POST /api/snippets", s.handleSnippetCreate)
+	mux.HandleFunc("GET /api/snippets/{id}", s.handleSnippetDetail)
+	mux.HandleFunc("DELETE /api/snippets/{id}", s.handleSnippetDelete)
 	mux.HandleFunc("GET /api/archetypes", s.handleArchetypes)
 	mux.HandleFunc("GET /api/library/diagrams", s.handleLibraryDiagramsList)
 	mux.HandleFunc("POST /api/library/diagrams", s.handleLibraryDiagramCreate)
@@ -116,12 +122,26 @@ func writeError(w http.ResponseWriter, status int, err error) {
 }
 
 // resolveCourse loads a course by slug from the courses dir.
+//
+// The snippets slug is special: snippets live in a synthetic course under the
+// state dir, not in courses/. Resolving it here means the lesson-detail, run,
+// and artifact routes all serve snippets with no snippet-specific code — a
+// snippet is a lesson, and this is what makes that true for the API too.
 func (s *Server) resolveCourse(slug string) (*project.Course, error) {
 	dir := filepath.Join(s.coursesDir, filepath.Base(slug))
 	if _, err := os.Stat(filepath.Join(dir, project.CourseFileName)); err != nil {
+		if filepath.Base(slug) == pipeline.SnippetsCourseSlug {
+			return pipeline.EnsureSnippetsCourse(s.projectRoot())
+		}
 		return nil, fmt.Errorf("no course %q", slug)
 	}
 	return project.LoadCourse(dir)
+}
+
+// projectRoot is the directory the snippets store hangs off. The state dir is
+// always <root>/.coursesmith, so its parent is the root.
+func (s *Server) projectRoot() string {
+	return filepath.Dir(s.stateDir)
 }
 
 func (s *Server) resolveLesson(courseSlug, lessonID string) (*project.Course, *project.Lesson, error) {
@@ -281,7 +301,16 @@ func (s *Server) handleLessonDetail(w http.ResponseWriter, r *http.Request) {
 // return the same shape the UI already renders.
 func (s *Server) buildLessonDetail(course *project.Course, lesson *project.Lesson) (LessonDetail, error) {
 	cfg := config.Resolve(course.Config, lesson.FrontMatter.Overrides(), config.Config{})
-	statuses, err := s.env.LessonStatus(lesson, cfg)
+	// A snippet runs its own short pipeline; reporting the lesson stages it
+	// never runs would show a wall of permanently-pending rows and hide its
+	// plan stage entirely.
+	stageOrder := project.StagesFor(cfg.Pipeline.VideoOnly)
+	if pipeline.IsSnippet(lesson) {
+		if snippetStages, err := pipeline.SnippetStages(lesson); err == nil {
+			stageOrder = snippetStages
+		}
+	}
+	statuses, err := s.env.LessonStatusFor(lesson, cfg, stageOrder)
 	if err != nil {
 		return LessonDetail{}, err
 	}
@@ -293,7 +322,7 @@ func (s *Server) buildLessonDetail(course *project.Course, lesson *project.Lesso
 		Title:      lesson.FrontMatter.Title,
 		Source:     string(source),
 		Stages:     map[string]string{},
-		StageOrder: project.StagesFor(cfg.Pipeline.VideoOnly),
+		StageOrder: stageOrder,
 		Reviews:    map[string]json.RawMessage{},
 	}
 	for stage, status := range statuses {

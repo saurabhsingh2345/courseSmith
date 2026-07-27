@@ -1,8 +1,8 @@
 # What We Have — courseSmith
 
 _A living snapshot of the project: what it is, everything that's built, what's
-left, and where it's going. Last updated 2026-07-18 (evening: the 10x visual
-overhaul — see §8)._
+left, and where it's going. Last updated 2026-07-27 (snippets: the short-form
+surface and its template catalog — see §9)._
 
 ---
 
@@ -360,3 +360,139 @@ video-plan, speed-fix); renderer + studio tsc clean; studio vitest 84 pass;
 visual-regression baselines re-recorded (0px-deterministic); animation gate
 updated for the ambient background and passing; before/after stills eyeballed
 for every new scene type.
+
+---
+
+## 9. Snippets — the short-form surface (2026-07-27)
+
+Driven by the pivot to a SaaS creators actually use: a course lesson is a
+document first and a video second, which is the right shape for a 12-minute
+lesson and the wrong shape for the 30-second clip a creator wants for a landing
+page. A **snippet** inverts it — the prompt *is* the input, a **template**
+decides what the screen looks like, and one LLM call produces the narration and
+the visual spec together.
+
+**The spine.** New `plan` stage (`internal/pipeline/snippet.go`) turns
+`snippet.yaml` (prompt + template + target runtime) into `snippet-plan.json`,
+and from it the `script.json` and `lesson.md` the rest of the pipeline already
+expects. `project.SnippetStageOrder` is then the ordinary video path:
+`plan → verify → audio → align → captions → chapters → scenegraph → render`.
+Nothing downstream knows a snippet was not hand-written, so a clip inherits the
+whole quality moat — real executed code, word-accurate whisperX timing, the
+design system — with no second engine.
+
+On disk a snippet is a lesson directory inside a synthetic course
+(`.coursesmith/snippets/lessons/<id>/`), which is what lets the existing stage
+machinery, state tracking, studio artifact serving, and `/api/lessons/...`
+routes work on it with no special cases.
+
+**The template catalog** (`snippet_templates.go`). A template owns the prompt
+that plans the clip, the rules that plan must satisfy, and the mapping from a
+planned-and-timed clip onto renderer scenes. Shared code owns timing, theming,
+captions and the scene-graph envelope, so no template can drift from the design
+system — a template only decides what fills the frame.
+
+- **`vscode`** (`snippet_vscode.go`) — an editor opens, the file is picked out
+  of the tree, code types itself in, and the integrated terminal slides up and
+  runs it. The terminal output is not written by the model: the plan's code goes
+  through the ordinary verify stage and the scene shows what the interpreter
+  really printed. A beat that runs unverified code fails the build.
+
+**Enforced length.** Models systematically under-write to a seconds target (they
+have no clock) — a 45s request came back as 58 words, half a video. The word
+budget is now a gate, not a suggestion: a plan outside 75–130% of
+`target_sec × pace_wpm / 60` is rejected and regenerated with the miss quoted
+back.
+
+**Scene work.** `VSCodeScene` gained the full choreography: window scales up,
+tree hover → click → tab slide-in timed *backwards* from the first keystroke (so
+a long intro beat holds on the open window instead of stretching the gesture),
+a terminal drawer that grows the window and types its command before streaming
+output line by line, indent guides, an active-line band, and a run-time accent
+bloom. The window was re-proportioned to 1520×~560 (a 1680-wide window holding
+six lines of code reads as a letterbox strip no matter how much frame it
+covers), the terminal typesets its output to fit rather than clipping the last
+line, and the whole thing stays clear of the caption card. `TitleCard` now
+renders its subtitle in intro mode — it was being silently dropped, so every
+snippet's hook went missing.
+
+**Surfaces.** `coursesmith snippet templates | new | run | list`, plus
+`/api/snippet-templates`, `/api/snippets` (CRUD) and a Studio **Snippets** page:
+template gallery, prompt, runtime picker, one button, and a player + beat
+breakdown for the finished clip.
+
+- **`whiteboard`** (`snippet_whiteboard.go`) — one board that fills in as the
+  narrator talks: a hand-drawn box is sketched, its icon wipes in, its label is
+  written, and an arrow reaches across from an idea already on the board. The
+  board never wipes; the accumulation is the form.
+
+  The model does not draw. It picks *what* goes on the board — a short label, an
+  icon from the closed vocabulary, and which earlier item it follows from — and
+  the renderer draws it on a grid it owns. Letting an LLM author freehand SVG is
+  what made the `visuals` stage need a vision-QA gate and a repair loop; this
+  trade gives up nothing that reads on screen.
+
+  Strokes are generated analytically (`renderer/src/components/sketch.ts`), which
+  buys three things an imported drawing cannot: exact path length for a
+  `stroke-dashoffset` draw-on, the pen's position at any frame for the marker
+  that leads it, and ownership of the layout. Boxes are **double-stroked** with
+  separate seeds — a single wobbled outline still reads as a `rect` element; two
+  passes read as a pen. The wobble's harmonics are whole cycles so the function
+  is periodic, which makes the overshoot land exactly on the stroke's start
+  instead of as a floating tick. The grid is **serpentine**: rows alternate
+  direction so consecutive items are always adjacent, because a straight
+  left-to-right second row put the connector on a long diagonal straight through
+  the boxes in between.
+
+**Enforced length, revisited.** The floor is enforced (75% of
+`target_sec × pace_wpm / 60`) because undershooting is fatal — the visuals are
+timed to the voice. The *ceiling* is loose (155%), and that is a measured
+decision, not laziness: a 135% ceiling was tried and the model produced 184-185
+words in three consecutive correction rounds on a topic it judged to need that
+much, ignoring the stated target entirely. Rejecting those plans bought failed
+generations, not shorter clips. Runtimes are therefore documented and labelled
+as approximate, and the finished duration is always reported.
+
+**Repair rounds.** `completeWithRepairRounds` generalizes the one-shot repair
+loop, and the snippet planner uses three. It also carries *every* rejection
+forward rather than just the latest: with several independent numeric rules, a
+single-round loop quoting one error made models oscillate — attempt one missed
+the item count, attempt two fixed the count and blew the word budget, and the
+call failed having never seen both constraints at once.
+
+- **`flow`** (`snippet_flow.go`) — labelled boxes in layered columns, edges
+  curving between them, and once the graph is up, **tokens visibly moving along
+  those edges** while the narration traces a path through it. Beats declare a
+  `focus` set; everything outside it dims and its traffic stops, so one diagram
+  narrates the happy path, then the failing path, without ever being redrawn.
+  That is the whole reason this is not a static Mermaid render: a systems
+  diagram is about movement, which a picture can only imply.
+
+  The model declares a DAG (nodes with a kind and the nodes that feed them) and
+  **Go ranks it** — longest-path layering, in `flowScenes`. That split is
+  deliberate: ranking is graph logic that wants Go unit tests, placement is a
+  function of the stage box (`renderer/src/components/flow.ts`), and neither can
+  quietly depend on the other. Edges are S-curves with horizontal control pulls,
+  so every edge leaves a box going right and arrives going right and the eye
+  never has to work out which end is which.
+
+  Two rules are enforced rather than suggested, and both make the template
+  distinct: the graph **must fork or join** (a straight chain wastes a layered
+  layout and is what `whiteboard` already draws well), and each focused beat
+  **must focus a different, strictly smaller set** (focusing everything dims
+  nothing; two identical sets narrate the same picture twice). Depth is capped
+  at 4 columns and width at 4 rows, because that is what leaves a readable label
+  at 1080p.
+
+**Cross-template field guards.** `SnippetBeat` is the union of what every
+template needs, so `beatFields` declares ownership once per template and
+`rejectForeignBeatFields` fails loudly when a plan sets a field its template
+ignores. Each template hand-checking the others was quadratic and rotting.
+
+**Per-frame render budget.** `RemotionRenderer.FrameTimeoutMs` (default 180s,
+up from Remotion's 30s). A frame measures ~100ms, but a busy machine missed the
+deadline once and aborted an otherwise-finished clip. The budget was raised
+rather than the scenes made cheaper, because the scenes are not the problem.
+
+**Next templates** (planned, not built): data & maps, a flat-vector character
+cast, and illustration/kinetic-typography.

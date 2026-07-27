@@ -133,6 +133,28 @@ export const TitleCard: React.FC<{
           background: `linear-gradient(90deg, ${theme.accent}, ${theme.primary})`,
         }}
       />
+      {/* The promise of the piece. In intro mode the kicker is the course
+          name, so without this the subtitle had nowhere to go and was
+          silently dropped — a snippet's whole hook lives in this line. */}
+      {intro && subtitle ? (
+        <div
+          style={{
+            marginTop: 30,
+            maxWidth: CONTENT_W - 120,
+            fontFamily: theme.fontBody,
+            fontSize: 40,
+            fontWeight: 400,
+            lineHeight: 1.35,
+            color: theme.textMuted,
+            opacity: interpolate(frame, [18, 32], [0, 1], {
+              extrapolateLeft: 'clamp',
+              extrapolateRight: 'clamp',
+            }),
+          }}
+        >
+          {subtitle}
+        </div>
+      ) : null}
       {intro && outcomes.length > 0 ? (
         <div style={{marginTop: 58, display: 'flex', flexDirection: 'column', gap: 22}}>
           {outcomes.map((outcome, i) => {
@@ -176,7 +198,6 @@ export const TitleCard: React.FC<{
           })}
         </div>
       ) : null}
-      {!intro && subtitle ? null : null}
     </AbsoluteFill>
   );
 };

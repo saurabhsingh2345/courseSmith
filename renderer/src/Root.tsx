@@ -123,6 +123,69 @@ const pointsVizProps: LessonVideoProps = {
 };
 
 
+// A demo of the whiteboard scene, so `remotion still WhiteboardViz` renders it
+// standalone. Six items with links exercises the 3x2 grid, the connectors, and
+// the accent settling back to chalk on everything but the newest box.
+const whiteboardVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 14000,
+  scenes: [
+    {
+      type: 'whiteboard',
+      startMs: 0,
+      endMs: 14000,
+      props: {
+        title: 'How a web request travels',
+        items: [
+          {label: 'Browser', icon: 'monitor', atMs: 300},
+          {label: 'DNS lookup', icon: 'search', atMs: 2400, from: 0},
+          {label: 'CDN edge', icon: 'globe', atMs: 4600, from: 1},
+          {label: 'Load balancer', icon: 'layers', atMs: 6800, from: 2},
+          {label: 'App server', icon: 'terminal', atMs: 9000, from: 3},
+          {label: 'Database', icon: 'database', atMs: 11200, from: 4},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+// A demo of the flow scene, so `remotion still FlowViz` renders it standalone.
+// Branching (the gateway feeds both a cache and a queue) exercises the layering,
+// and the focus window at 9s exercises the dim/highlight path.
+const flowVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 16000,
+  scenes: [
+    {
+      type: 'flow',
+      startMs: 0,
+      endMs: 16000,
+      props: {
+        title: 'How a request gets rate limited',
+        ranks: 4,
+        nodes: [
+          {id: 'client', label: 'Client', kind: 'client', icon: 'monitor', rank: 0, order: 0, atMs: 300},
+          {id: 'gw', label: 'API gateway', kind: 'service', icon: 'gear', rank: 1, order: 0, atMs: 2200},
+          {id: 'counter', label: 'Rate counter', kind: 'cache', icon: 'zap', rank: 2, order: 0, atMs: 4100},
+          {id: 'queue', label: 'Work queue', kind: 'queue', icon: 'layers', rank: 2, order: 1, atMs: 6000},
+          {id: 'db', label: 'Postgres', kind: 'store', icon: 'database', rank: 3, order: 0, atMs: 7900},
+        ],
+        edges: [
+          {from: 0, to: 1, atMs: 2200},
+          {from: 1, to: 2, atMs: 4100},
+          {from: 1, to: 3, atMs: 6000},
+          {from: 3, to: 4, atMs: 7900},
+        ],
+        focus: [{startMs: 10000, endMs: 16000, nodes: [0, 1, 2]}],
+      },
+    },
+  ],
+  captions: [],
+};
+
 // A demo of the VS Code walkthrough scene, so `remotion still VSCodeViz`
 // renders it standalone.
 const vscodeVizProps: LessonVideoProps = {
@@ -162,6 +225,24 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(vscodeVizProps.durationMs)}
       defaultProps={vscodeVizProps}
+    />
+    <Composition
+      id="WhiteboardViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(whiteboardVizProps.durationMs)}
+      defaultProps={whiteboardVizProps}
+    />
+    <Composition
+      id="FlowViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(flowVizProps.durationMs)}
+      defaultProps={flowVizProps}
     />
     <Composition
       id="PointsViz"

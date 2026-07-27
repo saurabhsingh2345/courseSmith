@@ -5,6 +5,7 @@ import { RunBar } from "./components/RunBar";
 import { LogPanel } from "./components/LogPanel";
 import { ShortcutOverlay } from "./components/ShortcutOverlay";
 import { ComposePage } from "./pages/ComposePage";
+import { SnippetsPage } from "./pages/SnippetsPage";
 import { CoursesPage } from "./pages/CoursesPage";
 import { CoursePage } from "./pages/CoursePage";
 import { CourseEditorPage } from "./pages/CourseEditorPage";
@@ -68,6 +69,7 @@ export function App() {
         </Link>
         <nav className="flex gap-3">
           <NavItem to="/" label="Compose" />
+          <NavItem to="/snippets" label="Snippets" />
           <NavItem to="/courses" label="Courses" />
           <NavItem to="/generation" label="Generation" />
           <NavItem to="/templates" label="Templates" />
@@ -84,6 +86,7 @@ export function App() {
       <main className="min-h-0 flex-1 overflow-auto">
         <Routes>
           <Route path="/" element={<ComposePage />} />
+          <Route path="/snippets" element={<SnippetsPage />} />
           <Route path="/courses" element={<CoursesPage />} />
           <Route path="/generation" element={<GenerationPage />} />
           <Route path="/templates" element={<TemplatesPage />} />

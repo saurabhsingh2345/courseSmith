@@ -27,6 +27,12 @@ const (
 	// SceneWalkthrough is the VS Code walkthrough: a synthesized editor whose
 	// buffer evolves through timed steps (one per outline code block).
 	SceneWalkthrough = "walkthrough"
+	// SceneWhiteboard is one continuous board that accumulates hand-drawn
+	// boxes, arrows and labels as the narrator speaks.
+	SceneWhiteboard = "whiteboard"
+	// SceneFlow is a layered systems diagram with traffic moving along its
+	// edges and a focus that follows the narration.
+	SceneFlow = "flow"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file
@@ -508,6 +514,12 @@ func LoadSceneGraph(l *project.Lesson) (*SceneGraph, error) {
 // runScenegraphStage builds generated/lesson-video.json from the script,
 // word alignment, demo manifest, and verified code outputs.
 func runScenegraphStage(ctx context.Context, e *Env, course *project.Course, l *project.Lesson, cfg config.Config) error {
+	// A snippet's scenes come from its template, not from the lesson-shaped
+	// script/storyboard/diagram machinery. Everything after this branch —
+	// captions, the video-plan edit layer, the written artifact — is shared.
+	if IsSnippet(l) {
+		return runSnippetScenegraph(ctx, e, course, l, cfg)
+	}
 	script, err := loadScript(l)
 	if err != nil {
 		return err
@@ -543,6 +555,13 @@ func runScenegraphStage(ctx context.Context, e *Env, course *project.Course, l *
 	if err != nil {
 		return err
 	}
+	return finishSceneGraph(e, l, graph)
+}
+
+// finishSceneGraph applies the shared post-build layers to any scene graph —
+// caption emphasis, the human video-plan edits — and writes it out. Lessons
+// and snippets differ in how their scenes are built and in nothing after.
+func finishSceneGraph(e *Env, l *project.Lesson, graph *SceneGraph) error {
 	// Emphasis indices address caption words; without captions there is
 	// nothing for them to point at.
 	if len(graph.Captions) > 0 {
@@ -571,8 +590,9 @@ func runScenegraphStage(ctx context.Context, e *Env, course *project.Course, l *
 	for _, s := range graph.Scenes {
 		types[s.Type]++
 	}
-	fmt.Fprintf(e.out(), "    %d scenes (%d title, %d points, %d code, %d walkthrough, %d diagram, %d terminal), %d captions, %.1fs\n",
-		len(graph.Scenes), types[SceneTitle], types[ScenePoints], types[SceneCode], types[SceneWalkthrough], types[SceneDiagram], types[SceneTerminal],
+	fmt.Fprintf(e.out(), "    %d scenes (%d title, %d points, %d code, %d walkthrough, %d whiteboard, %d flow, %d diagram, %d terminal), %d captions, %.1fs\n",
+		len(graph.Scenes), types[SceneTitle], types[ScenePoints], types[SceneCode], types[SceneWalkthrough],
+		types[SceneWhiteboard], types[SceneFlow], types[SceneDiagram], types[SceneTerminal],
 		len(graph.Captions), float64(graph.DurationMs)/1000)
 	return nil
 }

@@ -30,6 +30,12 @@ const TARGETS = [
   { id: "ExecViz", frame: 60 },
   { id: "PointsViz", frame: 140 },
   { id: "VSCodeViz", frame: 200 },
+  // Late enough that every box is drawn and settled, so the frame catches the
+  // finished board rather than a mid-stroke moment.
+  { id: "WhiteboardViz", frame: 390 },
+  // Inside the focus window, so the frame covers the dim/highlight path as
+  // well as the graph itself.
+  { id: "FlowViz", frame: 400 },
   { id: "D3Viz", frame: 130 },
   { id: "MemoryViz", frame: 90 },
   { id: "LessonVideo", frame: 15 },

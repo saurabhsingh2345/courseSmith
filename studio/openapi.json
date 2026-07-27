@@ -117,6 +117,42 @@
         "operationId": "getLedger",
         "responses": {"200": {"description": "Token/cost/quota data", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Ledger"}}}}}
       }
+    },
+    "/api/snippet-templates": {
+      "get": {
+        "operationId": "listSnippetTemplates",
+        "responses": {"200": {"description": "The visual template catalog", "content": {"application/json": {"schema": {"type": "array", "items": {"$ref": "#/components/schemas/SnippetTemplateInfo"}}}}}}
+      }
+    },
+    "/api/snippets": {
+      "get": {
+        "operationId": "listSnippets",
+        "responses": {"200": {"description": "Every snippet, newest first", "content": {"application/json": {"schema": {"type": "array", "items": {"$ref": "#/components/schemas/SnippetSummary"}}}}}}
+      },
+      "post": {
+        "operationId": "createSnippet",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/CreateSnippetRequest"}}}},
+        "responses": {
+          "201": {"description": "Created; the pipeline is running", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/CreateSnippetResponse"}}}},
+          "202": {"description": "Created, but the pipeline was busy — re-run it later", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/CreateSnippetResponse"}}}},
+          "400": {"$ref": "#/components/responses/Error"}
+        }
+      }
+    },
+    "/api/snippets/{id}": {
+      "get": {
+        "operationId": "getSnippet",
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {
+          "200": {"description": "The request plus the model's plan", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/SnippetDetail"}}}},
+          "404": {"$ref": "#/components/responses/Error"}
+        }
+      },
+      "delete": {
+        "operationId": "deleteSnippet",
+        "parameters": [{"name": "id", "in": "path", "required": true, "schema": {"type": "string"}}],
+        "responses": {"204": {"description": "Deleted"}, "404": {"$ref": "#/components/responses/Error"}}
+      }
     }
   },
   "components": {
@@ -144,6 +180,44 @@
         "type": "object",
         "properties": {"name": {"type": "string"}, "size": {"type": "integer"}, "url": {"type": "string"}},
         "required": ["name", "size", "url"]
+      },
+      "SnippetTemplateInfo": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"}, "title": {"type": "string"}, "description": {"type": "string"},
+          "example": {"type": "string"}, "shows_code": {"type": "boolean"}
+        },
+        "required": ["name", "title", "description", "example", "shows_code"]
+      },
+      "SnippetSummary": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"}, "title": {"type": "string"}, "prompt": {"type": "string"},
+          "template": {"type": "string"}, "ready": {"type": "boolean"},
+          "video_url": {"type": "string"}, "created_at": {"type": "string"}
+        },
+        "required": ["id", "title", "prompt", "template", "ready"]
+      },
+      "SnippetDetail": {
+        "allOf": [
+          {"$ref": "#/components/schemas/SnippetSummary"},
+          {"type": "object", "properties": {"target_sec": {"type": "integer"}, "plan": {}}, "required": ["target_sec"]}
+        ]
+      },
+      "CreateSnippetRequest": {
+        "type": "object",
+        "properties": {
+          "prompt": {"type": "string"}, "template": {"type": "string"}, "title": {"type": "string"},
+          "target_sec": {"type": "integer"}, "code_language": {"type": "string"},
+          "voice": {"type": "string"}, "plan_only": {"type": "boolean"}
+        },
+        "required": ["prompt", "template"]
+      },
+      "CreateSnippetResponse": {
+        "allOf": [
+          {"$ref": "#/components/schemas/SnippetSummary"},
+          {"type": "object", "properties": {"run_id": {"type": "string"}}}
+        ]
       },
       "LessonDetail": {
         "type": "object",
