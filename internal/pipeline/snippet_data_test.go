@@ -214,20 +214,33 @@ func TestNormalizeChartKind(t *testing.T) {
 
 // The chart kinds Go accepts and the ones DataScene draws must be the same set:
 // a kind Go allows and the scene does not draw silently falls through to bars,
-// so a clip planned as a map would render as a bar chart of country names.
-var tsChartKindRe = regexp.MustCompile(`kind === '([a-z]+)'`)
+// so a clip planned as a treemap renders as a bar chart and the plan's own
+// captions stop describing what is on screen.
+//
+// The kinds used to be a chain of `kind === '...'` comparisons and are a map
+// now — thirteen arms of a ternary is not something anybody can read, and the
+// map is also the thing this test wants to look at anyway.
+var (
+	tsChartsBlockRe = regexp.MustCompile(`(?s)const CHARTS: Record[^{]*\{(.*?)\n\};`)
+	tsChartEntryRe  = regexp.MustCompile(`(?m)^\s{2}([a-z]+):`)
+)
 
 func TestChartKindsInSync(t *testing.T) {
 	src, err := os.ReadFile("../../renderer/src/components/DataScene.tsx")
 	if err != nil {
 		t.Fatalf("reading DataScene: %v", err)
 	}
+	block := tsChartsBlockRe.FindSubmatch(src)
+	if block == nil {
+		t.Fatalf("no CHARTS map found in DataScene.tsx — has its shape changed?")
+	}
 	drawn := map[string]bool{}
-	for _, m := range tsChartKindRe.FindAllSubmatch(src, -1) {
+	for _, m := range tsChartEntryRe.FindAllSubmatch(block[1], -1) {
 		drawn[string(m[1])] = true
 	}
-	// bars is the fallback arm rather than a compared case.
-	drawn["bars"] = true
+	if len(drawn) == 0 {
+		t.Fatal("no chart kinds parsed from DataScene.tsx")
+	}
 
 	var missing []string
 	for kind := range chartKindVocab {
@@ -240,7 +253,7 @@ func TestChartKindsInSync(t *testing.T) {
 		t.Errorf("chartKindVocab allows %v, which DataScene does not draw — those clips would silently render as bars", missing)
 	}
 	for kind := range drawn {
-		if !chartKindVocab[kind] {
+		if _, ok := chartKindVocab[kind]; !ok {
 			t.Errorf("DataScene draws %q, which chartKindVocab rejects — nobody can ask for it", kind)
 		}
 	}
@@ -330,5 +343,140 @@ func TestDataPromptExampleIsValid(t *testing.T) {
 	if err := plan.Validate(); err != nil {
 		t.Fatalf("the example in %s does not satisfy the rules that same prompt states: %v",
 			snippetDataTemplateName, err)
+	}
+}
+
+// A chart with more than one number per label is where this template can go
+// wrong quietly: a short values row still renders a perfectly good bar, it just
+// states a total that is not the total. So the shape is checked hard rather
+// than padded.
+func seriesPlan(kind string, series []string, values [][]float64) *SnippetPlan {
+	p := dataPlan()
+	p.Chart = &ChartSpec{Kind: kind, Unit: "ms", Series: series}
+	labels := []string{"Search", "Checkout", "Home"}
+	p.Chart.Points = nil
+	for i, v := range values {
+		p.Chart.Points = append(p.Chart.Points, DataPoint{Label: labels[i], Values: v})
+	}
+	for i := range p.Beats {
+		if p.Beats[i].Data != nil && len(p.Beats[i].Data.Highlight) > 0 {
+			p.Beats[i].Data.Highlight = []string{labels[i%len(labels)]}
+		}
+	}
+	return p
+}
+
+func TestValidateChartSeries(t *testing.T) {
+	ok := seriesPlan("stackedbars", []string{"Database", "Render"},
+		[][]float64{{310, 84}, {120, 210}, {40, 66}})
+	if err := ok.Validate(); err != nil {
+		t.Fatalf("want valid stacked bars, got %v", err)
+	}
+
+	t.Run("point missing a value", func(t *testing.T) {
+		p := seriesPlan("stackedbars", []string{"Database", "Render"},
+			[][]float64{{310, 84}, {120}, {40, 66}})
+		if err := p.Validate(); err == nil || !strings.Contains(err.Error(), "declares 2 series") {
+			t.Fatalf("want series-length error, got %v", err)
+		}
+	})
+	t.Run("series on a kind that takes one number", func(t *testing.T) {
+		p := seriesPlan("stackedbars", []string{"Database", "Render"},
+			[][]float64{{310, 84}, {120, 210}, {40, 66}})
+		p.Chart.Kind = "donut"
+		if err := p.Validate(); err == nil || !strings.Contains(err.Error(), "takes one number per point") {
+			t.Fatalf("want no-series error, got %v", err)
+		}
+	})
+	t.Run("scatter needs exactly two", func(t *testing.T) {
+		p := seriesPlan("scatter", []string{"Team size", "Deploys", "Extra"},
+			[][]float64{{6, 22, 1}, {14, 9, 2}, {4, 31, 3}})
+		if err := p.Validate(); err == nil || !strings.Contains(err.Error(), "exactly 2 series") {
+			t.Fatalf("want scatter-series error, got %v", err)
+		}
+	})
+	t.Run("duplicate series name", func(t *testing.T) {
+		p := seriesPlan("groupedbars", []string{"Before", "before"},
+			[][]float64{{310, 84}, {120, 210}, {40, 66}})
+		if err := p.Validate(); err == nil || !strings.Contains(err.Error(), "appears twice") {
+			t.Fatalf("want duplicate-series error, got %v", err)
+		}
+	})
+	// The scene has to carry the parts through, or the renderer draws one
+	// segment where the plan asked for three.
+	t.Run("scenes carry the parts", func(t *testing.T) {
+		scenes, err := dataScenes(sceneInput(t, ok, 6000))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if got := scenes[0].Props["series"]; got == nil {
+			t.Fatal("the scene dropped the series names")
+		}
+		pts, _ := scenes[0].Props["points"].([]map[string]any)
+		if len(pts) == 0 || pts[0]["values"] == nil {
+			t.Fatalf("the scene dropped the per-series values: %#v", pts)
+		}
+		// The total is what a single-value reading of the point should see.
+		if got := pts[0]["value"]; got != 394.0 {
+			t.Errorf("point value = %v, want the sum of its parts (394)", got)
+		}
+	})
+}
+
+// A funnel drawn from values that rise is a picture of a funnel with numbers
+// written on it — worse than no chart, because it looks like it means
+// something.
+func TestValidateFunnelNarrows(t *testing.T) {
+	p := dataPlan()
+	p.Chart = &ChartSpec{Kind: "funnel", Unit: "", Points: []DataPoint{
+		{Label: "Visited", Value: 10000},
+		{Label: "Signed up", Value: 3200},
+		{Label: "Paid", Value: 310},
+	}}
+	for i := range p.Beats {
+		if p.Beats[i].Data != nil && len(p.Beats[i].Data.Highlight) > 0 {
+			p.Beats[i].Data.Highlight = []string{[]string{"Visited", "Signed up", "Paid"}[i%3]}
+		}
+	}
+	if err := p.Validate(); err != nil {
+		t.Fatalf("want valid funnel, got %v", err)
+	}
+	p.Chart.Points[2].Value = 99999
+	if err := p.Validate(); err == nil || !strings.Contains(err.Error(), "a funnel narrows") {
+		t.Fatalf("want widening-funnel error, got %v", err)
+	}
+}
+
+// Several kinds run out of room before the reader does, and a kind-specific
+// ceiling is the only place that can be said.
+func TestChartKindPointCeilings(t *testing.T) {
+	p := dataPlan()
+	p.Chart = &ChartSpec{Kind: "waffle", Unit: "%", Points: []DataPoint{
+		{Label: "One", Value: 20}, {Label: "Two", Value: 20}, {Label: "Three", Value: 20},
+		{Label: "Four", Value: 20}, {Label: "Five", Value: 10}, {Label: "Six", Value: 10},
+	}}
+	for i := range p.Beats {
+		if p.Beats[i].Data != nil && len(p.Beats[i].Data.Highlight) > 0 {
+			p.Beats[i].Data.Highlight = []string{[]string{"One", "Two", "Three"}[i%3]}
+		}
+	}
+	if err := p.Validate(); err == nil || !strings.Contains(err.Error(), `for kind "waffle"`) {
+		t.Fatalf("want per-kind point-count error, got %v", err)
+	}
+}
+
+// The near-misses a model actually writes. Without these a plan that says
+// "stacked" degrades to bars and silently drops every series it declared.
+func TestNormalizeChartKindAliases(t *testing.T) {
+	for in, want := range map[string]string{
+		"stacked":      "stackedbars",
+		"Grouped-Bars": "groupedbars",
+		"KPI Cards":    "bars", // spaces are not one of the near-misses
+		"kpi-cards":    "kpi",
+		"treemap":      "treemap",
+	} {
+		if got := normalizeChartKind(in); got != want {
+			t.Errorf("normalizeChartKind(%q) = %q, want %q", in, got, want)
+		}
 	}
 }
