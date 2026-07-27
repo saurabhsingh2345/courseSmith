@@ -43,12 +43,12 @@ const pytestTimeout = 30 * time.Second
 
 // Exercise is one practice exercise.
 type Exercise struct {
-	Slug        string `json:"slug"`
-	Title       string `json:"title"`
-	Description string `json:"description"` // markdown prompt for the learner
-	StarterCode string `json:"starter_code"`
+	Slug         string `json:"slug"`
+	Title        string `json:"title"`
+	Description  string `json:"description"` // markdown prompt for the learner
+	StarterCode  string `json:"starter_code"`
 	SolutionCode string `json:"solution_code"`
-	TestCode    string `json:"test_code"` // pytest file, imports from exercise.py
+	TestCode     string `json:"test_code"` // pytest file, imports from exercise.py
 }
 
 // ExercisesDoc is the LLM response and persisted manifest shape.

@@ -97,7 +97,6 @@ func scriptJSON(narration string) string {
 		narration)
 }
 
-
 // storyboardBody is a minimal valid storyboard reply for the two-section
 // test script.
 func storyboardBody() string {
@@ -430,7 +429,7 @@ func TestReviewKeepsBestDraftWhenAllRoundsFail(t *testing.T) {
 			scriptJSON("Worst draft."),
 		},
 		review: append(append(
-			multipassReview(7, 8, 8), // weighted 7.5
+			multipassReview(7, 8, 8),     // weighted 7.5
 			multipassReview(6, 8, 8)...), // weighted 7.0
 			multipassReview(5, 8, 8)..., // weighted 6.5
 		),

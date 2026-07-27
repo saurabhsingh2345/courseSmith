@@ -37,11 +37,11 @@ type diagramPromptData struct {
 	DiagramStyle string
 	Colors       config.Colors
 	// Theme carries the derived dark video tokens the diagram must sit on.
-	Theme SceneTheme
-	Title        string
-	ID           string
-	Prompt       string
-	Critique     string
+	Theme    SceneTheme
+	Title    string
+	ID       string
+	Prompt   string
+	Critique string
 	// Narration is the spoken text of the section that cues this diagram —
 	// the context that makes the picture match the lesson.
 	Narration string

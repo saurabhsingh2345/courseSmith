@@ -78,7 +78,7 @@ func TestPrepForSpeech(t *testing.T) {
 
 func TestPrepForSpeechUserPronunciations(t *testing.T) {
 	dict := SpeechDict(map[string]string{
-		"Groq":   "grock",
+		"Groq":    "grock",
 		"CPython": "c python override",
 	})
 	if got := PrepForSpeech("Groq is fast.", dict); got != "grock is fast." {
