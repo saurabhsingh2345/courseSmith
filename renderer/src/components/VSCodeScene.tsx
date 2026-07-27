@@ -16,6 +16,7 @@ import {FPS} from '../types';
 import {ResolvedTheme} from '../theme/theme';
 import {SceneHeader} from './SceneHeader';
 import {Stage} from './Stage';
+import {CHROME, type Chrome} from './editorChrome';
 
 // VSCodeScene is the "VS Code walkthrough": a synthesized editor — activity
 // bar, file tree, tabs, minimap, integrated terminal, status bar — whose code
@@ -60,15 +61,20 @@ const FONT_SIZE = 29;
 const TERMINAL_H = 250;
 const TAB_BAR_H = 46;
 const EDITOR_PAD_TOP = 14;
+// Breathing room under the last line. Without it the code butts against the
+// status bar and the pane reads as clipped rather than as scrolled.
+const EDITOR_PAD_BOTTOM = 12;
 const SIDEBAR_W = 226;
 const ACTIVITY_W = 58;
 const MINIMAP_W = 78;
+// Minimap metrics. The character width is set so a ~44-character line — about
+// the widest this pane shows before it scrolls — just fills the column.
+const MINIMAP_PAD = 8;
+const MINIMAP_CHAR_W = 1.35;
+const MINIMAP_BLOCK_H = 4;
+const MINIMAP_LINE_H = 7;
+const MINIMAP_LINES = 44;
 const GUTTER_W = 74;
-const BG = '#1a1e26';
-const CHROME = '#12151b';
-const SIDEBAR = '#161a21';
-const PANEL = '#101319';
-const FALLBACK_TOKEN = '#d4d4d8';
 const TYPING_PORTION = 0.7; // of the first step's window
 
 // Opening choreography. The window scales up from the scene's first frame;
@@ -101,6 +107,20 @@ const RUN = {
 // Every chrome label (tree rows, tabs, title bar) clips rather than overflows.
 // Flex children default to min-width:auto, so a long file name would otherwise
 // push past its panel and paint on top of the editor text.
+/**
+ * The selection wash behind a file-tree row.
+ *
+ * An alpha suffix on the primary rather than a white or black overlay: white
+ * over the light sidebar is invisible and black over the dark one is a hole,
+ * and the row is *selected*, which is a thing the brand colour should say.
+ */
+const selectedTint = (primary: string, amount: number): string =>
+  amount <= 0
+    ? 'transparent'
+    : `${primary}${Math.round(Math.min(1, amount) * 38)
+        .toString(16)
+        .padStart(2, '0')}`;
+
 const ELLIPSIS: React.CSSProperties = {
   minWidth: 0,
   overflow: 'hidden',
@@ -127,12 +147,12 @@ type TokenLine = ThemedToken[];
 
 /** Per-character stream of one step's tokens, for the typing phase. */
 type Char = {ch: string; color: string; line: number};
-const flatten = (lines: TokenLine[]): Char[] => {
+const flatten = (lines: TokenLine[], fallback: string): Char[] => {
   const chars: Char[] = [];
   lines.forEach((line, li) => {
     for (const token of line) {
       for (const ch of token.content) {
-        chars.push({ch, color: token.color ?? FALLBACK_TOKEN, line: li});
+        chars.push({ch, color: token.color ?? fallback, line: li});
       }
     }
     chars.push({ch: '\n', color: '', line: li});
@@ -188,6 +208,13 @@ export const VSCodeScene: React.FC<{
   const steps = Array.isArray(props.steps) ? (props.steps as WalkStep[]) : [];
   const intro = props.intro === true;
 
+  const ui = CHROME[theme.mode];
+  // The "this one is active" rail, on the tab's top edge and the activity bar.
+  // The accent is a saturated yellow picked to sit on the dark stage; on the
+  // light chrome it is a highlighter stroke nobody can see, so light mode marks
+  // the active item with the primary instead.
+  const marker = theme.mode === 'light' ? theme.primary : theme.accent;
+
   const [tokens, setTokens] = useState<TokenLine[][] | null>(null);
   const [handle] = useState(() => delayRender('vscode-highlight'));
 
@@ -195,10 +222,13 @@ export const VSCodeScene: React.FC<{
     let cancelled = false;
     Promise.all(
       steps.map((s) =>
-        codeToTokens(s.code, {lang: language as 'python', theme: 'dark-plus'})
+        // The syntax theme follows the chrome. Dark-plus tokens on a white
+        // editor are a specific kind of unreadable: the comment green and the
+        // string orange are both picked to sit on #1e1e1e.
+        codeToTokens(s.code, {lang: language as 'python', theme: ui.shiki})
           .then((r) => r.tokens)
           .catch(() =>
-            s.code.split('\n').map<TokenLine>((ln) => [{content: ln, color: FALLBACK_TOKEN, offset: 0}]),
+            s.code.split('\n').map<TokenLine>((ln) => [{content: ln, color: ui.token, offset: 0}]),
           ),
       ),
     ).then((all) => {
@@ -211,7 +241,7 @@ export const VSCodeScene: React.FC<{
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language, handle]);
+  }, [language, handle, ui.shiki]);
 
   const stepIdx = useMemo(() => {
     let idx = 0;
@@ -242,7 +272,7 @@ export const VSCodeScene: React.FC<{
     if (!tokens || tokens.length === 0) {
       return null;
     }
-    const chars = flatten(tokens[0]);
+    const chars = flatten(tokens[0], ui.token);
     const step0EndMs = steps.length > 1 ? steps[1].atMs : sceneStartMs + (durationInFrames / FPS) * 1000;
     const windowFrames = Math.max(
       1,
@@ -324,7 +354,7 @@ export const VSCodeScene: React.FC<{
   })();
 
   const editorLines = EDITOR_LINES;
-  const editorPaneH = editorLines * LINE_H + TAB_BAR_H + EDITOR_PAD_TOP;
+  const editorPaneH = editorLines * LINE_H + TAB_BAR_H + EDITOR_PAD_TOP + EDITOR_PAD_BOTTOM;
 
   // --- terminal drawer ------------------------------------------------------
   // A step with output but no explicit run is the lesson path: the terminal
@@ -410,9 +440,9 @@ export const VSCodeScene: React.FC<{
             position: 'relative',
             borderRadius: 16,
             overflow: 'hidden',
-            border: `1px solid ${theme.surfaceBorder}`,
-            boxShadow: '0 44px 110px rgba(0,0,0,0.6)',
-            backgroundColor: BG,
+            border: `1px solid ${ui.outline}`,
+            boxShadow: ui.shadow,
+            backgroundColor: ui.bg,
             fontFamily: theme.fontMono,
             opacity: windowIn,
             transform: `translateY(${(1 - windowIn) * 38}px) scale(${0.955 + windowIn * 0.045})`,
@@ -425,8 +455,8 @@ export const VSCodeScene: React.FC<{
               alignItems: 'center',
               height: 46,
               padding: '0 18px',
-              backgroundColor: CHROME,
-              borderBottom: '1px solid rgba(255,255,255,0.06)',
+              backgroundColor: ui.chrome,
+              borderBottom: `1px solid ${ui.border}`,
             }}
           >
             {['#ff5f57', '#febc2e', '#28c840'].map((c) => (
@@ -438,7 +468,7 @@ export const VSCodeScene: React.FC<{
                 textAlign: 'center',
                 fontFamily: theme.fontBody,
                 fontSize: 19,
-                color: 'rgba(255,255,255,0.45)',
+                color: ui.dim,
                 opacity: tabIn,
                 ...ELLIPSIS,
               }}
@@ -453,7 +483,7 @@ export const VSCodeScene: React.FC<{
               style={{
                 width: ACTIVITY_W,
                 flexShrink: 0,
-                backgroundColor: CHROME,
+                backgroundColor: ui.chrome,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -465,13 +495,13 @@ export const VSCodeScene: React.FC<{
                 <div
                   key={i}
                   style={{
-                    borderLeft: `2px solid ${active ? theme.accent : 'transparent'}`,
+                    borderLeft: `2px solid ${active ? marker : 'transparent'}`,
                     width: '100%',
                     display: 'flex',
                     justifyContent: 'center',
                   }}
                 >
-                  <Icon size={25} color={active ? '#e8ecf3' : 'rgba(255,255,255,0.32)'} strokeWidth={1.8} />
+                  <Icon size={25} color={active ? ui.text : ui.faint} strokeWidth={1.8} />
                 </div>
               ))}
             </div>
@@ -480,8 +510,8 @@ export const VSCodeScene: React.FC<{
               style={{
                 width: SIDEBAR_W,
                 flexShrink: 0,
-                backgroundColor: SIDEBAR,
-                borderRight: '1px solid rgba(255,255,255,0.05)',
+                backgroundColor: ui.sidebar,
+                borderRight: `1px solid ${ui.border}`,
                 padding: '14px 0',
                 fontFamily: theme.fontBody,
                 fontSize: 20,
@@ -493,7 +523,7 @@ export const VSCodeScene: React.FC<{
                   alignItems: 'center',
                   gap: 9,
                   padding: '5px 16px',
-                  color: 'rgba(255,255,255,0.6)',
+                  color: ui.dim,
                   fontWeight: 600,
                   textTransform: 'uppercase',
                   fontSize: 16,
@@ -516,10 +546,10 @@ export const VSCodeScene: React.FC<{
                       alignItems: 'center',
                       gap: 9,
                       padding: '6px 16px 6px 34px',
-                      color: `rgba(232,236,243,${0.44 + selected * 0.56})`,
-                      backgroundColor: `rgba(255,255,255,${selected * 0.07})`,
+                      color: selected > 0.6 ? ui.text : ui.dim,
+                      backgroundColor: selectedTint(theme.primary, selected),
                       borderLeft: `2px solid ${
-                        selected > 0.6 ? theme.accent : 'transparent'
+                        selected > 0.6 ? marker : 'transparent'
                       }`,
                       // Without this the row grows to fit the name and the
                       // text spills across the editor column underneath.
@@ -528,7 +558,7 @@ export const VSCodeScene: React.FC<{
                   >
                     <FileCode2
                       size={19}
-                      color={selected > 0.6 ? '#4fc1ff' : 'rgba(255,255,255,0.36)'}
+                      color={selected > 0.6 ? ui.fileIcon : ui.faint}
                       strokeWidth={1.8}
                       style={{flexShrink: 0}}
                     />
@@ -540,16 +570,16 @@ export const VSCodeScene: React.FC<{
             {/* Editor column */}
             <div style={{flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0}}>
               {/* Tab bar — the tab slides in as the file opens */}
-              <div style={{display: 'flex', height: TAB_BAR_H, backgroundColor: CHROME, minWidth: 0, flexShrink: 0}}>
+              <div style={{display: 'flex', height: TAB_BAR_H, backgroundColor: ui.chrome, minWidth: 0, flexShrink: 0}}>
                 <div
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     gap: 9,
                     padding: '0 20px',
-                    backgroundColor: BG,
-                    borderTop: `2px solid ${theme.accent}`,
-                    color: '#e8ecf3',
+                    backgroundColor: ui.bg,
+                    borderTop: `2px solid ${marker}`,
+                    color: ui.text,
                     fontFamily: theme.fontBody,
                     fontSize: 20,
                     minWidth: 0,
@@ -557,9 +587,9 @@ export const VSCodeScene: React.FC<{
                     transform: `translateX(${(1 - tabIn) * -22}px)`,
                   }}
                 >
-                  <FileCode2 size={19} color="#4fc1ff" strokeWidth={1.8} style={{flexShrink: 0}} />
+                  <FileCode2 size={19} color={ui.fileIcon} strokeWidth={1.8} style={{flexShrink: 0}} />
                   <span style={ELLIPSIS}>{file}</span>
-                  <X size={17} color="rgba(255,255,255,0.35)" strokeWidth={2.2} style={{flexShrink: 0}} />
+                  <X size={17} color={ui.faint} strokeWidth={2.2} style={{flexShrink: 0}} />
                 </div>
               </div>
               {/* Editor + minimap */}
@@ -590,7 +620,7 @@ export const VSCodeScene: React.FC<{
                             backgroundColor: isChanged
                               ? `rgba(255, 212, 59, ${0.16 * flash})`
                               : isActive
-                                ? 'rgba(255,255,255,0.035)'
+                                ? ui.activeLine
                                 : 'transparent',
                           }}
                         >
@@ -602,7 +632,7 @@ export const VSCodeScene: React.FC<{
                               paddingRight: 24,
                               fontSize: 22,
                               lineHeight: `${LINE_H}px`,
-                              color: isActive ? 'rgba(255,255,255,0.55)' : 'rgba(255,255,255,0.24)',
+                              color: isActive ? ui.dim : ui.faint,
                               userSelect: 'none',
                             }}
                           >
@@ -620,12 +650,12 @@ export const VSCodeScene: React.FC<{
                                   top: 6,
                                   bottom: 6,
                                   width: 1,
-                                  backgroundColor: 'rgba(255,255,255,0.09)',
+                                  backgroundColor: ui.indent,
                                 }}
                               />
                             ))}
                             {line.map((t, ti) => (
-                              <span key={ti} style={{color: t.color ?? FALLBACK_TOKEN}}>
+                              <span key={ti} style={{color: t.color ?? ui.token}}>
                                 {t.content}
                               </span>
                             ))}
@@ -647,19 +677,83 @@ export const VSCodeScene: React.FC<{
                     })}
                   </div>
                 </div>
-                {/* Minimap: one bar per line, width ∝ length */}
-                <div style={{width: MINIMAP_W, flexShrink: 0, padding: '4px 14px 0 6px', opacity: 0.55}}>
-                  {codeLines.slice(0, 44).map((ln, i) => (
+                {/* Minimap.
+                    One block per *token*, coloured by that token, rather than
+                    one grey bar per line. It costs nothing — the tokens are
+                    already here for the editor — and it is the difference
+                    between a miniature of this code and a row of ticks that
+                    would look the same whatever the file said. */}
+                <div
+                  style={{
+                    width: MINIMAP_W,
+                    flexShrink: 0,
+                    position: 'relative',
+                    backgroundColor: ui.minimap,
+                    borderLeft: `1px solid ${ui.border}`,
+                    padding: `2px ${MINIMAP_PAD}px 0`,
+                    overflow: 'hidden',
+                  }}
+                >
+                  {/* The viewport: which slice of the file the pane is
+                      showing. Only drawn when the file is actually longer than
+                      the pane — on a file that fits, a box around the whole
+                      miniature says nothing and reads as a stray outline. */}
+                  {totalLines > editorLines && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        left: 0,
+                        right: 0,
+                        top: 2 + scroll * MINIMAP_LINE_H,
+                        height: editorLines * MINIMAP_LINE_H,
+                        backgroundColor: ui.activeLine,
+                        borderTop: `1px solid ${ui.border}`,
+                        borderBottom: `1px solid ${ui.border}`,
+                      }}
+                    />
+                  )}
+                  {visibleLines.slice(0, MINIMAP_LINES).map((line, i) => (
                     <div
                       key={i}
                       style={{
-                        height: 5,
-                        marginBottom: 3,
-                        width: `${Math.min(100, ln.trim().length * 3.4)}%`,
-                        borderRadius: 2,
-                        backgroundColor: changed.has(i) ? theme.accent : 'rgba(255,255,255,0.30)',
+                        position: 'relative',
+                        display: 'flex',
+                        gap: 1,
+                        height: MINIMAP_BLOCK_H,
+                        marginBottom: MINIMAP_LINE_H - MINIMAP_BLOCK_H,
                       }}
-                    />
+                    >
+                      {changed.has(i) && (
+                        <div
+                          style={{
+                            position: 'absolute',
+                            left: -MINIMAP_PAD,
+                            top: -1,
+                            bottom: -1,
+                            width: 3,
+                            backgroundColor: theme.accent,
+                            opacity: flash * 0.9 + 0.35,
+                          }}
+                        />
+                      )}
+                      {line.map((t, ti) => {
+                        // Whitespace keeps its width and paints nothing, which
+                        // is what gives the miniature its indentation — the
+                        // single cue that makes it read as code.
+                        const blank = t.content.trim() === '';
+                        return (
+                          <div
+                            key={ti}
+                            style={{
+                              width: t.content.length * MINIMAP_CHAR_W,
+                              backgroundColor: blank ? 'transparent' : (t.color ?? ui.token),
+                              opacity: blank ? 0 : 0.7,
+                              borderRadius: 1,
+                            }}
+                          />
+                        );
+                      })}
+                    </div>
                   ))}
                 </div>
               </div>
@@ -669,8 +763,8 @@ export const VSCodeScene: React.FC<{
                 style={{
                   height: terminalH,
                   overflow: 'hidden',
-                  backgroundColor: PANEL,
-                  borderTop: `1px solid rgba(255,255,255,${0.09 * drawer})`,
+                  backgroundColor: ui.panel,
+                  borderTop: `1px solid ${drawer > 0.05 ? ui.border : 'transparent'}`,
                   flexShrink: 0,
                 }}
               >
@@ -702,8 +796,8 @@ export const VSCodeScene: React.FC<{
                         <span
                           key={tab}
                           style={{
-                            color: active ? '#e8ecf3' : 'rgba(255,255,255,0.34)',
-                            borderBottom: `2px solid ${active ? theme.accent : 'transparent'}`,
+                            color: active ? ui.text : ui.faint,
+                            borderBottom: `2px solid ${active ? marker : 'transparent'}`,
                             paddingBottom: 6,
                           }}
                         >
@@ -716,14 +810,14 @@ export const VSCodeScene: React.FC<{
                     style={{
                       fontSize: terminalFont,
                       lineHeight: RUN.lineHeight,
-                      color: '#d6dde6',
+                      color: ui.terminalText,
                       paddingTop: 8,
                     }}
                   >
                     <div style={{display: 'flex', alignItems: 'baseline', gap: 10}}>
                       <ChevronRight
                         size={terminalFont * 0.82}
-                        color="#28c840"
+                        color={ui.prompt}
                         strokeWidth={3}
                         style={{flexShrink: 0}}
                       />
