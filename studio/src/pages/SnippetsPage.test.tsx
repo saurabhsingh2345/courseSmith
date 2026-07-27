@@ -19,6 +19,13 @@ const TEMPLATES: SnippetTemplateInfo[] = [
     example: "How for loops work in Python",
     shows_code: true,
   },
+  {
+    name: "whiteboard",
+    title: "Whiteboard sketch",
+    description: "A hand-drawn board that fills in as you talk.",
+    example: "Why HTTP caching matters",
+    shows_code: false,
+  },
 ];
 
 const SNIPPETS: SnippetSummary[] = [
@@ -135,4 +142,72 @@ it("plan only asks the backend to stop after planning", async () => {
 
   await waitFor(() => expect(create).toHaveBeenCalled());
   expect(create.mock.calls[0][0].plan_only).toBe(true);
+});
+
+// Picking a template is the moment someone has just been told what it does and
+// has to invent a prompt that suits it. The example is already that prompt.
+it("fills the prompt with a template's example when it is picked", async () => {
+  stubBaseCalls();
+  renderPage();
+  await screen.findByText("Whiteboard sketch");
+
+  const box = screen.getByLabelText("What should it teach?") as HTMLTextAreaElement;
+  expect(box.value).toBe("");
+
+  fireEvent.click(screen.getByRole("button", { name: /Whiteboard sketch/ }));
+  expect(box.value).toBe("Why HTTP caching matters");
+
+  // Browsing between templates keeps swapping the demo, because what is in the
+  // box is still an example rather than anything the user wrote.
+  fireEvent.click(screen.getByRole("button", { name: /VS Code walkthrough/ }));
+  expect(box.value).toBe("How for loops work in Python");
+});
+
+// One typed character makes the box theirs. Switching templates after that must
+// not throw the prompt away.
+it("never overwrites a prompt the user typed", async () => {
+  stubBaseCalls();
+  renderPage();
+  await screen.findByText("Whiteboard sketch");
+
+  const box = screen.getByLabelText("What should it teach?") as HTMLTextAreaElement;
+  fireEvent.change(box, { target: { value: "my own idea about closures" } });
+  fireEvent.click(screen.getByRole("button", { name: /Whiteboard sketch/ }));
+
+  expect(box.value).toBe("my own idea about closures");
+});
+
+// The title is optional, and an empty one must not be sent as "" — the pipeline
+// treats an empty title as "let the model write one", and so should the form.
+it("sends an edited title, and omits an empty one", async () => {
+  stubBaseCalls();
+  const created: CreateSnippetResponse = {
+    id: "titled",
+    title: "My Own Title",
+    prompt: "explain closures",
+    template: "vscode",
+    ready: false,
+  };
+  const create = vi.spyOn(api, "createSnippet").mockResolvedValue(created);
+  vi.spyOn(api, "snippet").mockResolvedValue({ ...created, target_sec: 45 });
+
+  renderPage();
+  await screen.findByText("VS Code walkthrough");
+
+  fireEvent.change(screen.getByLabelText("What should it teach?"), {
+    target: { value: "explain closures" },
+  });
+  fireEvent.click(screen.getByRole("button", { name: "Generate clip" }));
+  await waitFor(() => expect(create).toHaveBeenCalled());
+  expect(create.mock.calls[0][0].title).toBeUndefined();
+
+  fireEvent.change(screen.getByLabelText(/^Title/), {
+    target: { value: "  My Own Title  " },
+  });
+  fireEvent.change(screen.getByLabelText("What should it teach?"), {
+    target: { value: "explain closures" },
+  });
+  fireEvent.click(screen.getByRole("button", { name: "Generate clip" }));
+  await waitFor(() => expect(create).toHaveBeenCalledTimes(2));
+  expect(create.mock.calls[1][0].title).toBe("My Own Title");
 });

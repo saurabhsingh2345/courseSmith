@@ -112,6 +112,24 @@ function TemplateCard({
           className="pointer-events-none absolute -right-10 -top-10 size-32 rounded-full bg-brand/20 blur-2xl"
         />
       )}
+      {/* A real frame from this template, not a mock-up. It is downscaled from
+          the visual-regression baseline, so the picture on the card is by
+          construction what the template actually renders. */}
+      <img
+        src={`/template-previews/${template.name}.png`}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        width={480}
+        height={270}
+        className="relative mb-3 aspect-video w-full rounded-lg border border-ink-800 bg-ink-950 object-cover"
+        // A template whose preview has not been regenerated should lose the
+        // image, not show a broken-image glyph on the one screen whose job is
+        // helping someone choose.
+        onError={(e) => {
+          e.currentTarget.style.display = "none";
+        }}
+      />
       <div className="relative flex items-start justify-between gap-3">
         <span className="font-medium text-ink-100">{template.title}</span>
         {template.shows_code && <Chip>runs code</Chip>}
@@ -247,6 +265,7 @@ export function SnippetsPage() {
   const { run } = useRun();
 
   const [prompt, setPrompt] = useState("");
+  const [title, setTitle] = useState("");
   const [template, setTemplate] = useState<string | null>(null);
   const [targetSec, setTargetSec] = useState(45);
   const [captions, setCaptions] = useState<"off" | "on">("off");
@@ -266,6 +285,30 @@ export function SnippetsPage() {
   const chosen = template ?? templates.data?.[0]?.name ?? null;
   const chosenTemplate = templates.data?.find((t) => t.name === chosen);
 
+  /**
+   * Picking a template fills the prompt with that template's own example.
+   *
+   * Every template is good at a different kind of subject, so an empty box
+   * after choosing one is the worst moment to leave someone: the card just
+   * told them what it does and the next step is inventing a prompt that suits
+   * it. The example is already the answer.
+   *
+   * It only overwrites text that came from an example, never something typed.
+   * That is checked against the whole example set rather than tracked with a
+   * dirty flag, so switching between templates keeps swapping the demo — which
+   * is what browsing them feels like — while a single typed character makes
+   * the box the user's for good.
+   */
+  const selectTemplate = (name: string) => {
+    setTemplate(name);
+    const examples = new Set((templates.data ?? []).map((t) => t.example.trim()));
+    const untouched = prompt.trim() === "" || examples.has(prompt.trim());
+    if (untouched) {
+      const next = templates.data?.find((t) => t.name === name)?.example ?? "";
+      setPrompt(next);
+    }
+  };
+
   const create = async (planOnly: boolean) => {
     const text = prompt.trim();
     if (!text || !chosen) return;
@@ -274,6 +317,7 @@ export function SnippetsPage() {
     try {
       const created = await api.createSnippet({
         prompt: text,
+        title: title.trim() || undefined,
         template: chosen,
         target_sec: targetSec,
         captions,
@@ -281,6 +325,7 @@ export function SnippetsPage() {
         plan_only: planOnly,
       });
       setPrompt("");
+      setTitle("");
       setOpen(created.id);
       snippets.reload();
     } catch (err) {
@@ -309,7 +354,7 @@ export function SnippetsPage() {
               key={t.name}
               template={t}
               selected={t.name === chosen}
-              onSelect={() => setTemplate(t.name)}
+              onSelect={() => selectTemplate(t.name)}
             />
           ))}
         </div>
@@ -328,6 +373,20 @@ export function SnippetsPage() {
           placeholder={chosenTemplate?.example ?? "How for loops work in Python"}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
+        />
+
+        <label
+          className="mb-2 mt-4 block text-[11px] uppercase tracking-wide text-ink-500"
+          htmlFor="snippet-title"
+        >
+          Title <span className="normal-case tracking-normal text-ink-600">— optional, the model writes one otherwise</span>
+        </label>
+        <input
+          id="snippet-title"
+          className="w-full rounded-lg border border-ink-800 bg-ink-950 p-3 text-[14px] text-ink-100 placeholder:text-ink-600 focus:border-brand focus:outline-none"
+          placeholder="Leave empty to let the model title it"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
 
         <div className="mt-3 flex flex-wrap items-center gap-3">

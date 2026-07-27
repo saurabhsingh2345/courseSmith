@@ -592,6 +592,19 @@ call failed having never seen both constraints at once.
   pose the next one eases from, or the character teleports across the
   intervening object shots.
 
+**The gallery decides for you.** Each template card carries a real frame from
+that template, downscaled from its visual-regression baseline
+(`test/template_previews.mjs` → `studio/public/template-previews/`), so the
+picture on the card is by construction what the template renders — a hand-drawn
+thumbnail would drift the first time a layout changed and nothing would compare
+them. Picking a template also fills the prompt box with that template's own
+example, because the moment after someone reads what a template does is the
+worst time to leave them inventing a prompt that suits it. It only overwrites
+text that came from an example, checked against the whole example set rather
+than a dirty flag — so browsing keeps swapping the demo, and one typed
+character makes the box theirs. A Go test fails if a registered template has no
+preview.
+
 **Cross-template field guards.** `SnippetBeat` is the union of what every
 template needs, so `beatFields` declares ownership once per template and
 `rejectForeignBeatFields` fails loudly when a plan sets a field its template
