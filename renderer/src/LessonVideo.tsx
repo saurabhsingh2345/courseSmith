@@ -9,7 +9,7 @@ import {PointsScene} from './components/PointsScene';
 import {PythonExecutionViz} from './components/PythonExecutionViz';
 import {MemoryLayout} from './components/MemoryLayout';
 import {SceneBackground, type Surface} from './components/SceneBackground';
-import {SectionTransition} from './components/SectionTransition';
+import {SectionTransition, type CutStyle} from './components/SectionTransition';
 import {TerminalScene} from './components/TerminalScene';
 import {TitleCard} from './components/TitleCard';
 import {VSCodeScene} from './components/VSCodeScene';
@@ -129,10 +129,26 @@ const surfaceFor = (scenes: Scene[]): Surface => {
   }
 };
 
+/** How this video cuts between beats — same derivation as the surface. */
+const cutStyleFor = (scenes: Scene[]): CutStyle => {
+  const kinds = new Set(scenes.map((s) => s.type).filter((t) => t !== 'title'));
+  if (kinds.size !== 1) return 'rise';
+  switch ([...kinds][0]) {
+    case 'illustration':
+    case 'cast':
+      return 'push';
+    case 'story':
+      return 'cut';
+    default:
+      return 'rise';
+  }
+};
+
 export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
   const {assetBase, audioFile, scenes, captions, captionEmphasis, motion} = props;
   const theme = useMemo(() => resolveTheme(props.theme), [props.theme]);
   const surface = useMemo(() => surfaceFor(scenes), [scenes]);
+  const cutStyle = useMemo(() => cutStyleFor(scenes), [scenes]);
   // Scenes cross-dissolve. Every sequence but the last is extended past its
   // scene end by `cross` frames, so the outgoing scene is still mounted and
   // fading while the incoming one fades in on top of it (later siblings paint
@@ -160,6 +176,7 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
               crossFrames={cross}
               motion={motion}
               isLast={isLast}
+              cutStyle={cutStyle}
             >
               {sceneContent(scene, props, theme, duration)}
               {/* Inside the transition so a callout fades out with its own
