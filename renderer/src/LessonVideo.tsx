@@ -13,6 +13,7 @@ import {SectionTransition} from './components/SectionTransition';
 import {TerminalScene} from './components/TerminalScene';
 import {TitleCard} from './components/TitleCard';
 import {VSCodeScene} from './components/VSCodeScene';
+import {WorkspaceScene} from './components/WorkspaceScene';
 import {WhiteboardScene} from './components/WhiteboardScene';
 import {FlowScene} from './components/FlowScene';
 import {IllustrationScene} from './components/IllustrationScene';
@@ -78,6 +79,8 @@ const sceneContent = (
           props={scene.props}
         />
       );
+    case 'workspace':
+      return <WorkspaceScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'whiteboard':
       return <WhiteboardScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'flow':

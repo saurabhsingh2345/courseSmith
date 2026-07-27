@@ -12,18 +12,36 @@ Target runtime: about {{.TargetSec}} seconds.
 
 LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the highlights are timed to the voice, so half the narration means half a video.
 
-Calibration: this paragraph you are reading right now runs about forty words. Every beat's narration should feel at least this substantial. Terse is the failure mode here, not verbosity.
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced: under {{.MinWords}} words the clip is half a video, over {{.MaxWords}} it does not fit the runtime.
 
 Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each — for this runtime, about {{.SuggestBeats}} beats is right.
 
 THE CHART (one per clip, at the top level of your reply):
-- kind: one of {{.ChartKinds}}
-  - bars   a comparison of unrelated quantities. The default; pick this unless another clearly fits better.
-  - line   one value over an ordered sequence — days, versions, sizes. The labels are the sequence, in order.
-  - donut  parts of ONE whole. Only honest when the values really are shares of the same total.
-  - map    countries shaded by value. Labels must be countries, by their common English name.
+- kind: one of {{.ChartKinds}}. Pick by the SHAPE OF THE CLAIM, not by what looks nice — these are different statements, and the wrong one makes a true dataset lie.
+
+  One number per label:
+  - bars     a comparison of unrelated quantities. The default; pick it unless another clearly fits better.
+  - line     one value over an ordered sequence — days, versions, sizes. The labels are the sequence, in order.
+  - area     the same, filled to the axis. For a volume or something accumulating, rather than a level.
+  - donut    parts of ONE whole. Only honest when the values really are shares of the same total.
+  - waffle   the same claim, as counted squares out of a hundred. Better than a donut when the point is "how many in a hundred". At most 5 points.
+  - treemap  a breakdown where the values are wildly different sizes and small ones would vanish as bars. At most 8 points.
+  - funnel   stages narrowing to a result. THE VALUES MUST FALL from the first point to the last; a funnel that widens is rejected. At most 6 points.
+  - gauge    a row of dials, for a few rates where the question is "how full". At most 5 points.
+  - kpi      three to five headline figures as cards, no axes. For a clip whose data really is just the numbers.
+  - map      countries shaded by value. Labels must be countries, by their common English name.
+
+  Several numbers per label — these also need "series", and every point uses "values" instead of "value":
+  - stackedbars  one bar per label, split into named parts. When the total matters as much as the split. At most 7 points.
+  - groupedbars  the same parts side by side. When comparing the parts to each other and the total is meaningless. At most 6 points.
+  - scatter      two variables against each other, to show whether they move together. Exactly 2 series, which name the two axes.
+
 - unit: what the numbers are, shown after every value: "ms", "%", "M", "GB". Use "" if they are bare counts.
 - points: {{.MinPoints}} to {{.MaxPoints}} of {"label": ..., "value": ...}. Labels at most {{.MaxLabelWords}} words, all different, values zero or above.
+- series: ONLY for stackedbars, groupedbars and scatter. 2-4 names of at most {{.MaxLabelWords}} words. When you use it, every point takes "values": [n, n, ...] with one number per series, in the same order, and no "value" at all.
+
+  A stacked example: "chart": {"kind": "stackedbars", "unit": "ms", "series": ["Database", "Render"], "points": [{"label": "Search", "values": [310, 84]}, {"label": "Checkout", "values": [120, 210]}, {"label": "Home", "values": [40, 66]}]}
+  A scatter example: "chart": {"kind": "scatter", "unit": "", "series": ["Team size", "Deploys per week"], "points": [{"label": "Payments", "values": [6, 22]}, {"label": "Search", "values": [14, 9]}, {"label": "Growth", "values": [4, 31]}]}
 
 BEAT RULES:
 - id: a short lowercase-hyphen slug, unique in the clip.

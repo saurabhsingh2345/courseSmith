@@ -207,6 +207,14 @@ func planStoryScript(ctx context.Context, e *Env, spec SnippetSpec, cfg config.C
 	data := sharedPromptData(spec, cfg)
 	data["MinStoryBeats"] = minStoryBeats
 	data["MaxStoryBeats"] = maxStoryBeats
+	// A story writes 8-14 beats, not the shared 2-7, so the shared per-beat
+	// arithmetic is wrong here by exactly the factor between those ranges —
+	// and a per-beat number that does not multiply up to the budget is the
+	// failure this whole calculation exists to avoid. Recomputed against the
+	// range this template actually enforces.
+	storyBeats := min(max(wantWords/idealWordsPerBeat, minStoryBeats), maxStoryBeats)
+	data["SuggestBeats"] = storyBeats
+	data["WordsPerBeat"] = wantWords / storyBeats
 
 	system, user, err := e.renderPrompt(snippetStoryScriptTemplateName, data)
 	if err != nil {

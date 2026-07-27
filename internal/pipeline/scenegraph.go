@@ -43,6 +43,10 @@ const (
 	// SceneStory is one shot of a directed piece: a staged arrangement of
 	// character and objects, framed by a moving camera.
 	SceneStory = "story"
+	// SceneWorkspace is a full-frame editor across several files, shot like a
+	// screen recording: tabs, a camera that moves between the tree, the code
+	// and the terminal, and the real output of running the project.
+	SceneWorkspace = "workspace"
 	// SceneData is one persistent chart or world map whose highlight follows
 	// the narration.
 	SceneData = "data"

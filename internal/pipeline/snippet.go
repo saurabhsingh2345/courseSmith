@@ -62,8 +62,15 @@ const defaultSnippetTargetSec = 45
 // snippetTargetBounds clamp what a caller may ask for. Below the floor there
 // is no room for narration to land; above the ceiling it is a lesson, and the
 // lesson path (with its review gates) is the right tool.
+//
+// Ten seconds is about thirty words at a normal pace — two beats of fifteen,
+// which is a hook rather than an explanation, and exactly what a landing page
+// or a social post wants. It is only expressible because the beat count is
+// derived from the budget (beatBounds); against the old fixed three-beat floor
+// a ten-second clip was arithmetically impossible, and so, it turned out, was
+// a twenty-second one.
 const (
-	minSnippetTargetSec = 15
+	minSnippetTargetSec = 10
 	maxSnippetTargetSec = 180
 )
 
@@ -129,6 +136,10 @@ func (s SnippetSpec) Validate() error {
 	// Caught here rather than three correction rounds later: a runtime below a
 	// template's floor is not a clip that plans badly, it is one whose rules
 	// contradict each other, and the model cannot be told anything that helps.
+	// The same failure used to be reachable through the *shared* rules too — a
+	// 20-second clip was told to write three beats of forty words against an
+	// eighty-nine-word ceiling — which is why the beat count is derived from
+	// the budget now rather than fixed (beatBounds).
 	if tpl, ok := SnippetTemplates[s.Template]; ok && s.TargetSec != 0 &&
 		tpl.MinTargetSec > 0 && s.TargetSec < tpl.MinTargetSec {
 		return fmt.Errorf("the %s template needs at least %d seconds (asked for %d) — it is built from %d or more beats and a shorter clip cannot fund them",
@@ -151,22 +162,94 @@ type SnippetPlan struct {
 	// only move the emphasis around it. Every other template's visual state is
 	// per-beat; this is the one case where it genuinely is not.
 	Chart *ChartSpec `json:"chart,omitempty"`
+	// Project is the workspace template's file set. Like Chart it sits on the
+	// plan rather than on a beat, and for a stronger reason: the files are one
+	// program, and a program is not a property of a moment in the clip.
+	Project *ProjectSpec `json:"project,omitempty"`
+
+	// targetWords is the narration budget this plan was asked for. Not part of
+	// the model's reply — the planner stashes it after decoding so the shared
+	// validators can size the beat count against the same budget the prompt
+	// quoted. Zero (a plan built by hand in a test) falls back to the fixed
+	// range; see beatBounds.
+	targetWords int
+}
+
+// ProjectSpec is a small multi-file program: what the workspace template
+// writes on screen, and what actually gets executed.
+type ProjectSpec struct {
+	Files []ProjectFile `json:"files"`
+	// Entry is the file the terminal runs.
+	Entry string `json:"entry"`
+	// Command overrides what the terminal shows itself typing. Empty renders
+	// as `python3 <entry>`, which is what actually runs.
+	Command string `json:"command,omitempty"`
+	// Output is what the interpreter really printed. NOT written by the model
+	// — the plan stage executes the file set and fills this in, and a program
+	// that fails to run is sent back for correction rather than shipped with
+	// invented output. It is the single-file template's verify gate, applied
+	// to a program that spans files and therefore cannot go through verify.
+	Output string `json:"output,omitempty"`
+}
+
+// ProjectFile is one file of that program.
+type ProjectFile struct {
+	Path string `json:"path"`
+	Code string `json:"code"`
+}
+
+// FileMap is the file set in the shape the runner takes.
+func (p *ProjectSpec) FileMap() map[string]string {
+	out := make(map[string]string, len(p.Files))
+	for _, f := range p.Files {
+		out[f.Path] = f.Code
+	}
+	return out
 }
 
 // ChartSpec is a dataset and how to draw it.
 type ChartSpec struct {
-	// Kind is bars | line | donut | map; anything else degrades to bars.
+	// Kind is one of chartKindVocab; anything else degrades to bars.
 	Kind string `json:"kind"`
 	// Unit is appended to every value shown ("%", "ms", "M"). Optional.
 	Unit string `json:"unit,omitempty"`
 	// Points are the data. For a map, each label is a country name.
 	Points []DataPoint `json:"points"`
+	// Series names the dimensions each point carries, for the kinds that need
+	// more than one number per label.
+	//
+	// It means two different things depending on the kind, and that is
+	// deliberate rather than sloppy: for stacked and grouped bars these are the
+	// *parts* of each label ("Cache", "Database", "Render"), and for a scatter
+	// they are the two *axes* ("Team size", "Deploys per week"). Both are "one
+	// number per named dimension", which is why one field carries both instead
+	// of a second one that is empty three quarters of the time.
+	//
+	// Empty for every other kind, where a point is a single number.
+	Series []string `json:"series,omitempty"`
 }
 
-// DataPoint is one labelled number.
+// DataPoint is one labelled number — or, when the chart declares Series, one
+// labelled row of them.
 type DataPoint struct {
-	Label string  `json:"label"`
-	Value float64 `json:"value"`
+	Label string `json:"label"`
+	// Value is the number, for the kinds that take one.
+	Value float64 `json:"value,omitempty"`
+	// Values is one number per entry in ChartSpec.Series, in the same order.
+	Values []float64 `json:"values,omitempty"`
+}
+
+// total is the point's magnitude however it was written: a stacked bar's height
+// is the sum of its parts, and a plain bar's is its own value.
+func (p DataPoint) total() float64 {
+	if len(p.Values) == 0 {
+		return p.Value
+	}
+	sum := 0.0
+	for _, v := range p.Values {
+		sum += v
+	}
+	return sum
 }
 
 // SnippetBeat is one narrated step of a snippet.
@@ -228,6 +311,36 @@ type SnippetBeat struct {
 	// --- data template ---
 	// Data is what this beat points at in the clip's one chart.
 	Data *DataBeat `json:"data,omitempty"`
+
+	// --- workspace template ---
+	// Work is which file this beat is in, how much of it exists yet, and
+	// where the camera is looking.
+	Work *WorkspaceBeat `json:"work,omitempty"`
+}
+
+// WorkspaceBeat is one moment of a multi-file walkthrough.
+//
+// Note what it does *not* carry: the code. The single-file template repeats a
+// whole buffer per step, which is fine for eight lines and absurd for three
+// files — so the plan declares each file once and a beat says how far into it
+// the typing has got. The renderer reveals lines 1..Through, which is also
+// what makes the reveal continuous rather than a cut between two buffers.
+type WorkspaceBeat struct {
+	// File is the path shown during this beat; it must be one of the
+	// project's files.
+	File string `json:"file"`
+	// Through is how many lines of that file exist by the end of this beat.
+	// 0 means the whole file — the right answer for any beat after it is
+	// written, and for a file the clip never types out.
+	Through int `json:"through,omitempty"`
+	// Focus is where the camera looks: one of workspaceFocusVocab. The model
+	// picks the *subject*, never a coordinate — the renderer owns every
+	// number, the same bargain the story template's staging makes.
+	Focus string `json:"focus,omitempty"`
+	// Run opens the terminal and runs the entry file during this beat.
+	Run bool `json:"run,omitempty"`
+	// Caption is the supporting line under the editor. Optional.
+	Caption string `json:"caption,omitempty"`
 }
 
 // DataBeat is one beat's reading of the chart: what it points at, and the line

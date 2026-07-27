@@ -1,10 +1,14 @@
 import { formatBytes } from "../lib/format";
 
 /**
- * Anchor styled as a button that downloads an artifact. Uses the `download`
- * attribute so the browser saves rather than navigates; the studio serves
- * artifacts with Content-Disposition, and same-origin `download` handles the
- * rest. Optional `size` renders a byte badge.
+ * Anchor styled as a button that downloads an artifact.
+ *
+ * `filename` should be the artifact's `download_name` from the API, never its
+ * URL's last segment: on disk every lesson's video is `final.mp4`. The server
+ * sends the same name as Content-Disposition and browsers prefer that over
+ * this attribute, so passing it here is belt and braces — but it is also what
+ * makes the intent readable at the call site. Optional `size` renders a byte
+ * badge.
  */
 export function DownloadButton({
   url,

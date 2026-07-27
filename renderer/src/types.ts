@@ -82,6 +82,7 @@ export type SceneType =
   | 'terminal'
   | 'points'
   | 'walkthrough'
+  | 'workspace'
   | 'whiteboard'
   | 'flow'
   | 'illustration'

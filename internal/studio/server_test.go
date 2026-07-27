@@ -310,3 +310,100 @@ func (scriptedRouter) Complete(_ context.Context, _ config.Pipeline, task llm.Ta
 	return &llm.Response{Content: `{"title":"Test Lesson","sections":[
 		{"id":"first-idea","narration":"Fresh narration.","duration_est_sec":5,"cues":[]}]}`}, nil
 }
+
+// On disk every lesson's video is `final.mp4` — a name the pipeline depends on
+// and nobody wants six of in one folder. These are the names the browser is
+// told to use instead.
+func TestDownloadName(t *testing.T) {
+	cases := []struct {
+		name                                   string
+		courseName, slug, lessonID, title, rel string
+		want                                   string
+	}{{
+		// The lesson itself: course, its number for ordering, then its title.
+		name: "lesson video", courseName: "Python Fundamentals", slug: "python-fundamentals",
+		lessonID: "01-the-print-function", title: "The print function",
+		rel:  "final.mp4",
+		want: "Python Fundamentals 01 The print function.mp4",
+	}, {
+		// A part of the lesson keeps its own name on the end.
+		name: "section chunk", courseName: "Python Fundamentals", slug: "python-fundamentals",
+		lessonID: "01-the-print-function", title: "The print function",
+		rel:  "sections/03-printing-multiple-items.mp4",
+		want: "Python Fundamentals 01 The print function - 03 printing multiple items.mp4",
+	}, {
+		// Not just video: the same collision happens with every JSON artifact.
+		name: "json artifact", courseName: "Python Fundamentals", slug: "python-fundamentals",
+		lessonID: "01-the-print-function", title: "The print function",
+		rel:  "script.json",
+		want: "Python Fundamentals 01 The print function - script.json",
+	}, {
+		// The one that matters most: a snippet's directory id is a slug of its
+		// *prompt*, so naming the download after the directory would swap one
+		// unhelpful filename for another. The title is the whole name.
+		name:     "snippet uses its title, not its prompt-derived id",
+		slug:     pipeline.SnippetsCourseSlug,
+		lessonID: "hand-drawn-whiteboard-animation-illustrating-pyt-2",
+		title:    "Applications of Python",
+		rel:      "final.mp4",
+		want:     "Applications of Python.mp4",
+	}, {
+		// Model-written titles really do end in question marks, which Windows
+		// rejects in a filename.
+		name:     "illegal characters are dropped, not replaced",
+		slug:     pipeline.SnippetsCourseSlug,
+		lessonID: "title-why-is-python-the-world-s-favorite-program",
+		title:    `Why is Python the world's favorite language?`,
+		rel:      "final.mp4",
+		want:     "Why is Python the world's favorite language.mp4",
+	}, {
+		// A lesson with no front-matter title still has to produce something.
+		name: "falls back to the id", courseName: "Course", slug: "course",
+		lessonID: "07-untitled", title: "",
+		rel:  "final.mp4",
+		want: "Course 07 07-untitled.mp4",
+	}}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			got := downloadName(c.courseName, c.slug, c.lessonID, c.title, c.rel)
+			if got != c.want {
+				t.Errorf("downloadName = %q, want %q", got, c.want)
+			}
+		})
+	}
+}
+
+// A quote or a newline reaching the Content-Disposition header is header
+// injection, not a cosmetic problem.
+func TestDownloadNameSanitizes(t *testing.T) {
+	got := downloadName("c", "c", "l", "a\"b\nc", "final.mp4")
+	if strings.ContainsAny(got, "\"\n\r") {
+		t.Errorf("downloadName leaked a header-breaking character: %q", got)
+	}
+	// A very long title is shortened from the middle, so the tail that
+	// distinguishes one file from another survives.
+	long := downloadName("Course", "course", "01-x", strings.Repeat("word ", 60),
+		"sections/09-the-last-bit.mp4")
+	if len(long) > 110 {
+		t.Errorf("downloadName produced a %d-char name: %q", len(long), long)
+	}
+	if !strings.HasSuffix(long, "09 the last bit.mp4") {
+		t.Errorf("downloadName truncated the distinguishing tail: %q", long)
+	}
+}
+
+// The header has to be `inline`: the same URL is the <video> src and the
+// download href, and `attachment` would stop the player rendering a frame.
+func TestArtifactSetsInlineDispositionWithAName(t *testing.T) {
+	srv, _ := fixture(t)
+	h := srv.Handler()
+	rec := httptest.NewRecorder()
+	h.ServeHTTP(rec, httptest.NewRequest("GET", "/artifacts/test-course/01-test/quiz.json", nil))
+	cd := rec.Header().Get("Content-Disposition")
+	if !strings.HasPrefix(cd, "inline;") {
+		t.Errorf("Content-Disposition = %q, want it to start with inline;", cd)
+	}
+	if !strings.Contains(cd, `filename="Test Course 01 Test Lesson - quiz.json"`) {
+		t.Errorf("Content-Disposition = %q, want the rebuilt filename", cd)
+	}
+}

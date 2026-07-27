@@ -4,7 +4,16 @@ import {FPS} from '../types';
 import {ResolvedTheme} from '../theme/theme';
 import {Stage, STAGE_H, STAGE_W} from './Stage';
 import {FIGURE_BOX, figureFor, type FigurePalette} from './artwork';
-import {CAST_VIEW, Character, livePose, poseByName, type CastPalette, type Expression} from './cast';
+import {
+  Character,
+  aspectFor,
+  castFor,
+  castPaletteFor,
+  faceByName,
+  poseByName,
+  viewBoxFor,
+  type CastPalette,
+} from './cast';
 
 // CastScene is a person explaining something.
 //
@@ -15,10 +24,10 @@ import {CAST_VIEW, Character, livePose, poseByName, type CastPalette, type Expre
 // problem / I'm not sure / here it is), and an attitude is something no diagram
 // or object can express.
 //
-// The character holds a pose, but never a still one: livePose (cast.tsx) keeps
-// breathing and blinking running underneath, and a pose *change* between beats
-// is interpolated rather than cut, so the person moves from thinking to
-// pointing instead of teleporting between two drawings of themselves.
+// The character holds a pose, but never a still one: cast.tsx keeps breathing
+// and blinking running over the artwork, and a pose *change* between beats
+// settles in rather than cutting, so the person moves from thinking to pointing
+// instead of teleporting between two drawings of themselves.
 
 const ENTER = {
   wordStagger: 3,
@@ -36,6 +45,20 @@ const ENTER = {
 const GUTTER = 72;
 const CAST_COL = 0.34;
 
+/**
+ * The character's drawn height, fixed across every pose.
+ *
+ * Fixed is the point: the frame each pose is drawn in is as wide as that pose's
+ * arms need (viewBoxFor, cast.tsx), so holding the *height* constant is what
+ * keeps the head one size from beat to beat. Sizing to width instead would
+ * shrink the character every time they shrugged.
+ *
+ * The value is set so the widest pose in the vocabulary overhangs its column by
+ * less than the gutter — a shrug's hands reach into the white space beside the
+ * headline, which is where hands should reach, and never into the words.
+ */
+const CAST_H = 640;
+
 export const CastScene: React.FC<{
   theme: ResolvedTheme;
   sceneStartMs: number;
@@ -49,22 +72,18 @@ export const CastScene: React.FC<{
   const caption = String(props.caption ?? '');
   const poseName = String(props.pose ?? 'idle');
   const prevPoseName = String(props.prevPose ?? poseName);
-  const expression = (String(props.expression ?? 'neutral') || 'neutral') as Expression;
+  const expression = String(props.expression ?? 'neutral') || 'neutral';
   const propName = props.prop ? String(props.prop) : '';
   const flip = Boolean(props.flip);
+  // The presenter is the same person for the whole clip, and a different one
+  // from clip to clip — so the seed is the headline's neighbour, the plan, not
+  // the beat. Go passes it; older scene graphs fall back to one fixed cast.
+  const castSeed = String(props.castSeed ?? 'cast-a');
 
   const words = useMemo(() => headline.split(/\s+/).filter(Boolean), [headline]);
 
-  const castPalette: CastPalette = {
-    // The character is branded rather than naturalistic: the shirt is the
-    // course's primary. A cast that ignores the palette reads as clip art
-    // dropped into someone else's video.
-    skin: '#f0c8a8',
-    hair: theme.ink,
-    top: theme.primary,
-    bottom: theme.mode === 'light' ? theme.textMuted : '#2f4560',
-    ink: theme.ink,
-  };
+  const presenter = castFor(castSeed);
+  const castPalette: CastPalette = castPaletteFor(theme, presenter);
   const figurePalette: FigurePalette = {
     accent: theme.accent,
     primary: theme.primary,
@@ -73,28 +92,22 @@ export const CastScene: React.FC<{
     line: theme.line,
   };
 
-  // The pose eases from the previous beat's to this one's, so a cut between
-  // shots is still a *move* for the character rather than a jump.
+  // The pose settles in from the previous beat's, so a cut between shots is
+  // still a *move* for the character rather than a jump.
   const poseP = interpolate(frame, [0, ENTER.poseFrames], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
-  const target = poseByName(poseName);
-  const from = poseByName(prevPoseName);
-  const blended = {
-    lShoulder: from.lShoulder + (target.lShoulder - from.lShoulder) * poseP,
-    lElbow: from.lElbow + (target.lElbow - from.lElbow) * poseP,
-    rShoulder: from.rShoulder + (target.rShoulder - from.rShoulder) * poseP,
-    rElbow: from.rElbow + (target.rElbow - from.rElbow) * poseP,
-    lHip: from.lHip + (target.lHip - from.lHip) * poseP,
-    lKnee: from.lKnee + (target.lKnee - from.lKnee) * poseP,
-    rHip: from.rHip + (target.rHip - from.rHip) * poseP,
-    rKnee: from.rKnee + (target.rKnee - from.rKnee) * poseP,
-    headTilt: from.headTilt + (target.headTilt - from.headTilt) * poseP,
-    torsoLean: from.torsoLean + (target.torsoLean - from.torsoLean) * poseP,
-    lift: from.lift + (target.lift - from.lift) * poseP,
-  };
-  const pose = livePose(blended, t, poseName === 'walk', 'cast-a');
+  const pose = poseByName(poseName);
+  const prevPose = poseByName(prevPoseName);
+  // While the outgoing pose is still dissolving it has to fit too, or a shrug
+  // fading into an idle loses its hands to the frame edge on the way out. The
+  // frame is symmetric about the head axis, so widening it moves nothing the
+  // viewer can see — the head stays exactly where it was.
+  const framed =
+    poseP < 1 && prevPose !== pose
+      ? {...pose, reach: Math.max(pose.reach, prevPose.reach)}
+      : pose;
 
   const castEnter = spring({
     frame,
@@ -116,9 +129,12 @@ export const CastScene: React.FC<{
     {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'},
   );
 
-  const castH = Math.min(STAGE_H * 0.86, 690);
-  const castW = castH * (CAST_VIEW.w / CAST_VIEW.h);
-  const propSize = Math.min(castW * 0.62, 190);
+  const castH = Math.min(STAGE_H * 0.74, CAST_H);
+  const castW = castH * aspectFor(framed);
+  // Sized off the height, not the width: the width is the pose's business and
+  // changes with it, and a prop that grew every time the character shrugged
+  // would be the most distracting thing in the frame.
+  const propSize = Math.min(castH * 0.3, 190);
   const Prop = figureFor(propName || undefined);
 
   const headlineSize =
@@ -128,6 +144,11 @@ export const CastScene: React.FC<{
     <div
       style={{
         flex: `0 0 ${CAST_COL * 100}%`,
+        // The widest poses draw beyond the column and into the gutter on
+        // purpose. Without this the flex item's automatic minimum size would be
+        // its content's, so a shrug would widen the column and shove the
+        // headline sideways for one beat.
+        minWidth: 0,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -139,11 +160,16 @@ export const CastScene: React.FC<{
       {propName ? (
         <div
           style={{
-            // Overlapping the character's headroom rather than sitting in its
-            // own band: a prop parked a full box-height above the head reads as
-            // an unrelated object, not as the thing they are talking about.
-            height: propSize * 0.72,
-            marginBottom: -propSize * 0.1,
+            // Close above the head rather than in its own band: a prop parked a
+            // full box-height away reads as an unrelated object, not as the
+            // thing they are talking about.
+            //
+            // It used to overlap by a tenth, which worked against the old rig
+            // because that drawing box carried headroom for raised arms. An
+            // Open Peeps bust is cropped to the hair, so the same overlap puts
+            // the prop on the character's scalp.
+            height: propSize * 0.8,
+            marginBottom: 10,
             opacity: propP,
             transform: `translateY(${(1 - propP) * 16}px) scale(${0.86 + propP * 0.14})`,
           }}
@@ -161,20 +187,19 @@ export const CastScene: React.FC<{
           transform: `translateY(${(1 - castEnter) * 26}px)`,
         }}
       >
-        <svg
-          width={castW}
-          height={castH}
-          viewBox={`${CAST_VIEW.x} ${CAST_VIEW.y} ${CAST_VIEW.w} ${CAST_VIEW.h}`}
-        >
+        <svg width={castW} height={castH} viewBox={viewBoxFor(framed)}>
           <Character
             pose={pose}
-            expression={expression}
+            prevPose={prevPose}
+            poseP={poseP}
+            face={faceByName(expression)}
+            character={presenter}
             palette={castPalette}
             t={t}
             // Face the words. A character addressing the far edge of frame
             // reads as ignoring the thing they are explaining.
             facing={flip ? -1 : 1}
-            seed="cast-a"
+            seed={castSeed}
           />
         </svg>
       </div>

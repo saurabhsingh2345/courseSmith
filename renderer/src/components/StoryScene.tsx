@@ -3,7 +3,16 @@ import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from
 import {FPS} from '../types';
 import {ResolvedTheme} from '../theme/theme';
 import {FIGURE_BOX, figureFor, type FigurePalette} from './artwork';
-import {CAST_FEET, CAST_VIEW, Character, livePose, poseByName, type CastPalette, type Expression} from './cast';
+import {
+  Character,
+  aspectFor,
+  castFor,
+  castPaletteFor,
+  faceByName,
+  poseByName,
+  viewBoxFor,
+  type CastPalette,
+} from './cast';
 import {CAPTION_SAFE, FRAME_H, SAFE_X} from './Stage';
 import {WORLD, camAt, camTransform, parallaxCam} from './camera';
 
@@ -25,7 +34,16 @@ import {WORLD, camAt, camTransform, parallaxCam} from './camera';
 // designs.
 
 const BAND = {
-  /** Where figures stand: their feet land here. */
+  /**
+   * The horizon. Objects float above it, and the character is cropped at it.
+   *
+   * The character used to *stand* on it, back when they were drawn from a
+   * skeleton and had feet. Open Peeps draws a bust — head and torso, running
+   * off the bottom of its own frame — so the horizon is now where that crop
+   * lands. Which is the better shot anyway: it makes the cut read as the
+   * ground passing in front of the character rather than as a figure that
+   * stops at the ribs.
+   */
   floorY: 0.63,
   /** Vertical centre of a floating object. */
   objectY: 0.36,
@@ -98,7 +116,9 @@ export const StoryScene: React.FC<{
   const camera = String(props.camera ?? 'hold');
   const poseName = String(props.pose ?? 'idle');
   const prevPoseName = String(props.prevPose ?? poseName);
-  const expression = (String(props.expression ?? 'neutral') || 'neutral') as Expression;
+  const expression = String(props.expression ?? 'neutral') || 'neutral';
+  // One presenter for the whole film, a different one from film to film.
+  const castSeed = String(props.castSeed ?? 'story-a');
   const propAName = props.prop ? String(props.prop) : '';
   const propBName = props.propB ? String(props.propB) : '';
   const durationMs = Number(props.durationMs ?? 5000);
@@ -113,13 +133,8 @@ export const StoryScene: React.FC<{
   const cam = camAt(camera, frame / shotFrames);
   const bgCam = parallaxCam(cam, PARALLAX);
 
-  const castPalette: CastPalette = {
-    skin: '#f0c8a8',
-    hair: theme.ink,
-    top: theme.primary,
-    bottom: theme.mode === 'light' ? theme.textMuted : '#2f4560',
-    ink: theme.ink,
-  };
+  const presenter = castFor(castSeed);
+  const castPalette: CastPalette = castPaletteFor(theme, presenter);
   const figurePalette: FigurePalette = {
     accent: theme.accent,
     primary: theme.primary,
@@ -136,22 +151,14 @@ export const StoryScene: React.FC<{
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
-  const a = poseByName(prevPoseName);
-  const b = poseByName(poseName);
-  const m = (x: number, y: number) => x + (y - x) * poseP;
-  const pose = livePose(
-    {
-      lShoulder: m(a.lShoulder, b.lShoulder), lElbow: m(a.lElbow, b.lElbow),
-      rShoulder: m(a.rShoulder, b.rShoulder), rElbow: m(a.rElbow, b.rElbow),
-      lHip: m(a.lHip, b.lHip), lKnee: m(a.lKnee, b.lKnee),
-      rHip: m(a.rHip, b.rHip), rKnee: m(a.rKnee, b.rKnee),
-      headTilt: m(a.headTilt, b.headTilt), torsoLean: m(a.torsoLean, b.torsoLean),
-      lift: m(a.lift, b.lift),
-    },
-    t,
-    poseName === 'walk',
-    'story-a',
-  );
+  const prevPose = poseByName(prevPoseName);
+  const pose = poseByName(poseName);
+  // The outgoing pose has to fit the frame too while it dissolves — see
+  // CastScene, which makes the same widening for the same reason.
+  const framed =
+    poseP < 1 && prevPose !== pose
+      ? {...pose, reach: Math.max(pose.reach, prevPose.reach)}
+      : pose;
 
   const lastWordFrame = Math.max(0, (words.length - 1) * ENTER.wordStagger);
   const captionP = interpolate(
@@ -191,7 +198,7 @@ export const StoryScene: React.FC<{
     );
   };
 
-  const castW = plan.cast ? plan.cast.size * (CAST_VIEW.w / CAST_VIEW.h) : 0;
+  const castW = plan.cast ? plan.cast.size * aspectFor(framed) : 0;
 
   return (
     <AbsoluteFill>
@@ -248,31 +255,28 @@ export const StoryScene: React.FC<{
             style={{
               position: 'absolute',
               left: plan.cast.x - castW / 2,
-              // Stand the soles on the floor line, not the bottom of the
-              // drawing box — the box carries headroom for raised arms, and
-              // using it directly leaves the character hovering.
-              top: plan.cast.y - plan.cast.size * CAST_FEET,
+              // The bust's crop lands on the horizon — see BAND.floorY.
+              top: plan.cast.y - plan.cast.size,
               width: castW,
               height: plan.cast.size,
               opacity: enter,
               transform: `translateY(${(1 - enter) * 22}px)`,
             }}
           >
-            <svg
-              width={castW}
-              height={plan.cast.size}
-              viewBox={`${CAST_VIEW.x} ${CAST_VIEW.y} ${CAST_VIEW.w} ${CAST_VIEW.h}`}
-            >
+            <svg width={castW} height={plan.cast.size} viewBox={viewBoxFor(framed)}>
               <Character
                 pose={pose}
-                expression={expression}
+                prevPose={prevPose}
+                poseP={poseP}
+                face={faceByName(expression)}
+                character={presenter}
                 palette={castPalette}
                 t={t}
                 // The character always faces stage right: on `duo` that is
                 // where the object is, and on `hero` it keeps the presenter
                 // consistent from shot to shot rather than flipping on a cut.
                 facing={1}
-                seed="story-a"
+                seed={castSeed}
               />
             </svg>
           </div>

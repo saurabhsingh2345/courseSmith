@@ -18,12 +18,16 @@ import (
 const figureMirrorPath = "../../renderer/src/components/artwork.tsx"
 
 // The FIGURES block is located first and entries parsed inside it, rather than
-// matching entries across the whole file. artwork.tsx also declares types whose
-// fields have the same shape as a map entry (`palette: FigurePalette;`), and a
-// file-wide regex happily reports those as figures the renderer supports.
+// matching entries across the whole file. Nearby declarations have the same
+// shape as a map entry (`palette: FigurePalette;`), and a file-wide regex
+// happily reports those as figures the renderer supports.
+//
+// An entry is `name: module.Figure` — the drawings live in themed modules under
+// artwork/ now, and requiring the dotted reference is what keeps this from
+// matching an ordinary object literal that wanders into the file.
 var (
 	tsFiguresBlockRe = regexp.MustCompile(`(?s)export const FIGURES[^{]*\{(.*?)\n\};`)
-	tsFigureEntryRe  = regexp.MustCompile(`(?m)^\s{2}([a-z][a-z0-9]*):\s+[A-Z]`)
+	tsFigureEntryRe  = regexp.MustCompile(`(?m)^\s{2}([a-z][a-z0-9]*):\s+[a-z]+\.[A-Z]`)
 )
 
 func TestFigureVocabularyInSync(t *testing.T) {

@@ -205,7 +205,10 @@ func TestIllustrationPromptExampleIsValid(t *testing.T) {
 		t.Fatalf("the example reply in %s does not satisfy the rules that same prompt states: %v",
 			snippetIllustrationTemplateName, err)
 	}
-	if len(plan.Beats) < minSnippetBeats {
-		t.Errorf("the example shows %d beats, below the stated minimum of %d", len(plan.Beats), minSnippetBeats)
+	// The floor is the absolute one now: how many beats a prompt asks for
+	// depends on the runtime it is rendered at (beatBounds), and the example is
+	// rendered without one.
+	if len(plan.Beats) < floorSnippetBeats {
+		t.Errorf("the example shows %d beats, below the floor of %d", len(plan.Beats), floorSnippetBeats)
 	}
 }

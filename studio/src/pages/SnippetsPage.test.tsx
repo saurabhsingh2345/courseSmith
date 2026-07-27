@@ -246,6 +246,6 @@ it("only offers runtimes the chosen template can satisfy", async () => {
   // ...and gone once a template that cannot be short is chosen.
   expect(screen.queryByRole("button", { name: "~20s" })).toBeNull();
   expect(screen.queryByRole("button", { name: "~45s" })).toBeNull();
-  expect(screen.queryByRole("button", { name: "~75s" })).toBeTruthy();
+  expect(screen.queryByRole("button", { name: "~90s" })).toBeTruthy();
   expect(screen.queryByRole("button", { name: "~2 min" })).toBeTruthy();
 });

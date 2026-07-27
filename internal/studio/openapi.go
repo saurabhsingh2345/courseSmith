@@ -191,8 +191,11 @@ const openAPISpec = `{
       },
       "Artifact": {
         "type": "object",
-        "properties": {"name": {"type": "string"}, "size": {"type": "integer"}, "url": {"type": "string"}},
-        "required": ["name", "size", "url"]
+        "properties": {
+          "name": {"type": "string"}, "size": {"type": "integer"}, "url": {"type": "string"},
+          "download_name": {"type": "string", "description": "What this file should be saved as: <course>-<lesson>[-<part>].<ext>, so a folder of downloads sorts by course and lesson instead of being six copies of final.mp4."}
+        },
+        "required": ["name", "size", "url", "download_name"]
       },
       "SnippetTemplateInfo": {
         "type": "object",

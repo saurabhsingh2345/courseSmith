@@ -150,7 +150,7 @@ export function LessonEditorPage() {
                         className="flex items-center justify-between gap-2 rounded border border-ink-800 bg-ink-900 px-3 py-1.5"
                       >
                         <span className="truncate font-mono text-[12px] text-ink-300">{a.name}</span>
-                        <DownloadButton url={a.url} filename={a.name.split("/").pop()} size={a.size} />
+                        <DownloadButton url={a.url} filename={a.download_name} size={a.size} />
                       </div>
                     ))}
                   </div>

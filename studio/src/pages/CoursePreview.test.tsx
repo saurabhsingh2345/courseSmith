@@ -13,27 +13,31 @@ const LESSON: LessonDetail = {
   stages: {},
   stage_order: [],
   artifacts: [
-    { name: "final.mp4", size: 1000, url: "/artifacts/python-basics/01/final.mp4" },
+    { name: "final.mp4", size: 1000, url: "/artifacts/python-basics/01/final.mp4" , download_name: "python-basics-01.mp4" },
     {
       name: "diagrams/where-python-runs.svg",
       size: 200,
       url: "/artifacts/python-basics/01/diagrams/where-python-runs.svg",
+      download_name: "python-basics-01-diagrams-where-python-runs.svg",
     },
     // attempts must be excluded from the diagrams grid.
     {
       name: "diagrams/attempts/where-python-runs-1.svg",
       size: 200,
       url: "/artifacts/python-basics/01/diagrams/attempts/where-python-runs-1.svg",
+      download_name: "python-basics-01-diagrams-attempts-where-python-runs-1.svg",
     },
     {
       name: "code_traces/manifest.json",
       size: 50,
       url: "/artifacts/python-basics/01/code_traces/manifest.json",
+      download_name: "python-basics-01-code_traces-manifest.json",
     },
     {
       name: "code_traces/sha256:abc.json",
       size: 100,
       url: "/artifacts/python-basics/01/code_traces/sha256:abc.json",
+      download_name: "python-basics-01-code_traces-sha256-abc.json",
     },
   ],
   quiz: {
