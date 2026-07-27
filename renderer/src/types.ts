@@ -86,7 +86,8 @@ export type SceneType =
   | 'flow'
   | 'illustration'
   | 'cast'
-  | 'story';
+  | 'story'
+  | 'data';
 
 export type Scene = {
   type: SceneType;

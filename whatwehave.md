@@ -605,6 +605,39 @@ than a dirty flag — so browsing keeps swapping the demo, and one typed
 character makes the box theirs. A Go test fails if a registered template has no
 preview.
 
+- **`data`** (`snippet_data.go`) — real numbers on one chart or world map. Four
+  kinds: `bars` (horizontal, the only orientation where a real label fits
+  unrotated), `line`, `donut`, and `map`.
+
+  The chart is declared **once for the whole clip** and the beats only move the
+  *emphasis* around it. A chart per beat was the obvious alternative and it
+  fails the same way a new diagram every eight seconds does: the viewer never
+  gets past reading the axes. One chart that stays put is what lets the second
+  mention of a bar mean something, because it is the same bar. That is why
+  `Chart` sits on `SnippetPlan` rather than on a beat — the only place in the
+  catalog where visual state is not per-beat, and it is deliberate: the dataset
+  is a property of the clip.
+
+  Enforced: at least half the beats highlight something (a chart nobody points
+  at is a screenshot with narration over it), and no two consecutive beats
+  highlight the same set, compared order-independently.
+
+  **The map** is `world-atlas` countries-110m — Natural Earth, public domain,
+  108KB — projected once at module load with d3-geo (`geo.ts`); projecting 176
+  countries per frame would be pure waste since only the fill changes.
+  Antarctica is dropped: it is never the subject, and it costs a fifth of the
+  box height plus the fit, leaving the inhabited world floating in the upper
+  two thirds. Countries without data are still drawn, because a map of only the
+  highlighted countries is a set of floating shapes nobody can place.
+
+  Natural Earth's names are cartographer's names — "United States of America",
+  "Dem. Rep. Congo", "Bosnia and Herz.", and it still says "Macedonia" — and no
+  model writes those. `countries.go` carries the canonical list plus an alias
+  table, and a drift test compares both against the real TopoJSON. It has
+  already earned itself twice: it caught an alias pointing at a country the
+  atlas does not have, and Antarctica being accepted by Go while the renderer
+  refused to draw it.
+
 **Cross-template field guards.** `SnippetBeat` is the union of what every
 template needs, so `beatFields` declares ownership once per template and
 `rejectForeignBeatFields` fails loudly when a plan sets a field its template

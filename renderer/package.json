@@ -17,15 +17,20 @@
     "@remotion/paths": "4.0.490",
     "@remotion/shapes": "4.0.490",
     "@remotion/transitions": "4.0.490",
+    "@types/d3-geo": "^3.1.0",
     "@types/d3-hierarchy": "^3.1.7",
     "@types/d3-shape": "^3.1.8",
+    "@types/topojson-client": "^3.1.5",
+    "d3-geo": "^3.1.1",
     "d3-hierarchy": "^3.1.2",
     "d3-shape": "^3.2.0",
     "lucide-react": "^1.25.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "remotion": "^4.0.290",
-    "shiki": "^1.29.2"
+    "shiki": "^1.29.2",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",

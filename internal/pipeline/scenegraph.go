@@ -43,6 +43,9 @@ const (
 	// SceneStory is one shot of a directed piece: a staged arrangement of
 	// character and objects, framed by a moving camera.
 	SceneStory = "story"
+	// SceneData is one persistent chart or world map whose highlight follows
+	// the narration.
+	SceneData = "data"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file
@@ -611,9 +614,9 @@ func finishSceneGraph(e *Env, l *project.Lesson, graph *SceneGraph) error {
 	for _, s := range graph.Scenes {
 		types[s.Type]++
 	}
-	fmt.Fprintf(e.out(), "    %d scenes (%d title, %d points, %d code, %d walkthrough, %d whiteboard, %d flow, %d illustration, %d cast, %d story, %d diagram, %d terminal), %d captions, %.1fs\n",
+	fmt.Fprintf(e.out(), "    %d scenes (%d title, %d points, %d code, %d walkthrough, %d whiteboard, %d flow, %d illustration, %d cast, %d story, %d data, %d diagram, %d terminal), %d captions, %.1fs\n",
 		len(graph.Scenes), types[SceneTitle], types[ScenePoints], types[SceneCode], types[SceneWalkthrough],
-		types[SceneWhiteboard], types[SceneFlow], types[SceneIllustration], types[SceneCast], types[SceneStory], types[SceneDiagram], types[SceneTerminal],
+		types[SceneWhiteboard], types[SceneFlow], types[SceneIllustration], types[SceneCast], types[SceneStory], types[SceneData], types[SceneDiagram], types[SceneTerminal],
 		len(graph.Captions), float64(graph.DurationMs)/1000)
 	return nil
 }

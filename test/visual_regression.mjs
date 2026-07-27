@@ -51,6 +51,10 @@ const TARGETS = [
   // the frame proves the world-space staging composes under a moved camera —
   // which a frame-0 capture cannot.
   { id: "StoryViz", frame: 340 },
+  // Inside the map shot's first highlight window: the kind with an external
+  // dependency (the world atlas), whose failure mode is a country that quietly
+  // does not appear.
+  { id: "DataViz", frame: 830 },
   { id: "D3Viz", frame: 130 },
   { id: "MemoryViz", frame: 90 },
   { id: "LessonVideo", frame: 15 },

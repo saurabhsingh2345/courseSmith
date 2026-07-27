@@ -302,7 +302,8 @@ coursesmith snippet templates           list the visual templates a clip can use
                                          flow: layered boxes with moving traffic;
                                          illustration: kinetic type + flat art;
                                          cast: a character who reacts;
-                                         story: a directed 1-2 min short)
+                                         story: a directed 1-2 min short;
+                                         data: charts and world maps)
 coursesmith snippet new <prompt>        plan and render one standalone clip
     --template <name>                   which template it looks like (required)
     --seconds <n>                       approximate runtime to aim for (default 45)

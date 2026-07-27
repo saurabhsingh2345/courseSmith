@@ -138,6 +138,27 @@ type SnippetPlan struct {
 	// card ("" = no card).
 	Subtitle string        `json:"subtitle,omitempty"`
 	Beats    []SnippetBeat `json:"beats"`
+	// Chart is the data template's dataset. It sits on the plan rather than on
+	// a beat because a data clip is one chart read several ways — the beats
+	// only move the emphasis around it. Every other template's visual state is
+	// per-beat; this is the one case where it genuinely is not.
+	Chart *ChartSpec `json:"chart,omitempty"`
+}
+
+// ChartSpec is a dataset and how to draw it.
+type ChartSpec struct {
+	// Kind is bars | line | donut | map; anything else degrades to bars.
+	Kind string `json:"kind"`
+	// Unit is appended to every value shown ("%", "ms", "M"). Optional.
+	Unit string `json:"unit,omitempty"`
+	// Points are the data. For a map, each label is a country name.
+	Points []DataPoint `json:"points"`
+}
+
+// DataPoint is one labelled number.
+type DataPoint struct {
+	Label string  `json:"label"`
+	Value float64 `json:"value"`
 }
 
 // SnippetBeat is one narrated step of a snippet.
@@ -195,6 +216,21 @@ type SnippetBeat struct {
 	// Shot is how this beat is staged and shot. Produced by the director
 	// stage, not by the writer — see snippet_story.go.
 	Shot *ShotBeat `json:"shot,omitempty"`
+
+	// --- data template ---
+	// Data is what this beat points at in the clip's one chart.
+	Data *DataBeat `json:"data,omitempty"`
+}
+
+// DataBeat is one beat's reading of the chart: what it points at, and the line
+// under it while it does.
+type DataBeat struct {
+	// Highlight names data points to light up while this beat is spoken;
+	// everything else dims. Empty means the whole chart sits neutral, which is
+	// the right choice for an opening or closing beat.
+	Highlight []string `json:"highlight,omitempty"`
+	// Caption is the supporting line shown during this beat. Optional.
+	Caption string `json:"caption,omitempty"`
 }
 
 // ShotBeat stages one beat of a story: where things stand, how the camera
