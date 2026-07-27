@@ -231,11 +231,11 @@ func TestExpandTokens(t *testing.T) {
 
 func TestBuildPaceReport(t *testing.T) {
 	refs := []sectionRef{
-		{ID: "on-pace", Text: strings.Repeat("word ", 150)},  // 150 words
-		{ID: "rushed", Text: strings.Repeat("word ", 150)},   // same words, half the time
+		{ID: "on-pace", Text: strings.Repeat("word ", 150)}, // 150 words
+		{ID: "rushed", Text: strings.Repeat("word ", 150)},  // same words, half the time
 	}
 	spans := []SectionSpan{
-		{ID: "on-pace", StartMs: 0, EndMs: 60000},   // 150 wpm
+		{ID: "on-pace", StartMs: 0, EndMs: 60000},    // 150 wpm
 		{ID: "rushed", StartMs: 60000, EndMs: 90000}, // 300 wpm
 	}
 	report := buildPaceReport(refs, spans, 150)

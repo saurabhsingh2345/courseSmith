@@ -79,7 +79,10 @@ export const CalloutLayer: React.FC<{
                 left: c.shape === 'circle' ? cx + 100 : cx - 170,
                 top: c.shape === 'circle' ? cy - 24 : cy - 220,
                 backgroundColor: theme.accent,
-                color: '#101828',
+                // The chip sits on the accent, not on the stage, so it wants
+                // the dark ink in both modes — but the token, so a course that
+                // rebrands the accent still gets a legible label.
+                color: theme.ink,
                 fontSize: 30,
                 fontWeight: 700,
                 padding: '10px 22px',

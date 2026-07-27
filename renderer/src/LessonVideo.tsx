@@ -13,6 +13,11 @@ import {SectionTransition} from './components/SectionTransition';
 import {TerminalScene} from './components/TerminalScene';
 import {TitleCard} from './components/TitleCard';
 import {VSCodeScene} from './components/VSCodeScene';
+import {WhiteboardScene} from './components/WhiteboardScene';
+import {FlowScene} from './components/FlowScene';
+import {IllustrationScene} from './components/IllustrationScene';
+import {CastScene} from './components/CastScene';
+import {StoryScene} from './components/StoryScene';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
 import {resolveMotion, secondsToFrames} from './theme/motion';
@@ -72,6 +77,16 @@ const sceneContent = (
           props={scene.props}
         />
       );
+    case 'whiteboard':
+      return <WhiteboardScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'flow':
+      return <FlowScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'illustration':
+      return <IllustrationScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'cast':
+      return <CastScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'story':
+      return <StoryScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       return null;
   }

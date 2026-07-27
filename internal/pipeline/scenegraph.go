@@ -27,6 +27,22 @@ const (
 	// SceneWalkthrough is the VS Code walkthrough: a synthesized editor whose
 	// buffer evolves through timed steps (one per outline code block).
 	SceneWalkthrough = "walkthrough"
+	// SceneWhiteboard is one continuous board that accumulates hand-drawn
+	// boxes, arrows and labels as the narrator speaks.
+	SceneWhiteboard = "whiteboard"
+	// SceneFlow is a layered systems diagram with traffic moving along its
+	// edges and a focus that follows the narration.
+	SceneFlow = "flow"
+	// SceneIllustration is one kinetic-typography shot: a headline set word by
+	// word beside a flat-vector figure. Unlike the board and the diagram it
+	// does not accumulate — a clip is a run of these, one per beat.
+	SceneIllustration = "illustration"
+	// SceneCast is one shot of a character explaining something: a posed,
+	// breathing person beside a kinetic headline.
+	SceneCast = "cast"
+	// SceneStory is one shot of a directed piece: a staged arrangement of
+	// character and objects, framed by a moving camera.
+	SceneStory = "story"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file
@@ -106,17 +122,29 @@ type SceneTheme struct {
 	CourseName string `json:"courseName"`
 
 	// Derived design tokens (Go-owned; renderer falls back when absent).
-	Mode          string  `json:"mode,omitempty"`          // "dark" (default) | "light"
-	BgTop         string  `json:"bgTop,omitempty"`         // scene gradient start
-	BgBottom      string  `json:"bgBottom,omitempty"`      // scene gradient end
-	Surface       string  `json:"surface,omitempty"`       // card fill
-	SurfaceBorder string  `json:"surfaceBorder,omitempty"` // card hairline
-	Text          string  `json:"text,omitempty"`          // main text on bg
-	TextMuted     string  `json:"textMuted,omitempty"`     // secondary text
-	FontDisplay   string  `json:"fontDisplay,omitempty"`   // headings
-	FontBody      string  `json:"fontBody,omitempty"`      // body/captions
-	FontMono      string  `json:"fontMono,omitempty"`      // code
-	Grain         float64 `json:"grain,omitempty"`         // film-grain opacity 0..1
+	Mode          string `json:"mode,omitempty"`          // "dark" (default) | "light"
+	BgTop         string `json:"bgTop,omitempty"`         // scene gradient start
+	BgBottom      string `json:"bgBottom,omitempty"`      // scene gradient end
+	Surface       string `json:"surface,omitempty"`       // card fill
+	SurfaceBorder string `json:"surfaceBorder,omitempty"` // card hairline
+	Text          string `json:"text,omitempty"`          // main text on bg
+	TextMuted     string `json:"textMuted,omitempty"`     // secondary text
+	// Mass is the body fill of drawn artwork, and Ink is the shading laid over
+	// a mass to give it a lit and an unlit face. They are a pair and they flip
+	// together: on the dark stage a mass is near-white, on paper it is a
+	// mid-tone, and in both cases Ink is darker than Mass so the same shading
+	// code works either way. A figure painted in a literal colour instead of
+	// these is a figure that vanishes in one of the two modes.
+	Mass string `json:"mass,omitempty"`
+	Ink  string `json:"ink,omitempty"`
+	// AccentText is the accent adjusted to be legible as text on this mode's
+	// background. Accent itself stays the brand colour and is what fills and
+	// strokes use; only type takes this one. See readableOn.
+	AccentText  string  `json:"accentText,omitempty"`
+	FontDisplay string  `json:"fontDisplay,omitempty"` // headings
+	FontBody    string  `json:"fontBody,omitempty"`    // body/captions
+	FontMono    string  `json:"fontMono,omitempty"`    // code
+	Grain       float64 `json:"grain,omitempty"`       // film-grain opacity 0..1
 }
 
 // Scene is one visual span of the lesson video.
@@ -193,7 +221,6 @@ func headingsFromOutline(body string) map[string]string {
 	return out
 }
 
-
 // cueTimestamp resolves a cue's at_word (section-relative index) to the
 // timestamp of that word, clamped into the section's span.
 func cueTimestamp(a *Alignment, span SectionSpan, atWord int) int {
@@ -260,7 +287,7 @@ func buildSceneGraph(
 	}
 
 	graph := &SceneGraph{
-		Theme:     deriveVideoTheme(colors, cfg.Branding.Fonts, course.Name),
+		Theme:     deriveVideoTheme(colors, cfg.Branding.Fonts, course.Name, cfg.Style.Mode),
 		Motion:    arch.Motion, // DefaultMotion() + the archetype's philosophy
 		AudioFile: VoiceoverFileName,
 	}
@@ -508,6 +535,12 @@ func LoadSceneGraph(l *project.Lesson) (*SceneGraph, error) {
 // runScenegraphStage builds generated/lesson-video.json from the script,
 // word alignment, demo manifest, and verified code outputs.
 func runScenegraphStage(ctx context.Context, e *Env, course *project.Course, l *project.Lesson, cfg config.Config) error {
+	// A snippet's scenes come from its template, not from the lesson-shaped
+	// script/storyboard/diagram machinery. Everything after this branch —
+	// captions, the video-plan edit layer, the written artifact — is shared.
+	if IsSnippet(l) {
+		return runSnippetScenegraph(ctx, e, course, l, cfg)
+	}
 	script, err := loadScript(l)
 	if err != nil {
 		return err
@@ -543,6 +576,13 @@ func runScenegraphStage(ctx context.Context, e *Env, course *project.Course, l *
 	if err != nil {
 		return err
 	}
+	return finishSceneGraph(e, l, graph)
+}
+
+// finishSceneGraph applies the shared post-build layers to any scene graph —
+// caption emphasis, the human video-plan edits — and writes it out. Lessons
+// and snippets differ in how their scenes are built and in nothing after.
+func finishSceneGraph(e *Env, l *project.Lesson, graph *SceneGraph) error {
 	// Emphasis indices address caption words; without captions there is
 	// nothing for them to point at.
 	if len(graph.Captions) > 0 {
@@ -571,8 +611,9 @@ func runScenegraphStage(ctx context.Context, e *Env, course *project.Course, l *
 	for _, s := range graph.Scenes {
 		types[s.Type]++
 	}
-	fmt.Fprintf(e.out(), "    %d scenes (%d title, %d points, %d code, %d walkthrough, %d diagram, %d terminal), %d captions, %.1fs\n",
-		len(graph.Scenes), types[SceneTitle], types[ScenePoints], types[SceneCode], types[SceneWalkthrough], types[SceneDiagram], types[SceneTerminal],
+	fmt.Fprintf(e.out(), "    %d scenes (%d title, %d points, %d code, %d walkthrough, %d whiteboard, %d flow, %d illustration, %d cast, %d story, %d diagram, %d terminal), %d captions, %.1fs\n",
+		len(graph.Scenes), types[SceneTitle], types[ScenePoints], types[SceneCode], types[SceneWalkthrough],
+		types[SceneWhiteboard], types[SceneFlow], types[SceneIllustration], types[SceneCast], types[SceneStory], types[SceneDiagram], types[SceneTerminal],
 		len(graph.Captions), float64(graph.DurationMs)/1000)
 	return nil
 }

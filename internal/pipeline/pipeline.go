@@ -121,6 +121,9 @@ var stageUpstream = map[string][]string{
 // that a stage consumes. A recording appearing or changing re-triggers
 // render; editing quiz overrides re-publishes the page.
 var stageLessonFiles = map[string][]string{
+	// A snippet's whole input is its request file; editing the prompt or
+	// swapping the template re-plans (and so re-renders) the clip.
+	project.StagePlan:       {SnippetFileName},
 	project.StageScenegraph: {VideoPlanFileName},
 	project.StageRender:     {RecordingFileName},
 	project.StageHugo:       {QuizOverridesFileName},
@@ -137,11 +140,11 @@ var stageTemplates = map[string][]string{
 		reviewClaimsTemplateName, reviewAccuracyTemplateName,
 		reviewPedagogyTemplateName, reviewToneTemplateName, scriptTemplateName,
 	},
-	project.StageVisuals:   {diagramTemplateName, d3DiagramTemplateName, d2LangTemplateName, mermaidDiagramTemplateName, excalidrawTemplateName, diagramVisualQATemplateName, reviewTemplateName},
-	project.StageQuiz:      {quizTemplateName, reviewTemplateName, quizDistractorsTemplateName, quizDifficultyTemplateName},
-	project.StageMistakes:  {mistakesTemplateName},
-	project.StageExercises: {exercisesTemplateName},
-	project.StageDemos:     {demoTapeTemplateName},
+	project.StageVisuals:    {diagramTemplateName, d3DiagramTemplateName, d2LangTemplateName, mermaidDiagramTemplateName, excalidrawTemplateName, diagramVisualQATemplateName, reviewTemplateName},
+	project.StageQuiz:       {quizTemplateName, reviewTemplateName, quizDistractorsTemplateName, quizDifficultyTemplateName},
+	project.StageMistakes:   {mistakesTemplateName},
+	project.StageExercises:  {exercisesTemplateName},
+	project.StageDemos:      {demoTapeTemplateName},
 	project.StageCaptions:   {captionEmphasisTemplateName},
 	project.StageStoryboard: {storyboardTemplateName},
 }
@@ -152,6 +155,7 @@ type stageFunc func(ctx context.Context, e *Env, course *project.Course, l *proj
 // stageFuncs maps implemented stages to their implementations. Stages absent
 // from this map (still being built out in Phase 2) are reported as skipped.
 var stageFuncs = map[string]stageFunc{
+	project.StagePlan:         runPlanStage,
 	project.StageScript:       runScriptStage,
 	project.StageVerify:       runVerifyStage,
 	project.StageTrace:        runTraceStage,
@@ -234,6 +238,16 @@ func (e *Env) StageInputs(l *project.Lesson, cfg config.Config, stage string) (m
 			inputs[fmt.Sprintf("prompts/%s/%d", diagramStyleDirName, i)] = project.HashBytes([]byte(ex))
 		}
 	}
+	if stage == project.StagePlan {
+		// Which prompt template the plan stage renders depends on which
+		// template the request names, so it cannot be listed statically:
+		// editing snippet_vscode.tmpl must re-plan vscode snippets only.
+		if spec, err := LoadSnippetSpec(l.Dir); err == nil {
+			if tpl, ok := SnippetTemplates[spec.Template]; ok {
+				inputs["prompts/"+tpl.PromptFile] = hashOrAbsent(filepath.Join(e.PromptsDir, tpl.PromptFile))
+			}
+		}
+	}
 	return inputs, nil
 }
 
@@ -248,14 +262,23 @@ func hashOrAbsent(path string) string {
 	return h
 }
 
-// LessonStatus resolves the status of every stage for one lesson.
+// LessonStatus resolves the status of every lesson stage.
 func (e *Env) LessonStatus(l *project.Lesson, cfg config.Config) (map[string]project.StageStatus, error) {
+	return e.LessonStatusFor(l, cfg, project.StageOrder)
+}
+
+// LessonStatusFor resolves the status of an explicit stage list.
+//
+// Which stages are worth reporting depends on what the thing is: a snippet
+// never runs the script or visuals stages, so reporting them as forever
+// "pending" would be noise, and its own `plan` stage would be missing.
+func (e *Env) LessonStatusFor(l *project.Lesson, cfg config.Config, stages []string) (map[string]project.StageStatus, error) {
 	state, err := l.LoadState()
 	if err != nil {
 		return nil, err
 	}
-	out := make(map[string]project.StageStatus, len(project.StageOrder))
-	for _, stage := range project.StageOrder {
+	out := make(map[string]project.StageStatus, len(stages))
+	for _, stage := range stages {
 		inputs, err := e.StageInputs(l, cfg, stage)
 		if err != nil {
 			return nil, fmt.Errorf("stage %s: %w", stage, err)
@@ -290,11 +313,26 @@ func (e *Env) RunLesson(ctx context.Context, course *project.Course, l *project.
 	}
 
 	stages := project.StagesFor(cfg.Pipeline.VideoOnly)
+	fmt.Fprintf(e.out(), "%s — %q\n", l.ID, l.FrontMatter.Title)
+	return e.runStages(ctx, course, l, cfg, stages, opts)
+}
+
+// runStages is the shared execution loop behind RunLesson and RunSnippet:
+// walk the given stages in order, skip the ones whose inputs are unchanged,
+// and record state after each so an interrupted run resumes cleanly.
+func (e *Env) runStages(
+	ctx context.Context,
+	course *project.Course,
+	l *project.Lesson,
+	cfg config.Config,
+	stages []string,
+	opts RunOptions,
+) error {
 	if opts.Stage != "" {
-		// An explicit --stage may name any stage, including a companion stage
-		// on a video-only course — asking for it by name is opting in.
-		if !slices.Contains(project.StageOrder, opts.Stage) {
-			return fmt.Errorf("unknown stage %q (stages: %s)", opts.Stage, strings.Join(project.StageOrder, ", "))
+		// An explicit --stage may name any stage, including one this run mode
+		// would otherwise skip — asking for it by name is opting in.
+		if !slices.Contains(project.AllStages(), opts.Stage) {
+			return fmt.Errorf("unknown stage %q (stages: %s)", opts.Stage, strings.Join(project.AllStages(), ", "))
 		}
 		stages = []string{opts.Stage}
 	}
@@ -304,7 +342,6 @@ func (e *Env) RunLesson(ctx context.Context, course *project.Course, l *project.
 		return err
 	}
 
-	fmt.Fprintf(e.out(), "%s — %q\n", l.ID, l.FrontMatter.Title)
 	for _, name := range stages {
 		if err := ctx.Err(); err != nil {
 			return err

@@ -28,30 +28,131 @@ const (
 // dark gradients; ~4% reads as texture, not noise).
 const defaultGrain = 0.04
 
+// The two polarities a video can be rendered in.
+const (
+	ThemeModeDark  = "dark"
+	ThemeModeLight = "light"
+)
+
+// normalizeThemeMode maps config input onto a known mode. Anything
+// unrecognised — including the empty string — is dark, which is the default
+// look and the one every existing scene graph was recorded against.
+func normalizeThemeMode(mode string) string {
+	if strings.EqualFold(strings.TrimSpace(mode), ThemeModeLight) {
+		return ThemeModeLight
+	}
+	return ThemeModeDark
+}
+
+// relLuminance is the WCAG 2.1 relative luminance of a hex colour.
+func relLuminance(hex string) float64 {
+	r, g, b, err := parseHex(hex)
+	if err != nil {
+		return 0
+	}
+	lin := func(c float64) float64 {
+		if c <= 0.03928 {
+			return c / 12.92
+		}
+		return math.Pow((c+0.055)/1.055, 2.4)
+	}
+	return 0.2126*lin(r) + 0.7152*lin(g) + 0.0722*lin(b)
+}
+
+// contrast is the WCAG ratio between two hex colours, 1..21.
+func contrast(a, b string) float64 {
+	la, lb := relLuminance(a), relLuminance(b)
+	if la < lb {
+		la, lb = lb, la
+	}
+	return (la + 0.05) / (lb + 0.05)
+}
+
+// readableOn darkens `hex` until it clears `want` contrast against `bg`.
+//
+// This exists because a brand accent is chosen to sit on a dark stage, and the
+// usual choice — a saturated yellow or orange — is very nearly the luminance of
+// paper. Used as *text* in light mode it is simply illegible, and no amount of
+// weight or size fixes a 1.4:1 ratio. Rather than forbid such accents or ask
+// courses to configure a second one, the readable variant is derived: same hue,
+// same saturation, walked down in lightness until it passes.
+//
+// The accent is still used unmodified for fills and strokes, where it sits on
+// its own shape rather than on the background. Only text takes this.
+func readableOn(hex, bg string, want float64) string {
+	h, s, l := hexToHSL(hex)
+	out := hex
+	for i := 0; i < 50 && contrast(out, bg) < want; i++ {
+		l -= 0.02
+		if l < 0.04 {
+			l = 0.04
+			out = hslToHex(h, s, l)
+			break
+		}
+		out = hslToHex(h, s, l)
+	}
+	return out
+}
+
 // deriveVideoTheme fills the rich theme tokens from the course branding.
-// The base hue comes from the primary colour so the dark background is
-// tinted toward the course brand instead of a generic black.
-func deriveVideoTheme(colors config.Colors, fonts config.Fonts, courseName string) SceneTheme {
+// The base hue comes from the primary colour so the background is tinted
+// toward the course brand instead of a generic black or a generic white.
+//
+// Mode picks which set of lightness targets the same hue is run through. It is
+// deliberately the *only* thing that varies: both modes emit exactly the same
+// token names, so a scene never asks which mode it is in — it asks for
+// `surface` and gets something it can draw on either way. Any scene that has
+// to branch on mode is a scene with a colour hardcoded in it.
+func deriveVideoTheme(colors config.Colors, fonts config.Fonts, courseName, mode string) SceneTheme {
 	h, _, _ := hexToHSL(colors.Primary)
 
 	t := SceneTheme{
-		Primary:    colors.Primary,
-		Accent:     colors.Accent,
-		Background: colors.Background,
-		CourseName: courseName,
-
-		Mode:          "dark",
-		BgTop:         hslToHex(h, 0.42, 0.11),
-		BgBottom:      hslToHex(math.Mod(h+14, 360), 0.48, 0.055),
-		Surface:       hslToHex(h, 0.30, 0.15),
-		SurfaceBorder: hslToHex(h, 0.24, 0.26),
-		Text:          hslToHex(h, 0.30, 0.96),
-		TextMuted:     hslToHex(h, 0.16, 0.70),
-		FontDisplay:   DefaultFontDisplay,
-		FontBody:      DefaultFontBody,
-		FontMono:      DefaultFontMono,
-		Grain:         defaultGrain,
+		Primary:     colors.Primary,
+		Accent:      colors.Accent,
+		Background:  colors.Background,
+		CourseName:  courseName,
+		FontDisplay: DefaultFontDisplay,
+		FontBody:    DefaultFontBody,
+		FontMono:    DefaultFontMono,
 	}
+	if normalizeThemeMode(mode) == ThemeModeLight {
+		t.Mode = ThemeModeLight
+		// Paper, not white. A pure #ffffff stage blows out against any
+		// saturated brand colour and leaves the artwork looking pasted on; a
+		// few points of the brand hue at very high lightness reads as stock.
+		t.BgTop = hslToHex(h, 0.34, 0.985)
+		t.BgBottom = hslToHex(math.Mod(h+14, 360), 0.30, 0.94)
+		t.Surface = hslToHex(h, 0.26, 1.0)
+		t.SurfaceBorder = hslToHex(h, 0.22, 0.86)
+		t.Text = hslToHex(h, 0.42, 0.13)
+		// 0.42 was the first guess and it fails AA on green and yellow hues:
+		// HSL lightness is not perceptual, so the same number carries much more
+		// luminance at h=60-140 than at h=240. The contrast test picks the
+		// floor; this is the value that clears it right around the hue circle.
+		t.TextMuted = hslToHex(h, 0.20, 0.37)
+		// A mass has to be darker than paper to be a shape at all.
+		t.Mass = hslToHex(h, 0.20, 0.63)
+		t.Ink = hslToHex(h, 0.45, 0.20)
+		// Grain masks H.264 banding across a dark gradient. A light gradient
+		// bands far less and the same grain reads as dirt on the paper.
+		t.Grain = defaultGrain / 4
+	} else {
+		t.Mode = ThemeModeDark
+		t.BgTop = hslToHex(h, 0.42, 0.11)
+		t.BgBottom = hslToHex(math.Mod(h+14, 360), 0.48, 0.055)
+		t.Surface = hslToHex(h, 0.30, 0.15)
+		t.SurfaceBorder = hslToHex(h, 0.24, 0.26)
+		t.Text = hslToHex(h, 0.30, 0.96)
+		t.TextMuted = hslToHex(h, 0.16, 0.70)
+		// On the dark stage a mass is near-white, so the same Ink darkens it.
+		t.Mass = hslToHex(h, 0.28, 0.90)
+		t.Ink = hslToHex(h, 0.55, 0.06)
+		t.Grain = defaultGrain
+	}
+	// The accent as *text*, guaranteed readable on this mode's background. On
+	// the dark stage a bright accent already clears it and comes back
+	// unchanged; on paper it is walked down until it does.
+	t.AccentText = readableOn(t.Accent, t.BgTop, 4.5)
 	if fonts.Display != "" {
 		t.FontDisplay = fonts.Display
 	}
@@ -73,7 +174,7 @@ func videoThemeForConfig(cfg config.Config, courseName string) SceneTheme {
 	if arch, err := ResolveArchetype(cfg.Style); err == nil && arch.HasPalette {
 		colors = arch.Palette
 	}
-	return deriveVideoTheme(colors, cfg.Branding.Fonts, courseName)
+	return deriveVideoTheme(colors, cfg.Branding.Fonts, courseName, cfg.Style.Mode)
 }
 
 // shiftLightness returns the hex colour moved by dl in HSL lightness

@@ -295,7 +295,32 @@ coursesmith export-review <course>      one markdown doc per lesson for a
                                         mistakes + exercises + all QA flags)
 coursesmith compile-course <course>     join every rendered lesson into one
                                         course.mp4 + YouTube chapter file
+
+coursesmith snippet templates           list the visual templates a clip can use
+                                        (vscode: an editor types code and runs it;
+                                         whiteboard: a hand-drawn board fills in;
+                                         flow: layered boxes with moving traffic;
+                                         illustration: kinetic type + flat art;
+                                         cast: a character who reacts;
+                                         story: a directed 1-2 min short)
+coursesmith snippet new <prompt>        plan and render one standalone clip
+    --template <name>                   which template it looks like (required)
+    --seconds <n>                       approximate runtime to aim for (default 45)
+    --code-language <lang>              language for code templates (python)
+    --title <text>                      override the model's title
+    --model <provider/model>            planning model, e.g. openai/gpt-4o-mini
+    --captions on|off                   burn the caption track into the video
+    --mode light|dark                   video polarity (default dark)
+    --plan-only                         stop after planning; no TTS, no render
+coursesmith snippet run <id>            re-run a snippet (stages skip as usual)
+coursesmith snippet list                every snippet and whether it's rendered
 ```
+
+A **snippet** is a short standalone video built from one prompt plus one visual
+template — no lesson to write and no course to belong to. It reuses the whole
+video path (real executed code, whisperX word timing, the design system) on a
+short pipeline of its own: `plan verify audio align captions chapters
+scenegraph render`. Snippets live in `.coursesmith/snippets/`.
 
 Stages, in order: `script verify trace review storyboard visuals quiz
 quiz-strategy mistakes exercises demos audio align captions chapters

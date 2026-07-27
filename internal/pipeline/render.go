@@ -31,7 +31,19 @@ type RemotionRenderer struct {
 	Dir string
 	// Concurrency is passed to remotion render (0 lets Remotion decide).
 	Concurrency int
+	// FrameTimeoutMs bounds how long one frame may take (0 uses
+	// DefaultFrameTimeoutMs).
+	FrameTimeoutMs int
 }
+
+// DefaultFrameTimeoutMs is the per-frame render budget.
+//
+// Remotion's own default is 30s, which is ample for these scenes — a frame
+// measures ~100ms — but not for a machine that is busy. A single frame missing
+// that deadline aborts the whole render, so a loaded laptop turned a finished
+// clip into a failed stage. The budget is raised rather than the scenes made
+// cheaper, because the scenes are not the problem.
+const DefaultFrameTimeoutMs = 180_000
 
 func (r *RemotionRenderer) Name() string { return "remotion" }
 
@@ -113,11 +125,16 @@ func (r *RemotionRenderer) Render(ctx context.Context, l *project.Lesson, graph 
 		return fmt.Errorf("resolving %s: %w", outPath, err)
 	}
 
+	timeout := r.FrameTimeoutMs
+	if timeout <= 0 {
+		timeout = DefaultFrameTimeoutMs
+	}
 	args := []string{
 		"remotion", "render",
 		"src/index.ts", "LessonVideo", absOut,
 		"--props=" + absProps,
 		"--overwrite",
+		"--timeout=" + strconv.Itoa(timeout),
 	}
 	if r.Concurrency > 0 {
 		args = append(args, "--concurrency="+strconv.Itoa(r.Concurrency))

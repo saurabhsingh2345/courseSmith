@@ -73,12 +73,18 @@ export const SceneBackground: React.FC<{
         }}
       />
       {grain}
-      {/* Vignette */}
+      {/* Vignette. A black one is right on the dark stage and wrong on paper —
+          it reads as a dirty scan rather than as a lens. Light mode gets a much
+          weaker one in the brand ink instead, which keeps the corners settled
+          without smudging them. */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(ellipse at center, transparent 58%, rgba(0,0,0,0.32) 100%)',
+          background:
+            theme.mode === 'light'
+              ? `radial-gradient(ellipse at center, transparent 62%, ${theme.ink}12 100%)`
+              : 'radial-gradient(ellipse at center, transparent 58%, rgba(0,0,0,0.32) 100%)',
         }}
       />
       {children}

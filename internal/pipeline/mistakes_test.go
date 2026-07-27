@@ -25,7 +25,7 @@ func mistakesBody() string {
 // fail, everything else passes.
 func failingRunner() *fakeRunner {
 	return &fakeRunner{results: map[string]ExecResult{
-		"BROKEN": {ExitCode: 1, Stderr: "Traceback (most recent call last):\n  File \"<stdin>\", line 1\nNameError: name 'oops' is not defined"},
+		"BROKEN":                              {ExitCode: 1, Stderr: "Traceback (most recent call last):\n  File \"<stdin>\", line 1\nNameError: name 'oops' is not defined"},
 		"coursesmith-exercise-check: starter": {ExitCode: 1, Stdout: "1 failed, 1 passed"},
 	}}
 }

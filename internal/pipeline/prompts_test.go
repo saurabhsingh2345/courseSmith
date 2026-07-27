@@ -75,7 +75,7 @@ func TestRepoReviewTemplateRenders(t *testing.T) {
 
 func TestRepoDiagramTemplateRenders(t *testing.T) {
 	colors := config.Colors{Primary: "#306998", Accent: "#ffd43b", Background: "#ffffff"}
-	theme := deriveVideoTheme(colors, config.Fonts{}, "What is Python?")
+	theme := deriveVideoTheme(colors, config.Fonts{}, "What is Python?", "")
 	data := diagramPromptData{
 		DiagramStyle: "clean, flat",
 		Colors:       colors,

@@ -39,6 +39,12 @@ var pointIconVocab = map[string]bool{
 	"sparkles": true, "puzzle": true, "wrench": true, "folder": true,
 	"message": true, "repeat": true, "bug": true, "file": true, "keyboard": true,
 	"monitor": true, "dot": true,
+	// Systems and infrastructure. Added for the whiteboard template, whose
+	// boards are usually architecture: without these the model reached for
+	// "server" and "cloud", got normalized to "dot", and a box that should have
+	// read as an origin server showed a bare placeholder circle.
+	"server": true, "cloud": true, "lock": true, "users": true, "chart": true,
+	"shuffle": true, "filter": true, "network": true,
 }
 
 // PointIconNames returns the vocabulary sorted, for prompts and docs.

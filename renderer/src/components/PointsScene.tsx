@@ -1,48 +1,10 @@
 import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
-import {
-  AlertTriangle,
-  ArrowRight,
-  BookOpen,
-  Box,
-  Brain,
-  Bug,
-  CheckCircle2,
-  Circle,
-  Clock,
-  Code2,
-  Database,
-  FileCode,
-  Flag,
-  Folder,
-  Globe,
-  Heart,
-  Keyboard,
-  Layers,
-  Lightbulb,
-  Link2,
-  ListChecks,
-  LucideIcon,
-  MessageCircle,
-  Monitor,
-  Play,
-  Puzzle,
-  Repeat,
-  Rocket,
-  Search,
-  Settings,
-  Shield,
-  Sparkles,
-  SquareTerminal,
-  Star,
-  Target,
-  Wrench,
-  Zap,
-} from 'lucide-react';
 import {FPS} from '../types';
 import {ResolvedTheme} from '../theme/theme';
 import {MotionTokens, resolveMotion} from '../theme/motion';
 import {SceneHeader} from './SceneHeader';
 import {Stage, STAGE_H} from './Stage';
+import {iconFor} from './icons';
 
 // PointsScene renders the storyboard's visual beats: keyword phrases that
 // land on the exact narration word they belong to. Icon names come from the
@@ -57,44 +19,8 @@ import {Stage, STAGE_H} from './Stage';
 // Item metrics shrink with the item count so a long list still fits the stage
 // box instead of growing down into the caption band.
 
-const ICONS: Record<string, LucideIcon> = {
-  idea: Lightbulb,
-  code: Code2,
-  rocket: Rocket,
-  book: BookOpen,
-  check: CheckCircle2,
-  alert: AlertTriangle,
-  list: ListChecks,
-  box: Box,
-  arrow: ArrowRight,
-  terminal: SquareTerminal,
-  database: Database,
-  globe: Globe,
-  clock: Clock,
-  star: Star,
-  search: Search,
-  play: Play,
-  layers: Layers,
-  link: Link2,
-  zap: Zap,
-  shield: Shield,
-  target: Target,
-  gear: Settings,
-  heart: Heart,
-  flag: Flag,
-  brain: Brain,
-  sparkles: Sparkles,
-  puzzle: Puzzle,
-  wrench: Wrench,
-  folder: Folder,
-  message: MessageCircle,
-  repeat: Repeat,
-  bug: Bug,
-  file: FileCode,
-  keyboard: Keyboard,
-  monitor: Monitor,
-  dot: Circle,
-};
+// The icon vocabulary is shared with every scene that takes an icon name
+// from the pipeline (see components/icons.ts).
 
 type PointItem = {text: string; icon: string; atMs: number};
 
@@ -172,7 +98,7 @@ export const PointsScene: React.FC<{
         >
           {items.map((it, i) => {
             const {s, opacity, isLatest} = reveal(it, i);
-            const Icon = ICONS[it.icon] ?? Circle;
+            const Icon = iconFor(it.icon);
             return (
               <div
                 key={i}
@@ -229,7 +155,7 @@ export const PointsScene: React.FC<{
       >
         {items.map((it, i) => {
           const {s, opacity, isLatest} = reveal(it, i);
-          const Icon = ICONS[it.icon] ?? Circle;
+          const Icon = iconFor(it.icon);
           return (
             <div
               key={i}

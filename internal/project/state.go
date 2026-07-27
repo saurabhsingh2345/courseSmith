@@ -9,6 +9,7 @@ import (
 	"maps"
 	"os"
 	"path/filepath"
+	"slices"
 	"sort"
 	"time"
 )
@@ -20,6 +21,7 @@ const StateFileName = "state.json"
 // Stage names, in pipeline order. The pipeline package executes these;
 // the status command reports on them.
 const (
+	StagePlan         = "plan" // snippet-only: prompt + template → snippet-plan.json
 	StageScript       = "script"
 	StageVerify       = "verify"        // execute code blocks, capture real output
 	StageTrace        = "trace"         // step-by-step execution trace (code-viz)
@@ -72,12 +74,38 @@ var VideoStageOrder = func() []string {
 	return out
 }()
 
+// SnippetStageOrder is the pipeline for a snippet: a short, standalone video
+// built from one prompt plus one visual template.
+//
+// A snippet skips authoring entirely — no lesson.md to write, no script
+// generation, no review rounds, no storyboard. The plan stage does all the
+// thinking in one LLM call (narration *and* the template's visual spec), and
+// everything after it is the ordinary video path, reused unchanged. Verify
+// still runs, so a snippet that shows code shows output the interpreter
+// actually produced.
+var SnippetStageOrder = []string{
+	StagePlan, StageVerify, StageAudio, StageAlign, StageCaptions,
+	StageChapters, StageScenegraph, StageRender,
+}
+
 // StagesFor returns the stage list a course actually runs.
 func StagesFor(videoOnly bool) []string {
 	if videoOnly {
 		return VideoStageOrder
 	}
 	return StageOrder
+}
+
+// AllStages lists every stage name that can appear in any run mode; used to
+// validate an explicit --stage request.
+func AllStages() []string {
+	out := append([]string{}, StageOrder...)
+	for _, s := range SnippetStageOrder {
+		if !slices.Contains(out, s) {
+			out = append(out, s)
+		}
+	}
+	return out
 }
 
 // StageStatus is the resolved status of one stage for reporting.

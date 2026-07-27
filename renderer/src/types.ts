@@ -17,6 +17,9 @@ export type Theme = {
   surfaceBorder?: string;
   text?: string;
   textMuted?: string;
+  mass?: string;
+  ink?: string;
+  accentText?: string;
   fontDisplay?: string;
   fontBody?: string;
   fontMono?: string;
@@ -72,7 +75,18 @@ export type D3DiagramSpec = {
   edges: D3Edge[];
 };
 
-export type SceneType = 'title' | 'code' | 'diagram' | 'terminal' | 'points' | 'walkthrough';
+export type SceneType =
+  | 'title'
+  | 'code'
+  | 'diagram'
+  | 'terminal'
+  | 'points'
+  | 'walkthrough'
+  | 'whiteboard'
+  | 'flow'
+  | 'illustration'
+  | 'cast'
+  | 'story';
 
 export type Scene = {
   type: SceneType;

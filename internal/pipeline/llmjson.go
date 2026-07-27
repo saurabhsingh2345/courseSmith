@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"reflect"
+	"slices"
 	"strings"
 
 	"github.com/enfec/coursesmith/internal/config"
@@ -43,6 +44,30 @@ func (e *Env) completeWithRepairImages(
 	jsonMode bool,
 	accept func(content string) (string, error),
 ) (string, error) {
+	return e.completeWithRepairRounds(ctx, pcfg, task, system, user, images, temperature, maxTokens, jsonMode, 1, accept)
+}
+
+// completeWithRepairRounds is the general form: up to `rounds` correction
+// attempts after the first reply.
+//
+// Every rejection is carried forward, not just the latest one. A single-round
+// loop quoting only the most recent error made models oscillate on artifacts
+// with several independent numeric rules — attempt one missed the item count,
+// attempt two fixed the count and blew the word budget, and the call failed
+// having never seen both constraints at once. Showing the whole history of
+// misses converges instead.
+func (e *Env) completeWithRepairRounds(
+	ctx context.Context,
+	pcfg config.Pipeline,
+	task llm.TaskType,
+	system, user string,
+	images []string,
+	temperature float64,
+	maxTokens int,
+	jsonMode bool,
+	rounds int,
+	accept func(content string) (string, error),
+) (string, error) {
 	if e.Router == nil {
 		return "", fmt.Errorf("no LLM router configured")
 	}
@@ -62,28 +87,38 @@ func (e *Env) completeWithRepairImages(
 	if err != nil {
 		return "", err
 	}
-	artifact, firstErr := accept(resp.Content)
-	if firstErr == nil {
+	artifact, acceptErr := accept(resp.Content)
+	if acceptErr == nil {
 		return artifact, nil
 	}
 
-	// One correction round: show the model its own reply and the exact error.
-	req.Messages = append(messages,
-		llm.Message{Role: llm.RoleAssistant, Content: resp.Content},
-		llm.Message{Role: llm.RoleUser, Content: fmt.Sprintf(
-			"Your previous reply was rejected: %v. Respond again with only the corrected output — no fences, no commentary.",
-			firstErr,
-		)},
-	)
-	resp, err = e.Router.Complete(ctx, pcfg, task, req)
-	if err != nil {
-		return "", fmt.Errorf("retrying after rejected output (%v): %w", firstErr, err)
+	rejections := []string{acceptErr.Error()}
+	for round := 0; round < rounds; round++ {
+		var sb strings.Builder
+		sb.WriteString("Your reply was rejected. Every rule below has been broken by one of your attempts so far — satisfy all of them at once:\n")
+		for _, r := range rejections {
+			sb.WriteString("- " + r + "\n")
+		}
+		sb.WriteString("Respond again with only the corrected output — no fences, no commentary.")
+
+		req.Messages = append(messages,
+			llm.Message{Role: llm.RoleAssistant, Content: resp.Content},
+			llm.Message{Role: llm.RoleUser, Content: sb.String()},
+		)
+		resp, err = e.Router.Complete(ctx, pcfg, task, req)
+		if err != nil {
+			return "", fmt.Errorf("retrying after rejected output (%s): %w", strings.Join(rejections, "; "), err)
+		}
+		artifact, acceptErr = accept(resp.Content)
+		if acceptErr == nil {
+			return artifact, nil
+		}
+		if msg := acceptErr.Error(); !slices.Contains(rejections, msg) {
+			rejections = append(rejections, msg)
+		}
 	}
-	artifact, retryErr := accept(resp.Content)
-	if retryErr != nil {
-		return "", fmt.Errorf("%s response invalid after retry: %w (first attempt: %v)", task, retryErr, firstErr)
-	}
-	return artifact, nil
+	return "", fmt.Errorf("%s response invalid after %d correction round(s): %s",
+		task, rounds, strings.Join(rejections, "; "))
 }
 
 // completeJSON is completeWithRepair specialized for JSON artifacts: the
@@ -113,7 +148,24 @@ func (e *Env) completeJSONWithImages(
 	out any,
 	validate func() error,
 ) error {
-	_, err := e.completeWithRepairImages(ctx, pcfg, task, system, user, images, temperature, maxTokens, true,
+	return e.completeJSONRounds(ctx, pcfg, task, system, user, images, temperature, maxTokens, 1, out, validate)
+}
+
+// completeJSONRounds is completeJSON with an explicit correction-round budget,
+// for artifacts whose validation enforces several independent rules at once.
+func (e *Env) completeJSONRounds(
+	ctx context.Context,
+	pcfg config.Pipeline,
+	task llm.TaskType,
+	system, user string,
+	images []string,
+	temperature float64,
+	maxTokens int,
+	rounds int,
+	out any,
+	validate func() error,
+) error {
+	_, err := e.completeWithRepairRounds(ctx, pcfg, task, system, user, images, temperature, maxTokens, true, rounds,
 		func(content string) (string, error) {
 			if err := parseJSONStrict(content, out, validate); err != nil {
 				return "", err

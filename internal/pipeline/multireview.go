@@ -138,18 +138,18 @@ func (r *ToneReview) Validate() error {
 // MultiReviewRecord is one round's full three-pass record, persisted to
 // generated/reviews/script-multipass-round-N.json.
 type MultiReviewRecord struct {
-	Round        int            `json:"round"`
-	Model        string         `json:"model"`
-	ArtifactHash string         `json:"artifact_hash"`
-	Claims       []ClaimResult  `json:"claims"`
-	Accuracy     AccuracyReview `json:"accuracy"`
-	Pedagogy     PedagogyReview `json:"pedagogy"`
-	Tone         ToneReview     `json:"tone"`
+	Round        int                `json:"round"`
+	Model        string             `json:"model"`
+	ArtifactHash string             `json:"artifact_hash"`
+	Claims       []ClaimResult      `json:"claims"`
+	Accuracy     AccuracyReview     `json:"accuracy"`
+	Pedagogy     PedagogyReview     `json:"pedagogy"`
+	Tone         ToneReview         `json:"tone"`
 	Weights      map[string]float64 `json:"weights"`
-	Weighted     float64        `json:"weighted"`
-	Threshold    float64        `json:"threshold"`
-	Passed       bool           `json:"passed"`
-	ReviewedAt   time.Time      `json:"reviewed_at"`
+	Weighted     float64            `json:"weighted"`
+	Threshold    float64            `json:"threshold"`
+	Passed       bool               `json:"passed"`
+	ReviewedAt   time.Time          `json:"reviewed_at"`
 }
 
 // Critiques joins the three passes' critiques for regeneration injection.

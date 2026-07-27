@@ -298,7 +298,7 @@ func TestScenegraphStageWritesGraph(t *testing.T) {
 	if len(graph.Scenes) != 4 || graph.DurationMs < 4000 {
 		t.Errorf("graph = %d scenes, %dms", len(graph.Scenes), graph.DurationMs)
 	}
-	if !strings.Contains(out.String(), "1 title, 0 points, 1 code, 0 walkthrough, 1 diagram, 1 terminal") {
+	if !strings.Contains(out.String(), "1 title, 0 points, 1 code, 0 walkthrough, 0 whiteboard, 0 flow, 0 illustration, 0 cast, 0 story, 1 diagram, 1 terminal") {
 		t.Errorf("output:\n%s", out.String())
 	}
 }

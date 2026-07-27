@@ -30,6 +30,27 @@ const TARGETS = [
   { id: "ExecViz", frame: 60 },
   { id: "PointsViz", frame: 140 },
   { id: "VSCodeViz", frame: 200 },
+  // Late enough that every box is drawn and settled, so the frame catches the
+  // finished board rather than a mid-stroke moment.
+  { id: "WhiteboardViz", frame: 390 },
+  // Inside the focus window, so the frame covers the dim/highlight path as
+  // well as the graph itself.
+  { id: "FlowViz", frame: 400 },
+  // The second shot, past its headline and caption but with the figure's idle
+  // still running — so the frame covers the alternated layout, the marker
+  // stroke and an assembled figure at once.
+  { id: "IllustrationViz", frame: 250 },
+  // The same shot in light mode, with captions on. Light mode is the branch no
+  // default config exercises, so without a baseline every scene that quietly
+  // assumed a dark stage regresses silently.
+  { id: "IllustrationLightViz", frame: 75 },
+  // Mid-clip, so the frame catches a settled pose with its prop up rather than
+  // the entrance.
+  { id: "CastViz", frame: 200 },
+  // Deep into the third shot, so the camera has travelled most of a push and
+  // the frame proves the world-space staging composes under a moved camera —
+  // which a frame-0 capture cannot.
+  { id: "StoryViz", frame: 340 },
   { id: "D3Viz", frame: 130 },
   { id: "MemoryViz", frame: 90 },
   { id: "LessonVideo", frame: 15 },

@@ -8,6 +8,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"slices"
 	"strings"
 	"sync"
 
@@ -104,16 +105,16 @@ func (w *hubWriter) Write(p []byte) (int, error) {
 func (m *runManager) Start(course *project.Course, lesson *project.Lesson, stage string, force bool) (string, error) {
 	cfg := config.Resolve(course.Config, lesson.FrontMatter.Overrides(), config.Config{})
 	stages := project.StagesFor(cfg.Pipeline.VideoOnly)
+	if pipeline.IsSnippet(lesson) {
+		snippetStages, err := pipeline.SnippetStages(lesson)
+		if err != nil {
+			return "", err
+		}
+		stages = snippetStages
+	}
 	if stage != "" {
 		// Naming a companion stage explicitly overrides video-only.
-		found := false
-		for _, s := range project.StageOrder {
-			if s == stage {
-				found = true
-				break
-			}
-		}
-		if !found {
+		if !slices.Contains(project.AllStages(), stage) {
 			return "", fmt.Errorf("unknown stage %q", stage)
 		}
 		stages = []string{stage}

@@ -114,6 +114,28 @@ export type DraftMeta = {
 
 export type DraftDetail = DraftMeta & { source: string };
 
+/** One card in the snippet template gallery. */
+export type SnippetTemplateInfo = components["schemas"]["SnippetTemplateInfo"];
+export type SnippetSummary = components["schemas"]["SnippetSummary"];
+export type SnippetDetail = components["schemas"]["SnippetDetail"];
+export type CreateSnippetRequest = components["schemas"]["CreateSnippetRequest"];
+export type CreateSnippetResponse = components["schemas"]["CreateSnippetResponse"];
+
+/** One narrated step of a snippet, as the plan stage wrote it. */
+export interface SnippetBeat {
+  id: string;
+  heading: string;
+  narration: string;
+  code?: string;
+  run?: boolean;
+}
+export interface SnippetPlan {
+  template: string;
+  title: string;
+  subtitle?: string;
+  beats: SnippetBeat[];
+}
+
 export const api = {
   courses: () => request<Course[]>("/api/courses"),
 
@@ -215,7 +237,21 @@ export const api = {
       { method: "PUT", body: JSON.stringify(payload) },
     ),
   ledger: () => request<Ledger>("/api/ledger"),
+
+  snippetTemplates: () => request<SnippetTemplateInfo[]>("/api/snippet-templates"),
+  snippets: () => request<SnippetSummary[]>("/api/snippets"),
+  snippet: (id: string) => request<SnippetDetail>(`/api/snippets/${encodeURIComponent(id)}`),
+  createSnippet: (req: CreateSnippetRequest) =>
+    request<CreateSnippetResponse>("/api/snippets", {
+      method: "POST",
+      body: JSON.stringify(req),
+    }),
+  deleteSnippet: (id: string) =>
+    request<void>(`/api/snippets/${encodeURIComponent(id)}`, { method: "DELETE" }),
 };
+
+/** The synthetic course snippets live in; their lesson routes use this slug. */
+export const SNIPPETS_COURSE = "snippets";
 
 export function artifactUrl(course: string, fullLessonId: string, path: string): string {
   return `/artifacts/${encodeURIComponent(course)}/${encodeURIComponent(fullLessonId)}/${path}`;

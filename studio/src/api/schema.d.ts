@@ -165,6 +165,54 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/snippet-templates": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listSnippetTemplates"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/snippets": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listSnippets"];
+        put?: never;
+        post: operations["createSnippet"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/snippets/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getSnippet"];
+        put?: never;
+        post?: never;
+        delete: operations["deleteSnippet"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -190,6 +238,42 @@ export interface components {
             name: string;
             size: number;
             url: string;
+        };
+        SnippetTemplateInfo: {
+            name: string;
+            title: string;
+            description: string;
+            example: string;
+            shows_code: boolean;
+        };
+        SnippetSummary: {
+            id: string;
+            title: string;
+            prompt: string;
+            template: string;
+            ready: boolean;
+            video_url?: string;
+            created_at?: string;
+        };
+        SnippetDetail: components["schemas"]["SnippetSummary"] & {
+            target_sec: number;
+            plan?: unknown;
+        };
+        CreateSnippetRequest: {
+            prompt: string;
+            template: string;
+            title?: string;
+            target_sec?: number;
+            code_language?: string;
+            voice?: string;
+            plan_only?: boolean;
+            /** @enum {string} */
+            captions?: "on" | "off";
+            /** @enum {string} */
+            mode?: "dark" | "light";
+        };
+        CreateSnippetResponse: components["schemas"]["SnippetSummary"] & {
+            run_id?: string;
         };
         LessonDetail: {
             course: string;
@@ -617,6 +701,124 @@ export interface operations {
                     "application/json": components["schemas"]["Ledger"];
                 };
             };
+        };
+    };
+    listSnippetTemplates: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The visual template catalog */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SnippetTemplateInfo"][];
+                };
+            };
+        };
+    };
+    listSnippets: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Every snippet, newest first */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SnippetSummary"][];
+                };
+            };
+        };
+    };
+    createSnippet: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSnippetRequest"];
+            };
+        };
+        responses: {
+            /** @description Created; the pipeline is running */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CreateSnippetResponse"];
+                };
+            };
+            /** @description Created, but the pipeline was busy — re-run it later */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CreateSnippetResponse"];
+                };
+            };
+            400: components["responses"]["Error"];
+        };
+    };
+    getSnippet: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The request plus the model's plan */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SnippetDetail"];
+                };
+            };
+            404: components["responses"]["Error"];
+        };
+    };
+    deleteSnippet: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            404: components["responses"]["Error"];
         };
     };
 }

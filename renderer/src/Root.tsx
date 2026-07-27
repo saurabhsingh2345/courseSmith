@@ -1,5 +1,6 @@
 import {Composition, staticFile} from 'remotion';
 import {LessonVideo} from './LessonVideo';
+import {FigureSheet, CastSheet} from './components/FigureSheet';
 import {FPS, LessonVideoProps, CodeTrace, msToFrame} from './types';
 import execTrace from './fixtures/execTrace.json';
 
@@ -123,6 +124,322 @@ const pointsVizProps: LessonVideoProps = {
 };
 
 
+// A demo of the whiteboard scene, so `remotion still WhiteboardViz` renders it
+// standalone. Six items with links exercises the 3x2 grid, the connectors, and
+// the accent settling back to chalk on everything but the newest box.
+const whiteboardVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 14000,
+  scenes: [
+    {
+      type: 'whiteboard',
+      startMs: 0,
+      endMs: 14000,
+      props: {
+        title: 'How a web request travels',
+        items: [
+          {label: 'Browser', icon: 'monitor', atMs: 300},
+          {label: 'DNS lookup', icon: 'search', atMs: 2400, from: 0},
+          {label: 'CDN edge', icon: 'globe', atMs: 4600, from: 1},
+          {label: 'Load balancer', icon: 'layers', atMs: 6800, from: 2},
+          {label: 'App server', icon: 'terminal', atMs: 9000, from: 3},
+          {label: 'Database', icon: 'database', atMs: 11200, from: 4},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+// A demo of the flow scene, so `remotion still FlowViz` renders it standalone.
+// Branching (the gateway feeds both a cache and a queue) exercises the layering,
+// and the focus window at 9s exercises the dim/highlight path.
+const flowVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 16000,
+  scenes: [
+    {
+      type: 'flow',
+      startMs: 0,
+      endMs: 16000,
+      props: {
+        title: 'How a request gets rate limited',
+        ranks: 4,
+        nodes: [
+          {id: 'client', label: 'Client', kind: 'client', icon: 'monitor', rank: 0, order: 0, atMs: 300},
+          {id: 'gw', label: 'API gateway', kind: 'service', icon: 'gear', rank: 1, order: 0, atMs: 2200},
+          {id: 'counter', label: 'Rate counter', kind: 'cache', icon: 'zap', rank: 2, order: 0, atMs: 4100},
+          {id: 'queue', label: 'Work queue', kind: 'queue', icon: 'layers', rank: 2, order: 1, atMs: 6000},
+          {id: 'db', label: 'Postgres', kind: 'store', icon: 'database', rank: 3, order: 0, atMs: 7900},
+        ],
+        edges: [
+          {from: 0, to: 1, atMs: 2200},
+          {from: 1, to: 2, atMs: 4100},
+          {from: 1, to: 3, atMs: 6000},
+          {from: 3, to: 4, atMs: 7900},
+        ],
+        focus: [{startMs: 10000, endMs: 16000, nodes: [0, 1, 2]}],
+      },
+    },
+  ],
+  captions: [],
+};
+
+// A demo of the illustration scene, so `remotion still IllustrationViz` renders
+// it standalone. Three shots, because this template's whole shape is the cut
+// between them: the side alternates, and each beat picks a different figure.
+const illustrationVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 15000,
+  scenes: [
+    {
+      type: 'illustration',
+      startMs: 0,
+      endMs: 5000,
+      props: {
+        headline: 'Your app is doing the same work twice',
+        emphasis: 'twice',
+        caption: 'Every request recomputes a result nobody asked to change.',
+        figure: 'gears',
+        flip: false,
+      },
+    },
+    {
+      type: 'illustration',
+      startMs: 5000,
+      endMs: 10000,
+      props: {
+        headline: 'A cache remembers the answer',
+        emphasis: 'remembers',
+        caption: 'Store it once, hand it back for as long as it stays true.',
+        figure: 'lightbulb',
+        flip: true,
+      },
+    },
+    {
+      type: 'illustration',
+      startMs: 10000,
+      endMs: 15000,
+      props: {
+        headline: 'Ninety percent fewer queries',
+        emphasis: 'Ninety percent',
+        caption: 'The database only sees the work that actually changed.',
+        figure: 'chart',
+        flip: false,
+      },
+    },
+  ],
+  captions: [],
+};
+
+// The same illustration clip in light mode, with the tokens Go derives for
+// style.mode: light. It has its own baseline because light mode is the branch
+// nobody's default config exercises — every scene that quietly assumed a dark
+// stage looks fine until this frame is rendered.
+const illustrationLightProps: LessonVideoProps = {
+  ...illustrationVizProps,
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    mode: 'light',
+    bgTop: '#fafbfc',
+    bgBottom: '#ebeef4',
+    surface: '#ffffff',
+    surfaceBorder: '#d3dce3',
+    text: '#13222f',
+    textMuted: '#4b6071',
+    mass: '#8ea2b4',
+    ink: '#1c354a',
+    accentText: '#8d6e00',
+    grain: 0.01,
+  },
+  // Captions on, so the panel that used to be a hardcoded near-black slab is
+  // actually in frame.
+  captions: [
+    {word: 'Your', startMs: 200, endMs: 500},
+    {word: 'app', startMs: 500, endMs: 800},
+    {word: 'is', startMs: 800, endMs: 1000},
+    {word: 'doing', startMs: 1000, endMs: 1400},
+    {word: 'the', startMs: 1400, endMs: 1600},
+    {word: 'same', startMs: 1600, endMs: 2000},
+    {word: 'work', startMs: 2000, endMs: 2400},
+    {word: 'twice', startMs: 2400, endMs: 3000},
+  ],
+};
+
+// A demo of the cast scene, so `remotion still CastViz` renders it standalone.
+// Four shots, because the pose *change* is the template — a single frame can
+// only show that a pose exists, not that the character moves between them.
+const castVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 16000,
+  scenes: [
+    {
+      type: 'cast',
+      startMs: 0,
+      endMs: 4000,
+      props: {
+        headline: 'Nobody reads a five hundred line diff',
+        caption: 'It sits for three days and gets a thumbs up nobody means.',
+        pose: 'defeated',
+        prevPose: 'idle',
+        expression: 'concerned',
+        flip: false,
+      },
+    },
+    {
+      type: 'cast',
+      startMs: 4000,
+      endMs: 8000,
+      props: {
+        headline: 'The size is the problem',
+        caption: 'Reviewers lose the thread by the second file.',
+        pose: 'think',
+        prevPose: 'defeated',
+        expression: 'thinking',
+        prop: 'stack',
+        flip: true,
+      },
+    },
+    {
+      type: 'cast',
+      startMs: 8000,
+      endMs: 12000,
+      props: {
+        headline: 'Ship it in slices',
+        caption: 'Four small reviews beat one big one on every measure.',
+        pose: 'point',
+        prevPose: 'think',
+        expression: 'neutral',
+        prop: 'chart',
+        flip: false,
+      },
+    },
+    {
+      type: 'cast',
+      startMs: 12000,
+      endMs: 16000,
+      props: {
+        headline: 'Faster, and actually reviewed',
+        caption: 'Real comments instead of a rubber stamp.',
+        pose: 'celebrate',
+        prevPose: 'point',
+        expression: 'happy',
+        flip: true,
+      },
+    },
+  ],
+  captions: [],
+};
+
+// A demo of the story scene, so `remotion still StoryViz` renders it standalone.
+// Six shots covering every staging and five of the six camera moves, because
+// this template's whole claim is that consecutive shots differ — a single frame
+// can only prove one of them composes.
+const storyVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [
+    {
+      type: 'story',
+      startMs: 0,
+      endMs: 5000,
+      props: {
+        headline: 'Your query reads every single row',
+        caption: 'Ten million rows, one at a time.',
+        staging: 'duo',
+        camera: 'push',
+        pose: 'defeated',
+        prevPose: 'idle',
+        expression: 'concerned',
+        prop: 'stack',
+        durationMs: 5000,
+      },
+    },
+    {
+      type: 'story',
+      startMs: 5000,
+      endMs: 10000,
+      props: {
+        headline: "Scanning is fine until it isn't",
+        caption: 'It gets slower exactly as fast as you grow.',
+        staging: 'object',
+        camera: 'hold',
+        prevPose: 'defeated',
+        prop: 'clock',
+        durationMs: 5000,
+      },
+    },
+    {
+      type: 'story',
+      startMs: 10000,
+      endMs: 15000,
+      props: {
+        headline: 'An index is a sorted copy',
+        caption: 'One column, kept in order, nothing more.',
+        staging: 'hero',
+        camera: 'push',
+        pose: 'point',
+        prevPose: 'defeated',
+        expression: 'neutral',
+        durationMs: 5000,
+      },
+    },
+    {
+      type: 'story',
+      startMs: 15000,
+      endMs: 20000,
+      props: {
+        headline: 'Sorted means you can skip',
+        caption: 'Halve the search space, then halve it again.',
+        staging: 'pair',
+        camera: 'pan',
+        prevPose: 'point',
+        prop: 'chart',
+        propB: 'network',
+        durationMs: 5000,
+      },
+    },
+    {
+      type: 'story',
+      startMs: 20000,
+      endMs: 25000,
+      props: {
+        headline: 'Every write pays for it',
+        caption: 'The order has to be maintained on the way in.',
+        staging: 'duo',
+        camera: 'drift',
+        pose: 'think',
+        prevPose: 'point',
+        expression: 'thinking',
+        prop: 'gears',
+        durationMs: 5000,
+      },
+    },
+    {
+      type: 'story',
+      startMs: 25000,
+      endMs: 30000,
+      props: {
+        headline: 'One line, a thousand times faster',
+        caption: 'You are not searching harder. You are searching less.',
+        staging: 'empty',
+        camera: 'pull',
+        prevPose: 'think',
+        durationMs: 5000,
+      },
+    },
+  ],
+  captions: [],
+};
+
 // A demo of the VS Code walkthrough scene, so `remotion still VSCodeViz`
 // renders it standalone.
 const vscodeVizProps: LessonVideoProps = {
@@ -162,6 +479,78 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(vscodeVizProps.durationMs)}
       defaultProps={vscodeVizProps}
+    />
+    <Composition
+      id="WhiteboardViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(whiteboardVizProps.durationMs)}
+      defaultProps={whiteboardVizProps}
+    />
+    <Composition
+      id="FlowViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(flowVizProps.durationMs)}
+      defaultProps={flowVizProps}
+    />
+    {/* Development aid, not a scene: every figure in the vocabulary on one
+        frame. See FigureSheet.tsx. */}
+    <Composition
+      id="FigureSheet"
+      component={FigureSheet}
+      fps={FPS}
+      width={1400}
+      height={1120}
+      durationInFrames={300}
+    />
+    <Composition
+      id="CastSheet"
+      component={CastSheet}
+      fps={FPS}
+      width={1000}
+      height={1300}
+      durationInFrames={300}
+    />
+    <Composition
+      id="IllustrationViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(illustrationVizProps.durationMs)}
+      defaultProps={illustrationVizProps}
+    />
+    <Composition
+      id="IllustrationLightViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(illustrationLightProps.durationMs)}
+      defaultProps={illustrationLightProps}
+    />
+    <Composition
+      id="CastViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(castVizProps.durationMs)}
+      defaultProps={castVizProps}
+    />
+    <Composition
+      id="StoryViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(storyVizProps.durationMs)}
+      defaultProps={storyVizProps}
     />
     <Composition
       id="PointsViz"
