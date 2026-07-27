@@ -1,6 +1,7 @@
 package pipeline
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -118,7 +119,7 @@ func TestValidateVSCodePlan(t *testing.T) {
 	t.Run("beat narration too thin", func(t *testing.T) {
 		p := vscodePlan()
 		p.Beats[0].Narration = "too short"
-		if err := p.Validate(); err == nil || !strings.Contains(err.Error(), "words of narration") {
+		if err := p.Validate(); err == nil || !strings.Contains(err.Error(), "under the 10-word minimum") {
 			t.Fatalf("want beat-length error, got %v", err)
 		}
 	})
@@ -505,4 +506,65 @@ func slicesContains(list []string, want string) bool {
 		}
 	}
 	return false
+}
+
+// A plan with several over-long beats must be told about all of them at once.
+// Reporting one per round meant three correction rounds fixed three beats and
+// the fourth still failed — the real failure behind a backpressure clip that
+// died after three rounds with four separate "want 10-60" complaints.
+func TestCheckBeatShapeReportsEveryOffender(t *testing.T) {
+	plan := &SnippetPlan{Beats: []SnippetBeat{
+		{ID: "the-problem", Narration: strings.Repeat("w ", 77)},
+		{ID: "the-cause", Narration: strings.Repeat("w ", 62)},
+		{ID: "the-effect", Narration: strings.Repeat("w ", 62)},
+		{ID: "the-solution", Narration: strings.Repeat("w ", 72)},
+	}}
+	err := checkBeatShape(plan)
+	if err == nil {
+		t.Fatal("want an error")
+	}
+	for _, id := range []string{"the-problem", "the-cause", "the-effect", "the-solution"} {
+		if !strings.Contains(err.Error(), id) {
+			t.Errorf("error does not mention beat %q, so a correction round can only fix the ones it names:\n%s", id, err)
+		}
+	}
+	// Told only the range, a model trims and fights its own content. With room
+	// under the beat ceiling, splitting keeps the writing and satisfies the rule.
+	if !strings.Contains(err.Error(), "SPLIT") {
+		t.Errorf("error does not suggest splitting despite room for more beats:\n%s", err)
+	}
+}
+
+// At the beat ceiling there is nowhere to split to, so the advice has to change.
+func TestCheckBeatShapeAtBeatCeilingSaysTighten(t *testing.T) {
+	beats := make([]SnippetBeat, maxSnippetBeats)
+	for i := range beats {
+		beats[i] = SnippetBeat{ID: fmt.Sprintf("b%d", i), Narration: strings.Repeat("w ", 70)}
+	}
+	err := checkBeatShape(&SnippetPlan{Beats: beats})
+	if err == nil {
+		t.Fatal("want an error")
+	}
+	if strings.Contains(err.Error(), "SPLIT") {
+		t.Errorf("suggests splitting at the beat ceiling, which is impossible:\n%s", err)
+	}
+	if !strings.Contains(err.Error(), "tightened") {
+		t.Errorf("want tighten advice at the ceiling:\n%s", err)
+	}
+}
+
+// Under-long beats are the opposite problem and want the opposite advice.
+func TestCheckBeatShapeReportsShortBeats(t *testing.T) {
+	plan := &SnippetPlan{Beats: []SnippetBeat{
+		{ID: "a", Narration: strings.Repeat("w ", 30)},
+		{ID: "thin", Narration: "too short"},
+		{ID: "c", Narration: strings.Repeat("w ", 30)},
+	}}
+	err := checkBeatShape(plan)
+	if err == nil || !strings.Contains(err.Error(), "thin") {
+		t.Fatalf("want the short beat named, got %v", err)
+	}
+	if !strings.Contains(err.Error(), "minimum") {
+		t.Errorf("want minimum advice:\n%s", err)
+	}
 }

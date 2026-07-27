@@ -148,7 +148,25 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 		"PaceWPM":         pace,
 		"MinBeats":        minSnippetBeats,
 		"MaxBeats":        maxSnippetBeats,
+		"SuggestBeats":    suggestBeats(wantWords),
 	}
+}
+
+// suggestBeats is how many beats the requested runtime actually affords.
+//
+// The beat range alone is not enough guidance. A 75-second clip is about 218
+// words, and a model that picks the low end of "3 to 7" has to write 55 words a
+// beat — right against the 60-word ceiling, so it trips the cap by writing
+// one sentence more than it planned to. Telling it the count the budget
+// supports moves the fix upstream of the correction loop, which is where a fix
+// is free.
+//
+// Forty words a beat is the divisor because that is what the calibration
+// paragraph in every one of these prompts asks for, so the arithmetic the model
+// is given agrees with the example it is shown.
+func suggestBeats(targetWords int) int {
+	n := targetWords / 40
+	return min(max(n, minSnippetBeats), maxSnippetBeats)
 }
 
 // Beat-count bounds. Fewer than three and the clip is a single held shot;
@@ -247,18 +265,55 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 
 // checkBeatShape is the shared structural rule every template applies: how
 // many beats, and how much narration each one carries.
+// checkBeatShape reports *every* offending beat, and says what to do about it.
+//
+// Reporting one beat per round was a whack-a-mole: a plan with four over-long
+// beats spent its three correction rounds fixing three of them and failed on
+// the fourth, having been told about each in turn. This is the same lesson the
+// snippet planner already learned for its numeric rules — a single-error retry
+// makes models oscillate — applied in the validator that was written before it.
+//
+// The advice matters as much as the count. An over-long beat is a model with
+// more to say than one beat holds, and told only "want 10-60" it *trims*,
+// fighting the content it just decided was necessary. Told to split, it keeps
+// the writing and satisfies the rule, which is usually the honest fix: a beat
+// is one visual, so sixty words is not a style guide, it is how long any single
+// image stays interesting.
 func checkBeatShape(p *SnippetPlan) error {
 	if n := len(p.Beats); n < minSnippetBeats || n > maxSnippetBeats {
 		return fmt.Errorf("plan has %d beats, want %d-%d", n, minSnippetBeats, maxSnippetBeats)
 	}
+
+	var long, short []string
 	for _, b := range p.Beats {
-		n := len(strings.Fields(b.Narration))
-		if n < minWordsPerBeat || n > maxWordsPerBeat {
-			return fmt.Errorf("beat %q has %d words of narration, want %d-%d",
-				b.ID, n, minWordsPerBeat, maxWordsPerBeat)
+		switch n := len(strings.Fields(b.Narration)); {
+		case n > maxWordsPerBeat:
+			long = append(long, fmt.Sprintf("%q (%d words)", b.ID, n))
+		case n < minWordsPerBeat:
+			short = append(short, fmt.Sprintf("%q (%d words)", b.ID, n))
 		}
 	}
-	return nil
+	if len(long) == 0 && len(short) == 0 {
+		return nil
+	}
+
+	var msg []string
+	if len(long) > 0 {
+		m := fmt.Sprintf("these beats are over the %d-word maximum: %s",
+			maxWordsPerBeat, strings.Join(long, ", "))
+		if room := maxSnippetBeats - len(p.Beats); room > 0 {
+			m += fmt.Sprintf("; you have %d beats and may use up to %d, so SPLIT each long beat into two rather than cutting it — keep the narration, give it another beat to live in",
+				len(p.Beats), maxSnippetBeats)
+		} else {
+			m += fmt.Sprintf("; you are already at the %d-beat maximum, so these have to be tightened", maxSnippetBeats)
+		}
+		msg = append(msg, m)
+	}
+	if len(short) > 0 {
+		msg = append(msg, fmt.Sprintf("these beats are under the %d-word minimum: %s; expand them or fold them into a neighbour",
+			minWordsPerBeat, strings.Join(short, ", ")))
+	}
+	return fmt.Errorf("%s", strings.Join(msg, ". "))
 }
 
 // beatFields names the optional SnippetBeat fields a template consumes.
