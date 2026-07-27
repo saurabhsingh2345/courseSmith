@@ -255,12 +255,13 @@ func TestFlowNodeResolvedKind(t *testing.T) {
 	}
 }
 
-// Every kind's icon has to be a name the renderer can actually draw, or that
-// node type silently renders a placeholder dot.
-func TestFlowKindIconsAreInVocabulary(t *testing.T) {
-	for kind, icon := range flowNodeKinds {
-		if !pointIconVocab[icon] {
-			t.Errorf("kind %q maps to icon %q, which is not in the icon vocabulary", kind, icon)
+// Every kind's figure has to be a name the renderer can actually draw. A miss
+// here is silent and ugly: figureFor() falls back to `spark`, so the node still
+// renders — as a burst that has nothing to do with what it is meant to be.
+func TestFlowKindFiguresAreInVocabulary(t *testing.T) {
+	for kind, figure := range flowNodeKinds {
+		if !artFigureVocab[figure] {
+			t.Errorf("kind %q maps to figure %q, which is not in the figure vocabulary", kind, figure)
 		}
 	}
 	if len(FlowNodeKinds()) != len(flowNodeKinds) {

@@ -4,8 +4,8 @@ import {FPS} from '../types';
 import {ResolvedTheme} from '../theme/theme';
 import {SceneHeader} from './SceneHeader';
 import {Stage, STAGE_H, STAGE_W} from './Stage';
-import {iconFor} from './icons';
-import {curveHead, flowCurve, flowLayout, type Curve, type Rect} from './flow';
+import {FIGURE_BOX, figureFor, type FigurePalette} from './artwork';
+import {curveHead, flowCurve, flowLayout, nodeShape, type Curve, type Rect} from './flow';
 
 // FlowScene is a layered systems diagram that keeps moving.
 //
@@ -147,7 +147,19 @@ export const FlowScene: React.FC<{
     edgeLit(e) ? 1 : 1 - (1 - FOCUS.dimEdge) * focusP;
 
   const labelSize = Math.max(22, Math.min(32, geometry.rects[0].w / 11));
-  const iconSize = Math.round(Math.min(30, geometry.rects[0].h * 0.28));
+  // The figure gets real room. At the 30px the flat glyph used, an animated
+  // figure is mush — its parts are drawn against a 200-unit box, so a third of
+  // that leaves a 2px bar as half a pixel. At ~0.55 of the node's height every
+  // mechanism still reads, and the node is wide enough to afford it.
+  const figureSize = Math.round(Math.min(geometry.rects[0].h * 0.72, 132));
+
+  const figurePalette: FigurePalette = {
+    accent: theme.accent,
+    primary: theme.primary,
+    ink: theme.ink,
+    soft: theme.mass,
+    line: theme.line,
+  };
 
   return (
     <Stage justify="flex-start">
@@ -257,7 +269,12 @@ export const FlowScene: React.FC<{
           });
           const accent = kindColor(theme, node.kind);
           const lit = !focusSet || focusSet.has(i);
-          const Icon = iconFor(node.icon);
+          const shape = nodeShape(node.kind, rect.w, rect.h);
+          const Figure = figureFor(node.icon);
+          // The figure's own palette leans on the node's kind colour rather than
+          // the theme primary, so a store's cylinder and the figure inside it
+          // are the same blue and the node reads as one object.
+          const nodePalette: FigurePalette = {...figurePalette, primary: accent};
 
           return (
             <g
@@ -266,40 +283,49 @@ export const FlowScene: React.FC<{
               transform={`translate(${rect.x} ${rect.y}) scale(${0.92 + enter * 0.08})`}
               style={{transformOrigin: `${rect.w / 2}px ${rect.h / 2}px`}}
             >
-              <rect
-                x={0}
-                y={0}
-                width={rect.w}
-                height={rect.h}
-                rx={16}
+              <path
+                d={shape.body}
                 fill={theme.surface}
                 stroke={lit && focusSet ? accent : theme.surfaceBorder}
                 // A dim box needs a *heavier* border than a lit one to survive
                 // the group opacity; at 1.5px it faded out from under its own
                 // kind stripe and left the stripe floating.
                 strokeWidth={lit && focusSet ? 2.4 : 2.2}
-                // External systems are not ours; a dashed edge says so without
-                // needing a legend.
-                strokeDasharray={node.kind === 'external' ? '7 6' : undefined}
+                // External systems are not ours; a dashed outline says so
+                // without needing a legend.
+                strokeDasharray={shape.dashed ? '7 6' : undefined}
                 filter="url(#flow-elev)"
               />
-              <rect x={0} y={0} width={rect.w} height={rect.h} rx={16} fill="url(#flow-sheen)" />
-              {/* Kind stripe down the leading edge: the diagram's only legend.
-                  Held back when dimmed so it recedes with its box. */}
-              <rect
-                x={0}
-                y={10}
-                width={4}
-                height={rect.h - 20}
-                rx={2}
-                fill={accent}
-                opacity={lit ? 0.9 : 0.5}
-              />
-              <g transform={`translate(${22} ${rect.h / 2 - iconSize / 2})`}>
-                <Icon size={iconSize} color={accent} strokeWidth={2} />
+              <path d={shape.body} fill="url(#flow-sheen)" />
+              {/* Whatever the silhouette needs on top of its outline — a
+                  cylinder's far cap, a queue's slots, a window's title bar. */}
+              {shape.decor?.map((d, di) => (
+                <path
+                  key={di}
+                  d={d}
+                  fill="none"
+                  stroke={accent}
+                  strokeWidth={2}
+                  opacity={lit ? 0.55 : 0.32}
+                />
+              ))}
+              {/* The figure. It is the same animated artwork the illustration
+                  and story templates use, not a flat glyph — a queue whose items
+                  actually drain says more about what a queue is than any label
+                  beside it, and it costs nothing because the drawing already
+                  existed. */}
+              <g transform={`translate(${shape.padLeft} ${rect.h / 2 - figureSize / 2})`}>
+                <svg
+                  width={figureSize}
+                  height={figureSize}
+                  viewBox={`0 0 ${FIGURE_BOX} ${FIGURE_BOX}`}
+                  style={{overflow: 'visible'}}
+                >
+                  <Figure build={enter} t={frame / FPS} palette={nodePalette} />
+                </svg>
               </g>
               <text
-                x={22 + iconSize + 16}
+                x={shape.padLeft + figureSize + 18}
                 y={rect.h / 2}
                 dominantBaseline="central"
                 fontFamily={theme.fontDisplay}

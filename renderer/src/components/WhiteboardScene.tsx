@@ -4,7 +4,7 @@ import {FPS} from '../types';
 import {ResolvedTheme} from '../theme/theme';
 import {SceneHeader} from './SceneHeader';
 import {Stage, STAGE_H, STAGE_W} from './Stage';
-import {iconFor} from './icons';
+import {FIGURE_BOX, figureFor, type FigurePalette} from './artwork';
 import {
   boardLayout,
   edgeAnchor,
@@ -124,7 +124,18 @@ export const WhiteboardScene: React.FC<{
   }
 
   const fontSize = Math.max(26, Math.min(40, board.rects[0].rect.w / 10));
-  const iconSize = Math.round(Math.min(58, board.rects[0].rect.h * 0.34));
+  // Room for a figure rather than a glyph. The old 58px slot suited a
+  // single-stroke line icon; an animated figure is drawn against a 200-unit box
+  // and turns to mush much above a third of that.
+  const iconSize = Math.round(Math.min(148, board.rects[0].rect.h * 0.58));
+
+  const figurePalette: FigurePalette = {
+    accent: theme.accent,
+    primary: theme.primary,
+    ink: theme.ink,
+    soft: theme.mass,
+    line: theme.line,
+  };
 
   return (
     <Stage justify="flex-start">
@@ -179,7 +190,7 @@ export const WhiteboardScene: React.FC<{
           const inkOpacity = 0.58 + heat * 0.42;
 
           const words = item.label.split(' ');
-          const Icon = iconFor(item.icon);
+          const Figure = figureFor(item.icon);
           const pen = boxP > 0 && boxP < 1 ? penAt(stroke, boxP) : null;
 
           return (
@@ -238,25 +249,24 @@ export const WhiteboardScene: React.FC<{
                     <circle cx={pen.x} cy={pen.y} r={6} fill={theme.accent} />
                   </>
                 )}
-                {/* Icon, wiped in left to right. */}
+                {/* The figure, wiped in left to right. */}
                 {iconP > 0 && (
                   <g
-                    transform={`translate(${rect.w / 2 - iconSize / 2} ${rect.h * 0.21})`}
+                    transform={`translate(${rect.w / 2 - iconSize / 2} ${rect.h * 0.1})`}
                     clipPath={`url(#wb-clip-${i})`}
-                    opacity={0.85 + heat * 0.15}
                   >
-                    {/* The icon settles to the primary rather than back to
-                        chalk, so a finished board still has a colour hierarchy
-                        instead of being uniformly grey once the heat is gone. */}
-                    <Icon
-                      size={iconSize}
-                      color={heat > 0.5 ? theme.accent : theme.primary}
-                      strokeWidth={1.9}
-                    />
+                    <svg
+                      width={iconSize}
+                      height={iconSize}
+                      viewBox={`0 0 ${FIGURE_BOX} ${FIGURE_BOX}`}
+                      style={{overflow: 'visible'}}
+                    >
+                      <Figure build={iconP} t={frame / FPS} palette={figurePalette} />
+                    </svg>
                   </g>
                 )}
                 <clipPath id={`wb-clip-${i}`}>
-                  <rect x={0} y={-4} width={iconSize * iconP} height={iconSize + 8} />
+                  <rect x={-6} y={-6} width={iconSize * iconP + 12} height={iconSize + 12} />
                 </clipPath>
                 {/* Label, written word by word. */}
                 <text

@@ -142,7 +142,7 @@ const whiteboardVizProps: LessonVideoProps = {
           {label: 'Browser', icon: 'monitor', atMs: 300},
           {label: 'DNS lookup', icon: 'search', atMs: 2400, from: 0},
           {label: 'CDN edge', icon: 'globe', atMs: 4600, from: 1},
-          {label: 'Load balancer', icon: 'layers', atMs: 6800, from: 2},
+          {label: 'Load balancer', icon: 'network', atMs: 6800, from: 2},
           {label: 'App server', icon: 'terminal', atMs: 9000, from: 3},
           {label: 'Database', icon: 'database', atMs: 11200, from: 4},
         ],
@@ -169,9 +169,9 @@ const flowVizProps: LessonVideoProps = {
         ranks: 4,
         nodes: [
           {id: 'client', label: 'Client', kind: 'client', icon: 'monitor', rank: 0, order: 0, atMs: 300},
-          {id: 'gw', label: 'API gateway', kind: 'service', icon: 'gear', rank: 1, order: 0, atMs: 2200},
-          {id: 'counter', label: 'Rate counter', kind: 'cache', icon: 'zap', rank: 2, order: 0, atMs: 4100},
-          {id: 'queue', label: 'Work queue', kind: 'queue', icon: 'layers', rank: 2, order: 1, atMs: 6000},
+          {id: 'gw', label: 'API gateway', kind: 'service', icon: 'server', rank: 1, order: 0, atMs: 2200},
+          {id: 'counter', label: 'Rate counter', kind: 'cache', icon: 'cache', rank: 2, order: 0, atMs: 4100},
+          {id: 'queue', label: 'Work queue', kind: 'queue', icon: 'queue', rank: 2, order: 1, atMs: 6000},
           {id: 'db', label: 'Postgres', kind: 'store', icon: 'database', rank: 3, order: 0, atMs: 7900},
         ],
         edges: [

@@ -161,6 +161,24 @@ var artFigureVocab = map[string]bool{
 	"lightbulb": true,
 	"gears":     true,
 
+	// Teaching, and the shapes a lesson is made of.
+	"question":    true,
+	"chalkboard":  true,
+	"insight":     true,
+	"timer":       true,
+	"certificate": true,
+	"answer":      true,
+	"library":     true,
+	"highlighter": true,
+	"signpost":    true,
+	"foundation":  true,
+	"progress":    true,
+	"discussion":  true,
+	"study":       true,
+	"steps":       true,
+	"graduate":    true,
+	"bookmark":    true,
+
 	// Shapes for ideas that are not objects.
 	"arrow":  true,
 	"loop":   true,

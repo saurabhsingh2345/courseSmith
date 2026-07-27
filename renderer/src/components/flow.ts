@@ -9,6 +9,110 @@
 export type Pt = {x: number; y: number};
 export type Rect = {x: number; y: number; w: number; h: number};
 
+/**
+ * A node's silhouette.
+ *
+ * The kind used to show only as a 4px colour stripe down the leading edge,
+ * which is a legend nobody can read without being told what it means. A shape
+ * says it directly: a cylinder is a store because a cylinder has meant a store
+ * on whiteboards for forty years, and nothing has to explain that.
+ *
+ * `body` is the outline the fill and stroke both use, so the shape is one path
+ * rather than a fill that has to be kept in step with a border. `decor` is
+ * whatever sits on top and is not part of the outline — the slot lines in a
+ * queue, the title bar of a client window.
+ */
+export type NodeShape = {
+  body: string;
+  decor?: string[];
+  /** Left inset for content, so a cylinder's arc does not clip its own icon. */
+  padLeft: number;
+  /** Set when the outline should be dashed — "this one is not ours". */
+  dashed?: boolean;
+};
+
+const rounded = (w: number, h: number, r: number): string => {
+  const rad = Math.min(r, w / 2, h / 2);
+  return (
+    `M${rad} 0 H${w - rad} A${rad} ${rad} 0 0 1 ${w} ${rad} ` +
+    `V${h - rad} A${rad} ${rad} 0 0 1 ${w - rad} ${h} ` +
+    `H${rad} A${rad} ${rad} 0 0 1 0 ${h - rad} ` +
+    `V${rad} A${rad} ${rad} 0 0 1 ${rad} 0 Z`
+  );
+};
+
+/**
+ * The outline for a node of `kind`, in the node's own 0,0→w,h space.
+ *
+ * Every shape holds a horizontal label on a common baseline — that is the
+ * constraint that rules out the obvious ones. A diamond is the classic flowchart
+ * decision and it is useless here: the widest part is a single row through the
+ * middle, so a two-word label either overflows the point or shrinks to nothing.
+ * A hexagon says the same thing and keeps a full-height text column.
+ */
+export const nodeShape = (kind: string, w: number, h: number): NodeShape => {
+  switch (kind) {
+    case 'store': {
+      // A cylinder lying down: elliptical caps at both ends. The left cap is
+      // what the eye reads, so content clears it.
+      const rx = Math.min(26, w * 0.08);
+      return {
+        body:
+          `M${rx} 0 H${w - rx} A${rx} ${h / 2} 0 0 1 ${w - rx} ${h} ` +
+          `H${rx} A${rx} ${h / 2} 0 0 1 ${rx} 0 Z`,
+        decor: [`M${w - rx} 0 A${rx} ${h / 2} 0 0 0 ${w - rx} ${h}`],
+        padLeft: rx + 14,
+      };
+    }
+    case 'queue': {
+      // Slots down the trailing edge — a thing with items waiting in it.
+      const slot = Math.min(30, w * 0.09);
+      return {
+        body: rounded(w, h, 16),
+        decor: [
+          `M${w - slot} 12 V${h - 12}`,
+          `M${w - slot * 2} 12 V${h - 12}`,
+        ],
+        padLeft: 22,
+      };
+    }
+    case 'cache': {
+      // Clipped top-right corner: the shape of something kept to one side.
+      const c = Math.min(30, h * 0.24);
+      return {
+        body:
+          `M16 0 H${w - c} L${w} ${c} V${h - 16} ` +
+          `A16 16 0 0 1 ${w - 16} ${h} H16 A16 16 0 0 1 0 ${h - 16} V16 A16 16 0 0 1 16 0 Z`,
+        decor: [`M${w - c} 0 V${c} H${w}`],
+        padLeft: 22,
+      };
+    }
+    case 'decision': {
+      // A hexagon: angled ends, full-height middle. See the note above on why
+      // this is not a diamond.
+      const a = Math.min(34, w * 0.1);
+      return {
+        body: `M${a} 0 H${w - a} L${w} ${h / 2} L${w - a} ${h} H${a} L0 ${h / 2} Z`,
+        padLeft: a + 14,
+      };
+    }
+    case 'client': {
+      // A window: title bar across the top, so it reads as a screen someone is
+      // looking at rather than as another service box.
+      const bar = Math.min(26, h * 0.2);
+      return {
+        body: rounded(w, h, 16),
+        decor: [`M0 ${bar} H${w}`],
+        padLeft: 22,
+      };
+    }
+    case 'external':
+      return {body: rounded(w, h, 16), padLeft: 22, dashed: true};
+    default:
+      return {body: rounded(w, h, 16), padLeft: 22};
+  }
+};
+
 /** A cubic bezier, with the sampling helpers the animation needs. */
 export type Curve = {
   d: string;

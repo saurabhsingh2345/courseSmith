@@ -33,6 +33,7 @@ import * as science from './artwork/science';
 import * as nature from './artwork/nature';
 import * as work from './artwork/work';
 import * as abstract from './artwork/abstract';
+import * as learn from './artwork/learn';
 
 /**
  * The closed figure vocabulary.
@@ -141,6 +142,27 @@ export const FIGURES: Record<string, Figure> = {
   checklist: work.ChecklistFigure,
   lightbulb: work.LightbulbFigure,
   gears: work.GearsFigure,
+
+  // Teaching, and the shapes a lesson is made of. These came last and are the
+  // set this project most needed: the vocabulary was built for explaining
+  // systems, while courseSmith mostly explains an idea to a beginner. There was
+  // a figure for a load balancer and none for a question.
+  question: learn.QuestionFigure,
+  chalkboard: learn.ChalkboardFigure,
+  insight: learn.InsightFigure,
+  timer: learn.TimerFigure,
+  certificate: learn.CertificateFigure,
+  answer: learn.AnswerFigure,
+  library: learn.LibraryFigure,
+  highlighter: learn.HighlighterFigure,
+  signpost: learn.SignpostFigure,
+  foundation: learn.FoundationFigure,
+  progress: learn.ProgressFigure,
+  discussion: learn.DiscussionFigure,
+  study: learn.StudyFigure,
+  steps: learn.StepsFigure,
+  graduate: learn.GraduateFigure,
+  bookmark: learn.BookmarkFigure,
 
   // Shapes for ideas that are not objects.
   arrow: abstract.ArrowFigure,

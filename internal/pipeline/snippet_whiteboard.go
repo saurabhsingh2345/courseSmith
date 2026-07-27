@@ -35,7 +35,13 @@ func init() {
 		Scenes:      whiteboardScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
 			return map[string]any{
-				"Icons":         strings.Join(PointIconNames(), ", "),
+				// The figure vocabulary, not the icon one. A board item is a
+				// large object in the middle of a box, which is what the figures
+				// were drawn for and what a single-stroke glyph never filled;
+				// and where an icon is a static shape, a figure keeps running —
+				// the terminal's line types, the database's query sweeps down —
+				// so a board that has stopped being drawn is still alive.
+				"Icons":         strings.Join(ArtFigureNames(), ", "),
 				"MinItems":      minSketchItems,
 				"MaxItems":      maxSketchItems,
 				"MaxLabelWords": maxSketchLabelWords,
@@ -192,12 +198,12 @@ func sketchKey(s string) string {
 	return b.String()
 }
 
-// normalizeSketchIcon maps an invented icon name onto the neutral fallback,
+// normalizeSketchIcon maps an invented figure name onto the neutral fallback,
 // which is what the renderer's closed vocabulary expects.
 func normalizeSketchIcon(name string) string {
 	n := strings.ToLower(strings.TrimSpace(name))
-	if pointIconVocab[n] {
+	if artFigureVocab[n] {
 		return n
 	}
-	return "dot"
+	return "spark"
 }

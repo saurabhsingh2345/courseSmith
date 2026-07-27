@@ -64,16 +64,30 @@ const (
 	maxFlowLabelWords = 4
 )
 
-// flowNodeKinds is the closed vocabulary of node types. Kind drives the accent,
-// the icon and the border treatment — not the shape, because uniform boxes are
-// what let the ranking algorithm own the layout completely.
+// flowNodeKinds is the closed vocabulary of node types, mapped to the artwork
+// figure each one is drawn with. Kind drives the accent, the figure and the
+// silhouette.
+//
+// The values are `artFigureVocab` names, not icon names, and the change is the
+// point: the figure set was built for exactly these concepts and it *animates*.
+// A queue whose items visibly drain says what a queue is; the flat `layers`
+// glyph it used to show says only that somebody picked an icon. Every one of
+// these — server, database, queue, cache — already existed in the vocabulary and
+// was going unused here.
+//
+// Kind still does not drive the *bounding box*: every silhouette is drawn inside
+// the same rect the ranking algorithm placed, so layout stays entirely the
+// layout's business. What changed is that the box is no longer always a
+// rectangle — see nodeShape() in flow.ts, and note that horizontal edges anchor
+// at mid-height and vertical ones at mid-width, which is exactly where every
+// shape in that switch reaches its full extent.
 var flowNodeKinds = map[string]string{
-	"service":  "gear",
+	"service":  "server",
 	"store":    "database",
-	"queue":    "layers",
-	"external": "globe",
-	"cache":    "zap",
-	"decision": "shuffle",
+	"queue":    "queue",
+	"external": "cloud",
+	"cache":    "cache",
+	"decision": "switch",
 	"client":   "monitor",
 }
 

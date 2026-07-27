@@ -16,7 +16,7 @@ func whiteboardPlan() *SnippetPlan {
 			{ID: "the-question", Heading: "The question", Narration: strings.Repeat("question ", 22)},
 			{ID: "the-browser", Heading: "The browser", Narration: strings.Repeat("browser ", 22), Sketch: []SketchItem{
 				{Label: "Browser", Icon: "monitor"},
-				{Label: "Local cache", Icon: "box", LinkFrom: "Browser"},
+				{Label: "Local cache", Icon: "cache", LinkFrom: "Browser"},
 			}},
 			{ID: "the-edge", Heading: "The edge", Narration: strings.Repeat("edge ", 22), Sketch: []SketchItem{
 				{Label: "CDN edge", Icon: "globe", LinkFrom: "Local cache"},
@@ -166,5 +166,31 @@ func TestSketchKey(t *testing.T) {
 	}
 	if sketchKey("CDN edge") == sketchKey("CDN cache") {
 		t.Error("sketchKey collapsed two distinct labels")
+	}
+}
+
+// Board items are drawn from the *figure* vocabulary, not the icon one. The
+// two overlap enough ("server", "database", "globe" are in both) that a
+// leftover icon name reads as plausible right up until it renders as a neutral
+// burst — which is a box on the finished board illustrating nothing.
+func TestSketchIconsAreFigures(t *testing.T) {
+	if got := normalizeSketchIcon("definitely-not-a-figure"); got != "spark" {
+		t.Errorf("normalizeSketchIcon fallback = %q, want spark", got)
+	}
+	if got := normalizeSketchIcon("  Database "); got != "database" {
+		t.Errorf("normalizeSketchIcon(%q) = %q, want database", "  Database ", got)
+	}
+	// `box` and `layers` are icon names with no figure behind them. Naming them
+	// here is the regression: both were in fixtures and both rendered a burst.
+	for _, iconOnly := range []string{"box", "layers", "dot"} {
+		if artFigureVocab[iconOnly] {
+			continue // it gained a figure; fine, the point is only that it resolves
+		}
+		if got := normalizeSketchIcon(iconOnly); got != "spark" {
+			t.Errorf("normalizeSketchIcon(%q) = %q — an icon-only name should fall back visibly", iconOnly, got)
+		}
+	}
+	if !artFigureVocab["spark"] {
+		t.Error("the fallback figure \"spark\" is missing from artFigureVocab")
 	}
 }

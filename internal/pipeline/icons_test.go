@@ -59,14 +59,13 @@ func TestIconVocabularyInSync(t *testing.T) {
 
 // "dot" is the fallback every unknown name normalizes to, so it has to exist on
 // both sides no matter what else changes.
+//
+// The whiteboard used to normalize against this vocabulary and no longer does —
+// its items are figures now, so those assertions live beside that template. What
+// still reads the icon set is the `points` scene, where a small chip beside a
+// phrase is the right object and a 200-unit figure would be absurd.
 func TestIconVocabularyHasFallback(t *testing.T) {
 	if !pointIconVocab["dot"] {
 		t.Error("the neutral fallback icon \"dot\" is missing from pointIconVocab")
-	}
-	if got := normalizeSketchIcon("definitely-not-an-icon"); got != "dot" {
-		t.Errorf("normalizeSketchIcon fallback = %q, want dot", got)
-	}
-	if got := normalizeSketchIcon("  Server "); got != "server" {
-		t.Errorf("normalizeSketchIcon(%q) = %q, want server", "  Server ", got)
 	}
 }
