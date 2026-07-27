@@ -77,7 +77,71 @@ func validateVSCodePlan(p *SnippetPlan) error {
 	if !hasRunBeat(p) {
 		return fmt.Errorf("a vscode snippet must end by running the code — set run: true on a beat")
 	}
+	if err := checkBufferCarriesForward(p); err != nil {
+		return err
+	}
 	return rejectForeignBeatFields(p, beatFields{Code: true, Run: true})
+}
+
+// checkBufferCarriesForward enforces the one rule a code beat can silently
+// break: `code` is the complete file as of that beat, not the lines this beat
+// adds.
+//
+// The prompt says so plainly and models still hand back a diff — a beat that
+// defines the variables followed by a beat holding only the print() calls. It
+// reads fine as a plan and fails twice downstream. Verify executes each buffer
+// state on its own, so the second one dies on a NameError and the clip cannot
+// be published; and the editor types whatever the buffer says, so a buffer that
+// dropped everything before it would wipe the file mid-thought and retype — the
+// jump cut this template exists to avoid.
+//
+// Catching it here turns both failures into a correction round, where the model
+// is told what it dropped while it can still fix it, rather than a dead run in
+// the sandbox with a Python traceback that says nothing about the real mistake.
+//
+// The rule is "most of the previous buffer survives" rather than "the previous
+// buffer is a prefix" because editing a few lines of the file is legitimate and
+// good — the screen flashes what changed. Replacing all of it is not.
+func checkBufferCarriesForward(p *SnippetPlan) error {
+	prev, prevID := "", ""
+	for _, b := range p.Beats {
+		if b.Code == "" || b.Code == prev {
+			continue
+		}
+		if prev != "" {
+			kept, total := linesKept(prev, b.Code)
+			if kept*2 < total {
+				return fmt.Errorf(
+					"beat %q rewrites the file instead of editing it: %d of the %d lines beat %q wrote are gone. "+
+						"Every beat's `code` is the COMPLETE contents of the file at that point, not the lines that beat adds — "+
+						"repeat what is already written and append to it",
+					b.ID, total-kept, total, prevID,
+				)
+			}
+		}
+		prev, prevID = b.Code, b.ID
+	}
+	return nil
+}
+
+// linesKept counts how many of prev's non-blank lines survive into next.
+func linesKept(prev, next string) (kept, total int) {
+	remaining := map[string]int{}
+	for _, line := range strings.Split(next, "\n") {
+		remaining[strings.TrimSpace(line)]++
+	}
+	for _, line := range strings.Split(prev, "\n") {
+		trimmed := strings.TrimSpace(line)
+		if trimmed == "" {
+			continue
+		}
+		total++
+		if remaining[trimmed] > 0 {
+			remaining[trimmed]--
+			kept++
+		}
+	}
+	return kept, total
 }
 
 func hasRunBeat(p *SnippetPlan) bool {

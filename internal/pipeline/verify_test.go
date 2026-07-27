@@ -36,6 +36,21 @@ func (f *fakeRunner) RunPython(_ context.Context, code string, _ time.Duration) 
 	return ExecResult{Stdout: "default\n"}, nil
 }
 
+// The multi-file path scripts on the entry file's source, the same way the
+// single-file path scripts on the code.
+func (f *fakeRunner) RunProject(_ context.Context, files map[string]string, entry string, _ time.Duration) (ExecResult, error) {
+	f.calls++
+	if f.err != nil {
+		return ExecResult{}, f.err
+	}
+	for needle, res := range f.results {
+		if strings.Contains(files[entry], needle) {
+			return res, nil
+		}
+	}
+	return ExecResult{Stdout: "default\n"}, nil
+}
+
 func TestExtractCodeBlocks(t *testing.T) {
 	md := "# Lesson\n" +
 		"```python\nprint(\"hi\")\n```\n" +
