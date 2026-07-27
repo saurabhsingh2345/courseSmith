@@ -38,12 +38,9 @@ func init() {
 		Scenes:      castScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
 			return map[string]any{
-				"Poses":            strings.Join(CastPoseNames(), ", "),
-				"Expressions":      strings.Join(CastExpressionNames(), ", "),
-				"Props":            strings.Join(ArtFigureNames(), ", "),
-				"MinHeadlineWords": minHeadlineWords,
-				"MaxHeadlineWords": maxHeadlineWords,
-				"MaxCaptionWords":  maxCaptionWords,
+				"Poses":       strings.Join(CastPoseNames(), ", "),
+				"Expressions": strings.Join(CastExpressionNames(), ", "),
+				"Props":       strings.Join(ArtFigureNames(), ", "),
 			}
 		},
 	})

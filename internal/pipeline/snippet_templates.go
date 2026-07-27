@@ -149,6 +149,15 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 		"MinBeats":        minSnippetBeats,
 		"MaxBeats":        maxSnippetBeats,
 		"SuggestBeats":    suggestBeats(wantWords),
+		// Headline and caption bounds are shared rather than per-template:
+		// four prompts reference them and only three templates were supplying
+		// them, so `story` rendered {{.MinHeadlineWords}} against a map that
+		// had never heard of it. Bounds that several templates use are shared
+		// data by definition — a copy per template is three chances to forget
+		// the fourth.
+		"MinHeadlineWords": minHeadlineWords,
+		"MaxHeadlineWords": maxHeadlineWords,
+		"MaxCaptionWords":  maxCaptionWords,
 	}
 }
 

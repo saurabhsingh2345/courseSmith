@@ -34,11 +34,10 @@ func init() {
 		Scenes:      dataScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
 			return map[string]any{
-				"ChartKinds":      strings.Join(ChartKindNames(), ", "),
-				"MinPoints":       minDataPoints,
-				"MaxPoints":       maxDataPoints,
-				"MaxLabelWords":   maxDataLabelWords,
-				"MaxCaptionWords": maxCaptionWords,
+				"ChartKinds":    strings.Join(ChartKindNames(), ", "),
+				"MinPoints":     minDataPoints,
+				"MaxPoints":     maxDataPoints,
+				"MaxLabelWords": maxDataLabelWords,
 			}
 		},
 	})

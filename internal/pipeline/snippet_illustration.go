@@ -40,10 +40,7 @@ func init() {
 		Scenes:      illustrationScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
 			return map[string]any{
-				"Figures":          strings.Join(ArtFigureNames(), ", "),
-				"MinHeadlineWords": minHeadlineWords,
-				"MaxHeadlineWords": maxHeadlineWords,
-				"MaxCaptionWords":  maxCaptionWords,
+				"Figures": strings.Join(ArtFigureNames(), ", "),
 			}
 		},
 	})
