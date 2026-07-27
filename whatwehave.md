@@ -484,6 +484,47 @@ call failed having never seen both constraints at once.
   at 4 columns and width at 4 rows, because that is what leaves a readable label
   at 1080p.
 
+- **`illustration`** (`snippet_illustration.go`) — kinetic typography. A short
+  phrase lands word by word in 60-100px type, one word of it takes a marker
+  stroke swept in underneath, and a flat-vector figure assembles beside it. The
+  figure changes sides every beat.
+
+  This is the one template that **does not accumulate**, and that is the design
+  rather than an omission. The board and the diagram are both about a picture
+  being built and staying built; this one is about a phrase landing, and a
+  phrase cannot land on a stage still holding the last four. One beat is one
+  shot, and the clip cuts. That makes it the template for the parts of an
+  explainer that are rhetoric rather than architecture — the hook, the turn,
+  the payoff — which the other two are bad at.
+
+  **The figures are drawn, not imported** (`renderer/src/components/artwork.tsx`).
+  Bundling a CC0 set (unDraw and friends) was the obvious alternative and it
+  loses the only thing that matters here: a downloaded illustration is a single
+  flat blob of paths, so a rocket's flame cannot flicker and a gear cannot turn.
+  Owning the geometry means every figure has *parts*, and every figure keeps a
+  continuous idle running after it assembles — the flame licks, the gears mesh
+  and counter-rotate, the clock sweeps, packets run the network's spokes. A
+  figure that assembles and then freezes is a slide no matter how good the
+  entrance was. It also means the artwork speaks the design system's palette
+  instead of being recoloured towards it, and there is no third-party asset
+  licence to track. Eleven figures, closed vocabulary, `spark` as the fallback,
+  drift-tested against Go the same way the icon vocabulary is.
+
+  Two rules earn their keep. The emphasis must **occur in its own beat's
+  heading** — it is a stroke drawn under part of the headline, so a phrase that
+  is not there has nothing to underline and the shot silently loses its accent;
+  matching is on letters and digits only, because the two fields come from
+  different places in one reply and models are inconsistent about echoing case
+  and punctuation. And **at most two beats may share a figure**, because a run
+  of shots on one drawing is a still image with the text changing, which is
+  exactly what this format must not be.
+
+  `FigureSheet` (a development composition, no baseline) renders the whole
+  vocabulary on one frame. It exists because the figures are the part that
+  cannot be checked by reading: a geometrically fine path can still read as a
+  letter, or vanish because it was painted in the shading colour on a dark
+  stage. Both happened.
+
 **Cross-template field guards.** `SnippetBeat` is the union of what every
 template needs, so `beatFields` declares ownership once per template and
 `rejectForeignBeatFields` fails loudly when a plan sets a field its template
@@ -494,5 +535,5 @@ up from Remotion's 30s). A frame measures ~100ms, but a busy machine missed the
 deadline once and aborted an otherwise-finished clip. The budget was raised
 rather than the scenes made cheaper, because the scenes are not the problem.
 
-**Next templates** (planned, not built): data & maps, a flat-vector character
-cast, and illustration/kinetic-typography.
+**Next templates** (planned, not built): data & maps (world-atlas TopoJSON +
+d3-geo + Observable Plot) and a flat-vector character cast.

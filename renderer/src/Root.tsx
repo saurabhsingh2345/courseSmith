@@ -1,5 +1,6 @@
 import {Composition, staticFile} from 'remotion';
 import {LessonVideo} from './LessonVideo';
+import {FigureSheet} from './components/FigureSheet';
 import {FPS, LessonVideoProps, CodeTrace, msToFrame} from './types';
 import execTrace from './fixtures/execTrace.json';
 
@@ -186,6 +187,54 @@ const flowVizProps: LessonVideoProps = {
   captions: [],
 };
 
+// A demo of the illustration scene, so `remotion still IllustrationViz` renders
+// it standalone. Three shots, because this template's whole shape is the cut
+// between them: the side alternates, and each beat picks a different figure.
+const illustrationVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 15000,
+  scenes: [
+    {
+      type: 'illustration',
+      startMs: 0,
+      endMs: 5000,
+      props: {
+        headline: 'Your app is doing the same work twice',
+        emphasis: 'twice',
+        caption: 'Every request recomputes a result nobody asked to change.',
+        figure: 'gears',
+        flip: false,
+      },
+    },
+    {
+      type: 'illustration',
+      startMs: 5000,
+      endMs: 10000,
+      props: {
+        headline: 'A cache remembers the answer',
+        emphasis: 'remembers',
+        caption: 'Store it once, hand it back for as long as it stays true.',
+        figure: 'lightbulb',
+        flip: true,
+      },
+    },
+    {
+      type: 'illustration',
+      startMs: 10000,
+      endMs: 15000,
+      props: {
+        headline: 'Ninety percent fewer queries',
+        emphasis: 'Ninety percent',
+        caption: 'The database only sees the work that actually changed.',
+        figure: 'chart',
+        flip: false,
+      },
+    },
+  ],
+  captions: [],
+};
+
 // A demo of the VS Code walkthrough scene, so `remotion still VSCodeViz`
 // renders it standalone.
 const vscodeVizProps: LessonVideoProps = {
@@ -243,6 +292,25 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(flowVizProps.durationMs)}
       defaultProps={flowVizProps}
+    />
+    {/* Development aid, not a scene: every figure in the vocabulary on one
+        frame. See FigureSheet.tsx. */}
+    <Composition
+      id="FigureSheet"
+      component={FigureSheet}
+      fps={FPS}
+      width={1400}
+      height={1120}
+      durationInFrames={300}
+    />
+    <Composition
+      id="IllustrationViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(illustrationVizProps.durationMs)}
+      defaultProps={illustrationVizProps}
     />
     <Composition
       id="PointsViz"

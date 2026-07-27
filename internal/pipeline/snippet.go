@@ -172,6 +172,30 @@ type SnippetBeat struct {
 	// else dims and its traffic stops. This is how one diagram carries several
 	// explanations without being redrawn.
 	Focus []string `json:"focus,omitempty"`
+
+	// --- illustration template ---
+	// Art is this beat's shot: the figure beside the headline, which word of
+	// the headline carries the emphasis, and the line under it. Unlike the
+	// board and the diagram, nothing here accumulates — one beat is one shot.
+	Art *ArtBeat `json:"art,omitempty"`
+}
+
+// ArtBeat is one kinetic-typography shot: a figure, and the phrasing that
+// lands next to it.
+//
+// The beat's Heading is the headline, so it is not repeated here — the whole
+// point of the template is that the on-screen phrase and the beat's label are
+// the same thing rather than two things to keep in step.
+type ArtBeat struct {
+	// Figure is a name from the closed figure vocabulary (see ArtFigureNames);
+	// anything else degrades to the neutral "spark".
+	Figure string `json:"figure"`
+	// Emphasis is the word or short phrase inside the heading that gets the
+	// accent and the marker stroke. It must actually occur in the heading.
+	Emphasis string `json:"emphasis,omitempty"`
+	// Caption is the supporting line under the headline: one sentence that
+	// says the thing the headline only gestures at. Optional.
+	Caption string `json:"caption,omitempty"`
 }
 
 // SketchItem is one thing drawn on the whiteboard: a labelled box with an

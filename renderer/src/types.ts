@@ -80,7 +80,8 @@ export type SceneType =
   | 'points'
   | 'walkthrough'
   | 'whiteboard'
-  | 'flow';
+  | 'flow'
+  | 'illustration';
 
 export type Scene = {
   type: SceneType;

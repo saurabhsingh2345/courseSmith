@@ -299,7 +299,8 @@ coursesmith compile-course <course>     join every rendered lesson into one
 coursesmith snippet templates           list the visual templates a clip can use
                                         (vscode: an editor types code and runs it;
                                          whiteboard: a hand-drawn board fills in;
-                                         flow: layered boxes with moving traffic)
+                                         flow: layered boxes with moving traffic;
+                                         illustration: kinetic type + flat art)
 coursesmith snippet new <prompt>        plan and render one standalone clip
     --template <name>                   which template it looks like (required)
     --seconds <n>                       approximate runtime to aim for (default 45)

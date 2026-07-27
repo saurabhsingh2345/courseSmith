@@ -269,6 +269,7 @@ type beatFields struct {
 	Sketch bool
 	Nodes  bool
 	Focus  bool
+	Art    bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -287,6 +288,8 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "nodes"
 		case !owned.Focus && len(b.Focus) > 0:
 			set = "focus"
+		case !owned.Art && b.Art != nil:
+			set = "art"
 		default:
 			continue
 		}

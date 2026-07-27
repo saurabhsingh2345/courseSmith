@@ -15,6 +15,7 @@ import {TitleCard} from './components/TitleCard';
 import {VSCodeScene} from './components/VSCodeScene';
 import {WhiteboardScene} from './components/WhiteboardScene';
 import {FlowScene} from './components/FlowScene';
+import {IllustrationScene} from './components/IllustrationScene';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
 import {resolveMotion, secondsToFrames} from './theme/motion';
@@ -78,6 +79,8 @@ const sceneContent = (
       return <WhiteboardScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'flow':
       return <FlowScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'illustration':
+      return <IllustrationScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       return null;
   }

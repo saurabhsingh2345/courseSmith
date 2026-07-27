@@ -33,6 +33,10 @@ const (
 	// SceneFlow is a layered systems diagram with traffic moving along its
 	// edges and a focus that follows the narration.
 	SceneFlow = "flow"
+	// SceneIllustration is one kinetic-typography shot: a headline set word by
+	// word beside a flat-vector figure. Unlike the board and the diagram it
+	// does not accumulate — a clip is a run of these, one per beat.
+	SceneIllustration = "illustration"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file
@@ -590,9 +594,9 @@ func finishSceneGraph(e *Env, l *project.Lesson, graph *SceneGraph) error {
 	for _, s := range graph.Scenes {
 		types[s.Type]++
 	}
-	fmt.Fprintf(e.out(), "    %d scenes (%d title, %d points, %d code, %d walkthrough, %d whiteboard, %d flow, %d diagram, %d terminal), %d captions, %.1fs\n",
+	fmt.Fprintf(e.out(), "    %d scenes (%d title, %d points, %d code, %d walkthrough, %d whiteboard, %d flow, %d illustration, %d diagram, %d terminal), %d captions, %.1fs\n",
 		len(graph.Scenes), types[SceneTitle], types[ScenePoints], types[SceneCode], types[SceneWalkthrough],
-		types[SceneWhiteboard], types[SceneFlow], types[SceneDiagram], types[SceneTerminal],
+		types[SceneWhiteboard], types[SceneFlow], types[SceneIllustration], types[SceneDiagram], types[SceneTerminal],
 		len(graph.Captions), float64(graph.DurationMs)/1000)
 	return nil
 }

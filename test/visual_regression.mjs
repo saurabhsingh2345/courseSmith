@@ -36,6 +36,10 @@ const TARGETS = [
   // Inside the focus window, so the frame covers the dim/highlight path as
   // well as the graph itself.
   { id: "FlowViz", frame: 400 },
+  // The second shot, past its headline and caption but with the figure's idle
+  // still running — so the frame covers the alternated layout, the marker
+  // stroke and an assembled figure at once.
+  { id: "IllustrationViz", frame: 250 },
   { id: "D3Viz", frame: 130 },
   { id: "MemoryViz", frame: 90 },
   { id: "LessonVideo", frame: 15 },
