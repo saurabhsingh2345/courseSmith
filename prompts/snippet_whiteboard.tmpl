@@ -24,6 +24,12 @@ Board item rules:
 - label: the box's caption. A noun phrase, at most {{.MaxLabelWords}} words, and unique across the whole board — each box is drawn once and stays.
 - icon: the drawing that fills the box. Pick the best fit from this exact vocabulary (anything else becomes a neutral burst, which says nothing — so pick from the list even when the fit is loose): {{.Icons}}
 - link_from: the label of an item already on the board. An arrow is drawn from that box to this one. Use it whenever one idea leads to, feeds, or contains another — links are what make the board a diagram instead of a grid of unrelated boxes.
+- shape: how the item is drawn. One of: {{.Shapes}}. Default to "box" and mean the others:
+  - box: a component. Something with edges — a service, a file, a step. Most items are boxes.
+  - circle: an actor or a moment. A user, an incoming request, the point where it goes wrong.
+  - cloud: something deliberately vague. The internet, "everything else", a system you are not explaining today.
+  - sticky: an aside. A caveat, a gotcha, a note you would add beside the diagram rather than inside it.
+  Use at most one or two non-box shapes on a board. Their whole value is that they stand out, and a board of four different shapes has nothing standing out on it.
 
 Composition rules that make the clip good:
 - The whole board is {{.MinItems}} to {{.MaxItems}} items — aim for five or six. Four is the floor, not the target: a board that stops changing halfway through leaves the rest of the clip narrating a still image. Eight is the ceiling of what stays legible at all.

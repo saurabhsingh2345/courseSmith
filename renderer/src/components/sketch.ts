@@ -127,6 +127,163 @@ export const roughRect = (
 };
 
 /**
+ * A hand-drawn ellipse filling w x h.
+ *
+ * Circling something is what a person at a board does to the thing that is not
+ * a component — an actor, a moment, a question. Same overshoot as roughRect so
+ * the pen visibly crosses its own start.
+ */
+export const roughEllipse = (w: number, h: number, seed: string, amp = 5): Stroke => {
+  const rx = w / 2;
+  const ry = h / 2;
+  const samples = Math.max(56, Math.round((rx + ry) / 5));
+  const to = 1.03;
+  const points: Pt[] = [];
+  for (let i = 0; i <= samples; i++) {
+    const t = (to * i) / samples;
+    const a = t * Math.PI * 2 - Math.PI / 2;
+    // The outward normal of an ellipse is not the radial direction, but at
+    // these aspect ratios the difference is under a pixel and the radial one
+    // keeps the wobble periodic, which is what stops the overshoot ticking.
+    const off = wobble(t, seed, amp);
+    points.push({
+      x: rx + Math.cos(a) * (rx + off),
+      y: ry + Math.sin(a) * (ry + off),
+    });
+  }
+  return strokeFrom(points);
+};
+
+/**
+ * A hand-drawn cloud: bumps around an ellipse.
+ *
+ * The shape for something deliberately vague — "the internet", "everything
+ * else", a system nobody is explaining today. A box says the thing has edges;
+ * a cloud says the opposite, which is often the honest drawing.
+ */
+export const roughCloud = (w: number, h: number, seed: string, amp = 3): Stroke => {
+  const rx = w / 2;
+  const ry = h / 2;
+  const bumps = 7;
+  const samples = Math.max(96, Math.round((rx + ry) / 3));
+  const to = 1.02;
+  const points: Pt[] = [];
+  for (let i = 0; i <= samples; i++) {
+    const t = (to * i) / samples;
+    const a = t * Math.PI * 2 - Math.PI / 2;
+    // A scalloped radius, bulging *outward only*. A plain sine alternates in
+    // and out and draws a star: the inward halves cut back past the body and
+    // every bump ends in a point. Rectifying it leaves rounded lobes with flat
+    // valleys between them, which is the shape of a cloud. The bump count is a
+    // whole number of cycles so the scallop still closes on itself, for the
+    // same reason the wobble harmonics are.
+    const lobe = Math.max(0, Math.sin(bumps * t * Math.PI * 2));
+    const scallop = 1 + 0.13 * Math.pow(lobe, 0.65);
+    const off = wobble(t, seed, amp);
+    points.push({
+      x: rx + Math.cos(a) * (rx * scallop + off),
+      y: ry + Math.sin(a) * (ry * scallop + off),
+    });
+  }
+  return strokeFrom(points);
+};
+
+/**
+ * A hand-drawn sticky note: a square-ish card with one corner turned up.
+ *
+ * Returns the outline and the fold separately, because the fold is a filled
+ * triangle rather than part of the perimeter — a note whose corner is only an
+ * outline reads as a box with a scratch on it.
+ */
+export const roughSticky = (
+  w: number,
+  h: number,
+  seed: string,
+  amp = 4,
+): {outline: Stroke; fold: Stroke; foldPath: string} => {
+  const cut = Math.min(34, w * 0.16, h * 0.24);
+  const corners: Pt[] = [
+    {x: 0, y: 0},
+    {x: w, y: 0},
+    {x: w, y: h - cut},
+    {x: w - cut, y: h},
+    {x: 0, y: h},
+  ];
+  // Walk the perimeter by *length*, not by segment index.
+  //
+  // Sampling each edge with the same number of points regardless of how long it
+  // is leaves the points non-uniform in arc length — and penAt() finds the pen
+  // by point index while the draw-on advances by arc length, so the two
+  // disagree and the marker floats off the end of its own stroke. It is only
+  // visible while a shape is being drawn, which is the one moment the marker
+  // exists for.
+  const segs = corners.map((a, i) => {
+    const b = corners[(i + 1) % corners.length];
+    const dx = b.x - a.x;
+    const dy = b.y - a.y;
+    const len = Math.hypot(dx, dy) || 1;
+    // Outward normal of this edge, so the wobble pushes off the paper rather
+    // than along it.
+    return {a, dx, dy, len, nx: dy / len, ny: -dx / len};
+  });
+  const total = segs.reduce((sum, s) => sum + s.len, 0);
+  const samples = Math.max(64, Math.round(total / 9));
+  const perimeter: Pt[] = [];
+  for (let i = 0; i <= samples; i++) {
+    const t = (1.015 * i) / samples;
+    let target = (((t % 1) + 1) % 1) * total;
+    let seg = segs[0];
+    let local = 0;
+    for (const s of segs) {
+      if (target <= s.len || s === segs[segs.length - 1]) {
+        seg = s;
+        local = Math.max(0, Math.min(1, target / s.len));
+        break;
+      }
+      target -= s.len;
+    }
+    const off = wobble(t, seed, amp);
+    perimeter.push({
+      x: seg.a.x + seg.dx * local + seg.nx * off,
+      y: seg.a.y + seg.dy * local + seg.ny * off,
+    });
+  }
+  const fold = strokeFrom([
+    {x: w - cut, y: h},
+    {x: w - cut, y: h - cut},
+    {x: w, y: h - cut},
+  ]);
+  return {
+    outline: strokeFrom(perimeter),
+    fold,
+    foldPath: `M${w - cut} ${h} L${w - cut} ${h - cut} L${w} ${h - cut} Z`,
+  };
+};
+
+/**
+ * A highlighter swipe: a thick band with ragged ends, drawn behind text.
+ *
+ * Not a rounded rect — a marker laid down and lifted leaves a stroke that is
+ * thicker in the middle and never quite level, and that unevenness is the only
+ * thing separating "highlighted" from "has a coloured rectangle behind it".
+ */
+export const roughHighlight = (w: number, h: number, seed: string): string => {
+  const wob = (t: number) => wobble(t, seed, h * 0.12);
+  const steps = 12;
+  const top: string[] = [];
+  const bottom: string[] = [];
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const x = w * t;
+    // Thicker through the middle, the way pressure actually falls off.
+    const swell = Math.sin(t * Math.PI) * h * 0.1;
+    top.push(`${x.toFixed(1)} ${(wob(t) - swell).toFixed(1)}`);
+    bottom.push(`${x.toFixed(1)} ${(h + wob(1 - t) + swell).toFixed(1)}`);
+  }
+  return `M${top.join(' L')} L${bottom.reverse().join(' L')} Z`;
+};
+
+/**
  * A hand-drawn connector between two points, bowed gently perpendicular to its
  * run so a grid of boxes reads as a drawn diagram rather than a wiring harness.
  */

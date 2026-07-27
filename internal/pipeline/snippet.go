@@ -428,6 +428,12 @@ type SketchItem struct {
 	// to this one, which is how the picture becomes a diagram rather than a
 	// grid of unrelated boxes.
 	LinkFrom string `json:"link_from,omitempty"`
+	// Shape is how this item is drawn — see sketchShapes. Everything used to
+	// be a rounded box, which is the right default and the wrong only option:
+	// a board where "the internet" and "the retry queue" are the same rectangle
+	// is a board that has stopped distinguishing between a thing with edges and
+	// a thing without any.
+	Shape string `json:"shape,omitempty"`
 }
 
 // Validate checks a plan's structure. Template-specific rules live in the

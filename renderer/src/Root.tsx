@@ -139,12 +139,14 @@ const whiteboardVizProps: LessonVideoProps = {
       props: {
         title: 'How a web request travels',
         items: [
-          {label: 'Browser', icon: 'monitor', atMs: 300},
-          {label: 'DNS lookup', icon: 'search', atMs: 2400, from: 0},
+          // One of each shape, so the baseline covers the whole vocabulary —
+          // a shape with no composition is a shape whose regression hides.
+          {label: 'You', icon: 'cursor', shape: 'circle', atMs: 300},
+          {label: 'The internet', icon: 'cloud', shape: 'cloud', atMs: 2400, from: 0},
           {label: 'CDN edge', icon: 'globe', atMs: 4600, from: 1},
           {label: 'Load balancer', icon: 'network', atMs: 6800, from: 2},
           {label: 'App server', icon: 'terminal', atMs: 9000, from: 3},
-          {label: 'Database', icon: 'database', atMs: 11200, from: 4},
+          {label: 'Cache it!', icon: 'highlighter', shape: 'sticky', atMs: 11200, from: 4},
         ],
       },
     },

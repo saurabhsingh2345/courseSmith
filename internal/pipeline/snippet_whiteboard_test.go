@@ -194,3 +194,25 @@ func TestSketchIconsAreFigures(t *testing.T) {
 		t.Error("the fallback figure \"spark\" is missing from artFigureVocab")
 	}
 }
+
+func TestNormalizeSketchShape(t *testing.T) {
+	for _, shape := range SketchShapeNames() {
+		if got := normalizeSketchShape(shape); got != shape {
+			t.Errorf("normalizeSketchShape(%q) = %q, want it preserved", shape, got)
+		}
+	}
+	// The box is the fallback because it is the shape that is never *wrong* —
+	// an aside drawn as a component still reads, where an aside drawn as
+	// nothing does not.
+	for _, bad := range []string{"", "  ", "hexagon", "diamond"} {
+		if got := normalizeSketchShape(bad); got != "box" {
+			t.Errorf("normalizeSketchShape(%q) = %q, want the box fallback", bad, got)
+		}
+	}
+	if got := normalizeSketchShape("  CLOUD "); got != "cloud" {
+		t.Errorf("normalizeSketchShape trims and lowercases: got %q", got)
+	}
+	if len(SketchShapeNames()) != len(sketchShapes) {
+		t.Error("SketchShapeNames() dropped an entry")
+	}
+}

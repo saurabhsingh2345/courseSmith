@@ -18,6 +18,7 @@ package pipeline
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 
 	"github.com/enfec/coursesmith/internal/config"
@@ -42,6 +43,7 @@ func init() {
 				// the terminal's line types, the database's query sweeps down —
 				// so a board that has stopped being drawn is still alive.
 				"Icons":         strings.Join(ArtFigureNames(), ", "),
+				"Shapes":        strings.Join(SketchShapeNames(), ", "),
 				"MinItems":      minSketchItems,
 				"MaxItems":      maxSketchItems,
 				"MaxLabelWords": maxSketchLabelWords,
@@ -121,6 +123,7 @@ func whiteboardScenes(in SnippetSceneInput) ([]Scene, error) {
 			props := map[string]any{
 				"label": item.Label,
 				"icon":  normalizeSketchIcon(item.Icon),
+				"shape": normalizeSketchShape(item.Shape),
 				"atMs":  startMs + j*step,
 			}
 			if item.LinkFrom != "" {
@@ -206,4 +209,39 @@ func normalizeSketchIcon(name string) string {
 		return n
 	}
 	return "spark"
+}
+
+// sketchShapes is how a board item can be drawn. Four, not more: every one has
+// to mean something a person at a board would actually mean by it, and a
+// vocabulary with two shapes nobody can tell apart is worse than one shape.
+//
+//	box     a component — something with edges. The default and the common case.
+//	circle  an actor or a moment: a user, a request, the point where it fails.
+//	cloud   something deliberately vague — the internet, "everything else".
+//	sticky  an aside: a caveat, a note, the thing you add after the diagram.
+var sketchShapes = map[string]bool{
+	"box":    true,
+	"circle": true,
+	"cloud":  true,
+	"sticky": true,
+}
+
+// SketchShapeNames returns the shape vocabulary, sorted, for the prompt.
+func SketchShapeNames() []string {
+	out := make([]string, 0, len(sketchShapes))
+	for s := range sketchShapes {
+		out = append(out, s)
+	}
+	sort.Strings(out)
+	return out
+}
+
+// normalizeSketchShape falls back to the box, which is the shape that is never
+// wrong — an item drawn as a component when it is really an aside still reads.
+func normalizeSketchShape(name string) string {
+	n := strings.ToLower(strings.TrimSpace(name))
+	if sketchShapes[n] {
+		return n
+	}
+	return "box"
 }

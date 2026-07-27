@@ -10,7 +10,10 @@ import {
   edgeAnchor,
   penAt,
   roughArrow,
+  roughCloud,
+  roughEllipse,
   roughRect,
+  roughSticky,
   type BoxRect,
   type Stroke,
 } from './sketch';
@@ -51,7 +54,14 @@ const DRAW = {
   settleFrames: 34,
 } as const;
 
-type SketchItemProps = {label: string; icon: string; atMs: number; from?: number};
+type SketchItemProps = {
+  label: string;
+  icon: string;
+  atMs: number;
+  from?: number;
+  /** box | circle | cloud | sticky — see sketchShapes in snippet_whiteboard.go. */
+  shape?: string;
+};
 
 /** A stroke drawn on by dashoffset, with its progress supplied. */
 const DrawnPath: React.FC<{
@@ -97,15 +107,52 @@ export const WhiteboardScene: React.FC<{
     // trailing the first is how a pen actually behaves.
     const rects = boxes.map((b, i) => {
       const key = `wb-box-${i}-${items[i]?.label ?? ''}`;
+      const shape = items[i]?.shape ?? 'box';
+      // Two passes per outline, each with its own seed. This is the whole
+      // reason the shapes read as drawn rather than as CSS: a single clean
+      // outline, however much you wobble it, still looks like a rect element. A
+      // second pass trailing the first is how a pen actually behaves.
+      const outline = (() => {
+        switch (shape) {
+          case 'circle':
+            return {
+              stroke: roughEllipse(b.w, b.h, `${key}-a`),
+              second: roughEllipse(b.w, b.h, `${key}-b`, 6.5),
+              foldPath: undefined,
+            };
+          case 'cloud':
+            return {
+              stroke: roughCloud(b.w, b.h, `${key}-a`),
+              second: roughCloud(b.w, b.h, `${key}-b`, 4.5),
+              foldPath: undefined,
+            };
+          case 'sticky': {
+            const a = roughSticky(b.w, b.h, `${key}-a`);
+            const second = roughSticky(b.w, b.h, `${key}-b`, 5.5);
+            return {stroke: a.outline, second: second.outline, foldPath: a.foldPath};
+          }
+          default:
+            return {
+              stroke: roughRect(b.w, b.h, 26, `${key}-a`),
+              second: roughRect(b.w, b.h, 26, `${key}-b`, 6.5),
+              foldPath: undefined,
+            };
+        }
+      })();
       return {
         rect: b,
-        stroke: roughRect(b.w, b.h, 26, `${key}-a`),
-        second: roughRect(b.w, b.h, 26, `${key}-b`, 6.5),
+        shape,
+        ...outline,
+        // The card fill has to follow the outline, so it is the same geometry
+        // rather than a rect that happens to sit near it.
+        fillPath: outline.stroke.d,
         // A degree of seeded tilt. Every box sitting exactly square on a shared
         // baseline is what made a drawn board read as a table; this is small
         // enough that nothing looks crooked and large enough that the grid
-        // stops announcing itself.
-        tilt: (random(`${key}-tilt`) - 0.5) * 1.5,
+        // stops announcing itself. A sticky gets more of it — a note that is
+        // not slightly askew is not a note.
+        tilt:
+          (random(`${key}-tilt`) - 0.5) * (shape === 'sticky' ? 7 : 1.5),
       };
     });
     const links = items.map((item, i) => {
@@ -152,7 +199,7 @@ export const WhiteboardScene: React.FC<{
           if (since < 0) {
             return null;
           }
-          const {rect, stroke, second, tilt} = board.rects[i];
+          const {rect, stroke, second, tilt, fillPath, foldPath} = board.rects[i];
           const link = board.links[i];
 
           const arrowP = interpolate(since, [0, DRAW.arrowFrames], [0, 1], {
@@ -221,19 +268,17 @@ export const WhiteboardScene: React.FC<{
                 </>
               )}
               <g transform={`translate(${rect.x} ${rect.y}) rotate(${tilt} ${rect.w / 2} ${rect.h / 2})`}>
-                {/* The card's fill follows the outline round, so the box reads
-                    as being filled in rather than appearing behind the stroke.
+                {/* The card's fill IS the outline's own path, so a cloud is
+                    filled like a cloud and a sticky like a sticky — a rect
+                    behind either would show its corners through the scallop.
                     Near-opaque: at 0.55 the card barely separated from the
                     board and the boxes floated instead of sitting on it. */}
-                <rect
-                  x={0}
-                  y={0}
-                  width={rect.w}
-                  height={rect.h}
-                  rx={26}
-                  fill={theme.surface}
-                  opacity={boxP * 0.92}
-                />
+                <path d={fillPath} fill={theme.surface} opacity={boxP * 0.92} />
+                {/* A sticky's turned corner. Filled rather than outlined: a
+                    corner that is only a line reads as a scratch on a box. */}
+                {foldPath && (
+                  <path d={foldPath} fill={theme.text} opacity={boxP * 0.16} />
+                )}
                 <DrawnPath stroke={stroke} progress={boxP} color={ink} width={3.4} opacity={inkOpacity} />
                 <DrawnPath
                   stroke={second}
@@ -242,12 +287,25 @@ export const WhiteboardScene: React.FC<{
                   width={2.4}
                   opacity={inkOpacity * 0.55}
                 />
-                {/* The marker: a soft accent bead sitting exactly at the pen. */}
+                {/* The marker itself, nib on the stroke.
+                    This used to be a soft accent bead, which said "something is
+                    happening here" without saying what. A pen says a person is
+                    drawing this, which is the entire premise of the template —
+                    and it costs nothing, because sketch.ts already computes
+                    exactly where the pen is at any progress.
+                    Drawn un-rotated against the tilt of its box so the marker
+                    is held at one angle throughout, rather than leaning with
+                    whichever card it happens to be on. */}
                 {pen && (
-                  <>
-                    <circle cx={pen.x} cy={pen.y} r={17} fill={theme.accent} opacity={0.22} />
-                    <circle cx={pen.x} cy={pen.y} r={6} fill={theme.accent} />
-                  </>
+                  <g transform={`translate(${pen.x} ${pen.y}) rotate(${-tilt})`}>
+                    <circle cx={0} cy={0} r={15} fill={theme.accent} opacity={0.18} />
+                    <g transform="rotate(-38)">
+                      {/* Nib first, then the barrel above it. */}
+                      <path d="M0 0 L-5 -12 L5 -12 Z" fill={theme.accent} />
+                      <rect x={-6.5} y={-46} width={13} height={34} rx={3} fill={theme.text} opacity={0.9} />
+                      <rect x={-6.5} y={-46} width={13} height={9} rx={3} fill={theme.accent} />
+                    </g>
+                  </g>
                 )}
                 {/* The figure, wiped in left to right. */}
                 {iconP > 0 && (
