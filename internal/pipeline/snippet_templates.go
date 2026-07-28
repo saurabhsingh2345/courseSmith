@@ -518,26 +518,27 @@ func checkBeatShape(p *SnippetPlan) error {
 // is quadratic and rots as the catalog grows — means a model that puts a
 // whiteboard sketch on a flow diagram gets a loud error instead of silence.
 type beatFields struct {
-	Code     bool
-	Run      bool
-	Sketch   bool
-	Nodes    bool
-	Focus    bool
-	Art      bool
-	Cast     bool
-	Shot     bool
-	Data     bool
-	Work     bool
-	Quiz     bool
-	Compare  bool
-	Anatomy  bool
-	Timeline bool
-	Canvas   bool
-	Loop     bool
-	Mockup   bool
-	Stack    bool
-	Spec     bool
-	Showcase bool
+	Code      bool
+	Run       bool
+	Sketch    bool
+	Nodes     bool
+	Focus     bool
+	Art       bool
+	Cast      bool
+	Shot      bool
+	Data      bool
+	Work      bool
+	Quiz      bool
+	Compare   bool
+	Anatomy   bool
+	Timeline  bool
+	Canvas    bool
+	Loop      bool
+	Mockup    bool
+	Stack     bool
+	Spec      bool
+	Showcase  bool
+	Breakdown bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -570,6 +571,8 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "spec"
 		case !owned.Showcase && b.Showcase != nil:
 			set = "showcase"
+		case !owned.Breakdown && b.Breakdown != nil:
+			set = "breakdown"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

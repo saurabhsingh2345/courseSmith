@@ -80,6 +80,9 @@ const (
 	// SceneShowcase is one tool's card — what it is, what it costs, what it is
 	// good and bad at — ending on a hand-off plate a demo recording cuts onto.
 	SceneShowcase = "showcase"
+	// SceneBreakdown is a path of phases where the current one opens into its
+	// own detail — the description, and the items inside it.
+	SceneBreakdown = "breakdown"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

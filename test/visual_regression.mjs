@@ -82,6 +82,10 @@ const TARGETS = [
   // cells filled, the identity block intact. The hand-off frame is the other
   // state worth watching, but it hides the card the template is actually about.
   { id: "ShowcaseViz", frame: 940 },
+  // The breakdown on an item beat: two phases collapsed above, one open with an
+  // item spotlit and its neighbours dimmed, one unreached below, and the
+  // progress read under it. Every state the accordion has, in one frame.
+  { id: "BreakdownViz", frame: 700 },
   // Mid-word, with the completion popup open. It only exists for the handful
   // of frames where a fragment has matches, so no other target can catch it —
   // and it is the detail that makes the scene read as an editor rather than as

@@ -98,7 +98,8 @@ export type SceneType =
   | 'mockup'
   | 'stack'
   | 'spec'
-  | 'showcase';
+  | 'showcase'
+  | 'breakdown';
 
 export type Scene = {
   type: SceneType;

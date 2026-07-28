@@ -198,6 +198,9 @@ type SnippetPlan struct {
 	// Showcase is the showcase template's tool card. On the plan for the same
 	// reason as Spec: the card is the subject and the beats only light parts.
 	Showcase *ShowcaseSpec `json:"showcase,omitempty"`
+	// Breakdown is the breakdown template's path. On the plan for the same
+	// reason as Timeline: the path is the subject and the beats only walk it.
+	Breakdown *BreakdownSpec `json:"breakdown,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -398,6 +401,11 @@ type SnippetBeat struct {
 	// Showcase says which part of the tool card this beat lights, or that it is
 	// the hand-off to the demo.
 	Showcase *ShowcaseBeat `json:"showcase,omitempty"`
+
+	// --- breakdown template ---
+	// Breakdown says where in the two-level path this beat stands: on a phase,
+	// on one item inside it, or on the whole path.
+	Breakdown *BreakdownBeat `json:"breakdown,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

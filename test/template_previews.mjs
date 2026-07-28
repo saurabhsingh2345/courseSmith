@@ -37,6 +37,7 @@ const SOURCES = {
   stack: "StackViz-430",
   spec: "SpecViz-910",
   showcase: "ShowcaseViz-940",
+  breakdown: "BreakdownViz-700",
   workspace: "WorkspaceViz-690",
   whiteboard: "WhiteboardViz-390",
   flow: "FlowViz-400",

@@ -1076,6 +1076,72 @@ const showcaseVizProps: LessonVideoProps = {
   captions: [],
 };
 
+/**
+ * The breakdown template on the example that motivated it: building a whole
+ * website with no-code tools, four phases deep, with item beats pulled out of
+ * the two stages where the choice actually matters. Seven beats.
+ */
+const breakdownVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 38000,
+  scenes: [
+    {
+      type: 'breakdown',
+      startMs: 0,
+      endMs: 38000,
+      props: {
+        title: 'Building a whole website with no code',
+        phases: [
+          {
+            title: 'Design',
+            detail: 'Decide what it looks like before anything gets built',
+            items: [
+              {name: 'Figma', note: 'Fastest if you already know it', icon: 'layers'},
+              {name: 'Canva', note: 'Templates when you are not a designer', icon: 'star'},
+            ],
+          },
+          {
+            title: 'Wireframe',
+            detail: 'Block out the page before anyone argues about colour',
+            items: [
+              {name: 'Whimsical', note: 'Fast, ugly, on purpose', icon: 'box'},
+              {name: 'Excalidraw', note: 'Hand-drawn feel, free forever', icon: 'idea'},
+            ],
+          },
+          {
+            title: 'Front end',
+            detail: 'Turn the design into pages people can actually open',
+            items: [
+              {name: 'Webflow', note: 'Most control, steepest curve', icon: 'monitor'},
+              {name: 'Framer', note: 'Fastest from design to live', icon: 'zap'},
+              {name: 'Softr', note: 'Best if your data is Airtable', icon: 'layers'},
+            ],
+          },
+          {
+            title: 'Back end',
+            detail: 'Where the data lives and what happens on submit',
+            items: [
+              {name: 'Airtable', note: 'A database anyone can edit', icon: 'database'},
+              {name: 'Make', note: 'Glue between the form and everything', icon: 'shuffle'},
+            ],
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 5000, show: 'phase', at: 0},
+          {startMs: 5000, endMs: 10000, show: 'item', at: 0, item: 0},
+          {startMs: 10000, endMs: 15000, show: 'phase', at: 1},
+          {startMs: 15000, endMs: 20000, show: 'phase', at: 2},
+          {startMs: 20000, endMs: 26000, show: 'item', at: 2, item: 0},
+          {startMs: 26000, endMs: 32000, show: 'phase', at: 3},
+          {startMs: 32000, endMs: 38000, show: 'whole'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 const dataVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
@@ -1367,6 +1433,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(showcaseVizProps.durationMs)}
       defaultProps={showcaseVizProps}
+    />
+    <Composition
+      id="BreakdownViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(breakdownVizProps.durationMs)}
+      defaultProps={breakdownVizProps}
     />
     <Composition
       id="AnatomyViz"
