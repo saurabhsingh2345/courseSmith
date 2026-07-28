@@ -25,6 +25,7 @@ import {CompareScene} from './components/CompareScene';
 import {AnatomyScene} from './components/AnatomyScene';
 import {TimelineScene} from './components/TimelineScene';
 import {CanvasScene} from './components/CanvasScene';
+import {PromptLoopScene} from './components/PromptLoopScene';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
 import {resolveMotion, secondsToFrames} from './theme/motion';
@@ -108,6 +109,8 @@ const sceneContent = (
       return <TimelineScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'canvas':
       return <CanvasScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'promptloop':
+      return <PromptLoopScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       return null;
   }

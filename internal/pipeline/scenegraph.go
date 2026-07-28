@@ -65,6 +65,9 @@ const (
 	// SceneCanvas is an automation wired across a builder's canvas: app cards
 	// on a dotted grid, and a payload that runs the chain end to end.
 	SceneCanvas = "canvas"
+	// ScenePromptLoop is a conversation with something that builds: prompts
+	// stacking down one column, and what came back beside them.
+	ScenePromptLoop = "promptloop"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

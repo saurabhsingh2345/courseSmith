@@ -61,6 +61,10 @@ const TARGETS = [
   // the layout and nothing about the payoff, which is the half of this template
   // that has moving parts.
   { id: "CanvasViz", frame: 755 },
+  // The prompt loop on its second answer — the only state holding the whole
+  // argument at once: three turns of history in the thread, the attempt counter
+  // past one, and the goal bar reaching further than it did last round.
+  { id: "PromptLoopViz", frame: 825 },
   // Mid-word, with the completion popup open. It only exists for the handful
   // of frames where a fragment has matches, so no other target can catch it —
   // and it is the detail that makes the scene read as an editor rather than as

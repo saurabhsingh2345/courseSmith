@@ -93,7 +93,8 @@ export type SceneType =
   | 'compare'
   | 'anatomy'
   | 'timeline'
-  | 'canvas';
+  | 'canvas'
+  | 'promptloop';
 
 export type Scene = {
   type: SceneType;

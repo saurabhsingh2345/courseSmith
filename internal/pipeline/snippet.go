@@ -183,6 +183,9 @@ type SnippetPlan struct {
 	// the payload that runs them. On the plan for the same reason as Timeline:
 	// the workflow is the subject of the clip and the beats only walk it.
 	Canvas *CanvasSpec `json:"canvas,omitempty"`
+	// Loop is the promptloop template's goal — the one thing that does not
+	// change across the clip, which is exactly why it is worth pinning.
+	Loop *PromptLoopSpec `json:"loop,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -358,6 +361,11 @@ type SnippetBeat struct {
 	// Canvas says which card of the automation this beat is standing on, or
 	// that it is running the payload down the whole chain.
 	Canvas *CanvasBeat `json:"canvas,omitempty"`
+
+	// --- promptloop template ---
+	// Loop is one turn of the conversation: who is speaking, what is in the
+	// bubble, and — when it is the model's turn — how the attempt came out.
+	Loop *PromptLoopBeat `json:"loop,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

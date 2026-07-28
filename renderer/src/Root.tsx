@@ -821,6 +821,64 @@ const canvasVizProps: LessonVideoProps = {
   captions: [],
 };
 
+/**
+ * The promptloop template. Two rounds: an attempt that falls short, a prompt
+ * that names the specific gap, and an attempt that closes it.
+ *
+ * The baseline frame is on the *second* answer, which is the only state that
+ * shows the template's whole argument at once: three turns in the thread, the
+ * attempt counter past one, and the goal bar reaching further than it did.
+ */
+const promptLoopVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 32000,
+  scenes: [
+    {
+      type: 'promptloop',
+      startMs: 0,
+      endMs: 32000,
+      props: {
+        title: 'Prompting your way to a landing page',
+        goal: 'A landing page with a working signup form',
+        turns: [
+          {
+            who: 'you',
+            text: 'Build me a landing page for a note-taking app with a signup form.',
+            startMs: 0,
+            endMs: 8000,
+          },
+          {
+            who: 'ai',
+            text: 'Built a hero, a feature grid and a form.',
+            startMs: 8000,
+            endMs: 16000,
+            attempt: 1,
+            status: 'partial',
+            changes: ['Hero and headline in place', 'Form has no validation', 'Nothing happens on submit'],
+          },
+          {
+            who: 'you',
+            text: 'The form does nothing. Validate the email and show a success message.',
+            startMs: 16000,
+            endMs: 24000,
+          },
+          {
+            who: 'ai',
+            text: 'Added validation and a confirmation state.',
+            startMs: 24000,
+            endMs: 32000,
+            attempt: 2,
+            status: 'ok',
+            changes: ['Email checked before submit', 'Success message replaces the form'],
+          },
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 const dataVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
@@ -1067,6 +1125,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(canvasVizProps.durationMs)}
       defaultProps={canvasVizProps}
+    />
+    <Composition
+      id="PromptLoopViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(promptLoopVizProps.durationMs)}
+      defaultProps={promptLoopVizProps}
     />
     <Composition
       id="AnatomyViz"
