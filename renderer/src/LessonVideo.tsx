@@ -27,6 +27,7 @@ import {TimelineScene} from './components/TimelineScene';
 import {CanvasScene} from './components/CanvasScene';
 import {PromptLoopScene} from './components/PromptLoopScene';
 import {MockupScene} from './components/MockupScene';
+import {StackScene} from './components/StackScene';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
 import {resolveMotion, secondsToFrames} from './theme/motion';
@@ -114,6 +115,8 @@ const sceneContent = (
       return <PromptLoopScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'mockup':
       return <MockupScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'stack':
+      return <StackScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       return null;
   }

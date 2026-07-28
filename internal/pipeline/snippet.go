@@ -189,6 +189,9 @@ type SnippetPlan struct {
 	// Mockup is the mockup template's screen. On the plan for the same reason as
 	// Canvas: the page is the subject of the clip and the beats walk down it.
 	Mockup *MockupSpec `json:"mockup,omitempty"`
+	// Stack is the stack template's tiers. On the plan for the same reason as
+	// Mockup: the arrangement is the subject and the beats only walk it.
+	Stack *StackSpec `json:"stack,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -374,6 +377,11 @@ type SnippetBeat struct {
 	// Mockup says which block of the page this beat is adding, or that it is
 	// showing the finished screen.
 	Mockup *MockupBeat `json:"mockup,omitempty"`
+
+	// --- stack template ---
+	// Stack says which tier this beat is standing on, or that it is showing the
+	// whole stack.
+	Stack *StackBeat `json:"stack,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

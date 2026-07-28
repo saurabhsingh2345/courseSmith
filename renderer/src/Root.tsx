@@ -925,6 +925,65 @@ const mockupVizProps: LessonVideoProps = {
   captions: [],
 };
 
+/**
+ * The stack template at its widest: four tiers, three of them holding two tools
+ * so the side-by-side "these are alternatives" reading is exercised.
+ */
+const stackVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [
+    {
+      type: 'stack',
+      startMs: 0,
+      endMs: 30000,
+      props: {
+        title: 'The four tools behind a no-code job board',
+        layers: [
+          {
+            name: 'Frontend',
+            role: 'What the person actually looks at',
+            tools: [
+              {name: 'Softr', icon: 'monitor', note: 'Fastest if your data is Airtable'},
+              {name: 'Framer', icon: 'layers', note: 'Better when design matters more'},
+            ],
+          },
+          {
+            name: 'Automation',
+            role: 'The glue between everything else',
+            tools: [
+              {name: 'Make', icon: 'shuffle', note: 'Visual, cheap, forgiving'},
+              {name: 'n8n', icon: 'network', note: 'Self-host it when volume grows'},
+            ],
+          },
+          {
+            name: 'Data',
+            role: 'Where the records actually live',
+            tools: [{name: 'Airtable', icon: 'database', note: 'A database that looks like a spreadsheet'}],
+          },
+          {
+            name: 'AI',
+            role: 'The judgement you would otherwise do yourself',
+            tools: [
+              {name: 'OpenAI', icon: 'brain', note: 'Summarising and tagging listings'},
+              {name: 'Claude', icon: 'sparkles', note: 'Longer documents, fewer mistakes'},
+            ],
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 5500, at: 0},
+          {startMs: 5500, endMs: 11500, at: 1},
+          {startMs: 11500, endMs: 17500, at: 2},
+          {startMs: 17500, endMs: 24000, at: 3},
+          {startMs: 24000, endMs: 30000, whole: true},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 const dataVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
@@ -1189,6 +1248,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(mockupVizProps.durationMs)}
       defaultProps={mockupVizProps}
+    />
+    <Composition
+      id="StackViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(stackVizProps.durationMs)}
+      defaultProps={stackVizProps}
     />
     <Composition
       id="AnatomyViz"

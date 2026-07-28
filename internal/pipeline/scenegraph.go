@@ -71,6 +71,9 @@ const (
 	// SceneMockup is a page assembling itself inside a device frame, with the
 	// layer list filling in beside it.
 	SceneMockup = "mockup"
+	// SceneStack is a set of tiers stacked vertically — which tool does what,
+	// walked from the top of the stack down.
+	SceneStack = "stack"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

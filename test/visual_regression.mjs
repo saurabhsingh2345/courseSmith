@@ -70,6 +70,10 @@ const TARGETS = [
   // proves the fit — five blocks are taller than the viewport, so a regression
   // in the scaling shows here as a footer that has fallen off the page.
   { id: "MockupViz", frame: 800 },
+  // The stack on its third tier: two bands walked and lit, the current one
+  // raised, the one below still dim. It is the only state that shows reached,
+  // current and unreached at once, which is the whole grammar of the scene.
+  { id: "StackViz", frame: 430 },
   // Mid-word, with the completion popup open. It only exists for the handful
   // of frames where a fragment has matches, so no other target can catch it —
   // and it is the detail that makes the scene read as an editor rather than as
