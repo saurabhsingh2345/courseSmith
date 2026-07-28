@@ -604,6 +604,45 @@ const dataChartDemos: {kind: string; title: string; unit: string; series?: strin
 
 const DATA_DEMO_MS = 6000;
 
+/**
+ * The quiz template. The frame chosen for its baseline is an `explain` beat,
+ * because that is the only state where every part of the scene is on screen at
+ * once: the question, the revealed answer, a dimmed distractor, and the
+ * explanation under the option it belongs to.
+ */
+const quizVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 26000,
+  scenes: [
+    {
+      type: 'quiz',
+      startMs: 0,
+      endMs: 26000,
+      props: {
+        title: 'What does len() really count?',
+        question: 'What does len() return for [[1, 2], [3, 4, 5]]?',
+        options: ['2', '5', '7', 'TypeError'],
+        answer: 0,
+        why: [
+          'len() counts the top level, and there are two lists inside it.',
+          'This counts every number instead — what you would get after flattening.',
+          'This adds the two inner counts together, which no list operation does.',
+          'Nested lists are perfectly valid, so nothing raises here.',
+        ],
+        steps: [
+          {startMs: 0, endMs: 5000, show: 'ask'},
+          {startMs: 5000, endMs: 11000, show: 'think'},
+          {startMs: 11000, endMs: 16000, show: 'reveal'},
+          {startMs: 16000, endMs: 21000, show: 'explain', option: 1},
+          {startMs: 21000, endMs: 26000, show: 'explain', option: 2},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 const dataVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
@@ -832,6 +871,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(vscodeLightProps.durationMs)}
       defaultProps={vscodeLightProps}
+    />
+    <Composition
+      id="QuizViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(quizVizProps.durationMs)}
+      defaultProps={quizVizProps}
     />
     <Composition
       id="VSCodeIntroViz"

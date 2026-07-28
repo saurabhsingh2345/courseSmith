@@ -166,6 +166,9 @@ type SnippetPlan struct {
 	// plan rather than on a beat, and for a stronger reason: the files are one
 	// program, and a program is not a property of a moment in the clip.
 	Project *ProjectSpec `json:"project,omitempty"`
+	// Quiz is the quiz template's question. On the plan for the same reason as
+	// Chart: it is the subject of the clip, not a property of one beat in it.
+	Quiz *QuizSpec `json:"quiz,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -316,6 +319,41 @@ type SnippetBeat struct {
 	// Work is which file this beat is in, how much of it exists yet, and
 	// where the camera is looking.
 	Work *WorkspaceBeat `json:"work,omitempty"`
+
+	// --- quiz template ---
+	// Quiz is what this beat does to the question on screen: pose it, hold
+	// while the viewer thinks, reveal the answer, or explain one option.
+	Quiz *QuizBeat `json:"quiz,omitempty"`
+}
+
+// QuizSpec is the clip's one question.
+//
+// It sits on the plan rather than on a beat for the same reason the data
+// template's chart does: the question is the *subject* of the clip, not a
+// property of one moment in it. A question per beat would be a quiz nobody has
+// time to attempt, which is the opposite of what this template is for — the
+// whole value of retrieval practice is the gap between being asked and being
+// told, and that gap needs the clip's whole middle.
+type QuizSpec struct {
+	// Question is what the viewer is asked. One sentence.
+	Question string `json:"question"`
+	// Options are the answers offered, in the order they appear.
+	Options []string `json:"options"`
+	// Answer indexes the correct option.
+	Answer int `json:"answer"`
+	// Why explains each option, index-aligned with Options: why the right one
+	// is right, and — much more usefully — why each wrong one is tempting. A
+	// distractor nobody would pick teaches nothing; saying what makes it
+	// plausible is where the learning actually is.
+	Why []string `json:"why,omitempty"`
+}
+
+// QuizBeat is one move in the question's life on screen.
+type QuizBeat struct {
+	// Show is the action: ask | think | reveal | explain.
+	Show string `json:"show"`
+	// Option is which answer an `explain` beat is talking about.
+	Option int `json:"option,omitempty"`
 }
 
 // WorkspaceBeat is one moment of a multi-file walkthrough.

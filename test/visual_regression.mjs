@@ -41,6 +41,10 @@ const TARGETS = [
   // the window scale-up, the tree click and the tab slide were all switched
   // off in the only compositions that existed.
   { id: "VSCodeIntroViz", frame: 28 },
+  // The quiz template, on an `explain` beat — the only state where every part
+  // of the scene is on screen at once: the question, the revealed answer, a
+  // dimmed distractor lifted back up, and its explanation underneath.
+  { id: "QuizViz", frame: 560 },
   // Mid-word, with the completion popup open. It only exists for the handful
   // of frames where a fragment has matches, so no other target can catch it —
   // and it is the detail that makes the scene read as an editor rather than as

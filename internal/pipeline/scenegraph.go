@@ -50,6 +50,9 @@ const (
 	// SceneData is one persistent chart or world map whose highlight follows
 	// the narration.
 	SceneData = "data"
+	// SceneQuiz is a question posed, held, and answered — the one template
+	// built around the viewer doing something rather than watching.
+	SceneQuiz = "quiz"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

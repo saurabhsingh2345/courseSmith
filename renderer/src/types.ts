@@ -88,7 +88,8 @@ export type SceneType =
   | 'illustration'
   | 'cast'
   | 'story'
-  | 'data';
+  | 'data'
+  | 'quiz';
 
 export type Scene = {
   type: SceneType;

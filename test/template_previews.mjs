@@ -27,6 +27,7 @@ const OUT = join(__dirname, "..", "studio", "public", "template-previews");
 // different vocabularies and guessing between them would break silently.
 const SOURCES = {
   vscode: "VSCodeViz-200",
+  quiz: "QuizViz-560",
   workspace: "WorkspaceViz-690",
   whiteboard: "WhiteboardViz-390",
   flow: "FlowViz-400",
