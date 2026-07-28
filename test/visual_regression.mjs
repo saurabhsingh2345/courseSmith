@@ -35,6 +35,17 @@ const TARGETS = [
   // scene where light mode cannot be inferred from any other baseline — and
   // the drawer is the half of the template that had no coverage at all.
   { id: "VSCodeLightViz", frame: 460 },
+  // The opening gesture: the pointer on the file it is about to click, the row
+  // lit under it, the tab not yet open. Every snippet renders this and no
+  // baseline covered any of it — the other two fixtures leave `intro` off, so
+  // the window scale-up, the tree click and the tab slide were all switched
+  // off in the only compositions that existed.
+  { id: "VSCodeIntroViz", frame: 28 },
+  // Mid-word, with the completion popup open. It only exists for the handful
+  // of frames where a fragment has matches, so no other target can catch it —
+  // and it is the detail that makes the scene read as an editor rather than as
+  // text appearing.
+  { id: "VSCodeViz", frame: 52 },
   // The workspace template's payoff: the code and the terminal framed
   // together, with the output the program really printed. It is the one shot
   // that exercises the camera, the multi-file tabs and the executed project at

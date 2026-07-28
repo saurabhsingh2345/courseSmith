@@ -87,6 +87,9 @@ const INTRO = {
   treeHoverBefore: [26, 20],
   treeClickBefore: [20, 12],
   tabInBefore: [14, 3],
+  // The pointer withdraws between the click and the first keystroke — it has
+  // done its job, and the hand has moved to the keyboard.
+  pointerLeaveBefore: [12, 2],
 } as const;
 
 // Terminal choreography, in frames from the moment the step's run begins.
@@ -126,6 +129,70 @@ const ELLIPSIS: React.CSSProperties = {
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
+};
+
+/**
+ * The mouse pointer, during the opening gesture.
+ *
+ * The scene already timed a hover and a click on the file it is about to open —
+ * the row lit, then it selected — and drew no cursor at all, so the highlight
+ * moved on its own like a haunted menu. A pointer is the difference between
+ * "the UI is animating" and "somebody is using this".
+ *
+ * It renders *inside* the row it is clicking, positioned relatively, rather
+ * than at computed window coordinates. The tree is a flex column with padding;
+ * any absolute position for this would be a second copy of that layout, and
+ * would part company with it the first time a font size changed.
+ */
+const MousePointer: React.FC<{
+  /** 0-1 as the pointer travels in. */
+  arrive: number;
+  /** 0-1 as the button goes down. */
+  press: number;
+  /** 0-1 as it leaves once the work is done. */
+  leave: number;
+  color: string;
+  shadow: string;
+}> = ({arrive, press, leave, color, shadow}) => {
+  if (arrive <= 0 || leave >= 1) return null;
+  // It comes in from below-right — the direction a hand on a trackpad moves
+  // from — and eases to the row. The press is a small dip, not a scale: a
+  // cursor that grows when it clicks is a cursor nobody has ever seen.
+  const dx = (1 - arrive) * 120 + leave * 40;
+  const dy = (1 - arrive) * 90 + leave * 60;
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: 128,
+        top: 16,
+        opacity: Math.min(arrive, 1 - leave),
+        transform: `translate(${dx}px, ${dy + press * 2}px)`,
+        pointerEvents: 'none',
+      }}
+    >
+      {/* The click ring: a single soft pulse under the tip as the button goes
+          down, which is what makes the selection read as caused. */}
+      {press > 0 && (
+        <div
+          style={{
+            position: 'absolute',
+            left: -13,
+            top: -9,
+            width: 34,
+            height: 34,
+            borderRadius: 17,
+            border: `2px solid ${color}`,
+            opacity: Math.max(0, 0.55 - press * 0.55),
+            transform: `scale(${0.4 + press * 1.1})`,
+          }}
+        />
+      )}
+      <svg width={26} height={32} viewBox="0 0 26 32" style={{filter: `drop-shadow(0 2px 3px ${shadow})`}}>
+        <path d="M2 1 L2 24 L8 18.5 L12 27.5 L16 25.5 L12 17 L20 16.5 Z" fill={color} stroke="#0b0b0d" strokeWidth={1.6} strokeLinejoin="round" />
+      </svg>
+    </div>
+  );
 };
 
 type WalkStep = {
@@ -197,6 +264,52 @@ const changedLines = (prev: string, cur: string): Set<number> => {
 const indentDepth = (line: string): number => {
   const spaces = line.length - line.trimStart().length;
   return Math.floor(spaces / 4);
+};
+
+// --- suggestions ------------------------------------------------------------
+//
+// The completion popup is the single strongest "somebody is coding here"
+// signal an editor gives off, and this scene had nothing like it: characters
+// simply appeared, which is what a text animation does, not what an editor does.
+//
+// The candidates come from **the file's own identifiers**, not from an invented
+// vocabulary of Python builtins. That is not a shortcut — it is what a real
+// editor's word-based completion actually does, it means the suggestions are
+// always relevant to the code on screen, and it means this cannot go stale
+// against a language it was never taught. It is also the honest reading of "the
+// editor knows about the code inside it".
+
+const IDENT = /[A-Za-z_][A-Za-z0-9_]*/g;
+
+/** Every identifier in the finished buffer, longest-first, de-duplicated. */
+const identifiersIn = (code: string): string[] => {
+  const seen = new Set<string>();
+  for (const m of code.matchAll(IDENT)) {
+    if (m[0].length >= 3) seen.add(m[0]);
+  }
+  return [...seen];
+};
+
+/** The word fragment immediately before the caret, if any. */
+const fragmentAt = (line: string): string => {
+  const m = /[A-Za-z_][A-Za-z0-9_]*$/.exec(line);
+  return m ? m[0] : '';
+};
+
+/**
+ * Up to `max` completions for `fragment`.
+ *
+ * The exact match is kept rather than filtered out: a real editor still lists
+ * the word you have finished typing, and dropping it made the popup vanish for
+ * one frame at the end of every word — a flicker that read as a glitch.
+ */
+const suggestionsFor = (fragment: string, ids: string[], max = 4): string[] => {
+  if (fragment.length < 2) return [];
+  const lower = fragment.toLowerCase();
+  return ids
+    .filter((id) => id.toLowerCase().startsWith(lower))
+    .sort((a, b) => a.length - b.length || a.localeCompare(b))
+    .slice(0, max);
 };
 
 export const VSCodeScene: React.FC<{
@@ -339,6 +452,10 @@ export const VSCodeScene: React.FC<{
   const treeHover = before(INTRO.treeHoverBefore);
   const treeClick = before(INTRO.treeClickBefore);
   const tabIn = before(INTRO.tabInBefore);
+  // The pointer's exit: it leaves over the frames between the click landing and
+  // the first keystroke. A cursor still sitting on the file tree while the code
+  // types itself is a cursor nobody is holding.
+  const pointerLeave = before(INTRO.pointerLeaveBefore);
 
   // --- editor content -------------------------------------------------------
   const stepTokens = tokens[Math.min(stepIdx, tokens.length - 1)];
@@ -365,6 +482,21 @@ export const VSCodeScene: React.FC<{
     cursorLine = lines.length - 1;
     cursorOn = !typingDone && frame % 16 < 9;
   }
+
+  // Completions for whatever word is half-typed at the caret, drawn from the
+  // finished buffer's own identifiers. Only while typing: a popup hanging over
+  // finished code is a popup nobody dismissed.
+  //
+  // Not memoised, deliberately. This sits below the early return above, so a
+  // hook here changes the hook count between renders — which is exactly the
+  // React invariant it broke the first time. A regex over a few hundred
+  // characters per frame is not worth a second early-return branch.
+  const bufferIdents = identifiersIn(step.code);
+  const fragment =
+    stepIdx === 0 && !typingDone && cursorLine >= 0
+      ? fragmentAt((visibleLines[cursorLine] ?? []).map((t) => t.content).join(''))
+      : '';
+  const suggestions = fragment ? suggestionsFor(fragment, bufferIdents) : [];
 
   const changed = stepIdx > 0 ? changedLines(steps[stepIdx - 1].code, step.code) : new Set<number>();
   const flash = interpolate(framesIntoStep, [0, 8, 34], [0, 1, 0], {
@@ -582,6 +714,9 @@ export const VSCodeScene: React.FC<{
                       // Without this the row grows to fit the name and the
                       // text spills across the editor column underneath.
                       minWidth: 0,
+                      // So the pointer can sit on this row without knowing
+                      // where the row is.
+                      position: 'relative',
                     }}
                   >
                     <FileCode2
@@ -591,6 +726,15 @@ export const VSCodeScene: React.FC<{
                       style={{flexShrink: 0}}
                     />
                     <span style={ELLIPSIS}>{f}</span>
+                    {isTarget && intro && (
+                      <MousePointer
+                        arrive={treeHover}
+                        press={treeClick}
+                        leave={pointerLeave}
+                        color={ui.text}
+                        shadow="rgba(0,0,0,0.5)"
+                      />
+                    )}
                   </div>
                 );
               })}
@@ -699,6 +843,55 @@ export const VSCodeScene: React.FC<{
                                 }}
                               />
                             ) : null}
+                            {/* The completion popup, hanging off the caret so
+                                it follows the text without any column
+                                arithmetic. */}
+                            {li === cursorLine && !typingDone && suggestions.length > 0 && (
+                              <span
+                                style={{
+                                  position: 'absolute',
+                                  left: 0,
+                                  top: LINE_H - 4,
+                                  zIndex: 5,
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  minWidth: 300,
+                                  backgroundColor: ui.chrome,
+                                  border: `1px solid ${ui.border}`,
+                                  borderRadius: 6,
+                                  boxShadow: '0 10px 26px rgba(0,0,0,0.45)',
+                                  overflow: 'hidden',
+                                  fontSize: 20,
+                                }}
+                              >
+                                {suggestions.map((s, si) => (
+                                  <span
+                                    key={s}
+                                    style={{
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      gap: 10,
+                                      padding: '5px 12px',
+                                      // The first row is the selected one, the
+                                      // way it is the moment the list opens.
+                                      backgroundColor: si === 0 ? selectedTint(theme.primary, 1) : 'transparent',
+                                      color: si === 0 ? ui.text : ui.dim,
+                                    }}
+                                  >
+                                    <Blocks size={17} color={theme.accent} strokeWidth={2} style={{flexShrink: 0}} />
+                                    {/* The typed prefix is highlighted, which
+                                        is how a real list shows you why these
+                                        entries are the matches. */}
+                                    <span style={{whiteSpace: 'pre'}}>
+                                      <span style={{color: theme.accent, fontWeight: 700}}>
+                                        {s.slice(0, fragment.length)}
+                                      </span>
+                                      {s.slice(fragment.length)}
+                                    </span>
+                                  </span>
+                                ))}
+                              </span>
+                            )}
                           </span>
                         </div>
                       );

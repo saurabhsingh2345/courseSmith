@@ -744,6 +744,28 @@ const vscodeLightProps: LessonVideoProps = {
   theme: {...illustrationLightProps.theme},
 };
 
+/**
+ * The opening gesture, which nothing else has a picture of.
+ *
+ * The main VS Code fixture sets neither `intro` nor `typeAtMs`, so the whole
+ * opening — the window scaling up, the pointer travelling to the file, the
+ * click, the tab sliding in — is switched off in one case and happens at
+ * negative frames in the other. Every part of it could break and every baseline
+ * would still pass, while the snippet path renders it on every clip.
+ *
+ * `keystrokes` is deliberately absent: the frame this composition baselines is
+ * before the first character, so the schedule is immaterial here, and pasting a
+ * second copy of it would be a second thing to regenerate.
+ */
+const vscodeIntroProps: LessonVideoProps = {
+  ...vscodeVizProps,
+  scenes: vscodeVizProps.scenes.map((s) =>
+    s.type === 'walkthrough'
+      ? {...s, props: {...s.props, intro: true, typeAtMs: 1400, keystrokes: undefined}}
+      : s,
+  ),
+};
+
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -810,6 +832,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(vscodeLightProps.durationMs)}
       defaultProps={vscodeLightProps}
+    />
+    <Composition
+      id="VSCodeIntroViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(vscodeIntroProps.durationMs)}
+      defaultProps={vscodeIntroProps}
     />
     <Composition
       id="IllustrationViz"
