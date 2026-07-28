@@ -879,6 +879,52 @@ const promptLoopVizProps: LessonVideoProps = {
   captions: [],
 };
 
+/**
+ * The mockup template. A five-block signup page, built downward.
+ *
+ * Five is deliberately the ceiling rather than a typical page: it is the only
+ * fixture that exercises the fit, where the stack is taller than the viewport
+ * and every block scales rather than the footer falling off the bottom.
+ */
+const mockupVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 34000,
+  scenes: [
+    {
+      type: 'mockup',
+      startMs: 0,
+      endMs: 34000,
+      props: {
+        title: 'A signup page, one block at a time',
+        device: 'browser',
+        screen: 'Signup',
+        blocks: [
+          {kind: 'header', label: 'Nav bar', text: 'Notely', note: 'A logo and two links — anything more is a reason to leave.'},
+          {
+            kind: 'hero',
+            label: 'Hero',
+            text: 'Notes that find themselves',
+            note: 'One promise, big, above the fold, before anyone scrolls.',
+          },
+          {kind: 'grid', label: 'Feature row', note: 'Three reasons, no paragraphs — nobody reads paragraphs here.'},
+          {kind: 'input', label: 'Email field', text: 'you@work.com', note: 'One field. Every extra one costs you signups.'},
+          {kind: 'button', label: 'Signup button', text: 'Start free', note: 'The verb says what happens next, not the word submit.'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 5500, at: 0},
+          {startMs: 5500, endMs: 11000, at: 1},
+          {startMs: 11000, endMs: 17000, at: 2},
+          {startMs: 17000, endMs: 23000, at: 3},
+          {startMs: 23000, endMs: 29000, at: 4},
+          {startMs: 29000, endMs: 34000, whole: true},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 const dataVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
@@ -1134,6 +1180,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(promptLoopVizProps.durationMs)}
       defaultProps={promptLoopVizProps}
+    />
+    <Composition
+      id="MockupViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(mockupVizProps.durationMs)}
+      defaultProps={mockupVizProps}
     />
     <Composition
       id="AnatomyViz"

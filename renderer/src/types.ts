@@ -94,7 +94,8 @@ export type SceneType =
   | 'anatomy'
   | 'timeline'
   | 'canvas'
-  | 'promptloop';
+  | 'promptloop'
+  | 'mockup';
 
 export type Scene = {
   type: SceneType;

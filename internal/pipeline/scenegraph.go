@@ -68,6 +68,9 @@ const (
 	// ScenePromptLoop is a conversation with something that builds: prompts
 	// stacking down one column, and what came back beside them.
 	ScenePromptLoop = "promptloop"
+	// SceneMockup is a page assembling itself inside a device frame, with the
+	// layer list filling in beside it.
+	SceneMockup = "mockup"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

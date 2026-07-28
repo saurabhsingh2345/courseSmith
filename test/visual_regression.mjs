@@ -65,6 +65,11 @@ const TARGETS = [
   // argument at once: three turns of history in the thread, the attempt counter
   // past one, and the goal bar reaching further than it did last round.
   { id: "PromptLoopViz", frame: 825 },
+  // The mockup on its last build beat: every block landed, the active one
+  // outlined, its layer row lit and its note up. It is also the frame that
+  // proves the fit — five blocks are taller than the viewport, so a regression
+  // in the scaling shows here as a footer that has fallen off the page.
+  { id: "MockupViz", frame: 800 },
   // Mid-word, with the completion popup open. It only exists for the handful
   // of frames where a fragment has matches, so no other target can catch it —
   // and it is the detail that makes the scene read as an editor rather than as

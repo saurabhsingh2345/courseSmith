@@ -33,6 +33,7 @@ const SOURCES = {
   timeline: "TimelineViz-350",
   canvas: "CanvasViz-755",
   promptloop: "PromptLoopViz-825",
+  mockup: "MockupViz-800",
   workspace: "WorkspaceViz-690",
   whiteboard: "WhiteboardViz-390",
   flow: "FlowViz-400",

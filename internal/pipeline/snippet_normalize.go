@@ -97,6 +97,7 @@ type planFields struct {
 	Timeline bool
 	Canvas   bool
 	Loop     bool
+	Mockup   bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -199,6 +200,9 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Loop {
 		p.Loop = nil
+	}
+	if !owns.Mockup {
+		p.Mockup = nil
 	}
 }
 

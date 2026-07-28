@@ -186,6 +186,9 @@ type SnippetPlan struct {
 	// Loop is the promptloop template's goal — the one thing that does not
 	// change across the clip, which is exactly why it is worth pinning.
 	Loop *PromptLoopSpec `json:"loop,omitempty"`
+	// Mockup is the mockup template's screen. On the plan for the same reason as
+	// Canvas: the page is the subject of the clip and the beats walk down it.
+	Mockup *MockupSpec `json:"mockup,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -366,6 +369,11 @@ type SnippetBeat struct {
 	// Loop is one turn of the conversation: who is speaking, what is in the
 	// bubble, and — when it is the model's turn — how the attempt came out.
 	Loop *PromptLoopBeat `json:"loop,omitempty"`
+
+	// --- mockup template ---
+	// Mockup says which block of the page this beat is adding, or that it is
+	// showing the finished screen.
+	Mockup *MockupBeat `json:"mockup,omitempty"`
 }
 
 // QuizSpec is the clip's one question.
