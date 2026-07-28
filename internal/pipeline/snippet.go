@@ -195,6 +195,9 @@ type SnippetPlan struct {
 	// Spec is the spec template's checklist. On the plan for the same reason as
 	// Quiz: it is the subject of the clip, not a property of one moment in it.
 	Spec *SpecSheet `json:"spec,omitempty"`
+	// Showcase is the showcase template's tool card. On the plan for the same
+	// reason as Spec: the card is the subject and the beats only light parts.
+	Showcase *ShowcaseSpec `json:"showcase,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -390,6 +393,11 @@ type SnippetBeat struct {
 	// Spec says which criterion this beat is writing, or that it is checking
 	// the whole sheet.
 	Spec *SpecBeat `json:"spec,omitempty"`
+
+	// --- showcase template ---
+	// Showcase says which part of the tool card this beat lights, or that it is
+	// the hand-off to the demo.
+	Showcase *ShowcaseBeat `json:"showcase,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

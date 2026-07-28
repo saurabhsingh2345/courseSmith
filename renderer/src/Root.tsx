@@ -1028,6 +1028,54 @@ const specVizProps: LessonVideoProps = {
   captions: [],
 };
 
+/**
+ * The showcase template at full width: four decision cells, three strengths,
+ * two limits, and the hand-off. Eight beats — the shape that needed the beat
+ * ceiling raised past seven.
+ */
+const showcaseVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 40000,
+  scenes: [
+    {
+      type: 'showcase',
+      startMs: 0,
+      endMs: 40000,
+      props: {
+        title: 'Airtable, and when not to use it',
+        name: 'Airtable',
+        category: 'Database',
+        tagline: 'A database that looks and feels like a spreadsheet',
+        icon: 'database',
+        facts: [
+          {label: 'Best for', value: 'Small structured datasets'},
+          {label: 'Price', value: 'Free to 1,000 rows'},
+          {label: 'Lock-in', value: 'CSV out, formulas stay'},
+          {label: 'Learning curve', value: 'An afternoon'},
+        ],
+        strengths: [
+          'Non-technical people can edit it',
+          'Views and filters without queries',
+          'Connects to almost everything',
+        ],
+        limits: ['Slows badly past fifty thousand rows', 'Per-seat pricing punishes big teams'],
+        steps: [
+          {startMs: 0, endMs: 5000, show: 'intro'},
+          {startMs: 5000, endMs: 9500, show: 'fact', at: 0},
+          {startMs: 9500, endMs: 14000, show: 'fact', at: 1},
+          {startMs: 14000, endMs: 18500, show: 'fact', at: 2},
+          {startMs: 18500, endMs: 23000, show: 'fact', at: 3},
+          {startMs: 23000, endMs: 28500, show: 'strengths'},
+          {startMs: 28500, endMs: 34500, show: 'limits'},
+          {startMs: 34500, endMs: 40000, show: 'handoff'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 const dataVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
@@ -1310,6 +1358,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(specVizProps.durationMs)}
       defaultProps={specVizProps}
+    />
+    <Composition
+      id="ShowcaseViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(showcaseVizProps.durationMs)}
+      defaultProps={showcaseVizProps}
     />
     <Composition
       id="AnatomyViz"

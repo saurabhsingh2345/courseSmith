@@ -100,6 +100,7 @@ type planFields struct {
 	Mockup   bool
 	Stack    bool
 	Spec     bool
+	Showcase bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -211,6 +212,9 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Spec {
 		p.Spec = nil
+	}
+	if !owns.Showcase {
+		p.Showcase = nil
 	}
 }
 

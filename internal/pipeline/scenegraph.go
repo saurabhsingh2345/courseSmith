@@ -77,6 +77,9 @@ const (
 	// SceneSpec is a checklist written a line at a time and then checked all at
 	// once — acceptance criteria, and the moment they go green.
 	SceneSpec = "spec"
+	// SceneShowcase is one tool's card — what it is, what it costs, what it is
+	// good and bad at — ending on a hand-off plate a demo recording cuts onto.
+	SceneShowcase = "showcase"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

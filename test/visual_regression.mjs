@@ -78,6 +78,10 @@ const TARGETS = [
   // filled tick, a crossed box, struck text and a tally short of the total at
   // once. A clean sweep would prove none of the miss path.
   { id: "SpecViz", frame: 910 },
+  // The showcase on its limits beat — the enforced half lit, all four decision
+  // cells filled, the identity block intact. The hand-off frame is the other
+  // state worth watching, but it hides the card the template is actually about.
+  { id: "ShowcaseViz", frame: 940 },
   // Mid-word, with the completion popup open. It only exists for the handful
   // of frames where a fragment has matches, so no other target can catch it —
   // and it is the detail that makes the scene read as an editor rather than as

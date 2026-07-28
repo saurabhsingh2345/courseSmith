@@ -601,7 +601,7 @@ func TestBeatBoundsFitTheWordBudget(t *testing.T) {
 		{45, 150}, {45, 175}, {75, 150}, {120, 175}, {180, 175},
 	} {
 		want, minWords, maxWords := wordBudget(tc.sec, tc.pace)
-		minBeats, maxBeats, suggest, perBeat := beatBounds(want)
+		minBeats, maxBeats, suggest, perBeat := beatBounds(want, 0)
 
 		// The suggested shape must fit inside the budget it was derived from,
 		// or the prompt is asking for something it will then reject.
@@ -626,11 +626,47 @@ func TestBeatBoundsFitTheWordBudget(t *testing.T) {
 	}
 }
 
+// The same failure at the other end of the range, which went unnoticed until a
+// template wanted three minutes: a 180-second clip was told to write seven beats
+// of 75 words against a 60-word per-beat maximum. No plan satisfies both.
+func TestLongClipsAreNotAskedForImpossiblePlans(t *testing.T) {
+	for _, sec := range []int{90, 120, 150, 180} {
+		want, minWords, _ := wordBudget(sec, 175)
+		for _, ceiling := range []int{0, 10, 12} {
+			_, maxBeats, _, perBeat := beatBounds(want, ceiling)
+			// The advice must be something the validator will accept.
+			if perBeat > maxWordsPerBeat {
+				t.Errorf("%ds (ceiling %d): advised %d words a beat, over the %d maximum",
+					sec, ceiling, perBeat, maxWordsPerBeat)
+			}
+			// And the beat range must be able to fund the floor at all.
+			if got := maxBeats * maxWordsPerBeat; got < minWords {
+				t.Errorf("%ds (ceiling %d): %d beats can hold %d words, under the %d floor",
+					sec, ceiling, maxBeats, got, minWords)
+			}
+		}
+	}
+}
+
+// A raised ceiling has to actually raise the range, or the templates that set
+// it are still capped at seven and the field does nothing.
+func TestRaisedCeilingWidensTheBeatRange(t *testing.T) {
+	want, _, _ := wordBudget(120, 175)
+	_, defaultMax, _, _ := beatBounds(want, 0)
+	_, raisedMax, _, raisedPerBeat := beatBounds(want, 12)
+	if raisedMax <= defaultMax {
+		t.Errorf("ceiling 12 gave %d beats, no more than the default %d", raisedMax, defaultMax)
+	}
+	if raisedPerBeat >= maxWordsPerBeat {
+		t.Errorf("more beats should mean fewer words each; got %d", raisedPerBeat)
+	}
+}
+
 // The regression that prompted all of this: a 20-second clip at the snippets
 // course's pace was told to write three beats against an 89-word ceiling.
 func TestShortClipsAreNotAskedForImpossiblePlans(t *testing.T) {
 	want, _, maxWords := wordBudget(20, 175)
-	_, _, suggest, perBeat := beatBounds(want)
+	_, _, suggest, perBeat := beatBounds(want, 0)
 	if suggest*perBeat > maxWords {
 		t.Fatalf("a 20s clip is still asked for %d beats x %d words against a %d ceiling",
 			suggest, perBeat, maxWords)

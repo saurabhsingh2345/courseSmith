@@ -97,7 +97,8 @@ export type SceneType =
   | 'promptloop'
   | 'mockup'
   | 'stack'
-  | 'spec';
+  | 'spec'
+  | 'showcase';
 
 export type Scene = {
   type: SceneType;
