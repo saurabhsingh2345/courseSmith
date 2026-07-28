@@ -24,6 +24,7 @@ import {QuizScene} from './components/QuizScene';
 import {CompareScene} from './components/CompareScene';
 import {AnatomyScene} from './components/AnatomyScene';
 import {TimelineScene} from './components/TimelineScene';
+import {CanvasScene} from './components/CanvasScene';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
 import {resolveMotion, secondsToFrames} from './theme/motion';
@@ -105,6 +106,8 @@ const sceneContent = (
       return <AnatomyScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'timeline':
       return <TimelineScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'canvas':
+      return <CanvasScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       return null;
   }

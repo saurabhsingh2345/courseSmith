@@ -492,6 +492,7 @@ type beatFields struct {
 	Compare  bool
 	Anatomy  bool
 	Timeline bool
+	Canvas   bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -512,6 +513,8 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "anatomy"
 		case !owned.Timeline && b.Timeline != nil:
 			set = "timeline"
+		case !owned.Canvas && b.Canvas != nil:
+			set = "canvas"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

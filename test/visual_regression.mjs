@@ -56,6 +56,11 @@ const TARGETS = [
   // is the state that proves the future is drawn rather than revealed — a
   // frame on the closing beat could not tell the two designs apart.
   { id: "TimelineViz", frame: 350 },
+  // The canvas mid-run: the token out on the wire between two cards, ticks
+  // behind it, the wire ahead still dark. A frame on a build beat would prove
+  // the layout and nothing about the payoff, which is the half of this template
+  // that has moving parts.
+  { id: "CanvasViz", frame: 755 },
   // Mid-word, with the completion popup open. It only exists for the handful
   // of frames where a fragment has matches, so no other target can catch it —
   // and it is the detail that makes the scene read as an editor rather than as

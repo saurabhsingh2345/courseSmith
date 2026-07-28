@@ -179,6 +179,10 @@ type SnippetPlan struct {
 	// Quiz is the quiz template's question. On the plan for the same reason as
 	// Chart: it is the subject of the clip, not a property of one beat in it.
 	Quiz *QuizSpec `json:"quiz,omitempty"`
+	// Canvas is the canvas template's automation — the whole chain of cards and
+	// the payload that runs them. On the plan for the same reason as Timeline:
+	// the workflow is the subject of the clip and the beats only walk it.
+	Canvas *CanvasSpec `json:"canvas,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -349,6 +353,11 @@ type SnippetBeat struct {
 	// Quiz is what this beat does to the question on screen: pose it, hold
 	// while the viewer thinks, reveal the answer, or explain one option.
 	Quiz *QuizBeat `json:"quiz,omitempty"`
+
+	// --- canvas template ---
+	// Canvas says which card of the automation this beat is standing on, or
+	// that it is running the payload down the whole chain.
+	Canvas *CanvasBeat `json:"canvas,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

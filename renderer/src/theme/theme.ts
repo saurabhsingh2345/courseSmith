@@ -49,6 +49,23 @@ const DEFAULTS = {
   grain: 0.04,
 };
 
+/**
+ * Overlay a hex colour at a given alpha.
+ *
+ * Design tokens are opaque hex by construction — Go derives them and proves
+ * their contrast against the background — so any scene that wants a tint, a
+ * glow or a hairline of an existing token has to build it here rather than
+ * inventing a literal, which would not flip with the mode.
+ */
+export const withAlpha = (hex: string, alpha: number): string => {
+  const h = hex.replace('#', '');
+  if (h.length !== 6) return hex;
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
 export const resolveTheme = (t: Theme): ResolvedTheme => ({
   primary: t.primary,
   accent: t.accent,

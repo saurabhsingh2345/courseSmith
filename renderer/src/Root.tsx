@@ -758,6 +758,69 @@ const timelineVizProps: LessonVideoProps = {
   captions: [],
 };
 
+/**
+ * The canvas template. Four cards, walked one at a time and then fired.
+ *
+ * The baseline frame is taken during the run rather than while building,
+ * because that is the state no other frame can stand in for: the token over a
+ * card, the ticks it has already left behind, the wire live behind it and dark
+ * ahead. A frame on a build beat proves the layout and nothing about the payoff.
+ */
+const canvasVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [
+    {
+      type: 'canvas',
+      startMs: 0,
+      endMs: 30000,
+      props: {
+        title: 'From form to spreadsheet to Slack',
+        payload: 'New signup',
+        nodes: [
+          {
+            app: 'Typeform',
+            title: 'Someone submits the form',
+            kind: 'trigger',
+            icon: 'zap',
+            note: 'Nothing runs until this happens — the whole chain waits here.',
+          },
+          {
+            app: 'Make',
+            title: 'Check the plan field',
+            kind: 'filter',
+            icon: 'filter',
+            note: 'Free-tier signups stop here; only paid ones carry on.',
+          },
+          {
+            app: 'Sheets',
+            title: 'Append a row',
+            kind: 'action',
+            icon: 'database',
+            note: 'One row per signup, written the moment it arrives.',
+          },
+          {
+            app: 'Slack',
+            title: 'Post to the sales channel',
+            kind: 'output',
+            icon: 'message',
+            note: 'The team sees it before the customer has closed the tab.',
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 5000, at: 0},
+          {startMs: 5000, endMs: 10000, at: 1},
+          {startMs: 10000, endMs: 15000, at: 2},
+          {startMs: 15000, endMs: 20000, at: 3},
+          {startMs: 20000, endMs: 30000, run: true},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 const dataVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
@@ -995,6 +1058,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(timelineVizProps.durationMs)}
       defaultProps={timelineVizProps}
+    />
+    <Composition
+      id="CanvasViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(canvasVizProps.durationMs)}
+      defaultProps={canvasVizProps}
     />
     <Composition
       id="AnatomyViz"

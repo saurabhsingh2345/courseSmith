@@ -92,7 +92,8 @@ export type SceneType =
   | 'quiz'
   | 'compare'
   | 'anatomy'
-  | 'timeline';
+  | 'timeline'
+  | 'canvas';
 
 export type Scene = {
   type: SceneType;

@@ -62,6 +62,9 @@ const (
 	// SceneTimeline is a spine of milestones filling in as the narration walks
 	// it — for anything whose subject is order.
 	SceneTimeline = "timeline"
+	// SceneCanvas is an automation wired across a builder's canvas: app cards
+	// on a dotted grid, and a payload that runs the chain end to end.
+	SceneCanvas = "canvas"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

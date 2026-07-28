@@ -31,6 +31,7 @@ const SOURCES = {
   compare: "CompareViz-570",
   anatomy: "AnatomyViz-420",
   timeline: "TimelineViz-350",
+  canvas: "CanvasViz-755",
   workspace: "WorkspaceViz-690",
   whiteboard: "WhiteboardViz-390",
   flow: "FlowViz-400",
