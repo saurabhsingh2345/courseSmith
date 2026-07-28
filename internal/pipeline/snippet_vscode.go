@@ -58,6 +58,13 @@ const (
 // character is typed, when there was no intro beat to cover it.
 const minTypingLeadMs = 1300
 
+// typingPortionOfWindow is how much of the first step's window the typing
+// occupies. The rest is the reader looking at the finished code — a file whose
+// last character lands exactly as the next step takes over is a file nobody
+// ever saw whole. Mirrors TYPING_PORTION in VSCodeScene.tsx, which no longer
+// schedules anything itself but still uses the fraction for its caret.
+const typingPortionOfWindow = 0.7
+
 func validateVSCodePlan(p *SnippetPlan) error {
 	if err := checkBeatShape(p); err != nil {
 		return err
@@ -240,26 +247,47 @@ func vscodeScenes(in SnippetSceneInput) ([]Scene, error) {
 	}
 
 	_, _, walkEnd := in.Beat(len(in.Plan.Beats) - 1)
+
+	// When the first character lands. Everything before it is the opening
+	// gesture, paced to fill exactly this gap however long the intro beat
+	// turned out to be.
+	typeAtMs := max(firstCodeStart, walkStart+minTypingLeadMs)
+
+	// When every *other* character lands. Owned here rather than in the
+	// renderer so the animation and the click track are the same list of
+	// numbers by construction — see typing.go.
+	//
+	// The window runs from the first keystroke to whenever the second step
+	// takes over, and typing uses only the front of it: a file that finishes
+	// exactly as the next step begins never lets the reader see the finished
+	// code it has just watched being written.
+	step0End := walkEnd
+	if len(steps) > 1 {
+		if next, ok := steps[1]["atMs"].(int); ok {
+			step0End = next
+		}
+	}
+	firstCodeText, _ := steps[0]["code"].(string)
+	budget := int(float64(step0End-typeAtMs) * typingPortionOfWindow)
+
 	scenes = append(scenes, Scene{
 		Type:    SceneWalkthrough,
 		StartMs: walkStart,
 		EndMs:   walkEnd,
 		Props: map[string]any{
-			"title":    in.Plan.Title,
-			"language": language,
-			"file":     file,
-			"project":  workspaceName(in.Plan.Title),
-			"files":    []string{file},
-			"steps":    steps,
+			"title":      in.Plan.Title,
+			"language":   language,
+			"file":       file,
+			"project":    workspaceName(in.Plan.Title),
+			"files":      []string{file},
+			"steps":      steps,
+			"keystrokes": KeystrokeTimesMs(KeystrokeSchedule(firstCodeText, budget), typeAtMs),
 			// The snippet path plays the full choreography: the window scales
 			// up, the file is picked out of the tree, the tab opens, and only
 			// then does the cursor start typing. The lesson path leaves this
 			// off — mid-lesson the editor should already be there.
-			"intro": true,
-			// When the first character lands. Everything before it is the
-			// opening gesture, paced to fill exactly this gap however long the
-			// intro beat turned out to be.
-			"typeAtMs": max(firstCodeStart, walkStart+minTypingLeadMs),
+			"intro":    true,
+			"typeAtMs": typeAtMs,
 		},
 	})
 	return scenes, nil

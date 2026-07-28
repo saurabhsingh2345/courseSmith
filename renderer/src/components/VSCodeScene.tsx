@@ -161,6 +161,15 @@ const flatten = (lines: TokenLine[], fallback: string): Char[] => {
   return chars;
 };
 
+/**
+ * Fallback reveal frames, for a scene graph with no `keystrokes`.
+ *
+ * The schedule is Go's now (internal/pipeline/typing.go) — it models a real
+ * rhythm and it is what the keystroke click track is generated from, so the two
+ * cannot drift. This remains only so an older scene graph, or a lesson whose
+ * walkthrough predates the field, still types instead of appearing all at once.
+ * It is uniform-with-jitter, which is exactly the thing Go replaced.
+ */
 const charRevealFrames = (chars: Char[], typingFrames: number): number[] => {
   const weights = chars.map((c, i) => {
     const jitter = 0.6 + 0.8 * random(`vsc-key-${i}`);
@@ -268,11 +277,30 @@ export const VSCodeScene: React.FC<{
     : 0;
 
   // Typing plan for step 0 (chars + reveal frames), computed once.
+  //
+  // `reveal` is measured in frames from the start of step 0, which is how the
+  // draw loop below consumes it. When Go supplied a keystroke schedule that is
+  // simply a conversion; otherwise it falls back to the local estimate.
   const typing = useMemo(() => {
     if (!tokens || tokens.length === 0) {
       return null;
     }
     const chars = flatten(tokens[0], ui.token);
+    const schedule = Array.isArray(props.keystrokes) ? (props.keystrokes as number[]) : null;
+    if (schedule && schedule.length === chars.length) {
+      // Absolute scene-graph ms -> frames since typing began, which is the base
+      // the draw loop below uses (`framesIntoStep - typeDelay`). Measuring from
+      // step 0's start instead would double-count the intro, and the file would
+      // finish a second and a half early.
+      //
+      // Go owns the rhythm — pauses at line ends, free indentation, auto-closed
+      // brackets — and the same numbers drive the keystroke click track, so the
+      // sound lands on the character rather than near it.
+      return {
+        chars,
+        reveal: schedule.map((ms) => framesFrom(sceneStartMs, ms) - typeStartFrame),
+      };
+    }
     const step0EndMs = steps.length > 1 ? steps[1].atMs : sceneStartMs + (durationInFrames / FPS) * 1000;
     const windowFrames = Math.max(
       1,
@@ -280,7 +308,7 @@ export const VSCodeScene: React.FC<{
     );
     const typingFrames = Math.max(1, Math.floor(windowFrames * TYPING_PORTION));
     return {chars, reveal: charRevealFrames(chars, typingFrames)};
-  }, [tokens, steps, sceneStartMs, durationInFrames, typeDelay]);
+  }, [tokens, steps, sceneStartMs, durationInFrames, typeDelay, typeStartFrame, props.keystrokes, ui.token]);
 
   if (!tokens || tokens.length === 0) {
     return null;

@@ -655,3 +655,57 @@ func TestTenSecondSnippetIsAccepted(t *testing.T) {
 		t.Error("the story template should still refuse 10 seconds — it needs eight beats")
 	}
 }
+
+// The walkthrough carries a keystroke schedule: one entry per character of the
+// first step's code, starting no earlier than typeAtMs.
+//
+// A length mismatch is the failure worth guarding. The renderer silently falls
+// back to its own estimate when the counts disagree, so the typing still looks
+// fine — while the click track, which is generated from these numbers, plays
+// against a completely different rhythm.
+func TestWalkthroughCarriesKeystrokeSchedule(t *testing.T) {
+	scenes, err := vscodeScenes(sceneInput(t, vscodePlan(), 12000))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var walk *Scene
+	for i := range scenes {
+		if scenes[i].Type == SceneWalkthrough {
+			walk = &scenes[i]
+		}
+	}
+	if walk == nil {
+		t.Fatal("no walkthrough scene")
+	}
+	keys, ok := walk.Props["keystrokes"].([]int)
+	if !ok {
+		t.Fatalf("walkthrough has no keystrokes: %#v", walk.Props["keystrokes"])
+	}
+	steps, _ := walk.Props["steps"].([]map[string]any)
+	if len(steps) == 0 {
+		t.Fatal("walkthrough has no steps")
+	}
+	code, _ := steps[0]["code"].(string)
+	if len(keys) != len([]rune(code)) {
+		t.Fatalf("keystrokes has %d entries for %d characters of code", len(keys), len([]rune(code)))
+	}
+	typeAt, _ := walk.Props["typeAtMs"].(int)
+	if keys[0] < typeAt {
+		t.Errorf("first keystroke at %d is before typeAtMs %d", keys[0], typeAt)
+	}
+	for i := 1; i < len(keys); i++ {
+		if keys[i] < keys[i-1] {
+			t.Fatalf("keystrokes go backwards at %d: %d then %d", i, keys[i-1], keys[i])
+		}
+	}
+	if keys[len(keys)-1] <= keys[0] {
+		t.Error("every keystroke lands at the same moment — the schedule has no span")
+	}
+	// Typing occupies the front of the window, not all of it: the reader has to
+	// get a moment with the finished file before the next step takes over.
+	if next, ok := steps[1]["atMs"].(int); ok {
+		if keys[len(keys)-1] >= next {
+			t.Errorf("typing finishes at %d, at or after the next step at %d", keys[len(keys)-1], next)
+		}
+	}
+}

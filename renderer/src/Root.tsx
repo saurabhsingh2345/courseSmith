@@ -702,6 +702,21 @@ const vscodeVizProps: LessonVideoProps = {
         project: 'python-basics',
         language: 'python',
         files: ['greeting.py', 'variables.py', 'math_ops.py'],
+        // The keystroke schedule Go produces for step 0's code over this
+        // window, pasted verbatim.
+        //
+        // Present so the baseline exercises the *real* typing path. Without it
+        // this composition silently used the renderer's fallback estimate, so
+        // the whole schedule-consuming branch — and the click track that shares
+        // these numbers — shipped with no picture of it. Regenerate with
+        // KeystrokeSchedule(code, 5000 * typingPortionOfWindow) if the step 0
+        // code or its window changes; the gap at index 12 is the newline pause,
+        // which is the shape worth eyeballing.
+        keystrokes: [
+          86, 154, 257, 367, 468, 540, 642, 704, 780, 860, 936, 1062, 1385, 1462, 1537, 1629,
+          1724, 1839, 1915, 1997, 2096, 2172, 2286, 2370, 2470, 2577, 2712, 2794, 2904, 2970,
+          3119, 3186, 3256, 3331, 3413, 3500,
+        ],
         steps: [
           {code: 'name = "Ada"\nprint("Hello, " + name)', atMs: 0},
           {code: 'name = "Ada"\n\ndef greet(who):\n    return "Hello, " + who\n\nprint(greet(name))', atMs: 5000},
