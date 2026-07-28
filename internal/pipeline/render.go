@@ -57,6 +57,11 @@ func (r *RemotionRenderer) dir() string {
 // assetPaths lists every lesson-relative file the scene graph references.
 func (g *SceneGraph) assetPaths() []string {
 	paths := []string{g.AudioFile}
+	if g.SFXFile != "" {
+		// Missing this is silent in the worst way: the render succeeds, the
+		// picture is right, and the typing track simply is not there.
+		paths = append(paths, g.SFXFile)
+	}
 	for _, s := range g.Scenes {
 		if src, ok := s.Props["src"].(string); ok && src != "" {
 			paths = append(paths, src)

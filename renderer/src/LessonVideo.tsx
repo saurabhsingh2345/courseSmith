@@ -145,7 +145,7 @@ const cutStyleFor = (scenes: Scene[]): CutStyle => {
 };
 
 export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
-  const {assetBase, audioFile, scenes, captions, captionEmphasis, motion} = props;
+  const {assetBase, audioFile, sfxFile, scenes, captions, captionEmphasis, motion} = props;
   const theme = useMemo(() => resolveTheme(props.theme), [props.theme]);
   const surface = useMemo(() => surfaceFor(scenes), [scenes]);
   const cutStyle = useMemo(() => cutStyleFor(scenes), [scenes]);
@@ -160,6 +160,11 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
     <AbsoluteFill style={{fontFamily: theme.fontBody}}>
       <SceneBackground theme={theme} surface={surface} />
       {audioFile ? <Audio src={staticFile(`${assetBase ?? ''}/${audioFile}`)} /> : null}
+      {/* The keystroke track, mixed under the voice. Its level is baked into
+          the file (keysound.go) rather than set here, so the one number that
+          decides whether this is pleasant or unbearable lives beside the
+          synthesis that produced it. */}
+      {sfxFile ? <Audio src={staticFile(`${assetBase ?? ''}/${sfxFile}`)} /> : null}
       {scenes.map((scene, i) => {
         const from = msToFrame(scene.startMs);
         const duration = Math.max(1, msToFrame(scene.endMs) - from);

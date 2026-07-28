@@ -111,6 +111,9 @@ export type LessonVideoProps = {
   motion?: MotionTokens;
   assetBase?: string;
   audioFile: string;
+  /** Generated keystroke click track, played under the voice. Optional: only
+   *  videos that type something have one. See internal/pipeline/keysound.go. */
+  sfxFile?: string;
   durationMs: number;
   scenes: Scene[];
   captions: CaptionWord[];

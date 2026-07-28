@@ -108,8 +108,12 @@ type SceneGraph struct {
 	// AssetBase is where relative asset paths resolve from inside the
 	// renderer's public dir; the render/preview steps set it when staging
 	// assets. Empty in the persisted scene graph.
-	AssetBase  string        `json:"assetBase,omitempty"`
-	AudioFile  string        `json:"audioFile"`
+	AssetBase string `json:"assetBase,omitempty"`
+	AudioFile string `json:"audioFile"`
+	// SFXFile is the generated keystroke track, played as a second audio layer
+	// under the voice. Only present when the video actually types something —
+	// see keysound.go. Empty for every template that shows no editor.
+	SFXFile    string        `json:"sfxFile,omitempty"`
 	DurationMs int           `json:"durationMs"`
 	Scenes     []Scene       `json:"scenes"`
 	Captions   []AlignedWord `json:"captions"`
@@ -611,6 +615,24 @@ func finishSceneGraph(e *Env, l *project.Lesson, graph *SceneGraph) error {
 		}
 		fmt.Fprintf(e.out(), "    applied %d edit(s) from %s\n", len(plan.Edits), VideoPlanFileName)
 	}
+
+	// The keystroke track. Generated after the video plan, so an edit that
+	// retimed a scene retimes its typing sound with it, and from the scene
+	// graph's own schedule, so the clicks and the characters are the same
+	// numbers rather than two implementations that agree until one is changed.
+	if times, newlines := collectKeystrokes(graph); len(times) > 0 {
+		path := filepath.Join(l.GeneratedDir(), KeySoundFileName)
+		n, err := WriteKeystrokeTrack(path, times, newlines, graph.DurationMs)
+		if err != nil {
+			// Texture, not content: a clip with no typing sound is a clip, and
+			// failing the build over it would be the wrong trade.
+			fmt.Fprintf(e.out(), "  ⚠ scenegraph could not write %s: %v\n", KeySoundFileName, err)
+		} else if n > 0 {
+			graph.SFXFile = KeySoundFileName
+			fmt.Fprintf(e.out(), "    %s: %d keystrokes\n", KeySoundFileName, n)
+		}
+	}
+
 	if err := writeJSON(filepath.Join(l.GeneratedDir(), SceneGraphFileName), graph); err != nil {
 		return err
 	}
