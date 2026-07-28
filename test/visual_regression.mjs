@@ -49,6 +49,13 @@ const TARGETS = [
   // is marked, the loser has receded and the verdict line is up, so a
   // regression in any of the three shows in one frame.
   { id: "CompareViz", frame: 570 },
+  // The anatomy template on a part beat: the lit run, the dimmed remainder, the
+  // callout and its note — the only state where all four are on screen.
+  { id: "AnatomyViz", frame: 420 },
+  // The timeline mid-walk. The stops still ahead are visible but faded, which
+  // is the state that proves the future is drawn rather than revealed — a
+  // frame on the closing beat could not tell the two designs apart.
+  { id: "TimelineViz", frame: 350 },
   // Mid-word, with the completion popup open. It only exists for the handful
   // of frames where a fragment has matches, so no other target can catch it —
   // and it is the detail that makes the scene read as an editor rather than as

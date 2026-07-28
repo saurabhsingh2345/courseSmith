@@ -166,6 +166,13 @@ type SnippetPlan struct {
 	// plan rather than on a beat, and for a stronger reason: the files are one
 	// program, and a program is not a property of a moment in the clip.
 	Project *ProjectSpec `json:"project,omitempty"`
+	// Timeline is the timeline template's run of milestones. On the plan for the
+	// same reason as Quiz: the sequence is the subject of the clip.
+	Timeline *TimelineSpec `json:"timeline,omitempty"`
+	// Anatomy is the anatomy template's artefact and its labelled parts. On the
+	// plan for the same reason as Quiz: the thing being taken apart is the
+	// subject of the clip.
+	Anatomy *AnatomySpec `json:"anatomy,omitempty"`
 	// Compare is the compare template's pair. On the plan for the same reason
 	// as Quiz: the two things being weighed are the subject of the clip.
 	Compare *CompareSpec `json:"compare,omitempty"`
@@ -322,6 +329,16 @@ type SnippetBeat struct {
 	// Work is which file this beat is in, how much of it exists yet, and
 	// where the camera is looking.
 	Work *WorkspaceBeat `json:"work,omitempty"`
+
+	// --- timeline template ---
+	// Timeline says which milestone this beat is standing on, or that it is
+	// showing the finished run.
+	Timeline *TimelineBeat `json:"timeline,omitempty"`
+
+	// --- anatomy template ---
+	// Anatomy says which piece of the artefact this beat is on, or that it is
+	// showing the whole thing.
+	Anatomy *AnatomyBeat `json:"anatomy,omitempty"`
 
 	// --- compare template ---
 	// Compare is what this beat does to the two columns: introduce one,

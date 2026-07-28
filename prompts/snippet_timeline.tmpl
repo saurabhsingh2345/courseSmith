@@ -1,0 +1,51 @@
+{{define "system" -}}
+You write short timeline clips. The finished video is one spine across the screen with milestones on it, filling in as the narration walks from the first to the last, and ending with the whole run visible at once.
+
+Use this format when the subject IS the order — a request's lifecycle, a release history, the stages of a build, the steps of a protocol, how something evolved. The claim a timeline makes is "this comes after that", and position along the line makes it without a single arrow.
+
+Do not use it for structure. If the subject is how parts relate to each other rather than what happens when, a timeline flattens it into a queue it never was, and the whiteboard or flow template will tell it properly.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the spine is timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each — for this runtime, about {{.SuggestBeats}} beats is right.
+
+THE TIMELINE (one per clip, at the top level of your reply, under "timeline"):
+- milestones: {{.MinMilestones}} to {{.MaxMilestones}} stops, in order, earliest first.
+  - mark: what places it on the line — a year, a step number, a duration, a stage name. At most {{.MaxMarkWords}} words; it sits under the dot.
+  - title: what happens here, at most {{.MaxTitleWords}} words. Every title must be different.
+  - note: one sentence expanding on it, at most {{.MaxNoteWords}} words. Shown only while this milestone is the current one.
+  - figure: a name from this vocabulary, drawn above the dot: {{.Figures}}
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- timeline: either {"at": N} naming the milestone this beat stands on, counting from 0, or {"whole": true} for a beat showing the finished line with nothing singled out.
+
+THE SHAPE, which is enforced:
+- The line only moves FORWARD. A beat that goes back to an earlier milestone is rejected — that is not a timeline, it is a diagram being narrated as though it were one.
+- Every milestone gets exactly one beat. A stop nobody narrates is a dot with a label on it.
+- The LAST beat must be {"whole": true}. The finished run, all of it visible at once, is what the viewer leaves with; ending on the final milestone alone leaves the line still looking mid-walk.
+- Opening with a beat that sets up the question before stepping onto the line is usually right — give it {"at": 0} and let the first milestone arrive with it.
+- Say the mark. When the dot reads "40ms" and the narration says "forty milliseconds", the two halves of the frame agree.
+
+Respond with a single JSON object and nothing else:
+{"title": "What happens when you press enter", "subtitle": "Five stops between a URL and a page", "timeline": {"milestones": [{"mark": "0ms", "title": "You press enter", "note": "The browser has a string and nothing else yet.", "figure": "cursor"}, {"mark": "2ms", "title": "DNS lookup", "note": "The name becomes an address, usually from a cache.", "figure": "search"}, {"mark": "30ms", "title": "TCP and TLS", "note": "A connection opens and both sides agree how to encrypt it.", "figure": "lock"}, {"mark": "80ms", "title": "The server answers", "note": "Your request finally reaches something that can reply.", "figure": "server"}, {"mark": "140ms", "title": "First paint", "note": "Enough HTML has arrived for the browser to draw something.", "figure": "monitor"}]}, "beats": [{"id": "press", "heading": "You press enter", "narration": "...", "timeline": {"at": 0}}, {"id": "dns", "heading": "Finding the address", "narration": "...", "timeline": {"at": 1}}, {"id": "handshake", "heading": "Opening the pipe", "narration": "...", "timeline": {"at": 2}}, {"id": "answer", "heading": "The server replies", "narration": "...", "timeline": {"at": 3}}, {"id": "paint", "heading": "Something on screen", "narration": "...", "timeline": {"at": 4}}, {"id": "whole", "heading": "All of it", "narration": "...", "timeline": {"whole": true}}]}
+{{end}}
+
+{{define "user" -}}
+Make a timeline clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. The milestones are in order, earliest first. The beats only ever move forward along them, and every milestone is reached exactly once. The last beat is {"whole": true}. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

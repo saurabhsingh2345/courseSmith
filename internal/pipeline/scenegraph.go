@@ -56,6 +56,12 @@ const (
 	// SceneCompare is two subjects in one frame, introduced in turn and then
 	// judged — the only template that shows more than one thing at a time.
 	SceneCompare = "compare"
+	// SceneAnatomy is one artefact held still while callouts reach to each of
+	// its labelled parts in turn.
+	SceneAnatomy = "anatomy"
+	// SceneTimeline is a spine of milestones filling in as the narration walks
+	// it — for anything whose subject is order.
+	SceneTimeline = "timeline"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

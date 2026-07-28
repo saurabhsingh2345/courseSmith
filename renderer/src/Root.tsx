@@ -684,6 +684,80 @@ const compareVizProps: LessonVideoProps = {
   captions: [],
 };
 
+/**
+ * The anatomy template, baselined on a part beat — the state that exercises the
+ * lit run, the dimmed remainder, the callout line and the note at once.
+ */
+const anatomyVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 24000,
+  scenes: [
+    {
+      type: 'anatomy',
+      startMs: 0,
+      endMs: 24000,
+      props: {
+        title: 'Every part of a function signature',
+        subject: 'def greet(name, excited=False) -> str:',
+        // Spans are what Go emits, resolved from each part's quoted text.
+        parts: [
+          {label: 'the keyword', note: 'Tells Python a function is being defined here.', start: 0, end: 3},
+          {label: 'the name', note: 'What you call it later, and what a traceback shows.', start: 4, end: 9},
+          {label: 'the parameters', note: 'One required, one with a default that makes it optional.', start: 10, end: 29},
+          {label: 'the return type', note: 'A hint for readers and tools; Python does not enforce it.', start: 31, end: 37},
+        ],
+        steps: [
+          {startMs: 0, endMs: 4000, whole: true},
+          {startMs: 4000, endMs: 8000, part: 0},
+          {startMs: 8000, endMs: 12000, part: 1},
+          {startMs: 12000, endMs: 16000, part: 2},
+          {startMs: 16000, endMs: 20000, part: 3},
+          {startMs: 20000, endMs: 24000, whole: true},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The timeline template, baselined mid-walk: the spine part-filled, the current
+ * stop enlarged with its note up, and the stops still ahead visible but faded —
+ * which is the state that proves the future is drawn rather than revealed.
+ */
+const timelineVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 28000,
+  scenes: [
+    {
+      type: 'timeline',
+      startMs: 0,
+      endMs: 28000,
+      props: {
+        title: 'What happens when you press enter',
+        milestones: [
+          {mark: '0ms', title: 'You press enter', note: 'The browser has a string and nothing else yet.', figure: 'cursor'},
+          {mark: '2ms', title: 'DNS lookup', note: 'The name becomes an address, usually straight from a cache.', figure: 'search'},
+          {mark: '30ms', title: 'TCP and TLS', note: 'A connection opens and both sides agree how to encrypt it.', figure: 'lock'},
+          {mark: '80ms', title: 'The server answers', note: 'Your request finally reaches something that can reply.', figure: 'server'},
+          {mark: '140ms', title: 'First paint', note: 'Enough HTML has arrived for the browser to draw something.', figure: 'monitor'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 4000, at: 0},
+          {startMs: 4000, endMs: 9000, at: 1},
+          {startMs: 9000, endMs: 14000, at: 2},
+          {startMs: 14000, endMs: 19000, at: 3},
+          {startMs: 19000, endMs: 24000, at: 4},
+          {startMs: 24000, endMs: 28000, whole: true},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 const dataVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
@@ -912,6 +986,24 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(vscodeLightProps.durationMs)}
       defaultProps={vscodeLightProps}
+    />
+    <Composition
+      id="TimelineViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(timelineVizProps.durationMs)}
+      defaultProps={timelineVizProps}
+    />
+    <Composition
+      id="AnatomyViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(anatomyVizProps.durationMs)}
+      defaultProps={anatomyVizProps}
     />
     <Composition
       id="CompareViz"

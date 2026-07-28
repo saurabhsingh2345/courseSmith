@@ -115,7 +115,7 @@ func TestAutoClosedBracketsAreNearlyFree(t *testing.T) {
 	code := "f()\nf(x)"
 	gaps := gapsFor(t, code, 4000)
 
-	autoClose := indexOfRune(code, ')', 1) // the ')' in "f()", auto-inserted
+	autoClose := indexOfRune(code, ')', 1)  // the ')' in "f()", auto-inserted
 	typedClose := indexOfRune(code, ')', 2) // the ')' in "f(x)", genuinely typed
 
 	if gaps[autoClose] >= gaps[typedClose] {

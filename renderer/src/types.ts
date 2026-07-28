@@ -90,7 +90,9 @@ export type SceneType =
   | 'story'
   | 'data'
   | 'quiz'
-  | 'compare';
+  | 'compare'
+  | 'anatomy'
+  | 'timeline';
 
 export type Scene = {
   type: SceneType;
