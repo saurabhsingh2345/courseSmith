@@ -496,6 +496,7 @@ type beatFields struct {
 	Loop     bool
 	Mockup   bool
 	Stack    bool
+	Spec     bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -524,6 +525,8 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "mockup"
 		case !owned.Stack && b.Stack != nil:
 			set = "stack"
+		case !owned.Spec && b.Spec != nil:
+			set = "spec"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

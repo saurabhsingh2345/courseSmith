@@ -74,6 +74,9 @@ const (
 	// SceneStack is a set of tiers stacked vertically — which tool does what,
 	// walked from the top of the stack down.
 	SceneStack = "stack"
+	// SceneSpec is a checklist written a line at a time and then checked all at
+	// once — acceptance criteria, and the moment they go green.
+	SceneSpec = "spec"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

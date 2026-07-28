@@ -96,7 +96,8 @@ export type SceneType =
   | 'canvas'
   | 'promptloop'
   | 'mockup'
-  | 'stack';
+  | 'stack'
+  | 'spec';
 
 export type Scene = {
   type: SceneType;

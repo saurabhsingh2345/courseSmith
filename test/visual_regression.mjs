@@ -74,6 +74,10 @@ const TARGETS = [
   // raised, the one below still dim. It is the only state that shows reached,
   // current and unreached at once, which is the whole grammar of the scene.
   { id: "StackViz", frame: 430 },
+  // The spec after its cascade, with one line missed — the only state holding a
+  // filled tick, a crossed box, struck text and a tally short of the total at
+  // once. A clean sweep would prove none of the miss path.
+  { id: "SpecViz", frame: 910 },
   // Mid-word, with the completion popup open. It only exists for the handful
   // of frames where a fragment has matches, so no other target can catch it —
   // and it is the detail that makes the scene read as an editor rather than as

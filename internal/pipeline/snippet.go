@@ -192,6 +192,9 @@ type SnippetPlan struct {
 	// Stack is the stack template's tiers. On the plan for the same reason as
 	// Mockup: the arrangement is the subject and the beats only walk it.
 	Stack *StackSpec `json:"stack,omitempty"`
+	// Spec is the spec template's checklist. On the plan for the same reason as
+	// Quiz: it is the subject of the clip, not a property of one moment in it.
+	Spec *SpecSheet `json:"spec,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -382,6 +385,11 @@ type SnippetBeat struct {
 	// Stack says which tier this beat is standing on, or that it is showing the
 	// whole stack.
 	Stack *StackBeat `json:"stack,omitempty"`
+
+	// --- spec template ---
+	// Spec says which criterion this beat is writing, or that it is checking
+	// the whole sheet.
+	Spec *SpecBeat `json:"spec,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

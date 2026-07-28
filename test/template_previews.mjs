@@ -35,6 +35,7 @@ const SOURCES = {
   promptloop: "PromptLoopViz-825",
   mockup: "MockupViz-800",
   stack: "StackViz-430",
+  spec: "SpecViz-910",
   workspace: "WorkspaceViz-690",
   whiteboard: "WhiteboardViz-390",
   flow: "FlowViz-400",

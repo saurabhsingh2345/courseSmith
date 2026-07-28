@@ -984,6 +984,50 @@ const stackVizProps: LessonVideoProps = {
   captions: [],
 };
 
+/**
+ * The spec template, with one criterion deliberately missed — the case the
+ * template exists for and the only one where the crossed box, the struck text
+ * and a verdict short of the total are all on screen.
+ */
+const specVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 32000,
+  scenes: [
+    {
+      type: 'spec',
+      startMs: 0,
+      endMs: 32000,
+      props: {
+        title: 'Write the test before you write the prompt',
+        goal: 'A signup form that actually converts',
+        constraints: ['No backend', 'Ship today'],
+        criteria: [
+          {text: 'One field, nothing else', note: 'Every extra field costs you signups, so the count is the spec.'},
+          {
+            text: 'Invalid email caught before submit',
+            note: 'Caught in the browser, not after a round trip.',
+          },
+          {
+            text: 'Success message replaces the form',
+            status: 'missed',
+            note: 'Nobody should be left wondering whether it worked.',
+          },
+          {text: 'Readable on a phone', note: 'Most of this traffic will never see a laptop.'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 5000, at: 0},
+          {startMs: 5000, endMs: 10500, at: 1},
+          {startMs: 10500, endMs: 16000, at: 2},
+          {startMs: 16000, endMs: 21500, at: 3},
+          {startMs: 21500, endMs: 32000, check: true},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 const dataVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
@@ -1257,6 +1301,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(stackVizProps.durationMs)}
       defaultProps={stackVizProps}
+    />
+    <Composition
+      id="SpecViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(specVizProps.durationMs)}
+      defaultProps={specVizProps}
     />
     <Composition
       id="AnatomyViz"
