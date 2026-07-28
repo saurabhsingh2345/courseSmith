@@ -35,6 +35,8 @@ func init() {
 		Example:     "How a request flows through a rate-limited API gateway",
 		PromptFile:  snippetFlowTemplateName,
 		NeedsCode:   false,
+		Owns:        beatFields{Nodes: true, Focus: true},
+		Normalize:   normalizeFlowPlan,
 		Validate:    validateFlowPlan,
 		Scenes:      flowScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
@@ -266,6 +268,89 @@ func flowScenes(in SnippetSceneInput) ([]Scene, error) {
 		Props:   props,
 	})
 	return scenes, nil
+}
+
+// normalizeFlowPlan makes the graph layerable.
+//
+// Ids are slugged and de-duplicated because they are referenced by name from
+// two other places — another node's `from` and a beat's `focus` — and a model
+// that writes "API Gateway" in one and "api-gateway" in the other has drawn the
+// right diagram with the wrong strings in it. Edges and focus entries that
+// still point at nothing after that are dropped: a dangling reference is not a
+// different diagram, it is the same diagram with a line the layout cannot
+// place.
+func normalizeFlowPlan(p *SnippetPlan) {
+	declared := map[string]bool{}
+	// Ids first, across the whole plan, so a `from` written in beat one against
+	// a node declared in beat two is matched on the same slug either way.
+	renamed := map[string]string{}
+	total := 0
+	for i := range p.Beats {
+		nodes := make([]FlowNode, 0, len(p.Beats[i].Nodes))
+		for _, n := range p.Beats[i].Nodes {
+			n.Label = clampWords(collapseSpaces(n.Label), maxFlowLabelWords)
+			id := slugify(n.ID)
+			if id == "" {
+				id = slugify(n.Label)
+			}
+			if id == "" || n.Label == "" || total >= maxFlowNodes {
+				continue
+			}
+			base := id
+			for n := 2; declared[id]; n++ {
+				id = fmt.Sprintf("%s-%d", base, n)
+			}
+			renamed[strings.TrimSpace(n.ID)] = id
+			renamed[base] = id
+			n.ID = id
+			n.Kind = n.ResolvedKind()
+			declared[id] = true
+			total++
+			nodes = append(nodes, n)
+		}
+		p.Beats[i].Nodes = nodes
+	}
+
+	// Then the references, against the ids that actually exist. An edge may
+	// only point backwards, so a node's own `from` is resolved against what was
+	// declared before it — which is what keeps the graph layerable.
+	seen := map[string]bool{}
+	for i := range p.Beats {
+		for j := range p.Beats[i].Nodes {
+			n := &p.Beats[i].Nodes[j]
+			from := make([]string, 0, len(n.From))
+			for _, f := range n.From {
+				id := resolveFlowRef(f, renamed)
+				if seen[id] && !slices.Contains(from, id) {
+					from = append(from, id)
+				}
+			}
+			n.From = from
+			seen[n.ID] = true
+		}
+	}
+	for i := range p.Beats {
+		focus := make([]string, 0, len(p.Beats[i].Focus))
+		for _, f := range p.Beats[i].Focus {
+			id := resolveFlowRef(f, renamed)
+			if declared[id] && !slices.Contains(focus, id) {
+				focus = append(focus, id)
+			}
+		}
+		p.Beats[i].Focus = focus
+	}
+}
+
+// resolveFlowRef maps whatever the model wrote onto the id that ended up on the
+// node, matching on the slug so case and punctuation stop mattering.
+func resolveFlowRef(ref string, renamed map[string]string) string {
+	if id, ok := renamed[strings.TrimSpace(ref)]; ok {
+		return id
+	}
+	if id, ok := renamed[slugify(ref)]; ok {
+		return id
+	}
+	return slugify(ref)
 }
 
 func validateFlowPlan(p *SnippetPlan) error {

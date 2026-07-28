@@ -35,6 +35,8 @@ func init() {
 		Example:     "Why code review makes teams faster, not slower",
 		PromptFile:  snippetCastTemplateName,
 		NeedsCode:   false,
+		Owns:        beatFields{Cast: true},
+		Normalize:   normalizeCastPlan,
 		Validate:    validateCastPlan,
 		Scenes:      castScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
@@ -167,6 +169,32 @@ func castScenes(in SnippetSceneInput) ([]Scene, error) {
 		prevPose = pose
 	}
 	return scenes, nil
+}
+
+// normalizeCastPlan writes the vocabularies back onto the plan.
+//
+// The renderer already degrades an unknown pose to `idle`, silently. That
+// silence is the problem the write-back fixes: with the resolved value on the
+// plan, the validator's "this beat holds the pose the last one used" sees what
+// the viewer will see, rather than two different invented names that both end
+// up as a character standing still for two beats.
+func normalizeCastPlan(p *SnippetPlan) {
+	for i := range p.Beats {
+		b := &p.Beats[i]
+		if len(strings.Fields(b.Heading)) < minHeadlineWords {
+			b.Heading = headingFromNarration(b.Narration)
+		}
+		b.Heading = clampWords(b.Heading, maxHeadlineWords)
+		if b.Cast == nil {
+			continue
+		}
+		b.Cast.Pose = normalizeCastPose(b.Cast.Pose)
+		b.Cast.Expression = normalizeCastExpression(b.Cast.Expression)
+		b.Cast.Caption = collapseSpaces(b.Cast.Caption)
+		if b.Cast.Prop != "" {
+			b.Cast.Prop = normalizeArtFigure(b.Cast.Prop)
+		}
+	}
 }
 
 func validateCastPlan(p *SnippetPlan) error {

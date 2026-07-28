@@ -43,6 +43,9 @@ func init() {
 		// explanation is four beats, and rushing the hold defeats the template.
 		MinTargetSec:     25,
 		DefaultTargetSec: 45,
+		Owns:             beatFields{Quiz: true},
+		OwnsPlan:         planFields{Quiz: true},
+		Normalize:        normalizeQuizPlan,
 		Validate:         validateQuizPlan,
 		Scenes:           quizScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
@@ -102,6 +105,127 @@ func normalizeQuizShow(s string) string {
 		return n
 	}
 	return "think"
+}
+
+// normalizeQuizPlan repairs the bookkeeping around the question and leaves the
+// question itself alone.
+//
+// The distinction is worth being careful about, because this is the template
+// where a well-meant repair does the most damage. Trimming a duplicate option,
+// re-pointing an explanation at an option that exists, dropping a second "ask" —
+// these are clerical, and the clip is the same clip afterwards. Choosing which
+// option is correct, or writing the explanation of a distractor, is the whole
+// content of a quiz; a plan missing those is sent back to the model, not
+// patched here, because a quiz that answers itself wrongly is worse than no
+// quiz at all.
+func normalizeQuizPlan(p *SnippetPlan) {
+	if q := p.Quiz; q != nil {
+		q.Question = clampWords(collapseSpaces(q.Question), maxQuestionWords)
+
+		// Keep the options, minus the blank and the repeated; the answer index
+		// travels with the option it pointed at rather than with its position.
+		answer := ""
+		if q.Answer >= 0 && q.Answer < len(q.Options) {
+			answer = strings.ToLower(collapseSpaces(q.Options[q.Answer]))
+		}
+		options := make([]string, 0, len(q.Options))
+		why := make([]string, 0, len(q.Options))
+		seen := map[string]bool{}
+		for i, opt := range q.Options {
+			opt = clampWords(collapseSpaces(opt), maxOptionWords)
+			key := strings.ToLower(opt)
+			if opt == "" || seen[key] || len(options) >= maxQuizOptions {
+				continue
+			}
+			seen[key] = true
+			options = append(options, opt)
+			if i < len(q.Why) {
+				why = append(why, collapseSpaces(q.Why[i]))
+			} else {
+				why = append(why, "")
+			}
+		}
+		q.Options, q.Why = options, why
+		// An answer that pointed nowhere to begin with stays pointing nowhere:
+		// picking one would be answering the question on the model's behalf,
+		// and validation rejecting it is the correct outcome.
+		if answer != "" {
+			for i, opt := range options {
+				if strings.ToLower(opt) == answer {
+					q.Answer = i
+				}
+			}
+		}
+	}
+
+	// Beat directions. Exactly one beat asks and one reveals; the extras become
+	// "think", which is the direction that adds nothing to the screen and is
+	// therefore always safe to fall back to.
+	asked, revealed := false, false
+	revealAt := -1
+	for i := range p.Beats {
+		if p.Beats[i].Quiz == nil {
+			p.Beats[i].Quiz = &QuizBeat{Show: "think"}
+		}
+		qb := p.Beats[i].Quiz
+		qb.Show = normalizeQuizShow(qb.Show)
+		switch qb.Show {
+		case "ask":
+			if asked {
+				qb.Show = "think"
+			}
+			asked = true
+		case "reveal":
+			if revealed {
+				qb.Show = "think"
+			} else {
+				revealAt = i
+			}
+			revealed = true
+		}
+	}
+	// An explanation is only meaningful after the answer is out, and only about
+	// an option that exists. Both are positional facts about the plan, not
+	// judgements about the quiz.
+	explained := map[int]bool{}
+	for i := range p.Beats {
+		qb := p.Beats[i].Quiz
+		if qb.Show != "explain" {
+			continue
+		}
+		if revealAt < 0 || i < revealAt {
+			qb.Show = "think"
+			continue
+		}
+		if p.Quiz == nil || qb.Option < 0 || qb.Option >= len(p.Quiz.Options) || explained[qb.Option] {
+			if opt := firstUnexplainedOption(p.Quiz, explained); opt >= 0 {
+				qb.Option = opt
+			} else {
+				qb.Show = "think"
+				continue
+			}
+		}
+		explained[qb.Option] = true
+	}
+}
+
+// firstUnexplainedOption returns an option no beat has taken yet, preferring a
+// wrong one — the tempting distractor is what an explain beat is for.
+func firstUnexplainedOption(q *QuizSpec, explained map[int]bool) int {
+	if q == nil {
+		return -1
+	}
+	for i := range q.Options {
+		if i != q.Answer && !explained[i] {
+			return i
+		}
+	}
+	for i := range q.Options {
+		if !explained[i] {
+			return i
+		}
+	}
+	return -1
 }
 
 func validateQuizPlan(p *SnippetPlan) error {

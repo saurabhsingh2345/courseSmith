@@ -21,6 +21,7 @@ import {CastScene} from './components/CastScene';
 import {StoryScene} from './components/StoryScene';
 import {DataScene} from './components/DataScene';
 import {QuizScene} from './components/QuizScene';
+import {CompareScene} from './components/CompareScene';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
 import {resolveMotion, secondsToFrames} from './theme/motion';
@@ -96,6 +97,8 @@ const sceneContent = (
       return <DataScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'quiz':
       return <QuizScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'compare':
+      return <CompareScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       return null;
   }
@@ -127,6 +130,7 @@ const surfaceFor = (scenes: Scene[]): Surface => {
       return 'spotlight';
     case 'data':
     case 'quiz':
+    case 'compare':
       return 'clean';
     default:
       return 'default';

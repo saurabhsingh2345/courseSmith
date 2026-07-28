@@ -28,6 +28,7 @@ const OUT = join(__dirname, "..", "studio", "public", "template-previews");
 const SOURCES = {
   vscode: "VSCodeViz-200",
   quiz: "QuizViz-560",
+  compare: "CompareViz-570",
   workspace: "WorkspaceViz-690",
   whiteboard: "WhiteboardViz-390",
   flow: "FlowViz-400",

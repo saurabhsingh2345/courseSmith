@@ -26,6 +26,7 @@ func init() {
 		Example:     "How for loops work in Python, with a countdown example",
 		PromptFile:  snippetVSCodeTemplateName,
 		NeedsCode:   true,
+		Owns:        beatFields{Code: true, Run: true},
 		Validate:    validateVSCodePlan,
 		Scenes:      vscodeScenes,
 	})

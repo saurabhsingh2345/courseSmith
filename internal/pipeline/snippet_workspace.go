@@ -53,6 +53,9 @@ func init() {
 		// template's whole reason for existing does not fit.
 		MinTargetSec:     30,
 		DefaultTargetSec: 60,
+		Owns:             beatFields{Work: true},
+		OwnsPlan:         planFields{Project: true},
+		Normalize:        normalizeWorkspacePlan,
 		Validate:         validateWorkspacePlan,
 		Scenes:           workspaceScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
@@ -197,6 +200,46 @@ func projectName(entry string) string {
 		return "project"
 	}
 	return base
+}
+
+// normalizeWorkspacePlan points every beat at a file that exists.
+//
+// A beat naming "main.py" when the project calls it "app.py" is the model
+// losing track of its own file list halfway down a long reply, not a
+// disagreement about the walkthrough — and the renderer cannot open a file that
+// is not there. Falling back to the entry file keeps the camera somewhere
+// sensible; the focus and the caption the beat carries still apply.
+func normalizeWorkspacePlan(p *SnippetPlan) {
+	if p.Project == nil {
+		return
+	}
+	paths := map[string]string{}
+	for i := range p.Project.Files {
+		f := &p.Project.Files[i]
+		f.Path = strings.TrimSpace(f.Path)
+		paths[strings.ToLower(f.Path)] = f.Path
+		paths[strings.ToLower(path.Base(f.Path))] = f.Path
+	}
+	p.Project.Entry = strings.TrimSpace(p.Project.Entry)
+	if resolved, ok := paths[strings.ToLower(p.Project.Entry)]; ok {
+		p.Project.Entry = resolved
+	}
+	for i := range p.Beats {
+		w := p.Beats[i].Work
+		if w == nil {
+			continue
+		}
+		w.Caption = collapseSpaces(w.Caption)
+		w.Focus = normalizeWorkspaceFocus(w.Focus)
+		if w.Through < 0 {
+			w.Through = 0
+		}
+		if resolved, ok := paths[strings.ToLower(strings.TrimSpace(w.File))]; ok {
+			w.File = resolved
+		} else {
+			w.File = p.Project.Entry
+		}
+	}
 }
 
 func validateWorkspacePlan(p *SnippetPlan) error {

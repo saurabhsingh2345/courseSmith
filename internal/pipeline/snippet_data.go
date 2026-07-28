@@ -24,6 +24,7 @@ package pipeline
 
 import (
 	"fmt"
+	"slices"
 	"sort"
 	"strings"
 
@@ -38,6 +39,9 @@ func init() {
 		Example:     "Where the world's undersea internet cables actually land",
 		PromptFile:  snippetDataTemplateName,
 		NeedsCode:   false,
+		Owns:        beatFields{Data: true},
+		OwnsPlan:    planFields{Chart: true},
+		Normalize:   normalizeDataPlan,
 		Validate:    validateDataPlan,
 		Scenes:      dataScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
@@ -260,6 +264,49 @@ func dataScenes(in SnippetSceneInput) ([]Scene, error) {
 		EndMs:   lastEnd,
 		Props:   props,
 	}}, nil
+}
+
+// normalizeDataPlan tidies the dataset without touching the numbers.
+//
+// Labels are the one thing worth repairing here, because they are the chart's
+// join key: a beat highlights "United States" against a point labelled "USA"
+// and the highlight silently selects nothing, which reads on screen as a beat
+// that talks about a bar while pointing at all of them. Values are never
+// touched — a chart is a claim about the world, and a claim is not something to
+// round into shape.
+func normalizeDataPlan(p *SnippetPlan) {
+	if p.Chart == nil {
+		return
+	}
+	p.Chart.Kind = normalizeChartKind(p.Chart.Kind)
+	p.Chart.Unit = strings.TrimSpace(p.Chart.Unit)
+
+	labels := map[string]string{}
+	points := make([]DataPoint, 0, len(p.Chart.Points))
+	for _, pt := range p.Chart.Points {
+		pt.Label = clampWords(collapseSpaces(pt.Label), maxDataLabelWords)
+		if pt.Label == "" {
+			continue
+		}
+		labels[strings.ToLower(pt.Label)] = pt.Label
+		points = append(points, pt)
+	}
+	p.Chart.Points = points
+
+	for i := range p.Beats {
+		b := &p.Beats[i]
+		if b.Data == nil {
+			continue
+		}
+		b.Data.Caption = collapseSpaces(b.Data.Caption)
+		hits := make([]string, 0, len(b.Data.Highlight))
+		for _, h := range b.Data.Highlight {
+			if label, ok := labels[strings.ToLower(collapseSpaces(h))]; ok && !slices.Contains(hits, label) {
+				hits = append(hits, label)
+			}
+		}
+		b.Data.Highlight = hits
+	}
 }
 
 func validateDataPlan(p *SnippetPlan) error {

@@ -175,6 +175,38 @@ func (e *Env) completeJSONRounds(
 	return err
 }
 
+// completeJSONLenientRounds is completeJSONRounds for artifacts where a field
+// the model invented should be dropped rather than argued about.
+//
+// Strict decoding is the right default: for most of the pipeline an unexpected
+// key means the model misread the schema, and saying so is cheap. It is the
+// wrong default for an artifact with a large optional surface — a snippet plan
+// has a dozen optional payloads and models routinely garnish one with a
+// "description" or a "duration_sec" nobody asked for. That reply is a good clip
+// with a spare key on it, and spending a correction round (and the whole reply)
+// on the key is the worst of both: the creator waits longer for a plan that was
+// already sitting there.
+func (e *Env) completeJSONLenientRounds(
+	ctx context.Context,
+	pcfg config.Pipeline,
+	task llm.TaskType,
+	system, user string,
+	temperature float64,
+	maxTokens int,
+	rounds int,
+	out any,
+	validate func() error,
+) error {
+	_, err := e.completeWithRepairRounds(ctx, pcfg, task, system, user, nil, temperature, maxTokens, true, rounds,
+		func(content string) (string, error) {
+			if err := parseJSONLenient(content, out, validate); err != nil {
+				return "", err
+			}
+			return content, nil
+		})
+	return err
+}
+
 // parseJSONStrict decodes content into out, rejecting unknown fields and
 // trailing data, then runs validate. out is zeroed first so a failed prior
 // attempt cannot leak fields into this one.
@@ -187,6 +219,25 @@ func parseJSONStrict(content string, out any, validate func() error) error {
 	}
 	if dec.More() {
 		return fmt.Errorf("trailing content after the JSON object")
+	}
+	if validate != nil {
+		return validate()
+	}
+	return nil
+}
+
+// parseJSONLenient decodes the first JSON object in content into out, ignoring
+// fields the schema does not know and anything written after the object, then
+// runs validate.
+//
+// The trailing-content tolerance matters as much as the unknown-field one: a
+// model that answers with the object and then a sentence about it has still
+// answered, and the sentence is not worth a round trip.
+func parseJSONLenient(content string, out any, validate func() error) error {
+	reflect.ValueOf(out).Elem().SetZero()
+	dec := json.NewDecoder(bytes.NewReader([]byte(stripFences(content))))
+	if err := dec.Decode(out); err != nil {
+		return fmt.Errorf("invalid JSON: %w", err)
 	}
 	if validate != nil {
 		return validate()

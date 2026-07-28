@@ -57,6 +57,16 @@ type SnippetTemplate struct {
 	// renders PromptFile and decodes a SnippetPlan — enough for every
 	// template whose plan fits the standard shape.
 	Plan func(ctx context.Context, e *Env, spec SnippetSpec, cfg config.Config) (*SnippetPlan, error)
+	// Owns and OwnsPlan declare which of SnippetBeat's and SnippetPlan's
+	// optional payloads this template reads. Everything else is migrated onto
+	// the field it belongs in, or dropped, before the plan is validated.
+	Owns     beatFields
+	OwnsPlan planFields
+	// Normalize repairs this template's own mechanical mistakes — a label a
+	// word too long, a vocabulary term the model invented, a link pointing at
+	// nothing — before Validate sees the plan. See snippet_normalize.go for
+	// where the line between the two sits.
+	Normalize func(p *SnippetPlan)
 	// Validate enforces this template's own rules on a plan, and rejects
 	// beat fields the template does not own.
 	Validate func(p *SnippetPlan) error
@@ -283,15 +293,23 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 		return nil, err
 	}
 	var plan SnippetPlan
+	// The closest attempt seen so far, kept for the salvage below: a plan that
+	// decoded and normalized is a clip, even when it never satisfied every rule.
+	var closest *SnippetPlan
 	// A plan has more independent numeric rules than anything else the pipeline
 	// asks for — beat count, per-beat words, total words, and whatever the
 	// template adds on top. One correction round is not enough to land them all.
 	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords)
-	err = e.completeJSONRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, nil, 0.5, 6144, snippetPlanRepairRounds, &plan, func() error {
+	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.5, 6144, snippetPlanRepairRounds, &plan, func() error {
 		plan.Template = spec.Template // so Validate dispatches to this template
 		// The budget the prompt quoted, so the shared validators score the plan
 		// against the same beat range the model was asked for.
 		plan.targetWords = wantWords
+		// Repair what is mechanically repairable before judging the reply, so
+		// the correction rounds are spent on what only the model can fix.
+		normalizeSnippetPlan(&plan)
+		snapshot := plan
+		closest = &snapshot
 		if err := plan.Validate(); err != nil {
 			return err
 		}
@@ -322,9 +340,80 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 		return nil
 	})
 	if err != nil {
+		if salvaged := salvageSnippetPlan(ctx, e, spec, cfg, closest); salvaged != nil {
+			fmt.Fprintf(e.out(), "    ! the plan never satisfied every rule (%v)\n", err)
+			fmt.Fprintf(e.out(), "      shipping the closest one — it renders, so the clip is real; expect it to be looser than asked\n")
+			return salvaged, nil
+		}
 		return nil, fmt.Errorf("planning %s snippet: %w", spec.Template, err)
 	}
 	return &plan, nil
+}
+
+// salvageSnippetPlan is the last thing between a creator and an empty hand.
+//
+// The correction rounds enforce rules of two kinds. Some are structural — a
+// quiz with no answer, a board with nothing on it — and a plan that breaks one
+// cannot be rendered at all. The rest are editorial: the clip runs short of its
+// word budget, the board has three boxes where the template asks for four, one
+// figure carries three shots instead of two. Failing the whole generation on
+// the second kind is a bad trade. The creator asked for a clip about something;
+// a slightly loose clip is an answer to that and an error message is not, and
+// they can always re-run for a tighter one.
+//
+// So the test applied here is the only one that cannot be argued with: lay the
+// plan out on a fabricated timeline and see whether the template can actually
+// produce scenes from it. If it can, the clip exists and it ships with a
+// warning. If it cannot, the original failure stands and is reported honestly.
+func salvageSnippetPlan(ctx context.Context, e *Env, spec SnippetSpec, cfg config.Config, p *SnippetPlan) *SnippetPlan {
+	if p == nil || len(p.Beats) == 0 || strings.TrimSpace(p.Title) == "" {
+		return nil
+	}
+	normalizeSnippetPlan(p)
+	// A workspace clip shows what its program really printed. If the program
+	// still does not run its output stays empty, which the renderer draws as a
+	// terminal that was never opened — wrong-looking, but not a lie.
+	if p.Project != nil {
+		_ = e.runPlannedProject(ctx, p)
+	}
+	if err := dryRunSnippetScenes(spec, cfg, p); err != nil {
+		return nil
+	}
+	return p
+}
+
+// dryRunSnippetScenes asks a template to lay the plan out against estimated
+// timings, and reports whether it could. Every scene builder in the catalog is
+// a pure function of the plan and its spans, so this answers "will the render
+// stage accept this?" without a voice track, an alignment, or a frame.
+func dryRunSnippetScenes(spec SnippetSpec, cfg config.Config, p *SnippetPlan) error {
+	tpl, ok := SnippetTemplates[p.Template]
+	if !ok || tpl.Scenes == nil {
+		return fmt.Errorf("unknown template %q", p.Template)
+	}
+	pace := cfg.Style.PaceWPM
+	if pace <= 0 {
+		pace = 150
+	}
+	spans := make([]SectionSpan, len(p.Beats))
+	ends := make([]int, len(p.Beats))
+	at := 0
+	for i, b := range p.Beats {
+		dur := max(1500, len(strings.Fields(b.Narration))*60_000/pace)
+		spans[i] = SectionSpan{ID: b.ID, StartMs: at, EndMs: at + dur}
+		ends[i] = at + dur
+		at += dur
+	}
+	_, err := tpl.Scenes(SnippetSceneInput{
+		Spec:       spec,
+		Plan:       p,
+		Cfg:        cfg,
+		Course:     &project.Course{Name: "Snippets"},
+		Spans:      spans,
+		BeatEndMs:  ends,
+		DurationMs: at,
+	})
+	return err
 }
 
 // checkBeatShape is the shared structural rule every template applies: how
@@ -389,17 +478,18 @@ func checkBeatShape(p *SnippetPlan) error {
 // is quadratic and rots as the catalog grows — means a model that puts a
 // whiteboard sketch on a flow diagram gets a loud error instead of silence.
 type beatFields struct {
-	Code   bool
-	Run    bool
-	Sketch bool
-	Nodes  bool
-	Focus  bool
-	Art    bool
-	Cast   bool
-	Shot   bool
-	Data   bool
-	Work   bool
-	Quiz   bool
+	Code    bool
+	Run     bool
+	Sketch  bool
+	Nodes   bool
+	Focus   bool
+	Art     bool
+	Cast    bool
+	Shot    bool
+	Data    bool
+	Work    bool
+	Quiz    bool
+	Compare bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -414,6 +504,8 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "run"
 		case !owned.Quiz && b.Quiz != nil:
 			set = "quiz"
+		case !owned.Compare && b.Compare != nil:
+			set = "compare"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

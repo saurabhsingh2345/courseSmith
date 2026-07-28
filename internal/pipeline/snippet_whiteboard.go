@@ -32,6 +32,8 @@ func init() {
 		Example:     "Why HTTP caching matters, from browser to CDN to origin",
 		PromptFile:  snippetWhiteboardTemplateName,
 		NeedsCode:   false,
+		Owns:        beatFields{Sketch: true},
+		Normalize:   normalizeWhiteboardPlan,
 		Validate:    validateWhiteboardPlan,
 		Scenes:      whiteboardScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
@@ -150,6 +152,46 @@ func whiteboardScenes(in SnippetSceneInput) ([]Scene, error) {
 		},
 	})
 	return scenes, nil
+}
+
+// normalizeWhiteboardPlan makes the board drawable without asking the model
+// anything.
+//
+// Every repair here was a correction round at some point, and none of them
+// taught the model anything it could not have been told by the renderer's own
+// defaults: a five-word label is cut to four because the box holds four, a
+// shape called "rectangle" is a box, a link to a box that gets drawn two beats
+// later is a link the layout cannot draw and the sentence does not need. The
+// one thing it will not do is invent a fifth box for a four-box template — that
+// is content, and content is the model's job.
+func normalizeWhiteboardPlan(p *SnippetPlan) {
+	seen := map[string]bool{}
+	total := 0
+	for i := range p.Beats {
+		items := make([]SketchItem, 0, len(p.Beats[i].Sketch))
+		for _, item := range p.Beats[i].Sketch {
+			item.Label = clampWords(collapseSpaces(item.Label), maxSketchLabelWords)
+			if item.Label == "" {
+				continue // a box with no caption says nothing
+			}
+			key := sketchKey(item.Label)
+			if seen[key] || total >= maxSketchItems {
+				continue // each box is drawn once and stays; the rest is overflow
+			}
+			item.Icon = normalizeSketchIcon(item.Icon)
+			item.Shape = normalizeSketchShape(item.Shape)
+			// An arrow can only start from a box already on the board. A link to
+			// something drawn later has nowhere to begin, and dropping it costs
+			// the picture one arrow rather than the clip a round trip.
+			if item.LinkFrom != "" && !seen[sketchKey(item.LinkFrom)] {
+				item.LinkFrom = ""
+			}
+			seen[key] = true
+			total++
+			items = append(items, item)
+		}
+		p.Beats[i].Sketch = items
+	}
 }
 
 func validateWhiteboardPlan(p *SnippetPlan) error {

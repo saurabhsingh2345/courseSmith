@@ -36,6 +36,8 @@ func init() {
 		Example:     "Why every engineer should understand backpressure",
 		PromptFile:  snippetIllustrationTemplateName,
 		NeedsCode:   false,
+		Owns:        beatFields{Art: true},
+		Normalize:   normalizeIllustrationPlan,
 		Validate:    validateIllustrationPlan,
 		Scenes:      illustrationScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
@@ -247,6 +249,34 @@ func illustrationScenes(in SnippetSceneInput) ([]Scene, error) {
 		})
 	}
 	return scenes, nil
+}
+
+// normalizeIllustrationPlan settles the parts of a shot the renderer has an
+// opinion about anyway.
+//
+// The emphasis is the interesting one. It is a marker stroke drawn under part
+// of the headline, so a phrase that is not in the headline has nothing to draw
+// under — and the mismatch is almost always the model quoting the idea rather
+// than the words ("speed" under a headline about "faster"). Clearing it costs
+// the shot its accent; rejecting it costs the clip a round to be told a fact
+// about string matching.
+func normalizeIllustrationPlan(p *SnippetPlan) {
+	for i := range p.Beats {
+		b := &p.Beats[i]
+		if len(strings.Fields(b.Heading)) < minHeadlineWords {
+			b.Heading = headingFromNarration(b.Narration)
+		}
+		b.Heading = clampWords(b.Heading, maxHeadlineWords)
+		if b.Art == nil {
+			continue
+		}
+		b.Art.Figure = normalizeArtFigure(b.Art.Figure)
+		b.Art.Caption = collapseSpaces(b.Art.Caption)
+		b.Art.Emphasis = collapseSpaces(b.Art.Emphasis)
+		if b.Art.Emphasis != "" && !containsPhrase(b.Heading, b.Art.Emphasis) {
+			b.Art.Emphasis = ""
+		}
+	}
 }
 
 func validateIllustrationPlan(p *SnippetPlan) error {

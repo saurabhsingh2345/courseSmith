@@ -166,6 +166,9 @@ type SnippetPlan struct {
 	// plan rather than on a beat, and for a stronger reason: the files are one
 	// program, and a program is not a property of a moment in the clip.
 	Project *ProjectSpec `json:"project,omitempty"`
+	// Compare is the compare template's pair. On the plan for the same reason
+	// as Quiz: the two things being weighed are the subject of the clip.
+	Compare *CompareSpec `json:"compare,omitempty"`
 	// Quiz is the quiz template's question. On the plan for the same reason as
 	// Chart: it is the subject of the clip, not a property of one beat in it.
 	Quiz *QuizSpec `json:"quiz,omitempty"`
@@ -319,6 +322,11 @@ type SnippetBeat struct {
 	// Work is which file this beat is in, how much of it exists yet, and
 	// where the camera is looking.
 	Work *WorkspaceBeat `json:"work,omitempty"`
+
+	// --- compare template ---
+	// Compare is what this beat does to the two columns: introduce one,
+	// introduce the other, light both, or deliver the verdict.
+	Compare *CompareBeat `json:"compare,omitempty"`
 
 	// --- quiz template ---
 	// Quiz is what this beat does to the question on screen: pose it, hold
@@ -477,6 +485,27 @@ type SketchItem struct {
 // Validate checks a plan's structure. Template-specific rules live in the
 // template's own Validate.
 func (p *SnippetPlan) Validate() error {
+	if err := p.validateShape(); err != nil {
+		return err
+	}
+	if tpl, ok := SnippetTemplates[p.Template]; ok && tpl.Validate != nil {
+		return tpl.Validate(p)
+	}
+	return nil
+}
+
+// validateShape is what has to be true of any plan for the rest of the pipeline
+// to work at all: a title, beats, and one unique id per beat for the aligner to
+// report timings against.
+//
+// It is separated from the template's rules because the two are checked at
+// different moments and for different reasons. The template's rules are a
+// standard the model is held to while it still has rounds left to meet it; this
+// is a fact about the file. Re-applying the editorial rules every time
+// snippet-plan.json is read would mean a plan that shipped deliberately loose —
+// see salvageSnippetPlan — could not be loaded by the stage that renders it,
+// and the run would die one stage after the one that decided to continue.
+func (p *SnippetPlan) validateShape() error {
 	if strings.TrimSpace(p.Title) == "" {
 		return fmt.Errorf("title is empty")
 	}
@@ -498,9 +527,6 @@ func (p *SnippetPlan) Validate() error {
 		if strings.TrimSpace(b.Heading) == "" {
 			return fmt.Errorf("beat %q has an empty heading", b.ID)
 		}
-	}
-	if tpl, ok := SnippetTemplates[p.Template]; ok && tpl.Validate != nil {
-		return tpl.Validate(p)
 	}
 	return nil
 }
@@ -600,7 +626,16 @@ func LoadSnippetPlan(l *project.Lesson) (*SnippetPlan, error) {
 		return nil, fmt.Errorf("reading %s: %w", path, err)
 	}
 	var plan SnippetPlan
-	if err := parseJSONStrict(string(data), &plan, plan.Validate); err != nil {
+	// Read back the way it was written: leniently, and judged only on the shape
+	// the rest of the pipeline depends on. The plan stage has already applied
+	// the template's standards, with the model in the room to answer for them —
+	// re-litigating them here can only reject a file that is already the best
+	// answer anyone is going to get.
+	if err := parseJSONLenient(string(data), &plan, nil); err != nil {
+		return nil, fmt.Errorf("parsing %s: %w", SnippetPlanFileName, err)
+	}
+	normalizeSnippetPlan(&plan)
+	if err := plan.validateShape(); err != nil {
 		return nil, fmt.Errorf("parsing %s: %w", SnippetPlanFileName, err)
 	}
 	return &plan, nil

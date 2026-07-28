@@ -45,6 +45,10 @@ const TARGETS = [
   // of the scene is on screen at once: the question, the revealed answer, a
   // dimmed distractor lifted back up, and its explanation underneath.
   { id: "QuizViz", frame: 560 },
+  // The compare template on its verdict beat — the only state where the winner
+  // is marked, the loser has receded and the verdict line is up, so a
+  // regression in any of the three shows in one frame.
+  { id: "CompareViz", frame: 570 },
   // Mid-word, with the completion popup open. It only exists for the handful
   // of frames where a fragment has matches, so no other target can catch it —
   // and it is the detail that makes the scene read as an editor rather than as

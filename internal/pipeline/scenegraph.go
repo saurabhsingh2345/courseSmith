@@ -53,6 +53,9 @@ const (
 	// SceneQuiz is a question posed, held, and answered — the one template
 	// built around the viewer doing something rather than watching.
 	SceneQuiz = "quiz"
+	// SceneCompare is two subjects in one frame, introduced in turn and then
+	// judged — the only template that shows more than one thing at a time.
+	SceneCompare = "compare"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

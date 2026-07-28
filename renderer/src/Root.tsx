@@ -643,6 +643,47 @@ const quizVizProps: LessonVideoProps = {
   captions: [],
 };
 
+/**
+ * The compare template, baselined on its verdict beat — the only state where
+ * the winner is marked, the loser has receded and the verdict line is up, so a
+ * regression in any of the three shows.
+ */
+const compareVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: 22000,
+  scenes: [
+    {
+      type: 'compare',
+      startMs: 0,
+      endMs: 22000,
+      props: {
+        title: 'Two ways to build a list',
+        language: 'python',
+        left: {
+          label: 'A for loop',
+          code: 'out = []\nfor x in xs:\n    out.append(x * 2)',
+          note: '3 lines, one mutation',
+        },
+        right: {
+          label: 'A comprehension',
+          code: 'out = [x * 2 for x in xs]',
+          note: '1 line, no mutation',
+        },
+        winner: 'right',
+        verdict: 'When the loop only builds a list, the comprehension says so in one line.',
+        steps: [
+          {startMs: 0, endMs: 5000, show: 'left'},
+          {startMs: 5000, endMs: 10000, show: 'right'},
+          {startMs: 10000, endMs: 16000, show: 'both'},
+          {startMs: 16000, endMs: 22000, show: 'verdict'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 const dataVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
@@ -871,6 +912,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(vscodeLightProps.durationMs)}
       defaultProps={vscodeLightProps}
+    />
+    <Composition
+      id="CompareViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(compareVizProps.durationMs)}
+      defaultProps={compareVizProps}
     />
     <Composition
       id="QuizViz"

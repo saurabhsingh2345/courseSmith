@@ -54,6 +54,7 @@ func init() {
 		// them at a length worth watching.
 		MinTargetSec: 60,
 		Plan:         planStorySnippet,
+		Owns:         beatFields{Shot: true},
 		Validate:     validateStoryPlan,
 		Scenes:       storyScenes,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
