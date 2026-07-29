@@ -899,6 +899,27 @@ func runAlignStage(ctx context.Context, e *Env, _ *project.Course, l *project.Le
 	}
 	alignment := Alignment{Source: source, Words: words, Sections: sections}
 	alignment.DisplayWords, alignment.DisplaySections = buildDisplayWords(narrRefs, words)
+
+	// Sentence pauses, cut in after the read rather than synthesized into it.
+	// The pace report below is deliberately built from the spans as they were
+	// BEFORE this widening: pace is how fast the narrator speaks, and silence
+	// we added on purpose is not speech. Measuring it as speech would make
+	// every pause look like a slowdown and hand auto-pace a reason to speed
+	// the voice back up.
+	spokenSections := append([]SectionSpan(nil), alignment.Sections...)
+	inserts, err := applySentencePauses(ctx, e, &alignment, voiceover, cfg.Audio.SentencePauseMs)
+	if err != nil {
+		return err
+	}
+	if len(inserts) > 0 {
+		addedMs := 0
+		for _, in := range inserts {
+			addedMs += in.AddMs
+		}
+		fmt.Fprintf(e.out(), "    widened %d sentence gap(s) to %dms, adding %.1fs\n",
+			len(inserts), cfg.Audio.SentencePauseMs, float64(addedMs)/1000)
+	}
+
 	if err := writeJSON(filepath.Join(l.GeneratedDir(), AlignmentFileName), alignment); err != nil {
 		return err
 	}
@@ -962,8 +983,11 @@ func runAlignStage(ctx context.Context, e *Env, _ *project.Course, l *project.Le
 		return err
 	}
 
-	// Pace verification: actual WPM per section vs style.pace_wpm.
-	pace := buildPaceReport(refs, sections, cfg.Style.PaceWPM)
+	// Pace verification: actual WPM per section vs style.pace_wpm, scaled by
+	// the speaking rate the user asked for, and measured on the read before
+	// the sentence gaps were widened.
+	targetWPM := effectivePaceWPM(cfg.Style.PaceWPM, cfg.Style.VoiceSpeed)
+	pace := buildPaceReport(refs, spokenSections, targetWPM)
 	if err := writeJSON(filepath.Join(l.GeneratedDir(), ReviewsDirName, PaceFileName), pace); err != nil {
 		return err
 	}
@@ -986,12 +1010,12 @@ func runAlignStage(ctx context.Context, e *Env, _ *project.Course, l *project.Le
 	} else if prev != nil {
 		oldFix = prev.Speed
 	}
-	if fix := computeSpeedFix(lessonWPM, cfg.Style.PaceWPM, oldFix); fix != nil {
+	if fix := computeSpeedFix(lessonWPM, targetWPM, oldFix); fix != nil {
 		if err := writeJSON(filepath.Join(l.GeneratedDir(), TTSSpeedFileName), fix); err != nil {
 			return err
 		}
 		fmt.Fprintf(e.out(), "    auto-pace: lesson runs at %.0f wpm vs target %d — wrote %s (speed %.2f); re-run to apply\n",
-			lessonWPM, cfg.Style.PaceWPM, TTSSpeedFileName, fix.Speed)
+			lessonWPM, targetWPM, TTSSpeedFileName, fix.Speed)
 	}
 
 	fmt.Fprintf(e.out(), "    %d words aligned (%s), overall WER %.1f%%\n", len(words), source, overall*100)

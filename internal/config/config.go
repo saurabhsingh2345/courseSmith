@@ -77,6 +77,21 @@ type Audio struct {
 	// ParagraphPauseMs is the silence inserted between narration paragraphs
 	// within a section (default 350).
 	ParagraphPauseMs int `yaml:"paragraph_pause_ms"`
+	// SentencePauseMs is the minimum silence at every sentence end (default
+	// 400). Unlike the two above it is not synthesized in — a paragraph is
+	// still read as one continuous take, so the voice keeps its intonation
+	// across full stops, and the align stage widens the gaps afterwards to
+	// this floor. It is a floor, not an addition: a sentence end that already
+	// breathes for longer is left alone, so the rhythm stays the narrator's
+	// rather than becoming metronomic.
+	//
+	// Capped by the align stage's long-gap compression (1500ms), which would
+	// otherwise squash anything larger back down. Set -1 to turn it off (0
+	// means "inherit", as it does for every other field here).
+	//
+	// omitempty so the field's introduction doesn't change config
+	// fingerprints recorded before it existed.
+	SentencePauseMs int `yaml:"sentence_pause_ms,omitempty"`
 	// CrossfadeMs is the fade length at every audio join (default 50).
 	CrossfadeMs int `yaml:"crossfade_ms"`
 	// TargetLUFS is the integrated loudness target for the two-pass
@@ -138,11 +153,16 @@ type Pipeline struct {
 func Defaults() Config {
 	return Config{
 		Style: Style{
-			Voice:    "af_heart",
-			Tone:     "friendly, conversational teacher",
-			PaceWPM:  150,
-			Audience: "absolute beginners with no programming experience",
-			Language: "en",
+			Voice: "af_heart",
+			// af_heart at its natural rate reads a touch faster than is
+			// comfortable to learn from. 0.9 is the house rate; the align
+			// stage scales the pace target by it, so slowing down here does
+			// not read as being 10% under pace.
+			VoiceSpeed: 0.9,
+			Tone:       "friendly, conversational teacher",
+			PaceWPM:    150,
+			Audience:   "absolute beginners with no programming experience",
+			Language:   "en",
 		},
 		Branding: Branding{
 			Colors: Colors{
@@ -162,6 +182,7 @@ func Defaults() Config {
 		Audio: Audio{
 			SectionPauseMs:   700,
 			ParagraphPauseMs: 350,
+			SentencePauseMs:  400,
 			CrossfadeMs:      50,
 			TargetLUFS:       -16,
 			MusicBed:         false,
@@ -263,6 +284,9 @@ func Merge(base, over Config) Config {
 	}
 	if over.Audio.ParagraphPauseMs != 0 {
 		out.Audio.ParagraphPauseMs = over.Audio.ParagraphPauseMs
+	}
+	if over.Audio.SentencePauseMs != 0 {
+		out.Audio.SentencePauseMs = over.Audio.SentencePauseMs
 	}
 	if over.Audio.CrossfadeMs != 0 {
 		out.Audio.CrossfadeMs = over.Audio.CrossfadeMs

@@ -29,6 +29,28 @@ const (
 	minSpeedDelta = 0.03
 )
 
+// effectivePaceWPM is the pace target auto-pace actually steers to.
+//
+// style.pace_wpm describes the voice at its natural rate; style.voice_speed is
+// the user saying "read it slower than that". Measuring a 0.9x read against
+// the 1.0x target makes every lesson look 10% under pace, and auto-pace would
+// answer by writing a speed-up correction that cancels the very setting that
+// asked for it. Scaling the target by the same factor keeps the loop closed
+// around what was asked for rather than around what was overridden.
+func effectivePaceWPM(paceWPM int, voiceSpeed float64) int {
+	if paceWPM <= 0 {
+		return 0
+	}
+	if voiceSpeed <= 0 {
+		voiceSpeed = 1
+	}
+	target := int(float64(paceWPM)*voiceSpeed + 0.5)
+	if target <= 0 {
+		return 0
+	}
+	return target
+}
+
 // TTSSpeedFix is the persisted tts_speed.json.
 type TTSSpeedFix struct {
 	// Speed is the absolute auto-pace multiplier (composes with the user's

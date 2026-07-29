@@ -69,6 +69,12 @@ func (c *Course) Validate() error {
 	if p := c.Config.Style.PaceWPM; p < 0 || p > 400 {
 		return fmt.Errorf("style.pace_wpm %d is out of range (0-400)", p)
 	}
+	// A mistyped voice_speed is expensive rather than obviously wrong: the
+	// run costs a full synthesis before anyone hears that 9 was meant to be
+	// 0.9, and the auto-pace loop then chases the mistake.
+	if s := c.Config.Style.VoiceSpeed; s != 0 && (s < 0.5 || s > 2) {
+		return fmt.Errorf("style.voice_speed %.2f is out of range (0.5-2.0, or 0 for the default)", s)
+	}
 	if t := c.Config.Pipeline.ReviewThreshold; t < 0 || t > 10 {
 		return fmt.Errorf("pipeline.review_threshold %.1f is out of range (0-10)", t)
 	}

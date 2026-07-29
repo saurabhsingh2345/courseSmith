@@ -60,9 +60,36 @@ func runReelPlan(ctx context.Context, e *Env, _ *project.Course, l *project.Less
 		segSpec.Prompt = EnrichSnippetPrompt(ctx, e, segSpec, cfg)
 		segPlan, err := planner(ctx, e, segSpec, cfg)
 		if err != nil {
-			// Named, because "segment 4 of 9 failed" is the difference between
-			// re-running one prompt and re-running the whole reel.
-			return fmt.Errorf("segment %q (%s): %w", seg.ID, seg.Template, err)
+			// A miscast segment must not kill the reel.
+			//
+			// The caster is asked to name the material each template needs, and
+			// that catches most of it — but "non-empty" is all a validator can
+			// check, so a look chosen for a part with nothing to put in it still
+			// gets through. `gauge` on "how vibe coding lets people build with
+			// AI" has no ceiling and no candidates, and no amount of correcting
+			// will conjure them.
+			//
+			// Seven good segments and one that cannot be planned is a video with
+			// a hole, not a failed video. So the segment is recast onto the
+			// template with the fewest requirements — the one that needs a
+			// subject and nothing else — and the run continues. The log says it
+			// happened, and reel.yaml still holds the original choice, so the
+			// fix is editing one line rather than starting over.
+			fmt.Fprintf(e.out(), "    !  %s could not be planned as %s (%v)\n", seg.ID, seg.Template, errSummary(err))
+			fmt.Fprintf(e.out(), "       recasting it as %s — edit reel.yaml if you want a different look\n", reelFallbackTemplate)
+			fb := SnippetTemplates[reelFallbackTemplate]
+			fbSpec := segSpec
+			fbSpec.Template = reelFallbackTemplate
+			fbPlanner := fb.Plan
+			if fbPlanner == nil {
+				fbPlanner = planSnippetDefault
+			}
+			segPlan, err = fbPlanner(ctx, e, fbSpec, cfg)
+			if err != nil {
+				return fmt.Errorf("segment %q could not be planned as %s or as %s: %w",
+					seg.ID, seg.Template, reelFallbackTemplate, err)
+			}
+			seg.Template = reelFallbackTemplate
 		}
 		segPlan.Template = seg.Template
 		plan.Segments = append(plan.Segments, ReelPlanSegment{
@@ -246,4 +273,21 @@ func uniqueReelID(courseDir string, spec ReelSpec) (string, error) {
 		}
 	}
 	return "", fmt.Errorf("could not find a free reel id for %q", base)
+}
+
+// reelFallbackTemplate is what a segment is recast as when its own template
+// cannot be planned from the material. `illustration` is chosen because it is
+// the one look in the catalog with no data requirement at all — a headline, a
+// line under it, and a figure — so it can carry any subject. A fallback that
+// could itself fail would just move the problem.
+const reelFallbackTemplate = "illustration"
+
+// errSummary trims a wrapped planner error down to the part worth reading in a
+// progress log.
+func errSummary(err error) string {
+	s := err.Error()
+	if i := strings.Index(s, "\n"); i >= 0 {
+		s = s[:i]
+	}
+	return truncateForLog(s, 90)
 }
