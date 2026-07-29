@@ -41,7 +41,7 @@ func init() {
 		Name:             "spec",
 		Category:         CatCode,
 		Title:            "Spec checklist",
-		Description:      "Acceptance criteria written down first, then checked off — the skill that transfers across every tool.",
+		Description:      "Acceptance criteria written down first, then checked off. Reach for it to teach the habit of saying what done means before building.",
 		Example:          "How to write a prompt that tells you whether the result is any good",
 		PromptFile:       snippetSpecTemplateName,
 		NeedsCode:        false,

@@ -29,7 +29,7 @@ func init() {
 		Name:        "whiteboard",
 		Category:    CatConcepts,
 		Title:       "Whiteboard sketch",
-		Description: "A hand-drawn board that fills in as you talk — boxes, icons and arrows, sketched live.",
+		Description: "A hand-drawn board filling in as you talk. Reach for it when thinking-out-loud suits the subject better than a finished diagram.",
 		Example:     "Why HTTP caching matters, from browser to CDN to origin",
 		PromptFile:  snippetWhiteboardTemplateName,
 		NeedsCode:   false,

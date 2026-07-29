@@ -42,7 +42,7 @@ func init() {
 		Category:    CatConcepts,
 		Since:       SinceV1,
 		Title:       "What everyone gets wrong",
-		Description: "The belief, in the words people use — struck through, replaced, and then shown why it was tempting.",
+		Description: "A widely-held belief struck through and replaced. Reach for it when the obstacle is not a gap in knowledge but a wrong model that has to visibly go.",
 		Example:     "Redis is just a cache — and why that costs teams real money",
 		PromptFile:  snippetMythTemplateName,
 		NeedsCode:   false,

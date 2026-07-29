@@ -38,7 +38,7 @@ func init() {
 		Category:    CatDecisions,
 		Since:       SinceV1,
 		Title:       "The verdict",
-		Description: "A recommendation, the ground it holds on, the asterisk that qualifies it — and the call, alone on the frame.",
+		Description: "Where a recommendation holds, where it breaks, then the call alone on screen. Reach for it to CLOSE a topic with something actionable.",
 		Example:     "After all that: should you actually self-host your database?",
 		PromptFile:  snippetVerdictTemplateName,
 		NeedsCode:   false,

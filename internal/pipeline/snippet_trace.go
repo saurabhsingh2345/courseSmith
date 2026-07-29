@@ -36,7 +36,7 @@ func init() {
 		Category:    CatSystems,
 		Since:       SinceV1,
 		Title:       "Watch it run",
-		Description: "Actors, a queue and one shared value — drained a step at a time, so the order becomes visible.",
+		Description: "Actors, a queue and one shared value, drained a step at a time. Reach for it when the point is timing — a race, a lost update, a lock being held.",
 		Example:     "Why two users buying the last item at once oversells your inventory",
 		PromptFile:  snippetTraceTemplateName,
 		NeedsCode:   false,

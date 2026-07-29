@@ -39,7 +39,7 @@ func init() {
 		Name:             "mockup",
 		Category:         CatCode,
 		Title:            "Screen mockup",
-		Description:      "A page assembling itself inside a device frame, with the layer list filling in beside it.",
+		Description:      "A page assembling itself in a device frame, layers filling in beside it. Reach for it to show a screen being designed or built.",
 		Example:          "Building a signup page in Webflow without writing any code",
 		PromptFile:       snippetMockupTemplateName,
 		NeedsCode:        false,

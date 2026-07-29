@@ -25,6 +25,43 @@ import { ErrorNote } from "../components/ErrorNote";
 
 const REEL_COURSE = "reels";
 
+/**
+ * A segmented control, matching the snippets page.
+ *
+ * The runtime picker was the only one of these, written inline. Three of them
+ * inline is three places to get the dark-shell colours wrong — and the base
+ * Button's "secondary" variant resolves to the light-mode surface token, so it
+ * renders as a white pill here and cannot be used.
+ */
+function Segmented<T extends string | number>({
+  value,
+  options,
+  onChange,
+}: {
+  value: T;
+  options: { value: T; label: string; hint?: string }[];
+  onChange: (v: T) => void;
+}) {
+  return (
+    <div className="flex rounded-lg border border-ink-800 p-0.5">
+      {options.map((o) => (
+        <button
+          key={String(o.value)}
+          type="button"
+          onClick={() => onChange(o.value)}
+          title={o.hint}
+          className={[
+            "rounded-md px-3 py-1.5 text-[13px] transition-colors",
+            value === o.value ? "bg-ink-800 text-ink-100" : "text-ink-400 hover:text-ink-200",
+          ].join(" ")}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 /** Small monospace chip, matching the snippets page. */
 function Chip({ children, tone }: { children: React.ReactNode; tone?: "muted" | "warn" }) {
   const color =
@@ -301,6 +338,9 @@ export function ReelsPage() {
   const [brief, setBrief] = useState("");
   const [segments, setSegments] = useState<CreateReelSegment[]>([]);
   const [planOnly, setPlanOnly] = useState(true);
+  const [mode, setMode] = useState<"dark" | "light">("dark");
+  const [captions, setCaptions] = useState<"off" | "on">("off");
+  const [skin, setSkin] = useState<"default" | "broadcast" | "minimal">("default");
   const [busy, setBusy] = useState(false);
   const [casting, setCasting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -358,6 +398,9 @@ export function ReelsPage() {
         title: title.trim() || undefined,
         brief: brief.trim() || undefined,
         segments,
+        mode,
+        captions,
+        skin,
         plan_only: planOnly,
       });
       setSegments([]);
@@ -453,6 +496,41 @@ export function ReelsPage() {
       </section>
 
       {error && <div className="mt-4 rounded-lg border border-danger/40 bg-danger/10 p-3 text-danger">{error}</div>}
+
+      {/* The look. Identical to the snippets page, and applied to the whole
+          reel: a piece that changed polarity or caption style between segments
+          would read as several videos stitched together, which is the one thing
+          a reel is built not to be. */}
+      <section className="mt-6">
+        <h2 className="mb-2 text-[11px] uppercase tracking-wide text-ink-500">How should it look?</h2>
+        <div className="flex flex-wrap items-center gap-3">
+          <Segmented
+            value={mode}
+            onChange={setMode}
+            options={[
+              { value: "dark", label: "Dark", hint: "The default editorial look" },
+              { value: "light", label: "Light", hint: "A paper-white video, same branding" },
+            ]}
+          />
+          <Segmented
+            value={captions}
+            onChange={setCaptions}
+            options={[
+              { value: "off", label: "No captions", hint: "The .vtt sidecar is still written" },
+              { value: "on", label: "Captions", hint: "Burn the karaoke caption track into the video" },
+            ]}
+          />
+          <Segmented
+            value={skin}
+            onChange={setSkin}
+            options={[
+              { value: "default", label: "Default", hint: "The catalog's own look" },
+              { value: "broadcast", label: "Broadcast", hint: "Near-black stage, large type, standing chrome" },
+              { value: "minimal", label: "Minimal", hint: "Flat, one accent, no furniture" },
+            ]}
+          />
+        </div>
+      </section>
 
       <section className="mt-6 flex items-center gap-3">
         <button

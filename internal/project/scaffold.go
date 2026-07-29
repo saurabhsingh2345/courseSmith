@@ -81,7 +81,7 @@ branding:
   diagram_style: clean, flat, rounded corners, generous whitespace
 
 pipeline:
-  llm_content: groq/llama-3.3-70b-versatile
+  llm_content: openai/gpt-4o-mini
   llm_review: openai/gpt-4o-mini
   review_threshold: 8
   captions_model: whisper-large-v3

@@ -32,7 +32,7 @@ func init() {
 		Name:             "stack",
 		Category:         CatDecisions,
 		Title:            "Tool stack",
-		Description:      "The layers of a build — what each tier is for and which tools live there — walked top to bottom.",
+		Description:      "The tiers of a build and which tools live in each. Reach for it to show where things sit relative to each other.",
 		Example:          "The four tools behind a no-code job board, and what each one is actually for",
 		PromptFile:       snippetStackTemplateName,
 		NeedsCode:        false,

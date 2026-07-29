@@ -646,4 +646,10 @@ style:
   # Matched to the snippets course: measured Kokoro af_heart delivery at
   # speed 1.0, so the pace target is where the voice already lives.
   pace_wpm: 174
+pipeline:
+  # Pinned rather than inherited, the same way the snippets course pins it.
+  # A reel is one planning call per segment plus the cast, so the model is a
+  # cost and quality decision this course should state rather than take from
+  # whatever the global default happens to be.
+  llm_content: openai/gpt-4o-mini
 `

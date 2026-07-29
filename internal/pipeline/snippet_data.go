@@ -36,7 +36,7 @@ func init() {
 		Name:        "data",
 		Category:    CatNumbers,
 		Title:       "Data & maps",
-		Description: "Real numbers on one chart or world map, with the narration walking around it.",
+		Description: "A real chart or world map with the narration walking around it. Reach for it when the meaning is in the shape — a trend, a spread, a comparison across places.",
 		Example:     "Where the world's undersea internet cables actually land",
 		PromptFile:  snippetDataTemplateName,
 		NeedsCode:   false,

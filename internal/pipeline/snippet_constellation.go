@@ -35,7 +35,7 @@ func init() {
 		Category:    CatConcepts,
 		Since:       SinceV1,
 		Title:       "The whole picture",
-		Description: "One idea in the middle with everything that hangs off it, lighting one spoke at a time.",
+		Description: "One idea in the middle with its properties radiating out. Reach for it to close a topic, or to give a name its shape before the detail.",
 		Example:     "Everything that makes Redis Redis, in one picture",
 		PromptFile:  snippetConstellationTemplateName,
 		NeedsCode:   false,

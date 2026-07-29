@@ -42,7 +42,7 @@ func init() {
 		Category:    CatNumbers,
 		Since:       SinceV1,
 		Title:       "Big numbers",
-		Description: "One figure at a time, set very large — what it counts, what it runs into, and what it means.",
+		Description: "One figure at a time, counting up on an almost empty frame. Reach for it when the point is how big something is, and a chart would add nothing.",
 		Example:     "What it really costs to run a 70-billion-parameter model at home",
 		PromptFile:  snippetMetricTemplateName,
 		NeedsCode:   false,

@@ -41,7 +41,7 @@ func init() {
 		Category:    CatNumbers,
 		Since:       SinceV1,
 		Title:       "What it really costs",
-		Description: "Line items stacking into a running total — including the ones nobody budgets for.",
+		Description: "Line items stacking into a running total. Reach for it when the sticker price is not the price and the total should be built in front of the viewer.",
 		Example:     "What a self-hosted GPU box actually costs in year one",
 		PromptFile:  snippetCostingTemplateName,
 		NeedsCode:   false,

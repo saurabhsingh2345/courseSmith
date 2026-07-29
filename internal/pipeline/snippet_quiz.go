@@ -36,7 +36,7 @@ func init() {
 		Name:        "quiz",
 		Category:    CatPresenting,
 		Title:       "Quiz",
-		Description: "A question, a moment to think, then the answer — and why the wrong ones were tempting.",
+		Description: "A question, a moment to think, then the answer and why the wrong ones tempted. Reach for it to make the viewer do something rather than watch.",
 		Example:     "Test whether people know what len() returns for a nested list",
 		PromptFile:  snippetQuizTemplateName,
 		NeedsCode:   false,

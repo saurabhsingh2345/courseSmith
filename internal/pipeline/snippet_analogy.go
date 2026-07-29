@@ -40,7 +40,7 @@ func init() {
 		Category:    CatConcepts,
 		Since:       SinceV1,
 		Title:       "The mental model",
-		Description: "A familiar picture mapped onto the real thing, part by part — and an honest note on where it stops working.",
+		Description: "A familiar picture in one column and the real thing in the other, mapped part by part. Reach for it when the subject is unfamiliar but structurally like something everyone knows.",
 		Example:     "A database index is a library card catalogue — until it isn't",
 		PromptFile:  snippetAnalogyTemplateName,
 		NeedsCode:   false,

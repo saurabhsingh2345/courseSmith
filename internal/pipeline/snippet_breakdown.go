@@ -39,7 +39,7 @@ func init() {
 		Name:        "breakdown",
 		Category:    CatSystems,
 		Title:       "Phase breakdown",
-		Description: "A path of phases where each one opens into its own detail — the description, and the tools or techniques inside it.",
+		Description: "A path of phases where each opens into its own detail. Reach for it for a build or a process with stages worth expanding one at a time.",
 		Example:     "Everything it takes to build a complete website with no-code tools",
 		PromptFile:  snippetBreakdownTemplateName,
 		NeedsCode:   false,

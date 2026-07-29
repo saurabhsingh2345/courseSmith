@@ -114,7 +114,7 @@ type Colors struct {
 }
 
 // Pipeline selects models and thresholds for the generation stages.
-// Model references use "provider/model" form, e.g. "groq/llama-3.3-70b-versatile".
+// Model references use "provider/model" form, e.g. "openai/gpt-4o-mini".
 type Pipeline struct {
 	LLMContent string `yaml:"llm_content"`
 	LLMReview  string `yaml:"llm_review"`
@@ -153,7 +153,7 @@ func Defaults() Config {
 			DiagramStyle: "clean, flat, rounded corners, generous whitespace",
 		},
 		Pipeline: Pipeline{
-			LLMContent:      "groq/llama-3.3-70b-versatile",
+			LLMContent:      "openai/gpt-4o-mini",
 			LLMReview:       "openai/gpt-4o-mini",
 			LLMVision:       "openai/gpt-4o",
 			ReviewThreshold: 8,

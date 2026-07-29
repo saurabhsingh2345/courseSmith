@@ -39,7 +39,7 @@ func init() {
 		Name:        "promptloop",
 		Category:    CatCode,
 		Title:       "Prompt loop",
-		Description: "The vibe-coding cycle: ask, look at what came back, ask again — with the goal pinned throughout.",
+		Description: "Ask, look at what came back, ask again — with the goal pinned throughout. Reach for it to show working with an AI that builds.",
 		Example:     "Getting an AI to build a landing page that actually converts",
 		PromptFile:  snippetPromptLoopTemplateName,
 		NeedsCode:   false,

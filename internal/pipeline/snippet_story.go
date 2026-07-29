@@ -43,7 +43,7 @@ func init() {
 		Name:        "story",
 		Category:    CatPresenting,
 		Title:       "Directed short",
-		Description: "A one-to-two-minute piece: a character, objects, a moving camera, and a shot list with an arc.",
+		Description: "A character, objects and a moving camera, with a shot list and an arc. Reach for it for a one-to-two-minute piece that should feel directed.",
 		Example:     "How a database index actually finds your row",
 		PromptFile:  snippetStoryScriptTemplateName,
 		NeedsCode:   false,

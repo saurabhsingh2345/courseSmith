@@ -41,7 +41,7 @@ func init() {
 		Category:    CatNumbers,
 		Since:       SinceV1,
 		Title:       "Does it fit?",
-		Description: "A bar filling toward a marked ceiling — what clears it, what runs past, and by how much.",
+		Description: "A bar filling toward a marked ceiling. Reach for it whenever the question is whether something fits — memory, budget, a latency target.",
 		Example:     "Which of these models actually fit in 24GB of VRAM",
 		PromptFile:  snippetGaugeTemplateName,
 		NeedsCode:   false,

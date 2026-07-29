@@ -38,7 +38,7 @@ func init() {
 		Category:    CatDecisions,
 		Since:       SinceV1,
 		Title:       "Which one do you buy?",
-		Description: "One question on an axis, split into tiers — and the answer for whichever tier you land in.",
+		Description: "One question on an axis split into bands, each carrying its own answer. Reach for it when a single question separates the choices.",
 		Example:     "Which database should you actually pick for a new project?",
 		PromptFile:  snippetDecisionTemplateName,
 		NeedsCode:   false,

@@ -35,7 +35,7 @@ func init() {
 		Category:    CatPresenting,
 		Since:       SinceV1,
 		Title:       "N things",
-		Description: "A numbered row that promises how many there are and then delivers exactly that many.",
+		Description: "A numbered row that promises how many there are and delivers exactly that. Reach for it when the subject genuinely is a set of N things.",
 		Example:     "The three numbers that decide whether a model runs on your machine",
 		PromptFile:  snippetRundownTemplateName,
 		NeedsCode:   false,

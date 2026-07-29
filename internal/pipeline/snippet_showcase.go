@@ -39,7 +39,7 @@ func init() {
 		Name:        "showcase",
 		Category:    CatDecisions,
 		Title:       "Tool showcase",
-		Description: "A product card — what it is, what it costs, what it is good and bad at — ending on a cut point for your demo.",
+		Description: "A product card — what it is, what it costs, what it is good and bad at. Reach for it the first time a course meets a tool.",
 		Example:     "Introducing Airtable: what it is, what it costs, and when not to use it",
 		PromptFile:  snippetShowcaseTemplateName,
 		NeedsCode:   false,
