@@ -89,6 +89,10 @@ const (
 	hueQuantity = 45
 	// hueRival is the alternative being weighed against the subject.
 	hueRival = 217
+	// hueQuantityLight is the quantity role on paper. See deriveSemanticAccents:
+	// gold at readable contrast is khaki, amber at the same contrast is still
+	// amber.
+	hueQuantityLight = 32
 )
 
 // deriveSemanticAccents fills the three role colours for a mode. They are
@@ -99,11 +103,19 @@ func deriveSemanticAccents(t *SceneTheme, mode string) {
 	// to be dark enough to read as ink. Saturation stays high in both — these
 	// are signal colours and a desaturated signal is a decoration.
 	l := 0.62
+	quantityHue := float64(hueQuantity)
 	if mode == ThemeModeLight {
 		l = 0.42
+		// Gold does not survive being darkened. Walked down to AA on paper it
+		// lands on khaki — the same colour a bar in mud is — and the role stops
+		// reading as "the measured quantity" and starts reading as a mistake.
+		// Rotating toward amber keeps chroma as lightness falls, so the role
+		// still looks deliberate on white. The hue moves only here: on the dark
+		// stage the original gold is already legible and is the better colour.
+		quantityHue = hueQuantityLight
 	}
 	t.AccentLimit = hslToHex(hueLimit, 0.80, l)
-	t.AccentQuantity = hslToHex(hueQuantity, 0.85, l)
+	t.AccentQuantity = hslToHex(quantityHue, 0.90, l)
 	t.AccentRival = hslToHex(hueRival, 0.80, l)
 
 	// Gold sits at very nearly the luminance of paper, so in light mode the
