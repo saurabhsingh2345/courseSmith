@@ -38,6 +38,28 @@ const SOURCES = {
   spec: "SpecViz-910",
   showcase: "ShowcaseViz-940",
   breakdown: "BreakdownViz-700",
+  // The stated-figure frame rather than the recap: the card should show what
+  // the template does most of the time, and four beats in five state a number.
+  metric: "MetricViz-600",
+  // The overrun frame: the card should show the moment the template exists for,
+  // which is a bar crossing the line rather than one that comfortably clears it.
+  gauge: "GaugeViz-600",
+  // The two-column state rather than the call: the card should show the frame
+  // the clip spends most of its time in, and a bare line of type would not read
+  // as a distinct template on a gallery card.
+  verdict: "VerdictViz-810",
+  // Mid-walk rather than the closing rule: the card should show the marker on a
+  // band with that band's instruction under it, which is the template's
+  // characteristic frame.
+  decision: "DecisionViz-600",
+  // The settled frame rather than mid-strike: a card wants the claim cancelled
+  // and the replacement legible, which the half-swept frame does not show.
+  myth: "MythViz-500",
+  rundown: "RundownViz-600",
+  analogy: "AnalogyViz-600",
+  trace: "TraceViz-1080",
+  costing: "CostingViz-750",
+  constellation: "ConstellationViz-1090",
   workspace: "WorkspaceViz-690",
   whiteboard: "WhiteboardViz-390",
   flow: "FlowViz-400",

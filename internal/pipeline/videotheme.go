@@ -103,7 +103,43 @@ func readableOn(hex, bg string, want float64) string {
 // token names, so a scene never asks which mode it is in — it asks for
 // `surface` and gets something it can draw on either way. Any scene that has
 // to branch on mode is a scene with a colour hardcoded in it.
+// deriveVideoTheme keeps its original signature and its original result: it is
+// the default skin, and every call site that does not care about skins keeps
+// working unchanged. deriveVideoThemeSkinned is the same derivation with the
+// house style applied on top.
 func deriveVideoTheme(colors config.Colors, fonts config.Fonts, courseName, mode string) SceneTheme {
+	return deriveVideoThemeSkinned(colors, fonts, courseName, mode, SkinDefault, "")
+}
+
+// deriveVideoThemeSkinned derives the theme and then lets the skin override the
+// tokens it disagrees with. watermark is the standing corner mark; empty falls
+// back to the course name for skins that carry chrome.
+func deriveVideoThemeSkinned(colors config.Colors, fonts config.Fonts, courseName, mode, skin, watermark string) SceneTheme {
+	t := deriveBaseVideoTheme(colors, fonts, courseName, mode)
+	h, _, _ := hexToHSL(colors.Primary)
+	applySkin(&t, h, skin, normalizeThemeMode(mode))
+	t.Air = roundTo(skinAir(skin), 3)
+	// Only a skin that actually draws chrome carries a watermark. `minimal` is
+	// defined by the absence of furniture, so setting a mark it never renders
+	// would be a token that lies about the frame.
+	if normalizeSkin(skin) == SkinBroadcast {
+		if strings.TrimSpace(watermark) != "" {
+			t.Watermark = strings.TrimSpace(watermark)
+		} else {
+			t.Watermark = courseName
+		}
+	}
+	// The default skin derives the semantic accents too — a template that draws
+	// a limit being crossed needs those colours whichever house style it is cut
+	// in, and they are new tokens rather than changed ones, so nothing that
+	// rendered before this looks different for having them.
+	if normalizeSkin(skin) == SkinDefault {
+		deriveSemanticAccents(&t, normalizeThemeMode(mode))
+	}
+	return t
+}
+
+func deriveBaseVideoTheme(colors config.Colors, fonts config.Fonts, courseName, mode string) SceneTheme {
 	h, _, _ := hexToHSL(colors.Primary)
 
 	t := SceneTheme{
@@ -174,7 +210,8 @@ func videoThemeForConfig(cfg config.Config, courseName string) SceneTheme {
 	if arch, err := ResolveArchetype(cfg.Style); err == nil && arch.HasPalette {
 		colors = arch.Palette
 	}
-	return deriveVideoTheme(colors, cfg.Branding.Fonts, courseName, cfg.Style.Mode)
+	return deriveVideoThemeSkinned(colors, cfg.Branding.Fonts, courseName,
+		cfg.Style.Mode, cfg.Style.Skin, cfg.Style.Watermark)
 }
 
 // shiftLightness returns the hex colour moved by dl in HSL lightness

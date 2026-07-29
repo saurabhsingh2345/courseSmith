@@ -89,19 +89,29 @@ func normalizeSnippetBeats(p *SnippetPlan) {
 // planFields names the plan-level payloads a template consumes, the way
 // beatFields names the per-beat ones.
 type planFields struct {
-	Chart     bool
-	Project   bool
-	Quiz      bool
-	Compare   bool
-	Anatomy   bool
-	Timeline  bool
-	Canvas    bool
-	Loop      bool
-	Mockup    bool
-	Stack     bool
-	Spec      bool
-	Showcase  bool
-	Breakdown bool
+	Chart         bool
+	Project       bool
+	Quiz          bool
+	Compare       bool
+	Anatomy       bool
+	Timeline      bool
+	Canvas        bool
+	Loop          bool
+	Mockup        bool
+	Stack         bool
+	Spec          bool
+	Showcase      bool
+	Breakdown     bool
+	Metric        bool
+	Gauge         bool
+	Verdict       bool
+	Decision      bool
+	Myth          bool
+	Rundown       bool
+	Analogy       bool
+	Trace         bool
+	Costing       bool
+	Constellation bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -219,6 +229,36 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Breakdown {
 		p.Breakdown = nil
+	}
+	if !owns.Metric {
+		p.Metric = nil
+	}
+	if !owns.Gauge {
+		p.Gauge = nil
+	}
+	if !owns.Verdict {
+		p.Verdict = nil
+	}
+	if !owns.Decision {
+		p.Decision = nil
+	}
+	if !owns.Myth {
+		p.Myth = nil
+	}
+	if !owns.Rundown {
+		p.Rundown = nil
+	}
+	if !owns.Analogy {
+		p.Analogy = nil
+	}
+	if !owns.Trace {
+		p.Trace = nil
+	}
+	if !owns.Costing {
+		p.Costing = nil
+	}
+	if !owns.Constellation {
+		p.Constellation = nil
 	}
 }
 

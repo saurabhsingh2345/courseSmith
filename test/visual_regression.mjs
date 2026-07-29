@@ -82,6 +82,65 @@ const TARGETS = [
   // cells filled, the identity block intact. The hand-off frame is the other
   // state worth watching, but it hides the card the template is actually about.
   { id: "ShowcaseViz", frame: 940 },
+  // The metric template on its third figure, past the count-up and with the
+  // note up — the only state holding a settled number, its unit, its label and
+  // its argument at once. It is also the catalog's one skinned baseline, so it
+  // is the guard on the broadcast chrome, the semantic accents and the stage
+  // scale as much as on the template.
+  { id: "MetricViz", frame: 600 },
+  // The same template on its recap: every figure back at once in its own role
+  // colour. The row assembles on a stagger no other frame catches.
+  { id: "MetricViz", frame: 1020 },
+  // The gauge mid-clip, on the bar that does not fit: the dashed ceiling across
+  // the track, one bar settled and dimmed above, the current one overrunning the
+  // rule in the limit colour, and one still unrun below. It is the only state
+  // that holds fits, does-not-fit and not-yet at once.
+  { id: "GaugeViz", frame: 600 },
+  // The verdict on its first asterisk beat: the holds column receded as a
+  // block, one break lit on its tinted plate, the other still muted. It is the
+  // only state that proves the asymmetry the template is built on.
+  // Mid-strike: the rule part-way across the claim, the claim greying out
+  // under it, the truth not yet up. It is the one frame that proves the
+  // gesture travels rather than being toggled on, and it exists for about
+  // half a second.
+  // The rundown on its second card: one lit, two dimmed but still legible,
+  // and the detail line under the row. It is the only state that proves the
+  // row is fixed furniture and only brightness moves.
+  { id: "RundownViz", frame: 600 },
+  // The analogy on its second correspondence: both columns complete, one row
+  // lit end to end with its connector drawn, the others dimmed, and the note
+  // under it. The only state that holds the mapping and the walk at once.
+  // The trace on its last operation: three drained and struck above, the
+  // fourth lit, one marked "no change", and the value already at zero. It is
+  // the only frame that holds history, contention and the bug at once.
+  { id: "TraceViz", frame: 1080 },
+  // The costing on its first hidden line: two ordinary costs settled above, the
+  // surprising one lit with its badge, one still unlanded, and the running
+  // total part-way up. The only state holding all four line states at once.
+  { id: "CostingViz", frame: 750 },
+  // The constellation closing on the whole picture: every spoke lit, every
+  // relation word up, nothing moved since the walk. The frame the template
+  // exists to produce.
+  { id: "ConstellationViz", frame: 1090 },
+  // And mid-walk, where two spokes are lit, one is drawing and one is still
+  // faint — the state that proves the map accumulates rather than reveals.
+  { id: "ConstellationViz", frame: 660 },
+  { id: "AnalogyViz", frame: 600 },
+  // The break: the whole mapping receded and the admission over it. Nothing
+  // else in the catalog dims its own content to make a point.
+  { id: "AnalogyViz", frame: 1080 },
+  { id: "MythViz", frame: 225 },
+  // Two beats later: the claim struck and settled, the truth up, and one piece
+  // of evidence carded under it.
+  { id: "MythViz", frame: 500 },
+  { id: "DecisionViz", frame: 600 },
+  // The closing rule: every band lit at once with its own answer carded under
+  // it, which is the only frame that proves the partition is total.
+  { id: "DecisionViz", frame: 1080 },
+  { id: "VerdictViz", frame: 810 },
+  // The closing frame: the columns gone and the ruling alone at headline size.
+  // Nothing else in the catalog renders this, so it regresses here or nowhere.
+  { id: "VerdictViz", frame: 1150 },
   // The breakdown on an item beat: two phases collapsed above, one open with an
   // item spotlit and its neighbours dimmed, one unreached below, and the
   // progress read under it. Every state the accordion has, in one frame.

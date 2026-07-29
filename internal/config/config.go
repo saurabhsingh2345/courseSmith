@@ -28,8 +28,8 @@ type Style struct {
 	VoiceSpeed float64 `yaml:"voice_speed"`
 	Tone       string  `yaml:"tone"`     // e.g. "friendly, conversational"
 	PaceWPM    int     `yaml:"pace_wpm"` // narration pace, words per minute
-	Audience string `yaml:"audience"` // e.g. "absolute beginners"
-	Language string `yaml:"language"` // BCP-47-ish, e.g. "en"
+	Audience   string  `yaml:"audience"` // e.g. "absolute beginners"
+	Language   string  `yaml:"language"` // BCP-47-ish, e.g. "en"
 	// Archetype selects a course preset (project-based, concept-first,
 	// practical-skills, story-driven, reference) that supplies motion,
 	// palette, and prompt-hint defaults. See internal/pipeline/archetypes.go.
@@ -54,6 +54,20 @@ type Style struct {
 	// omitempty so the field's introduction doesn't change config
 	// fingerprints recorded before it existed.
 	Mode string `yaml:"mode,omitempty"`
+	// Skin is the house style the video is cut in: "" or "default" is the look
+	// the catalog has always had, "broadcast" is the near-black explainer look
+	// (standing chrome, large uppercase headlines, one small precise diagram in
+	// a lot of air), "minimal" is the flat single-accent look where the diagram
+	// is the whole frame. It is an axis independent of Mode — every skin
+	// derives in both polarities. See internal/pipeline/videoskin.go.
+	// omitempty so the field's introduction doesn't change config
+	// fingerprints recorded before it existed.
+	Skin string `yaml:"skin,omitempty"`
+	// Watermark is the standing corner mark a chrome-carrying skin sets on
+	// every frame. Empty falls back to the course name.
+	// omitempty so the field's introduction doesn't change config
+	// fingerprints recorded before it existed.
+	Watermark string `yaml:"watermark,omitempty"`
 }
 
 // Audio controls voiceover post-production in the audio stage.
@@ -102,8 +116,8 @@ type Colors struct {
 // Pipeline selects models and thresholds for the generation stages.
 // Model references use "provider/model" form, e.g. "groq/llama-3.3-70b-versatile".
 type Pipeline struct {
-	LLMContent      string  `yaml:"llm_content"`
-	LLMReview       string  `yaml:"llm_review"`
+	LLMContent string `yaml:"llm_content"`
+	LLMReview  string `yaml:"llm_review"`
 	// LLMVision judges rendered diagram screenshots. Vision spatial reasoning
 	// needs a stronger model than text review — a weak judge reports overlaps
 	// that are not there on clean, layout-engine-produced diagrams. Empty
@@ -192,6 +206,12 @@ func Merge(base, over Config) Config {
 	}
 	if over.Style.Mode != "" {
 		out.Style.Mode = over.Style.Mode
+	}
+	if over.Style.Skin != "" {
+		out.Style.Skin = over.Style.Skin
+	}
+	if over.Style.Watermark != "" {
+		out.Style.Watermark = over.Style.Watermark
 	}
 	if len(over.Style.Pronunciations) > 0 {
 		merged := make(map[string]string, len(base.Style.Pronunciations)+len(over.Style.Pronunciations))

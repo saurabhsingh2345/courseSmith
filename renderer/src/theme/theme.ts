@@ -7,12 +7,29 @@
 import {Theme} from '../types';
 import {bodyFamily, displayFamily, monoFamily} from './fonts';
 
+/** The house styles a video can be cut in. Mirrors videoskin.go. */
+export type Skin = 'default' | 'broadcast' | 'minimal';
+
 export type ResolvedTheme = {
   primary: string;
   accent: string;
   background: string;
   courseName: string;
   mode: 'dark' | 'light';
+  /** House style. 'default' is the look every pre-skin scene graph was
+   *  recorded against, and what an absent field resolves to. */
+  skin: Skin;
+  /** Fraction of the drawing box a skin leaves empty on every side. 0 fills
+   *  the stage, which is the default. */
+  air: number;
+  /** Standing corner mark. Empty leaves the corner clean. */
+  watermark: string;
+  /** The measured number. */
+  accentQuantity: string;
+  /** The ceiling it hits, the thing that does not fit. */
+  accentLimit: string;
+  /** The alternative being weighed against the subject. */
+  accentRival: string;
   bgTop: string;
   bgBottom: string;
   surface: string;
@@ -72,6 +89,16 @@ export const resolveTheme = (t: Theme): ResolvedTheme => ({
   background: t.background || '#ffffff',
   courseName: t.courseName,
   mode: t.mode ?? 'dark',
+  skin: t.skin ?? 'default',
+  air: t.air ?? 0,
+  watermark: t.watermark ?? '',
+  // Semantic accents predate no scene graph that used them, so a missing one
+  // falling back to the brand accent is safe: the frame loses the *distinction*
+  // between the three roles rather than losing colour altogether, which is the
+  // right way for an old graph to degrade.
+  accentQuantity: t.accentQuantity ?? t.accent,
+  accentLimit: t.accentLimit ?? t.accent,
+  accentRival: t.accentRival ?? t.primary,
   bgTop: t.bgTop ?? DEFAULTS.bgTop,
   bgBottom: t.bgBottom ?? DEFAULTS.bgBottom,
   surface: t.surface ?? DEFAULTS.surface,

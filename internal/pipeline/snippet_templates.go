@@ -518,27 +518,37 @@ func checkBeatShape(p *SnippetPlan) error {
 // is quadratic and rots as the catalog grows — means a model that puts a
 // whiteboard sketch on a flow diagram gets a loud error instead of silence.
 type beatFields struct {
-	Code      bool
-	Run       bool
-	Sketch    bool
-	Nodes     bool
-	Focus     bool
-	Art       bool
-	Cast      bool
-	Shot      bool
-	Data      bool
-	Work      bool
-	Quiz      bool
-	Compare   bool
-	Anatomy   bool
-	Timeline  bool
-	Canvas    bool
-	Loop      bool
-	Mockup    bool
-	Stack     bool
-	Spec      bool
-	Showcase  bool
-	Breakdown bool
+	Code          bool
+	Run           bool
+	Sketch        bool
+	Nodes         bool
+	Focus         bool
+	Art           bool
+	Cast          bool
+	Shot          bool
+	Data          bool
+	Work          bool
+	Quiz          bool
+	Compare       bool
+	Anatomy       bool
+	Timeline      bool
+	Canvas        bool
+	Loop          bool
+	Mockup        bool
+	Stack         bool
+	Spec          bool
+	Showcase      bool
+	Breakdown     bool
+	Metric        bool
+	Gauge         bool
+	Verdict       bool
+	Decision      bool
+	Myth          bool
+	Rundown       bool
+	Analogy       bool
+	Trace         bool
+	Costing       bool
+	Constellation bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -573,6 +583,26 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "showcase"
 		case !owned.Breakdown && b.Breakdown != nil:
 			set = "breakdown"
+		case !owned.Metric && b.Metric != nil:
+			set = "metric"
+		case !owned.Gauge && b.Gauge != nil:
+			set = "gauge"
+		case !owned.Verdict && b.Verdict != nil:
+			set = "verdict"
+		case !owned.Decision && b.Decision != nil:
+			set = "decision"
+		case !owned.Myth && b.Myth != nil:
+			set = "myth"
+		case !owned.Rundown && b.Rundown != nil:
+			set = "rundown"
+		case !owned.Analogy && b.Analogy != nil:
+			set = "analogy"
+		case !owned.Trace && b.Trace != nil:
+			set = "trace"
+		case !owned.Costing && b.Costing != nil:
+			set = "costing"
+		case !owned.Constellation && b.Constellation != nil:
+			set = "constellation"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

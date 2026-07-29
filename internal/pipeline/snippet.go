@@ -201,6 +201,37 @@ type SnippetPlan struct {
 	// Breakdown is the breakdown template's path. On the plan for the same
 	// reason as Timeline: the path is the subject and the beats only walk it.
 	Breakdown *BreakdownSpec `json:"breakdown,omitempty"`
+	// Metric is the metric template's set of figures. On the plan because the
+	// recap beat needs every figure at once.
+	Metric *MetricSpec `json:"metric,omitempty"`
+	// Gauge is the gauge template's marked line and the things measured
+	// against it. On the plan because the ceiling outlives every beat.
+	Gauge *GaugeSpec `json:"gauge,omitempty"`
+	// Verdict is the verdict template's ruling. On the plan because the call is
+	// the subject of the clip and every beat builds toward it.
+	Verdict *VerdictSpec `json:"verdict,omitempty"`
+	// Decision is the decision template's question and the tiers along it. On
+	// the plan because the axis is the subject and the beats only walk it.
+	Decision *DecisionSpec `json:"decision,omitempty"`
+	// Myth is the myth template's belief and its replacement. On the plan
+	// because the claim outlives the beat that states it — it stays on screen,
+	// struck through, for the rest of the clip.
+	Myth *MythSpec `json:"myth,omitempty"`
+	// Rundown is the rundown template's promise and its numbered cards. On the
+	// plan because every card is on screen from the first frame.
+	Rundown *RundownSpec `json:"rundown,omitempty"`
+	// Analogy is the analogy template's picture and its mapping. On the plan
+	// because both columns are on screen for the whole clip.
+	Analogy *AnalogySpec `json:"analogy,omitempty"`
+	// Trace is the trace template's system: actors, a queue and one shared
+	// value. On the plan because the whole apparatus is on screen throughout.
+	Trace *TraceSpec `json:"trace,omitempty"`
+	// Costing is the costing template's bill. On the plan because the sheet
+	// accumulates across every beat.
+	Costing *CostingSpec `json:"costing,omitempty"`
+	// Constellation is the constellation template's idea and its properties. On
+	// the plan because the map is the subject and the beats only light it.
+	Constellation *ConstellationSpec `json:"constellation,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -406,6 +437,56 @@ type SnippetBeat struct {
 	// Breakdown says where in the two-level path this beat stands: on a phase,
 	// on one item inside it, or on the whole path.
 	Breakdown *BreakdownBeat `json:"breakdown,omitempty"`
+
+	// --- metric template ---
+	// Metric says which figure this beat states, or that it brings them all
+	// back together.
+	Metric *MetricBeat `json:"metric,omitempty"`
+
+	// --- gauge template ---
+	// Gauge says whether this beat sets the line, runs one bar against it, or
+	// delivers the verdict.
+	Gauge *GaugeBeat `json:"gauge,omitempty"`
+
+	// --- verdict template ---
+	// Verdict says whether this beat names the subject, walks one condition, or
+	// delivers the call.
+	Verdict *VerdictBeat `json:"verdict,omitempty"`
+
+	// --- decision template ---
+	// Decision says whether this beat poses the question, lands on one tier, or
+	// states the closing rule.
+	Decision *DecisionBeat `json:"decision,omitempty"`
+
+	// --- myth template ---
+	// Myth says whether this beat states the belief, strikes it, backs up the
+	// truth, or says why the belief was tempting.
+	Myth *MythBeat `json:"myth,omitempty"`
+
+	// --- rundown template ---
+	// Rundown says whether this beat makes the promise, covers one card, or
+	// brings the whole row back.
+	Rundown *RundownBeat `json:"rundown,omitempty"`
+
+	// --- analogy template ---
+	// Analogy says whether this beat sets the picture up, walks one
+	// correspondence, or admits where the picture breaks.
+	Analogy *AnalogyBeat `json:"analogy,omitempty"`
+
+	// --- trace template ---
+	// Trace says whether this beat sets the system up, queues the work, drains
+	// one operation, or delivers the outcome.
+	Trace *TraceBeat `json:"trace,omitempty"`
+
+	// --- costing template ---
+	// Costing says whether this beat names the subject, adds one line, or lands
+	// the total.
+	Costing *CostingBeat `json:"costing,omitempty"`
+
+	// --- constellation template ---
+	// Constellation says whether this beat names the centre, lights one spoke,
+	// or shows the whole picture.
+	Constellation *ConstellationBeat `json:"constellation,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

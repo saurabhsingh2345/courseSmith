@@ -1033,6 +1033,597 @@ const specVizProps: LessonVideoProps = {
  * two limits, and the hand-off. Eight beats — the shape that needed the beat
  * ceiling raised past seven.
  */
+/**
+ * The metric template on the example that motivated it: the memory arithmetic
+ * behind running a large model locally, four figures and a recap.
+ *
+ * Rendered under the broadcast skin, because this template was designed for it
+ * — a figure at 250pt on an unlit stage is the composition, and showing it on
+ * the default backdrop would be a preview of a clip nobody would cut that way.
+ * It is also the catalog's only skinned baseline, which makes it the guard on
+ * the skin itself: the chrome, the semantic accents and the stage scale all
+ * regress here or nowhere.
+ */
+const metricVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    mode: 'dark',
+    skin: 'broadcast',
+    air: 0.06,
+    watermark: '<coursesmith>',
+    bgTop: '#0a0c0d',
+    bgBottom: '#060708',
+    surface: '#16181b',
+    surfaceBorder: '#2e3338',
+    text: '#fafafa',
+    textMuted: '#989fa4',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+    mass: '#dee1e3',
+    ink: '#090d11',
+    accentText: '#ffd43b',
+    grain: 0.02,
+  },
+  audioFile: '',
+  durationMs: 40000,
+  scenes: [
+    {
+      type: 'metric',
+      startMs: 0,
+      endMs: 40000,
+      props: {
+        title: 'What a 70B model actually costs to run',
+        figures: [
+          {
+            value: '70',
+            unit: 'B params',
+            label: 'The model you want to run',
+            note: 'Every parameter has to be in memory before a token comes out',
+            role: 'quantity',
+            countsUp: true,
+          },
+          {
+            value: '140',
+            unit: 'GB',
+            label: 'Memory it needs at 16-bit',
+            note: 'Two bytes a parameter, before you fit one conversation in',
+            role: 'quantity',
+            countsUp: true,
+          },
+          {
+            value: '24',
+            unit: 'GB',
+            label: 'What a 4090 actually has',
+            note: 'The card everyone recommends holds a sixth of it',
+            role: 'limit',
+            countsUp: true,
+          },
+          {
+            value: '6',
+            unit: 'cards',
+            label: 'What it would take',
+            note: 'At which point the power supply is the cheap part',
+            role: 'limit',
+            countsUp: true,
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'state', at: 0},
+          {startMs: 8000, endMs: 16000, show: 'state', at: 1},
+          {startMs: 16000, endMs: 24000, show: 'state', at: 2},
+          {startMs: 24000, endMs: 32000, show: 'state', at: 3},
+          {startMs: 32000, endMs: 40000, show: 'recap'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The gauge template on the example that motivated it: which models fit in one
+ * card's memory. Rendered on the default backdrop rather than the broadcast
+ * skin, deliberately — `metric` is the skinned baseline, and having this one
+ * unskinned proves the new templates read on the look the catalog already had.
+ */
+const gaugeVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    // The semantic accents as Go derives them (videoskin.go). Carried
+    // explicitly because this template is *about* the distinction between the
+    // quantity and the limit: without them resolveTheme falls both back to the
+    // brand accent, and a bar that overruns its ceiling renders the same gold
+    // as one that clears it — which is the one thing the picture must never do.
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 40000,
+  scenes: [
+    {
+      type: 'gauge',
+      startMs: 0,
+      endMs: 40000,
+      props: {
+        title: 'Which models actually fit in 24GB',
+        unit: 'GB',
+        ceiling: {
+          value: 24,
+          label: 'What a 4090 holds',
+          note: 'And a couple of gigabytes of that is already spoken for',
+          // 24 / (26 * 1.08)
+          frac: 0.8547,
+        },
+        bars: [
+          {
+            label: '7B at 16-bit',
+            value: 14,
+            note: 'Comfortable, with room for a long conversation',
+            fits: true,
+            frac: 0.4986,
+          },
+          {
+            label: '13B at 16-bit',
+            value: 26,
+            note: 'Two gigabytes over, which is the same as not fitting',
+            fits: false,
+            frac: 0.9259,
+          },
+          {
+            label: '13B quantised to 4-bit',
+            value: 8,
+            note: 'The same model, a third of the memory, slightly worse answers',
+            fits: true,
+            frac: 0.2849,
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'ceiling'},
+          {startMs: 8000, endMs: 16000, show: 'bar', at: 0},
+          {startMs: 16000, endMs: 24000, show: 'bar', at: 1},
+          {startMs: 24000, endMs: 32000, show: 'bar', at: 2},
+          {startMs: 32000, endMs: 40000, show: 'verdict'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The verdict template on the example that motivated it: whether to self-host a
+ * database. Three conditions it holds on, two it breaks on, and a call.
+ */
+const verdictVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    // Carried explicitly for the same reason as the gauge: this template is
+    // *about* the difference between the ground the call holds on and the
+    // ground it breaks on, and without the semantic accents both columns
+    // render in the same brand gold.
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 42000,
+  scenes: [
+    {
+      type: 'verdict',
+      startMs: 0,
+      endMs: 42000,
+      props: {
+        title: 'Should you actually self-host your database?',
+        subject: 'Self-hosting Postgres',
+        call: 'Rent it until you have a platform team',
+        holds: [
+          'Under about fifty gigabytes of data',
+          'When downtime costs you real money',
+          'If nobody runs backups weekly',
+        ],
+        breaks: [
+          'When compliance forbids a managed provider',
+          'Past a few terabytes, where the bill inverts',
+        ],
+        steps: [
+          {startMs: 0, endMs: 6000, show: 'subject'},
+          {startMs: 6000, endMs: 12000, show: 'holds', at: 0},
+          {startMs: 12000, endMs: 18000, show: 'holds', at: 1},
+          {startMs: 18000, endMs: 24000, show: 'holds', at: 2},
+          {startMs: 24000, endMs: 30000, show: 'breaks', at: 0},
+          {startMs: 30000, endMs: 36000, show: 'breaks', at: 1},
+          {startMs: 36000, endMs: 42000, show: 'call'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The decision template on the example that motivated it: which GPU to buy,
+ * decided by one question. Three tiers, each in a different role colour so the
+ * axis reads as a gradient of consequence.
+ */
+const decisionVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 40000,
+  scenes: [
+    {
+      type: 'decision',
+      startMs: 0,
+      endMs: 40000,
+      props: {
+        title: 'Which GPU should you actually buy?',
+        question: 'How big is your model?',
+        unit: 'GB',
+        tiers: [
+          {
+            band: 'Under 8GB',
+            answer: 'A used 3060 is enough',
+            note: 'Nothing bigger buys you anything at this size',
+            role: 'quantity',
+          },
+          {
+            band: '8 to 24GB',
+            answer: 'Buy the 4090',
+            note: 'The last size where one consumer card still does it',
+            role: 'rival',
+          },
+          {
+            band: 'Over 24GB',
+            answer: 'Rent it by the hour',
+            note: 'Two cards and a power supply costs more than a year of renting',
+            role: 'limit',
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'question'},
+          {startMs: 8000, endMs: 16000, show: 'tier', at: 0},
+          {startMs: 16000, endMs: 24000, show: 'tier', at: 1},
+          {startMs: 24000, endMs: 32000, show: 'tier', at: 2},
+          {startMs: 32000, endMs: 40000, show: 'rule'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The myth template on the example that motivated it: the belief that Redis is
+ * only a cache. The strike frame and the evidence frames are the two states
+ * worth watching.
+ */
+const mythVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 42000,
+  scenes: [
+    {
+      type: 'myth',
+      startMs: 0,
+      endMs: 42000,
+      props: {
+        title: 'What everyone gets wrong about Redis',
+        claim: 'Redis is just a cache',
+        truth: 'Redis is a data structure server',
+        why: 'Because the first thing anyone uses it for is caching, and it is very good at that',
+        evidence: [
+          'Sorted sets give you a leaderboard',
+          'Streams give you a durable log',
+          'Lua scripts run atomically',
+        ],
+        steps: [
+          {startMs: 0, endMs: 7000, show: 'claim'},
+          {startMs: 7000, endMs: 14000, show: 'strike'},
+          {startMs: 14000, endMs: 21000, show: 'evidence', at: 0},
+          {startMs: 21000, endMs: 28000, show: 'evidence', at: 1},
+          {startMs: 28000, endMs: 35000, show: 'evidence', at: 2},
+          {startMs: 35000, endMs: 42000, show: 'why'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The rundown template on the example that motivated it: the three numbers that
+ * decide whether a model runs locally. The promise announces three and there are
+ * exactly three cards, which is the agreement this template is built to keep.
+ */
+const rundownVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 36000,
+  scenes: [
+    {
+      type: 'rundown',
+      startMs: 0,
+      endMs: 36000,
+      props: {
+        title: 'The three numbers that decide everything',
+        promise: 'Three numbers decide everything',
+        items: [
+          {
+            label: 'Memory capacity',
+            detail: 'How much the model needs before a single token comes out',
+            icon: 'database',
+          },
+          {
+            label: 'Memory bandwidth',
+            detail: 'The hidden boss — it, not compute, sets your tokens per second',
+            icon: 'zap',
+          },
+          {
+            label: 'Compute',
+            detail: 'The number every spec sheet leads with, and the one that matters least',
+            icon: 'gear',
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'promise'},
+          {startMs: 8000, endMs: 16000, show: 'item', at: 0},
+          {startMs: 16000, endMs: 24000, show: 'item', at: 1},
+          {startMs: 24000, endMs: 30000, show: 'item', at: 2},
+          {startMs: 30000, endMs: 36000, show: 'all'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The analogy template on the image the strongest reference clip is built from:
+ * a librarian in a library standing in for a machine running a model.
+ */
+const analogyVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 42000,
+  scenes: [
+    {
+      type: 'analogy',
+      startMs: 0,
+      endMs: 42000,
+      props: {
+        title: 'A librarian and a library',
+        familiar: 'A library',
+        familiarIcon: 'book',
+        real: 'Running a model',
+        realIcon: 'server',
+        pairs: [
+          {
+            from: 'The size of the room',
+            to: 'Memory capacity',
+            note: 'A book that will not fit in the room cannot be read at all',
+          },
+          {
+            from: 'The walk to the shelf',
+            to: 'Memory bandwidth',
+            note: 'Most of the day goes on walking, not on reading',
+          },
+          {
+            from: 'How fast they read',
+            to: 'Compute',
+            note: 'Rarely the bottleneck, and the only number on the box',
+          },
+        ],
+        breaks: 'A librarian can skim; a machine reads every word, every time',
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'picture'},
+          {startMs: 8000, endMs: 16000, show: 'pair', at: 0},
+          {startMs: 16000, endMs: 24000, show: 'pair', at: 1},
+          {startMs: 24000, endMs: 32000, show: 'pair', at: 2},
+          {startMs: 32000, endMs: 42000, show: 'breaks'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The trace template on the classic race: two users buying the last item. The
+ * value goes 1 -> 0 -> 0, and the second decrement changing nothing is the bug.
+ */
+const traceVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 44000,
+  scenes: [
+    {
+      type: 'trace',
+      startMs: 0,
+      endMs: 44000,
+      props: {
+        title: 'Two users, one item left',
+        actors: ['User A', 'User B'],
+        resource: 'Inventory',
+        start: '1',
+        ops: [
+          {by: 0, op: 'read inv', becomes: '1', note: 'A reads one in stock and decides to sell', changes: false},
+          {by: 1, op: 'read inv', becomes: '1', note: 'B reads the same one, before A has written anything', changes: false},
+          {by: 0, op: 'write 0', becomes: '0', note: 'A takes the item and writes zero', changes: true},
+          {by: 1, op: 'write 0', becomes: '0', note: 'B writes zero too — from the value it read a moment ago', changes: false},
+        ],
+        outcome: 'Two customers, one item, both charged',
+        broken: true,
+        steps: [
+          {startMs: 0, endMs: 7000, show: 'setup'},
+          {startMs: 7000, endMs: 13000, show: 'queue'},
+          {startMs: 13000, endMs: 20000, show: 'step', at: 0},
+          {startMs: 20000, endMs: 27000, show: 'step', at: 1},
+          {startMs: 27000, endMs: 33000, show: 'step', at: 2},
+          {startMs: 33000, endMs: 39000, show: 'step', at: 3},
+          {startMs: 39000, endMs: 44000, show: 'outcome'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The costing template on a bill whose surprise is in the small lines: the card
+ * is the obvious cost, the power and the cooling are the ones nobody budgets.
+ */
+const costingVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 40000,
+  scenes: [
+    {
+      type: 'costing',
+      startMs: 0,
+      endMs: 40000,
+      props: {
+        title: 'What a GPU box really costs in year one',
+        subject: 'A self-hosted GPU box, year one',
+        unit: '$',
+        lines: [
+          {label: 'The card', amount: 1800, note: 'The number everyone quotes', running: 1800, frac: 1},
+          {label: 'The rest of the box', amount: 1100, note: 'Power supply, board, and the case it fits in', running: 2900, frac: 0.6111},
+          {
+            label: 'Electricity',
+            amount: 620,
+            note: 'Four hundred watts, running most of the day, for a year',
+            hidden: true,
+            running: 3520,
+            frac: 0.3444,
+          },
+          {
+            label: 'The noise fix',
+            amount: 340,
+            note: 'Nobody keeps it in the room they work in for long',
+            hidden: true,
+            running: 3860,
+            frac: 0.1889,
+          },
+        ],
+        total: 3860,
+        verdict: 'Twice the sticker price, and the card was the cheap half',
+        steps: [
+          {startMs: 0, endMs: 7000, show: 'setup'},
+          {startMs: 7000, endMs: 14000, show: 'line', at: 0},
+          {startMs: 14000, endMs: 21000, show: 'line', at: 1},
+          {startMs: 21000, endMs: 28000, show: 'line', at: 2},
+          {startMs: 28000, endMs: 34000, show: 'line', at: 3},
+          {startMs: 34000, endMs: 40000, show: 'total'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The constellation template on the frame the Redis reference clip closes with:
+ * the name in the middle and the four properties that define it around it.
+ */
+const constellationVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 40000,
+  scenes: [
+    {
+      type: 'constellation',
+      startMs: 0,
+      endMs: 40000,
+      props: {
+        title: 'Everything that makes Redis Redis',
+        centre: 'Redis',
+        centreIcon: 'database',
+        spokes: [
+          {rel: 'is', label: 'In-memory', note: 'Every value lives in RAM, which is why it answers in microseconds', icon: 'zap', angle: -90.0},
+          {rel: 'is', label: 'Single-threaded', note: 'One command at a time, so nothing ever races another', icon: 'clock', angle: 0.0},
+          {rel: 'gives you', label: 'Data structures', note: 'Lists, sets and sorted sets, not just opaque blobs', icon: 'layers', angle: 90.0},
+          {rel: 'survives', label: 'Restarts', note: 'Snapshots and an append-only log, if you ask for them', icon: 'shield', angle: 180.0},
+        ],
+        steps: [
+          {startMs: 0, endMs: 7000, show: 'centre'},
+          {startMs: 7000, endMs: 14000, show: 'spoke', at: 0},
+          {startMs: 14000, endMs: 21000, show: 'spoke', at: 1},
+          {startMs: 21000, endMs: 28000, show: 'spoke', at: 2},
+          {startMs: 28000, endMs: 34000, show: 'spoke', at: 3},
+          {startMs: 34000, endMs: 40000, show: 'whole'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 const showcaseVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
@@ -1424,6 +2015,96 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(specVizProps.durationMs)}
       defaultProps={specVizProps}
+    />
+    <Composition
+      id="ConstellationViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(constellationVizProps.durationMs)}
+      defaultProps={constellationVizProps}
+    />
+    <Composition
+      id="CostingViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(costingVizProps.durationMs)}
+      defaultProps={costingVizProps}
+    />
+    <Composition
+      id="TraceViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(traceVizProps.durationMs)}
+      defaultProps={traceVizProps}
+    />
+    <Composition
+      id="AnalogyViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(analogyVizProps.durationMs)}
+      defaultProps={analogyVizProps}
+    />
+    <Composition
+      id="RundownViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(rundownVizProps.durationMs)}
+      defaultProps={rundownVizProps}
+    />
+    <Composition
+      id="MythViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(mythVizProps.durationMs)}
+      defaultProps={mythVizProps}
+    />
+    <Composition
+      id="DecisionViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(decisionVizProps.durationMs)}
+      defaultProps={decisionVizProps}
+    />
+    <Composition
+      id="VerdictViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(verdictVizProps.durationMs)}
+      defaultProps={verdictVizProps}
+    />
+    <Composition
+      id="GaugeViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(gaugeVizProps.durationMs)}
+      defaultProps={gaugeVizProps}
+    />
+    <Composition
+      id="MetricViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(metricVizProps.durationMs)}
+      defaultProps={metricVizProps}
     />
     <Composition
       id="ShowcaseViz"
