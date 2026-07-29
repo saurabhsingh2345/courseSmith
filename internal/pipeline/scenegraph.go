@@ -630,6 +630,9 @@ func runScenegraphStage(ctx context.Context, e *Env, course *project.Course, l *
 	// A snippet's scenes come from its template, not from the lesson-shaped
 	// script/storyboard/diagram machinery. Everything after this branch —
 	// captions, the video-plan edit layer, the written artifact — is shared.
+	if IsReel(l) {
+		return runReelScenegraph(ctx, e, course, l, cfg)
+	}
 	if IsSnippet(l) {
 		return runSnippetScenegraph(ctx, e, course, l, cfg)
 	}

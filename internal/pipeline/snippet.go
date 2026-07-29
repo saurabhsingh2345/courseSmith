@@ -977,7 +977,12 @@ func snippetStubTitle(prompt string) string {
 // runPlanStage is the snippet pipeline's first stage: prompt + template →
 // snippet-plan.json, and from it the script.json and lesson.md the rest of the
 // pipeline expects.
-func runPlanStage(ctx context.Context, e *Env, _ *project.Course, l *project.Lesson, cfg config.Config) error {
+func runPlanStage(ctx context.Context, e *Env, course *project.Course, l *project.Lesson, cfg config.Config) error {
+	// A reel plans every segment through its own template's prompt; a snippet
+	// plans one. Everything after this branch is shared.
+	if IsReel(l) {
+		return runReelPlan(ctx, e, course, l, cfg)
+	}
 	spec, err := LoadSnippetSpec(l.Dir)
 	if err != nil {
 		return err
