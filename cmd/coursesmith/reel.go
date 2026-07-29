@@ -46,6 +46,7 @@ func newReelCmd() *cobra.Command {
 			"Use a snippet for one idea in one look. Use a reel when the piece is long\n" +
 			"enough that one look would not hold it.",
 	}
+	cmd.AddCommand(newReelCastCmd())
 	cmd.AddCommand(newReelNewCmd())
 	cmd.AddCommand(newReelRunCmd())
 	cmd.AddCommand(newReelListCmd())
@@ -391,4 +392,86 @@ func truncate(s string, n int) string {
 		return s
 	}
 	return string([]rune(s)[:n-1]) + "…"
+}
+
+// newReelCastCmd is the one-input path: a brief, and the machine decides the
+// structure. It writes reel.yaml and stops by default, because the cast is a
+// structural decision worth reading before nine planning calls are spent on it
+// — and because the file it writes is the same one a person would have written,
+// so overriding a pick is editing a line rather than starting again.
+func newReelCastCmd() *cobra.Command {
+	var (
+		title       string
+		segments    int
+		run         bool
+		skin        string
+		concurrency int
+	)
+	cmd := &cobra.Command{
+		Use:   "cast <brief>",
+		Short: "Let the model choose the segments from a brief",
+		Long: "Casting reads the brief and decides how the piece breaks into parts and\n" +
+			"which template carries each. It writes reel.yaml and stops, so you can\n" +
+			"read the structure — and change any of it — before paying for the plan.\n\n" +
+			"  coursesmith reel cast \"why two users buying the last item oversells stock\"\n" +
+			"  coursesmith reel show <id>          # read what it chose\n" +
+			"  coursesmith reel segment <id> …     # override a pick\n" +
+			"  coursesmith reel run <id>           # then build it\n\n" +
+			"Pass --run to go straight through.",
+		Args: cobra.ExactArgs(1),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			ctx, cancel := signal.NotifyContext(cmd.Context(), os.Interrupt, syscall.SIGTERM)
+			defer cancel()
+
+			env := newEnv(cmd)
+			course, err := pipeline.EnsureReelsCourse(".")
+			if err != nil {
+				return err
+			}
+			out := cmd.OutOrStdout()
+			fmt.Fprintf(out, "casting %d segments...\n", segments)
+
+			spec, err := pipeline.CastReel(ctx, env, args[0], title, segments, course.Config)
+			if err != nil {
+				return err
+			}
+			if skin != "" {
+				spec.Config.Style.Skin = skin
+			}
+
+			_, lesson, err := pipeline.CreateReel(".", *spec)
+			if err != nil {
+				return err
+			}
+			fmt.Fprintf(out, "\n%s\n\n", spec.Title)
+			w := tabwriter.NewWriter(out, 0, 0, 2, ' ', 0)
+			fmt.Fprintln(w, "  #\tTEMPLATE\tCOVERS")
+			for i, seg := range spec.Segments {
+				fmt.Fprintf(w, "  %d\t%s\t%s\n", i+1, seg.Template, truncate(seg.Prompt, 50))
+			}
+			if err := w.Flush(); err != nil {
+				return err
+			}
+			fmt.Fprintf(out, "\n%s\n", relOrAbs(lesson.Dir))
+
+			if !run {
+				fmt.Fprintf(out, "\nRead it, change anything, then build:\n\n  coursesmith reel run %s\n", spec.ID)
+				return nil
+			}
+			if r, ok := env.Renderer.(*pipeline.RemotionRenderer); ok {
+				r.Concurrency = concurrency
+			}
+			if err := env.RunReel(ctx, course, lesson, pipeline.RunOptions{}); err != nil {
+				return err
+			}
+			fmt.Fprintf(out, "\n%s\n", relOrAbs(filepath.Join(lesson.GeneratedDir(), pipeline.FinalVideoName)))
+			return nil
+		},
+	}
+	cmd.Flags().StringVar(&title, "title", "", "the finished piece's title (default: the caster writes one)")
+	cmd.Flags().IntVar(&segments, "segments", 5, "how many segments to aim for")
+	cmd.Flags().BoolVar(&run, "run", false, "build it immediately instead of stopping at the cast")
+	cmd.Flags().StringVar(&skin, "skin", "", "house style: default | broadcast | minimal")
+	cmd.Flags().IntVar(&concurrency, "concurrency", 0, "parallel browser tabs for the Remotion render (0 = auto)")
+	return cmd
 }
