@@ -271,6 +271,11 @@ export const api = {
 
   snippetTemplates: () => request<SnippetTemplateInfo[]>("/api/snippet-templates"),
   reels: () => request<ReelSummary[]>("/api/reels"),
+  castReel: (req: { brief: string; title?: string; segments?: number }) =>
+    request<{ title: string; segments: CreateReelSegment[] }>("/api/reels/cast", {
+      method: "POST",
+      body: JSON.stringify(req),
+    }),
   reel: (id: string) => request<ReelDetail>(`/api/reels/${encodeURIComponent(id)}`),
   createReel: (req: CreateReelRequest) =>
     request<ReelSummary & { run_id?: string }>("/api/reels", {

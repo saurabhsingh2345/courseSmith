@@ -349,3 +349,56 @@ func reelSummary(l *project.Lesson) (ReelSummary, error) {
 	}
 	return out, nil
 }
+
+// CastReelRequest asks the model to choose the segments from a brief.
+type CastReelRequest struct {
+	Brief string `json:"brief"`
+	Title string `json:"title,omitempty"`
+	// Segments is how many to aim for (0 = the caster's own default).
+	Segments int `json:"segments,omitempty"`
+}
+
+// CastReelResponse is the proposed structure, NOT a created reel.
+//
+// Casting returns a proposal rather than writing anything, which is the whole
+// shape of the feature: the structure is a decision worth reading before nine
+// planning calls are spent on it, and the page lets you change a pick before
+// committing. Writing it here would make "cast" and "accept this cast" the same
+// irreversible action.
+type CastReelResponse struct {
+	Title    string              `json:"title"`
+	Segments []CreateReelSegment `json:"segments"`
+}
+
+func (s *Server) handleReelCast(w http.ResponseWriter, r *http.Request) {
+	var req CastReelRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		writeError(w, http.StatusBadRequest, fmt.Errorf("invalid request body: %w", err))
+		return
+	}
+	if strings.TrimSpace(req.Brief) == "" {
+		writeError(w, http.StatusBadRequest, fmt.Errorf("casting needs a brief — say what the whole piece is about"))
+		return
+	}
+	course, err := pipeline.EnsureReelsCourse(s.projectRoot())
+	if err != nil {
+		writeError(w, http.StatusInternalServerError, err)
+		return
+	}
+	// Layered over the defaults: the reels course records only what it
+	// overrides, so its bare manifest names no model.
+	cfg := config.Resolve(course.Config, config.Config{}, config.Config{})
+	spec, err := pipeline.CastReel(r.Context(), s.env, req.Brief, req.Title, req.Segments, cfg)
+	if err != nil {
+		writeError(w, http.StatusBadGateway, err)
+		return
+	}
+	out := CastReelResponse{Title: spec.Title}
+	for _, seg := range spec.Segments {
+		out.Segments = append(out.Segments, CreateReelSegment{
+			Template: seg.Template,
+			Prompt:   seg.Prompt,
+		})
+	}
+	writeJSON(w, http.StatusOK, out)
+}

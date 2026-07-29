@@ -66,6 +66,7 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("DELETE /api/snippets/{id}", s.handleSnippetDelete)
 	mux.HandleFunc("GET /api/reels", s.handleReelsList)
 	mux.HandleFunc("POST /api/reels", s.handleReelCreate)
+	mux.HandleFunc("POST /api/reels/cast", s.handleReelCast)
 	mux.HandleFunc("GET /api/reels/{id}", s.handleReelDetail)
 	mux.HandleFunc("DELETE /api/reels/{id}", s.handleReelDelete)
 	mux.HandleFunc("POST /api/reels/{id}/run", s.handleReelRun)

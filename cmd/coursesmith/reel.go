@@ -34,6 +34,7 @@ import (
 
 	"github.com/spf13/cobra"
 
+	"github.com/enfec/coursesmith/internal/config"
 	"github.com/enfec/coursesmith/internal/pipeline"
 )
 
@@ -431,7 +432,11 @@ func newReelCastCmd() *cobra.Command {
 			out := cmd.OutOrStdout()
 			fmt.Fprintf(out, "casting %d segments...\n", segments)
 
-			spec, err := pipeline.CastReel(ctx, env, args[0], title, segments, course.Config)
+			// Layered over the defaults, not the bare course manifest: the reels
+			// course records only what it overrides, so course.Config alone has
+			// no model configured and casting would fail before it began.
+			cfg := config.Resolve(course.Config, config.Config{}, config.Config{})
+			spec, err := pipeline.CastReel(ctx, env, args[0], title, segments, cfg)
 			if err != nil {
 				return err
 			}
@@ -455,7 +460,9 @@ func newReelCastCmd() *cobra.Command {
 			fmt.Fprintf(out, "\n%s\n", relOrAbs(lesson.Dir))
 
 			if !run {
-				fmt.Fprintf(out, "\nRead it, change anything, then build:\n\n  coursesmith reel run %s\n", spec.ID)
+				// lesson.ID, not spec.ID: CreateReel takes the spec by value and
+				// derives the id on its own copy, so the caller's is still empty.
+				fmt.Fprintf(out, "\nRead it, change anything, then build:\n\n  coursesmith reel run %s\n", lesson.ID)
 				return nil
 			}
 			if r, ok := env.Renderer.(*pipeline.RemotionRenderer); ok {

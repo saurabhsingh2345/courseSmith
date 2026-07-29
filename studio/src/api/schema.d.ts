@@ -221,6 +221,42 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/reels/cast": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Propose segments from a brief (writes nothing) */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description proposal */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["CastReelResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/reels/{id}": {
         parameters: {
             query?: never;
@@ -420,6 +456,14 @@ export interface components {
             url: string;
             /** @description What this file should be saved as: <course>-<lesson>[-<part>].<ext>, so a folder of downloads sorts by course and lesson instead of being six copies of final.mp4. */
             download_name: string;
+        };
+        CastReelResponse: {
+            title: string;
+            segments: {
+                template: string;
+                prompt: string;
+                target_sec?: number;
+            }[];
         };
         ReelSegmentInfo: {
             id: string;

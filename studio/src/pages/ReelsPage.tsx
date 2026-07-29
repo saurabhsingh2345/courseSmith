@@ -302,6 +302,7 @@ export function ReelsPage() {
   const [segments, setSegments] = useState<CreateReelSegment[]>([]);
   const [planOnly, setPlanOnly] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [casting, setCasting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [open, setOpen] = useState<string | null>(null);
 
@@ -318,6 +319,34 @@ export function ReelsPage() {
       [next[i], next[j]] = [next[j], next[i]];
       return next;
     });
+
+  /**
+   * Ask the model for a structure.
+   *
+   * The proposal fills the builder rather than creating a reel, which is the
+   * whole point: casting is a suggestion you read and change, not a commitment.
+   * Everything it returns is editable in place before anything is spent, and
+   * that is also why the endpoint writes nothing.
+   */
+  const cast = async () => {
+    const text = brief.trim();
+    if (!text) return;
+    setCasting(true);
+    setError(null);
+    try {
+      const proposal = await api.castReel({
+        brief: text,
+        title: title.trim() || undefined,
+        segments: 5,
+      });
+      setSegments(proposal.segments);
+      if (!title.trim()) setTitle(proposal.title);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err));
+    } finally {
+      setCasting(false);
+    }
+  };
 
   const canCreate = segments.length >= 2 && segments.every((s) => s.prompt.trim() !== "");
 
@@ -375,6 +404,19 @@ export function ReelsPage() {
           value={brief}
           onChange={(e) => setBrief(e.target.value)}
         />
+        <div className="mt-2 flex items-center gap-3">
+          <button
+            type="button"
+            className="rounded border border-ink-700 px-3 py-1.5 text-ink-200 hover:bg-ink-800 disabled:opacity-40"
+            onClick={cast}
+            disabled={!brief.trim() || casting}
+          >
+            {casting ? "Casting…" : "Cast it for me"}
+          </button>
+          <span className="text-[12px] text-ink-500">
+            Proposes the segments below. Nothing is created — change anything before you build.
+          </span>
+        </div>
       </section>
 
       <section className="mt-6">

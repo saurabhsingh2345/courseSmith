@@ -135,6 +135,9 @@ const openAPISpec = `{
       "get": {"summary": "List reels", "responses": {"200": {"description": "reels", "content": {"application/json": {"schema": {"type": "array", "items": {"$ref": "#/components/schemas/ReelSummary"}}}}}}},
       "post": {"summary": "Create and run a reel", "responses": {"201": {"description": "created", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ReelSummary"}}}}}}
     },
+    "/api/reels/cast": {
+      "post": {"summary": "Propose segments from a brief (writes nothing)", "responses": {"200": {"description": "proposal", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/CastReelResponse"}}}}}}
+    },
     "/api/reels/{id}": {
       "get": {"summary": "One reel with its segments", "responses": {"200": {"description": "reel", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ReelDetail"}}}}}},
       "delete": {"summary": "Delete a reel", "responses": {"204": {"description": "deleted"}}}
@@ -210,6 +213,14 @@ const openAPISpec = `{
           "download_name": {"type": "string", "description": "What this file should be saved as: <course>-<lesson>[-<part>].<ext>, so a folder of downloads sorts by course and lesson instead of being six copies of final.mp4."}
         },
         "required": ["name", "size", "url", "download_name"]
+      },
+      "CastReelResponse": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "segments": {"type": "array", "items": {"type": "object", "properties": {"template": {"type": "string"}, "prompt": {"type": "string"}, "target_sec": {"type": "integer"}}, "required": ["template", "prompt"]}}
+        },
+        "required": ["title", "segments"]
       },
       "ReelSegmentInfo": {
         "type": "object",
