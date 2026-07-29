@@ -35,6 +35,8 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "decision",
+		Category:    CatDecisions,
+		Since:       SinceV1,
 		Title:       "Which one do you buy?",
 		Description: "One question on an axis, split into tiers — and the answer for whichever tier you land in.",
 		Example:     "Which database should you actually pick for a new project?",

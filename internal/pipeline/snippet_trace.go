@@ -33,6 +33,8 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "trace",
+		Category:    CatSystems,
+		Since:       SinceV1,
 		Title:       "Watch it run",
 		Description: "Actors, a queue and one shared value — drained a step at a time, so the order becomes visible.",
 		Example:     "Why two users buying the last item at once oversells your inventory",

@@ -38,6 +38,8 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "costing",
+		Category:    CatNumbers,
+		Since:       SinceV1,
 		Title:       "What it really costs",
 		Description: "Line items stacking into a running total — including the ones nobody budgets for.",
 		Example:     "What a self-hosted GPU box actually costs in year one",

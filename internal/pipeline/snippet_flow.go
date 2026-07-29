@@ -30,6 +30,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "flow",
+		Category:    CatSystems,
 		Title:       "Systems flow",
 		Description: "Layered boxes with traffic moving along the edges, focusing one path at a time.",
 		Example:     "How a request flows through a rate-limited API gateway",

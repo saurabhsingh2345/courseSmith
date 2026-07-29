@@ -32,6 +32,8 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "rundown",
+		Category:    CatPresenting,
+		Since:       SinceV1,
 		Title:       "N things",
 		Description: "A numbered row that promises how many there are and then delivers exactly that many.",
 		Example:     "The three numbers that decide whether a model runs on your machine",

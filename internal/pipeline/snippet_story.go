@@ -41,6 +41,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "story",
+		Category:    CatPresenting,
 		Title:       "Directed short",
 		Description: "A one-to-two-minute piece: a character, objects, a moving camera, and a shot list with an arc.",
 		Example:     "How a database index actually finds your row",

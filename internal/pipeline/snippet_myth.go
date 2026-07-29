@@ -39,6 +39,8 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "myth",
+		Category:    CatConcepts,
+		Since:       SinceV1,
 		Title:       "What everyone gets wrong",
 		Description: "The belief, in the words people use — struck through, replaced, and then shown why it was tempting.",
 		Example:     "Redis is just a cache — and why that costs teams real money",

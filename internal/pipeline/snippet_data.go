@@ -34,6 +34,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "data",
+		Category:    CatNumbers,
 		Title:       "Data & maps",
 		Description: "Real numbers on one chart or world map, with the narration walking around it.",
 		Example:     "Where the world's undersea internet cables actually land",

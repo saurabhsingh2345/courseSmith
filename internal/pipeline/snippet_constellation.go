@@ -32,6 +32,8 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "constellation",
+		Category:    CatConcepts,
+		Since:       SinceV1,
 		Title:       "The whole picture",
 		Description: "One idea in the middle with everything that hangs off it, lighting one spoke at a time.",
 		Example:     "Everything that makes Redis Redis, in one picture",

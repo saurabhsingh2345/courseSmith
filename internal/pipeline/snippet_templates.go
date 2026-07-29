@@ -31,6 +31,15 @@ type SnippetTemplate struct {
 	// Title and Description are the gallery copy shown in the studio.
 	Title       string
 	Description string
+	// Category is which group this template appears under, from the closed
+	// vocabulary in snippet_categories.go. Required — registration panics
+	// without it, because a catalog that can grow an uncategorised entry
+	// eventually does, and it lands somewhere nobody looks.
+	Category string
+	// Since is the catalog release this template arrived in ("" for the
+	// original set, "v1" for the reference-look batch). A fact rather than a
+	// status, so it does not go stale when the next batch lands.
+	Since string
 	// Example is a prompt that shows this template at its best; the studio
 	// offers it as a starting point.
 	Example string
@@ -97,6 +106,7 @@ func registerSnippetTemplate(t *SnippetTemplate) {
 	if _, dup := SnippetTemplates[t.Name]; dup {
 		panic("duplicate snippet template " + t.Name)
 	}
+	checkTemplateCategory(t)
 	SnippetTemplates[t.Name] = t
 }
 

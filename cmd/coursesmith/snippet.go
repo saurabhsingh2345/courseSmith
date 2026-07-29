@@ -42,18 +42,28 @@ func newSnippetTemplatesCmd() *cobra.Command {
 		Short: "List the visual templates a snippet can use",
 		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, _ []string) error {
-			w := tabwriter.NewWriter(cmd.OutOrStdout(), 0, 0, 2, ' ', 0)
-			fmt.Fprintln(w, "NAME\tTITLE\tWHAT IT LOOKS LIKE")
-			for _, t := range pipeline.SnippetTemplateList() {
-				fmt.Fprintf(w, "%s\t%s\t%s\n", t.Name, t.Title, t.Description)
+			// Grouped rather than one alphabetical table. Past twenty entries a
+			// flat A-to-Z list stops being a catalog and becomes a wall — and
+			// the thing somebody has when they run this is a job to do, not a
+			// template name, so the headings are what they can actually scan.
+			out := cmd.OutOrStdout()
+			for _, g := range pipeline.SnippetTemplatesByCategory() {
+				fmt.Fprintf(out, "\n%s\n%s\n\n", strings.ToUpper(g.Title), g.Blurb)
+				w := tabwriter.NewWriter(out, 0, 0, 2, ' ', 0)
+				for _, t := range g.Templates {
+					name := t.Name
+					if t.Since != "" {
+						name += " (" + t.Since + ")"
+					}
+					fmt.Fprintf(w, "  %s\t%s\t%s\n", name, t.Title, t.Description)
+				}
+				if err := w.Flush(); err != nil {
+					return err
+				}
 			}
-			if err := w.Flush(); err != nil {
-				return err
-			}
-			fmt.Fprintln(cmd.OutOrStdout())
-			for _, t := range pipeline.SnippetTemplateList() {
-				fmt.Fprintf(cmd.OutOrStdout(), "  coursesmith snippet new --template %s %q\n", t.Name, t.Example)
-			}
+			fmt.Fprintf(out, "\n%d templates in %d groups. Start one with:\n\n",
+				len(pipeline.SnippetTemplateNames()), len(pipeline.SnippetTemplatesByCategory()))
+			fmt.Fprintf(out, "  coursesmith snippet new --template <name> \"what it should teach\"\n\n")
 			return nil
 		},
 	}

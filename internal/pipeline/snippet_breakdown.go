@@ -37,6 +37,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "breakdown",
+		Category:    CatSystems,
 		Title:       "Phase breakdown",
 		Description: "A path of phases where each one opens into its own detail — the description, and the tools or techniques inside it.",
 		Example:     "Everything it takes to build a complete website with no-code tools",

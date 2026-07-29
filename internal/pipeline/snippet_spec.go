@@ -39,6 +39,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:             "spec",
+		Category:         CatCode,
 		Title:            "Spec checklist",
 		Description:      "Acceptance criteria written down first, then checked off — the skill that transfers across every tool.",
 		Example:          "How to write a prompt that tells you whether the result is any good",

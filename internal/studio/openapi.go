@@ -202,9 +202,11 @@ const openAPISpec = `{
         "properties": {
           "name": {"type": "string"}, "title": {"type": "string"}, "description": {"type": "string"},
           "example": {"type": "string"}, "shows_code": {"type": "boolean"},
-          "min_target_sec": {"type": "integer"}, "default_target_sec": {"type": "integer"}
+          "min_target_sec": {"type": "integer"}, "default_target_sec": {"type": "integer"},
+          "category": {"type": "string"}, "category_title": {"type": "string"},
+          "since": {"type": "string"}
         },
-        "required": ["name", "title", "description", "example", "shows_code"]
+        "required": ["name", "title", "description", "example", "shows_code", "category", "category_title"]
       },
       "SnippetSummary": {
         "type": "object",

@@ -31,6 +31,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "illustration",
+		Category:    CatConcepts,
 		Title:       "Kinetic type",
 		Description: "Big animated type with flat-vector artwork — for the hook, the idea and the payoff.",
 		Example:     "Why every engineer should understand backpressure",

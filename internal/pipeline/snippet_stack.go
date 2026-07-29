@@ -30,6 +30,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:             "stack",
+		Category:         CatDecisions,
 		Title:            "Tool stack",
 		Description:      "The layers of a build — what each tier is for and which tools live there — walked top to bottom.",
 		Example:          "The four tools behind a no-code job board, and what each one is actually for",

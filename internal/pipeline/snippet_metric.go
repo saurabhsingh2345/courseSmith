@@ -39,6 +39,8 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "metric",
+		Category:    CatNumbers,
+		Since:       SinceV1,
 		Title:       "Big numbers",
 		Description: "One figure at a time, set very large — what it counts, what it runs into, and what it means.",
 		Example:     "What it really costs to run a 70-billion-parameter model at home",

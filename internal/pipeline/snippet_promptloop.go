@@ -37,6 +37,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "promptloop",
+		Category:    CatCode,
 		Title:       "Prompt loop",
 		Description: "The vibe-coding cycle: ask, look at what came back, ask again — with the goal pinned throughout.",
 		Example:     "Getting an AI to build a landing page that actually converts",

@@ -37,6 +37,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:             "mockup",
+		Category:         CatCode,
 		Title:            "Screen mockup",
 		Description:      "A page assembling itself inside a device frame, with the layer list filling in beside it.",
 		Example:          "Building a signup page in Webflow without writing any code",

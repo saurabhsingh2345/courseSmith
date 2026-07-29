@@ -37,6 +37,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "canvas",
+		Category:    CatCode,
 		Title:       "Automation canvas",
 		Description: "App cards wired on a builder's canvas, with a real record running the chain end to end.",
 		Example:     "How a form submission ends up in a spreadsheet and a Slack message",

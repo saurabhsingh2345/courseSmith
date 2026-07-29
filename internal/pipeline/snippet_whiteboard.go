@@ -27,6 +27,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "whiteboard",
+		Category:    CatConcepts,
 		Title:       "Whiteboard sketch",
 		Description: "A hand-drawn board that fills in as you talk — boxes, icons and arrows, sketched live.",
 		Example:     "Why HTTP caching matters, from browser to CDN to origin",

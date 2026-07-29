@@ -34,6 +34,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "quiz",
+		Category:    CatPresenting,
 		Title:       "Quiz",
 		Description: "A question, a moment to think, then the answer — and why the wrong ones were tempting.",
 		Example:     "Test whether people know what len() returns for a nested list",

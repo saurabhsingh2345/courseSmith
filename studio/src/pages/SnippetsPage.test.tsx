@@ -20,6 +20,8 @@ const TEMPLATES: SnippetTemplateInfo[] = [
     shows_code: true,
     min_target_sec: 0,
     default_target_sec: 0,
+    category: "code",
+    category_title: "Code & screens",
   },
   {
     name: "whiteboard",
@@ -29,6 +31,8 @@ const TEMPLATES: SnippetTemplateInfo[] = [
     shows_code: false,
     min_target_sec: 0,
     default_target_sec: 0,
+    category: "concepts",
+    category_title: "Ideas & mental models",
   },
 ];
 
@@ -230,6 +234,8 @@ it("only offers runtimes the chosen template can satisfy", async () => {
       shows_code: false,
       min_target_sec: 60,
       default_target_sec: 90,
+      category: "presenting",
+      category_title: "Presenting & pacing",
     },
   ]);
   vi.spyOn(api, "snippets").mockResolvedValue(SNIPPETS);

@@ -37,6 +37,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "showcase",
+		Category:    CatDecisions,
 		Title:       "Tool showcase",
 		Description: "A product card — what it is, what it costs, what it is good and bad at — ending on a cut point for your demo.",
 		Example:     "Introducing Airtable: what it is, what it costs, and when not to use it",

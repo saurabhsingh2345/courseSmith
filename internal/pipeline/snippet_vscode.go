@@ -21,6 +21,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "vscode",
+		Category:    CatCode,
 		Title:       "VS Code walkthrough",
 		Description: "An editor opens, code types itself in, and the terminal runs it for real.",
 		Example:     "How for loops work in Python, with a countdown example",

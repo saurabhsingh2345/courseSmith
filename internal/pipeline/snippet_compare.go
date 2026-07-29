@@ -30,6 +30,7 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "compare",
+		Category:    CatDecisions,
 		Title:       "Side by side",
 		Description: "Two approaches in one frame, introduced in turn, then judged.",
 		Example:     "A for loop building a list versus a list comprehension",

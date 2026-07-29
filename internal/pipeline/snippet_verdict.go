@@ -35,6 +35,8 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "verdict",
+		Category:    CatDecisions,
+		Since:       SinceV1,
 		Title:       "The verdict",
 		Description: "A recommendation, the ground it holds on, the asterisk that qualifies it — and the call, alone on the frame.",
 		Example:     "After all that: should you actually self-host your database?",

@@ -249,6 +249,9 @@ export interface components {
             shows_code: boolean;
             min_target_sec?: number;
             default_target_sec?: number;
+            category: string;
+            category_title: string;
+            since?: string;
         };
         SnippetSummary: {
             id: string;
