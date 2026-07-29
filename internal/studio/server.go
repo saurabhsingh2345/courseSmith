@@ -137,8 +137,14 @@ func writeError(w http.ResponseWriter, status int, err error) {
 func (s *Server) resolveCourse(slug string) (*project.Course, error) {
 	dir := filepath.Join(s.coursesDir, filepath.Base(slug))
 	if _, err := os.Stat(filepath.Join(dir, project.CourseFileName)); err != nil {
-		if filepath.Base(slug) == pipeline.SnippetsCourseSlug {
+		// The synthetic courses do not live under coursesDir, so they are
+		// resolved by name. Missing the reels case meant every reel artifact
+		// 404'd while the API cheerfully advertised its URL.
+		switch filepath.Base(slug) {
+		case pipeline.SnippetsCourseSlug:
 			return pipeline.EnsureSnippetsCourse(s.projectRoot())
+		case pipeline.ReelsCourseSlug:
+			return pipeline.EnsureReelsCourse(s.projectRoot())
 		}
 		return nil, fmt.Errorf("no course %q", slug)
 	}

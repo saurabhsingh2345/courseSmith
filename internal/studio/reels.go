@@ -344,7 +344,10 @@ func reelSummary(l *project.Lesson) (ReelSummary, error) {
 	}
 	if _, err := os.Stat(filepath.Join(l.GeneratedDir(), pipeline.FinalVideoName)); err == nil {
 		out.Ready = true
-		out.VideoURL = fmt.Sprintf("/artifacts/%s/%s/generated/%s",
+		// No "generated/" segment: handleArtifact resolves the path relative to
+		// the lesson's generated dir already, so including it here asked for
+		// generated/generated/final.mp4 and 404'd on every finished reel.
+		out.VideoURL = fmt.Sprintf("/artifacts/%s/%s/%s",
 			pipeline.ReelsCourseSlug, spec.ID, pipeline.FinalVideoName)
 	}
 	return out, nil
