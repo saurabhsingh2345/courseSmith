@@ -116,6 +116,37 @@ export type DraftDetail = DraftMeta & { source: string };
 
 /** One card in the snippet template gallery. */
 export type SnippetTemplateInfo = components["schemas"]["SnippetTemplateInfo"];
+export type ReelSummary = components["schemas"]["ReelSummary"];
+export type ReelDetail = components["schemas"]["ReelDetail"];
+export type ReelSegmentInfo = components["schemas"]["ReelSegmentInfo"];
+
+/** One requested segment when creating a reel. */
+export interface CreateReelSegment {
+  template: string;
+  prompt: string;
+  target_sec?: number;
+}
+
+/** The whole reel request: a brief, and the ordered segments. */
+export interface CreateReelRequest {
+  title?: string;
+  brief?: string;
+  segments: CreateReelSegment[];
+  voice?: string;
+  captions?: string;
+  mode?: string;
+  skin?: string;
+  plan_only?: boolean;
+}
+
+/** A segment edit. Every field is optional: omitting one leaves it alone,
+ *  which is what almost every edit means. */
+export interface PatchReelSegmentRequest {
+  template?: string;
+  prompt?: string;
+  target_sec?: number;
+  skip?: boolean;
+}
 export type SnippetSummary = components["schemas"]["SnippetSummary"];
 export type SnippetDetail = components["schemas"]["SnippetDetail"];
 export type CreateSnippetRequest = components["schemas"]["CreateSnippetRequest"];
@@ -239,6 +270,22 @@ export const api = {
   ledger: () => request<Ledger>("/api/ledger"),
 
   snippetTemplates: () => request<SnippetTemplateInfo[]>("/api/snippet-templates"),
+  reels: () => request<ReelSummary[]>("/api/reels"),
+  reel: (id: string) => request<ReelDetail>(`/api/reels/${encodeURIComponent(id)}`),
+  createReel: (req: CreateReelRequest) =>
+    request<ReelSummary & { run_id?: string }>("/api/reels", {
+      method: "POST",
+      body: JSON.stringify(req),
+    }),
+  runReel: (id: string) =>
+    request<{ run_id: string }>(`/api/reels/${encodeURIComponent(id)}/run`, { method: "POST" }),
+  patchReelSegment: (id: string, segment: string, req: PatchReelSegmentRequest) =>
+    request<ReelSegmentInfo[]>(
+      `/api/reels/${encodeURIComponent(id)}/segments/${encodeURIComponent(segment)}`,
+      { method: "PATCH", body: JSON.stringify(req) },
+    ),
+  deleteReel: (id: string) =>
+    request<void>(`/api/reels/${encodeURIComponent(id)}`, { method: "DELETE" }),
   snippets: () => request<SnippetSummary[]>("/api/snippets"),
   snippet: (id: string) => request<SnippetDetail>(`/api/snippets/${encodeURIComponent(id)}`),
   createSnippet: (req: CreateSnippetRequest) =>

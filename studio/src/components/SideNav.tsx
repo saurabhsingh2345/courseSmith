@@ -19,6 +19,7 @@ import {
   Layers,
   Library,
   PlayCircle,
+  Film,
   Receipt,
   Scissors,
   Sparkles,
@@ -47,6 +48,7 @@ export const NAV_GROUPS: NavGroup[] = [
     entries: [
       { to: "/", label: "Compose", icon: Sparkles },
       { to: "/snippets", label: "Snippets", icon: Scissors },
+      { to: "/reels", label: "Reels", icon: Film },
       {
         to: "/courses",
         label: "Courses",

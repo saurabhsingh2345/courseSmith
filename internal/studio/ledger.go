@@ -18,9 +18,9 @@ import (
 // modelPricing is USD per 1M tokens (prompt, completion). Models not
 // listed cost zero (Groq free tier, local models).
 var modelPricing = map[string][2]float64{
-	"gpt-4o-mini": {0.15, 0.60},
-	"gpt-4o":      {2.50, 10.00},
-	"gpt-4.1":     {2.00, 8.00},
+	"gpt-4o-mini":  {0.15, 0.60},
+	"gpt-4o":       {2.50, 10.00},
+	"gpt-4.1":      {2.00, 8.00},
 	"gpt-4.1-mini": {0.40, 1.60},
 }
 

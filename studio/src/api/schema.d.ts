@@ -165,6 +165,186 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/reels": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List reels */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description reels */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ReelSummary"][];
+                    };
+                };
+            };
+        };
+        put?: never;
+        /** Create and run a reel */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description created */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ReelSummary"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/reels/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** One reel with its segments */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description reel */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ReelDetail"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /** Delete a reel */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description deleted */
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/reels/{id}/run": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Re-run a reel */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description queued */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/reels/{id}/segments/{segment}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Edit one segment */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description segments */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ReelSegmentInfo"][];
+                    };
+                };
+            };
+        };
+        trace?: never;
+    };
     "/api/snippet-templates": {
         parameters: {
             query?: never;
@@ -240,6 +420,30 @@ export interface components {
             url: string;
             /** @description What this file should be saved as: <course>-<lesson>[-<part>].<ext>, so a folder of downloads sorts by course and lesson instead of being six copies of final.mp4. */
             download_name: string;
+        };
+        ReelSegmentInfo: {
+            id: string;
+            template: string;
+            prompt: string;
+            target_sec?: number;
+            skip?: boolean;
+            template_title: string;
+            template_category: string;
+        };
+        ReelSummary: {
+            id: string;
+            title: string;
+            brief?: string;
+            segments: number;
+            skipped: number;
+            ready: boolean;
+            video_url?: string;
+            created_at?: string;
+            run_id?: string;
+        };
+        ReelDetail: components["schemas"]["ReelSummary"] & {
+            segment_list: components["schemas"]["ReelSegmentInfo"][];
+            plan?: unknown;
         };
         SnippetTemplateInfo: {
             name: string;

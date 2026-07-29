@@ -7,6 +7,7 @@ import { StudioLayout, useShellShortcuts } from "./layout/StudioLayout";
 import { useShortcutContext } from "./state/ShortcutContext";
 import { ComposePage } from "./pages/ComposePage";
 import { SnippetsPage } from "./pages/SnippetsPage";
+import { ReelsPage } from "./pages/ReelsPage";
 import { CoursesPage } from "./pages/CoursesPage";
 import { CoursePage } from "./pages/CoursePage";
 import { CourseEditorPage } from "./pages/CourseEditorPage";
@@ -46,6 +47,7 @@ export function App() {
       <Routes>
         <Route path="/" element={<ComposePage />} />
         <Route path="/snippets" element={<SnippetsPage />} />
+        <Route path="/reels" element={<ReelsPage />} />
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/generation" element={<GenerationPage />} />
         <Route path="/templates" element={<TemplatesPage />} />
