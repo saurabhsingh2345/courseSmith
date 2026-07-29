@@ -1,6 +1,12 @@
 package pipeline
 
-import "testing"
+import (
+	"context"
+	"os"
+	"path/filepath"
+	"testing"
+	"time"
+)
 
 func TestEndsSentence(t *testing.T) {
 	cases := map[string]bool{
@@ -153,5 +159,104 @@ func TestShiftSpansKeepsWordIndices(t *testing.T) {
 	}
 	if spans[0].EndMs != 400 {
 		t.Error("shiftSpans mutated its input")
+	}
+}
+
+// The filter graph is the part unit tests cannot reason about: anullsrc as an
+// in-graph source, and concat refusing to join streams whose formats differ.
+// This runs it against real ffmpeg and checks the audio actually grew by the
+// planned amount.
+func TestInsertSilenceGrowsAudioByPlannedAmount(t *testing.T) {
+	requireFFmpeg(t)
+	env, _ := runEnv(t, &fakeRouter{})
+
+	path := filepath.Join(t.TempDir(), "voice.wav")
+	if err := os.WriteFile(path, makeWAV(2), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	before, err := wavDuration(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	inserts := []silenceInsert{{AtMs: 500, AddMs: 400}, {AtMs: 1500, AddMs: 300}}
+	if err := insertSilence(context.Background(), env, path, inserts); err != nil {
+		t.Fatalf("insertSilence: %v", err)
+	}
+
+	after, err := wavDuration(path)
+	if err != nil {
+		t.Fatalf("result is not readable WAV: %v", err)
+	}
+	want := before + 700*time.Millisecond
+	if diff := (after - want).Abs(); diff > 60*time.Millisecond {
+		t.Errorf("duration = %v, want ~%v (was %v)", after, want, before)
+	}
+}
+
+// Alignment and audio must move together: whatever the plan adds to the file,
+// the same amount has to land in every timestamp the renderer reads.
+func TestApplySentencePausesKeepsAudioAndTimestampsInStep(t *testing.T) {
+	requireFFmpeg(t)
+	env, _ := runEnv(t, &fakeRouter{})
+
+	path := filepath.Join(t.TempDir(), "voice.wav")
+	if err := os.WriteFile(path, makeWAV(3), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	before, err := wavDuration(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	a := &Alignment{
+		Words: []AlignedWord{
+			{Word: "one", StartMs: 0, EndMs: 400},
+			{Word: "two", StartMs: 450, EndMs: 900},
+			{Word: "three", StartMs: 1000, EndMs: 1400},
+		},
+		Sections: []SectionSpan{{ID: "s1", StartMs: 0, EndMs: 1400, WordStart: 0, WordEnd: 3}},
+		// The caption track carries the author's punctuation, so the boundary
+		// is found here even though the raw transcript above has none.
+		DisplayWords: []AlignedWord{
+			{Word: "One", StartMs: 0, EndMs: 400},
+			{Word: "two.", StartMs: 450, EndMs: 900},
+			{Word: "Three", StartMs: 1000, EndMs: 1400},
+		},
+		DisplaySections: []SectionSpan{{ID: "s1", StartMs: 0, EndMs: 1400, WordStart: 0, WordEnd: 3}},
+	}
+
+	inserts, err := applySentencePauses(context.Background(), env, a, path, 400)
+	if err != nil {
+		t.Fatalf("applySentencePauses: %v", err)
+	}
+	if len(inserts) != 1 {
+		t.Fatalf("got %d insert(s), want 1", len(inserts))
+	}
+	added := inserts[0].AddMs
+	if added != 300 { // 400 floor - 100 natural gap
+		t.Fatalf("AddMs = %d, want 300", added)
+	}
+
+	after, err := wavDuration(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if diff := (after - before - time.Duration(added)*time.Millisecond).Abs(); diff > 60*time.Millisecond {
+		t.Errorf("audio grew by %v, want %dms", after-before, added)
+	}
+
+	// Both tracks and both span lists ride the same shift.
+	if a.Words[2].StartMs != 1300 {
+		t.Errorf("transcript word not shifted: %d, want 1300", a.Words[2].StartMs)
+	}
+	if a.DisplayWords[2].StartMs != 1300 {
+		t.Errorf("caption word not shifted: %d, want 1300", a.DisplayWords[2].StartMs)
+	}
+	if a.Words[1].EndMs != 900 {
+		t.Errorf("word before the pause moved: %d, want 900", a.Words[1].EndMs)
+	}
+	if a.Sections[0].EndMs != 1700 || a.DisplaySections[0].EndMs != 1700 {
+		t.Errorf("section spans = %d/%d, want 1700", a.Sections[0].EndMs, a.DisplaySections[0].EndMs)
 	}
 }

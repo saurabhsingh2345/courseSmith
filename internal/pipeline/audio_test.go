@@ -79,12 +79,15 @@ func TestAudioStageSynthesizesAndConcats(t *testing.T) {
 	course, lesson := testCourse(t)
 	seedScript(t, lesson) // two sections
 
-	var requests []map[string]string
+	// map[string]any rather than map[string]string: the request carries a
+	// numeric "speed" beside the string fields, and a string-typed map fails
+	// to decode the whole body because of it.
+	var requests []map[string]any
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/v1/audio/speech" {
 			t.Errorf("path = %q", r.URL.Path)
 		}
-		var body map[string]string
+		var body map[string]any
 		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 			t.Errorf("decoding TTS request: %v", err)
 		}
@@ -106,8 +109,13 @@ func TestAudioStageSynthesizesAndConcats(t *testing.T) {
 	if requests[0]["voice"] != "af_heart" || requests[0]["model"] != "kokoro" {
 		t.Errorf("TTS request = %+v", requests[0])
 	}
-	if !strings.Contains(requests[0]["input"], "Python reads code line by line.") {
+	if in0, _ := requests[0]["input"].(string); !strings.Contains(in0, "Python reads code line by line.") {
 		t.Errorf("first section narration not sent: %+v", requests[0])
+	}
+	// The house speaking rate reaches the server. Without this the default
+	// could regress to 1.0 with nothing failing.
+	if speed, _ := requests[0]["speed"].(float64); speed != 0.9 {
+		t.Errorf("speed = %v, want 0.9 (the default voice_speed)", requests[0]["speed"])
 	}
 
 	for _, name := range []string{"first-idea.wav", "second-idea.wav"} {
@@ -161,9 +169,10 @@ func TestAudioStageAppliesSpeechPrep(t *testing.T) {
 
 	var inputs []string
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		var body map[string]string
+		var body map[string]any
 		_ = json.NewDecoder(r.Body).Decode(&body)
-		inputs = append(inputs, body["input"])
+		in, _ := body["input"].(string)
+		inputs = append(inputs, in)
 		_, _ = w.Write(makeWAV(0.5))
 	}))
 	defer server.Close()
@@ -189,9 +198,10 @@ func TestAudioStageAppliesTTSFixes(t *testing.T) {
 
 	var inputs []string
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		var body map[string]string
+		var body map[string]any
 		_ = json.NewDecoder(r.Body).Decode(&body)
-		inputs = append(inputs, body["input"])
+		in, _ := body["input"].(string)
+		inputs = append(inputs, in)
 		_, _ = w.Write(makeWAV(0.5))
 	}))
 	defer server.Close()

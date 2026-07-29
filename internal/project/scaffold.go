@@ -69,6 +69,10 @@ description: %s
 style:
   voice: af_heart
   tone: friendly, conversational teacher
+  # Speaking rate, and the pace target measured at rate 1.0. The align stage
+  # multiplies the two, so slowing the voice moves the target with it rather
+  # than reading as being under pace.
+  voice_speed: 0.9
   pace_wpm: 150
   audience: absolute beginners with no programming experience
   language: en
