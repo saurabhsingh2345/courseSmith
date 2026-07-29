@@ -247,13 +247,74 @@ func LoadReelSpec(dir string) (*ReelSpec, error) {
 
 // SaveReelSpec writes reel.yaml, filling in segment ids first so the file on
 // disk is the addressable one.
+//
+// The inline config is pruned of everything left at its zero value before
+// writing. config.Config has no omitempty tags — it cannot, since a course
+// manifest legitimately records an explicit zero — so marshalling the spec
+// straight out buries the twelve lines that matter under forty lines of empty
+// strings. That is tolerable for a file nobody opens; reel.yaml is the
+// documented edit surface, and a surface people are told to edit has to be
+// readable when they get there.
 func SaveReelSpec(dir string, spec *ReelSpec) error {
 	spec.EnsureSegmentIDs()
 	raw, err := yaml.Marshal(spec)
 	if err != nil {
 		return fmt.Errorf("encoding %s: %w", ReelFileName, err)
 	}
-	return os.WriteFile(filepath.Join(dir, ReelFileName), raw, 0o644)
+	// Round-trip through a generic tree so the pruning is structural rather
+	// than a set of string rules about which keys to drop.
+	var tree map[string]any
+	if err := yaml.Unmarshal(raw, &tree); err != nil {
+		return fmt.Errorf("encoding %s: %w", ReelFileName, err)
+	}
+	pruneEmpty(tree)
+	out, err := yaml.Marshal(tree)
+	if err != nil {
+		return fmt.Errorf("encoding %s: %w", ReelFileName, err)
+	}
+	return os.WriteFile(filepath.Join(dir, ReelFileName), out, 0o644)
+}
+
+// pruneEmpty removes keys whose value is a zero scalar, or a map that is empty
+// once its own zero keys are gone.
+//
+// Deliberately does NOT touch lists: a segment is a map inside a list and its
+// own empty keys are pruned by the recursion, but an empty list stays, because
+// "segments: []" is a meaningful thing for a person to see and fill in.
+func pruneEmpty(m map[string]any) {
+	for k, v := range m {
+		switch t := v.(type) {
+		case map[string]any:
+			pruneEmpty(t)
+			if len(t) == 0 {
+				delete(m, k)
+			}
+		case []any:
+			for _, item := range t {
+				if child, ok := item.(map[string]any); ok {
+					pruneEmpty(child)
+				}
+			}
+		case string:
+			if t == "" {
+				delete(m, k)
+			}
+		case int, int64:
+			if fmt.Sprint(t) == "0" {
+				delete(m, k)
+			}
+		case float64:
+			if t == 0 {
+				delete(m, k)
+			}
+		case bool:
+			if !t {
+				delete(m, k)
+			}
+		case nil:
+			delete(m, k)
+		}
+	}
 }
 
 // ReelPlan is reel-plan.json: every segment planned, in order.

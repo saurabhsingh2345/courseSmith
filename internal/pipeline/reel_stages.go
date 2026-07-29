@@ -13,6 +13,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/enfec/coursesmith/internal/config"
 	"github.com/enfec/coursesmith/internal/project"
@@ -166,6 +167,15 @@ func CreateReel(root string, spec ReelSpec) (*project.Course, *project.Lesson, e
 	if err != nil {
 		return nil, nil, err
 	}
+	if spec.ID == "" {
+		spec.ID, err = uniqueReelID(course.Dir, spec)
+		if err != nil {
+			return nil, nil, err
+		}
+	}
+	if spec.CreatedAt.IsZero() {
+		spec.CreatedAt = time.Now().UTC().Truncate(time.Second)
+	}
 	dir := filepath.Join(course.Dir, "lessons", spec.ID)
 	if _, err := os.Stat(dir); err == nil {
 		return nil, nil, fmt.Errorf("reel %q already exists at %s", spec.ID, dir)
@@ -208,4 +218,30 @@ func (e *Env) RunReel(ctx context.Context, course *project.Course, l *project.Le
 	}
 	cfg := config.Resolve(course.Config, l.FrontMatter.Overrides(), spec.Config)
 	return e.runStages(ctx, course, l, cfg, stages, opts)
+}
+
+// uniqueReelID derives a free directory name, the same way a snippet's is:
+// slugified from the title (or the brief), suffixed until nothing collides.
+func uniqueReelID(courseDir string, spec ReelSpec) (string, error) {
+	src := spec.Title
+	if strings.TrimSpace(src) == "" {
+		src = spec.Brief
+	}
+	base := slugify(snippetStubTitle(src))
+	if base == "" {
+		base = "reel"
+	}
+	if len(base) > 48 {
+		base = strings.Trim(base[:48], "-")
+	}
+	for i := 0; i < 200; i++ {
+		id := base
+		if i > 0 {
+			id = fmt.Sprintf("%s-%d", base, i+1)
+		}
+		if _, err := os.Stat(filepath.Join(courseDir, "lessons", id)); os.IsNotExist(err) {
+			return id, nil
+		}
+	}
+	return "", fmt.Errorf("could not find a free reel id for %q", base)
 }

@@ -1,0 +1,394 @@
+package main
+
+// The reel surface: one video cut from several templates.
+//
+// The verbs split into two groups, and the split is the point. `new` and `run`
+// make a reel; `segment` edits one after you have watched it. Everything in the
+// second group writes reel.yaml and nothing else — the pipeline then re-stales
+// exactly the stages that file feeds, so the cost of an edit is a property of
+// what you changed rather than of which command you typed.
+//
+// Every edit this command can make moves the words, and that is worth stating
+// plainly rather than implying otherwise. Swapping a template re-plans the
+// segment through a different prompt and gets different beats; skipping one
+// takes its narration out of the read. So all of them re-run the voice track
+// and every timing after it, and `segment` says so before you find out.
+//
+// A genuinely cheap edit — fixing a wrong label, nudging a value, leaving the
+// narration untouched — is a different operation at a different level: it
+// patches the generated scene's props rather than the request. That is what
+// video-plan.yaml already does for lessons, and it is the shape the studio's
+// editor should take. It is deliberately not here, because a flag that looked
+// like the others and cost a hundredth as much would teach the wrong model of
+// what this tool does.
+
+import (
+	"fmt"
+	"os"
+	"os/signal"
+	"path/filepath"
+	"strings"
+	"syscall"
+	"text/tabwriter"
+	"time"
+
+	"github.com/spf13/cobra"
+
+	"github.com/enfec/coursesmith/internal/pipeline"
+)
+
+func newReelCmd() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "reel",
+		Short: "Build a longer video from several templates on one timeline",
+		Long: "A reel is an ordered run of segments, each with its own visual template,\n" +
+			"narrated as one continuous read and rendered onto one timeline.\n\n" +
+			"Use a snippet for one idea in one look. Use a reel when the piece is long\n" +
+			"enough that one look would not hold it.",
+	}
+	cmd.AddCommand(newReelNewCmd())
+	cmd.AddCommand(newReelRunCmd())
+	cmd.AddCommand(newReelListCmd())
+	cmd.AddCommand(newReelShowCmd())
+	cmd.AddCommand(newReelSegmentCmd())
+	return cmd
+}
+
+// parseSegmentFlag reads a --segment value: "template:what it should cover".
+//
+// One flag repeated rather than a pair of parallel lists, because parallel
+// lists silently mis-pair the moment one has an entry the other does not, and
+// the failure shows up as a segment covering the wrong thing rather than as an
+// error.
+func parseSegmentFlag(v string) (pipeline.ReelSegment, error) {
+	name, prompt, ok := strings.Cut(v, ":")
+	if !ok {
+		return pipeline.ReelSegment{}, fmt.Errorf("segment %q is not template:prompt — try --segment 'gauge:which models fit in 24GB'", v)
+	}
+	name = strings.TrimSpace(name)
+	prompt = strings.TrimSpace(prompt)
+	if name == "" || prompt == "" {
+		return pipeline.ReelSegment{}, fmt.Errorf("segment %q needs both a template and a prompt", v)
+	}
+	return pipeline.ReelSegment{Template: name, Prompt: prompt}, nil
+}
+
+func newReelNewCmd() *cobra.Command {
+	var (
+		segments    []string
+		id          string
+		title       string
+		brief       string
+		voice       string
+		model       string
+		captions    string
+		mode        string
+		skin        string
+		planOnly    bool
+		concurrency int
+	)
+	cmd := &cobra.Command{
+		Use:   "new",
+		Short: "Create a reel from a list of segments and render it",
+		Long: "Each --segment is 'template:what it should cover', in order.\n\n" +
+			"  coursesmith reel new --title \"What decides whether a model runs\" \\\n" +
+			"    --segment 'rundown:the three numbers that decide it' \\\n" +
+			"    --segment 'gauge:which models fit in 24GB' \\\n" +
+			"    --segment 'verdict:what to actually buy'\n\n" +
+			"See `coursesmith snippet templates` for the catalog, grouped by what\n" +
+			"each group is for.",
+		Args: cobra.NoArgs,
+		RunE: func(cmd *cobra.Command, _ []string) error {
+			ctx, cancel := signal.NotifyContext(cmd.Context(), os.Interrupt, syscall.SIGTERM)
+			defer cancel()
+
+			spec := pipeline.ReelSpec{
+				ID:        id,
+				Title:     title,
+				Brief:     brief,
+				CreatedAt: time.Now().UTC(),
+			}
+			for _, s := range segments {
+				seg, err := parseSegmentFlag(s)
+				if err != nil {
+					return err
+				}
+				spec.Segments = append(spec.Segments, seg)
+			}
+			if voice != "" {
+				spec.Config.Style.Voice = voice
+			}
+			if model != "" {
+				spec.Config.Pipeline.LLMContent = model
+			}
+			if captions != "" {
+				spec.Config.Style.Captions = captions
+			}
+			if mode != "" {
+				spec.Config.Style.Mode = mode
+			}
+			if skin != "" {
+				spec.Config.Style.Skin = skin
+			}
+
+			course, lesson, err := pipeline.CreateReel(".", spec)
+			if err != nil {
+				return err
+			}
+			fmt.Fprintf(cmd.OutOrStdout(), "created %s\n", relOrAbs(lesson.Dir))
+
+			env := newEnv(cmd)
+			if r, ok := env.Renderer.(*pipeline.RemotionRenderer); ok {
+				r.Concurrency = concurrency
+			}
+			opts := pipeline.RunOptions{}
+			if planOnly {
+				opts.Stage = "plan"
+			}
+			if err := env.RunReel(ctx, course, lesson, opts); err != nil {
+				return err
+			}
+			if !planOnly {
+				fmt.Fprintf(cmd.OutOrStdout(), "\n%s\n",
+					relOrAbs(filepath.Join(lesson.GeneratedDir(), pipeline.FinalVideoName)))
+			}
+			return nil
+		},
+	}
+	cmd.Flags().StringArrayVar(&segments, "segment", nil, "a segment, as template:prompt (repeat, in order)")
+	cmd.Flags().StringVar(&id, "id", "", "reel id (default: derived from the title)")
+	cmd.Flags().StringVar(&title, "title", "", "the finished piece's title")
+	cmd.Flags().StringVar(&brief, "brief", "", "what the whole piece is about, in your words")
+	cmd.Flags().StringVar(&voice, "voice", "", "TTS voice id (default: the reels course voice)")
+	cmd.Flags().StringVar(&model, "model", "", "planning model as provider/model (default: the course's llm_content)")
+	cmd.Flags().StringVar(&captions, "captions", "", "burn the caption track in: on | off")
+	cmd.Flags().StringVar(&mode, "mode", "", "light or dark video (default dark)")
+	cmd.Flags().StringVar(&skin, "skin", "", "house style: default | broadcast | minimal")
+	cmd.Flags().BoolVar(&planOnly, "plan-only", false, "stop after planning; do not synthesize or render")
+	cmd.Flags().IntVar(&concurrency, "concurrency", 0, "parallel browser tabs for the Remotion render (0 = auto)")
+	_ = cmd.MarkFlagRequired("segment")
+	return cmd
+}
+
+func newReelRunCmd() *cobra.Command {
+	var (
+		stage       string
+		force       bool
+		concurrency int
+	)
+	cmd := &cobra.Command{
+		Use:   "run <id>",
+		Short: "Re-run an existing reel (up-to-date stages are skipped)",
+		Args:  cobra.ExactArgs(1),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			ctx, cancel := signal.NotifyContext(cmd.Context(), os.Interrupt, syscall.SIGTERM)
+			defer cancel()
+
+			course, lesson, err := pipeline.FindReel(".", args[0])
+			if err != nil {
+				return err
+			}
+			env := newEnv(cmd)
+			if r, ok := env.Renderer.(*pipeline.RemotionRenderer); ok {
+				r.Concurrency = concurrency
+			}
+			return env.RunReel(ctx, course, lesson, pipeline.RunOptions{Stage: stage, Force: force})
+		},
+	}
+	cmd.Flags().StringVar(&stage, "stage", "", "run only this stage (plan, verify, audio, align, captions, chapters, scenegraph, render)")
+	cmd.Flags().BoolVar(&force, "force", false, "re-run stages even if their inputs are unchanged")
+	cmd.Flags().IntVar(&concurrency, "concurrency", 0, "parallel browser tabs for the Remotion render (0 = auto)")
+	return cmd
+}
+
+func newReelListCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "list",
+		Short: "List the reels in this project",
+		Args:  cobra.NoArgs,
+		RunE: func(cmd *cobra.Command, _ []string) error {
+			reels, err := pipeline.ListReels(".")
+			if err != nil {
+				return err
+			}
+			if len(reels) == 0 {
+				fmt.Fprintln(cmd.OutOrStdout(), "no reels yet — try `coursesmith reel new --help`")
+				return nil
+			}
+			w := tabwriter.NewWriter(cmd.OutOrStdout(), 0, 0, 2, ' ', 0)
+			fmt.Fprintln(w, "ID\tSEGMENTS\tVIDEO\tTITLE")
+			for _, l := range reels {
+				spec, err := pipeline.LoadReelSpec(l.Dir)
+				if err != nil {
+					continue
+				}
+				video := "—"
+				if _, err := os.Stat(filepath.Join(l.GeneratedDir(), pipeline.FinalVideoName)); err == nil {
+					video = "ready"
+				}
+				skipped := len(spec.Segments) - len(spec.Active())
+				count := fmt.Sprintf("%d", len(spec.Active()))
+				if skipped > 0 {
+					count += fmt.Sprintf(" (+%d skipped)", skipped)
+				}
+				fmt.Fprintf(w, "%s\t%s\t%s\t%s\n", l.ID, count, video, spec.Title)
+			}
+			return w.Flush()
+		},
+	}
+}
+
+func newReelShowCmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "show <id>",
+		Short: "Show a reel's segments, in order",
+		Args:  cobra.ExactArgs(1),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			_, lesson, err := pipeline.FindReel(".", args[0])
+			if err != nil {
+				return err
+			}
+			spec, err := pipeline.LoadReelSpec(lesson.Dir)
+			if err != nil {
+				return err
+			}
+			out := cmd.OutOrStdout()
+			if spec.Title != "" {
+				fmt.Fprintf(out, "%s\n", spec.Title)
+			}
+			fmt.Fprintf(out, "%s\n\n", relOrAbs(lesson.Dir))
+
+			w := tabwriter.NewWriter(out, 0, 0, 2, ' ', 0)
+			fmt.Fprintln(w, "  #\tID\tTEMPLATE\tCOVERS")
+			for i, s := range spec.Segments {
+				mark := " "
+				if s.Skip {
+					mark = "-" // out of the cut, still in the file
+				}
+				fmt.Fprintf(w, "%s %d\t%s\t%s\t%s\n", mark, i+1, s.ID, s.Template, truncate(s.Prompt, 52))
+			}
+			if err := w.Flush(); err != nil {
+				return err
+			}
+			fmt.Fprintf(out, "\nEdit with `coursesmith reel segment %s <segment-id> --…`, then re-run.\n", spec.ID)
+			return nil
+		},
+	}
+}
+
+// newReelSegmentCmd is the customisation surface: change one segment of an
+// already-generated reel and re-run only what that actually invalidates.
+func newReelSegmentCmd() *cobra.Command {
+	var (
+		template string
+		prompt   string
+		seconds  int
+		skip     bool
+		unskip   bool
+	)
+	cmd := &cobra.Command{
+		Use:   "segment <reel-id> <segment-id>",
+		Short: "Change one segment of an existing reel",
+		Long: "Edits reel.yaml in place. The pipeline then re-stales exactly the\n" +
+			"stages that file feeds.\n\n" +
+			"Every edit here moves the words: swapping a template re-plans the segment\n" +
+			"and gets different beats, and skipping one takes its narration out of the\n" +
+			"read. So all of them re-run the plan, the voice track and every timing\n" +
+			"after it — expect minutes, not seconds.\n\n" +
+			"Nothing is re-run by this command; it reports what became stale and leaves\n" +
+			"the run to you.",
+		Args: cobra.ExactArgs(2),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			_, lesson, err := pipeline.FindReel(".", args[0])
+			if err != nil {
+				return err
+			}
+			spec, err := pipeline.LoadReelSpec(lesson.Dir)
+			if err != nil {
+				return err
+			}
+			if skip && unskip {
+				return fmt.Errorf("--skip and --unskip contradict each other")
+			}
+
+			idx := -1
+			for i, s := range spec.Segments {
+				if s.ID == args[1] {
+					idx = i
+					break
+				}
+			}
+			if idx < 0 {
+				ids := make([]string, 0, len(spec.Segments))
+				for _, s := range spec.Segments {
+					ids = append(ids, s.ID)
+				}
+				return fmt.Errorf("reel %q has no segment %q (segments: %s)",
+					args[0], args[1], strings.Join(ids, ", "))
+			}
+
+			// Whether the words change is the whole cost model, so it is decided
+			// explicitly rather than inferred later from which fields differ.
+			narrationChanged := false
+			seg := &spec.Segments[idx]
+			if template != "" {
+				if _, ok := pipeline.SnippetTemplates[template]; !ok {
+					return fmt.Errorf("unknown template %q (see `coursesmith snippet templates`)", template)
+				}
+				seg.Template = template
+				// A different template plans different beats from the same
+				// prompt, so this does move the words after all.
+				narrationChanged = true
+			}
+			if prompt != "" {
+				seg.Prompt = prompt
+				narrationChanged = true
+			}
+			if seconds != 0 {
+				seg.TargetSec = seconds
+				narrationChanged = true
+			}
+			if skip {
+				seg.Skip = true
+				narrationChanged = true
+			}
+			if unskip {
+				seg.Skip = false
+				narrationChanged = true
+			}
+			if err := spec.Validate(); err != nil {
+				return err
+			}
+			if err := pipeline.SaveReelSpec(lesson.Dir, spec); err != nil {
+				return err
+			}
+
+			out := cmd.OutOrStdout()
+			fmt.Fprintf(out, "updated segment %q (%s)\n", seg.ID, seg.Template)
+			// Honest about the cost. Every edit this command can make alters what
+			// is spoken — a template swap re-plans, and skipping removes a
+			// segment's words from the read — so all of them re-run the voice.
+			// The cheap path exists at the props level and is the studio's job.
+			if narrationChanged {
+				fmt.Fprintf(out, "\nThis changes what is said, so the plan, the voice track and every\n"+
+					"timing after it are now stale. Re-run with:\n\n  coursesmith reel run %s\n", spec.ID)
+			}
+			return nil
+		},
+	}
+	cmd.Flags().StringVar(&template, "template", "", "render this segment with a different template")
+	cmd.Flags().StringVar(&prompt, "prompt", "", "change what this segment covers")
+	cmd.Flags().IntVar(&seconds, "seconds", 0, "change this segment's target runtime")
+	cmd.Flags().BoolVar(&skip, "skip", false, "drop this segment from the cut (keeps it in the file)")
+	cmd.Flags().BoolVar(&unskip, "unskip", false, "put a skipped segment back in the cut")
+	return cmd
+}
+
+// truncate keeps a prompt on one line of a table.
+func truncate(s string, n int) string {
+	s = strings.Join(strings.Fields(s), " ")
+	if len([]rune(s)) <= n {
+		return s
+	}
+	return string([]rune(s)[:n-1]) + "…"
+}
