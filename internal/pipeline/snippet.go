@@ -998,11 +998,21 @@ func runPlanStage(ctx context.Context, e *Env, course *project.Course, l *projec
 	fmt.Fprintf(e.out(), "  → plan      %s template, ~%ds target (%s)...\n",
 		tpl.Name, spec.ResolvedTargetSec(), cfg.Pipeline.LLMContent)
 
+	// Enrich first. The planner is good at turning a rich brief into a clip and
+	// bad at inventing the facts a thin one leaves out — and when it fails at
+	// the second job it does not fail gently, it returns something that does
+	// not decode and burns the correction rounds saying so.
+	enriched := *spec
+	if p := EnrichSnippetPrompt(ctx, e, *spec, cfg); p != spec.Prompt {
+		enriched.Prompt = p
+		fmt.Fprintf(e.out(), "    brief     %s\n", truncateForLog(p, 68))
+	}
+
 	planner := tpl.Plan
 	if planner == nil {
 		planner = planSnippetDefault
 	}
-	plan, err := planner(ctx, e, *spec, cfg)
+	plan, err := planner(ctx, e, enriched, cfg)
 	if err != nil {
 		return err
 	}

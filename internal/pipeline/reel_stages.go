@@ -56,7 +56,9 @@ func runReelPlan(ctx context.Context, e *Env, _ *project.Course, l *project.Less
 		if planner == nil {
 			planner = planSnippetDefault
 		}
-		segPlan, err := planner(ctx, e, seg.SnippetSpec(cfg), cfg)
+		segSpec := seg.SnippetSpec(cfg)
+		segSpec.Prompt = EnrichSnippetPrompt(ctx, e, segSpec, cfg)
+		segPlan, err := planner(ctx, e, segSpec, cfg)
 		if err != nil {
 			// Named, because "segment 4 of 9 failed" is the difference between
 			// re-running one prompt and re-running the whole reel.
