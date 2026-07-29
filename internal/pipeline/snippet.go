@@ -179,6 +179,59 @@ type SnippetPlan struct {
 	// Quiz is the quiz template's question. On the plan for the same reason as
 	// Chart: it is the subject of the clip, not a property of one beat in it.
 	Quiz *QuizSpec `json:"quiz,omitempty"`
+	// Canvas is the canvas template's automation — the whole chain of cards and
+	// the payload that runs them. On the plan for the same reason as Timeline:
+	// the workflow is the subject of the clip and the beats only walk it.
+	Canvas *CanvasSpec `json:"canvas,omitempty"`
+	// Loop is the promptloop template's goal — the one thing that does not
+	// change across the clip, which is exactly why it is worth pinning.
+	Loop *PromptLoopSpec `json:"loop,omitempty"`
+	// Mockup is the mockup template's screen. On the plan for the same reason as
+	// Canvas: the page is the subject of the clip and the beats walk down it.
+	Mockup *MockupSpec `json:"mockup,omitempty"`
+	// Stack is the stack template's tiers. On the plan for the same reason as
+	// Mockup: the arrangement is the subject and the beats only walk it.
+	Stack *StackSpec `json:"stack,omitempty"`
+	// Spec is the spec template's checklist. On the plan for the same reason as
+	// Quiz: it is the subject of the clip, not a property of one moment in it.
+	Spec *SpecSheet `json:"spec,omitempty"`
+	// Showcase is the showcase template's tool card. On the plan for the same
+	// reason as Spec: the card is the subject and the beats only light parts.
+	Showcase *ShowcaseSpec `json:"showcase,omitempty"`
+	// Breakdown is the breakdown template's path. On the plan for the same
+	// reason as Timeline: the path is the subject and the beats only walk it.
+	Breakdown *BreakdownSpec `json:"breakdown,omitempty"`
+	// Metric is the metric template's set of figures. On the plan because the
+	// recap beat needs every figure at once.
+	Metric *MetricSpec `json:"metric,omitempty"`
+	// Gauge is the gauge template's marked line and the things measured
+	// against it. On the plan because the ceiling outlives every beat.
+	Gauge *GaugeSpec `json:"gauge,omitempty"`
+	// Verdict is the verdict template's ruling. On the plan because the call is
+	// the subject of the clip and every beat builds toward it.
+	Verdict *VerdictSpec `json:"verdict,omitempty"`
+	// Decision is the decision template's question and the tiers along it. On
+	// the plan because the axis is the subject and the beats only walk it.
+	Decision *DecisionSpec `json:"decision,omitempty"`
+	// Myth is the myth template's belief and its replacement. On the plan
+	// because the claim outlives the beat that states it — it stays on screen,
+	// struck through, for the rest of the clip.
+	Myth *MythSpec `json:"myth,omitempty"`
+	// Rundown is the rundown template's promise and its numbered cards. On the
+	// plan because every card is on screen from the first frame.
+	Rundown *RundownSpec `json:"rundown,omitempty"`
+	// Analogy is the analogy template's picture and its mapping. On the plan
+	// because both columns are on screen for the whole clip.
+	Analogy *AnalogySpec `json:"analogy,omitempty"`
+	// Trace is the trace template's system: actors, a queue and one shared
+	// value. On the plan because the whole apparatus is on screen throughout.
+	Trace *TraceSpec `json:"trace,omitempty"`
+	// Costing is the costing template's bill. On the plan because the sheet
+	// accumulates across every beat.
+	Costing *CostingSpec `json:"costing,omitempty"`
+	// Constellation is the constellation template's idea and its properties. On
+	// the plan because the map is the subject and the beats only light it.
+	Constellation *ConstellationSpec `json:"constellation,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -349,6 +402,91 @@ type SnippetBeat struct {
 	// Quiz is what this beat does to the question on screen: pose it, hold
 	// while the viewer thinks, reveal the answer, or explain one option.
 	Quiz *QuizBeat `json:"quiz,omitempty"`
+
+	// --- canvas template ---
+	// Canvas says which card of the automation this beat is standing on, or
+	// that it is running the payload down the whole chain.
+	Canvas *CanvasBeat `json:"canvas,omitempty"`
+
+	// --- promptloop template ---
+	// Loop is one turn of the conversation: who is speaking, what is in the
+	// bubble, and — when it is the model's turn — how the attempt came out.
+	Loop *PromptLoopBeat `json:"loop,omitempty"`
+
+	// --- mockup template ---
+	// Mockup says which block of the page this beat is adding, or that it is
+	// showing the finished screen.
+	Mockup *MockupBeat `json:"mockup,omitempty"`
+
+	// --- stack template ---
+	// Stack says which tier this beat is standing on, or that it is showing the
+	// whole stack.
+	Stack *StackBeat `json:"stack,omitempty"`
+
+	// --- spec template ---
+	// Spec says which criterion this beat is writing, or that it is checking
+	// the whole sheet.
+	Spec *SpecBeat `json:"spec,omitempty"`
+
+	// --- showcase template ---
+	// Showcase says which part of the tool card this beat lights, or that it is
+	// the hand-off to the demo.
+	Showcase *ShowcaseBeat `json:"showcase,omitempty"`
+
+	// --- breakdown template ---
+	// Breakdown says where in the two-level path this beat stands: on a phase,
+	// on one item inside it, or on the whole path.
+	Breakdown *BreakdownBeat `json:"breakdown,omitempty"`
+
+	// --- metric template ---
+	// Metric says which figure this beat states, or that it brings them all
+	// back together.
+	Metric *MetricBeat `json:"metric,omitempty"`
+
+	// --- gauge template ---
+	// Gauge says whether this beat sets the line, runs one bar against it, or
+	// delivers the verdict.
+	Gauge *GaugeBeat `json:"gauge,omitempty"`
+
+	// --- verdict template ---
+	// Verdict says whether this beat names the subject, walks one condition, or
+	// delivers the call.
+	Verdict *VerdictBeat `json:"verdict,omitempty"`
+
+	// --- decision template ---
+	// Decision says whether this beat poses the question, lands on one tier, or
+	// states the closing rule.
+	Decision *DecisionBeat `json:"decision,omitempty"`
+
+	// --- myth template ---
+	// Myth says whether this beat states the belief, strikes it, backs up the
+	// truth, or says why the belief was tempting.
+	Myth *MythBeat `json:"myth,omitempty"`
+
+	// --- rundown template ---
+	// Rundown says whether this beat makes the promise, covers one card, or
+	// brings the whole row back.
+	Rundown *RundownBeat `json:"rundown,omitempty"`
+
+	// --- analogy template ---
+	// Analogy says whether this beat sets the picture up, walks one
+	// correspondence, or admits where the picture breaks.
+	Analogy *AnalogyBeat `json:"analogy,omitempty"`
+
+	// --- trace template ---
+	// Trace says whether this beat sets the system up, queues the work, drains
+	// one operation, or delivers the outcome.
+	Trace *TraceBeat `json:"trace,omitempty"`
+
+	// --- costing template ---
+	// Costing says whether this beat names the subject, adds one line, or lands
+	// the total.
+	Costing *CostingBeat `json:"costing,omitempty"`
+
+	// --- constellation template ---
+	// Constellation says whether this beat names the centre, lights one spoke,
+	// or shows the whole picture.
+	Constellation *ConstellationBeat `json:"constellation,omitempty"`
 }
 
 // QuizSpec is the clip's one question.
@@ -839,7 +977,12 @@ func snippetStubTitle(prompt string) string {
 // runPlanStage is the snippet pipeline's first stage: prompt + template →
 // snippet-plan.json, and from it the script.json and lesson.md the rest of the
 // pipeline expects.
-func runPlanStage(ctx context.Context, e *Env, _ *project.Course, l *project.Lesson, cfg config.Config) error {
+func runPlanStage(ctx context.Context, e *Env, course *project.Course, l *project.Lesson, cfg config.Config) error {
+	// A reel plans every segment through its own template's prompt; a snippet
+	// plans one. Everything after this branch is shared.
+	if IsReel(l) {
+		return runReelPlan(ctx, e, course, l, cfg)
+	}
 	spec, err := LoadSnippetSpec(l.Dir)
 	if err != nil {
 		return err
@@ -855,11 +998,21 @@ func runPlanStage(ctx context.Context, e *Env, _ *project.Course, l *project.Les
 	fmt.Fprintf(e.out(), "  → plan      %s template, ~%ds target (%s)...\n",
 		tpl.Name, spec.ResolvedTargetSec(), cfg.Pipeline.LLMContent)
 
+	// Enrich first. The planner is good at turning a rich brief into a clip and
+	// bad at inventing the facts a thin one leaves out — and when it fails at
+	// the second job it does not fail gently, it returns something that does
+	// not decode and burns the correction rounds saying so.
+	enriched := *spec
+	if p := EnrichSnippetPrompt(ctx, e, *spec, cfg); p != spec.Prompt {
+		enriched.Prompt = p
+		fmt.Fprintf(e.out(), "    brief     %s\n", truncateForLog(p, 68))
+	}
+
 	planner := tpl.Plan
 	if planner == nil {
 		planner = planSnippetDefault
 	}
-	plan, err := planner(ctx, e, *spec, cfg)
+	plan, err := planner(ctx, e, enriched, cfg)
 	if err != nil {
 		return err
 	}

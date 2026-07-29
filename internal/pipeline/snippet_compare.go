@@ -30,8 +30,9 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "compare",
+		Category:    CatDecisions,
 		Title:       "Side by side",
-		Description: "Two approaches in one frame, introduced in turn, then judged.",
+		Description: "Two subjects in one frame, introduced in turn and then judged. Reach for it to run the argument between two named options.",
 		Example:     "A for loop building a list versus a list comprehension",
 		PromptFile:  snippetCompareTemplateName,
 		// The columns can hold code, and code that is shown is code that ran.

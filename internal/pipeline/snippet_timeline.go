@@ -29,8 +29,9 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "timeline",
+		Category:    CatSystems,
 		Title:       "Timeline",
-		Description: "A spine of milestones filling in as you walk it — for anything whose subject is order.",
+		Description: "A spine of milestones filling in as you walk it. Reach for it when the subject is order: a history, a release train, a sequence of events.",
 		Example:     "What happens between typing a URL and seeing the page",
 		PromptFile:  snippetTimelineTemplateName,
 		NeedsCode:   false,

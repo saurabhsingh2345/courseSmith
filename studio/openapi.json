@@ -118,6 +118,23 @@
         "responses": {"200": {"description": "Token/cost/quota data", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Ledger"}}}}}
       }
     },
+    "/api/reels": {
+      "get": {"summary": "List reels", "responses": {"200": {"description": "reels", "content": {"application/json": {"schema": {"type": "array", "items": {"$ref": "#/components/schemas/ReelSummary"}}}}}}},
+      "post": {"summary": "Create and run a reel", "responses": {"201": {"description": "created", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ReelSummary"}}}}}}
+    },
+    "/api/reels/cast": {
+      "post": {"summary": "Propose segments from a brief (writes nothing)", "responses": {"200": {"description": "proposal", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/CastReelResponse"}}}}}}
+    },
+    "/api/reels/{id}": {
+      "get": {"summary": "One reel with its segments", "responses": {"200": {"description": "reel", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ReelDetail"}}}}}},
+      "delete": {"summary": "Delete a reel", "responses": {"204": {"description": "deleted"}}}
+    },
+    "/api/reels/{id}/run": {
+      "post": {"summary": "Re-run a reel", "responses": {"202": {"description": "queued"}}}
+    },
+    "/api/reels/{id}/segments/{segment}": {
+      "patch": {"summary": "Edit one segment", "responses": {"200": {"description": "segments", "content": {"application/json": {"schema": {"type": "array", "items": {"$ref": "#/components/schemas/ReelSegmentInfo"}}}}}}}
+    },
     "/api/snippet-templates": {
       "get": {
         "operationId": "listSnippetTemplates",
@@ -184,14 +201,49 @@
         },
         "required": ["name", "size", "url", "download_name"]
       },
+      "CastReelResponse": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "segments": {"type": "array", "items": {"type": "object", "properties": {"template": {"type": "string"}, "prompt": {"type": "string"}, "target_sec": {"type": "integer"}}, "required": ["template", "prompt"]}}
+        },
+        "required": ["title", "segments"]
+      },
+      "ReelSegmentInfo": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"}, "template": {"type": "string"}, "prompt": {"type": "string"},
+          "target_sec": {"type": "integer"}, "skip": {"type": "boolean"},
+          "template_title": {"type": "string"}, "template_category": {"type": "string"}
+        },
+        "required": ["id", "template", "prompt", "template_title", "template_category"]
+      },
+      "ReelSummary": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"}, "title": {"type": "string"}, "brief": {"type": "string"},
+          "segments": {"type": "integer"}, "skipped": {"type": "integer"},
+          "ready": {"type": "boolean"}, "video_url": {"type": "string"}, "created_at": {"type": "string"},
+          "run_id": {"type": "string"}
+        },
+        "required": ["id", "title", "segments", "skipped", "ready"]
+      },
+      "ReelDetail": {
+        "allOf": [
+          {"$ref": "#/components/schemas/ReelSummary"},
+          {"type": "object", "properties": {"segment_list": {"type": "array", "items": {"$ref": "#/components/schemas/ReelSegmentInfo"}}, "plan": {}}, "required": ["segment_list"]}
+        ]
+      },
       "SnippetTemplateInfo": {
         "type": "object",
         "properties": {
           "name": {"type": "string"}, "title": {"type": "string"}, "description": {"type": "string"},
           "example": {"type": "string"}, "shows_code": {"type": "boolean"},
-          "min_target_sec": {"type": "integer"}, "default_target_sec": {"type": "integer"}
+          "min_target_sec": {"type": "integer"}, "default_target_sec": {"type": "integer"},
+          "category": {"type": "string"}, "category_title": {"type": "string"},
+          "since": {"type": "string"}
         },
-        "required": ["name", "title", "description", "example", "shows_code"]
+        "required": ["name", "title", "description", "example", "shows_code", "category", "category_title"]
       },
       "SnippetSummary": {
         "type": "object",

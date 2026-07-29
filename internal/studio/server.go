@@ -64,6 +64,13 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("POST /api/snippets", s.handleSnippetCreate)
 	mux.HandleFunc("GET /api/snippets/{id}", s.handleSnippetDetail)
 	mux.HandleFunc("DELETE /api/snippets/{id}", s.handleSnippetDelete)
+	mux.HandleFunc("GET /api/reels", s.handleReelsList)
+	mux.HandleFunc("POST /api/reels", s.handleReelCreate)
+	mux.HandleFunc("POST /api/reels/cast", s.handleReelCast)
+	mux.HandleFunc("GET /api/reels/{id}", s.handleReelDetail)
+	mux.HandleFunc("DELETE /api/reels/{id}", s.handleReelDelete)
+	mux.HandleFunc("POST /api/reels/{id}/run", s.handleReelRun)
+	mux.HandleFunc("PATCH /api/reels/{id}/segments/{segment}", s.handleReelSegmentPatch)
 	mux.HandleFunc("GET /api/archetypes", s.handleArchetypes)
 	mux.HandleFunc("GET /api/library/diagrams", s.handleLibraryDiagramsList)
 	mux.HandleFunc("POST /api/library/diagrams", s.handleLibraryDiagramCreate)
@@ -130,8 +137,14 @@ func writeError(w http.ResponseWriter, status int, err error) {
 func (s *Server) resolveCourse(slug string) (*project.Course, error) {
 	dir := filepath.Join(s.coursesDir, filepath.Base(slug))
 	if _, err := os.Stat(filepath.Join(dir, project.CourseFileName)); err != nil {
-		if filepath.Base(slug) == pipeline.SnippetsCourseSlug {
+		// The synthetic courses do not live under coursesDir, so they are
+		// resolved by name. Missing the reels case meant every reel artifact
+		// 404'd while the API cheerfully advertised its URL.
+		switch filepath.Base(slug) {
+		case pipeline.SnippetsCourseSlug:
 			return pipeline.EnsureSnippetsCourse(s.projectRoot())
+		case pipeline.ReelsCourseSlug:
+			return pipeline.EnsureReelsCourse(s.projectRoot())
 		}
 		return nil, fmt.Errorf("no course %q", slug)
 	}

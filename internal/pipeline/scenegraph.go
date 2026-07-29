@@ -62,6 +62,57 @@ const (
 	// SceneTimeline is a spine of milestones filling in as the narration walks
 	// it — for anything whose subject is order.
 	SceneTimeline = "timeline"
+	// SceneCanvas is an automation wired across a builder's canvas: app cards
+	// on a dotted grid, and a payload that runs the chain end to end.
+	SceneCanvas = "canvas"
+	// ScenePromptLoop is a conversation with something that builds: prompts
+	// stacking down one column, and what came back beside them.
+	ScenePromptLoop = "promptloop"
+	// SceneMockup is a page assembling itself inside a device frame, with the
+	// layer list filling in beside it.
+	SceneMockup = "mockup"
+	// SceneStack is a set of tiers stacked vertically — which tool does what,
+	// walked from the top of the stack down.
+	SceneStack = "stack"
+	// SceneSpec is a checklist written a line at a time and then checked all at
+	// once — acceptance criteria, and the moment they go green.
+	SceneSpec = "spec"
+	// SceneShowcase is one tool's card — what it is, what it costs, what it is
+	// good and bad at — ending on a hand-off plate a demo recording cuts onto.
+	SceneShowcase = "showcase"
+	// SceneBreakdown is a path of phases where the current one opens into its
+	// own detail — the description, and the items inside it.
+	SceneBreakdown = "breakdown"
+	// SceneMetric is one figure at a time, set large enough to be the whole
+	// frame, with its unit, what it counts, and what that means.
+	SceneMetric = "metric"
+	// SceneGauge is a bar filling toward a marked ceiling — what clears it,
+	// what runs past, and by how much.
+	SceneGauge = "gauge"
+	// SceneVerdict is a ruling: the ground it holds on, the asterisk that
+	// qualifies it, and the call alone on the closing frame.
+	SceneVerdict = "verdict"
+	// SceneDecision is one question on an axis split into tiers, each band
+	// carrying the answer for landing in it.
+	SceneDecision = "decision"
+	// SceneMyth is a widely-held belief struck through in place and replaced by
+	// what is actually the case.
+	SceneMyth = "myth"
+	// SceneRundown is a numbered row that promises how many things there are
+	// and then lights them one at a time.
+	SceneRundown = "rundown"
+	// SceneAnalogy is a familiar picture in one column and what each of its
+	// parts really is in the other, walked pair by pair.
+	SceneAnalogy = "analogy"
+	// SceneTrace is a system caught in the act: actors issuing work into a
+	// queue that drains against one shared value.
+	SceneTrace = "trace"
+	// SceneCosting is a bill built line by line, with a running total that
+	// moves as each cost lands.
+	SceneCosting = "costing"
+	// SceneConstellation is one idea in the middle with its properties
+	// radiating out, lit one spoke at a time.
+	SceneConstellation = "constellation"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file
@@ -145,13 +196,30 @@ type SceneTheme struct {
 	CourseName string `json:"courseName"`
 
 	// Derived design tokens (Go-owned; renderer falls back when absent).
-	Mode          string `json:"mode,omitempty"`          // "dark" (default) | "light"
-	BgTop         string `json:"bgTop,omitempty"`         // scene gradient start
-	BgBottom      string `json:"bgBottom,omitempty"`      // scene gradient end
-	Surface       string `json:"surface,omitempty"`       // card fill
-	SurfaceBorder string `json:"surfaceBorder,omitempty"` // card hairline
-	Text          string `json:"text,omitempty"`          // main text on bg
-	TextMuted     string `json:"textMuted,omitempty"`     // secondary text
+	Mode string `json:"mode,omitempty"` // "dark" (default) | "light"
+	// Skin is the house style: "default" (unchanged, and the default),
+	// "broadcast" or "minimal". It is an axis independent of Mode — every skin
+	// derives in both polarities. See videoskin.go.
+	Skin string `json:"skin,omitempty"`
+	// Air is how far a skin pulls content in from the stage edges, as a
+	// fraction of the drawing box (0 = fill the stage, the default).
+	Air           float64 `json:"air,omitempty"`
+	BgTop         string  `json:"bgTop,omitempty"`         // scene gradient start
+	BgBottom      string  `json:"bgBottom,omitempty"`      // scene gradient end
+	Surface       string  `json:"surface,omitempty"`       // card fill
+	SurfaceBorder string  `json:"surfaceBorder,omitempty"` // card hairline
+	Text          string  `json:"text,omitempty"`          // main text on bg
+	TextMuted     string  `json:"textMuted,omitempty"`     // secondary text
+	// Semantic accents: the three roles a precise diagram colours by. Unlike
+	// Accent these are *not* branding — a bar that overruns its ceiling is red
+	// whatever the course is branded with, because the colour is saying what
+	// the picture means. Derived for every skin. See videoskin.go.
+	AccentQuantity string `json:"accentQuantity,omitempty"` // the measured number
+	AccentLimit    string `json:"accentLimit,omitempty"`    // the ceiling it hits
+	AccentRival    string `json:"accentRival,omitempty"`    // the alternative weighed
+	// Watermark is the standing mark a chrome-carrying skin sets in the corner
+	// of every frame. Empty leaves the corner clean.
+	Watermark string `json:"watermark,omitempty"`
 	// Mass is the body fill of drawn artwork, and Ink is the shading laid over
 	// a mass to give it a lit and an unlit face. They are a pair and they flip
 	// together: on the dark stage a mass is near-white, on paper it is a
@@ -310,7 +378,8 @@ func buildSceneGraph(
 	}
 
 	graph := &SceneGraph{
-		Theme:     deriveVideoTheme(colors, cfg.Branding.Fonts, course.Name, cfg.Style.Mode),
+		Theme: deriveVideoThemeSkinned(colors, cfg.Branding.Fonts, course.Name,
+			cfg.Style.Mode, cfg.Style.Skin, cfg.Style.Watermark),
 		Motion:    arch.Motion, // DefaultMotion() + the archetype's philosophy
 		AudioFile: VoiceoverFileName,
 	}
@@ -561,6 +630,9 @@ func runScenegraphStage(ctx context.Context, e *Env, course *project.Course, l *
 	// A snippet's scenes come from its template, not from the lesson-shaped
 	// script/storyboard/diagram machinery. Everything after this branch —
 	// captions, the video-plan edit layer, the written artifact — is shared.
+	if IsReel(l) {
+		return runReelScenegraph(ctx, e, course, l, cfg)
+	}
 	if IsSnippet(l) {
 		return runSnippetScenegraph(ctx, e, course, l, cfg)
 	}

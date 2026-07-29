@@ -31,6 +31,15 @@ type SnippetTemplate struct {
 	// Title and Description are the gallery copy shown in the studio.
 	Title       string
 	Description string
+	// Category is which group this template appears under, from the closed
+	// vocabulary in snippet_categories.go. Required — registration panics
+	// without it, because a catalog that can grow an uncategorised entry
+	// eventually does, and it lands somewhere nobody looks.
+	Category string
+	// Since is the catalog release this template arrived in ("" for the
+	// original set, "v1" for the reference-look batch). A fact rather than a
+	// status, so it does not go stale when the next batch lands.
+	Since string
 	// Example is a prompt that shows this template at its best; the studio
 	// offers it as a starting point.
 	Example string
@@ -44,6 +53,15 @@ type SnippetTemplate struct {
 	// well above the shared one needs its own default, or the standard 45s
 	// budget cannot fund the beats its own validator demands.
 	DefaultTargetSec int
+	// MaxBeats raises this template's beat ceiling above the shared
+	// maxSnippetBeats (0 = the shared one).
+	//
+	// Seven is the right cap for a clip built from a handful of *moments*, which
+	// almost every template is. It is the wrong cap for one whose subject is a
+	// list — a tool with four facts to state, a build with five phases each
+	// worth opening — because there the beat count is a property of the content
+	// rather than of how long a viewer's attention lasts on one picture.
+	MaxBeats int
 	// MinTargetSec is the shortest runtime this template can actually satisfy
 	// (0 = the shared floor). A default is a suggestion and callers override it;
 	// this is the arithmetic. `story` needs eight beats, and eight beats of the
@@ -88,6 +106,7 @@ func registerSnippetTemplate(t *SnippetTemplate) {
 	if _, dup := SnippetTemplates[t.Name]; dup {
 		panic("duplicate snippet template " + t.Name)
 	}
+	checkTemplateCategory(t)
 	SnippetTemplates[t.Name] = t
 }
 
@@ -150,7 +169,7 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 	}
 	target := spec.ResolvedTargetSec()
 	wantWords, minWords, maxWords := wordBudget(target, pace)
-	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords)
+	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords, templateBeatCeiling(spec.Template))
 	return map[string]any{
 		"Prompt":          spec.Prompt,
 		"Title":           spec.Title,
@@ -201,24 +220,52 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 // run back the other way, and it is what the prompts calibrate against now —
 // which means the number the model is told to hit and the number it is scored
 // against are the same number at every runtime, instead of only above 45s.
-func beatBounds(targetWords int) (minBeats, maxBeats, suggest, wordsPerBeat int) {
+// The `ceiling` is the most beats this template can hold — maxSnippetBeats for
+// almost everything, and higher for the few whose structure is a *list* rather
+// than a handful of moments. See SnippetTemplate.MaxBeats.
+func beatBounds(targetWords, ceiling int) (minBeats, maxBeats, suggest, wordsPerBeat int) {
+	if ceiling <= 0 {
+		ceiling = maxSnippetBeats
+	}
 	if targetWords <= 0 {
 		// A plan built by hand (a test, a fixture) has no budget to size
 		// against; fall back to the range that was fixed before this existed.
-		return floorSnippetBeats, maxSnippetBeats, idealWordsPerBeat, idealWordsPerBeat
+		return floorSnippetBeats, ceiling, idealWordsPerBeat, idealWordsPerBeat
 	}
-	suggest = min(max((targetWords+idealWordsPerBeat/2)/idealWordsPerBeat, floorSnippetBeats), maxSnippetBeats)
-	minBeats = min(max(suggest-1, floorSnippetBeats), maxSnippetBeats)
-	maxBeats = min(max(suggest+2, minBeats), maxSnippetBeats)
-	return minBeats, maxBeats, suggest, targetWords / suggest
+	suggest = max((targetWords+idealWordsPerBeat/2)/idealWordsPerBeat, floorSnippetBeats)
+	// A beat can only hold so much, so the *words* set a floor on the beat count
+	// as surely as the ideal sets a target. Without this the two halves of the
+	// instructions contradict each other at long runtimes exactly as they used to
+	// at short ones: a 180-second clip was told to write seven beats of 75 words
+	// against a 60-word per-beat maximum, which no plan can satisfy. That is the
+	// same failure documented above, at the other end of the range, and it went
+	// unnoticed because nothing asked for three minutes until now.
+	suggest = max(suggest, (targetWords+maxWordsPerBeat-1)/maxWordsPerBeat)
+	suggest = min(suggest, ceiling)
+	minBeats = min(max(suggest-1, floorSnippetBeats), ceiling)
+	maxBeats = min(max(suggest+2, minBeats), ceiling)
+	// And when even the ceiling cannot fund the budget, advise the most a beat
+	// may actually carry rather than the arithmetic answer. The clip will run
+	// short of its target; being told to write something that is rejected on
+	// arrival would leave it with no clip at all.
+	return minBeats, maxBeats, suggest, min(targetWords/suggest, maxWordsPerBeat)
+}
+
+// templateBeatCeiling is the most beats the named template may use.
+func templateBeatCeiling(name string) int {
+	if tpl, ok := SnippetTemplates[name]; ok && tpl.MaxBeats > 0 {
+		return tpl.MaxBeats
+	}
+	return maxSnippetBeats
 }
 
 // Beat-count bounds.
 //
 // The floor is two rather than three: two beats is one cut, which is the least
 // that still makes this a film rather than a held shot, and it is what lets a
-// ten- or twenty-second clip exist at all. Above seven in under three minutes
-// nothing lands.
+// ten- or twenty-second clip exist at all. Seven is where a clip made of
+// *moments* stops landing — a template whose subject is a list of things is a
+// different case, and raises its own ceiling with MaxBeats.
 const (
 	floorSnippetBeats = 2
 	maxSnippetBeats   = 7
@@ -299,7 +346,7 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	// A plan has more independent numeric rules than anything else the pipeline
 	// asks for — beat count, per-beat words, total words, and whatever the
 	// template adds on top. One correction round is not enough to land them all.
-	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords)
+	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords, templateBeatCeiling(spec.Template))
 	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.5, 6144, snippetPlanRepairRounds, &plan, func() error {
 		plan.Template = spec.Template // so Validate dispatches to this template
 		// The budget the prompt quoted, so the shared validators score the plan
@@ -433,7 +480,7 @@ func dryRunSnippetScenes(spec SnippetSpec, cfg config.Config, p *SnippetPlan) er
 // is one visual, so sixty words is not a style guide, it is how long any single
 // image stays interesting.
 func checkBeatShape(p *SnippetPlan) error {
-	minBeats, maxBeats, _, _ := beatBounds(p.targetWords)
+	minBeats, maxBeats, _, _ := beatBounds(p.targetWords, templateBeatCeiling(p.Template))
 	if n := len(p.Beats); n < minBeats || n > maxBeats {
 		return fmt.Errorf("plan has %d beats, want %d-%d", n, minBeats, maxBeats)
 	}
@@ -455,11 +502,14 @@ func checkBeatShape(p *SnippetPlan) error {
 	if len(long) > 0 {
 		m := fmt.Sprintf("these beats are over the %d-word maximum: %s",
 			maxWordsPerBeat, strings.Join(long, ", "))
-		if room := maxSnippetBeats - len(p.Beats); room > 0 {
+		// Against this template's own ceiling, not the shared one: telling a
+		// twelve-beat template it may not split because it has seven beats is
+		// advice that contradicts the range it was just given.
+		if room := maxBeats - len(p.Beats); room > 0 {
 			m += fmt.Sprintf("; you have %d beats and may use up to %d, so SPLIT each long beat into two rather than cutting it — keep the narration, give it another beat to live in",
-				len(p.Beats), maxSnippetBeats)
+				len(p.Beats), maxBeats)
 		} else {
-			m += fmt.Sprintf("; you are already at the %d-beat maximum, so these have to be tightened", maxSnippetBeats)
+			m += fmt.Sprintf("; you are already at the %d-beat maximum, so these have to be tightened", maxBeats)
 		}
 		msg = append(msg, m)
 	}
@@ -478,20 +528,37 @@ func checkBeatShape(p *SnippetPlan) error {
 // is quadratic and rots as the catalog grows — means a model that puts a
 // whiteboard sketch on a flow diagram gets a loud error instead of silence.
 type beatFields struct {
-	Code     bool
-	Run      bool
-	Sketch   bool
-	Nodes    bool
-	Focus    bool
-	Art      bool
-	Cast     bool
-	Shot     bool
-	Data     bool
-	Work     bool
-	Quiz     bool
-	Compare  bool
-	Anatomy  bool
-	Timeline bool
+	Code          bool
+	Run           bool
+	Sketch        bool
+	Nodes         bool
+	Focus         bool
+	Art           bool
+	Cast          bool
+	Shot          bool
+	Data          bool
+	Work          bool
+	Quiz          bool
+	Compare       bool
+	Anatomy       bool
+	Timeline      bool
+	Canvas        bool
+	Loop          bool
+	Mockup        bool
+	Stack         bool
+	Spec          bool
+	Showcase      bool
+	Breakdown     bool
+	Metric        bool
+	Gauge         bool
+	Verdict       bool
+	Decision      bool
+	Myth          bool
+	Rundown       bool
+	Analogy       bool
+	Trace         bool
+	Costing       bool
+	Constellation bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -512,6 +579,40 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "anatomy"
 		case !owned.Timeline && b.Timeline != nil:
 			set = "timeline"
+		case !owned.Canvas && b.Canvas != nil:
+			set = "canvas"
+		case !owned.Loop && b.Loop != nil:
+			set = "loop"
+		case !owned.Mockup && b.Mockup != nil:
+			set = "mockup"
+		case !owned.Stack && b.Stack != nil:
+			set = "stack"
+		case !owned.Spec && b.Spec != nil:
+			set = "spec"
+		case !owned.Showcase && b.Showcase != nil:
+			set = "showcase"
+		case !owned.Breakdown && b.Breakdown != nil:
+			set = "breakdown"
+		case !owned.Metric && b.Metric != nil:
+			set = "metric"
+		case !owned.Gauge && b.Gauge != nil:
+			set = "gauge"
+		case !owned.Verdict && b.Verdict != nil:
+			set = "verdict"
+		case !owned.Decision && b.Decision != nil:
+			set = "decision"
+		case !owned.Myth && b.Myth != nil:
+			set = "myth"
+		case !owned.Rundown && b.Rundown != nil:
+			set = "rundown"
+		case !owned.Analogy && b.Analogy != nil:
+			set = "analogy"
+		case !owned.Trace && b.Trace != nil:
+			set = "trace"
+		case !owned.Costing && b.Costing != nil:
+			set = "costing"
+		case !owned.Constellation && b.Constellation != nil:
+			set = "constellation"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

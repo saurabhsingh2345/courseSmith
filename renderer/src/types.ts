@@ -11,6 +11,20 @@ export type Theme = {
   // scene graphs generated before the design system omit them, and
   // resolveTheme() (theme/theme.ts) fills in dark-editorial defaults.
   mode?: 'dark' | 'light';
+  /** House style. Absent (the default) is the look the catalog has always had;
+   *  see internal/pipeline/videoskin.go. */
+  skin?: 'default' | 'broadcast' | 'minimal';
+  /** How far a skin pulls content in from the stage edges, as a fraction of
+   *  the drawing box. Absent/0 fills the stage. */
+  air?: number;
+  /** Standing corner mark for skins that carry chrome. */
+  watermark?: string;
+  /** Semantic accents — the three roles a precise diagram colours by. Not
+   *  branding: a bar that overruns its ceiling is red whatever the course is
+   *  branded with. */
+  accentQuantity?: string;
+  accentLimit?: string;
+  accentRival?: string;
   bgTop?: string;
   bgBottom?: string;
   surface?: string;
@@ -92,7 +106,24 @@ export type SceneType =
   | 'quiz'
   | 'compare'
   | 'anatomy'
-  | 'timeline';
+  | 'timeline'
+  | 'canvas'
+  | 'promptloop'
+  | 'mockup'
+  | 'stack'
+  | 'spec'
+  | 'showcase'
+  | 'breakdown'
+  | 'metric'
+  | 'gauge'
+  | 'verdict'
+  | 'decision'
+  | 'myth'
+  | 'rundown'
+  | 'analogy'
+  | 'trace'
+  | 'costing'
+  | 'constellation';
 
 export type Scene = {
   type: SceneType;

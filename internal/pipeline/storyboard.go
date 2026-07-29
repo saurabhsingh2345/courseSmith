@@ -47,6 +47,17 @@ var pointIconVocab = map[string]bool{
 	"shuffle": true, "filter": true, "network": true,
 }
 
+// normalizePointIconName returns the icon name if it is in the vocabulary, and
+// "" if it is not — so a caller can fall back to something better than "dot"
+// when it has a better default of its own (a canvas card takes its kind's icon).
+func normalizePointIconName(name string) string {
+	n := strings.ToLower(strings.TrimSpace(name))
+	if pointIconVocab[n] {
+		return n
+	}
+	return ""
+}
+
 // PointIconNames returns the vocabulary sorted, for prompts and docs.
 func PointIconNames() []string {
 	out := make([]string, 0, len(pointIconVocab))

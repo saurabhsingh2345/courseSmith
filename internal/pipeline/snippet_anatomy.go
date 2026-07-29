@@ -29,8 +29,9 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "anatomy",
+		Category:    CatSystems,
 		Title:       "Anatomy",
-		Description: "One artefact taken apart — callouts reaching to each labelled piece in turn.",
+		Description: "One artefact held still while callouts reach each labelled part. Reach for it to take a single thing apart — a URL, a config file, a request header.",
 		Example:     "Break down the parts of a Python function signature",
 		PromptFile:  snippetAnatomyTemplateName,
 		NeedsCode:   false,

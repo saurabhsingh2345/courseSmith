@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   SNIPPETS_COURSE,
   api,
@@ -141,6 +141,9 @@ function TemplateCard({
       <div className="relative flex items-start justify-between gap-3">
         <span className="font-medium text-ink-100">{template.title}</span>
         {template.shows_code && <Chip>runs code</Chip>}
+        {/* The release the template arrived in. A fact rather than a "new"
+            badge, so it stays true once the next batch lands. */}
+        {template.since && <Chip>{template.since}</Chip>}
       </div>
       <p className="relative mt-1.5 text-[13px] leading-snug text-ink-400">
         {template.description}
@@ -269,6 +272,7 @@ function SnippetViewer({ id, onClose }: { id: string; onClose: () => void }) {
 
 export function SnippetsPage() {
   const templates = useFetch(() => api.snippetTemplates(), []);
+  const [filter, setFilter] = useState("");
   const snippets = useFetch(() => api.snippets(), []);
   const { run } = useRun();
 
@@ -287,6 +291,35 @@ export function SnippetsPage() {
       snippets.reload();
     }
   });
+
+  /**
+   * The catalog grouped for display, filtered by the search box.
+   *
+   * The group ORDER comes from the order the API sent the templates in, not
+   * from anything decided here: Go owns the category vocabulary and its
+   * sequence, and a second copy in the client would drift the first time a
+   * group was added. So the groups are accumulated in first-seen order and a
+   * Map preserves it.
+   */
+  const grouped = useMemo(() => {
+    const q = filter.trim().toLowerCase();
+    const matches = (t: SnippetTemplateInfo) =>
+      !q ||
+      t.name.includes(q) ||
+      t.title.toLowerCase().includes(q) ||
+      t.description.toLowerCase().includes(q);
+
+    const byCat = new Map<string, {category: string; title: string; templates: SnippetTemplateInfo[]}>();
+    for (const t of templates.data ?? []) {
+      if (!matches(t)) continue;
+      const key = t.category ?? "";
+      if (!byCat.has(key)) {
+        byCat.set(key, {category: key, title: t.category_title || key, templates: []});
+      }
+      byCat.get(key)!.templates.push(t);
+    }
+    return [...byCat.values()];
+  }, [templates.data, filter]);
 
   // Default to the first template so the primary action is never blocked on a
   // choice the user has no opinion about yet.
@@ -375,21 +408,51 @@ export function SnippetsPage() {
       </p>
 
       <section className="mt-5">
-        <h2 className="mb-2.5 text-[11px] uppercase tracking-wide text-ink-500">
-          How should it look?
-        </h2>
+        <div className="mb-2.5 flex items-baseline justify-between gap-4">
+          <h2 className="text-[11px] uppercase tracking-wide text-ink-500">How should it look?</h2>
+          {/* A filter, because the catalog passed twenty and scrolling a wall of
+              cards to find one you already know the name of is the slowest way
+              to use this page. It matches the title and description as well as
+              the name — somebody looking for "does it fit" should land on
+              `gauge` without knowing that is what it is called. */}
+          <input
+            type="search"
+            aria-label="Filter templates"
+            className="w-56 rounded-md border border-ink-800 bg-ink-950 px-2.5 py-1 text-[13px] text-ink-100 placeholder:text-ink-500 focus:border-brand focus:outline-none"
+            placeholder="Filter templates…"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          />
+        </div>
         {templates.error && <ErrorNote error={templates.error} onRetry={templates.reload} />}
         {templates.loading && !templates.data && <div className="text-ink-500">Loading…</div>}
-        <div className="grid gap-3 sm:grid-cols-2">
-          {(templates.data ?? []).map((t) => (
-            <TemplateCard
-              key={t.name}
-              template={t}
-              selected={t.name === chosen}
-              onSelect={() => selectTemplate(t.name)}
-            />
-          ))}
-        </div>
+        {grouped.length === 0 && !templates.loading && (
+          <div className="rounded-lg border border-ink-800 p-4 text-ink-500">
+            Nothing matches “{filter}”.
+          </div>
+        )}
+        {grouped.map((g) => (
+          <div key={g.category} className="mb-5 last:mb-0">
+            {/* The heading is the job, not the mechanism: somebody arriving
+                knows what they want to say, not which template says it. */}
+            <h3 className="mb-2 border-b border-ink-800 pb-1.5 text-[12px] font-semibold uppercase tracking-wide text-ink-300">
+              {g.title}
+              <span className="ml-2 font-normal normal-case tracking-normal text-ink-500">
+                {g.templates.length}
+              </span>
+            </h3>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {g.templates.map((t) => (
+                <TemplateCard
+                  key={t.name}
+                  template={t}
+                  selected={t.name === chosen}
+                  onSelect={() => selectTemplate(t.name)}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
 
       <section className="mt-6">

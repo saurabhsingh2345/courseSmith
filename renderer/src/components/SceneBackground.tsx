@@ -21,7 +21,7 @@ import {ResolvedTheme} from '../theme/theme';
 
 const GRAIN_SEED = 7;
 
-export type Surface = 'default' | 'paper' | 'blueprint' | 'spotlight' | 'clean';
+export type Surface = 'default' | 'paper' | 'blueprint' | 'spotlight' | 'clean' | 'void';
 
 /**
  * The knobs each surface turns. Kept as data rather than as five components
@@ -55,6 +55,12 @@ const SURFACES: Record<
   // Charts are dense and thin. Anything repeating behind them competes with the
   // gridlines they draw themselves.
   clean: {glow: 0.55, field: 'none', vignette: 0.7, grain: 0.7},
+  // Nothing at all. The backdrop is not lit, not patterned and barely graded,
+  // so every bit of luminance in the frame belongs to the one small diagram in
+  // the middle of it. This is what the broadcast skin stands on, and it is the
+  // only surface where the *absence* of the glows is the design rather than a
+  // reduction of it — a 0.05 glow here would read as a smudge on black.
+  void: {glow: 0, field: 'none', vignette: 0.5, grain: 1},
 };
 
 const Field: React.FC<{theme: ResolvedTheme; kind: Surface}> = ({theme, kind}) => {

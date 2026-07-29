@@ -30,8 +30,9 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "cast",
+		Category:    CatPresenting,
 		Title:       "Explainer character",
-		Description: "A person who reacts as they explain — poses, expressions, and a headline beside them.",
+		Description: "A person who reacts as they explain, with a headline beside them. Reach for it when a presence on screen carries the idea better than a diagram.",
 		Example:     "Why code review makes teams faster, not slower",
 		PromptFile:  snippetCastTemplateName,
 		NeedsCode:   false,

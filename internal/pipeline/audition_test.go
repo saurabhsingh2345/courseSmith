@@ -45,9 +45,12 @@ func TestRunAuditionRendersPageAndSkipsExisting(t *testing.T) {
 				{"id": "af_heart"}, {"id": "am_adam"}, {"id": "jf_alpha"},
 			}})
 		case "/v1/audio/speech":
-			var body map[string]string
+			// map[string]any, not map[string]string: the request carries a
+			// numeric "speed", and one number fails the whole decode.
+			var body map[string]any
 			_ = json.NewDecoder(r.Body).Decode(&body)
-			speechCalls = append(speechCalls, body["voice"])
+			voice, _ := body["voice"].(string)
+			speechCalls = append(speechCalls, voice)
 			_, _ = w.Write(makeWAV(0.2))
 		default:
 			t.Errorf("unexpected path %q", r.URL.Path)

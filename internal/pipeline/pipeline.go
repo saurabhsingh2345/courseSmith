@@ -123,7 +123,7 @@ var stageUpstream = map[string][]string{
 var stageLessonFiles = map[string][]string{
 	// A snippet's whole input is its request file; editing the prompt or
 	// swapping the template re-plans (and so re-renders) the clip.
-	project.StagePlan:       {SnippetFileName},
+	project.StagePlan:       {SnippetFileName, ReelFileName},
 	project.StageScenegraph: {VideoPlanFileName},
 	project.StageRender:     {RecordingFileName},
 	project.StageHugo:       {QuizOverridesFileName},

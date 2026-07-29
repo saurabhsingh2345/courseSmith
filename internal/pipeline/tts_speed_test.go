@@ -38,3 +38,25 @@ func TestComputeSpeedFix(t *testing.T) {
 		})
 	}
 }
+
+func TestEffectivePaceWPM(t *testing.T) {
+	tests := []struct {
+		name  string
+		pace  int
+		speed float64
+		want  int
+	}{
+		{"unset speed means natural rate", 175, 0, 175},
+		{"1.0 is the natural rate", 175, 1, 175},
+		{"0.9 moves the target down with the voice", 175, 0.9, 158},
+		{"faster moves it up", 150, 1.2, 180},
+		{"no pace target stays no target", 0, 0.9, 0},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := effectivePaceWPM(tt.pace, tt.speed); got != tt.want {
+				t.Errorf("effectivePaceWPM(%d, %.2f) = %d, want %d", tt.pace, tt.speed, got, tt.want)
+			}
+		})
+	}
+}

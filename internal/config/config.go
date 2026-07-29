@@ -28,8 +28,8 @@ type Style struct {
 	VoiceSpeed float64 `yaml:"voice_speed"`
 	Tone       string  `yaml:"tone"`     // e.g. "friendly, conversational"
 	PaceWPM    int     `yaml:"pace_wpm"` // narration pace, words per minute
-	Audience string `yaml:"audience"` // e.g. "absolute beginners"
-	Language string `yaml:"language"` // BCP-47-ish, e.g. "en"
+	Audience   string  `yaml:"audience"` // e.g. "absolute beginners"
+	Language   string  `yaml:"language"` // BCP-47-ish, e.g. "en"
 	// Archetype selects a course preset (project-based, concept-first,
 	// practical-skills, story-driven, reference) that supplies motion,
 	// palette, and prompt-hint defaults. See internal/pipeline/archetypes.go.
@@ -54,6 +54,20 @@ type Style struct {
 	// omitempty so the field's introduction doesn't change config
 	// fingerprints recorded before it existed.
 	Mode string `yaml:"mode,omitempty"`
+	// Skin is the house style the video is cut in: "" or "default" is the look
+	// the catalog has always had, "broadcast" is the near-black explainer look
+	// (standing chrome, large uppercase headlines, one small precise diagram in
+	// a lot of air), "minimal" is the flat single-accent look where the diagram
+	// is the whole frame. It is an axis independent of Mode — every skin
+	// derives in both polarities. See internal/pipeline/videoskin.go.
+	// omitempty so the field's introduction doesn't change config
+	// fingerprints recorded before it existed.
+	Skin string `yaml:"skin,omitempty"`
+	// Watermark is the standing corner mark a chrome-carrying skin sets on
+	// every frame. Empty falls back to the course name.
+	// omitempty so the field's introduction doesn't change config
+	// fingerprints recorded before it existed.
+	Watermark string `yaml:"watermark,omitempty"`
 }
 
 // Audio controls voiceover post-production in the audio stage.
@@ -63,6 +77,21 @@ type Audio struct {
 	// ParagraphPauseMs is the silence inserted between narration paragraphs
 	// within a section (default 350).
 	ParagraphPauseMs int `yaml:"paragraph_pause_ms"`
+	// SentencePauseMs is the minimum silence at every sentence end (default
+	// 400). Unlike the two above it is not synthesized in — a paragraph is
+	// still read as one continuous take, so the voice keeps its intonation
+	// across full stops, and the align stage widens the gaps afterwards to
+	// this floor. It is a floor, not an addition: a sentence end that already
+	// breathes for longer is left alone, so the rhythm stays the narrator's
+	// rather than becoming metronomic.
+	//
+	// Capped by the align stage's long-gap compression (1500ms), which would
+	// otherwise squash anything larger back down. Set -1 to turn it off (0
+	// means "inherit", as it does for every other field here).
+	//
+	// omitempty so the field's introduction doesn't change config
+	// fingerprints recorded before it existed.
+	SentencePauseMs int `yaml:"sentence_pause_ms,omitempty"`
 	// CrossfadeMs is the fade length at every audio join (default 50).
 	CrossfadeMs int `yaml:"crossfade_ms"`
 	// TargetLUFS is the integrated loudness target for the two-pass
@@ -100,10 +129,10 @@ type Colors struct {
 }
 
 // Pipeline selects models and thresholds for the generation stages.
-// Model references use "provider/model" form, e.g. "groq/llama-3.3-70b-versatile".
+// Model references use "provider/model" form, e.g. "openai/gpt-4o-mini".
 type Pipeline struct {
-	LLMContent      string  `yaml:"llm_content"`
-	LLMReview       string  `yaml:"llm_review"`
+	LLMContent string `yaml:"llm_content"`
+	LLMReview  string `yaml:"llm_review"`
 	// LLMVision judges rendered diagram screenshots. Vision spatial reasoning
 	// needs a stronger model than text review — a weak judge reports overlaps
 	// that are not there on clean, layout-engine-produced diagrams. Empty
@@ -124,11 +153,16 @@ type Pipeline struct {
 func Defaults() Config {
 	return Config{
 		Style: Style{
-			Voice:    "af_heart",
-			Tone:     "friendly, conversational teacher",
-			PaceWPM:  150,
-			Audience: "absolute beginners with no programming experience",
-			Language: "en",
+			Voice: "af_heart",
+			// af_heart at its natural rate reads a touch faster than is
+			// comfortable to learn from. 0.9 is the house rate; the align
+			// stage scales the pace target by it, so slowing down here does
+			// not read as being 10% under pace.
+			VoiceSpeed: 0.9,
+			Tone:       "friendly, conversational teacher",
+			PaceWPM:    150,
+			Audience:   "absolute beginners with no programming experience",
+			Language:   "en",
 		},
 		Branding: Branding{
 			Colors: Colors{
@@ -139,7 +173,7 @@ func Defaults() Config {
 			DiagramStyle: "clean, flat, rounded corners, generous whitespace",
 		},
 		Pipeline: Pipeline{
-			LLMContent:      "groq/llama-3.3-70b-versatile",
+			LLMContent:      "openai/gpt-4o-mini",
 			LLMReview:       "openai/gpt-4o-mini",
 			LLMVision:       "openai/gpt-4o",
 			ReviewThreshold: 8,
@@ -148,6 +182,7 @@ func Defaults() Config {
 		Audio: Audio{
 			SectionPauseMs:   700,
 			ParagraphPauseMs: 350,
+			SentencePauseMs:  400,
 			CrossfadeMs:      50,
 			TargetLUFS:       -16,
 			MusicBed:         false,
@@ -192,6 +227,12 @@ func Merge(base, over Config) Config {
 	}
 	if over.Style.Mode != "" {
 		out.Style.Mode = over.Style.Mode
+	}
+	if over.Style.Skin != "" {
+		out.Style.Skin = over.Style.Skin
+	}
+	if over.Style.Watermark != "" {
+		out.Style.Watermark = over.Style.Watermark
 	}
 	if len(over.Style.Pronunciations) > 0 {
 		merged := make(map[string]string, len(base.Style.Pronunciations)+len(over.Style.Pronunciations))
@@ -243,6 +284,9 @@ func Merge(base, over Config) Config {
 	}
 	if over.Audio.ParagraphPauseMs != 0 {
 		out.Audio.ParagraphPauseMs = over.Audio.ParagraphPauseMs
+	}
+	if over.Audio.SentencePauseMs != 0 {
+		out.Audio.SentencePauseMs = over.Audio.SentencePauseMs
 	}
 	if over.Audio.CrossfadeMs != 0 {
 		out.Audio.CrossfadeMs = over.Audio.CrossfadeMs

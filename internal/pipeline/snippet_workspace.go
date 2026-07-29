@@ -43,8 +43,9 @@ import (
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
 		Name:        "workspace",
+		Category:    CatCode,
 		Title:       "Screen recording",
-		Description: "A full-screen editor that moves like a screencast — zoom into the code, pan to a file, run it in the terminal.",
+		Description: "A full-screen editor moving like a screencast across several files. Reach for it when the subject is a project rather than a snippet.",
 		Example:     "Write a function that finds duplicates in a list, then run it",
 		PromptFile:  snippetWorkspaceTemplateName,
 		NeedsCode:   true,

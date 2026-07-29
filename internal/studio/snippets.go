@@ -31,6 +31,14 @@ type SnippetTemplateInfo struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Example     string `json:"example"`
+	// Category is the gallery group this template belongs to, and CategoryTitle
+	// the heading to show over it. The title is sent alongside the id so the UI
+	// does not have to keep its own copy of the vocabulary and drift from Go.
+	Category      string `json:"category"`
+	CategoryTitle string `json:"category_title"`
+	// Since is the catalog release the template arrived in ("" for the original
+	// set). The gallery shows it as a chip so a new batch is findable.
+	Since string `json:"since,omitempty"`
 	// ShowsCode marks templates whose clips execute code for real, which is
 	// the difference the gallery needs to communicate.
 	ShowsCode bool `json:"shows_code"`
@@ -90,19 +98,41 @@ type CreateSnippetResponse struct {
 }
 
 func (s *Server) handleSnippetTemplates(w http.ResponseWriter, _ *http.Request) {
+	// Emitted in CATEGORY order, not name order.
+	//
+	// The gallery groups by first-seen category so it never keeps its own copy
+	// of the vocabulary, which means the order templates arrive in *is* the
+	// order the groups render in. Sending the flat name-sorted list put
+	// "Ideas & mental models" first purely because `analogy` sorts before
+	// `costing` — the sequence Go declares in snippet_categories.go would have
+	// been silently ignored by the one client that shows headings.
 	out := make([]SnippetTemplateInfo, 0, len(pipeline.SnippetTemplates))
-	for _, t := range pipeline.SnippetTemplateList() {
-		out = append(out, SnippetTemplateInfo{
-			Name:             t.Name,
-			Title:            t.Title,
-			Description:      t.Description,
-			Example:          t.Example,
-			ShowsCode:        t.NeedsCode,
-			MinTargetSec:     t.MinTargetSec,
-			DefaultTargetSec: t.DefaultTargetSec,
-		})
+	for _, g := range pipeline.SnippetTemplatesByCategory() {
+		for _, t := range g.Templates {
+			out = append(out, SnippetTemplateInfo{
+				Name:             t.Name,
+				Title:            t.Title,
+				Description:      t.Description,
+				Example:          t.Example,
+				Category:         t.Category,
+				CategoryTitle:    catTitle(t.Category),
+				Since:            t.Since,
+				ShowsCode:        t.NeedsCode,
+				MinTargetSec:     t.MinTargetSec,
+				DefaultTargetSec: t.DefaultTargetSec,
+			})
+		}
 	}
 	writeJSON(w, http.StatusOK, out)
+}
+
+// catTitle is the heading for a category id, so the API ships the display
+// string with the value rather than making every client keep its own map.
+func catTitle(name string) string {
+	if c, ok := pipeline.LookupSnippetCategory(name); ok {
+		return c.Title
+	}
+	return name
 }
 
 // snippetSummary describes one snippet on disk.

@@ -47,7 +47,7 @@ func TestModelFor(t *testing.T) {
 	pcfg := config.Defaults().Pipeline
 
 	ref, err := ModelFor(pcfg, TaskContent)
-	if err != nil || ref != "groq/llama-3.3-70b-versatile" {
+	if err != nil || ref != "openai/gpt-4o-mini" {
 		t.Errorf("ModelFor(content) = %q, %v", ref, err)
 	}
 	ref, err = ModelFor(pcfg, TaskReview)
@@ -95,7 +95,14 @@ func TestRouterRoutesByTask(t *testing.T) {
 		}},
 	}
 	r := newTestRouter(t, fakes)
-	pcfg := config.Defaults().Pipeline
+	// Two DIFFERENT providers, set explicitly rather than taken from the
+	// defaults. This test is about the router sending each task to the model
+	// its config names, and borrowing the defaults made it silently stop
+	// proving that the moment content and review came to share a model.
+	pcfg := config.Pipeline{
+		LLMContent: "groq/llama-3.3-70b-versatile",
+		LLMReview:  "openai/gpt-4o-mini",
+	}
 	ctx := context.Background()
 
 	req := testRequest()
@@ -125,7 +132,10 @@ func TestRouterCachesAcrossCalls(t *testing.T) {
 		}},
 	}
 	r := newTestRouter(t, fakes)
-	pcfg := config.Defaults().Pipeline
+	// Pinned, not defaulted: this test is about the cache, and only the groq
+	// fake is registered. Reading the model out of Defaults() coupled it to a
+	// choice that has nothing to do with what it checks.
+	pcfg := config.Pipeline{LLMContent: "groq/llama-3.3-70b-versatile"}
 	ctx := context.Background()
 
 	if _, err := r.Complete(ctx, pcfg, TaskContent, testRequest()); err != nil {
@@ -155,7 +165,11 @@ func TestRouterUnknownProvider(t *testing.T) {
 func TestRouterMissingKeyErrorIsActionable(t *testing.T) {
 	t.Setenv(EnvGroqKey, "")
 	r := NewRouter(t.TempDir()) // real env-based construction
-	pcfg := config.Defaults().Pipeline
+	// Pinned to groq because that is the key this asserts the message names.
+	// The point is that a missing key says which one and how to get it, which
+	// is provider-specific, so the test names the provider rather than
+	// inheriting whichever one the defaults happen to prefer.
+	pcfg := config.Pipeline{LLMContent: "groq/llama-3.3-70b-versatile"}
 	_, err := r.Complete(context.Background(), pcfg, TaskContent, testRequest())
 	if err == nil || !strings.Contains(err.Error(), EnvGroqKey) {
 		t.Errorf("error = %v, want actionable %s message", err, EnvGroqKey)
