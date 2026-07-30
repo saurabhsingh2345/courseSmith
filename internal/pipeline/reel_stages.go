@@ -165,6 +165,25 @@ func runReelPlan(ctx context.Context, e *Env, _ *project.Course, l *project.Less
 	}
 	fmt.Fprintf(e.out(), "    %q — %d segments, %d beats, %d words (~%ds at %d wpm)\n",
 		plan.Title, len(plan.Segments), plan.Beats(), words, words*60/pace, pace)
+
+	// The compromises, gathered at the end rather than only warned about as they
+	// happened. On a ten-segment reel the per-segment warnings have scrolled well
+	// off the screen by the time the run finishes, which is how three
+	// non-compliant segments went unnoticed in a finished video.
+	var loose []string
+	for _, seg := range plan.Segments {
+		if seg.Plan != nil && len(seg.Plan.Compromises) > 0 {
+			loose = append(loose, fmt.Sprintf("%s (%s): %s",
+				seg.ID, seg.Template, strings.Join(seg.Plan.Compromises, "; ")))
+		}
+	}
+	if len(loose) > 0 {
+		fmt.Fprintf(e.out(), "    %d of %d segments shipped looser than asked, recorded in %s:\n",
+			len(loose), len(plan.Segments), ReelPlanFileName)
+		for _, line := range loose {
+			fmt.Fprintf(e.out(), "      %s\n", truncateForLog(line, 110))
+		}
+	}
 	return nil
 }
 

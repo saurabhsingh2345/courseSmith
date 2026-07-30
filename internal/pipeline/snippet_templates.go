@@ -496,11 +496,45 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 		if salvaged := salvageSnippetPlan(ctx, e, spec, cfg, closest); salvaged != nil {
 			fmt.Fprintf(e.out(), "    ! the plan never satisfied every rule (%v)\n", err)
 			fmt.Fprintf(e.out(), "      shipping the closest one — it renders, so the clip is real; expect it to be looser than asked\n")
+			// Record it on the plan, not only on stdout. A warning nobody scrolled
+			// back to is how three segments of a finished reel shipped under their
+			// word floor with no way to tell them from the ones that passed.
+			salvaged.Compromises = compromiseLines(err)
 			return salvaged, nil
 		}
 		return nil, fmt.Errorf("planning %s snippet: %w", spec.Template, err)
 	}
 	return &plan, nil
+}
+
+// compromiseLines splits a correction-loop error into one line per rule broken.
+//
+// The loop accumulates every round's complaint into one error joined by "; ", and
+// the same rule usually appears in several rounds — the observed shape is "these
+// beats are under the 10-word minimum: X; these beats are under the 10-word
+// minimum: Y; narration totals 61 words but...". Stored as one blob it is
+// unreadable and unqueryable; split and de-duplicated it answers the question
+// somebody actually has, which is "what is wrong with this clip".
+func compromiseLines(err error) []string {
+	if err == nil {
+		return nil
+	}
+	var out []string
+	seen := map[string]bool{}
+	for _, part := range strings.Split(err.Error(), ";") {
+		part = collapseSpaces(part)
+		// The loop's own framing ("content response invalid after 3 correction
+		// round(s):") is about the machinery rather than the clip.
+		if i := strings.Index(part, "correction round(s):"); i >= 0 {
+			part = collapseSpaces(part[i+len("correction round(s):"):])
+		}
+		if part == "" || seen[part] {
+			continue
+		}
+		seen[part] = true
+		out = append(out, part)
+	}
+	return out
 }
 
 // salvageSnippetPlan is the last thing between a creator and an empty hand.

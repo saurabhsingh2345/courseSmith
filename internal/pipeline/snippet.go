@@ -204,6 +204,22 @@ type SnippetPlan struct {
 	// card ("" = no card).
 	Subtitle string        `json:"subtitle,omitempty"`
 	Beats    []SnippetBeat `json:"beats"`
+	// Compromises are the rules this plan never satisfied, written by the
+	// pipeline — not by the model — when the correction rounds ran out and the
+	// closest draft was shipped anyway.
+	//
+	// It exists because that outcome left no trace. The salvage path printed a
+	// warning to stdout and returned the draft, so a segment that shipped 47%
+	// under its word floor looked, on disk and in the studio, exactly like one
+	// that passed: same file, same shape, no marker. The old no-code reel had
+	// three such segments and nothing anywhere recorded it — I could only tell by
+	// re-deriving the budget from the template's defaults and comparing.
+	//
+	// On the plan rather than in a sidecar file because the plan is the thing
+	// being described, and both write paths (snippet-plan.json, reel-plan.json)
+	// already persist it — so the record travels with the artifact for free
+	// rather than needing a second file that can go missing or go stale.
+	Compromises []string `json:"compromises,omitempty"`
 	// Chart is the data template's dataset. It sits on the plan rather than on
 	// a beat because a data clip is one chart read several ways — the beats
 	// only move the emphasis around it. Every other template's visual state is
