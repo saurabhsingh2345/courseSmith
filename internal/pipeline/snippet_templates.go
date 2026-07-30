@@ -348,9 +348,69 @@ const (
 
 // Per-beat narration bounds. Under ten words a beat is a caption, not a
 // thought; over sixty it outlasts any single visual.
+// beatRole is the job a beat does, derived from where it sits.
+//
+// Position rather than a field the model declares, and that is a deliberate
+// choice about where to spend a rule. A `role` on SnippetBeat would need adding
+// to twenty-seven prompts, would be got wrong by some of them, and would tell us
+// nothing position does not: every template in this catalog opens by naming its
+// subject, develops through the middle, and closes on the whole. `constellation`
+// is centre → spokes → whole, `myth` is claim → evidence → why, `rundown` is
+// promise → items → all. The shape is the catalog's, not the model's to invent.
+type beatRole int
+
+const (
+	// roleOpen names the subject. Short by convention — "No-code is visual
+	// programming", "Four mindsets to adopt" — because its job is to put one
+	// thing on screen, not to explain it.
+	roleOpen beatRole = iota
+	// roleDevelop carries the actual teaching, and is where the words belong.
+	roleDevelop
+	// roleLand closes on the whole. Short again: a summary that runs as long as
+	// the thing it summarises has not summarised anything.
+	roleLand
+)
+
+// roleOf returns the job of beat i of n.
+//
+// A two-beat clip is open then land, with no middle: at ten to twenty seconds
+// there is one cut and no room to develop anything, which is what makes those
+// runtimes a hook rather than an explanation.
+func roleOf(i, n int) beatRole {
+	switch {
+	case i == 0:
+		return roleOpen
+	case i == n-1 && n > 1:
+		return roleLand
+	default:
+		return roleDevelop
+	}
+}
+
+// minWordsFor is the floor for a beat in this role.
+//
+// The flat ten-word floor was the last thing failing every run of the
+// list-shaped templates, and it was failing them on the beats the templates are
+// *designed* to keep short. Measured on the no-code reel after the beat-ceiling
+// fix, every remaining violation was an opener or a closer one or two words shy:
+// constellation's "No-code is visual programming" at eight, rundown's "Four
+// mindsets to adopt" at nine. The rule and the format were arguing, the format
+// was right, and the correction rounds spent settling it are most of why 71% of
+// this pipeline's token spend went on re-planning.
+func minWordsFor(role beatRole) int {
+	if role == roleDevelop {
+		return minWordsPerBeat
+	}
+	return minWordsOpenLand
+}
+
 const (
 	minWordsPerBeat = 10
-	maxWordsPerBeat = 60
+	// minWordsOpenLand is the floor for an opener or a closer. Six words is still
+	// a sentence — "No-code means building without code" — and below it a beat
+	// really is a label with a voice track.
+	minWordsOpenLand = 6
+	maxWordsPerBeat  = 60
 )
 
 // snippetPlanRepairRounds is how many correction attempts a plan gets. Replies
@@ -428,13 +488,7 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	// connecting them was never stated. Observed on every list-shaped template:
 	// constellation and rundown failed this and nothing else after the beat
 	// ceiling was fixed.
-	user += fmt.Sprintf(
-		"\n\nARITHMETIC, before you answer. Your narration must total %d-%d words across %d-%d beats. Those two numbers are linked: at %d beats each is about %d words, at %d beats each is about %d words. Work out which you are writing and size the beats to match.\n"+
-			"No beat may be under %d words — under ten it is a label rather than a thought, and it is rejected. If you cannot write a beat up to %d words, you have one beat too many: merge it into its neighbour rather than padding it.",
-		minWords, maxWords, minBeats, maxBeats,
-		minBeats, wantWords/max(minBeats, 1), maxBeats, wantWords/max(maxBeats, 1),
-		minWordsPerBeat, minWordsPerBeat,
-	)
+	user += beatVariationAdvice(wantWords, minBeats, maxBeats) + budgetTotalsAdvice(minWords, maxWords)
 
 	// A review critique is appended to the rendered user message rather than
 	// rendered into the prompt file. Blunt, and chosen deliberately: the
@@ -505,6 +559,47 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 		return nil, fmt.Errorf("planning %s snippet: %w", spec.Template, err)
 	}
 	return &plan, nil
+}
+
+// beatVariationAdvice is the arithmetic and the pacing, stated to every template.
+//
+// Appended by the shared planner rather than written into twenty-seven prompt
+// files, for the reason the critique is: this is shared guidance, not a property
+// of any one template's look, and twenty-seven copies means the twenty-eighth is
+// wrong.
+//
+// Two things it has to say, and neither was being said anywhere.
+//
+// The ARITHMETIC, because every prompt quoted a per-beat word count and none of
+// them could say what happens when the model uses the latitude in the beat range:
+// told "3-7 beats, about 36 words each" it wrote seven beats of nine words and
+// failed the floor on all of them. Both numbers were obeyed and the sum was never
+// mentioned.
+//
+// The VARIATION, because uniform beats are the commonest thing wrong with these
+// plans and nothing had ever asked for anything else. Every beat the same length,
+// the same shape and the same energy is a list read aloud — the review gate scores
+// it 6/10 on non-redundancy run after run, and it is why the narration reads
+// metronomic even when every individual sentence is fine.
+func beatVariationAdvice(wantWords, minBeats, maxBeats int) string {
+	return fmt.Sprintf(
+		"\n\nARITHMETIC, before you answer. You are writing %d-%d beats. That number and the word count are linked: at %d beats each is about %d words, at %d beats each is about %d words. Work out which you are writing and size the beats to match.\n\n"+
+			"THE BEATS MUST NOT ALL BE THE SAME LENGTH. This is the difference between a clip and a list read aloud, and it is the commonest thing wrong with these plans: every beat the same size, the same shape and the same energy, so nothing lands anywhere.\n"+
+			"- The FIRST beat names the subject and can be short — %d words is enough, and one clean sentence beats three hedged ones.\n"+
+			"- The MIDDLE beats do the teaching and should be the longest, comfortably past %d words. This is where the explanation lives; a short middle beat has stated something instead of explaining it.\n"+
+			"- The LAST beat closes and can be short again, %d words. A summary that runs as long as the thing it summarises has not summarised anything.\n"+
+			"No middle beat may be under %d words. If you cannot write one up to %d, you have a beat too many: merge it into its neighbour rather than padding it out.",
+		minBeats, maxBeats,
+		minBeats, wantWords/max(minBeats, 1), maxBeats, wantWords/max(maxBeats, 1),
+		minWordsOpenLand, minWordsPerBeat+10, minWordsOpenLand,
+		minWordsPerBeat, minWordsPerBeat,
+	)
+}
+
+// budgetTotalsAdvice states the one number the validators actually score the
+// whole plan against.
+func budgetTotalsAdvice(minWords, maxWords int) string {
+	return fmt.Sprintf("\nThe narration across every beat must total %d-%d words.", minWords, maxWords)
 }
 
 // compromiseLines splits a correction-loop error into one line per rule broken.
@@ -626,12 +721,13 @@ func checkBeatShape(p *SnippetPlan) error {
 	}
 
 	var long, short []string
-	for _, b := range p.Beats {
+	for i, b := range p.Beats {
+		floor := minWordsFor(roleOf(i, len(p.Beats)))
 		switch n := len(strings.Fields(b.Narration)); {
 		case n > maxWordsPerBeat:
 			long = append(long, fmt.Sprintf("%q (%d words)", b.ID, n))
-		case n < minWordsPerBeat:
-			short = append(short, fmt.Sprintf("%q (%d words)", b.ID, n))
+		case n < floor:
+			short = append(short, fmt.Sprintf("%q (%d words, floor %d)", b.ID, n, floor))
 		}
 	}
 	if len(long) == 0 && len(short) == 0 {
@@ -654,8 +750,8 @@ func checkBeatShape(p *SnippetPlan) error {
 		msg = append(msg, m)
 	}
 	if len(short) > 0 {
-		msg = append(msg, fmt.Sprintf("these beats are under the %d-word minimum: %s; expand them or fold them into a neighbour",
-			minWordsPerBeat, strings.Join(short, ", ")))
+		msg = append(msg, fmt.Sprintf("these beats are under their floor: %s; the first and last beat may be as short as %d words, every beat between them needs %d. Expand them or fold them into a neighbour",
+			strings.Join(short, ", "), minWordsOpenLand, minWordsPerBeat))
 	}
 	return fmt.Errorf("%s", strings.Join(msg, ". "))
 }

@@ -118,9 +118,16 @@ func TestValidateVSCodePlan(t *testing.T) {
 	})
 	t.Run("beat narration too thin", func(t *testing.T) {
 		p := vscodePlan()
+		// Beat 0 is the opener, whose floor is the relaxed one — so this has to be
+		// under THAT to be rejected, and the error should quote the floor it broke
+		// rather than a single global number.
 		p.Beats[0].Narration = "too short"
-		if err := p.Validate(); err == nil || !strings.Contains(err.Error(), "under the 10-word minimum") {
+		err := p.Validate()
+		if err == nil || !strings.Contains(err.Error(), "under their floor") {
 			t.Fatalf("want beat-length error, got %v", err)
+		}
+		if !strings.Contains(err.Error(), "floor 6") {
+			t.Errorf("the opener was judged against the wrong floor: %v", err)
 		}
 	})
 	// The failure this catches: a beat hands back the lines it adds rather than
@@ -585,8 +592,8 @@ func TestCheckBeatShapeReportsShortBeats(t *testing.T) {
 	if err == nil || !strings.Contains(err.Error(), "thin") {
 		t.Fatalf("want the short beat named, got %v", err)
 	}
-	if !strings.Contains(err.Error(), "minimum") {
-		t.Errorf("want minimum advice:\n%s", err)
+	if !strings.Contains(err.Error(), "floor 10") {
+		t.Errorf("a middle beat must be held to the develop floor, not the relaxed one:\n%s", err)
 	}
 }
 
