@@ -156,18 +156,46 @@ func deriveBaseVideoTheme(colors config.Colors, fonts config.Fonts, courseName, 
 		// Paper, not white. A pure #ffffff stage blows out against any
 		// saturated brand colour and leaves the artwork looking pasted on; a
 		// few points of the brand hue at very high lightness reads as stock.
-		t.BgTop = hslToHex(h, 0.34, 0.985)
-		t.BgBottom = hslToHex(math.Mod(h+14, 360), 0.30, 0.94)
+		//
+		// The page sits at 0.955 rather than 0.985, and that is the fix for the
+		// single worst thing about light mode. Surface was 1.0 — the top of the
+		// range, with nowhere further to go — against a page at 0.985, which is
+		// one and a half points of separation. Cards were invisible: a showcase
+		// frame read as four labels floating on an empty page, and the whole
+		// composition looked like it had failed to load. Dark mode never had this
+		// problem because its 0.11-to-0.15 gap sits where the eye is most
+		// sensitive, so the same four points read clearly.
+		//
+		// Lowering the page rather than darkening the card, because in light mode
+		// a card should be the bright thing. White-on-grey is what every light
+		// interface does, and it is the direction that keeps text contrast rising
+		// instead of falling.
+		t.BgTop = hslToHex(h, 0.30, 0.955)
+		// +6 degrees, not +14, and 0.16 saturation rather than 0.30.
+		//
+		// The rotation is invisible in dark mode at lightness 0.055 and blatant
+		// here: fourteen degrees off a blue primary lands in violet, and 0.30
+		// saturation at 0.94 lightness is enough to see it. That lavender wash
+		// across every light frame is most of why they read as a stock template
+		// rather than as a deliberate palette. A gradient still helps the frame
+		// feel lit; it does not have to change hue to do it.
+		t.BgBottom = hslToHex(math.Mod(h+6, 360), 0.16, 0.925)
 		t.Surface = hslToHex(h, 0.26, 1.0)
-		t.SurfaceBorder = hslToHex(h, 0.22, 0.86)
+		// A hairline that is actually visible on white. 0.86 cleared the 1.12
+		// ratio the test asks for and no more, which is a border you can only find
+		// if you already know it is there.
+		t.SurfaceBorder = hslToHex(h, 0.20, 0.82)
 		t.Text = hslToHex(h, 0.42, 0.13)
 		// 0.42 was the first guess and it fails AA on green and yellow hues:
 		// HSL lightness is not perceptual, so the same number carries much more
 		// luminance at h=60-140 than at h=240. The contrast test picks the
 		// floor; this is the value that clears it right around the hue circle.
 		t.TextMuted = hslToHex(h, 0.20, 0.37)
-		// A mass has to be darker than paper to be a shape at all.
-		t.Mass = hslToHex(h, 0.20, 0.63)
+		// A mass has to be darker than paper to be a shape at all. 0.58 rather
+		// than 0.63: with the page lowered to 0.955 the old value kept its ratio
+		// but a drawn mass wants to read as solid rather than as a tint, and on
+		// paper that means committing to being noticeably darker.
+		t.Mass = hslToHex(h, 0.22, 0.58)
 		t.Ink = hslToHex(h, 0.45, 0.20)
 		// Grain masks H.264 banding across a dark gradient. A light gradient
 		// bands far less and the same grain reads as dirt on the paper.

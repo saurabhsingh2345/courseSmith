@@ -2,7 +2,8 @@ import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from
 import {fitText} from '@remotion/layout-utils';
 import {ResolvedTheme} from '../theme/theme';
 import {MotionTokens, bezierEasing, resolveMotion, secondsToFrames} from '../theme/motion';
-import {CAPTION_SAFE} from './Stage';
+import {useContext} from 'react';
+import {CAPTION_SAFE, NO_CAPTION_SAFE, StageCaptionsContext} from './Stage';
 
 // TitleCard renders the animated lesson intro (kicker, display heading,
 // accent rule, learning outcomes staggering in as icon rows) and section
@@ -66,15 +67,17 @@ export const TitleCard: React.FC<{
   });
 
   const words = heading.split(' ');
+  const hasCaptions = useContext(StageCaptionsContext);
 
   return (
     // Left-aligned by design — the one scene that owns the full frame — but it
-    // still yields the bottom band to CaptionTrack like every other scene.
+    // still yields the bottom band to CaptionTrack like every other scene, and
+    // only when there is one to yield to.
     <AbsoluteFill
       style={{
         justifyContent: 'center',
         padding: `0 ${(CANVAS_W - CONTENT_W) / 2}px`,
-        paddingBottom: CAPTION_SAFE,
+        paddingBottom: hasCaptions ? CAPTION_SAFE : NO_CAPTION_SAFE,
       }}
     >
       <div

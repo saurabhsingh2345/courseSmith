@@ -9,7 +9,7 @@ import {PointsScene} from './components/PointsScene';
 import {PythonExecutionViz} from './components/PythonExecutionViz';
 import {MemoryLayout} from './components/MemoryLayout';
 import {SceneBackground, type Surface} from './components/SceneBackground';
-import {StageAirContext} from './components/Stage';
+import {StageAirContext, StageCaptionsContext} from './components/Stage';
 import {SectionTransition, type CutStyle} from './components/SectionTransition';
 import {TerminalScene} from './components/TerminalScene';
 import {TitleCard} from './components/TitleCard';
@@ -275,7 +275,14 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
   // window is stretched, so nothing that paces itself off durationInFrames
   // (the execution viz, the walkthrough, the memory layout) is affected.
   const cross = secondsToFrames(FPS, resolveMotion(motion).timing.normal);
+  // Whether a caption card will be drawn over the frame — the same condition
+  // CaptionTrack is mounted on below, read once here so it cannot disagree with
+  // the space every scene reserves for it. Reserving that band unconditionally
+  // was giving up 11% of every frame in every default-configured video to a card
+  // that has not rendered since captions became opt-in.
+  const hasCaptions = Boolean(captions && captions.length > 0);
   return (
+    <StageCaptionsContext.Provider value={hasCaptions}>
     <StageAirContext.Provider value={theme.air}>
       <AbsoluteFill style={{fontFamily: theme.fontBody}}>
         <SceneBackground theme={theme} surface={surface} />
@@ -328,7 +335,7 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
       })}
       {/* On-screen captions are opt-in; scene graphs built with
           style.captions off carry no caption words (null/empty). */}
-      {captions && captions.length > 0 ? (
+      {hasCaptions ? (
         <CaptionTrack theme={theme} captions={captions} emphasis={captionEmphasis} />
       ) : null}
       {/* Outside the sequences, so it does not cross-dissolve at every cut. A
@@ -336,5 +343,6 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
         {chrome ? <Watermark theme={theme} /> : null}
       </AbsoluteFill>
     </StageAirContext.Provider>
+    </StageCaptionsContext.Provider>
   );
 };
