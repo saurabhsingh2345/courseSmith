@@ -21,7 +21,20 @@ import {iconFor} from './icons';
 // lose its place. The row is fixed furniture; only brightness moves.
 
 const COL_W = Math.min(STAGE_W, 1620);
-const CARD_H = 300;
+
+// 420, not 300.
+//
+// Everything in this file was proportioned against a stage that no longer
+// exists. With the caption band no longer reserved unconditionally there are 952
+// vertical pixels to compose in, and a 300-tall row plus its title and detail
+// line came to about 550 of them — the row sat as a band across the middle with a
+// third of the frame empty dark below it, which is most of why a rundown read as
+// a slide rather than as a shot.
+//
+// Sized so the whole composition lands around 75% of the stage: enough that the
+// frame is filled, short of the edge-to-edge packing that would leave the numbers
+// nowhere to breathe.
+const CARD_H = 420;
 
 type Item = {label: string; detail?: string; icon?: string};
 
@@ -71,13 +84,13 @@ export const RundownScene: React.FC<{
         <div
           style={{
             fontFamily: theme.fontDisplay,
-            fontSize: 60,
+            fontSize: 68,
             fontWeight: 800,
-            letterSpacing: -1.4,
+            letterSpacing: -1.6,
             lineHeight: 1.12,
             color: theme.text,
             textAlign: 'center',
-            marginBottom: 52,
+            marginBottom: 56,
           }}
         >
           {promise}
@@ -100,7 +113,7 @@ export const RundownScene: React.FC<{
                   flex: 1,
                   position: 'relative',
                   height: CARD_H,
-                  padding: '30px 28px',
+                  padding: '38px 32px',
                   borderRadius: 16,
                   overflow: 'hidden',
                   background: lit ? withAlpha(theme.accentQuantity, 0.11) : withAlpha(theme.text, 0.04),
@@ -121,10 +134,10 @@ export const RundownScene: React.FC<{
                   <div
                     style={{
                       fontFamily: theme.fontDisplay,
-                      fontSize: 92,
+                      fontSize: 116,
                       fontWeight: 800,
                       lineHeight: 0.9,
-                      letterSpacing: -4,
+                      letterSpacing: -5,
                       color: lit ? theme.accentQuantity : withAlpha(theme.text, 0.22),
                       fontVariantNumeric: 'tabular-nums',
                     }}
@@ -137,10 +150,10 @@ export const RundownScene: React.FC<{
                   style={{
                     position: 'relative',
                     fontFamily: theme.fontDisplay,
-                    fontSize: 34,
+                    fontSize: 40,
                     fontWeight: 700,
                     lineHeight: 1.2,
-                    letterSpacing: -0.5,
+                    letterSpacing: -0.6,
                     color: lit ? theme.text : theme.textMuted,
                   }}
                 >
@@ -154,12 +167,12 @@ export const RundownScene: React.FC<{
         {/* The detail, under the row rather than inside the card — a card that
             grew when it lit would reflow the row and the eye would lose its
             place. */}
-        <div style={{minHeight: 92, marginTop: 34, textAlign: 'center'}}>
+        <div style={{minHeight: 110, marginTop: 42, textAlign: 'center'}}>
           {current >= 0 && items[current]?.detail ? (
             <div
               style={{
                 fontFamily: theme.fontBody,
-                fontSize: 31,
+                fontSize: 36,
                 lineHeight: 1.4,
                 color: theme.textMuted,
                 maxWidth: 1180,

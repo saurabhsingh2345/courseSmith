@@ -10,6 +10,7 @@ import {PythonExecutionViz} from './components/PythonExecutionViz';
 import {MemoryLayout} from './components/MemoryLayout';
 import {SceneBackground, type Surface} from './components/SceneBackground';
 import {StageAirContext, StageCaptionsContext} from './components/Stage';
+import {SceneCamera} from './components/SceneCamera';
 import {SectionTransition, type CutStyle} from './components/SectionTransition';
 import {TerminalScene} from './components/TerminalScene';
 import {TitleCard} from './components/TitleCard';
@@ -310,7 +311,14 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
               isLast={isLast}
               cutStyle={cutStyle}
             >
-              {sceneContent(scene, props, theme, duration)}
+              {/* The camera wraps the scene's own content and nothing else.
+                  Callouts and the standing chrome sit OUTSIDE it deliberately:
+                  a callout points at a fixed place on the frame and a watermark
+                  is furniture, and drifting either one would look like a bug
+                  rather than like a camera. */}
+              <SceneCamera durationInFrames={duration} motion={motion} index={i}>
+                {sceneContent(scene, props, theme, duration)}
+              </SceneCamera>
               {/* Inside the transition so a callout fades out with its own
                   scene instead of hanging fully opaque over the next one. */}
               <CalloutLayer

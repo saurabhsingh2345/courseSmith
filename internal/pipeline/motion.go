@@ -41,11 +41,59 @@ type MotionStagger struct {
 	Connections float64 `json:"connections"` // per network edge
 }
 
+// MotionCamera is the slow move the frame makes underneath a scene.
+//
+// The catalog had no camera at all, and its absence is most of why a finished
+// clip read as a slide deck. Every scene animated its *entrances* — things faded
+// and rose into place over the first half-second — and then held perfectly still
+// for the remaining twenty or fifty seconds while only opacity changed to mark
+// which item was being spoken about. A held frame with a voice over it is a
+// slide, however well it is set.
+//
+// This is deliberately not a "camera" in the sense of the story template's shot
+// list, which chooses a framing per beat. It is the continuous drift that makes a
+// frame feel photographed rather than printed, and it applies to every scene at
+// once rather than being something a template opts into and twenty-six others
+// forget.
+type MotionCamera struct {
+	// Push is the MOST the frame scales, as a fraction: 0.04 ends at most 4%
+	// closer than it began. A ceiling, not a distance travelled.
+	//
+	// Past about 0.04 the move becomes a zoom the viewer notices and then
+	// resents, and content starts crossing the safe margin — 110px of 1920, which
+	// a 5% scale eats.
+	Push float64 `json:"push"`
+	// Drift is how far the frame travels sideways, in pixels of a 1920-wide frame.
+	// Paired with Push so the move has a direction and not only a magnitude: a
+	// pure scale reads as a zoom, a scale plus a little lateral travel reads as a
+	// camera.
+	Drift float64 `json:"drift"`
+	// SettleSec is how long the move takes to reach Push, after which the frame
+	// holds.
+	//
+	// This exists because pacing the move across the whole scene — the obvious
+	// implementation, and the first one written here — produced no motion at all
+	// on the scenes that needed it most. A reel segment runs sixty to a hundred
+	// seconds, so spreading 2% over it gives 0.03% a second: measured on a
+	// rendered frame the content moved twenty-eight pixels across seventy
+	// seconds, which is not a camera, it is a rounding error. Documentary-style
+	// pushes run nearer 1% a second.
+	//
+	// So the move has a RATE (Push/SettleSec) and a duration of its own, and a
+	// long scene finishes it and then holds. A push that settles is a real move —
+	// it is what a locked-off shot with a slow creep in actually does — and it is
+	// strictly better than a crawl nobody can see. The alternative, re-framing per
+	// beat so the motion never stops, needs each template to publish its beat
+	// boundaries up to the timeline; that is the better design and a bigger one.
+	SettleSec float64 `json:"settleSec"`
+}
+
 // Motion is the complete animation token set embedded in every scene graph.
 type Motion struct {
 	Timing  MotionTiming  `json:"timing"`
 	Easing  MotionEasing  `json:"easing"`
 	Stagger MotionStagger `json:"stagger"`
+	Camera  MotionCamera  `json:"camera"`
 }
 
 // DefaultMotion is the canonical baseline animation language. Archetypes
@@ -67,6 +115,14 @@ func DefaultMotion() Motion {
 			Words:       0.05,
 			Items:       0.08,
 			Connections: 0.12,
+		},
+		Camera: MotionCamera{
+			// 3.2% over eighteen seconds — about 0.18% a second. Slow enough that
+			// no single second reads as movement, fast enough that a still from
+			// the top of a beat and one from the bottom are different shots.
+			Push:      0.032,
+			Drift:     22,
+			SettleSec: 18,
 		},
 	}
 }
@@ -108,6 +164,15 @@ func (m Motion) Merge(override *Motion) Motion {
 	}
 	if override.Stagger.Connections != 0 {
 		out.Stagger.Connections = override.Stagger.Connections
+	}
+	if override.Camera.Push != 0 {
+		out.Camera.Push = override.Camera.Push
+	}
+	if override.Camera.Drift != 0 {
+		out.Camera.Drift = override.Camera.Drift
+	}
+	if override.Camera.SettleSec != 0 {
+		out.Camera.SettleSec = override.Camera.SettleSec
 	}
 	return out
 }
