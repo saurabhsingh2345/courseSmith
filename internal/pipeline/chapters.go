@@ -50,9 +50,15 @@ func sectionTitles(body string, script *Script) map[string]string {
 	}
 	titles := make(map[string]string, len(script.Sections))
 	for _, sec := range script.Sections {
-		if title, ok := bySlug[sec.ID]; ok {
-			titles[sec.ID] = title
-		} else {
+		switch {
+		// What the section says it is called, when it knows. Assembled scripts
+		// (reels, snippets) set this; matching slugs cannot work for them because
+		// their ids are composed rather than derived from a heading.
+		case strings.TrimSpace(sec.Title) != "":
+			titles[sec.ID] = collapseSpaces(sec.Title)
+		case bySlug[sec.ID] != "":
+			titles[sec.ID] = bySlug[sec.ID]
+		default:
 			titles[sec.ID] = humanizeSlug(sec.ID)
 		}
 	}

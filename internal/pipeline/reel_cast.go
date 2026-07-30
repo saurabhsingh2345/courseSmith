@@ -104,6 +104,17 @@ func CastReel(ctx context.Context, e *Env, brief, title string, want int, cfg co
 	if want <= 0 {
 		want = 5
 	}
+	// A length in the brief decides the segment count, because the two are the
+	// same decision: five segments cannot carry twenty-five minutes without each
+	// running five, which is twice any template's ceiling. Previously the brief's
+	// runtime was never read and every segment took its template default, so a
+	// 25-minute ask shipped as 9:43 with nothing saying so.
+	var budget RuntimeBudget
+	if requested, ok := ParseRequestedRuntime(brief); ok {
+		budget = BudgetRuntime(requested, want)
+		want = budget.Segments
+		fmt.Fprintf(e.out(), "    %s\n", budget.Describe())
+	}
 	want = min(max(want, minReelSegments), maxReelSegments)
 
 	system, user, err := e.renderPrompt(reelCastTemplateName, map[string]any{
@@ -116,6 +127,10 @@ func CastReel(ctx context.Context, e *Env, brief, title string, want int, cfg co
 		"MaxSame":      maxSameTemplate,
 		"Audience":     cfg.Style.Audience,
 		"Tone":         cfg.Style.Tone,
+		// Zero when the brief named no length. The prompt branches on it, so a
+		// piece with no stated runtime reads exactly as it did before.
+		"PerSegmentSec": budget.PerSegmentSec,
+		"TotalSec":      budget.Achievable(),
 	})
 	if err != nil {
 		return nil, err
@@ -135,7 +150,7 @@ func CastReel(ctx context.Context, e *Env, brief, title string, want int, cfg co
 		spec.Title = strings.TrimSpace(title)
 	}
 	for _, p := range cast.Segments {
-		spec.Segments = append(spec.Segments, ReelSegment{
+		seg := ReelSegment{
 			Template: p.Template,
 			Prompt:   p.Covers,
 			// The material is why the template was chosen, and it is what the
@@ -143,7 +158,14 @@ func CastReel(ctx context.Context, e *Env, brief, title string, want int, cfg co
 			// and then dropped, so every writer started from the one-line
 			// `covers` and invented the rest.
 			Material: p.Material,
-		})
+		}
+		// Only when the brief asked for a length. Left at zero, a segment takes
+		// its template's own default, which is the right answer for a piece whose
+		// brief says nothing about how long it should be.
+		if budget.PerSegmentSec > 0 {
+			seg.TargetSec = segmentTargetFor(p.Template, budget.PerSegmentSec)
+		}
+		spec.Segments = append(spec.Segments, seg)
 	}
 	spec.EnsureSegmentIDs()
 	if err := spec.Validate(); err != nil {

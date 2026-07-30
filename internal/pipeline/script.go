@@ -24,7 +24,18 @@ type Script struct {
 
 // Section is one narrated segment, mapped from a top-level outline heading.
 type Section struct {
-	ID             string `json:"id"`
+	ID string `json:"id"`
+	// Title is the section's human heading, when whatever built the script knew
+	// it. Empty for a hand-written lesson, where the heading lives in lesson.md
+	// and is recovered by matching slugs (see sectionTitles).
+	//
+	// It exists for the assembled paths. A reel's section id is
+	// "<segment>--<beat>", which matches no heading in the generated lesson.md,
+	// so title recovery fell through to humanizing the id — and every chapter
+	// read "Myth 1  Everyone Says": the template name, the cast ordinal, and a
+	// double space where the "--" was. The heading was known at the moment the
+	// section was built and thrown away one field short of here.
+	Title          string `json:"title,omitempty"`
 	Narration      string `json:"narration"`
 	DurationEstSec int    `json:"duration_est_sec"`
 	Cues           []Cue  `json:"cues"`

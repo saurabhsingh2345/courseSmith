@@ -34,6 +34,11 @@ These four cannot be planned from a subject alone. If the part you are casting h
 For a part that is explanatory rather than numeric, reach for analogy, myth, constellation, rundown, breakdown or illustration instead. They carry a subject without needing data.
 
 HOW MANY: aim for {{.WantSegments}} segments. Never fewer than {{.MinSegments}} or more than {{.MaxSegments}}.
+{{if .PerSegmentSec}}
+LENGTH. The brief asked for a specific runtime, and the segment count above was derived from it: {{.WantSegments}} segments of about {{.PerSegmentSec}} seconds each, {{.TotalSec}} seconds in all.
+
+That changes what a segment is. Each one has to carry a couple of minutes on its own, so it needs enough material to develop rather than one fact to state — a segment covering "what no-code means" can fill that; one covering "the price of Webflow" cannot, and belongs folded into a larger part. Split the brief into parts of roughly equal weight, and if a part cannot fill its share, merge it with its neighbour and use one of the segments you saved somewhere the brief is dense.
+{{end}}
 
 RHYTHM, which is enforced:
 - The same template may not appear twice in a row. Two of the same look running together reads as one long segment.

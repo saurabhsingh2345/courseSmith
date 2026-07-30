@@ -392,7 +392,10 @@ func (p *ReelPlan) Script(paceWPM int) *Script {
 			words := len(strings.Fields(b.Narration))
 			est := max(1, int(float64(words)/float64(paceWPM)*60+0.5))
 			script.Sections = append(script.Sections, Section{
-				ID:             seg.ID + "--" + b.ID,
+				ID: seg.ID + "--" + b.ID,
+				// The beat's own heading, so the chapter list reads as the piece
+				// rather than as its assembly.
+				Title:          b.Heading,
 				Narration:      b.Narration,
 				DurationEstSec: est,
 			})

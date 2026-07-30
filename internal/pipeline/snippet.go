@@ -746,7 +746,12 @@ func (p *SnippetPlan) Script(paceWPM int) *Script {
 		words := len(strings.Fields(b.Narration))
 		est := max(1, int(float64(words)/float64(paceWPM)*60+0.5))
 		script.Sections = append(script.Sections, Section{
-			ID:             b.ID,
+			ID: b.ID,
+			// A snippet's beat id IS slugified from its heading, so slug matching
+			// happens to work here. Set anyway: relying on the round trip means a
+			// heading with a colon or an ampersand in it silently degrades to the
+			// humanized slug, and there is no reason to derive what we hold.
+			Title:          b.Heading,
 			Narration:      b.Narration,
 			DurationEstSec: est,
 		})
