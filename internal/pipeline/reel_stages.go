@@ -109,6 +109,15 @@ func runReelPlan(ctx context.Context, e *Env, _ *project.Course, l *project.Less
 			seg.Template = reelFallbackTemplate
 		}
 		segPlan.Template = seg.Template
+		// Gate each segment as it is planned, not the finished reel.
+		//
+		// A critique of segment three has nothing to say about the other four, and
+		// gating the whole plan would re-plan all of them to fix one — five calls
+		// to repair one, and the four that were already good get a fresh chance to
+		// come back worse.
+		segSpec.Template = seg.Template
+		segPlan = e.gateSegmentPlan(ctx, l, cfg, segSpec, segPlan)
+
 		plan.Segments = append(plan.Segments, ReelPlanSegment{
 			ID:       seg.ID,
 			Template: seg.Template,

@@ -18,6 +18,7 @@ import (
 const (
 	scriptTemplateName          = "script.tmpl"
 	reviewTemplateName          = "review_rubric.tmpl"
+	reviewPlanTemplateName      = "review_plan.tmpl"
 	reviewClaimsTemplateName    = "review_claims.tmpl"
 	reviewAccuracyTemplateName  = "review_accuracy.tmpl"
 	reviewPedagogyTemplateName  = "review_pedagogy.tmpl"

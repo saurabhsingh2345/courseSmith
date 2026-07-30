@@ -385,6 +385,15 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	if err != nil {
 		return nil, err
 	}
+	// A review critique is appended to the rendered user message rather than
+	// rendered into the prompt file. Blunt, and chosen deliberately: the
+	// alternative is the same block copied into twenty-seven templates, where the
+	// twenty-eighth to be added silently ignores its reviewer. The prompts stay
+	// the description of a template's own rules, and regeneration stays one thing
+	// in one place.
+	if c := strings.TrimSpace(spec.Critique); c != "" {
+		user += "\n\nA reviewer scored your previous plan below the quality bar. Produce a new plan that fixes every point of this critique. Keep what was already good; change what it names.\n\n" + c
+	}
 	var plan SnippetPlan
 	// The closest attempt seen so far, kept for the salvage below: a plan that
 	// decoded and normalized is a clip, even when it never satisfied every rule.

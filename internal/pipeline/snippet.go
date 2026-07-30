@@ -115,6 +115,16 @@ type SnippetSpec struct {
 	// The writer is told to advance past them rather than restate them.
 	Priors []string `yaml:"-"`
 
+	// Critique is the review gate's verdict on the previous attempt, fed back so
+	// the next one can fix what was named. Empty on a first attempt.
+	//
+	// Carried on the spec and appended to the rendered prompt rather than added
+	// to twenty-seven prompt files, for the reason the enrichment context is:
+	// every template prompt renders through planSnippetDefault, so one place to
+	// put it means no template can be the one that forgot. The shelved `story`
+	// template has its own planner and does not get this.
+	Critique string `yaml:"-"`
+
 	// Substance is the piece's fact sheet, from the substance stage. Nil when
 	// that stage has not run (an older snippet resumed mid-pipeline), and the
 	// planner then behaves exactly as it did before it existed.
@@ -1060,6 +1070,9 @@ func runPlanStage(ctx context.Context, e *Env, course *project.Course, l *projec
 		return err
 	}
 	plan.Template = spec.Template
+	// The same gate the reel's segments go through. A snippet is one segment, so
+	// there is nothing to scope the critique to.
+	plan = e.gateSegmentPlan(ctx, l, cfg, enriched, plan)
 	if spec.Title != "" {
 		plan.Title = spec.Title
 	}

@@ -142,7 +142,11 @@ var stageLessonFiles = map[string][]string{
 // output through the critic also depend on the review rubric.
 var stageTemplates = map[string][]string{
 	project.StageSubstance: {substanceTemplateName, substanceSearchTemplateName},
-	project.StageScript:    {scriptTemplateName},
+	// The plan stage gates every plan through the plan rubric, so editing that
+	// rubric re-plans. The template a request names is added dynamically in
+	// StageInputs, which cannot list it statically.
+	project.StagePlan:   {snippetEnrichTemplateName, reviewPlanTemplateName},
+	project.StageScript: {scriptTemplateName},
 	// Review runs three passes (claims+accuracy, pedagogy, tone) and
 	// re-invokes the script generator on regeneration.
 	project.StageReview: {
