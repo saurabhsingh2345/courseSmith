@@ -651,6 +651,8 @@ export interface components {
             prompt_tokens: number;
             completion_tokens: number;
             cost_usd: number;
+            /** @description False when this model is absent from the pricing table, which makes cost_usd meaningless rather than zero. Render it as unknown, never as $0.00 — the tokens were really spent. */
+            priced: boolean;
         };
         QuotaStatus: {
             provider: string;
@@ -662,6 +664,9 @@ export interface components {
             rows: components["schemas"]["LedgerRow"][];
             total_cost_usd: number;
             total_calls: number;
+            /** @description Models whose spend is missing from total_cost_usd, so the total is a floor rather than the bill. */
+            unpriced_models?: string[];
+            unpriced_tokens?: number;
             quotas: components["schemas"]["QuotaStatus"][];
         };
     };

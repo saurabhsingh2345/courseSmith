@@ -375,8 +375,8 @@
       },
       "LedgerRow": {
         "type": "object",
-        "properties": {"day": {"type": "string"}, "provider": {"type": "string"}, "model": {"type": "string"}, "calls": {"type": "integer"}, "prompt_tokens": {"type": "integer"}, "completion_tokens": {"type": "integer"}, "cost_usd": {"type": "number"}},
-        "required": ["day", "provider", "model", "calls", "prompt_tokens", "completion_tokens", "cost_usd"]
+        "properties": {"day": {"type": "string"}, "provider": {"type": "string"}, "model": {"type": "string"}, "calls": {"type": "integer"}, "prompt_tokens": {"type": "integer"}, "completion_tokens": {"type": "integer"}, "cost_usd": {"type": "number"}, "priced": {"type": "boolean", "description": "False when this model is absent from the pricing table, which makes cost_usd meaningless rather than zero. Render it as unknown, never as $0.00 — the tokens were really spent."}},
+        "required": ["day", "provider", "model", "calls", "prompt_tokens", "completion_tokens", "cost_usd", "priced"]
       },
       "QuotaStatus": {
         "type": "object",
@@ -388,6 +388,8 @@
         "properties": {
           "rows": {"type": "array", "items": {"$ref": "#/components/schemas/LedgerRow"}},
           "total_cost_usd": {"type": "number"}, "total_calls": {"type": "integer"},
+          "unpriced_models": {"type": "array", "items": {"type": "string"}, "description": "Models whose spend is missing from total_cost_usd, so the total is a floor rather than the bill."},
+          "unpriced_tokens": {"type": "integer"},
           "quotas": {"type": "array", "items": {"$ref": "#/components/schemas/QuotaStatus"}}
         },
         "required": ["rows", "total_cost_usd", "total_calls", "quotas"]
