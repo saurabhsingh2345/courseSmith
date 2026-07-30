@@ -454,9 +454,13 @@ func newReelCastCmd() *cobra.Command {
 			}
 			fmt.Fprintf(out, "\n%s\n\n", spec.Title)
 			w := tabwriter.NewWriter(out, 0, 0, 2, ' ', 0)
-			fmt.Fprintln(w, "  #\tTEMPLATE\tCOVERS")
+			// ROLE alongside the template, because the arc is the decision most
+			// worth reading here and it used to be invisible: an enforced shape
+			// that leaves no trace on the page cannot be corrected by the person
+			// looking at it.
+			fmt.Fprintln(w, "  #\tROLE\tTEMPLATE\tCOVERS")
 			for i, seg := range spec.Segments {
-				fmt.Fprintf(w, "  %d\t%s\t%s\n", i+1, seg.Template, truncate(seg.Prompt, 50))
+				fmt.Fprintf(w, "  %d\t%s\t%s\t%s\n", i+1, seg.Role, seg.Template, truncate(seg.Prompt, 46))
 				// The material on its own line under the segment it belongs to.
 				//
 				// This command stops before planning so the cast can be read and
@@ -465,7 +469,7 @@ func newReelCastCmd() *cobra.Command {
 				// will state as true. A wrong figure spotted here costs one edit;
 				// the same figure spotted in the rendered video costs the render.
 				if m := strings.TrimSpace(seg.Material); m != "" {
-					fmt.Fprintf(w, "  \t\t%s\n", truncate(m, 50))
+					fmt.Fprintf(w, "  \t\t\t%s\n", truncate(m, 46))
 				}
 			}
 			if err := w.Flush(); err != nil {

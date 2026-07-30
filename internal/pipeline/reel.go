@@ -111,6 +111,19 @@ type ReelSegment struct {
 	// planned through the template's own prompt, so a segment is exactly as
 	// good as the equivalent snippet would have been.
 	Prompt string `yaml:"prompt"`
+	// Role is this segment's job in the arc: hook, develop or payoff.
+	//
+	// Persisted because an enforced shape that leaves no trace cannot be checked
+	// or corrected. The arc is validated at cast time and then, without this, was
+	// gone — I could not tell from the finished reel.yaml whether the opener the
+	// caster called a hook actually put anything at stake, and neither could
+	// anybody else. A rule whose result is invisible is a rule nobody can audit.
+	//
+	// Not read by the planner. Said plainly because the last field added here that
+	// nothing consumed sat populated and orphaned until somebody asked what was
+	// left: this one is for the caster's arithmetic, the cast table, and the person
+	// deciding whether the shape is right.
+	Role string `yaml:"role,omitempty"`
 	// Material is the concrete facts this template will be filled with — the
 	// ceiling and its candidates, the line items that add up, the belief and the
 	// truth. The caster names it to prove the template can be filled at all
