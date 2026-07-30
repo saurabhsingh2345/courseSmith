@@ -290,6 +290,27 @@ func beatBounds(targetWords, ceiling int) (minBeats, maxBeats, suggest, wordsPer
 	suggest = min(suggest, ceiling)
 	minBeats = min(max(suggest-1, floorSnippetBeats), ceiling)
 	maxBeats = min(max(suggest+2, minBeats), ceiling)
+	// A list-shaped template must be able to reach the ceiling it declared.
+	//
+	// suggest+2 is the right width for a clip made of *moments* — it keeps a
+	// 45-second piece from becoming eight captions. It silently overrode the
+	// ceiling for the templates whose beat count is a property of their content,
+	// which is the one case MaxBeats exists to express. Measured: constellation
+	// defaults to 55s, so suggest+2 allowed 6 beats while its shape — centre,
+	// spokes, whole — needs 7 for five spokes; rundown allowed 6 while five cards
+	// plus an opener and a summary needs 7. Every run of those templates therefore
+	// failed its own validator, burned three correction rounds, salvaged the
+	// closest draft, and shipped it. "1 of the 5 cards are never covered" was the
+	// arithmetic saying so.
+	//
+	// So the ceiling is reachable when the budget can fund it at a substantial
+	// beat — half the ideal, not the bare ten-word minimum, because funding eight
+	// beats at ten words each is how a clip becomes the slideshow the width was
+	// protecting against. max() rather than assignment: this only ever widens the
+	// range, so no runtime that worked before gets a narrower one.
+	if fundable := targetWords / leanWordsPerBeat; fundable > maxBeats {
+		maxBeats = min(fundable, ceiling)
+	}
 	// And when even the ceiling cannot fund the budget, advise the most a beat
 	// may actually carry rather than the arithmetic answer. The clip will run
 	// short of its target; being told to write something that is rejected on
@@ -318,6 +339,11 @@ const (
 	// idealWordsPerBeat is how much narration one visual comfortably holds —
 	// the divisor that turns a word budget into a beat count.
 	idealWordsPerBeat = 40
+	// leanWordsPerBeat is the least a beat can carry and still be a thought
+	// rather than a label. It is what decides how far a list-shaped template may
+	// stretch toward its declared ceiling: dividing the budget by the ten-word
+	// hard minimum would licence eight beats of ten words, which is a slideshow.
+	leanWordsPerBeat = idealWordsPerBeat / 2
 )
 
 // Per-beat narration bounds. Under ten words a beat is a caption, not a
@@ -375,6 +401,11 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	}
 	target := spec.ResolvedTargetSec()
 	wantWords, minWords, maxWords := wordBudget(target, pace)
+	// Hoisted above the render because the appended arithmetic below quotes these
+	// bounds, and they must be the same ones the validator scores against — two
+	// calls to beatBounds either side of the prompt is how the number the model is
+	// told and the number it is judged by drift apart.
+	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords, templateBeatCeiling(spec.Template))
 	data := sharedPromptData(spec, cfg)
 	if tpl.PromptData != nil {
 		for k, v := range tpl.PromptData(spec, cfg) {
@@ -385,6 +416,26 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	if err != nil {
 		return nil, err
 	}
+	// The budget arithmetic, spelled out. Appended centrally for the same reason
+	// the critique below is: it is shared guidance, not a property of any one
+	// template's look, and twenty-seven copies means the twenty-eighth is wrong.
+	//
+	// Every prompt already quotes a per-beat word count. What none of them could
+	// say is what happens when the model takes the latitude in the beat range:
+	// told "3-7 beats, about 36 words each", it writes seven beats of nine words
+	// and fails the ten-word floor on all of them. Both numbers were followed —
+	// the count from one rule and the length from nowhere — and the arithmetic
+	// connecting them was never stated. Observed on every list-shaped template:
+	// constellation and rundown failed this and nothing else after the beat
+	// ceiling was fixed.
+	user += fmt.Sprintf(
+		"\n\nARITHMETIC, before you answer. Your narration must total %d-%d words across %d-%d beats. Those two numbers are linked: at %d beats each is about %d words, at %d beats each is about %d words. Work out which you are writing and size the beats to match.\n"+
+			"No beat may be under %d words — under ten it is a label rather than a thought, and it is rejected. If you cannot write a beat up to %d words, you have one beat too many: merge it into its neighbour rather than padding it.",
+		minWords, maxWords, minBeats, maxBeats,
+		minBeats, wantWords/max(minBeats, 1), maxBeats, wantWords/max(maxBeats, 1),
+		minWordsPerBeat, minWordsPerBeat,
+	)
+
 	// A review critique is appended to the rendered user message rather than
 	// rendered into the prompt file. Blunt, and chosen deliberately: the
 	// alternative is the same block copied into twenty-seven templates, where the
@@ -401,7 +452,7 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	// A plan has more independent numeric rules than anything else the pipeline
 	// asks for — beat count, per-beat words, total words, and whatever the
 	// template adds on top. One correction round is not enough to land them all.
-	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords, templateBeatCeiling(spec.Template))
+	// The bounds themselves are computed above, before the prompt quotes them.
 	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.5, 6144, snippetPlanRepairRounds, &plan, func() error {
 		plan.Template = spec.Template // so Validate dispatches to this template
 		// The budget the prompt quoted, so the shared validators score the plan
