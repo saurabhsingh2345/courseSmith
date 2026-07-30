@@ -12,6 +12,7 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/enfec/coursesmith/internal/pipeline"
+	"github.com/enfec/coursesmith/internal/project"
 )
 
 // newSnippetCmd is the short-form product surface: one prompt plus one visual
@@ -178,7 +179,9 @@ func newSnippetRunCmd() *cobra.Command {
 			return env.RunSnippet(ctx, course, lesson, pipeline.RunOptions{Stage: stage, Force: force})
 		},
 	}
-	cmd.Flags().StringVar(&stage, "stage", "", "run only this stage (plan, verify, audio, align, captions, chapters, scenegraph, render)")
+	// See the note on the same flag in reel.go: generated, because the spelled-out
+	// list went stale as soon as a stage was added.
+	cmd.Flags().StringVar(&stage, "stage", "", "run only this stage ("+strings.Join(project.SnippetStageOrder, ", ")+")")
 	cmd.Flags().BoolVar(&force, "force", false, "re-run stages even if their inputs are unchanged")
 	cmd.Flags().IntVar(&concurrency, "concurrency", 0, "parallel browser tabs for the Remotion render (0 = auto)")
 	return cmd

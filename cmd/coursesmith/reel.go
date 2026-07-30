@@ -36,6 +36,7 @@ import (
 
 	"github.com/enfec/coursesmith/internal/config"
 	"github.com/enfec/coursesmith/internal/pipeline"
+	"github.com/enfec/coursesmith/internal/project"
 )
 
 func newReelCmd() *cobra.Command {
@@ -197,7 +198,10 @@ func newReelRunCmd() *cobra.Command {
 			return env.RunReel(ctx, course, lesson, pipeline.RunOptions{Stage: stage, Force: force})
 		},
 	}
-	cmd.Flags().StringVar(&stage, "stage", "", "run only this stage (plan, verify, audio, align, captions, chapters, scenegraph, render)")
+	// Generated from the real stage list rather than spelled out. The hand-written
+	// version was already stale the moment `substance` was inserted ahead of
+	// `plan`, and a help string that omits a stage is a stage nobody runs directly.
+	cmd.Flags().StringVar(&stage, "stage", "", "run only this stage ("+strings.Join(project.SnippetStageOrder, ", ")+")")
 	cmd.Flags().BoolVar(&force, "force", false, "re-run stages even if their inputs are unchanged")
 	cmd.Flags().IntVar(&concurrency, "concurrency", 0, "parallel browser tabs for the Remotion render (0 = auto)")
 	return cmd
