@@ -462,6 +462,8 @@ export interface components {
             segments: {
                 template: string;
                 prompt: string;
+                /** @description The concrete facts this template will be filled with. POST it back with the proposal — a segment created without it is planned from the one-line prompt alone, and its writer invents the specifics. */
+                material?: string;
                 target_sec?: number;
             }[];
         };
@@ -469,6 +471,8 @@ export interface components {
             id: string;
             template: string;
             prompt: string;
+            /** @description The concrete facts this segment is planned from. The field most worth correcting by hand: a wrong figure here becomes a wrong figure in the finished video. */
+            material?: string;
             target_sec?: number;
             skip?: boolean;
             template_title: string;

@@ -23,7 +23,21 @@ const (
 	// vision-capable model with strong spatial perception; a weak judge
 	// hallucinates overlaps on clean, layout-engine-produced diagrams.
 	TaskVision TaskType = "vision"
+	// TaskSearch establishes facts from real sources, for the substance stage.
+	// It needs a search-capable model, which is a much shorter list than the
+	// others and does not overlap with them — so unlike vision, there is no
+	// sensible fallback: a non-search model answers from memory and returns no
+	// citations, and the provider refuses that rather than passing it off as
+	// grounded.
+	TaskSearch TaskType = "search"
 )
+
+// SearchDisabled is the value that turns grounding off.
+//
+// A sentinel rather than the empty string because config layers merge
+// non-empty-wins: once Defaults sets a search model, "" can never override it
+// back, so there would be no way to switch grounding off in a course manifest.
+const SearchDisabled = "off"
 
 // DefaultStateDir is where the router keeps its cache and rate-limit state,
 // relative to the project root.
@@ -52,9 +66,23 @@ func ModelFor(p config.Pipeline, task TaskType) (string, error) {
 			return "", fmt.Errorf("pipeline.llm_vision (and fallback llm_review) is not configured")
 		}
 		return p.LLMReview, nil
+	case TaskSearch:
+		if p.LLMSearch == "" || p.LLMSearch == SearchDisabled {
+			return "", fmt.Errorf("pipeline.llm_search is %s — grounding is disabled", SearchDisabled)
+		}
+		return p.LLMSearch, nil
 	default:
 		return "", fmt.Errorf("unknown LLM task type %q", task)
 	}
+}
+
+// SearchEnabled reports whether grounding is configured and switched on.
+//
+// Checked by callers before routing rather than inferred from ModelFor's error,
+// because "grounding is off" is an ordinary configuration a stage should handle
+// by working from the brief alone, not an error it should report.
+func SearchEnabled(p config.Pipeline) bool {
+	return p.LLMSearch != "" && p.LLMSearch != SearchDisabled
 }
 
 // ParseModelRef splits "groq/llama-3.3-70b-versatile" into provider and

@@ -453,6 +453,16 @@ func newReelCastCmd() *cobra.Command {
 			fmt.Fprintln(w, "  #\tTEMPLATE\tCOVERS")
 			for i, seg := range spec.Segments {
 				fmt.Fprintf(w, "  %d\t%s\t%s\n", i+1, seg.Template, truncate(seg.Prompt, 50))
+				// The material on its own line under the segment it belongs to.
+				//
+				// This command stops before planning so the cast can be read and
+				// corrected, and the material is the part actually worth reading:
+				// the template names the look, but these are the facts the piece
+				// will state as true. A wrong figure spotted here costs one edit;
+				// the same figure spotted in the rendered video costs the render.
+				if m := strings.TrimSpace(seg.Material); m != "" {
+					fmt.Fprintf(w, "  \t\t%s\n", truncate(m, 50))
+				}
 			}
 			if err := w.Flush(); err != nil {
 				return err

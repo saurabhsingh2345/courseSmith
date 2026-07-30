@@ -40,6 +40,18 @@ func init() {
 		Normalize:   normalizeCastPlan,
 		Validate:    validateCastPlan,
 		Scenes:      castScenes,
+		// Shelved 2026-07-30, for the reason set out at length on `story`.
+		//
+		// It lands harder here, because where `story` merely contains a
+		// character this template *is* one: the file header argues that a shrug
+		// and a raised finger carry a register no diagram can, and that is
+		// right. But the drawn vocabulary that survived castPoseVocab is five
+		// poses, two of which are the same arms-down stance read differently,
+		// and the register the argument depends on is exactly what got cut.
+		//
+		// So the promise and the parts are a whole rig apart, and the honest
+		// state is off the shelf until the parts catch up.
+		Shelved: true,
 		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
 			return map[string]any{
 				"Poses":       strings.Join(CastPoseNames(), ", "),

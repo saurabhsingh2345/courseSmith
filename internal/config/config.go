@@ -137,7 +137,18 @@ type Pipeline struct {
 	// needs a stronger model than text review — a weak judge reports overlaps
 	// that are not there on clean, layout-engine-produced diagrams. Empty
 	// falls back to LLMReview.
-	LLMVision       string  `yaml:"llm_vision"`
+	LLMVision string `yaml:"llm_vision"`
+	// LLMSearch grounds the substance stage in real sources. It must name a
+	// search-capable OpenAI model — an ordinary one answers from memory and
+	// returns no citations, which the provider treats as an error rather than
+	// letting an ungrounded answer pass for a grounded one.
+	//
+	// Named separately from LLMContent because searching is a different capability
+	// with a different (and much shorter) list of models that offer it, and
+	// because it is the one model reference somebody may want to turn OFF: empty
+	// disables grounding and the substance stage falls back to what the brief
+	// states, rather than failing the run.
+	LLMSearch       string  `yaml:"llm_search"`
 	ReviewThreshold float64 `yaml:"review_threshold"`
 	CaptionsModel   string  `yaml:"captions_model"`
 	// VideoOnly skips the companion-material stages (quiz, quiz-strategy,
@@ -173,9 +184,12 @@ func Defaults() Config {
 			DiagramStyle: "clean, flat, rounded corners, generous whitespace",
 		},
 		Pipeline: Pipeline{
-			LLMContent:      "openai/gpt-4o-mini",
-			LLMReview:       "openai/gpt-4o-mini",
-			LLMVision:       "openai/gpt-4o",
+			LLMContent: "openai/gpt-4o-mini",
+			LLMReview:  "openai/gpt-4o-mini",
+			LLMVision:  "openai/gpt-4o",
+			// gpt-5-search-api rather than the gpt-4o-*-search-preview pair,
+			// which are deprecated.
+			LLMSearch:       "openai/gpt-5-search-api",
 			ReviewThreshold: 8,
 			CaptionsModel:   "whisper-large-v3",
 		},
@@ -269,6 +283,9 @@ func Merge(base, over Config) Config {
 	}
 	if over.Pipeline.LLMVision != "" {
 		out.Pipeline.LLMVision = over.Pipeline.LLMVision
+	}
+	if over.Pipeline.LLMSearch != "" {
+		out.Pipeline.LLMSearch = over.Pipeline.LLMSearch
 	}
 	if over.Pipeline.ReviewThreshold != 0 {
 		out.Pipeline.ReviewThreshold = over.Pipeline.ReviewThreshold

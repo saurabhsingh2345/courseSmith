@@ -111,6 +111,18 @@ type ReelSegment struct {
 	// planned through the template's own prompt, so a segment is exactly as
 	// good as the equivalent snippet would have been.
 	Prompt string `yaml:"prompt"`
+	// Material is the concrete facts this template will be filled with — the
+	// ceiling and its candidates, the line items that add up, the belief and the
+	// truth. The caster names it to prove the template can be filled at all
+	// (CastReel), and it is written down here because the segment's *writer*
+	// needs it more than the validator did.
+	//
+	// Persisted, unlike the rest of the planning context, because it is a
+	// per-segment choice a creator will want to edit — correcting a wrong figure
+	// here is the difference between re-running one segment and re-casting the
+	// reel. Empty is legal: a hand-authored reel need not supply it, and a
+	// segment without it is planned exactly as it was before this field existed.
+	Material string `yaml:"material,omitempty"`
 	// TargetSec is the runtime to aim for (0 = the template's own default).
 	TargetSec int `yaml:"target_sec,omitempty"`
 	// Skip drops the segment from the cut without deleting it from the file.
@@ -143,13 +155,21 @@ func (s ReelSegment) ResolvedTargetSec() int {
 // SnippetSpec projects a segment onto the request shape the template planners
 // already take, so a segment is planned by exactly the same code a snippet is.
 // Nothing in a template knows about reels.
-func (s ReelSegment) SnippetSpec(cfg config.Config) SnippetSpec {
+//
+// brief and priors come from the reel rather than the segment, so they are
+// parameters: a segment cannot know the piece it is part of, and asking the
+// caller to remember to set two fields afterwards is how one of them ends up
+// unset on the path nobody re-read.
+func (s ReelSegment) SnippetSpec(cfg config.Config, brief string, priors []string) SnippetSpec {
 	return SnippetSpec{
 		ID:        s.ID,
 		Prompt:    s.Prompt,
 		Template:  s.Template,
 		TargetSec: s.TargetSec,
 		Config:    cfg,
+		Brief:     brief,
+		Material:  s.Material,
+		Priors:    priors,
 	}
 }
 

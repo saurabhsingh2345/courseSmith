@@ -124,6 +124,11 @@ export type ReelSegmentInfo = components["schemas"]["ReelSegmentInfo"];
 export interface CreateReelSegment {
   template: string;
   prompt: string;
+  /** The concrete facts this template gets filled with. The caster returns it
+   *  with each proposed segment and it must be POSTed back: a segment created
+   *  without it is planned from `prompt` alone, and its writer invents the
+   *  specifics rather than using the ones already chosen. */
+  material?: string;
   target_sec?: number;
 }
 
@@ -144,6 +149,7 @@ export interface CreateReelRequest {
 export interface PatchReelSegmentRequest {
   template?: string;
   prompt?: string;
+  material?: string;
   target_sec?: number;
   skip?: boolean;
 }

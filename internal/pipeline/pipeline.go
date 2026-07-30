@@ -85,6 +85,10 @@ const artifactAbsent = "absent"
 
 // stageUpstream lists generated artifacts each stage consumes.
 var stageUpstream = map[string][]string{
+	// Plan consumes the fact sheet, so re-establishing the facts re-plans — and
+	// through plan, re-renders. That chain is the point: correcting a figure in
+	// substance.json must reach the screen, not just the file.
+	project.StagePlan:   {SubstanceFileName},
 	project.StageVerify: {ScriptFileName},
 	// Trace re-runs when verified code changes; it reads blocks from lesson.md
 	// (always a hashed input) but depends on verification to run after verify.
@@ -124,6 +128,10 @@ var stageLessonFiles = map[string][]string{
 	// A snippet's whole input is its request file; editing the prompt or
 	// swapping the template re-plans (and so re-renders) the clip.
 	project.StagePlan:       {SnippetFileName, ReelFileName},
+	// The same input as plan: substance is established from the request, so
+	// editing the prompt or the brief re-establishes the facts — and therefore
+	// re-plans, since plan consumes substance.json.
+	project.StageSubstance:  {SnippetFileName, ReelFileName},
 	project.StageScenegraph: {VideoPlanFileName},
 	project.StageRender:     {RecordingFileName},
 	project.StageHugo:       {QuizOverridesFileName},
@@ -133,7 +141,8 @@ var stageLessonFiles = map[string][]string{
 // template invalidates the stages that use it. Stages that gate their
 // output through the critic also depend on the review rubric.
 var stageTemplates = map[string][]string{
-	project.StageScript: {scriptTemplateName},
+	project.StageSubstance: {substanceTemplateName, substanceSearchTemplateName},
+	project.StageScript:    {scriptTemplateName},
 	// Review runs three passes (claims+accuracy, pedagogy, tone) and
 	// re-invokes the script generator on regeneration.
 	project.StageReview: {
@@ -155,6 +164,7 @@ type stageFunc func(ctx context.Context, e *Env, course *project.Course, l *proj
 // stageFuncs maps implemented stages to their implementations. Stages absent
 // from this map (still being built out in Phase 2) are reported as skipped.
 var stageFuncs = map[string]stageFunc{
+	project.StageSubstance:    runSubstanceStage,
 	project.StagePlan:         runPlanStage,
 	project.StageScript:       runScriptStage,
 	project.StageVerify:       runVerifyStage,

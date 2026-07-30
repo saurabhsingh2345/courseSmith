@@ -41,10 +41,26 @@ func runReelPlan(ctx context.Context, e *Env, _ *project.Course, l *project.Less
 		return fmt.Errorf("planning a reel needs an LLM — set GROQ_API_KEY (or an OpenAI-compatible provider) and retry")
 	}
 
+	sub, err := LoadSubstance(l)
+	if err != nil {
+		return err
+	}
+
 	active := spec.Active()
 	fmt.Fprintf(e.out(), "  → plan      %d segments (%s)...\n", len(active), cfg.Pipeline.LLMContent)
 
 	plan := &ReelPlan{Title: spec.Title}
+	// What each planned segment ended up covering, in order. Handed to the next
+	// segment so it advances the piece instead of restarting it: planned in
+	// isolation, two `myth` segments six apart both argued that you need not know
+	// everything before you start, and a `constellation` spent six beats
+	// rephrasing its own first sentence.
+	//
+	// Built from the plan rather than from reel.yaml's prompts on purpose — the
+	// prompt is what the segment was *asked* to cover, and after enrichment and a
+	// possible recast, what it actually covered can be quite different. The next
+	// segment needs the truth, not the instruction.
+	var priors []string
 	for i, seg := range active {
 		tpl, ok := SnippetTemplates[seg.Template]
 		if !ok {
@@ -56,7 +72,8 @@ func runReelPlan(ctx context.Context, e *Env, _ *project.Course, l *project.Less
 		if planner == nil {
 			planner = planSnippetDefault
 		}
-		segSpec := seg.SnippetSpec(cfg)
+		segSpec := seg.SnippetSpec(cfg, spec.Brief, priors)
+		segSpec.Substance = sub
 		segSpec.Prompt = EnrichSnippetPrompt(ctx, e, segSpec, cfg)
 		segPlan, err := planner(ctx, e, segSpec, cfg)
 		if err != nil {
@@ -97,6 +114,7 @@ func runReelPlan(ctx context.Context, e *Env, _ *project.Course, l *project.Less
 			Template: seg.Template,
 			Plan:     segPlan,
 		})
+		priors = append(priors, segmentPrior(seg, segPlan))
 	}
 
 	// A reel with no title of its own takes the first segment's, which is
@@ -281,6 +299,46 @@ func uniqueReelID(courseDir string, spec ReelSpec) (string, error) {
 // line under it, and a figure — so it can carry any subject. A fallback that
 // could itself fail would just move the problem.
 const reelFallbackTemplate = "illustration"
+
+// maxPriorHeadings caps how much of a planned segment is described to the
+// segments after it. The later ones carry the most priors and have the least
+// prompt left to spend on them, and what the next writer needs is the ground
+// already covered, not a transcript of how it was covered.
+const maxPriorHeadings = 4
+
+// segmentPrior summarises one planned segment in a line, for the segments that
+// come after it.
+//
+// The headings rather than the narration: a heading is the beat's claim in a
+// handful of words, which is exactly the granularity "do not cover this again"
+// needs. Narration would be a dozen times longer and would tempt the next
+// writer into matching its phrasing.
+func segmentPrior(seg ReelSegment, plan *SnippetPlan) string {
+	title := ""
+	headings := []string{}
+	if plan != nil {
+		title = collapseSpaces(plan.Title)
+		for _, b := range plan.Beats {
+			if h := collapseSpaces(b.Heading); h != "" {
+				headings = append(headings, h)
+			}
+			if len(headings) == maxPriorHeadings {
+				break
+			}
+		}
+	}
+	// Fall back to what the segment was asked to cover. A segment whose plan
+	// came back without a title or any headings is unusual, but a prior that
+	// said only "myth:" would teach the next writer nothing.
+	if title == "" && len(headings) == 0 {
+		return fmt.Sprintf("%s (%s)", truncateForLog(collapseSpaces(seg.Prompt), 90), seg.Template)
+	}
+	line := fmt.Sprintf("%s (%s)", title, seg.Template)
+	if len(headings) > 0 {
+		line += ": " + strings.Join(headings, "; ")
+	}
+	return truncateForLog(line, 180)
+}
 
 // errSummary trims a wrapped planner error down to the part worth reading in a
 // progress log.

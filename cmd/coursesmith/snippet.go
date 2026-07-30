@@ -61,8 +61,12 @@ func newSnippetTemplatesCmd() *cobra.Command {
 					return err
 				}
 			}
+			// Counted off the list actually printed above, not off the whole
+			// registry — a shelved template is not on offer, and a footer
+			// claiming twenty-nine over a table of twenty-seven is the kind of
+			// small lie that makes somebody go looking for the missing two.
 			fmt.Fprintf(out, "\n%d templates in %d groups. Start one with:\n\n",
-				len(pipeline.SnippetTemplateNames()), len(pipeline.SnippetTemplatesByCategory()))
+				len(pipeline.SnippetTemplateList()), len(pipeline.SnippetTemplatesByCategory()))
 			fmt.Fprintf(out, "  coursesmith snippet new --template <name> \"what it should teach\"\n\n")
 			return nil
 		},

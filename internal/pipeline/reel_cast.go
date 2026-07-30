@@ -138,6 +138,11 @@ func CastReel(ctx context.Context, e *Env, brief, title string, want int, cfg co
 		spec.Segments = append(spec.Segments, ReelSegment{
 			Template: p.Template,
 			Prompt:   p.Covers,
+			// The material is why the template was chosen, and it is what the
+			// segment's writer needs to fill it. It used to be validated here
+			// and then dropped, so every writer started from the one-line
+			// `covers` and invented the rest.
+			Material: p.Material,
 		})
 	}
 	spec.EnsureSegmentIDs()

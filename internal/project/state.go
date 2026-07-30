@@ -21,7 +21,11 @@ const StateFileName = "state.json"
 // Stage names, in pipeline order. The pipeline package executes these;
 // the status command reports on them.
 const (
-	StagePlan         = "plan" // snippet-only: prompt + template → snippet-plan.json
+	// StageSubstance establishes the facts, with provenance, before any template
+	// is chosen. Snippet/reel-only: the lesson path gets its facts from the
+	// lesson.md somebody wrote.
+	StageSubstance    = "substance" // brief → substance.json (facts + sources)
+	StagePlan         = "plan"      // snippet-only: prompt + template → snippet-plan.json
 	StageScript       = "script"
 	StageVerify       = "verify"        // execute code blocks, capture real output
 	StageTrace        = "trace"         // step-by-step execution trace (code-viz)
@@ -83,8 +87,11 @@ var VideoStageOrder = func() []string {
 // everything after it is the ordinary video path, reused unchanged. Verify
 // still runs, so a snippet that shows code shows output the interpreter
 // actually produced.
+// Substance runs FIRST, ahead of plan, and that order is the point: the facts
+// have to exist before anything chooses a template, or the template's schema
+// decides what gets said and the writer invents whatever it demands.
 var SnippetStageOrder = []string{
-	StagePlan, StageVerify, StageAudio, StageAlign, StageCaptions,
+	StageSubstance, StagePlan, StageVerify, StageAudio, StageAlign, StageCaptions,
 	StageChapters, StageScenegraph, StageRender,
 }
 

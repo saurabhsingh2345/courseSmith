@@ -43,6 +43,21 @@ type SnippetTemplate struct {
 	// Example is a prompt that shows this template at its best; the studio
 	// offers it as a starting point.
 	Example string
+	// Shelved keeps this template out of everything that *offers* a choice —
+	// the studio gallery, `snippet --list`, and the caster's catalog — while
+	// leaving it fully usable when named explicitly in a snippet.yaml or a
+	// reel.yaml.
+	//
+	// The distinction matters because the two failure modes are not symmetric.
+	// Deleting a template breaks every piece already on disk that names it;
+	// leaving a template that does not meet the bar in the gallery means it
+	// keeps being picked, and a caster handed a catalog will use everything in
+	// it. Shelving is the only state that stops new pieces choosing a look
+	// without invalidating the old ones.
+	//
+	// A shelved template is a judgement about the *output*, so the reason
+	// belongs on the field at the registration site, not here.
+	Shelved bool
 	// PromptFile is the prompt template rendered to plan a clip.
 	PromptFile string
 	// NeedsCode makes the verify stage part of this template's pipeline, so
@@ -110,7 +125,14 @@ func registerSnippetTemplate(t *SnippetTemplate) {
 	SnippetTemplates[t.Name] = t
 }
 
-// SnippetTemplateNames returns the catalog's names, sorted.
+// SnippetTemplateNames returns every registered name, sorted — shelved
+// templates included.
+//
+// This is the *enumeration*, not the offer. It backs the "templates: ..." hint
+// on a validation error, where naming a shelved template is correct because
+// naming one explicitly still works, and promptDataFallbacks, which needs every
+// template's vocabularies whether or not the gallery shows it. Use
+// SnippetTemplateList for anything a creator or a model chooses from.
 func SnippetTemplateNames() []string {
 	out := make([]string, 0, len(SnippetTemplates))
 	for name := range SnippetTemplates {
@@ -120,12 +142,18 @@ func SnippetTemplateNames() []string {
 	return out
 }
 
-// SnippetTemplateList returns the catalog sorted by name, for the studio
-// gallery and `coursesmith snippet --list`.
+// SnippetTemplateList returns the templates on offer, sorted by name, for the
+// studio gallery, `coursesmith snippet --list` and the caster's catalog.
+//
+// Shelved templates are filtered here rather than at each of the three call
+// sites, so shelving one cannot land in two of them and be missed in the third
+// — which is the whole failure this single choke point exists to prevent.
 func SnippetTemplateList() []*SnippetTemplate {
 	out := make([]*SnippetTemplate, 0, len(SnippetTemplates))
 	for _, name := range SnippetTemplateNames() {
-		out = append(out, SnippetTemplates[name])
+		if t := SnippetTemplates[name]; !t.Shelved {
+			out = append(out, t)
+		}
 	}
 	return out
 }
@@ -200,6 +228,24 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 		"MinHeadlineWords": minHeadlineWords,
 		"MaxHeadlineWords": maxHeadlineWords,
 		"MaxCaptionWords":  maxCaptionWords,
+		// A reel segment's planning context, empty for a standalone snippet.
+		//
+		// The facts reach a template's writer through Prompt, which enrichment
+		// has already rewritten to carry them (snippet_enrich.go) — that is the
+		// path that works without editing twenty-seven prompt files. These keys
+		// are here so a template prompt that wants the piece's brief, or the
+		// ground already covered, can say {{.Brief}} or {{.Priors}} and get it
+		// rather than getting an empty string from the healing path.
+		"Brief":    spec.Brief,
+		"Material": spec.Material,
+		"Priors":   spec.Priors,
+		// The established facts and the known gaps. Shared rather than owned by
+		// the enrich prompt alone, for the reason the headline bounds above are:
+		// more than one prompt wants them, and a key that only one supplier
+		// defines renders empty through the healing path in every other — which
+		// looks like a drift warning rather than the missing data it is.
+		"Facts": substanceLines(spec.Substance),
+		"Gaps":  substanceGaps(spec.Substance),
 	}
 }
 

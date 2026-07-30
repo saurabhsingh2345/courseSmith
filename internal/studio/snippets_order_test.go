@@ -22,8 +22,16 @@ func TestSnippetTemplatesArriveInCategoryOrder(t *testing.T) {
 	if err := json.NewDecoder(rec.Body).Decode(&got); err != nil {
 		t.Fatalf("decode: %v", err)
 	}
-	if len(got) != len(pipeline.SnippetTemplateNames()) {
-		t.Fatalf("got %d templates, want the whole catalog (%d)", len(got), len(pipeline.SnippetTemplateNames()))
+	// SnippetTemplateList, not SnippetTemplateNames: the gallery offers a
+	// choice, so it serves the templates on offer. Shelved ones stay registered
+	// and stay renderable, and must not appear here.
+	if len(got) != len(pipeline.SnippetTemplateList()) {
+		t.Fatalf("got %d templates, want every template on offer (%d)", len(got), len(pipeline.SnippetTemplateList()))
+	}
+	for _, tpl := range got {
+		if pipeline.SnippetTemplates[tpl.Name].Shelved {
+			t.Errorf("shelved template %q is being offered in the gallery", tpl.Name)
+		}
 	}
 
 	// The categories, in the order they first appear in the payload.

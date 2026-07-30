@@ -161,6 +161,18 @@ function SegmentRow({
           value={segment.prompt}
           onChange={(e) => onChange({ ...segment, prompt: e.target.value })}
         />
+        {/* The material is shown because it is the field that decides whether
+            this segment is true. The writer plans from it, so a figure that is
+            wrong here is wrong in the finished video — and left invisible, a
+            fact nobody can check is a fact nobody will. Smaller and quieter
+            than the prompt: read it, correct it, do not have to write it. */}
+        <textarea
+          className="min-h-[38px] w-full resize-y rounded-md border border-ink-800/60 bg-ink-950 p-2 font-mono text-[11.5px] leading-snug text-ink-300 placeholder:text-ink-600 focus:border-brand focus:outline-none"
+          placeholder="Facts this part is built from — figures, names, thresholds"
+          value={segment.material ?? ""}
+          onChange={(e) => onChange({ ...segment, material: e.target.value })}
+          aria-label={`Material for segment ${index + 1}`}
+        />
       </div>
       {/* Order is the argument, so reordering is a first-class control rather
           than something you do by deleting and re-adding. */}

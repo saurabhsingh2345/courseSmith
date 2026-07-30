@@ -88,6 +88,43 @@ type SnippetSpec struct {
 	TargetSec int `yaml:"target_sec,omitempty"`
 	// CodeLanguage is the language for code-bearing templates ("" = python).
 	CodeLanguage string `yaml:"code_language,omitempty"`
+
+	// Brief, Material and Priors are the context a *reel segment* is planned
+	// inside. All three are empty for a standalone snippet, where Prompt is the
+	// whole input and there is nothing else to know.
+	//
+	// None is serialised. They are derived from reel.yaml on every run rather
+	// than copied into a snippet.yaml that would then disagree with the reel it
+	// came from — and a reel segment has no snippet.yaml anyway.
+	//
+	// Why they exist at all: a segment used to be planned from Prompt alone,
+	// which for a cast segment is the caster's one-line `covers`. Ten words, no
+	// brief, no facts, no idea what the segment before it said. The writer's only
+	// way to fill a template from that is to invent, and it did — a `showcase`
+	// for a product that does not exist, two `myth` segments arguing the same
+	// point. The material was never missing; it was collected by the caster and
+	// dropped one struct short of the writer.
+
+	// Brief is the whole piece's brief, in the creator's words.
+	Brief string `yaml:"-"`
+	// Material is the concrete facts the caster named for THIS segment when it
+	// chose this template — the ceiling and its candidates, the line items, the
+	// belief and what is true instead.
+	Material string `yaml:"-"`
+	// Priors is one line per segment already planned, in order: what it covered.
+	// The writer is told to advance past them rather than restate them.
+	Priors []string `yaml:"-"`
+
+	// Substance is the piece's fact sheet, from the substance stage. Nil when
+	// that stage has not run (an older snippet resumed mid-pipeline), and the
+	// planner then behaves exactly as it did before it existed.
+	//
+	// Piece-level rather than per-segment: one sheet covers the whole reel, and
+	// each segment selects the facts that belong to its part. Deliberately not a
+	// per-segment slice — deciding which facts belong to which segment is the
+	// writer's job and it needs to see the ones it is NOT using, or it cannot
+	// tell a fact that belongs elsewhere from a fact that does not exist.
+	Substance *Substance `yaml:"-"`
 	// Config overrides the course defaults for this snippet alone (voice,
 	// palette, captions…), merged in the ordinary layered way.
 	Config config.Config `yaml:",inline"`
@@ -998,12 +1035,18 @@ func runPlanStage(ctx context.Context, e *Env, course *project.Course, l *projec
 	fmt.Fprintf(e.out(), "  → plan      %s template, ~%ds target (%s)...\n",
 		tpl.Name, spec.ResolvedTargetSec(), cfg.Pipeline.LLMContent)
 
+	sub, err := LoadSubstance(l)
+	if err != nil {
+		return err
+	}
+
 	// Enrich first. The planner is good at turning a rich brief into a clip and
 	// bad at inventing the facts a thin one leaves out — and when it fails at
 	// the second job it does not fail gently, it returns something that does
 	// not decode and burns the correction rounds saying so.
 	enriched := *spec
-	if p := EnrichSnippetPrompt(ctx, e, *spec, cfg); p != spec.Prompt {
+	enriched.Substance = sub
+	if p := EnrichSnippetPrompt(ctx, e, enriched, cfg); p != spec.Prompt {
 		enriched.Prompt = p
 		fmt.Fprintf(e.out(), "    brief     %s\n", truncateForLog(p, 68))
 	}
