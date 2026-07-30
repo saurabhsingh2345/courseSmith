@@ -246,6 +246,10 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 		// looks like a drift warning rather than the missing data it is.
 		"Facts": substanceLines(spec.Substance),
 		"Gaps":  substanceGaps(spec.Substance),
+		// Shared as well as owned by `myth`, so any template that wants to open on
+		// a belief the viewer recognises can — and so a prompt referencing it does
+		// not fall through the healing path and render empty with a drift warning.
+		"Misconceptions": substanceMisconceptions(spec.Substance),
 	}
 }
 

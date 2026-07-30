@@ -268,6 +268,19 @@ func substanceGaps(s *Substance) []string {
 	return s.Gaps
 }
 
+// substanceMisconceptions returns the beliefs the audience actually holds.
+//
+// Kept apart from the facts, and read by the `myth` template in particular,
+// because a misconception is a fact about the AUDIENCE rather than about the
+// subject. A myth clip drawing its claim from the general fact pool corrects a
+// statement nobody made; drawing it from here corrects a thought somebody had.
+func substanceMisconceptions(s *Substance) []string {
+	if s == nil {
+		return nil
+	}
+	return s.Misconceptions
+}
+
 // runSubstanceStage establishes the facts for a snippet or a reel.
 func runSubstanceStage(ctx context.Context, e *Env, _ *project.Course, l *project.Lesson, cfg config.Config) error {
 	brief, err := substanceBrief(l)
