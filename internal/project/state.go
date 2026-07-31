@@ -26,6 +26,12 @@ const (
 	// lesson.md somebody wrote.
 	StageSubstance    = "substance" // brief → substance.json (facts + sources)
 	StagePlan         = "plan"      // snippet-only: prompt + template → snippet-plan.json
+	// StageCapture records real tools — a CLI session, frames of somebody
+	// else's web product, an operator in a native app. It runs BEFORE the
+	// script, and that is the whole reason it is a separate stage from demos:
+	// narration written before anything was recorded cannot say what the
+	// recording showed. See docs/no-code-track.md.
+	StageCapture      = "capture"
 	StageScript       = "script"
 	StageVerify       = "verify"        // execute code blocks, capture real output
 	StageTrace        = "trace"         // step-by-step execution trace (code-viz)
@@ -48,7 +54,7 @@ const (
 
 // StageOrder lists all pipeline stages in execution order.
 var StageOrder = []string{
-	StageScript, StageVerify, StageTrace, StageReview, StageStoryboard,
+	StageCapture, StageScript, StageVerify, StageTrace, StageReview, StageStoryboard,
 	StageVisuals, StageQuiz,
 	StageQuizStrategy, StageMistakes, StageExercises,
 	StageDemos, StageAudio, StageAlign, StageCaptions, StageChapters,

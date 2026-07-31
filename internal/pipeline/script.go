@@ -130,6 +130,10 @@ type scriptPromptData struct {
 	Critique string
 	// Notes are unresolved human reviewer notes from review-notes.yaml.
 	Notes string
+	// Captures describe what this lesson's real recordings actually caught.
+	// Empty before anything has been recorded, which is the ordinary state of
+	// a first run and the reason the prompt treats them as optional.
+	Captures []string
 }
 
 // generateScript asks the content model for a narration script; the review
@@ -149,6 +153,7 @@ func generateScript(ctx context.Context, e *Env, l *project.Lesson, cfg config.C
 		Diagrams: l.FrontMatter.Diagrams,
 		Outline:  l.Body,
 		Critique: critique,
+		Captures: CaptureBriefing(l),
 		Notes:    notes.UnresolvedText(l.ID),
 	}
 	system, user, err := e.renderPrompt(scriptTemplateName, data)

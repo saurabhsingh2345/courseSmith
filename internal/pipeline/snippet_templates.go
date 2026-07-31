@@ -95,6 +95,17 @@ type SnippetTemplate struct {
 	// the field it belongs in, or dropped, before the plan is validated.
 	Owns     beatFields
 	OwnsPlan planFields
+	// NoSalvage refuses the near-miss path when the correction rounds run out.
+	//
+	// Most templates ship their closest draft rather than nothing, because a
+	// slightly loose clip still renders and still teaches. A template whose
+	// rules are about truth rather than shape cannot take that trade: its
+	// closest draft is a clip that says something the evidence does not support.
+	NoSalvage bool
+	// PreValidate copies what the caller resolved onto the plan, before it is
+	// judged. A validator can only check against what is on the plan when
+	// Validate runs, and Validate runs inside the correction loop.
+	PreValidate func(spec SnippetSpec, p *SnippetPlan)
 	// Normalize repairs this template's own mechanical mistakes — a label a
 	// word too long, a vocabulary term the model invented, a link pointing at
 	// nothing — before Validate sees the plan. See snippet_normalize.go for
@@ -519,6 +530,17 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 		// Repair what is mechanically repairable before judging the reply, so
 		// the correction rounds are spent on what only the model can fix.
 		normalizeSnippetPlan(&plan)
+		// Facts the caller resolved, injected before the plan is judged.
+		//
+		// Validation happens inside this loop, so anything a validator checks
+		// against must be on the plan *here* — setting it after the planner
+		// returns is setting it after every judgement has already been made.
+		// That is not hypothetical: the footage template's whole rule is
+		// "a beat may only name a moment the recording has", and with the marks
+		// attached afterwards the check silently passed on an empty set.
+		if tpl.PreValidate != nil {
+			tpl.PreValidate(spec, &plan)
+		}
 		snapshot := plan
 		closest = &snapshot
 		if err := plan.Validate(); err != nil {
@@ -551,6 +573,16 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 		return nil
 	})
 	if err != nil {
+		// Salvage is the right trade for a template whose rules are about
+		// shape: a clip that is a little loose still renders and still teaches.
+		// It is the wrong trade for one whose rules are about *truth*. The
+		// closest draft of a footage piece is a clip whose narration does not
+		// match the recording — shipping it, with a warning, is precisely the
+		// failure this surface exists to refuse, and a warning on stdout is not
+		// a defence against a video that says the wrong tool did the work.
+		if tpl.NoSalvage {
+			return nil, fmt.Errorf("planning %s: %w\nThis template does not ship a near miss: its rules are about whether the clip tells the truth, not about how it is shaped", spec.Template, err)
+		}
 		if salvaged := salvageSnippetPlan(ctx, e, spec, cfg, closest); salvaged != nil {
 			fmt.Fprintf(e.out(), "    ! the plan never satisfied every rule (%v)\n", err)
 			fmt.Fprintf(e.out(), "      shipping the closest one — it renders, so the clip is real; expect it to be looser than asked\n")
@@ -768,6 +800,7 @@ func checkBeatShape(p *SnippetPlan) error {
 // is quadratic and rots as the catalog grows — means a model that puts a
 // whiteboard sketch on a flow diagram gets a loud error instead of silence.
 type beatFields struct {
+	Footage       bool
 	Code          bool
 	Run           bool
 	Sketch        bool

@@ -89,6 +89,14 @@ type SnippetSpec struct {
 	// CodeLanguage is the language for code-bearing templates ("" = python).
 	CodeLanguage string `yaml:"code_language,omitempty"`
 
+	// FootageMarks, FootageTool and FootageMs describe the recording a
+	// `footage` piece narrates. Derived from the capture's sidecar on every
+	// run rather than serialised, for the same reason a reel segment's Brief
+	// is: a copy in the spec would drift from the clip it describes.
+	FootageMarks []string `yaml:"-"`
+	FootageTool  string   `yaml:"-"`
+	FootageMs    int      `yaml:"-"`
+
 	// Brief, Material and Priors are the context a *reel segment* is planned
 	// inside. All three are empty for a standalone snippet, where Prompt is the
 	// whole input and there is nothing else to know.
@@ -280,6 +288,22 @@ type SnippetPlan struct {
 	// because the claim outlives the beat that states it — it stays on screen,
 	// struck through, for the rest of the clip.
 	Myth *MythSpec `json:"myth,omitempty"`
+	// Footage is the recording this piece narrates. See snippet_footage.go.
+	Footage *FootagePlan `json:"footage,omitempty"`
+	// FootageKnownMarks are the moments the recording actually contains, read
+	// from its footage.json and injected before validation. Not written by the
+	// model — it is what the model is checked against.
+	FootageKnownMarks []string `json:"footageKnownMarks,omitempty"`
+	// FootageSrc, FootageMs, FootageTitle, FootageOrigin and FootageIsTerminal
+	// describe the clip for the scene. All resolved from the capture sidecar.
+	FootageSrc        string `json:"footageSrc,omitempty"`
+	FootageMs         int    `json:"footageMs,omitempty"`
+	FootageTitle      string `json:"footageTitle,omitempty"`
+	FootageOrigin     string `json:"footageOrigin,omitempty"`
+	FootageIsTerminal bool   `json:"footageIsTerminal,omitempty"`
+	// FootageToolName is the tool that was really recorded. The narration is
+	// checked against it — see the gate in validateFootagePlan.
+	FootageToolName string `json:"footageToolName,omitempty"`
 	// Rundown is the rundown template's promise and its numbered cards. On the
 	// plan because every card is on screen from the first frame.
 	Rundown *RundownSpec `json:"rundown,omitempty"`
@@ -536,6 +560,8 @@ type SnippetBeat struct {
 	// Myth says whether this beat states the belief, strikes it, backs up the
 	// truth, or says why the belief was tempting.
 	Myth *MythBeat `json:"myth,omitempty"`
+	// Footage anchors this beat to a moment in the recording.
+	Footage *FootageBeat `json:"footage,omitempty"`
 
 	// --- rundown template ---
 	// Rundown says whether this beat makes the promise, covers one card, or
@@ -1072,8 +1098,13 @@ func snippetStubTitle(prompt string) string {
 // snippet-plan.json, and from it the script.json and lesson.md the rest of the
 // pipeline expects.
 func runPlanStage(ctx context.Context, e *Env, course *project.Course, l *project.Lesson, cfg config.Config) error {
-	// A reel plans every segment through its own template's prompt; a snippet
-	// plans one. Everything after this branch is shared.
+	// A no-code piece and a reel are both several segments on one timeline; a
+	// snippet is one. The no-code branch comes first because a piece carries
+	// both files only if somebody hand-made that, and its rule is the stricter
+	// of the two. Everything after this branch is shared.
+	if IsNoCode(l) {
+		return runNoCodePlan(ctx, e, course, l, cfg)
+	}
 	if IsReel(l) {
 		return runReelPlan(ctx, e, course, l, cfg)
 	}

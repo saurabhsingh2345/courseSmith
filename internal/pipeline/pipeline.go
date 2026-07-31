@@ -56,6 +56,17 @@ type Env struct {
 	// TapeRunner records VHS terminal demos; nil makes the demos stage fail
 	// with instructions when a lesson declares [DEMO] markers.
 	TapeRunner TapeRunner
+	// DesktopInput is the operator's console for a desktop capture, which is
+	// the one stage that stops and waits for a person. Nil means no console is
+	// attached, and a desktop capture then fails with instructions rather than
+	// blocking a batch run on a keypress nobody is there to give.
+	DesktopInput io.Reader
+	// ToolTapeRunner resolves the recorder for a [CAPTURE] marker. It is a
+	// function rather than a runner because the choice depends on which tool
+	// the capture names — the binary has to be present and working before
+	// anything is generated. Nil uses resolveToolTapeRunner, which requires
+	// host vhs and refuses the docker sandbox on purpose (see capture.go).
+	ToolTapeRunner func(ctx context.Context, tool captureTool) (TapeRunner, error)
 	// Renderer produces final.mp4 from the scene graph (Remotion); nil
 	// falls back to the legacy ffmpeg assembly with a warning.
 	Renderer VideoRenderer
@@ -99,7 +110,11 @@ var stageUpstream = map[string][]string{
 	project.StageQuizStrategy: {QuizFileName},
 	project.StageMistakes:     {ScriptFileName, VerificationFileName},
 	project.StageExercises:    {ScriptFileName, VerificationFileName},
-	project.StageDemos:        {VerificationFileName},
+	project.StageDemos:        {VerificationFileName, DemosDirName + "/" + CaptureManifestFileName},
+	// The script reads what the captures recorded, so re-shooting one rewrites
+	// the narration around it. No cycle: capture depends on lesson.md and the
+	// take files, never on the script.
+	project.StageScript: {DemosDirName + "/" + CaptureManifestFileName},
 	// tts_fixes.json is written by the align stage's WER gate; its
 	// appearance makes audio stale so the next run re-synthesizes with the
 	// pronunciation fixes applied.
@@ -158,6 +173,7 @@ var stageTemplates = map[string][]string{
 	project.StageMistakes:   {mistakesTemplateName},
 	project.StageExercises:  {exercisesTemplateName},
 	project.StageDemos:      {demoTapeTemplateName},
+	project.StageCapture:    {captureTapeTemplateName},
 	project.StageCaptions:   {captionEmphasisTemplateName},
 	project.StageStoryboard: {storyboardTemplateName},
 }
@@ -180,6 +196,7 @@ var stageFuncs = map[string]stageFunc{
 	project.StageQuizStrategy: runQuizStrategyStage,
 	project.StageMistakes:     runMistakesStage,
 	project.StageExercises:    runExercisesStage,
+	project.StageCapture:      runCaptureStage,
 	project.StageDemos:        runDemosStage,
 	project.StageAudio:        runAudioStage,
 	project.StageAlign:        runAlignStage,

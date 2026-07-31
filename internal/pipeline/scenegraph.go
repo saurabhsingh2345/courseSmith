@@ -23,6 +23,7 @@ const (
 	SceneCode     = "code"
 	SceneDiagram  = "diagram"
 	SceneTerminal = "terminal"
+	SceneFootage  = "footage"
 	ScenePoints   = "points"
 	// SceneWalkthrough is the VS Code walkthrough: a synthesized editor whose
 	// buffer evolves through timed steps (one per outline code block).
@@ -546,10 +547,57 @@ func buildSceneGraph(
 						continue
 					}
 				}
+				// A web capture is stills behind browser chrome rather than a
+				// clip in a terminal window, and its address bar shows the
+				// origin the driver recorded — not a caption. A frame whose
+				// sidecar is missing or empty is skipped rather than drawn as
+				// an empty browser: the narration will be talking over a hole
+				// either way, and an empty chrome asserts something happened.
+				if demo.Kind == CaptureKindWeb {
+					f, ok := loadFootageFor(l, demo.ID)
+					if !ok || (len(f.Frames) == 0 && demo.DurationMs == 0) {
+						continue
+					}
+					p := map[string]any{"origin": f.Origin, "title": f.Origin, "provClipId": demo.ID}
+					if demo.DurationMs > 0 {
+						// A recorded clip. Its marks were measured against our
+						// own clock rather than modelled from a script, so they
+						// are never approximate and pacing can always use them.
+						p["src"] = demo.Path
+						p["durationMs"] = demo.DurationMs
+						p["clipId"] = demo.ID
+					} else {
+						p["frames"] = f.Frames
+					}
+					next = &Scene{Type: SceneFootage, StartMs: at, Props: p}
+					break
+				}
+
+				// The window title is the demo's description for a python
+				// demo, and the tool's own name for a tool capture. The
+				// credibility of a capture comes from looking like the thing
+				// on the viewer's second monitor — a terminal running Claude
+				// Code has "Claude Code" in its title bar, not a sentence
+				// describing what we are about to do with it.
+				title := demo.Description
+				if demo.Kind == CaptureKindTool {
+					if tool, ok := captureTools[demo.Tool]; ok {
+						title = tool.Display
+					}
+				}
+				if demo.Kind == CaptureKindDesktop {
+					if app, ok := captureApps[demo.Tool]; ok {
+						title = app.Display
+					}
+				}
 				next = &Scene{Type: SceneTerminal, StartMs: at, Props: map[string]any{
 					"src":        demo.Path,
-					"title":      demo.Description,
+					"title":      title,
 					"durationMs": demo.DurationMs,
+					"provClipId": demo.ID,
+					// "segments" is added once every scene has an end — see
+					// applyTerminalPacing.
+					"clipId": demo.ID,
 				}}
 			default: // pause cues don't change the visual
 				continue
@@ -613,7 +661,90 @@ func buildSceneGraph(
 	if n := len(graph.Scenes); n > 0 {
 		graph.Scenes[n-1].EndMs = graph.DurationMs
 	}
+	applyTerminalPacing(graph, l)
 	return graph, nil
+}
+
+// applyTerminalPacing decides how each recording is played, once every scene
+// knows how long it is on screen for.
+//
+// It runs here rather than where the scene is built because a slot's length is
+// only known after the following scene's start is — and the whole decision is
+// "does this recording fit in that". The plan is written into the scene graph
+// rather than computed in the renderer so it is auditable with everything else:
+// `lesson-video.json` records what was decided, and a Go test can check the
+// arithmetic. The renderer only plays what it is told.
+func applyTerminalPacing(graph *SceneGraph, l *project.Lesson) {
+	for i := range graph.Scenes {
+		s := &graph.Scenes[i]
+		// Both kinds of recording need this. A web clip of an app being built
+		// runs long for exactly the same reason an agent session does — real
+		// work takes real time — and its dead air is the same dead air.
+		if s.Type != SceneTerminal && s.Type != SceneFootage {
+			continue
+		}
+		id, _ := s.Props["clipId"].(string)
+		clipMs, _ := s.Props["durationMs"].(int)
+		delete(s.Props, "clipId")
+		slotMs := s.EndMs - s.StartMs
+		if id == "" || clipMs <= 0 || slotMs <= 0 || clipMs <= slotMs {
+			continue
+		}
+		// Only exact marks are cut points. This is where the approximate flag
+		// finally earns its place: a clip whose timing could not be attributed
+		// gets a uniform speed-up rather than a confident cut in the wrong spot.
+		var marks []FootageMark
+		if f, ok := loadFootageFor(l, id); ok && f.Exact() {
+			marks = f.Marks
+		}
+		s.Props["segments"] = PlanTerminalPacing(clipMs, slotMs, marks)
+	}
+	applyCaptureProvenance(graph, l)
+}
+
+// applyCaptureProvenance gives every capture scene the credit it states on
+// screen: what tool it is of, what version, and — when the clip was compressed
+// to fit — both durations.
+//
+// It runs after pacing because the "shown in" figure is the slot, which is only
+// settled once every scene has an end. Nothing here is generated: the tool name
+// comes from the engine's own registry and the version and durations were
+// measured at capture time.
+func applyCaptureProvenance(graph *SceneGraph, l *project.Lesson) {
+	for i := range graph.Scenes {
+		s := &graph.Scenes[i]
+		if s.Type != SceneTerminal && s.Type != SceneFootage {
+			continue
+		}
+		id, _ := s.Props["provClipId"].(string)
+		delete(s.Props, "provClipId")
+		if id == "" {
+			continue
+		}
+		f, ok := loadFootageFor(l, id)
+		if !ok {
+			continue
+		}
+		// A python demo is our own code running, not somebody else's product,
+		// so it makes no provenance claim and needs no chip.
+		display := ""
+		switch f.Kind {
+		case CaptureKindTool:
+			display = captureTools[f.Tool].Display
+		case CaptureKindWeb:
+			display = captureSites[f.Tool].Display
+		case CaptureKindDesktop:
+			display = captureApps[f.Tool].Display
+		default:
+			continue
+		}
+		clipMs, _ := s.Props["durationMs"].(int)
+		p := captureCreditFor(f, display, clipMs, s.EndMs-s.StartMs)
+		if p.Tool == "" && p.Version == "" && p.ShownMs == 0 {
+			continue
+		}
+		s.Props["provenance"] = p
+	}
 }
 
 // LoadSceneGraph reads the lesson's generated lesson-video.json.
@@ -639,7 +770,10 @@ func runScenegraphStage(ctx context.Context, e *Env, course *project.Course, l *
 	// A snippet's scenes come from its template, not from the lesson-shaped
 	// script/storyboard/diagram machinery. Everything after this branch —
 	// captions, the video-plan edit layer, the written artifact — is shared.
-	if IsReel(l) {
+	// A no-code piece is segments on one timeline, which is what the reel
+	// assembler already does — the surfaces differ in what a segment must
+	// stand on, not in how the cut is made.
+	if IsReel(l) || IsNoCode(l) {
 		return runReelScenegraph(ctx, e, course, l, cfg)
 	}
 	if IsSnippet(l) {

@@ -136,6 +136,14 @@ Code: {{.CodeContext}}
 {{- if .Critique}}
 CRITIQUE: {{.Critique}}
 {{- end}}{{end}}`,
+		captureTapeTemplateName: `{{define "system"}}Record {{.Tool}} ({{.Binary}}) for {{.Audience}}.
+{{- if .Fixture}}
+Fixture: {{.Fixture}}
+{{- end}}{{end}}
+{{define "user"}}Capture: {{.Description}}
+{{- if .Critique}}
+CRITIQUE: {{.Critique}}
+{{- end}}{{end}}`,
 	}
 	for name, content := range files {
 		if err := os.WriteFile(filepath.Join(dir, name), []byte(content), 0o644); err != nil {

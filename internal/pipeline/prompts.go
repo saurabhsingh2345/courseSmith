@@ -30,6 +30,8 @@ const (
 	diagramVisualQATemplateName = "diagram_visual_qa.tmpl"
 	quizTemplateName            = "quiz.tmpl"
 	demoTapeTemplateName        = "demo_tape.tmpl"
+	captureTapeTemplateName     = "capture_tape.tmpl"
+	snippetFootageTemplateName  = "snippet_footage.tmpl"
 	conceptsTemplateName        = "concepts.tmpl"
 	terminologyTemplateName     = "terminology.tmpl"
 	bridgeTemplateName          = "bridge.tmpl"

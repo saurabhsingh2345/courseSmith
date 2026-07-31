@@ -115,6 +115,67 @@ func runDoctor(cmd *cobra.Command) error {
 			remedy:   "docker build -t " + pipeline.SandboxImage + " sandbox/   (vhs is inside the image)",
 			optional: true,
 		},
+		{
+			// Separate from the check above on purpose: the docker sandbox
+			// satisfies [DEMO] and cannot satisfy [CAPTURE] at all, because it
+			// runs with the network off and every recordable tool is a network
+			// client. A machine that passes the demo check can still be unable
+			// to record a single capture, and finding that out at `doctor` is
+			// much cheaper than finding it out nine stages into a run.
+			name: "host vhs (for [CAPTURE] tool recordings)",
+			run: func() (string, error) {
+				ready, missing := pipeline.CaptureReadiness(cmd.Context())
+				if !ready {
+					return "", fmt.Errorf("no host vhs — [CAPTURE] markers cannot be recorded (the docker sandbox runs with the network off)")
+				}
+				if len(missing) > 0 {
+					return "", fmt.Errorf("host vhs is ready but these tools are not on PATH: %s", strings.Join(missing, ", "))
+				}
+				return "ready (host vhs, all recordable tools present)", nil
+			},
+			remedy:   "brew install vhs   (then install whichever tools your captures name: claude, vercel, supabase, gh)",
+			optional: true,
+		},
+		{
+			// A capture of somebody else's product needs two separate things,
+			// and they fail differently: no browser means no web capture at
+			// all, while a site with no saved session means that site's
+			// captures will record a login page — which is worse than an
+			// error, because it looks like a successful take.
+			name: "web capture (browser + signed-in sites)",
+			run: func() (string, error) {
+				ready, signedIn, missing := pipeline.WebCaptureReadiness()
+				if !ready {
+					return "", fmt.Errorf("no Chromium available — [CAPTURE] markers naming a web product cannot run")
+				}
+				if len(signedIn) == 0 {
+					return "", fmt.Errorf("browser ready; no site is signed in yet (%s)", strings.Join(missing, ", "))
+				}
+				s := fmt.Sprintf("ready (signed in: %s)", strings.Join(signedIn, ", "))
+				if len(missing) > 0 {
+					s += fmt.Sprintf("; not signed in: %s", strings.Join(missing, ", "))
+				}
+				return s, nil
+			},
+			remedy:   "coursesmith footage login <site>   (sign in once; captures then run headless)",
+			optional: true,
+		},
+		{
+			// Desktop capture fails in a way worth separating from the others:
+			// the permission is granted to the *terminal*, not to coursesmith,
+			// so the fix is somewhere the error message would never lead you.
+			name: "desktop capture (screen recording)",
+			run: func() (string, error) {
+				name, err := pipeline.DesktopCaptureReadiness(cmd.Context(), newEnv(cmd))
+				if err != nil {
+					return "", err
+				}
+				return "ready (" + name + ")", nil
+			},
+			remedy: "System Settings → Privacy & Security → Screen Recording, then tick your terminal " +
+				"(and Accessibility, for positioning the window)",
+			optional: true,
+		},
 	}
 
 	out := cmd.OutOrStdout()

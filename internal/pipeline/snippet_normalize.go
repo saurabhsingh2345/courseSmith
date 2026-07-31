@@ -89,6 +89,7 @@ func normalizeSnippetBeats(p *SnippetPlan) {
 // planFields names the plan-level payloads a template consumes, the way
 // beatFields names the per-beat ones.
 type planFields struct {
+	Footage       bool
 	Chart         bool
 	Project       bool
 	Quiz          bool
