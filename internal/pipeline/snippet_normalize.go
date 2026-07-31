@@ -112,6 +112,9 @@ type planFields struct {
 	Trace         bool
 	Costing       bool
 	Constellation bool
+	Chapter       bool
+	Cycle         bool
+	Scale         bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -259,6 +262,15 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Constellation {
 		p.Constellation = nil
+	}
+	if !owns.Chapter {
+		p.Chapter = nil
+	}
+	if !owns.Cycle {
+		p.Cycle = nil
+	}
+	if !owns.Scale {
+		p.Scale = nil
 	}
 }
 

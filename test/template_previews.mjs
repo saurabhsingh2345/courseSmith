@@ -60,6 +60,15 @@ const SOURCES = {
   trace: "TraceViz-1080",
   costing: "CostingViz-750",
   constellation: "ConstellationViz-1090",
+  // The handover rather than a look-back: the card should show the state the
+  // template is named for, which is the section that opens next.
+  chapter: "ChapterViz-750",
+  // The closed ring rather than a mid-walk: a card showing three quarters of a
+  // circle would advertise the one shape this template exists to avoid.
+  cycle: "CycleViz-1740",
+  // The compressed ladder rather than a single rung: it is the only frame where
+  // the nesting — the whole idea — is visible on a 480px card.
+  scale: "ScaleViz-1440",
   workspace: "WorkspaceViz-690",
   whiteboard: "WhiteboardViz-390",
   flow: "FlowViz-400",

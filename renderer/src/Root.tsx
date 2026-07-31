@@ -1624,6 +1624,173 @@ const constellationVizProps: LessonVideoProps = {
   captions: [],
 };
 
+/**
+ * The theme tokens Go derives for a dark-mode course from the default brand
+ * colours. Copied from `videoThemeForConfig` output rather than hand-picked, so
+ * a fixture cannot quietly disagree with what the pipeline actually emits — and
+ * carrying the three semantic accents explicitly matters here: `resolveTheme`
+ * falls them all back to the brand accent, which would render a path's walked
+ * segment and its unwalked one in the same colour.
+ */
+const darkTokens = {
+  primary: '#306998',
+  accent: '#ffd43b',
+  background: '#ffffff',
+  courseName: 'Coursesmith',
+  mode: 'dark' as const,
+  bgTop: '#101d28',
+  bgBottom: '#070c15',
+  surface: '#1b2732',
+  surfaceBorder: '#324452',
+  text: '#f2f5f8',
+  textMuted: '#a6b4bf',
+  accentQuantity: '#f5ca47',
+  accentLimit: '#ec5b51',
+  accentRival: '#518cec',
+  mass: '#dee6ed',
+  ink: '#071018',
+  accentText: '#ffd43b',
+  grain: 0.04,
+};
+
+/** The same course in light mode, from the same source. */
+const lightTokens = {
+  ...darkTokens,
+  mode: 'light' as const,
+  bgTop: '#f0f4f7',
+  bgBottom: '#e9ecef',
+  surface: '#ffffff',
+  surfaceBorder: '#c8d2da',
+  text: '#13222f',
+  textMuted: '#4b6071',
+  // Quantity rotates toward amber on paper: gold walked down to AA lands on a
+  // khaki that reads as mud rather than as a chosen colour.
+  accentQuantity: '#a45c09',
+  accentLimit: '#c12115',
+  accentRival: '#1557c1',
+  mass: '#7c96ab',
+  ink: '#1c354a',
+  accentText: '#826600',
+  grain: 0.01,
+};
+
+/**
+ * The chapter template on a break three parts into a five-part course: two
+ * stops ticked off behind, this one lit, two still faint ahead.
+ */
+const chapterVizProps: LessonVideoProps = {
+  theme: darkTokens,
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [
+    {
+      type: 'chapter',
+      startMs: 0,
+      endMs: 30000,
+      props: {
+        title: 'Part three: loops',
+        path: 'The Python course',
+        at: 2,
+        ordinal: 3,
+        total: 5,
+        stops: [
+          {label: 'Printing', icon: 'terminal', note: 'Getting Python to say something back to you', state: 'done'},
+          {label: 'Variables', icon: 'box', note: 'Names for the things you want to keep', state: 'done'},
+          {label: 'Loops', icon: 'refresh', note: 'Doing the same work without writing it twice', state: 'here'},
+          {label: 'Functions', icon: 'puzzle', note: 'Wrapping work up so you can call it by name', state: 'ahead'},
+          {label: 'Files', icon: 'folder', note: 'Reading and writing what outlives the program', state: 'ahead'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'path'},
+          {startMs: 8000, endMs: 15000, show: 'done', at: 0},
+          {startMs: 15000, endMs: 22000, show: 'done', at: 1},
+          {startMs: 22000, endMs: 30000, show: 'here'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+const chapterLightProps: LessonVideoProps = {...chapterVizProps, theme: lightTokens};
+
+/**
+ * The cycle template on the debugging loop: four stages, and a return that says
+ * what is smaller next lap.
+ */
+const cycleVizProps: LessonVideoProps = {
+  theme: darkTokens,
+  audioFile: '',
+  durationMs: 62000,
+  scenes: [
+    {
+      type: 'cycle',
+      startMs: 0,
+      endMs: 62000,
+      props: {
+        title: 'The debugging loop',
+        name: 'The debugging loop',
+        changes: 'The failing case gets smaller each lap',
+        stages: [
+          {label: 'Reproduce', icon: 'repeat', note: 'Get it to fail on demand, or you are only guessing', angle: -90},
+          {label: 'Isolate', icon: 'search', note: 'Cut away everything that still fails without it', angle: 0},
+          {label: 'Fix', icon: 'wrench', note: 'Change one thing, and only one', angle: 90},
+          {label: 'Verify', icon: 'check', note: 'Run the case that failed, then run everything else', angle: 180},
+        ],
+        steps: [
+          {startMs: 0, endMs: 9000, show: 'ring'},
+          {startMs: 9000, endMs: 20000, show: 'stage', at: 0},
+          {startMs: 20000, endMs: 30000, show: 'stage', at: 1},
+          {startMs: 30000, endMs: 40000, show: 'stage', at: 2},
+          {startMs: 40000, endMs: 50000, show: 'stage', at: 3},
+          {startMs: 50000, endMs: 62000, show: 'again'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+const cycleLightProps: LessonVideoProps = {...cycleVizProps, theme: lightTokens};
+
+/**
+ * The scale template on four rungs of data, forty million times apart end to
+ * end — which is exactly the span no bar chart can draw.
+ */
+const scaleVizProps: LessonVideoProps = {
+  theme: darkTokens,
+  audioFile: '',
+  durationMs: 52000,
+  scenes: [
+    {
+      type: 'scale',
+      startMs: 0,
+      endMs: 52000,
+      props: {
+        title: 'How much is a terabyte, really',
+        unit: 'MB',
+        span: '40 billion',
+        levels: [
+          {label: 'This sentence', value: 0.0001, display: '100 bytes', icon: 'file', note: 'A hundred characters, and nothing else'},
+          {label: 'A phone photo', value: 4, display: '4 MB', icon: 'star', note: 'Forty thousand of those sentences', times: '40000'},
+          {label: 'A feature film', value: 4000, display: '4 GB', icon: 'play', note: 'A thousand photos, played back at speed', times: '1000'},
+          {label: 'A small library', value: 4000000, display: '4 TB', icon: 'city', note: 'A thousand films, on one drive you can hold', times: '1000'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 9000, show: 'level', at: 0},
+          {startMs: 9000, endMs: 19000, show: 'level', at: 1},
+          {startMs: 19000, endMs: 29000, show: 'level', at: 2},
+          {startMs: 29000, endMs: 41000, show: 'level', at: 3},
+          {startMs: 41000, endMs: 52000, show: 'whole'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+const scaleLightProps: LessonVideoProps = {...scaleVizProps, theme: lightTokens};
+
 const showcaseVizProps: LessonVideoProps = {
   theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
   audioFile: '',
@@ -2024,6 +2191,60 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(constellationVizProps.durationMs)}
       defaultProps={constellationVizProps}
+    />
+    <Composition
+      id="ChapterViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(chapterVizProps.durationMs)}
+      defaultProps={chapterVizProps}
+    />
+    <Composition
+      id="ChapterLightViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(chapterLightProps.durationMs)}
+      defaultProps={chapterLightProps}
+    />
+    <Composition
+      id="CycleViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(cycleVizProps.durationMs)}
+      defaultProps={cycleVizProps}
+    />
+    <Composition
+      id="CycleLightViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(cycleLightProps.durationMs)}
+      defaultProps={cycleLightProps}
+    />
+    <Composition
+      id="ScaleViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(scaleVizProps.durationMs)}
+      defaultProps={scaleVizProps}
+    />
+    <Composition
+      id="ScaleLightViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(scaleLightProps.durationMs)}
+      defaultProps={scaleLightProps}
     />
     <Composition
       id="CostingViz"

@@ -125,6 +125,36 @@ const TARGETS = [
   // And mid-walk, where two spokes are lit, one is drawing and one is still
   // faint — the state that proves the map accumulates rather than reveals.
   { id: "ConstellationViz", frame: 660 },
+  // The chapter break on its handover beat: two stops ticked, the current one
+  // haloed, two ahead still faint, and the ordinal at full stroke. It is the
+  // only state that holds all three stop treatments and the hand-off line at
+  // once.
+  { id: "ChapterViz", frame: 750 },
+  // And a look-back beat, where the card names a section already behind the
+  // viewer rather than the one starting — the half of the template a frame on
+  // the handover cannot show.
+  { id: "ChapterViz", frame: 540 },
+  // The same break in light mode. Every one of these three leans on
+  // accentQuantity for its entire structure, so light mode is where a fixture
+  // that forgot the semantic accents would show up.
+  { id: "ChapterLightViz", frame: 750 },
+  // The cycle closing on the return: the ring complete, every stage lit, and
+  // the line about what changes next lap in the hub. The frame the template
+  // exists to produce — and the one where a full-circle arc has to render,
+  // which a single SVG arc command cannot do.
+  { id: "CycleViz", frame: 1740 },
+  // And mid-walk, with the comet parked at a stage's edge, two arcs lit and two
+  // stages still dark — the state that proves the ring accumulates.
+  { id: "CycleViz", frame: 1080 },
+  { id: "CycleLightViz", frame: 1740 },
+  // The scale on its last rung: three worlds nested inside the current one, the
+  // viewfinder brackets on the subject, and the step multiplier beside the
+  // figure.
+  { id: "ScaleViz", frame: 1110 },
+  // And the closing frame, where the ladder compresses so all four worlds are
+  // legible at once. Nothing else in the clip renders that geometry.
+  { id: "ScaleViz", frame: 1440 },
+  { id: "ScaleLightViz", frame: 1110 },
   { id: "AnalogyViz", frame: 600 },
   // The break: the whole mapping receded and the admission over it. Nothing
   // else in the catalog dims its own content to make a point.

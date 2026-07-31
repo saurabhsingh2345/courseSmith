@@ -295,6 +295,17 @@ type SnippetPlan struct {
 	// Constellation is the constellation template's idea and its properties. On
 	// the plan because the map is the subject and the beats only light it.
 	Constellation *ConstellationSpec `json:"constellation,omitempty"`
+	// Chapter is the chapter template's path and the position on it. On the
+	// plan because the path is standing furniture — it is drawn once and every
+	// beat after that only moves the light along it.
+	Chapter *ChapterSpec `json:"chapter,omitempty"`
+	// Cycle is the cycle template's ring. On the plan for the same reason: the
+	// ring is the subject and the beats run a light round it.
+	Cycle *CycleSpec `json:"cycle,omitempty"`
+	// Scale is the scale template's ladder. On the plan because the whole clip
+	// is one camera move through it, and a ladder that changed between beats
+	// would be a different picture each time the camera stopped.
+	Scale *ScaleSpec `json:"scale,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -550,6 +561,21 @@ type SnippetBeat struct {
 	// Constellation says whether this beat names the centre, lights one spoke,
 	// or shows the whole picture.
 	Constellation *ConstellationBeat `json:"constellation,omitempty"`
+
+	// --- chapter template ---
+	// Chapter says whether this beat draws the path, looks back at one stop
+	// already behind the viewer, or opens the section starting now.
+	Chapter *ChapterBeat `json:"chapter,omitempty"`
+
+	// --- cycle template ---
+	// Cycle says whether this beat draws the ring, runs the light to one
+	// stage, or comes back round to the start.
+	Cycle *CycleBeat `json:"cycle,omitempty"`
+
+	// --- scale template ---
+	// Scale says which rung of the ladder the camera pulls back to, or that
+	// the whole ladder is in frame at once.
+	Scale *ScaleBeat `json:"scale,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

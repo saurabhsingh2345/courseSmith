@@ -113,6 +113,15 @@ const (
 	// SceneConstellation is one idea in the middle with its properties
 	// radiating out, lit one spoke at a time.
 	SceneConstellation = "constellation"
+	// SceneChapter is the break between two stretches of teaching: a huge
+	// ordinal, the section starting now, and the path it sits on.
+	SceneChapter = "chapter"
+	// SceneCycle is a closed ring of stages with a light running round it and
+	// a hub that says what is different next lap.
+	SceneCycle = "cycle"
+	// SceneScale is a ladder of nested worlds with the camera pulling back an
+	// order of magnitude at a time.
+	SceneScale = "scale"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

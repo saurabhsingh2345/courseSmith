@@ -799,6 +799,9 @@ type beatFields struct {
 	Trace         bool
 	Costing       bool
 	Constellation bool
+	Chapter       bool
+	Cycle         bool
+	Scale         bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -853,6 +856,12 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "costing"
 		case !owned.Constellation && b.Constellation != nil:
 			set = "constellation"
+		case !owned.Chapter && b.Chapter != nil:
+			set = "chapter"
+		case !owned.Cycle && b.Cycle != nil:
+			set = "cycle"
+		case !owned.Scale && b.Scale != nil:
+			set = "scale"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

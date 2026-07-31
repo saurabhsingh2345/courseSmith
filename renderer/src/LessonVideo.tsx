@@ -43,6 +43,9 @@ import {AnalogyScene} from './components/AnalogyScene';
 import {TraceScene} from './components/TraceScene';
 import {CostingScene} from './components/CostingScene';
 import {ConstellationScene} from './components/ConstellationScene';
+import {ChapterScene} from './components/ChapterScene';
+import {CycleScene} from './components/CycleScene';
+import {ScaleScene} from './components/ScaleScene';
 import {SceneChrome, Watermark} from './components/SceneChrome';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
@@ -159,6 +162,12 @@ const sceneContent = (
       return <CostingScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'constellation':
       return <ConstellationScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'chapter':
+      return <ChapterScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'cycle':
+      return <CycleScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'scale':
+      return <ScaleScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       return null;
   }
@@ -196,9 +205,17 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // A node-and-edge map earns the drawing-office grid for the same reason
     // the flow does: it makes the radial arrangement read as measured.
     case 'constellation':
+    // A ring of stages is a mechanism, and a mechanism drawn on squared paper
+    // reads as engineered rather than as decorative.
+    case 'cycle':
       return 'blueprint';
     case 'cast':
     case 'story':
+    // A break between two stretches of teaching is a held moment, and one pool
+    // of light is what a held moment looks like. It is also the only scene in
+    // the catalog whose subject is a 380px numeral, which wants a stage that
+    // falls away at the edges rather than a field competing with it.
+    case 'chapter':
       return 'spotlight';
     case 'data':
     case 'quiz':
@@ -229,6 +246,10 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // A sheet of thin bars and a counting figure. Nothing repeating behind
     // it survives contact with twelve-pixel bars.
     case 'costing':
+    // Nested frames only read as containment if there is nothing else on the
+    // stage with edges. Any repeating field behind them competes with the one
+    // thing the picture is doing, and a drifting glow reads as a sixth world.
+    case 'scale':
       return 'clean';
     default:
       return 'default';
