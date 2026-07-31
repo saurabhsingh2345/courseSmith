@@ -39,7 +39,9 @@ courses/*/lessons/*/generated/sections/
 courses/*/course.mp4
 courses/*/generated/*.pdf
 courses/*/generated/*-ebook.html
-courses/*/auditions/*.wav
+# Voice auditions: the clips and the player page that links them are one
+# regenerable unit — `coursesmith audition <course>` rebuilds both.
+courses/*/auditions/
 # Videos stay out of the repo; the deploy workflow serves the site without
 # them (set the videoBaseURL site param to point at a CDN — see
 # .github/workflows/deploy-site.yml).
