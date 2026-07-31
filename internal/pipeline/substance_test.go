@@ -73,7 +73,7 @@ func TestSubstanceRejectsUnknownProvenance(t *testing.T) {
 	if err == nil {
 		t.Fatal("an invented provenance label was accepted")
 	}
-	if !strings.Contains(err.Error(), "given, sourced, derived, unverified") {
+	if !strings.Contains(err.Error(), "given, sourced, derived, captured, unverified") {
 		t.Errorf("the error does not list the valid labels: %v", err)
 	}
 }

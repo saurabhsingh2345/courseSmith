@@ -69,13 +69,23 @@ const (
 	ProvSourced Provenance = "sourced"
 	// ProvDerived is arithmetic on other facts, with the working in Working.
 	ProvDerived Provenance = "derived"
+	// ProvCaptured was observed in a real recording, and carries the clip that
+	// shows it. It is the no-code course's answer to the python course's
+	// executed code block: "Claude Code changed three files in 24 seconds" is
+	// not something a model may believe, it is something a clip either shows or
+	// does not.
+	//
+	// It is stronger than `sourced` rather than weaker. A sourced fact is
+	// something we read somewhere; a captured one is something that happened on
+	// a machine we control, with the tool's own version recorded beside it.
+	ProvCaptured Provenance = "captured"
 	// ProvUnverified is the model's own belief, and may not be rendered.
 	ProvUnverified Provenance = "unverified"
 )
 
 // Renderable reports whether a template may put this fact on screen.
 func (p Provenance) Renderable() bool {
-	return p == ProvGiven || p == ProvSourced || p == ProvDerived
+	return p == ProvGiven || p == ProvSourced || p == ProvDerived || p == ProvCaptured
 }
 
 // Fact is one thing the piece may state as true.
@@ -92,6 +102,11 @@ type Fact struct {
 	// 140GB"). Required for `derived`: a derivation nobody can check is a belief
 	// with a confident tone.
 	Working string `json:"working,omitempty"`
+	// Clip is the footage id backing a captured fact, optionally with the mark
+	// it was observed at ("capture-1" or "capture-1#deploy-green"). Required for
+	// `captured` and meaningless otherwise — a captured fact with no clip is the
+	// same fabrication `sourced` without a URL would be.
+	Clip string `json:"clip,omitempty"`
 }
 
 // Substance is the fact sheet for one piece.
@@ -159,8 +174,13 @@ func (s *Substance) Validate() error {
 				return fmt.Errorf("fact %d (%q) is marked derived but shows no working. Show the arithmetic, or mark it unverified",
 					i+1, truncateForLog(f.Claim, 60))
 			}
+		case ProvCaptured:
+			if strings.TrimSpace(f.Clip) == "" {
+				return fmt.Errorf("fact %d (%q) is marked captured but names no clip. A captured fact is only worth more than a belief because a recording shows it: give the clip id, or mark it unverified",
+					i+1, truncateForLog(f.Claim, 60))
+			}
 		default:
-			return fmt.Errorf("fact %d (%q) has provenance %q, which is not one of given, sourced, derived, unverified",
+			return fmt.Errorf("fact %d (%q) has provenance %q, which is not one of given, sourced, derived, captured, unverified",
 				i+1, truncateForLog(f.Claim, 60), f.Provenance)
 		}
 		if f.Provenance.Renderable() {
@@ -251,6 +271,8 @@ func substanceLines(s *Substance) []string {
 			out = append(out, fmt.Sprintf("%s [%s]", f.Claim, f.Source))
 		case f.Working != "":
 			out = append(out, fmt.Sprintf("%s [%s]", f.Claim, f.Working))
+		case f.Clip != "":
+			out = append(out, fmt.Sprintf("%s [recorded in %s]", f.Claim, f.Clip))
 		default:
 			out = append(out, f.Claim)
 		}
@@ -310,9 +332,37 @@ func groundedNote(grounded bool) string {
 	return " (ungrounded — llm_search is off, so nothing was looked up)"
 }
 
-// substanceBrief is the whole input to establish facts from: a reel's brief, or
-// a snippet's prompt.
+// substanceBrief is the whole input to establish facts from: a piece's or reel's
+// brief, or a snippet's prompt.
 func substanceBrief(l *project.Lesson) (string, error) {
+	if IsNoCode(l) {
+		spec, err := LoadNoCodeSpec(l.Dir)
+		if err != nil {
+			return "", err
+		}
+		brief := strings.TrimSpace(spec.Brief)
+		if brief == "" {
+			var parts []string
+			for _, seg := range spec.Live() {
+				parts = append(parts, seg.Prompt)
+			}
+			brief = strings.Join(parts, "; ")
+		}
+		// The facts a piece already stands on are part of what it is about, and
+		// stating them here keeps the search from re-establishing what the
+		// author already wrote down.
+		var known []string
+		for _, seg := range spec.Live() {
+			known = append(known, seg.Evidence.Facts...)
+		}
+		if len(known) > 0 {
+			brief += ". Already established: " + strings.Join(known, "; ")
+		}
+		if spec.Title != "" {
+			brief = spec.Title + ". " + brief
+		}
+		return brief, nil
+	}
 	if IsReel(l) {
 		spec, err := LoadReelSpec(l.Dir)
 		if err != nil {
