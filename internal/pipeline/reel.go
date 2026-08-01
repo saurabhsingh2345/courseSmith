@@ -654,6 +654,18 @@ func buildReelSceneGraph(
 		return nil, fmt.Errorf("the reel produced no scenes — every segment is skipped or empty")
 	}
 	graph.DurationMs = audioDurMs + videoTailMs
+	// The same pass the lesson path runs, and for the same reason: a recording
+	// is longer than the narration over it, so the dead air has to be compressed
+	// onto the marks and the tool has to be credited on screen.
+	//
+	// This was missing here, which meant no reel and no no-code piece ever got
+	// either. A 161-second agent session was dropped whole into a 61-second slot
+	// and simply cut off partway: the video played the opening seconds of the
+	// clip, showed nothing happening, and moved on before the moment it was
+	// recorded for. Nothing errored — the graph was valid and the render
+	// reported done — which is exactly why this call belongs beside the one in
+	// buildSceneGraph rather than in a template.
+	applyTerminalPacing(graph, l)
 	return graph, nil
 }
 

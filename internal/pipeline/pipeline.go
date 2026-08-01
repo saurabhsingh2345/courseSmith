@@ -278,6 +278,16 @@ func (e *Env) StageInputs(l *project.Lesson, cfg config.Config, stage string) (m
 				inputs["prompts/"+tpl.PromptFile] = hashOrAbsent(filepath.Join(e.PromptsDir, tpl.PromptFile))
 			}
 		}
+		// A piece uses several templates, so all of their prompts are inputs —
+		// otherwise editing snippet_footage.tmpl would leave every piece that
+		// uses it reporting up to date.
+		if spec, err := LoadNoCodeSpec(l.Dir); err == nil {
+			for _, seg := range spec.Live() {
+				if tpl, ok := SnippetTemplates[seg.Template]; ok {
+					inputs["prompts/"+tpl.PromptFile] = hashOrAbsent(filepath.Join(e.PromptsDir, tpl.PromptFile))
+				}
+			}
+		}
 	}
 	return inputs, nil
 }

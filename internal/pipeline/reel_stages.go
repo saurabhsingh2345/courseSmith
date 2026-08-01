@@ -200,9 +200,23 @@ func truncateForLog(s string, n int) string {
 // template lays out its own slice of the timeline, and the shared finishing
 // pass writes it exactly as it would for a lesson.
 func runReelScenegraph(_ context.Context, e *Env, course *project.Course, l *project.Lesson, cfg config.Config) error {
-	spec, err := LoadReelSpec(l.Dir)
-	if err != nil {
-		return err
+	// A no-code piece assembles through here too and has no reel.yaml. The
+	// assembler only reads the spec for the piece's identity, so a synthesised
+	// one carries everything it needs — the alternative was a second copy of
+	// this function differing in one line.
+	var spec *ReelSpec
+	if IsNoCode(l) {
+		nc, err := LoadNoCodeSpec(l.Dir)
+		if err != nil {
+			return err
+		}
+		spec = &ReelSpec{ID: nc.ID, Title: nc.Title, Brief: nc.Brief}
+	} else {
+		var err error
+		spec, err = LoadReelSpec(l.Dir)
+		if err != nil {
+			return err
+		}
 	}
 	plan, err := LoadReelPlan(l)
 	if err != nil {
