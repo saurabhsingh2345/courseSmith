@@ -28,6 +28,10 @@ const NM = (...p) => join(RENDERER_DIR, "node_modules", ...p);
 // stable across runs.
 const TARGETS = [
   { id: "ExecViz", frame: 60 },
+  // The footage template's own contribution — chrome, origin, capture credit —
+  // around a neutral placeholder. It is the one scene whose real content is a
+  // recording, so the fixture supplies a deterministic frame rather than a clip.
+  { id: "FootageViz", frame: 90 },
   { id: "PointsViz", frame: 140 },
   { id: "VSCodeViz", frame: 200 },
   // The same editor in light mode, with the terminal drawer open. The editor

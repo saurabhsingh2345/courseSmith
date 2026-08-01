@@ -12,6 +12,7 @@ import {SceneBackground, type Surface} from './components/SceneBackground';
 import {StageAirContext, StageCaptionsContext} from './components/Stage';
 import {SceneCamera} from './components/SceneCamera';
 import {SectionTransition, type CutStyle} from './components/SectionTransition';
+import {FootageScene} from './components/FootageScene';
 import {TerminalScene} from './components/TerminalScene';
 import {TitleCard} from './components/TitleCard';
 import {VSCodeScene} from './components/VSCodeScene';
@@ -92,7 +93,24 @@ const sceneContent = (
         <DiagramScene theme={theme} assetBase={assetBase} props={scene.props} />
       );
     case 'terminal':
-      return <TerminalScene theme={theme} assetBase={assetBase} props={scene.props} />;
+      return (
+        <TerminalScene
+          theme={theme}
+          assetBase={assetBase}
+          durationInFrames={durationInFrames}
+          props={scene.props}
+        />
+      );
+    case 'footage':
+      return (
+        <FootageScene
+          theme={theme}
+          assetBase={assetBase}
+          sceneStartMs={scene.startMs}
+          durationInFrames={durationInFrames}
+          props={scene.props}
+        />
+      );
     case 'points':
       return (
         <PointsScene theme={theme} motion={motion} sceneStartMs={scene.startMs} props={scene.props} />

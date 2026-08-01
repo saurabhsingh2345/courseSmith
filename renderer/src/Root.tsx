@@ -2063,9 +2063,52 @@ const vscodeIntroProps: LessonVideoProps = {
 };
 
 
+
+// footageVizProps renders the `footage` template's own contribution — the
+// browser chrome, the address of the origin the driver recorded, and the
+// capture credit — around a deliberately neutral placeholder frame.
+//
+// It is the one preview in the gallery that cannot show real content, and that
+// is a property of the template rather than a shortcut: what `footage` produces
+// is *your* recording, so a card showing somebody else's clip would misrepresent
+// what you get. What the template actually contributes is the frame and the
+// credit, and that is exactly what this shows.
+const footageVizProps: LessonVideoProps = {
+  theme: {primary: '#5b5bd6', accent: '#f5c26b', background: '#0b0d12', courseName: 'Coursesmith'},
+  audioFile: '',
+  captions: [],
+  durationMs: 4000,
+  scenes: [
+    {
+      type: 'footage',
+      startMs: 0,
+      endMs: 4000,
+      props: {
+        title: 'https://lovable.dev',
+        origin: 'https://lovable.dev',
+        frames: [{mark: 'app-built', path: 'footage-placeholder.png'}],
+        provenance: {
+          tool: 'Lovable',
+          realMs: 96000,
+          shownMs: 21000,
+        },
+      },
+    },
+  ],
+};
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+    <Composition
+      id="FootageViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(footageVizProps.durationMs)}
+      defaultProps={footageVizProps}
+    />
     <Composition
       id="VSCodeViz"
       component={LessonVideo}

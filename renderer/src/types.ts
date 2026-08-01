@@ -94,6 +94,7 @@ export type SceneType =
   | 'code'
   | 'diagram'
   | 'terminal'
+  | 'footage'
   | 'points'
   | 'walkthrough'
   | 'workspace'
