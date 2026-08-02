@@ -64,6 +64,13 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("POST /api/snippets", s.handleSnippetCreate)
 	mux.HandleFunc("GET /api/snippets/{id}", s.handleSnippetDetail)
 	mux.HandleFunc("DELETE /api/snippets/{id}", s.handleSnippetDelete)
+	mux.HandleFunc("GET /api/nocode", s.handleNoCodeList)
+	mux.HandleFunc("POST /api/nocode", s.handleNoCodeCreate)
+	mux.HandleFunc("GET /api/nocode/catalog", s.handleNoCodeCatalog)
+	mux.HandleFunc("GET /api/nocode/recordables", s.handleNoCodeRecordables)
+	mux.HandleFunc("GET /api/nocode/takes", s.handleNoCodeTakes)
+	mux.HandleFunc("GET /api/nocode/{id}", s.handleNoCodeDetail)
+	mux.HandleFunc("POST /api/nocode/{id}/run", s.handleNoCodeRun)
 	mux.HandleFunc("GET /api/reels", s.handleReelsList)
 	mux.HandleFunc("POST /api/reels", s.handleReelCreate)
 	mux.HandleFunc("POST /api/reels/cast", s.handleReelCast)
@@ -145,6 +152,8 @@ func (s *Server) resolveCourse(slug string) (*project.Course, error) {
 			return pipeline.EnsureSnippetsCourse(s.projectRoot())
 		case pipeline.ReelsCourseSlug:
 			return pipeline.EnsureReelsCourse(s.projectRoot())
+		case pipeline.NoCodeCourseSlug:
+			return pipeline.EnsureNoCodeCourse(s.projectRoot())
 		}
 		return nil, fmt.Errorf("no course %q", slug)
 	}

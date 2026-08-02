@@ -1,4 +1,12 @@
 import type { components } from "./schema";
+import type {
+  NoCodeSummary,
+  NoCodeDetail,
+  NoCodeCatalogEntry,
+  NoCodeTakes,
+  Recordable,
+  CreateNoCodeRequest,
+} from "./types";
 
 export type Course = components["schemas"]["Course"];
 export type CourseDetail = components["schemas"]["CourseDetail"];
@@ -297,6 +305,19 @@ export const api = {
     ),
   deleteReel: (id: string) =>
     request<void>(`/api/reels/${encodeURIComponent(id)}`, { method: "DELETE" }),
+  // No-code pieces. Every segment stands on a recording or on stated facts,
+  // so the catalog is the no-code subset and the recordables list is served
+  // rather than hard-coded — the page must not carry its own copy of either.
+  noCodePieces: () => request<NoCodeSummary[]>("/api/nocode"),
+  noCodePiece: (id: string) => request<NoCodeDetail>(`/api/nocode/${encodeURIComponent(id)}`),
+  noCodeCatalog: () => request<NoCodeCatalogEntry[]>("/api/nocode/catalog"),
+  noCodeRecordables: () => request<Recordable[]>("/api/nocode/recordables"),
+  noCodeTakes: () => request<NoCodeTakes>("/api/nocode/takes"),
+  createNoCodePiece: (req: CreateNoCodeRequest) =>
+    request<NoCodeSummary>("/api/nocode", { method: "POST", body: JSON.stringify(req) }),
+  runNoCodePiece: (id: string) =>
+    request<{ run_id: string }>(`/api/nocode/${encodeURIComponent(id)}/run`, { method: "POST" }),
+
   snippets: () => request<SnippetSummary[]>("/api/snippets"),
   snippet: (id: string) => request<SnippetDetail>(`/api/snippets/${encodeURIComponent(id)}`),
   createSnippet: (req: CreateSnippetRequest) =>

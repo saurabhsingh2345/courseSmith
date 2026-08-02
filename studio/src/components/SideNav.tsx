@@ -13,6 +13,7 @@
 import { Link, useLocation } from "react-router-dom";
 import {
   BarChart3,
+  Camera,
   BookOpen,
   ChevronLeft,
   FlaskConical,
@@ -49,6 +50,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { to: "/", label: "Compose", icon: Sparkles },
       { to: "/snippets", label: "Snippets", icon: Scissors },
       { to: "/reels", label: "Reels", icon: Film },
+      { to: "/nocode", label: "No-code", icon: Camera },
       {
         to: "/courses",
         label: "Courses",

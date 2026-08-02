@@ -26,6 +26,12 @@ const OUT = join(__dirname, "..", "studio", "public", "template-previews");
 // derived: the composition ids and the template names are deliberately
 // different vocabularies and guessing between them would break silently.
 const SOURCES = {
+  // The one preview that cannot show real content, and that is a property of
+  // the template rather than a shortcut: what `footage` produces is *your*
+  // recording, so a card showing somebody else's clip would misrepresent what
+  // you get. This shows what the template actually contributes — the frame,
+  // the origin, and the capture credit.
+  footage: "FootageViz-90",
   vscode: "VSCodeViz-200",
   quiz: "QuizViz-560",
   compare: "CompareViz-570",
