@@ -68,6 +68,9 @@ const SOURCES = {
   // After the grant, so the card shows the gap rather than a sealed box — a
   // fully denied frame advertises a wall.
   capabilities: "CapabilitiesViz-480",
+  // The remainder frame: the card should show the number the template exists to
+  // state, not a bar part-way through being eaten.
+  budget: "BudgetViz-1020",
   // The two-column state rather than the call: the card should show the frame
   // the clip spends most of its time in, and a bare line of type would not read
   // as a distinct template on a gallery card.

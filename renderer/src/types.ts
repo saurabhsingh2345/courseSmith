@@ -133,7 +133,8 @@ export type SceneType =
   | 'journal'
   | 'multiplex'
   | 'fork'
-  | 'capabilities';
+  | 'capabilities'
+  | 'budget';
 
 export type Scene = {
   type: SceneType;

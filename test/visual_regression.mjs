@@ -128,6 +128,13 @@ const TARGETS = [
   // colour, three capabilities still outside it carrying their crosses, and the
   // count reading one of four. Both halves of the rule in one frame.
   { id: "CapabilitiesViz", frame: 480 },
+  // The budget on its closing beat: three segments filling most of the bar, the
+  // remainder as the gap that is left, and the figure counted out under it. It is
+  // the frame the whole template exists for.
+  { id: "BudgetViz", frame: 1020 },
+  // And mid-bite on the third claim, which is the only state that shows a segment
+  // growing into a bar the earlier segments are not re-scaling inside.
+  { id: "BudgetViz", frame: 660 },
   // Mid-append, so the baseline also covers the first half — a line arriving at
   // the end of a file whose later slots are still empty.
   { id: "JournalViz", frame: 600 },

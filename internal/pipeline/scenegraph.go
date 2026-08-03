@@ -141,6 +141,9 @@ const (
 	// SceneCapabilities is a boundary around a subject with the things it cannot
 	// reach outside it, and the one or two deliberately handed in.
 	SceneCapabilities = "capabilities"
+	// SceneBudget is a fixed pot with claims taken out of it one at a time,
+	// closing on what is left.
+	SceneBudget = "budget"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

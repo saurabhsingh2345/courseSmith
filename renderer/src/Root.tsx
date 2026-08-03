@@ -1583,6 +1583,79 @@ const capabilitiesVizProps: LessonVideoProps = {
 };
 
 /**
+ * The budget template on the clip that motivated it: what is actually left of a
+ * card's memory once the weights, the runtime and the cache are paid for.
+ *
+ * The numbers are chosen so the remainder is small but POSITIVE. A busting
+ * budget is the more dramatic frame and the easier one to draw; a budget that
+ * only just survives is the case where the segment widths and the remainder gap
+ * all have to be right, so it is the one worth holding a baseline on.
+ */
+const budgetVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 36000,
+  scenes: [
+    {
+      type: 'budget',
+      startMs: 0,
+      endMs: 36000,
+      props: {
+        title: 'What is really left of 24GB',
+        emphasis: 'really left',
+        emphasisRole: 'quantity',
+        pot: 24,
+        unit: 'GB',
+        potLabel: 'what a 4090 holds',
+        remainderLabel: 'left for your context',
+        remainder: 1.5,
+        remainderFrac: 0.0625,
+        claims: [
+          {
+            amount: 14,
+            label: 'the model weights',
+            note: 'A 7B at 16-bit, before anything runs',
+            role: 'neutral',
+            frac: 0.5833,
+          },
+          {
+            amount: 2.5,
+            label: 'CUDA and the driver',
+            note: 'Gone before your code starts',
+            role: 'neutral',
+            frac: 0.1042,
+          },
+          {
+            amount: 6,
+            label: 'the KV cache at 8k',
+            note: 'And it grows with every token you add',
+            role: 'limit',
+            frac: 0.25,
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 7000, show: 'pot', taken: [], left: 24},
+          {startMs: 7000, endMs: 14000, show: 'claim', at: 0, taken: [0], left: 10},
+          {startMs: 14000, endMs: 21000, show: 'claim', at: 1, taken: [0, 1], left: 7.5},
+          {startMs: 21000, endMs: 29000, show: 'claim', at: 2, taken: [0, 1, 2], left: 1.5},
+          {startMs: 29000, endMs: 36000, show: 'remainder', taken: [0, 1, 2], left: 1.5},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
  * The verdict template on the example that motivated it: whether to self-host a
  * database. Three conditions it holds on, two it breaks on, and a call.
  */
@@ -2744,6 +2817,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(gaugeVizProps.durationMs)}
       defaultProps={gaugeVizProps}
+    />
+    <Composition
+      id="BudgetViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(budgetVizProps.durationMs)}
+      defaultProps={budgetVizProps}
     />
     <Composition
       id="CapabilitiesViz"

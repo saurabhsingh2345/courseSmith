@@ -846,6 +846,7 @@ type beatFields struct {
 	Multiplex     bool
 	Fork          bool
 	Capabilities  bool
+	Budget        bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -918,6 +919,8 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "fork"
 		case !owned.Capabilities && b.Capabilities != nil:
 			set = "capabilities"
+		case !owned.Budget && b.Budget != nil:
+			set = "budget"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

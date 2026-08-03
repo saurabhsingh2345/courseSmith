@@ -357,6 +357,9 @@ type SnippetPlan struct {
 	// Capabilities is the capabilities template's boundary and what sits outside
 	// it. On the plan because the boundary persists for the whole clip.
 	Capabilities *CapabilitySpec `json:"capabilities,omitempty"`
+	// Budget is the budget template's pot and the claims against it. On the plan
+	// because every beat is measured against the same pot.
+	Budget *BudgetSpec `json:"budget,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -659,6 +662,11 @@ type SnippetBeat struct {
 	// Capabilities says whether this beat seals the boundary, hands one thing
 	// in, or holds the picture and reads what is still shut.
 	Capabilities *CapabilityBeat `json:"capabilities,omitempty"`
+
+	// --- budget template ---
+	// Budget says whether this beat shows the pot whole, takes one claim out of
+	// it, or lands on the remainder.
+	Budget *BudgetBeat `json:"budget,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

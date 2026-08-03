@@ -41,6 +41,7 @@ import {JournalScene} from './components/JournalScene';
 import {MultiplexScene} from './components/MultiplexScene';
 import {ForkScene} from './components/ForkScene';
 import {CapabilitiesScene} from './components/CapabilitiesScene';
+import {BudgetScene} from './components/BudgetScene';
 import {GaugeScene} from './components/GaugeScene';
 import {VerdictScene} from './components/VerdictScene';
 import {DecisionScene} from './components/DecisionScene';
@@ -180,6 +181,8 @@ const sceneContent = (
       return <ForkScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'capabilities':
       return <CapabilitiesScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'budget':
+      return <BudgetScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'gauge':
       return <GaugeScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'verdict':
@@ -279,6 +282,9 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // The boundary already carries a glow, and it is the only thing on the frame
     // that should. A field behind it would blur the line the picture is about.
     case 'capabilities':
+    // One bar and one figure. A drifting field behind a bar reads as a second
+    // fill, which is the one thing this picture cannot afford.
+    case 'budget':
     // A dashed rule and a filling bar are thin marks. A field behind them
     // competes with the one line the whole clip is about.
     case 'gauge':
