@@ -127,6 +127,7 @@ type planFields struct {
 	Fork          bool
 	Capabilities  bool
 	Budget        bool
+	Latency       bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -304,6 +305,9 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Budget {
 		p.Budget = nil
+	}
+	if !owns.Latency {
+		p.Latency = nil
 	}
 }
 

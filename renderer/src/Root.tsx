@@ -1656,6 +1656,81 @@ const budgetVizProps: LessonVideoProps = {
 };
 
 /**
+ * The latency template on the case that motivated it: an in-memory read, an
+ * indexed query and the same query without its index.
+ *
+ * The span is deliberately wide — 0.12ms to 6.5s, five decades — because the
+ * axis derivation is the part most likely to be wrong, and a two-decade fixture
+ * would not exercise the tick padding at either end.
+ */
+const latencyVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 34000,
+  scenes: [
+    {
+      type: 'latency',
+      startMs: 0,
+      endMs: 34000,
+      props: {
+        title: 'Not the same kind of slow',
+        emphasis: 'kind of slow',
+        emphasisRole: 'limit',
+        // As latencyAxis derives them: floor(log10(0.12)) = -1, ceil(log10(6479)) = 4.
+        ticks: [
+          {label: '100µs', frac: 0},
+          {label: '1ms', frac: 0.2},
+          {label: '10ms', frac: 0.4},
+          {label: '100ms', frac: 0.6},
+          {label: '1s', frac: 0.8},
+          {label: '10s', frac: 1},
+        ],
+        operations: [
+          {
+            label: 'a Redis GET',
+            value: '0.1ms',
+            note: 'Memory, one hop, no parsing',
+            role: 'quantity',
+            frac: 0.0159,
+          },
+          {
+            label: 'an indexed SQL query',
+            value: '12ms',
+            note: 'A hundred times longer, and that is the good case',
+            role: 'neutral',
+            frac: 0.4157,
+          },
+          {
+            label: 'the same query unindexed',
+            value: '6.5s',
+            note: 'You could have done fifty thousand GETs in that time',
+            role: 'limit',
+            frac: 0.9527,
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 7000, show: 'axis', placed: []},
+          {startMs: 7000, endMs: 14000, show: 'place', at: 0, placed: [0]},
+          {startMs: 14000, endMs: 21000, show: 'place', at: 1, placed: [0, 1]},
+          {startMs: 21000, endMs: 28000, show: 'place', at: 2, placed: [0, 1, 2]},
+          {startMs: 28000, endMs: 34000, show: 'read', placed: [0, 1, 2]},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
  * The verdict template on the example that motivated it: whether to self-host a
  * database. Three conditions it holds on, two it breaks on, and a call.
  */
@@ -2817,6 +2892,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(gaugeVizProps.durationMs)}
       defaultProps={gaugeVizProps}
+    />
+    <Composition
+      id="LatencyViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(latencyVizProps.durationMs)}
+      defaultProps={latencyVizProps}
     />
     <Composition
       id="BudgetViz"

@@ -134,7 +134,8 @@ export type SceneType =
   | 'multiplex'
   | 'fork'
   | 'capabilities'
-  | 'budget';
+  | 'budget'
+  | 'latency';
 
 export type Scene = {
   type: SceneType;

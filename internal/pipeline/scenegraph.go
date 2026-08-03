@@ -144,6 +144,9 @@ const (
 	// SceneBudget is a fixed pot with claims taken out of it one at a time,
 	// closing on what is left.
 	SceneBudget = "budget"
+	// SceneLatency is a logarithmic time axis with its decades named and
+	// operations placed along it.
+	SceneLatency = "latency"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

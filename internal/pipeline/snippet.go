@@ -360,6 +360,9 @@ type SnippetPlan struct {
 	// Budget is the budget template's pot and the claims against it. On the plan
 	// because every beat is measured against the same pot.
 	Budget *BudgetSpec `json:"budget,omitempty"`
+	// Latency is the latency template's set of timed operations. On the plan
+	// because they share one axis, and the axis is derived from all of them.
+	Latency *LatencySpec `json:"latency,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -667,6 +670,11 @@ type SnippetBeat struct {
 	// Budget says whether this beat shows the pot whole, takes one claim out of
 	// it, or lands on the remainder.
 	Budget *BudgetBeat `json:"budget,omitempty"`
+
+	// --- latency template ---
+	// Latency says whether this beat draws the time axis, places one operation
+	// on it, or holds the picture and reads the gap.
+	Latency *LatencyBeat `json:"latency,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

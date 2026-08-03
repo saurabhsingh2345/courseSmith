@@ -71,6 +71,9 @@ const SOURCES = {
   // The remainder frame: the card should show the number the template exists to
   // state, not a bar part-way through being eaten.
   budget: "BudgetViz-1020",
+  // All three rows placed: a card with one bar on it looks like any chart, and
+  // the gap between the rows is the whole subject.
+  latency: "LatencyViz-960",
   // The two-column state rather than the call: the card should show the frame
   // the clip spends most of its time in, and a bare line of type would not read
   // as a distinct template on a gallery card.

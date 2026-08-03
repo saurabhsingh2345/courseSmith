@@ -132,6 +132,10 @@ const TARGETS = [
   // remainder as the gap that is left, and the figure counted out under it. It is
   // the frame the whole template exists for.
   { id: "BudgetViz", frame: 1020 },
+  // The latency axis with all three placed: a sliver at 0.1ms, a bar to 12ms,
+  // and one running almost the full width to 6.5s, over five named decades. It is
+  // the only state where the categorical gap the template exists for is visible.
+  { id: "LatencyViz", frame: 960 },
   // And mid-bite on the third claim, which is the only state that shows a segment
   // growing into a bar the earlier segments are not re-scaling inside.
   { id: "BudgetViz", frame: 660 },
