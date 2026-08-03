@@ -65,6 +65,9 @@ const SOURCES = {
   // After the split, so the card carries the divergence and the pages that did
   // not diverge — a pre-write frame is just a row of cells.
   fork: "ForkViz-420",
+  // After the grant, so the card shows the gap rather than a sealed box — a
+  // fully denied frame advertises a wall.
+  capabilities: "CapabilitiesViz-480",
   // The two-column state rather than the call: the card should show the frame
   // the clip spends most of its time in, and a bare line of type would not read
   // as a distinct template on a gallery card.

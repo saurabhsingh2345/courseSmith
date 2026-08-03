@@ -138,6 +138,9 @@ const (
 	// SceneFork is two processes over one memory, where a write splits a single
 	// page onto the writer's side and leaves the rest shared.
 	SceneFork = "fork"
+	// SceneCapabilities is a boundary around a subject with the things it cannot
+	// reach outside it, and the one or two deliberately handed in.
+	SceneCapabilities = "capabilities"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

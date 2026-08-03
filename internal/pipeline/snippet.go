@@ -354,6 +354,9 @@ type SnippetPlan struct {
 	// Fork is the fork template's two processes and the memory under them. On
 	// the plan because the memory is one object that persists for the whole clip.
 	Fork *ForkSpec `json:"fork,omitempty"`
+	// Capabilities is the capabilities template's boundary and what sits outside
+	// it. On the plan because the boundary persists for the whole clip.
+	Capabilities *CapabilitySpec `json:"capabilities,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -651,6 +654,11 @@ type SnippetBeat struct {
 	// Fork says whether this beat shows the shared memory, performs one write
 	// that splits a page, or holds the picture and reads it.
 	Fork *ForkBeat `json:"fork,omitempty"`
+
+	// --- capabilities template ---
+	// Capabilities says whether this beat seals the boundary, hands one thing
+	// in, or holds the picture and reads what is still shut.
+	Capabilities *CapabilityBeat `json:"capabilities,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

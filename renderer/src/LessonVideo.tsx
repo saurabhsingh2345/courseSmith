@@ -40,6 +40,7 @@ import {RankingScene} from './components/RankingScene';
 import {JournalScene} from './components/JournalScene';
 import {MultiplexScene} from './components/MultiplexScene';
 import {ForkScene} from './components/ForkScene';
+import {CapabilitiesScene} from './components/CapabilitiesScene';
 import {GaugeScene} from './components/GaugeScene';
 import {VerdictScene} from './components/VerdictScene';
 import {DecisionScene} from './components/DecisionScene';
@@ -177,6 +178,8 @@ const sceneContent = (
       return <MultiplexScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'fork':
       return <ForkScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'capabilities':
+      return <CapabilitiesScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'gauge':
       return <GaugeScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'verdict':
@@ -273,6 +276,9 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // A row of near-identical cells with one lit. A field behind them would put
     // a second brightness gradient across a row whose whole job is being even.
     case 'fork':
+    // The boundary already carries a glow, and it is the only thing on the frame
+    // that should. A field behind it would blur the line the picture is about.
+    case 'capabilities':
     // A dashed rule and a filling bar are thin marks. A field behind them
     // competes with the one line the whole clip is about.
     case 'gauge':

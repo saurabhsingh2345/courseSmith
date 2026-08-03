@@ -125,6 +125,7 @@ type planFields struct {
 	Journal       bool
 	Multiplex     bool
 	Fork          bool
+	Capabilities  bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -296,6 +297,9 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Fork {
 		p.Fork = nil
+	}
+	if !owns.Capabilities {
+		p.Capabilities = nil
 	}
 }
 

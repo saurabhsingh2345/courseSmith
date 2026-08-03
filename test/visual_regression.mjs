@@ -124,6 +124,10 @@ const TARGETS = [
   // parent's side, and five pages still shared at full strength beside it. Both
   // halves at once is the only state that says what copy-on-write is.
   { id: "ForkViz", frame: 420 },
+  // The boundary after its one grant: files across the line in the quantity
+  // colour, three capabilities still outside it carrying their crosses, and the
+  // count reading one of four. Both halves of the rule in one frame.
+  { id: "CapabilitiesViz", frame: 480 },
   // Mid-append, so the baseline also covers the first half — a line arriving at
   // the end of a file whose later slots are still empty.
   { id: "JournalViz", frame: 600 },

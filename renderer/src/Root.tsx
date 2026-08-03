@@ -1531,6 +1531,58 @@ const forkVizProps: LessonVideoProps = {
 };
 
 /**
+ * The capabilities template on the clip that motivated it: a WebAssembly module
+ * that cannot open a file unless the host passes one in.
+ *
+ * Four capabilities and one grant, deliberately. The fixture has to hold both
+ * halves of the rule at once — something across the line and something still
+ * refused — because a frame with all four denied is a wall and a frame with all
+ * four granted is the host, and neither is what the template draws.
+ */
+const capabilitiesVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 28000,
+  scenes: [
+    {
+      type: 'capabilities',
+      startMs: 0,
+      endMs: 28000,
+      props: {
+        title: 'It cannot open a file unless you let it',
+        emphasis: 'unless you let it',
+        emphasisRole: 'quantity',
+        subject: 'WASM module',
+        subjectNote: 'app.wasm',
+        boundary: 'zero default access',
+        granter: 'the host',
+        items: [
+          {label: 'files', note: 'Handed in as one directory, not the disk', role: 'quantity'},
+          {label: 'network', note: 'So a bad module cannot phone home, even if it wants to', role: 'limit'},
+          {label: 'the clock', note: 'Denied, which is why timing attacks get harder', role: 'limit'},
+          {label: 'random', note: 'Still shut unless the host passes a source', role: 'neutral'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 10000, show: 'sealed', granted: []},
+          {startMs: 10000, endMs: 20000, show: 'grant', at: 0, granted: [0]},
+          {startMs: 20000, endMs: 28000, show: 'read', granted: [0]},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
  * The verdict template on the example that motivated it: whether to self-host a
  * database. Three conditions it holds on, two it breaks on, and a call.
  */
@@ -2692,6 +2744,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(gaugeVizProps.durationMs)}
       defaultProps={gaugeVizProps}
+    />
+    <Composition
+      id="CapabilitiesViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(capabilitiesVizProps.durationMs)}
+      defaultProps={capabilitiesVizProps}
     />
     <Composition
       id="ForkViz"
