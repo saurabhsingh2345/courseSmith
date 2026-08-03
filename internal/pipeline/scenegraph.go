@@ -153,6 +153,9 @@ const (
 	// SceneRatio is two measurements on a shared scale with the proportion
 	// between them named in words.
 	SceneRatio = "ratio"
+	// SceneTable is a spec sheet shown evenly weighted and then stripped back to
+	// the one row that decides things.
+	SceneTable = "table"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

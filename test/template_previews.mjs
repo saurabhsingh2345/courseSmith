@@ -80,6 +80,9 @@ const SOURCES = {
   // With the phrase up: two bars alone are a chart, and the words are what makes
   // this template itself.
   ratio: "RatioViz-720",
+  // Stripped back rather than straight: an evenly weighted sheet is just a table,
+  // and the card has to show the move.
+  table: "TableViz-480",
   // The two-column state rather than the call: the card should show the frame
   // the clip spends most of its time in, and a bare line of type would not read
   // as a distinct template on a gallery card.

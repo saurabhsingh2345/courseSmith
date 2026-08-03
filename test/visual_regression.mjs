@@ -143,6 +143,12 @@ const TARGETS = [
   // The ratio on its closing beat: both bars against the same track with the
   // shortfall visible as a length, and the phrase set larger than either figure.
   { id: "RatioViz", frame: 720 },
+  // The sheet stripped back: five rows at a third, the fifth row holding its
+  // weight on a tinted plate with its rule, and every row still at the pixel it
+  // occupied while it was being skimmed past.
+  { id: "TableViz", frame: 480 },
+  // And straight, before the weighting goes — the setup the burial depends on.
+  { id: "TableViz", frame: 240 },
   // And mid-bite on the third claim, which is the only state that shows a segment
   // growing into a bar the earlier segments are not re-scaling inside.
   { id: "BudgetViz", frame: 660 },

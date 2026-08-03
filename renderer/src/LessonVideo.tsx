@@ -45,6 +45,7 @@ import {BudgetScene} from './components/BudgetScene';
 import {LatencyScene} from './components/LatencyScene';
 import {MultiplyScene} from './components/MultiplyScene';
 import {RatioScene} from './components/RatioScene';
+import {TableScene} from './components/TableScene';
 import {GaugeScene} from './components/GaugeScene';
 import {VerdictScene} from './components/VerdictScene';
 import {DecisionScene} from './components/DecisionScene';
@@ -192,6 +193,8 @@ const sceneContent = (
       return <MultiplyScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'ratio':
       return <RatioScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'table':
+      return <TableScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'gauge':
       return <GaugeScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'verdict':
@@ -303,6 +306,9 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // Two aligned bars whose difference in length IS the content. A gradient
     // behind them would make one end of each bar read as longer than it is.
     case 'ratio':
+    // The sheet's fidelity is the setup, and a field behind it would make it look
+    // like a designed object rather than something a manufacturer printed.
+    case 'table':
     // A dashed rule and a filling bar are thin marks. A field behind them
     // competes with the one line the whole clip is about.
     case 'gauge':

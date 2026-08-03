@@ -137,7 +137,8 @@ export type SceneType =
   | 'budget'
   | 'latency'
   | 'multiply'
-  | 'ratio';
+  | 'ratio'
+  | 'table';
 
 export type Scene = {
   type: SceneType;

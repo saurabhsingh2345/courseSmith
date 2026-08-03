@@ -369,6 +369,9 @@ type SnippetPlan struct {
 	// Ratio is the ratio template's pair and the proportion between them. On the
 	// plan because the clip builds one statement across its beats.
 	Ratio *RatioSpec `json:"ratio,omitempty"`
+	// Table is the table template's spec sheet and the row that decides things.
+	// On the plan because the sheet is one object every beat looks at.
+	Table *TableSpec `json:"table,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -689,6 +692,11 @@ type SnippetBeat struct {
 	// --- ratio template ---
 	// Ratio says which part of the proportion this beat states.
 	Ratio *RatioBeat `json:"ratio,omitempty"`
+
+	// --- table template ---
+	// Table says whether this beat shows the whole sheet, focuses the row that
+	// matters, or reads what that row decides.
+	Table *TableBeat `json:"table,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

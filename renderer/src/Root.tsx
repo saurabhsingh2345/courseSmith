@@ -1835,6 +1835,59 @@ const ratioVizProps: LessonVideoProps = {
 };
 
 /**
+ * The table template on the frame that motivated it: a GPU spec sheet where the
+ * line that decides whether a model fits is the fifth of six.
+ *
+ * The rows are in the order the real product page prints them, which is the
+ * subject — the fixture would prove nothing if the buried row had been moved to
+ * make it easier to bury.
+ */
+const tableVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 26000,
+  scenes: [
+    {
+      type: 'table',
+      startMs: 0,
+      endMs: 26000,
+      props: {
+        title: 'The line the spec sheet buries',
+        emphasis: 'buries',
+        emphasisRole: 'limit',
+        source: 'RTX 5090, from the product page',
+        rows: [
+          {label: 'CUDA Cores', value: '21,760'},
+          {label: 'Tensor Cores', value: '680'},
+          {label: 'Boost Clock', value: '2.52 GHz'},
+          {label: 'Memory Bandwidth', value: '1,792 GB/s'},
+          {label: 'Memory Capacity', value: '32 GB'},
+          {label: 'TDP', value: '575 W'},
+        ],
+        at: 4,
+        note: 'Every other number is irrelevant if the model does not fit in this one',
+        role: 'limit',
+        steps: [
+          {startMs: 0, endMs: 10000, show: 'sheet'},
+          {startMs: 10000, endMs: 19000, show: 'focus'},
+          {startMs: 19000, endMs: 26000, show: 'read'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
  * The verdict template on the example that motivated it: whether to self-host a
  * database. Three conditions it holds on, two it breaks on, and a call.
  */
@@ -2996,6 +3049,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(gaugeVizProps.durationMs)}
       defaultProps={gaugeVizProps}
+    />
+    <Composition
+      id="TableViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(tableVizProps.durationMs)}
+      defaultProps={tableVizProps}
     />
     <Composition
       id="RatioViz"
