@@ -136,7 +136,8 @@ export type SceneType =
   | 'capabilities'
   | 'budget'
   | 'latency'
-  | 'multiply';
+  | 'multiply'
+  | 'ratio';
 
 export type Scene = {
   type: SceneType;

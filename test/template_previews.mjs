@@ -77,6 +77,9 @@ const SOURCES = {
   // The whole sentence rather than a mid-build state: the card has to show the
   // small figure and the product together or it is just a number.
   multiply: "MultiplyViz-750",
+  // With the phrase up: two bars alone are a chart, and the words are what makes
+  // this template itself.
+  ratio: "RatioViz-720",
   // The two-column state rather than the call: the card should show the frame
   // the clip spends most of its time in, and a bare line of type would not read
   // as a distinct template on a gallery card.

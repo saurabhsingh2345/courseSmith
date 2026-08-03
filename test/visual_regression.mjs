@@ -140,6 +140,9 @@ const TARGETS = [
   // eight glyphs, the product beneath it, and the caveat chip. It is the only
   // state that holds the whole sentence at once.
   { id: "MultiplyViz", frame: 750 },
+  // The ratio on its closing beat: both bars against the same track with the
+  // shortfall visible as a length, and the phrase set larger than either figure.
+  { id: "RatioViz", frame: 720 },
   // And mid-bite on the third claim, which is the only state that shows a segment
   // growing into a bar the earlier segments are not re-scaling inside.
   { id: "BudgetViz", frame: 660 },

@@ -1784,6 +1784,57 @@ const multiplyVizProps: LessonVideoProps = {
 };
 
 /**
+ * The ratio template on the frame that motivated it: the DGX Spark's memory
+ * bandwidth against a Mac Studio's.
+ *
+ * 270 out of 800 is 0.3375, which the clip calls "a third" — the case the
+ * tolerance exists for. A fixture with round numbers would never exercise the
+ * gap between the arithmetic and the phrase a person actually says.
+ */
+const ratioVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 28000,
+  scenes: [
+    {
+      type: 'ratio',
+      startMs: 0,
+      endMs: 28000,
+      props: {
+        // Deliberately NOT "a third of the Mac": the phrase is set at 104px below
+        // the bars, and repeating it in the headline made the frame stutter — the
+        // same words twice reads as a rendering fault rather than as emphasis.
+        // The headline sets up the omission; the phrase is the payoff.
+        title: 'The spec sheet leaves this out',
+        emphasis: 'leaves this out',
+        emphasisRole: 'limit',
+        unit: 'GB/s',
+        reference: {label: 'Mac Studio M3 Ultra', value: 800, role: 'rival'},
+        subject: {label: 'DGX Spark', value: 270, role: 'limit', frac: 0.3375},
+        phrase: 'a third',
+        note: 'So every token comes out slower, whatever the spec sheet leads with',
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'reference'},
+          {startMs: 8000, endMs: 15000, show: 'subject'},
+          {startMs: 15000, endMs: 22000, show: 'fraction'},
+          {startMs: 22000, endMs: 28000, show: 'read'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
  * The verdict template on the example that motivated it: whether to self-host a
  * database. Three conditions it holds on, two it breaks on, and a call.
  */
@@ -2945,6 +2996,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(gaugeVizProps.durationMs)}
       defaultProps={gaugeVizProps}
+    />
+    <Composition
+      id="RatioViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(ratioVizProps.durationMs)}
+      defaultProps={ratioVizProps}
     />
     <Composition
       id="MultiplyViz"

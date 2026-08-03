@@ -129,6 +129,7 @@ type planFields struct {
 	Budget        bool
 	Latency       bool
 	Multiply      bool
+	Ratio         bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -312,6 +313,9 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Multiply {
 		p.Multiply = nil
+	}
+	if !owns.Ratio {
+		p.Ratio = nil
 	}
 }
 

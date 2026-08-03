@@ -366,6 +366,9 @@ type SnippetPlan struct {
 	// Multiply is the multiply template's one statement: a per-unit figure, a
 	// count and the product. On the plan because the beats build one sentence.
 	Multiply *MultiplySpec `json:"multiply,omitempty"`
+	// Ratio is the ratio template's pair and the proportion between them. On the
+	// plan because the clip builds one statement across its beats.
+	Ratio *RatioSpec `json:"ratio,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -682,6 +685,10 @@ type SnippetBeat struct {
 	// --- multiply template ---
 	// Multiply says which part of the multiplication this beat states.
 	Multiply *MultiplyBeat `json:"multiply,omitempty"`
+
+	// --- ratio template ---
+	// Ratio says which part of the proportion this beat states.
+	Ratio *RatioBeat `json:"ratio,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

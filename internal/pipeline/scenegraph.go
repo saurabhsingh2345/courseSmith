@@ -150,6 +150,9 @@ const (
 	// SceneMultiply is a per-unit figure, a row of glyphs for the count, and the
 	// product that comes of the two.
 	SceneMultiply = "multiply"
+	// SceneRatio is two measurements on a shared scale with the proportion
+	// between them named in words.
+	SceneRatio = "ratio"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file
