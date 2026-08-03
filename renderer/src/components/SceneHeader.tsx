@@ -1,5 +1,6 @@
 import {interpolate, useCurrentFrame} from 'remotion';
 import {ResolvedTheme} from '../theme/theme';
+import {splitHeadline} from './headline';
 
 // SceneHeader is the single title treatment for the whole lesson.
 //
@@ -10,15 +11,75 @@ import {ResolvedTheme} from '../theme/theme';
 // scenes whose title *is* the composition, `compact` for scenes where a window
 // or diagram is the subject and the title is a label above it.
 
+/** Which semantic accent an emphasised phrase is painted in. */
+export type EmphasisRole = 'quantity' | 'limit' | 'rival';
+
+const emphasisColour = (theme: ResolvedTheme, role?: string): string => {
+  switch (role) {
+    case 'limit':
+      return theme.accentLimit;
+    case 'rival':
+      return theme.accentRival;
+    case 'quantity':
+      return theme.accentQuantity;
+    default:
+      // No role stated is not a reason to paint nothing: the whole point of the
+      // treatment is that one phrase is louder than the rest. The brand accent
+      // is the honest default because it makes no claim about meaning, which is
+      // exactly what an unroled emphasis is.
+      return theme.accentText;
+  }
+};
+
+/**
+ * The headline, with at most one phrase in a semantic accent.
+ *
+ * Every headline in the reference look has exactly one coloured span, and it is
+ * most of why the type reads as designed. The colour is chosen by what the
+ * phrase is *doing* — the number under discussion, the ceiling it hits, the
+ * alternative — never by taste, for the same reason the metric template colours
+ * its figures by role. See videoskin.go.
+ */
+const Headline: React.FC<{
+  theme: ResolvedTheme;
+  title: string;
+  emphasis?: string;
+  emphasisRole?: string;
+  style: React.CSSProperties;
+}> = ({theme, title, emphasis, emphasisRole, style}) => {
+  const segments = splitHeadline(title, emphasis ?? '');
+  if (segments.length < 2) {
+    return <div style={style}>{title}</div>;
+  }
+  const colour = emphasisColour(theme, emphasisRole);
+  return (
+    <div style={style}>
+      {segments.map((seg, i) => (
+        <span key={i} style={seg.mark ? {color: colour} : undefined}>
+          {seg.text}
+        </span>
+      ))}
+    </div>
+  );
+};
+
 export const SceneHeader: React.FC<{
   theme: ResolvedTheme;
   title: string;
   /** Eyebrow above the title. Omitted entirely when blank. */
   kicker?: string;
+  /**
+   * A literal phrase of `title` to set in a semantic accent. Go guarantees it
+   * occurs in the title (containsPhrase); anything that does not match leaves
+   * the headline in one colour rather than failing.
+   */
+  emphasis?: string;
+  /** What the emphasised phrase is doing: quantity | limit | rival. */
+  emphasisRole?: string;
   size?: 'display' | 'compact';
   /** Space below the header, so callers control their own rhythm. */
   marginBottom?: number;
-}> = ({theme, title, kicker, size = 'display', marginBottom}) => {
+}> = ({theme, title, kicker, emphasis, emphasisRole, size = 'display', marginBottom}) => {
   const frame = useCurrentFrame();
   const enter = interpolate(frame, [2, 16], [0, 1], {
     extrapolateLeft: 'clamp',
@@ -51,7 +112,11 @@ export const SceneHeader: React.FC<{
           transform: `translateY(${(1 - enter) * 12}px)`,
         }}
       >
-        <div
+        <Headline
+          theme={theme}
+          title={title}
+          emphasis={emphasis}
+          emphasisRole={emphasisRole}
           style={{
             fontFamily: theme.fontDisplay,
             // Large enough that a five-word headline is the loudest thing in
@@ -66,9 +131,7 @@ export const SceneHeader: React.FC<{
             textAlign: 'center',
             maxWidth: 1500,
           }}
-        >
-          {title}
-        </div>
+        />
       </div>
     );
   }
@@ -88,7 +151,11 @@ export const SceneHeader: React.FC<{
           transform: `translateY(${(1 - enter) * 12}px)`,
         }}
       >
-        <div
+        <Headline
+          theme={theme}
+          title={title}
+          emphasis={emphasis}
+          emphasisRole={emphasisRole}
           style={{
             fontFamily: theme.fontDisplay,
             fontSize: display ? 50 : 34,
@@ -99,9 +166,7 @@ export const SceneHeader: React.FC<{
             textAlign: 'center',
             maxWidth: 1400,
           }}
-        >
-          {title}
-        </div>
+        />
       </div>
     );
   }
@@ -133,7 +198,11 @@ export const SceneHeader: React.FC<{
           {kicker}
         </div>
       ) : null}
-      <div
+      <Headline
+        theme={theme}
+        title={title}
+        emphasis={emphasis}
+        emphasisRole={emphasisRole}
         style={{
           fontFamily: theme.fontDisplay,
           fontSize: display ? 64 : 40,
@@ -144,9 +213,7 @@ export const SceneHeader: React.FC<{
           textAlign: 'center',
           maxWidth: 1400,
         }}
-      >
-        {title}
-      </div>
+      />
       <div
         style={{
           marginTop: display ? 22 : 15,

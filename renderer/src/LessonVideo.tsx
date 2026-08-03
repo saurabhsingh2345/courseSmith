@@ -35,6 +35,11 @@ import {SpecScene} from './components/SpecScene';
 import {ShowcaseScene} from './components/ShowcaseScene';
 import {BreakdownScene} from './components/BreakdownScene';
 import {MetricScene} from './components/MetricScene';
+import {OccupancyScene} from './components/OccupancyScene';
+import {RankingScene} from './components/RankingScene';
+import {JournalScene} from './components/JournalScene';
+import {MultiplexScene} from './components/MultiplexScene';
+import {ForkScene} from './components/ForkScene';
 import {GaugeScene} from './components/GaugeScene';
 import {VerdictScene} from './components/VerdictScene';
 import {DecisionScene} from './components/DecisionScene';
@@ -162,6 +167,16 @@ const sceneContent = (
       return <BreakdownScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'metric':
       return <MetricScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'occupancy':
+      return <OccupancyScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'ranking':
+      return <RankingScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'journal':
+      return <JournalScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'multiplex':
+      return <MultiplexScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'fork':
+      return <ForkScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'gauge':
       return <GaugeScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'verdict':
@@ -243,6 +258,21 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // A figure at 250pt is the only thing that should be bright on the frame.
     // Anything drifting behind it competes with the one mark the clip is about.
     case 'metric':
+    // A grid of up to twelve hundred cells is already the busiest frame in the
+    // catalog. A field behind it reads as more cells.
+    case 'occupancy':
+    // Rows travelling across a drifting field read as two things moving. The
+    // one movement on this frame has to be the re-sort.
+    case 'ranking':
+    // A monospace panel on a lit field is a code listing with a glow behind it.
+    // The cursor is the only thing here that should catch the eye.
+    case 'journal':
+    // The frame is mostly empty on purpose — that imbalance is the argument. A
+    // field filling the gap would take the emptiness away.
+    case 'multiplex':
+    // A row of near-identical cells with one lit. A field behind them would put
+    // a second brightness gradient across a row whose whole job is being even.
+    case 'fork':
     // A dashed rule and a filling bar are thin marks. A field behind them
     // competes with the one line the whole clip is about.
     case 'gauge':

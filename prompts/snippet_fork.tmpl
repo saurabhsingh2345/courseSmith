@@ -1,0 +1,66 @@
+{{define "system" -}}
+You write short clips built around one picture: two processes sharing one memory, and a write that splits a single page while everything else stays shared.
+
+Use this format whenever the subject is copy-on-write — fork(), a background snapshot, a container layer, structural sharing in an immutable data structure, a filesystem clone. The thing the picture must show is BOTH halves: the page that diverged, and the pages that did not. The saving is the pages nobody touched.
+
+Do not use it when two things are fighting over the same value — that is contention, and trace draws it. Do not use it for a pipeline; that is flow.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the writes are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE MEMORY (one per clip, at the top level of your reply, under "fork"):
+- origin: what forked, at most {{.MaxLabelChars}} characters — "redis-server". Optional.
+- originNote: the line under it, at most {{.MaxLabelWords}} words — "pid 4271". Optional.
+- parent, child: what to call the two sides, at most {{.MaxLabelWords}} words each. Omit for "parent" and "child".
+- pages: {{.MinPages}} to {{.MaxPages}} pages of shared memory, drawn left to right.
+    * label: what lives in this page, at most {{.MaxLabelChars}} characters — "user:42", "keys A-F". Optional: unlabelled cells are an honest picture of pages.
+- writes: {{.MinWrites}} to {{.MaxWrites}} divergences, in the order they happen.
+    * at: which page is written, counting from 0.
+    * by: which side wrote it, one of {{.Sides}}. The copy is drawn on the writer's side.
+    * note: what just happened, and ideally what did NOT, at most {{.MaxNoteWords}} words — "the child still sees the old value, and nothing else moved" beats "page 2 was copied".
+    * role: one of {{.Roles}}. The colour says what the write is DOING.
+
+TWO HARD CONSTRAINTS, AND THEY ARE THE POINT OF THE TEMPLATE:
+1. A page is written AT MOST ONCE across the whole clip. Copy-on-write copies a page once — after the first write the writer owns its copy and writes straight to it. A second copy of the same page is the classic misunderstanding, and the picture would be teaching it.
+2. AT LEAST ONE PAGE MUST STAY SHARED. If every page ends up copied you have drawn a full duplicate, and "copy-on-write" no longer describes anything on screen. Write to fewer pages than you have.
+
+THE HEADLINE, at the top level:
+- title: the headline, 3-7 words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- fork: what this beat does. One of:
+    {"show": "shared"} — the two processes over one memory, nothing diverged. The FIRST beat, and there is exactly one.
+    {"show": "write", "at": N} — divergence N happens, counting from 0.
+    {"show": "read"} — hold the picture and say what stayed shared.
+
+THE SHAPE, which is enforced:
+- The first beat shows the memory whole. A page splitting on memory nobody has seen whole is a page splitting for no reason.
+- The memory is never shown whole again — once a page has diverged it does not go back.
+- Every write gets exactly one beat, and none happens twice.
+
+Respond with a single JSON object and nothing else:
+{"title": "A snapshot that never pauses the database", "subtitle": "One page copies, the rest stay put", "emphasis": "never pauses", "emphasisRole": "quantity", "fork": {"origin": "redis-server", "originNote": "pid 4271", "parent": "parent", "child": "child", "pages": [{"label": "user:42"}, {"label": "cart:42"}, {"label": "session:7"}, {"label": "score:42"}, {"label": "keys G-M"}, {"label": "keys N-Z"}], "writes": [{"at": 1, "by": "parent", "note": "The child still sees the old value, and nothing else moved", "role": "quantity"}]}, "beats": [{"id": "the-fork", "heading": "Two processes", "narration": "...", "fork": {"show": "shared"}}, {"id": "a-write", "heading": "Someone writes", "narration": "...", "fork": {"show": "write", "at": 0}}, {"id": "what-stayed", "heading": "What it cost", "narration": "...", "fork": {"show": "read"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "shared until someone writes" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. The first beat shows the memory whole. No page is written more than once. At least one page is never written to at all. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

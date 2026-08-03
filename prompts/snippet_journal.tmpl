@@ -1,0 +1,62 @@
+{{define "system" -}}
+You write short clips built around one picture: an append-only file growing at the bottom, and then replayed from the top.
+
+Use this format whenever the subject is a log that IS the source of truth — a write-ahead log, an append-only file, an event stream, a migration history, an audit trail. The clip has two halves and needs both: lines arrive at the end one at a time, and then a cursor walks back down from the top and each line happens again. A viewer who has watched that understands durability without being told.
+
+Do not use it for a sequence of events that is not a file — that is timeline. Do not use it for a file being edited, where lines change in place; the whole point here is that they never do.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the file is timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE LOG (one per clip, at the top level of your reply, under "journal"):
+- file: the log's name as it should read on screen, at most {{.MaxFileChars}} characters — "appendonly.aof", "events.jsonl", "0042_add_index.sql".
+- writeLabel: what the writing phase is called, at most {{.MaxLabelWords}} words. Omit for "appending".
+- replayLabel: what the reading phase is called, at most {{.MaxLabelWords}} words. Omit for "replaying — top to bottom".
+- entries: {{.MinEntries}} to {{.MaxEntries}} lines, IN THE ORDER THEY ARE WRITTEN.
+    * text: the line exactly as it appears in the file, at most {{.MaxTextChars}} characters. A real command or record — "SET user:42 alice", "DEL cart:42". Monospace, one line, no prose.
+    * note: what this line means when it is replayed, at most {{.MaxNoteWords}} words. Optional, and worth having on the lines the replay stops at.
+    * role: one of {{.Roles}}. Most lines are "neutral"; use a role for the one or two that carry the argument.
+
+THE HEADLINE, at the top level:
+- title: the headline, 3-7 words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- journal: what this beat does. One of:
+    {"show": "file"} — the empty file, with its line numbers and nothing in it. The FIRST beat, and there is exactly one.
+    {"show": "append", "at": N} — line N is written at the end, counting from 0.
+    {"show": "replay", "at": N} — the cursor lands on line N during the replay.
+    {"show": "read"} — hold the finished file and say what it means.
+
+THE SHAPE, which is enforced and is the point of the whole template:
+- The first beat opens the EMPTY file. Lines that were already there did not arrive.
+- Appends only ever move DOWN the file: each append index is higher than the one before it. A log grows at the bottom, and writing above what is already there is the one thing it cannot do. You do not have to give every line its own beat — appending line 5 when line 2 was the last one says "and three more landed", and the skipped lines are drawn as written.
+- A line cannot be replayed before it was appended.
+- REPLAY RUNS IN APPEND ORDER, always increasing. An append-only log has exactly one read order and it is the write order. A replay that jumps around is random access, and drawing it as a replay teaches the opposite of the truth.
+- Both halves happen: at least one append and at least one replay. A clip that only writes has drawn half the picture.
+
+Respond with a single JSON object and nothing else:
+{"title": "The file that rebuilds your database", "subtitle": "Every write, in the order it happened", "emphasis": "rebuilds", "emphasisRole": "quantity", "journal": {"file": "appendonly.aof", "entries": [{"text": "SET user:42 alice", "note": "The first write anyone made", "role": "neutral"}, {"text": "SET cart:42 [items]", "role": "neutral"}, {"text": "INCR visits", "role": "neutral"}, {"text": "DEL cart:42", "note": "The delete is a record too, not an erasure", "role": "limit"}, {"text": "SET score:42 1200", "role": "neutral"}]}, "beats": [{"id": "empty", "heading": "An empty file", "narration": "...", "journal": {"show": "file"}}, {"id": "first-write", "heading": "The first write", "narration": "...", "journal": {"show": "append", "at": 0}}, {"id": "and-more", "heading": "It only grows", "narration": "...", "journal": {"show": "append", "at": 1}}, {"id": "a-delete", "heading": "Even deletes", "narration": "...", "journal": {"show": "append", "at": 3}}, {"id": "replay-start", "heading": "Now read it back", "narration": "...", "journal": {"show": "replay", "at": 0}}, {"id": "replay-delete", "heading": "The delete replays too", "narration": "...", "journal": {"show": "replay", "at": 3}}, {"id": "rebuilt", "heading": "Same state", "narration": "...", "journal": {"show": "read"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "written, then replayed" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check five things. The first beat opens the empty file. Appends run consecutively from line 0. Nothing is replayed before it was appended. Every replay index is HIGHER than the one before it. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

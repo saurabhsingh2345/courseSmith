@@ -123,6 +123,21 @@ const (
 	// SceneScale is a ladder of nested worlds with the camera pulling back an
 	// order of magnitude at a time.
 	SceneScale = "scale"
+	// SceneOccupancy is a grid of identical units, all of it visible at once,
+	// with bands of it claimed one at a time.
+	SceneOccupancy = "occupancy"
+	// SceneRanking is an ordered board that re-sorts as entries land on it, the
+	// rows sliding to their new places rather than being redrawn.
+	SceneRanking = "ranking"
+	// SceneJournal is an append-only file growing at the bottom, then replayed
+	// from the top with a cursor walking down it.
+	SceneJournal = "journal"
+	// SceneMultiplex is a pool of identical sources where several go ready at
+	// once and a single worker takes them in one pass.
+	SceneMultiplex = "multiplex"
+	// SceneFork is two processes over one memory, where a write splits a single
+	// page onto the writer's side and leaves the rest shared.
+	SceneFork = "fork"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

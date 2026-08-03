@@ -4,6 +4,7 @@ import {FPS} from '../types';
 import {ResolvedTheme} from '../theme/theme';
 import {Stage, STAGE_H, STAGE_W} from './Stage';
 import {FIGURE_BOX, figureFor, type FigurePalette} from './artwork';
+import {headlineWords} from './headline';
 
 // IllustrationScene is kinetic typography with a figure beside it.
 //
@@ -35,52 +36,8 @@ const ENTER = {
 const GUTTER = 84;
 const FIGURE_COL = 0.4;
 
-type Segment = {text: string; mark: boolean};
-
-/**
- * Splits a headline so the emphasised phrase is a single segment.
- *
- * Matching is done on a normalised copy but the slice comes out of the
- * original, so the headline keeps its own capitalisation and punctuation — the
- * model naming the phrase in lower case should not restyle the line.
- */
-const splitHeadline = (headline: string, emphasis: string): Segment[] => {
-  const phrase = emphasis.trim();
-  if (!phrase) {
-    return [{text: headline, mark: false}];
-  }
-  const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9 ]/g, '');
-  const at = norm(headline).indexOf(norm(phrase));
-  if (at < 0 || norm(phrase) === '') {
-    return [{text: headline, mark: false}];
-  }
-  // norm() only ever drops characters, so walking the original in step with the
-  // normalised index recovers the true offsets.
-  let seen = 0;
-  let start = -1;
-  let end = -1;
-  for (let i = 0; i < headline.length; i++) {
-    if (seen === at && start < 0) start = i;
-    if (seen === at + norm(phrase).length && end < 0) end = i;
-    if (norm(headline[i]).length > 0) seen++;
-  }
-  if (start < 0) return [{text: headline, mark: false}];
-  if (end < 0) end = headline.length;
-  return [
-    {text: headline.slice(0, start), mark: false},
-    {text: headline.slice(start, end), mark: true},
-    {text: headline.slice(end), mark: false},
-  ].filter((s) => s.text.length > 0);
-};
-
-/** Segments flattened to words, each keeping whether it is emphasised. */
-const headlineWords = (headline: string, emphasis: string): Segment[] =>
-  splitHeadline(headline, emphasis).flatMap((seg) =>
-    seg.text
-      .split(/(\s+)/)
-      .filter((w) => w.trim().length > 0)
-      .map((w) => ({text: w, mark: seg.mark})),
-  );
+// The headline split lives in headline.ts: the shared header needs the same
+// "which characters did they mean" answer for a different paint.
 
 export const IllustrationScene: React.FC<{
   theme: ResolvedTheme;

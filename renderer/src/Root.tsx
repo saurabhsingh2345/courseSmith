@@ -1199,6 +1199,338 @@ const gaugeVizProps: LessonVideoProps = {
 };
 
 /**
+ * The occupancy template on the clip that motivated it: a mixture-of-experts
+ * model where sixteen of eight hundred and ninety-six experts run per token.
+ *
+ * The population is deliberately near the top of the template's range, because
+ * the cell geometry is the part most likely to break: at 896 cells the squares
+ * are a few pixels across and the gap is derived rather than fixed. A fixture at
+ * twenty cells would prove nothing about the case the template exists for.
+ *
+ * The skin is `broadcast` because this batch assumes it — the grid is composed
+ * for a near-black stage with air around it, and the baseline should be of the
+ * thing people will actually render.
+ */
+const occupancyVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    // Carried explicitly for the same reason as the gauge: the band's role is
+    // the whole argument, and without the semantic accents an "active" band
+    // renders the same brand gold as a "limit" one.
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [
+    {
+      type: 'occupancy',
+      startMs: 0,
+      endMs: 30000,
+      props: {
+        title: '16 of 896 experts do the work',
+        emphasis: '16',
+        emphasisRole: 'quantity',
+        total: 896,
+        unit: 'expert',
+        label: "the model's experts",
+        // As occupancyGridShape derives them: round(sqrt(896 * 16/9)) = 40.
+        cols: 40,
+        rows: 23,
+        bands: [
+          {
+            count: 16,
+            from: 0,
+            label: 'Active this token',
+            note: 'Every other one sits idle while still holding memory',
+            role: 'quantity',
+          },
+          {
+            count: 120,
+            from: 16,
+            label: 'Warm in cache',
+            note: 'Recently used, so still resident and still costing you',
+            role: 'neutral',
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 9000, show: 'grid'},
+          {startMs: 9000, endMs: 17000, show: 'fill', at: 0},
+          {startMs: 17000, endMs: 24000, show: 'fill', at: 1},
+          {startMs: 24000, endMs: 30000, show: 'read'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The ranking template on the clip that motivated it: one write into a sorted
+ * set, and the board re-sorting around it.
+ *
+ * Two arrivals rather than one, because the interesting case is the SECOND —
+ * the board is already full, so a row landing inside it pushes the bottom row
+ * off, and the exit is the half of the picture a single arrival never exercises.
+ */
+const rankingVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 32000,
+  scenes: [
+    {
+      type: 'ranking',
+      startMs: 0,
+      endMs: 32000,
+      props: {
+        title: 'One write, and the board re-sorts',
+        emphasis: 'One write',
+        emphasisRole: 'quantity',
+        metric: 'score',
+        entries: [
+          {label: 'shadowwolf', value: 9842, role: 'neutral', arrival: false},
+          {label: 'neon_blade', value: 9610, role: 'neutral', arrival: false},
+          {label: 'kira_07', value: 9354, role: 'neutral', arrival: false},
+          {label: 'mochi', value: 9128, role: 'neutral', arrival: false},
+          {label: 'vortex', value: 8901, role: 'neutral', arrival: false},
+          {
+            label: 'phoenix',
+            value: 9501,
+            note: 'The write and the re-sort are one operation, not two',
+            role: 'quantity',
+            arrival: true,
+          },
+          {
+            label: 'ghoststep',
+            value: 9990,
+            note: 'Straight to the top, and mochi drops off the board',
+            role: 'quantity',
+            arrival: true,
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 9000, show: 'board', order: [0, 1, 2, 3, 4]},
+          {startMs: 9000, endMs: 17000, show: 'insert', at: 0, entered: 5, order: [0, 1, 5, 2, 3]},
+          {startMs: 17000, endMs: 26000, show: 'insert', at: 1, entered: 6, order: [6, 0, 1, 5, 2]},
+          {startMs: 26000, endMs: 32000, show: 'read', order: [6, 0, 1, 5, 2]},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The journal template on the clip that motivated it: an append-only file that
+ * rebuilds a dataset when it is read back.
+ *
+ * The fixture stops the replay on the DELETE rather than on a write, because the
+ * delete is the line that makes the point — an append-only log records the
+ * removal as another entry, and a viewer who has only seen SETs replay has not
+ * understood why the file is the source of truth.
+ */
+const journalVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 44000,
+  scenes: [
+    {
+      type: 'journal',
+      startMs: 0,
+      endMs: 44000,
+      props: {
+        title: 'The file that rebuilds your database',
+        emphasis: 'rebuilds',
+        emphasisRole: 'quantity',
+        file: 'appendonly.aof',
+        writeLabel: 'appending',
+        replayLabel: 'replaying — top to bottom',
+        entries: [
+          {text: 'SET user:42 alice', note: 'The first write anyone made', role: 'neutral'},
+          {text: 'SET cart:42 [items]', role: 'neutral'},
+          {text: 'INCR visits', role: 'neutral'},
+          {text: 'DEL cart:42', note: 'The delete is a record too, not an erasure', role: 'limit'},
+          {text: 'SET score:42 1200', role: 'neutral'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 7000, show: 'file', written: 0},
+          {startMs: 7000, endMs: 13000, show: 'append', at: 0, written: 1},
+          {startMs: 13000, endMs: 19000, show: 'append', at: 1, written: 2},
+          {startMs: 19000, endMs: 25000, show: 'append', at: 2, written: 3},
+          {startMs: 25000, endMs: 31000, show: 'append', at: 3, written: 4},
+          {startMs: 31000, endMs: 36000, show: 'replay', at: 0, written: 4},
+          {startMs: 36000, endMs: 41000, show: 'replay', at: 3, written: 4},
+          {startMs: 41000, endMs: 44000, show: 'read', written: 4},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The multiplex template on the clip that motivated it: one thread serving a
+ * pool of sockets.
+ *
+ * The fixture's second round wakes three sources rather than one, because that
+ * is the state the template exists for and the one a single-round fixture would
+ * never exercise — one ready socket draws the same picture as polling.
+ */
+const multiplexVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [
+    {
+      type: 'multiplex',
+      startMs: 0,
+      endMs: 30000,
+      props: {
+        title: 'One thread, a hundred thousand clients',
+        emphasis: 'One thread',
+        emphasisRole: 'quantity',
+        sourceKind: 'sockets',
+        worker: 'epoll',
+        workerNote: '1 thread',
+        sources: [
+          {label: '#00428'},
+          {label: '#00429'},
+          {label: '#00430'},
+          {label: '#00431'},
+          {label: '#00432'},
+          {label: '#00433'},
+          {label: '#00434'},
+          {label: '#00435'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'pool'},
+          {
+            startMs: 8000,
+            endMs: 15000,
+            show: 'round',
+            at: 0,
+            ready: [1],
+            note: 'One socket has data, so one gets handled',
+            role: 'neutral',
+          },
+          {
+            startMs: 15000,
+            endMs: 24000,
+            show: 'round',
+            at: 1,
+            ready: [4, 6, 7],
+            note: 'Three woke together, and one thread took all three',
+            role: 'quantity',
+          },
+          {startMs: 24000, endMs: 30000, show: 'read'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The fork template on the clip that motivated it: a background snapshot that
+ * never pauses the database.
+ *
+ * Six pages and one write, deliberately. The fixture has to prove the half of
+ * the picture that is easy to lose — five pages still shared, at full strength,
+ * beside the one that diverged.
+ */
+const forkVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 26000,
+  scenes: [
+    {
+      type: 'fork',
+      startMs: 0,
+      endMs: 26000,
+      props: {
+        title: 'A snapshot that never pauses the database',
+        emphasis: 'never pauses',
+        emphasisRole: 'quantity',
+        origin: 'redis-server',
+        originNote: 'pid 4271',
+        parent: 'parent',
+        child: 'child',
+        pages: [
+          {label: 'user:42'},
+          {label: 'cart:42'},
+          {label: 'session:7'},
+          {label: 'score:42'},
+          {label: 'keys G-M'},
+          {label: 'keys N-Z'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 9000, show: 'shared', copied: {}},
+          {
+            startMs: 9000,
+            endMs: 19000,
+            show: 'write',
+            at: 1,
+            by: 'parent',
+            note: 'The child still sees the old value, and nothing else moved',
+            role: 'quantity',
+            copied: {'1': 'parent'},
+          },
+          {
+            startMs: 19000,
+            endMs: 26000,
+            show: 'read',
+            note: 'Five of the six pages are still one page',
+            copied: {'1': 'parent'},
+          },
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
  * The verdict template on the example that motivated it: whether to self-host a
  * database. Three conditions it holds on, two it breaks on, and a call.
  */
@@ -2360,6 +2692,51 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(gaugeVizProps.durationMs)}
       defaultProps={gaugeVizProps}
+    />
+    <Composition
+      id="ForkViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(forkVizProps.durationMs)}
+      defaultProps={forkVizProps}
+    />
+    <Composition
+      id="MultiplexViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(multiplexVizProps.durationMs)}
+      defaultProps={multiplexVizProps}
+    />
+    <Composition
+      id="JournalViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(journalVizProps.durationMs)}
+      defaultProps={journalVizProps}
+    />
+    <Composition
+      id="RankingViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(rankingVizProps.durationMs)}
+      defaultProps={rankingVizProps}
+    />
+    <Composition
+      id="OccupancyViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(occupancyVizProps.durationMs)}
+      defaultProps={occupancyVizProps}
     />
     <Composition
       id="MetricViz"

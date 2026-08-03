@@ -24,6 +24,7 @@ import {
   Receipt,
   Scissors,
   Sparkles,
+  Wand2,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./base/Tooltip";
@@ -49,6 +50,7 @@ export const NAV_GROUPS: NavGroup[] = [
     entries: [
       { to: "/", label: "Compose", icon: Sparkles },
       { to: "/snippets", label: "Snippets", icon: Scissors },
+      { to: "/replica", label: "Replica", icon: Wand2 },
       { to: "/reels", label: "Reels", icon: Film },
       { to: "/nocode", label: "No-code", icon: Camera },
       {

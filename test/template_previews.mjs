@@ -50,6 +50,21 @@ const SOURCES = {
   // The overrun frame: the card should show the moment the template exists for,
   // which is a bar crossing the line rather than one that comfortably clears it.
   gauge: "GaugeViz-600",
+  // Both bands settled rather than mid-sweep: the card should show the finished
+  // proportion, which is the thing somebody choosing this template is after.
+  occupancy: "OccupancyViz-660",
+  // Mid-re-sort rather than settled: a still of a finished board looks like any
+  // ordered list, and the card has to show the one thing this template does.
+  ranking: "RankingViz-540",
+  // The replay frame rather than an append: a card showing a half-filled file
+  // looks like any code panel, and the replay cursor is what names the template.
+  journal: "JournalViz-1140",
+  // The wide pass, for the same reason the baseline picks it: a card showing one
+  // ready source advertises polling.
+  multiplex: "MultiplexViz-560",
+  // After the split, so the card carries the divergence and the pages that did
+  // not diverge — a pre-write frame is just a row of cells.
+  fork: "ForkViz-420",
   // The two-column state rather than the call: the card should show the frame
   // the clip spends most of its time in, and a bare line of type would not read
   // as a distinct template on a gallery card.

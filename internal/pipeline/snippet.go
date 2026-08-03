@@ -210,8 +210,16 @@ type SnippetPlan struct {
 	Title    string `json:"title"`
 	// Subtitle is the one-line promise shown under the title on the opening
 	// card ("" = no card).
-	Subtitle string        `json:"subtitle,omitempty"`
-	Beats    []SnippetBeat `json:"beats"`
+	Subtitle string `json:"subtitle,omitempty"`
+	// Emphasis is a literal phrase of Title set in a semantic accent, and
+	// EmphasisRole says which one. See snippet_headline.go — the phrase is
+	// quoted rather than described, for the same reason an anatomy part is.
+	//
+	// Optional, and omitempty: a plan that never sets them produces a scene
+	// graph byte-identical to the one it produced before this field existed.
+	Emphasis     string        `json:"emphasis,omitempty"`
+	EmphasisRole string        `json:"emphasisRole,omitempty"`
+	Beats        []SnippetBeat `json:"beats"`
 	// Compromises are the rules this plan never satisfied, written by the
 	// pipeline — not by the model — when the correction rounds ran out and the
 	// closest draft was shipped anyway.
@@ -330,6 +338,22 @@ type SnippetPlan struct {
 	// is one camera move through it, and a ladder that changed between beats
 	// would be a different picture each time the camera stopped.
 	Scale *ScaleSpec `json:"scale,omitempty"`
+	// Occupancy is the occupancy template's population and the claims on it. On
+	// the plan because the grid is one object that persists for the whole clip —
+	// the beats only change which of its cells are lit.
+	Occupancy *OccupancySpec `json:"occupancy,omitempty"`
+	// Ranking is the ranking template's board and the entries that land on it.
+	// On the plan because the board is one object the whole clip watches move.
+	Ranking *RankingSpec `json:"ranking,omitempty"`
+	// Journal is the journal template's append-only file. On the plan because
+	// the file is one object that grows across the whole clip.
+	Journal *JournalSpec `json:"journal,omitempty"`
+	// Multiplex is the multiplex template's pool, worker and rounds. On the plan
+	// because the pool is one object that persists for the whole clip.
+	Multiplex *MultiplexSpec `json:"multiplex,omitempty"`
+	// Fork is the fork template's two processes and the memory under them. On
+	// the plan because the memory is one object that persists for the whole clip.
+	Fork *ForkSpec `json:"fork,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -602,6 +626,31 @@ type SnippetBeat struct {
 	// Scale says which rung of the ladder the camera pulls back to, or that
 	// the whole ladder is in frame at once.
 	Scale *ScaleBeat `json:"scale,omitempty"`
+
+	// --- occupancy template ---
+	// Occupancy says whether this beat draws the empty grid, lights one band of
+	// it, or holds the finished picture and reads it.
+	Occupancy *OccupancyBeat `json:"occupancy,omitempty"`
+
+	// --- ranking template ---
+	// Ranking says whether this beat establishes the board, lands one arrival on
+	// it, or holds the settled board and reads it.
+	Ranking *RankingBeat `json:"ranking,omitempty"`
+
+	// --- journal template ---
+	// Journal says whether this beat opens the empty file, appends a line,
+	// replays one, or holds the finished log.
+	Journal *JournalBeat `json:"journal,omitempty"`
+
+	// --- multiplex template ---
+	// Multiplex says whether this beat draws the pool, runs one pass over it, or
+	// holds the picture and reads it.
+	Multiplex *MultiplexBeat `json:"multiplex,omitempty"`
+
+	// --- fork template ---
+	// Fork says whether this beat shows the shared memory, performs one write
+	// that splits a page, or holds the picture and reads it.
+	Fork *ForkBeat `json:"fork,omitempty"`
 }
 
 // QuizSpec is the clip's one question.
@@ -756,6 +805,9 @@ type SketchItem struct {
 // template's own Validate.
 func (p *SnippetPlan) Validate() error {
 	if err := p.validateShape(); err != nil {
+		return err
+	}
+	if err := validatePlanEmphasis(p); err != nil {
 		return err
 	}
 	if tpl, ok := SnippetTemplates[p.Template]; ok && tpl.Validate != nil {

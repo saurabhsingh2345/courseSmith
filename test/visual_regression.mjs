@@ -100,6 +100,38 @@ const TARGETS = [
   // rule in the limit colour, and one still unrun below. It is the only state
   // that holds fits, does-not-fit and not-yet at once.
   { id: "GaugeViz", frame: 600 },
+  // The occupancy grid with both bands settled: sixteen cells in the quantity
+  // colour, a hundred and twenty neutral behind them, and the remaining seven
+  // hundred and sixty unclaimed. It is the only state that holds all three at
+  // once, which is the whole claim the template makes.
+  { id: "OccupancyViz", frame: 660 },
+  // The ranking board mid-re-sort on the second arrival: the new row travelling
+  // in from the right, three rows sliding down under it, and the bottom row on
+  // its way off. It is the only state that holds arriving, moving and leaving at
+  // once, which is the whole reason the rows travel rather than being redrawn.
+  { id: "RankingViz", frame: 540 },
+  // The journal on the DELETE replaying: four lines written, the fifth still a
+  // dash, the cursor bar on line four in the limit colour and the lines it has
+  // passed dimmed back. It is the only state holding written, unwritten, passed
+  // and current at once.
+  { id: "JournalViz", frame: 1140 },
+  // The multiplex on its wide pass: three chips lit as ready, three wires into
+  // the worker, and the count reading 3 beside a box marked one thread. It is
+  // the only state that makes the template's actual claim — a single-ready frame
+  // draws the same picture as polling.
+  { id: "MultiplexViz", frame: 560 },
+  // The fork after its one write: the copied page lit beneath the row on the
+  // parent's side, and five pages still shared at full strength beside it. Both
+  // halves at once is the only state that says what copy-on-write is.
+  { id: "ForkViz", frame: 420 },
+  // Mid-append, so the baseline also covers the first half — a line arriving at
+  // the end of a file whose later slots are still empty.
+  { id: "JournalViz", frame: 600 },
+  // And settled, so the baseline also covers the resting board the clip ends on.
+  { id: "RankingViz", frame: 840 },
+  // Mid-sweep on the second band, to prove the cells light in a run rather than
+  // snapping on together — the gesture is what makes a block read as a quantity.
+  { id: "OccupancyViz", frame: 518 },
   // The verdict on its first asterisk beat: the holds column receded as a
   // block, one break lit on its tinted plate, the other still muted. It is the
   // only state that proves the asymmetry the template is built on.
