@@ -1,0 +1,9 @@
+{
+  "kind": "diagram:three-jobs",
+  "round": 1,
+  "model": "openai/gpt-4o",
+  "passed": true,
+  "svg_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/no-code/lessons/01-why-you-dont-need-to-code/generated/diagrams/attempts/three-jobs-round-1.svg",
+  "png_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/no-code/lessons/01-why-you-dont-need-to-code/generated/diagrams/attempts/three-jobs-round-1.png",
+  "checked_at": "2026-07-31T10:16:16Z"
+}

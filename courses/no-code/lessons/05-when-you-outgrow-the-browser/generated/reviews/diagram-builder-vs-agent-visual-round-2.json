@@ -1,0 +1,13 @@
+{
+  "kind": "diagram:builder-vs-agent",
+  "round": 2,
+  "model": "openai/gpt-4o",
+  "passed": false,
+  "issues": [
+    "Misleading layout: The columns are not clearly separated or labeled as 'App builder' and 'AI editor'.",
+    "Poor visual hierarchy: The diagram lacks clear headings for each column, making it difficult to distinguish between the two categories."
+  ],
+  "svg_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/no-code/lessons/05-when-you-outgrow-the-browser/generated/diagrams/attempts/builder-vs-agent-round-2.svg",
+  "png_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/no-code/lessons/05-when-you-outgrow-the-browser/generated/diagrams/attempts/builder-vs-agent-round-2.png",
+  "checked_at": "2026-07-31T10:42:41Z"
+}

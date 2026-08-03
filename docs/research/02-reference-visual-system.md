@@ -73,6 +73,10 @@ Each is named for what fills the frame, with the reference beat it came from.
 All ten are complete: Go template, prompt, Remotion component, tests, Root
 composition, visual baseline and gallery preview. The catalog is 28 templates.
 
+(It is 32 now: `canvas` and `promptloop` followed, and then `chapter`, `cycle`
+and `scale` — the v2 batch, written for the shape a course has rather than for
+one question. See §14 of `whatwehave.md`.)
+
 Boundaries against the existing catalog: `data` is charts and maps, `metric` is
 a single number. `compare` *introduces* two things, `verdict` *judges* — every
 reference clip ends with the latter. `flow` is static layered boxes with

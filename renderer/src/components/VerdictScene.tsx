@@ -21,7 +21,18 @@ import {Stage, STAGE_W} from './Stage';
 // size on an empty stage. That frame is what gets screenshotted and quoted, so
 // nothing else is on it.
 
-const COL_W = Math.min(STAGE_W, 1560);
+// Full width, and everything below is set larger than it was.
+//
+// This scene was the sparsest in the catalog: a subject line, three conditions
+// and two exceptions came to about 437 of the 952 vertical pixels available —
+// 46%, centred, so it read as a small composition floating in a lot of nothing
+// rather than as a frame. It was typeset for a stage a third shorter than the one
+// it now gets.
+//
+// Bigger type rather than more padding, because the text reflows: a wider column
+// at a larger size takes more lines and fills the height on its own, where extra
+// padding would only push the same small block further apart.
+const COL_W = STAGE_W;
 
 type Step = {startMs: number; endMs: number; show: 'subject' | 'holds' | 'breaks' | 'call'; at?: number};
 
@@ -47,6 +58,17 @@ export const VerdictScene: React.FC<{
   const sinceStep = ((nowMs - step.startMs) / 1000) * FPS;
 
   // The closing frame: the columns are gone and the ruling has the stage.
+  //
+  // The columns do not vanish, they LEAVE. Returning a different tree the instant
+  // the beat changed was a jump cut in the middle of a shot — the two things the
+  // whole scene has been building sat side by side one frame and were simply not
+  // there the next, which reads as a rendering fault rather than as an edit. The
+  // file header calls this frame the one that gets screenshotted and quoted, and
+  // it deserves to be arrived at.
+  //
+  // So the outgoing columns fade and fall back over the first third of a second
+  // while the ruling rises through them. Same duration as the entrance spring, so
+  // the hand-off is one movement.
   if (step.show === 'call') {
     const land = spring({
       frame: sinceStep,
@@ -54,17 +76,62 @@ export const VerdictScene: React.FC<{
       config: {damping: 200, mass: 0.8},
       durationInFrames: 22,
     });
+    const leave = spring({
+      frame: sinceStep,
+      fps,
+      config: {damping: 200, mass: 0.6},
+      durationInFrames: 14,
+    });
     return (
       <Stage justify="center">
-        <div style={{width: COL_W, textAlign: 'center'}}>
+        {/* The columns on their way out, behind the ruling and pointer-inert.
+            Rendered from the same data rather than from a snapshot: what leaves
+            the frame is what was on it. */}
+        <div
+          style={{
+            position: 'absolute',
+            width: COL_W,
+            opacity: (1 - leave) * 0.5,
+            transform: `scale(${1 - leave * 0.06})`,
+            transformOrigin: 'center center',
+          }}
+        >
+          <div style={{display: 'flex', gap: 76, alignItems: 'flex-start'}}>
+            <Column
+              theme={theme}
+              heading="Where it holds"
+              mark="✓"
+              color={theme.accentQuantity}
+              points={holds}
+              lit={-1}
+              litP={1}
+              dim
+              frame={frame}
+              flex={1.25}
+            />
+            <Column
+              theme={theme}
+              heading="Where it breaks"
+              mark="✕"
+              color={theme.accentLimit}
+              points={breaks}
+              lit={-1}
+              litP={1}
+              dim
+              frame={frame}
+              flex={1}
+            />
+          </div>
+        </div>
+        <div style={{width: COL_W, textAlign: 'center', position: 'relative'}}>
           <div
             style={{
               fontFamily: theme.fontMono,
-              fontSize: 20,
-              letterSpacing: 5.5,
+              fontSize: 24,
+              letterSpacing: 6,
               textTransform: 'uppercase',
               color: theme.textMuted,
-              marginBottom: 34,
+              marginBottom: 42,
               opacity: land,
             }}
           >
@@ -73,13 +140,13 @@ export const VerdictScene: React.FC<{
           <div
             style={{
               fontFamily: theme.fontDisplay,
-              fontSize: 84,
+              fontSize: 108,
               fontWeight: 800,
-              letterSpacing: -1.8,
+              letterSpacing: -2.4,
               lineHeight: 1.1,
               color: theme.text,
               opacity: land,
-              transform: `translateY(${(1 - land) * 20}px)`,
+              transform: `translateY(${(1 - land) * 44}px)`,
             }}
           >
             {call}
@@ -104,6 +171,14 @@ export const VerdictScene: React.FC<{
   // as a block — the argument has moved on and keeping it bright would fight
   // the asterisk for attention.
   const inBreaks = step.show === 'breaks';
+  // How far through the current line's own beat we are, so the plate that marks
+  // it grows in over a fifth of a second instead of appearing between frames.
+  const litP = spring({
+    frame: sinceStep,
+    fps,
+    config: {damping: 200, mass: 0.5},
+    durationInFrames: 12,
+  });
 
   return (
     <Stage justify="center">
@@ -111,12 +186,12 @@ export const VerdictScene: React.FC<{
         <div
           style={{
             fontFamily: theme.fontMono,
-            fontSize: 19,
-            letterSpacing: 5,
+            fontSize: 22,
+            letterSpacing: 5.5,
             textTransform: 'uppercase',
             color: theme.textMuted,
             textAlign: 'center',
-            marginBottom: 12,
+            marginBottom: 16,
           }}
         >
           Ruling on
@@ -124,18 +199,19 @@ export const VerdictScene: React.FC<{
         <div
           style={{
             fontFamily: theme.fontDisplay,
-            fontSize: 54,
+            fontSize: 76,
             fontWeight: 800,
-            letterSpacing: -1,
+            letterSpacing: -1.8,
+            lineHeight: 1.1,
             color: theme.text,
             textAlign: 'center',
-            marginBottom: 58,
+            marginBottom: 68,
           }}
         >
           {subject}
         </div>
 
-        <div style={{display: 'flex', gap: 60, alignItems: 'flex-start'}}>
+        <div style={{display: 'flex', gap: 76, alignItems: 'flex-start'}}>
           <Column
             theme={theme}
             heading="Where it holds"
@@ -143,6 +219,7 @@ export const VerdictScene: React.FC<{
             color={theme.accentQuantity}
             points={holds}
             lit={litHold}
+            litP={litP}
             dim={inBreaks}
             frame={frame}
             // The wider half: this is the body of the advice.
@@ -155,6 +232,7 @@ export const VerdictScene: React.FC<{
             color={theme.accentLimit}
             points={breaks}
             lit={litBreak}
+            litP={litP}
             dim={false}
             frame={frame}
             flex={1}
@@ -173,20 +251,25 @@ const Column: React.FC<{
   points: string[];
   /** Index of the line currently being spoken, or -1. */
   lit: number;
+  /** 0..1 through the lit line's own beat, so the plate grows in rather than
+   *  snapping on. An instant background swap was the last thing in this scene
+   *  that still read as a slide advancing: the plate simply existed on one frame
+   *  and not the previous one, with no movement to carry the eye to it. */
+  litP: number;
   /** Whether the whole column has receded because the clip moved past it. */
   dim: boolean;
   frame: number;
   flex: number;
-}> = ({theme, heading, mark, color, points, lit, dim, frame, flex}) => (
+}> = ({theme, heading, mark, color, points, lit, litP, dim, frame, flex}) => (
   <div style={{flex, opacity: dim ? 0.4 : 1}}>
     <div
       style={{
         fontFamily: theme.fontMono,
-        fontSize: 17,
-        letterSpacing: 3.6,
+        fontSize: 21,
+        letterSpacing: 4,
         textTransform: 'uppercase',
         color,
-        marginBottom: 22,
+        marginBottom: 28,
       }}
     >
       {heading}
@@ -203,23 +286,29 @@ const Column: React.FC<{
           style={{
             display: 'flex',
             alignItems: 'flex-start',
-            gap: 16,
-            padding: '16px 20px',
-            marginBottom: 12,
-            borderRadius: 10,
+            gap: 20,
+            padding: '24px 26px',
+            marginBottom: 18,
+            borderRadius: 14,
             // The lit line gets a tinted plate rather than a colour change, so
             // the text stays the same weight and only the ground moves.
-            background: isLit ? withAlpha(color, 0.13) : 'transparent',
-            border: `1px solid ${isLit ? withAlpha(color, 0.4) : 'transparent'}`,
+            background: isLit ? withAlpha(color, 0.13 * litP) : 'transparent',
+            border: `1px solid ${isLit ? withAlpha(color, 0.4 * litP) : 'transparent'}`,
             opacity: on * (isLit || lit < 0 ? 1 : 0.55),
-            transform: `translateY(${(1 - on) * 10}px)`,
+            // The lit line also steps very slightly toward the viewer. Two pixels
+            // and a percent of scale is not something anybody sees happening; it
+            // is what stops the change reading as a static diff between slides.
+            transform: `translateY(${(1 - on) * 10 - (isLit ? litP * 2 : 0)}px) scale(${
+              isLit ? 1 + litP * 0.012 : 1
+            })`,
+            transformOrigin: 'left center',
           }}
         >
-          <div style={{fontFamily: theme.fontMono, fontSize: 22, color, lineHeight: 1.35}}>{mark}</div>
+          <div style={{fontFamily: theme.fontMono, fontSize: 28, color, lineHeight: 1.35}}>{mark}</div>
           <div
             style={{
               fontFamily: theme.fontBody,
-              fontSize: 27,
+              fontSize: 36,
               lineHeight: 1.35,
               color: isLit ? theme.text : theme.textMuted,
             }}

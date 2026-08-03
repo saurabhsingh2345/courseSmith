@@ -28,6 +28,11 @@ type ReelSegmentInfo struct {
 	ID       string `json:"id"`
 	Template string `json:"template"`
 	Prompt   string `json:"prompt"`
+	// Material is the concrete facts this segment will be filled with. Surfaced
+	// because it is the field most worth correcting by hand: it is what the
+	// segment's writer plans from, so a wrong figure here is a wrong figure in
+	// the finished video, and fixing it is one edit rather than a re-cast.
+	Material string `json:"material,omitempty"`
 	// TargetSec is 0 when the segment takes its template's default.
 	TargetSec int `json:"target_sec,omitempty"`
 	// Skip means the segment stays in the file but leaves the cut.
@@ -81,8 +86,12 @@ type CreateReelRequest struct {
 
 // CreateReelSegment is one requested segment.
 type CreateReelSegment struct {
-	Template  string `json:"template"`
-	Prompt    string `json:"prompt"`
+	Template string `json:"template"`
+	Prompt   string `json:"prompt"`
+	// Material is optional on a hand-authored reel — a segment without it plans
+	// from the prompt alone, exactly as it did before the field existed. Supply
+	// it and the writer stops guessing.
+	Material  string `json:"material,omitempty"`
 	TargetSec int    `json:"target_sec,omitempty"`
 }
 
@@ -99,6 +108,7 @@ type CreateReelResponse struct {
 type PatchReelSegmentRequest struct {
 	Template  *string `json:"template,omitempty"`
 	Prompt    *string `json:"prompt,omitempty"`
+	Material  *string `json:"material,omitempty"`
 	TargetSec *int    `json:"target_sec,omitempty"`
 	Skip      *bool   `json:"skip,omitempty"`
 }
@@ -159,6 +169,7 @@ func (s *Server) handleReelCreate(w http.ResponseWriter, r *http.Request) {
 		spec.Segments = append(spec.Segments, pipeline.ReelSegment{
 			Template:  seg.Template,
 			Prompt:    strings.TrimSpace(seg.Prompt),
+			Material:  strings.TrimSpace(seg.Material),
 			TargetSec: seg.TargetSec,
 		})
 	}
@@ -275,6 +286,9 @@ func (s *Server) handleReelSegmentPatch(w http.ResponseWriter, r *http.Request) 
 	if req.Prompt != nil {
 		seg.Prompt = strings.TrimSpace(*req.Prompt)
 	}
+	if req.Material != nil {
+		seg.Material = strings.TrimSpace(*req.Material)
+	}
 	if req.TargetSec != nil {
 		seg.TargetSec = *req.TargetSec
 	}
@@ -314,6 +328,7 @@ func segmentInfos(spec pipeline.ReelSpec) []ReelSegmentInfo {
 			ID:        seg.ID,
 			Template:  seg.Template,
 			Prompt:    seg.Prompt,
+			Material:  seg.Material,
 			TargetSec: seg.TargetSec,
 			Skip:      seg.Skip,
 		}
@@ -401,6 +416,11 @@ func (s *Server) handleReelCast(w http.ResponseWriter, r *http.Request) {
 		out.Segments = append(out.Segments, CreateReelSegment{
 			Template: seg.Template,
 			Prompt:   seg.Prompt,
+			// Casting proposes and the page POSTs the proposal back to create,
+			// so anything missing here is lost on the round trip. Omitting the
+			// material would have reproduced the original bug one layer up: the
+			// CLI path would carry the facts and the studio path would not.
+			Material: seg.Material,
 		})
 	}
 	writeJSON(w, http.StatusOK, out)

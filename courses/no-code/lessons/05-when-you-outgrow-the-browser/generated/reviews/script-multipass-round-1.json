@@ -1,0 +1,201 @@
+{
+  "round": 1,
+  "model": "openai/gpt-4o-mini",
+  "artifact_hash": "sha256:38a465d46303f87cc30fb463f13733a36d6afc2b2f0e007709567e150d3257b1",
+  "claims": [
+    {
+      "claim": "the project stops being trapped inside someone else's product",
+      "section": "what-actually-changes",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "the project becomes files on your computer that you own",
+      "section": "what-actually-changes",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "you can put those files somewhere safe",
+      "section": "what-actually-changes",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "you can hand the files to a developer",
+      "section": "what-actually-changes",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "you can switch to a different tool entirely",
+      "section": "what-actually-changes",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "none of that is possible from inside a builder",
+      "section": "what-actually-changes",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "an AI coding agent is not just autocomplete",
+      "section": "what-an-ai-coding-agent-is-doing",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "an AI coding agent can run the project to check if it worked",
+      "section": "what-an-ai-coding-agent-is-doing",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "the agent checks its own work",
+      "section": "what-an-ai-coding-agent-is-doing",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "the agent looked at the project before it wrote anything",
+      "section": "reading-what-just-happened",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "the agent placed the new code in the right spot instead of creating a new file",
+      "section": "reading-what-just-happened",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "it changed more than one file",
+      "section": "reading-what-just-happened",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "a feature usually involves multiple files",
+      "section": "reading-what-just-happened",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "keeping your project in version control makes 'undo everything since Tuesday' possible",
+      "section": "the-habits-that-keep-this-safe",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "there are no stupid questions",
+      "section": "the-habits-that-keep-this-safe",
+      "checkable": false,
+      "executed": false
+    }
+  ],
+  "accuracy": {
+    "score": 5,
+    "verdicts": [
+      {
+        "claim": "the project stops being trapped inside someone else's product",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "the project becomes files on your computer that you own",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "you can put those files somewhere safe",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "you can hand the files to a developer",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "you can switch to a different tool entirely",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "none of that is possible from inside a builder",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "an AI coding agent is not just autocomplete",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "an AI coding agent can run the project to check if it worked",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "the agent checks its own work",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "the agent looked at the project before it wrote anything",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "the agent placed the new code in the right spot instead of creating a new file",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "it changed more than one file",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "a feature usually involves multiple files",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "keeping your project in version control makes 'undo everything since Tuesday' possible",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "there are no stupid questions",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      }
+    ],
+    "critique": "All claims made in the narration are subjective and cannot be confirmed as they do not reference specific Python functionality or concepts. The narration should focus on objective statements about Python's capabilities, such as 'Python files can be stored locally and shared with others' or 'Version control systems like Git allow for tracking changes and reverting to previous states.'"
+  },
+  "pedagogy": {
+    "scores": {
+      "cognitive_load": 8,
+      "concept_ordering": 7,
+      "concrete_before_abstract": 8,
+      "worked_examples": 6
+    },
+    "score": 7,
+    "critique": "In section 'what-an-ai-coding-agent-is-doing', the term 'AI coding agent' is introduced before its function is clearly explained, which violates the concrete-before-abstract principle. It would be better to first provide a concrete example of what an AI coding agent does before naming it. Additionally, in section 'watch-it-happen-on-a-real-project', there is no worked example provided for the feature request to the agent, which is necessary for learners to understand how to apply the concept. Include a detailed worked example showing the input, steps, and output of the agent's actions."
+  },
+  "tone": {
+    "score": 8,
+    "critique": "The script generally maintains a plain-spoken and practical tone, but there are a few areas that could benefit from minor adjustments. In the section 'the-habits-that-keep-this-safe', the phrase 'there are no stupid questions' can come off as condescending, as it implies that the learner might feel embarrassed about asking questions. A more neutral phrasing could be 'Feel free to ask the agent to explain anything you don’t recognize.' Additionally, in the section 'whats-next', the phrase 'that’s where the fun begins' introduces a slightly chatty tone that may not align with the intended practical tone. A replacement could be 'This will help you refine the look and feel of your project.' These changes would enhance the overall consistency and tone of the script."
+  },
+  "weights": {
+    "accuracy": 0.5,
+    "pedagogy": 0.35,
+    "tone": 0.15
+  },
+  "weighted": 6.15,
+  "threshold": 8,
+  "passed": false,
+  "reviewed_at": "2026-07-31T10:40:43.964308Z"
+}

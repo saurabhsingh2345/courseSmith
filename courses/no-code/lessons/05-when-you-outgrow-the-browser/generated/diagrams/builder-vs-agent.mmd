@@ -1,0 +1,14 @@
+flowchart TD
+    subgraph AppBuilder["App builder"]
+        direction TB
+        A["Runs in a browser"]
+        B["Owns the whole project"]
+        C["One conversation"]
+    end
+
+    subgraph AIEditor["AI editor"]
+        direction TB
+        D["Runs on your machine"]
+        E["Edits real files you keep"]
+        F["Reads the whole project<br/>before answering"]
+    end

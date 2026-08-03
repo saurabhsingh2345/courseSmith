@@ -23,27 +23,69 @@ const maxReviewRounds = 3
 // requiredScores are the rubric dimensions the reviewer must score.
 var requiredScores = []string{"technical_accuracy", "clarity", "engagement", "pacing"}
 
-// Review is the critic's verdict on one artifact.
-type Review struct {
-	Scores   map[string]float64 `json:"scores"`
-	Overall  float64            `json:"overall"`
-	Critique string             `json:"critique"`
+// rubric is which set of questions an artifact is judged against.
+//
+// Two exist. The original judges prose against accuracy/clarity/engagement/
+// pacing, which is the right set for a script somebody will read. A snippet plan
+// needs a different set entirely — its failures are inventing a figure and
+// narrating the template instead of the subject, neither of which any of those
+// four dimensions asks about. What must NOT differ is the machinery around the
+// judgement: the round loop, the persisted audit trail, and the soft-fail that
+// keeps the best draft. Those were the expensive part to get right, so the rubric
+// is a parameter rather than a second copy of the gate.
+type rubric struct {
+	// Template is the prompt file that renders the judgement.
+	Template string
+	// Scores are the dimensions the reviewer must return, and exactly those. A
+	// missing one is a rejected review, so this doubles as the contract between
+	// the prompt and Validate.
+	Scores []string
+	// FatalBelow fails a dimension outright, whatever the overall says.
+	//
+	// Fabrication needs this. An average cannot express "one invented figure
+	// ruins the clip": a plan that is excellent on three dimensions and made up a
+	// number scores well and ships, which is precisely the outcome observed. A
+	// floor on the dimension that matters is the only thing an averaging rubric
+	// cannot route around.
+	FatalBelow map[string]float64
 }
 
-// Validate checks the rubric shape: all four dimensions present and every
-// score in 1-10.
-func (r *Review) Validate() error {
-	for _, key := range requiredScores {
+var (
+	// scriptRubric judges written prose. The original four dimensions.
+	scriptRubric = rubric{Template: reviewTemplateName, Scores: requiredScores}
+
+	// planRubric judges a snippet or reel plan before it is spoken aloud.
+	//
+	// The dimensions are the four failures actually observed in shipped output,
+	// not a general notion of quality:
+	//   fabrication      — a figure, product, person or case study that does not exist
+	//   concreteness     — "streamline workflows" where a real name belonged
+	//   teaching         — narration that describes the picture instead of the subject
+	//   non_redundancy   — beats that restate rather than advance
+	planRubric = rubric{
+		Template: reviewPlanTemplateName,
+		Scores:   []string{"fabrication", "concreteness", "teaching", "non_redundancy"},
+		// Nothing else is fatal. A dull clip is worth shipping and fixing; a clip
+		// that states something untrue is not, because the cost lands on whoever
+		// believes it.
+		FatalBelow: map[string]float64{"fabrication": 7},
+	}
+)
+
+// validate checks a review against this rubric: every dimension present, no
+// extras, everything in range.
+func (rb rubric) validate(r *Review) error {
+	for _, key := range rb.Scores {
 		v, ok := r.Scores[key]
 		if !ok {
-			return fmt.Errorf("scores is missing %q (required: %s)", key, strings.Join(requiredScores, ", "))
+			return fmt.Errorf("scores is missing %q (required: %s)", key, strings.Join(rb.Scores, ", "))
 		}
 		if v < 1 || v > 10 {
 			return fmt.Errorf("score %q = %v is outside 1-10", key, v)
 		}
 	}
-	if len(r.Scores) != len(requiredScores) {
-		return fmt.Errorf("scores has unexpected extra keys (want exactly: %s)", strings.Join(requiredScores, ", "))
+	if len(r.Scores) != len(rb.Scores) {
+		return fmt.Errorf("scores has unexpected extra keys (want exactly: %s)", strings.Join(rb.Scores, ", "))
 	}
 	if r.Overall < 1 || r.Overall > 10 {
 		return fmt.Errorf("overall = %v is outside 1-10", r.Overall)
@@ -52,6 +94,31 @@ func (r *Review) Validate() error {
 		return fmt.Errorf("critique is empty")
 	}
 	return nil
+}
+
+// failedDimension returns the dimension that fell below its own floor, if any,
+// so the caller can say which one rather than only that something did.
+func (rb rubric) failedDimension(r *Review) (string, float64, bool) {
+	for key, floor := range rb.FatalBelow {
+		if v, ok := r.Scores[key]; ok && v < floor {
+			return key, v, true
+		}
+	}
+	return "", 0, false
+}
+
+// Review is the critic's verdict on one artifact.
+type Review struct {
+	Scores   map[string]float64 `json:"scores"`
+	Overall  float64            `json:"overall"`
+	Critique string             `json:"critique"`
+}
+
+// Validate checks the script rubric's shape: all four dimensions present and
+// every score in 1-10. Delegates rather than repeating the checks, so the two
+// rubrics cannot disagree about what a well-formed review is.
+func (r *Review) Validate() error {
+	return scriptRubric.validate(r)
 }
 
 // reviewRecord is the persisted audit trail of one review round.
@@ -66,7 +133,7 @@ type reviewRecord struct {
 	ReviewedAt   time.Time `json:"reviewed_at"`
 }
 
-// reviewPromptData feeds prompts/review_rubric.tmpl.
+// reviewPromptData feeds prompts/review_rubric.tmpl and review_plan.tmpl.
 type reviewPromptData struct {
 	Kind     string
 	Audience string
@@ -77,10 +144,24 @@ type reviewPromptData struct {
 	// VerifiedOutputs is execution ground truth from the verify stage; the
 	// critic flags artifact claims that contradict it.
 	VerifiedOutputs string
+	// Facts and Gaps are the plan rubric's ground truth: what the piece
+	// established, and what it looked for and could not find. A fabrication
+	// score is only meaningful against them — without the sheet the judge is
+	// being asked whether a claim *sounds* invented, which is the same guess the
+	// writer already made.
+	Facts []string
+	Gaps  []string
+	// Grounded says whether a search actually ran. A judge holding an ungrounded
+	// sheet to a sourced standard would reject everything.
+	Grounded bool
 }
 
-// reviewArtifact scores one artifact against the rubric with the review model.
-func reviewArtifact(ctx context.Context, e *Env, l *project.Lesson, cfg config.Config, kind string, artifact []byte) (*Review, error) {
+// reviewArtifact scores one artifact against a rubric with the review model.
+func reviewArtifact(ctx context.Context, e *Env, l *project.Lesson, cfg config.Config, rb rubric, kind string, artifact []byte) (*Review, error) {
+	sub, err := LoadSubstance(l)
+	if err != nil {
+		return nil, err
+	}
 	data := reviewPromptData{
 		Kind:            kind,
 		Audience:        cfg.Style.Audience,
@@ -89,13 +170,18 @@ func reviewArtifact(ctx context.Context, e *Env, l *project.Lesson, cfg config.C
 		Outline:         l.Body,
 		Artifact:        string(artifact),
 		VerifiedOutputs: verifiedOutputsSummary(l),
+		Facts:           substanceLines(sub),
+		Gaps:            substanceGaps(sub),
+		Grounded:        sub != nil && sub.Grounded,
 	}
-	system, user, err := e.renderPrompt(reviewTemplateName, data)
+	system, user, err := e.renderPrompt(rb.Template, data)
 	if err != nil {
 		return nil, err
 	}
 	var review Review
-	err = e.completeJSON(ctx, cfg.Pipeline, llm.TaskReview, system, user, 0, 2048, &review, review.Validate)
+	err = e.completeJSON(ctx, cfg.Pipeline, llm.TaskReview, system, user, 0, 2048, &review, func() error {
+		return rb.validate(&review)
+	})
 	if err != nil {
 		return nil, fmt.Errorf("reviewing %s: %w", kind, err)
 	}
@@ -120,6 +206,12 @@ func kindSlug(kind string) string {
 // a warning rather than an error, so long unattended runs complete and the
 // critiques remain on disk to act on.
 func (e *Env) reviewGate(ctx context.Context, l *project.Lesson, cfg config.Config, kind string, artifact []byte, regenerate func(ctx context.Context, critique string) ([]byte, error)) ([]byte, bool, error) {
+	return e.reviewGateWith(ctx, l, cfg, scriptRubric, kind, artifact, regenerate)
+}
+
+// reviewGateWith is reviewGate against a chosen rubric. See rubric for why the
+// questions vary and the machinery does not.
+func (e *Env) reviewGateWith(ctx context.Context, l *project.Lesson, cfg config.Config, rb rubric, kind string, artifact []byte, regenerate func(ctx context.Context, critique string) ([]byte, error)) ([]byte, bool, error) {
 	threshold := cfg.Pipeline.ReviewThreshold
 	current := artifact
 	var (
@@ -131,11 +223,19 @@ func (e *Env) reviewGate(ctx context.Context, l *project.Lesson, cfg config.Conf
 	for round := 1; round <= maxReviewRounds; round++ {
 		rounds = round
 		fmt.Fprintf(e.out(), "  → review    %s round %d: scoring (%s)...\n", kind, round, cfg.Pipeline.LLMReview)
-		review, err := reviewArtifact(ctx, e, l, cfg, kind, current)
+		review, err := reviewArtifact(ctx, e, l, cfg, rb, kind, current)
 		if err != nil {
 			return nil, false, err
 		}
 		pass := review.Overall >= threshold
+		// A fatal dimension overrides a passing average. Reported by name,
+		// because "it failed" sends somebody reading four scores to work out
+		// which.
+		if dim, score, fatal := rb.failedDimension(review); fatal {
+			pass = false
+			fmt.Fprintf(e.out(), "    %s scored %.1f (floor %.1f) — fatal whatever the average says\n",
+				dim, score, rb.FatalBelow[dim])
+		}
 		record := reviewRecord{
 			Kind:         kind,
 			Round:        round,

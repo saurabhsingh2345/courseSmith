@@ -9,8 +9,10 @@ import {PointsScene} from './components/PointsScene';
 import {PythonExecutionViz} from './components/PythonExecutionViz';
 import {MemoryLayout} from './components/MemoryLayout';
 import {SceneBackground, type Surface} from './components/SceneBackground';
-import {StageAirContext} from './components/Stage';
+import {StageAirContext, StageCaptionsContext} from './components/Stage';
+import {SceneCamera} from './components/SceneCamera';
 import {SectionTransition, type CutStyle} from './components/SectionTransition';
+import {FootageScene} from './components/FootageScene';
 import {TerminalScene} from './components/TerminalScene';
 import {TitleCard} from './components/TitleCard';
 import {VSCodeScene} from './components/VSCodeScene';
@@ -42,6 +44,9 @@ import {AnalogyScene} from './components/AnalogyScene';
 import {TraceScene} from './components/TraceScene';
 import {CostingScene} from './components/CostingScene';
 import {ConstellationScene} from './components/ConstellationScene';
+import {ChapterScene} from './components/ChapterScene';
+import {CycleScene} from './components/CycleScene';
+import {ScaleScene} from './components/ScaleScene';
 import {SceneChrome, Watermark} from './components/SceneChrome';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
@@ -88,7 +93,24 @@ const sceneContent = (
         <DiagramScene theme={theme} assetBase={assetBase} props={scene.props} />
       );
     case 'terminal':
-      return <TerminalScene theme={theme} assetBase={assetBase} props={scene.props} />;
+      return (
+        <TerminalScene
+          theme={theme}
+          assetBase={assetBase}
+          durationInFrames={durationInFrames}
+          props={scene.props}
+        />
+      );
+    case 'footage':
+      return (
+        <FootageScene
+          theme={theme}
+          assetBase={assetBase}
+          sceneStartMs={scene.startMs}
+          durationInFrames={durationInFrames}
+          props={scene.props}
+        />
+      );
     case 'points':
       return (
         <PointsScene theme={theme} motion={motion} sceneStartMs={scene.startMs} props={scene.props} />
@@ -158,6 +180,12 @@ const sceneContent = (
       return <CostingScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'constellation':
       return <ConstellationScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'chapter':
+      return <ChapterScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'cycle':
+      return <CycleScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'scale':
+      return <ScaleScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       return null;
   }
@@ -195,9 +223,17 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // A node-and-edge map earns the drawing-office grid for the same reason
     // the flow does: it makes the radial arrangement read as measured.
     case 'constellation':
+    // A ring of stages is a mechanism, and a mechanism drawn on squared paper
+    // reads as engineered rather than as decorative.
+    case 'cycle':
       return 'blueprint';
     case 'cast':
     case 'story':
+    // A break between two stretches of teaching is a held moment, and one pool
+    // of light is what a held moment looks like. It is also the only scene in
+    // the catalog whose subject is a 380px numeral, which wants a stage that
+    // falls away at the edges rather than a field competing with it.
+    case 'chapter':
       return 'spotlight';
     case 'data':
     case 'quiz':
@@ -228,6 +264,10 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // A sheet of thin bars and a counting figure. Nothing repeating behind
     // it survives contact with twelve-pixel bars.
     case 'costing':
+    // Nested frames only read as containment if there is nothing else on the
+    // stage with edges. Any repeating field behind them competes with the one
+    // thing the picture is doing, and a drifting glow reads as a sixth world.
+    case 'scale':
       return 'clean';
     default:
       return 'default';
@@ -275,7 +315,14 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
   // window is stretched, so nothing that paces itself off durationInFrames
   // (the execution viz, the walkthrough, the memory layout) is affected.
   const cross = secondsToFrames(FPS, resolveMotion(motion).timing.normal);
+  // Whether a caption card will be drawn over the frame — the same condition
+  // CaptionTrack is mounted on below, read once here so it cannot disagree with
+  // the space every scene reserves for it. Reserving that band unconditionally
+  // was giving up 11% of every frame in every default-configured video to a card
+  // that has not rendered since captions became opt-in.
+  const hasCaptions = Boolean(captions && captions.length > 0);
   return (
+    <StageCaptionsContext.Provider value={hasCaptions}>
     <StageAirContext.Provider value={theme.air}>
       <AbsoluteFill style={{fontFamily: theme.fontBody}}>
         <SceneBackground theme={theme} surface={surface} />
@@ -303,7 +350,14 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
               isLast={isLast}
               cutStyle={cutStyle}
             >
-              {sceneContent(scene, props, theme, duration)}
+              {/* The camera wraps the scene's own content and nothing else.
+                  Callouts and the standing chrome sit OUTSIDE it deliberately:
+                  a callout points at a fixed place on the frame and a watermark
+                  is furniture, and drifting either one would look like a bug
+                  rather than like a camera. */}
+              <SceneCamera durationInFrames={duration} motion={motion} index={i}>
+                {sceneContent(scene, props, theme, duration)}
+              </SceneCamera>
               {/* Inside the transition so a callout fades out with its own
                   scene instead of hanging fully opaque over the next one. */}
               <CalloutLayer
@@ -328,7 +382,7 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
       })}
       {/* On-screen captions are opt-in; scene graphs built with
           style.captions off carry no caption words (null/empty). */}
-      {captions && captions.length > 0 ? (
+      {hasCaptions ? (
         <CaptionTrack theme={theme} captions={captions} emphasis={captionEmphasis} />
       ) : null}
       {/* Outside the sequences, so it does not cross-dissolve at every cut. A
@@ -336,5 +390,6 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
         {chrome ? <Watermark theme={theme} /> : null}
       </AbsoluteFill>
     </StageAirContext.Provider>
+    </StageCaptionsContext.Provider>
   );
 };

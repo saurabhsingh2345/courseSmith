@@ -14,5 +14,10 @@
     "words": 0.05,
     "items": 0.08,
     "connections": 0.12
+  },
+  "camera": {
+    "push": 0.032,
+    "drift": 22,
+    "settleSec": 18
   }
 }

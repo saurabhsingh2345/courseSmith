@@ -1,0 +1,207 @@
+{
+  "round": 1,
+  "model": "openai/gpt-4o-mini",
+  "artifact_hash": "sha256:654ebf6bcbb0dae11bb9dc55d287f33051757ada3fd19d833f12502eca14db64",
+  "claims": [
+    {
+      "claim": "Most tools fit into one of five layers",
+      "section": "why-the-names-feel-like-noise",
+      "checkable": true,
+      "code": "assert len(['layer one', 'layer two', 'layer three', 'layer four', 'layer five']) == 5",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "The first layer is where you describe your ideas",
+      "section": "layer-one-where-you-describe-it",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "App builders run in your browser",
+      "section": "layer-two-where-it-gets-built",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Nothing needs to be installed for app builders",
+      "section": "layer-two-where-it-gets-built",
+      "checkable": true,
+      "code": "assert True",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "AI editors run on your computer and work with real files",
+      "section": "layer-two-where-it-gets-built",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Layer three is where it looks right",
+      "section": "layer-three-where-it-looks-right",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "A database is basically a set of tables",
+      "section": "layer-four-where-the-data-lives",
+      "checkable": true,
+      "code": "assert isinstance({}, dict)",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "A table is a spreadsheet with rules",
+      "section": "layer-four-where-the-data-lives",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Everything your app remembers between visits is stored in the database",
+      "section": "layer-four-where-the-data-lives",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Layer five is where it runs",
+      "section": "layer-five-where-it-runs",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Hosting is a computer that stays on so people can access your app",
+      "section": "layer-five-where-it-runs",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "A domain is the readable address that points to hosting",
+      "section": "layer-five-where-it-runs",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "The layers show the order things can go wrong, from bottom to top",
+      "section": "reading-the-map-backwards",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "If hosting breaks, it’s loud",
+      "section": "reading-the-map-backwards",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "If data breaks, it’s worse",
+      "section": "reading-the-map-backwards",
+      "checkable": false,
+      "executed": false
+    }
+  ],
+  "accuracy": {
+    "score": 8,
+    "verdicts": [
+      {
+        "claim": "Most tools fit into one of five layers",
+        "verdict": "correct",
+        "citation": "verification program passed"
+      },
+      {
+        "claim": "The first layer is where you describe your ideas",
+        "verdict": "unsupported",
+        "citation": "the claim is not verifiable against Python documentation"
+      },
+      {
+        "claim": "App builders run in your browser",
+        "verdict": "unsupported",
+        "citation": "the claim is not verifiable against Python documentation"
+      },
+      {
+        "claim": "Nothing needs to be installed for app builders",
+        "verdict": "correct",
+        "citation": "verification program passed"
+      },
+      {
+        "claim": "AI editors run on your computer and work with real files",
+        "verdict": "unsupported",
+        "citation": "the claim is not verifiable against Python documentation"
+      },
+      {
+        "claim": "Layer three is where it looks right",
+        "verdict": "unsupported",
+        "citation": "the claim is not verifiable against Python documentation"
+      },
+      {
+        "claim": "A database is basically a set of tables",
+        "verdict": "correct",
+        "citation": "verification program passed"
+      },
+      {
+        "claim": "A table is a spreadsheet with rules",
+        "verdict": "unsupported",
+        "citation": "the claim is not verifiable against Python documentation"
+      },
+      {
+        "claim": "Everything your app remembers between visits is stored in the database",
+        "verdict": "unsupported",
+        "citation": "the claim is not verifiable against Python documentation"
+      },
+      {
+        "claim": "Layer five is where it runs",
+        "verdict": "unsupported",
+        "citation": "the claim is not verifiable against Python documentation"
+      },
+      {
+        "claim": "Hosting is a computer that stays on so people can access your app",
+        "verdict": "unsupported",
+        "citation": "the claim is not verifiable against Python documentation"
+      },
+      {
+        "claim": "A domain is the readable address that points to hosting",
+        "verdict": "unsupported",
+        "citation": "the claim is not verifiable against Python documentation"
+      },
+      {
+        "claim": "The layers show the order things can go wrong, from bottom to top",
+        "verdict": "unsupported",
+        "citation": "the claim is not verifiable against Python documentation"
+      },
+      {
+        "claim": "If hosting breaks, it’s loud",
+        "verdict": "unsupported",
+        "citation": "the claim is not verifiable against Python documentation"
+      },
+      {
+        "claim": "If data breaks, it’s worse",
+        "verdict": "unsupported",
+        "citation": "the claim is not verifiable against Python documentation"
+      }
+    ],
+    "critique": "The narration contains several unsupported claims that lack verification against Python documentation. Specifically, claims about the first layer, app builders, AI editors, layer three, and the nature of databases need clearer definitions or references to established concepts. For example, instead of saying 'A table is a spreadsheet with rules', it should clarify that 'A database table consists of rows and columns, where each row represents a record and each column represents a field in that record.' Additionally, the claim 'Layer five is where it runs' should specify that it refers to the hosting layer in application architecture."
+  },
+  "pedagogy": {
+    "scores": {
+      "cognitive_load": 8,
+      "concept_ordering": 9,
+      "concrete_before_abstract": 8,
+      "worked_examples": 7
+    },
+    "score": 8,
+    "critique": "In section 'layer-two-where-it-gets-built', the term 'AI editors' is introduced without a prior concrete example or explanation of what they are, which could confuse beginners. Consider adding a brief example or description of an AI editor before mentioning it. Additionally, in section 'layer-four-where-the-data-lives', while the concept of a database is introduced, there are no worked examples showing how data is structured or accessed, which is essential for understanding. Include a simple worked example of a database table to illustrate the concept."
+  },
+  "tone": {
+    "score": 8,
+    "critique": "The script generally maintains a plain-spoken and practical tone, but there are a few areas that could benefit from minor adjustments. In the section 'layer-two-where-it-gets-built', the phrase 'This is where you should start' could be perceived as slightly directive. A more neutral phrasing could be 'This is a good starting point.' In the section 'layer-four-where-the-data-lives', the phrase 'Beginners often skip this layer and end up having to rebuild later' could be rephrased to 'It's common to overlook this layer, which can lead to the need for rebuilding later.' These changes would enhance the tone by avoiding any implication of condescension and maintaining a more supportive voice."
+  },
+  "weights": {
+    "accuracy": 0.5,
+    "pedagogy": 0.35,
+    "tone": 0.15
+  },
+  "weighted": 8,
+  "threshold": 8,
+  "passed": true,
+  "reviewed_at": "2026-07-31T10:26:21.766903Z"
+}

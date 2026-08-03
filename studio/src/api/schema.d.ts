@@ -462,6 +462,8 @@ export interface components {
             segments: {
                 template: string;
                 prompt: string;
+                /** @description The concrete facts this template will be filled with. POST it back with the proposal — a segment created without it is planned from the one-line prompt alone, and its writer invents the specifics. */
+                material?: string;
                 target_sec?: number;
             }[];
         };
@@ -469,6 +471,8 @@ export interface components {
             id: string;
             template: string;
             prompt: string;
+            /** @description The concrete facts this segment is planned from. The field most worth correcting by hand: a wrong figure here becomes a wrong figure in the finished video. */
+            material?: string;
             target_sec?: number;
             skip?: boolean;
             template_title: string;
@@ -647,6 +651,8 @@ export interface components {
             prompt_tokens: number;
             completion_tokens: number;
             cost_usd: number;
+            /** @description False when this model is absent from the pricing table, which makes cost_usd meaningless rather than zero. Render it as unknown, never as $0.00 — the tokens were really spent. */
+            priced: boolean;
         };
         QuotaStatus: {
             provider: string;
@@ -658,6 +664,9 @@ export interface components {
             rows: components["schemas"]["LedgerRow"][];
             total_cost_usd: number;
             total_calls: number;
+            /** @description Models whose spend is missing from total_cost_usd, so the total is a floor rather than the bill. */
+            unpriced_models?: string[];
+            unpriced_tokens?: number;
             quotas: components["schemas"]["QuotaStatus"][];
         };
     };

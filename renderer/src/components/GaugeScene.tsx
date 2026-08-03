@@ -2,6 +2,7 @@ import {interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {FPS} from '../types';
 import {ResolvedTheme, withAlpha} from '../theme/theme';
 import {Stage, STAGE_W} from './Stage';
+import {counted} from './counted';
 
 // GaugeScene is a marked line and the things measured against it.
 //
@@ -193,7 +194,14 @@ export const GaugeScene: React.FC<{
                       fontVariantNumeric: 'tabular-nums',
                     }}
                   >
-                    {bar.value}
+                    {/* Counted, on the same clock as the bar it labels.
+                        The bar already grew to its value over about
+                        three-quarters of a second while this number sat at the
+                        final figure from the first frame — so the eye read the
+                        answer before the bar had made the point, and the growth
+                        was decoration rather than the reveal. `metric` had the
+                        rule and `gauge` did not; they share it now. */}
+                    {counted(String(bar.value), true, grown)}
                     <span style={{fontFamily: theme.fontMono, fontSize: 15, color: theme.textMuted, marginLeft: 4}}>
                       {unit}
                     </span>

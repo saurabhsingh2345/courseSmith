@@ -94,6 +94,7 @@ export type SceneType =
   | 'code'
   | 'diagram'
   | 'terminal'
+  | 'footage'
   | 'points'
   | 'walkthrough'
   | 'workspace'
@@ -123,7 +124,10 @@ export type SceneType =
   | 'analogy'
   | 'trace'
   | 'costing'
-  | 'constellation';
+  | 'constellation'
+  | 'chapter'
+  | 'cycle'
+  | 'scale';
 
 export type Scene = {
   type: SceneType;

@@ -1,0 +1,72 @@
+{
+  "target_wpm": 135,
+  "tolerance": 0.15,
+  "sections": [
+    {
+      "id": "three-signs-it-is-time",
+      "words": 91,
+      "duration_ms": 34799,
+      "wpm": 156.90106037529816,
+      "deviation": 0.16223007685406043,
+      "flagged": true
+    },
+    {
+      "id": "what-actually-changes",
+      "words": 79,
+      "duration_ms": 28589,
+      "wpm": 165.7980342089615,
+      "deviation": 0.22813358673304812,
+      "flagged": true
+    },
+    {
+      "id": "what-an-ai-coding-agent-is-doing",
+      "words": 78,
+      "duration_ms": 27847,
+      "wpm": 168.0611915107552,
+      "deviation": 0.24489771489448303,
+      "flagged": true
+    },
+    {
+      "id": "watch-it-happen-on-a-real-project",
+      "words": 78,
+      "duration_ms": 27965,
+      "wpm": 167.35204720185945,
+      "deviation": 0.23964479408784778,
+      "flagged": true
+    },
+    {
+      "id": "reading-what-just-happened",
+      "words": 77,
+      "duration_ms": 26834,
+      "wpm": 172.1696355370053,
+      "deviation": 0.2753306336074466,
+      "flagged": true
+    },
+    {
+      "id": "the-habits-that-keep-this-safe",
+      "words": 75,
+      "duration_ms": 27037,
+      "wpm": 166.43858416244404,
+      "deviation": 0.23287840120328923,
+      "flagged": true
+    },
+    {
+      "id": "whats-next",
+      "words": 29,
+      "duration_ms": 10449,
+      "wpm": 166.52311225954637,
+      "deviation": 0.233504535255899,
+      "flagged": true
+    }
+  ],
+  "flagged": [
+    "three-signs-it-is-time",
+    "what-actually-changes",
+    "what-an-ai-coding-agent-is-doing",
+    "watch-it-happen-on-a-real-project",
+    "reading-what-just-happened",
+    "the-habits-that-keep-this-safe",
+    "whats-next"
+  ],
+  "checked_at": "2026-07-31T09:33:00.51082Z"
+}

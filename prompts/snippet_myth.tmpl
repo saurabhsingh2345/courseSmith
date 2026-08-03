@@ -16,6 +16,14 @@ Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat —
 
 Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
 
+{{if .Misconceptions}}
+BELIEFS THIS AUDIENCE ACTUALLY HOLDS. These were established for this piece, written the way somebody would say them:
+{{range .Misconceptions}}- {{.}}
+{{end}}
+Take your claim from this list. One of these is a thought a real viewer has had, which is the whole premise of the format — a claim you invent instead is a sentence nobody recognises, and a correction nobody recognises corrects nobody. Pick the one this clip is about and use it close to as written; tighten the wording if it runs long, but do not make it more reasonable or more extreme than the belief actually is.
+
+If none of them is what this clip is about, say what you are correcting in the same register — the sentence a real person would say, not a summary of an error.
+{{end}}
 THE BELIEF (one per clip, at the top level of your reply, under "myth"):
 - claim: the wrong belief, at most {{.MaxClaimWords}} words, IN THE WORDS SOMEBODY ACTUALLY USES. It appears on screen in quotation marks and is then struck through. Write the sentence a real person would say — "Redis is just a cache". A strawman like "some people think Redis is bad" corrects nothing, because no viewer recognises themselves in it and so nobody's model gets replaced.
 - truth: what is actually the case, at most {{.MaxTruthWords}} words. It replaces the claim on screen.

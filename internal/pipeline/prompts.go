@@ -18,6 +18,7 @@ import (
 const (
 	scriptTemplateName          = "script.tmpl"
 	reviewTemplateName          = "review_rubric.tmpl"
+	reviewPlanTemplateName      = "review_plan.tmpl"
 	reviewClaimsTemplateName    = "review_claims.tmpl"
 	reviewAccuracyTemplateName  = "review_accuracy.tmpl"
 	reviewPedagogyTemplateName  = "review_pedagogy.tmpl"
@@ -29,6 +30,8 @@ const (
 	diagramVisualQATemplateName = "diagram_visual_qa.tmpl"
 	quizTemplateName            = "quiz.tmpl"
 	demoTapeTemplateName        = "demo_tape.tmpl"
+	captureTapeTemplateName     = "capture_tape.tmpl"
+	snippetFootageTemplateName  = "snippet_footage.tmpl"
 	conceptsTemplateName        = "concepts.tmpl"
 	terminologyTemplateName     = "terminology.tmpl"
 	bridgeTemplateName          = "bridge.tmpl"

@@ -17,6 +17,31 @@
 // counts, so a change to the tokens or the reveal math moves the expectation
 // with it.
 //
+// == Why the reveal is measured with the camera parked ==
+//
+// Those four checks are about the REVEAL, and every one of them reads total ink.
+// That was a complete description of the frame until `d64f816` gave every scene
+// a camera: the frame now creeps closer for the whole of its first eighteen
+// seconds, so content keeps growing long after the last node has landed and the
+// ink signal keeps climbing with it. Check 4 — "nothing more appears after the
+// reveal settles" — went red on a scene nobody had touched, and it was right
+// about the pixels and wrong about the cause.
+//
+// Measured on D3Viz between the settle frame and eighty frames later: with the
+// camera running, ink grows 3.35% and 4% of pixels move; with it parked, ink
+// moves by 0.01% and *zero* pixels differ. The reveal settles exactly as the
+// tokens predict. So the reveal is measured against a parked camera, which is
+// the only way these four checks mean what they say.
+//
+//   5. and then, separately, the camera is asserted to be ALIVE — the same two
+//      frames rendered with it running must differ from the parked ones.
+//
+// That check is not padding. The camera's own commit message records that its
+// first implementation produced no motion at all (3% spread over a seventy-second
+// segment is 28 pixels of travel), and nothing in the suite would have caught it.
+// Parking the camera to fix check 4 without asserting it still runs would remove
+// the only frames in the whole suite that would notice.
+//
 // Usage: node test/animation_timing.mjs
 // Skips cleanly (exit 0) where a browser or the render deps aren't available.
 
@@ -51,12 +76,24 @@ const settleFrame = Math.max(lastNodeDone, lastEdgeDone);
 const FRAME_TOLERANCE = 5; // allow the settle to complete a few frames late
 const INK_TOLERANCE = 0.03; // 3% of final ink absorbs entrance-overshoot wobble
 
+// Parks the camera for the reveal measurements. `resolveMotion` merges this over
+// the defaults, and SceneCamera renders its children untouched — not wrapped in
+// an identity transform — when both values are zero, so a parked frame is the
+// scene exactly as it would have been drawn before the camera existed.
+const PARKED_CAMERA = { motion: { camera: { push: 0, drift: 0 } } };
+
+// How much of the frame the camera must have displaced by the late sample for it
+// to count as running. Measured at 3.7%; a token change that halved the push
+// would still clear this, and one that zeroed it could not.
+const CAMERA_MOTION_FLOOR = 0.01;
+
 async function importOrSkip() {
   try {
     const bundler = await import(NM("@remotion", "bundler", "dist", "index.js"));
     const renderer = await import(NM("@remotion", "renderer", "dist", "index.js"));
     const { PNG } = await import(NM("pngjs", "lib", "png.js"));
-    return { bundler, renderer, PNG };
+    const pixelmatch = (await import(NM("pixelmatch", "index.js"))).default;
+    return { bundler, renderer, PNG, pixelmatch };
   } catch (err) {
     console.error(`SKIP animation_timing: render deps not resolvable (${err.message})`);
     process.exit(0);
@@ -80,22 +117,35 @@ function ink(PNG, buf) {
 }
 
 async function main() {
-  const { bundler, renderer, PNG } = await importOrSkip();
+  const { bundler, renderer, PNG, pixelmatch } = await importOrSkip();
   await renderer.ensureBrowser();
   const serveUrl = await bundler.bundle({ entryPoint: join(RENDERER_DIR, "src", "index.ts") });
-  const composition = await renderer.selectComposition({ serveUrl, id: "D3Viz" });
+  // Two composition handles, because input props are resolved at selection time
+  // as well as at render time — passing them to renderStill alone leaves the
+  // camera running and the "parked" frames come back byte-identical to the live
+  // ones, which reads as the camera doing nothing rather than as the override
+  // being dropped.
+  const parked = await renderer.selectComposition({ serveUrl, id: "D3Viz", inputProps: PARKED_CAMERA });
+  const live = await renderer.selectComposition({ serveUrl, id: "D3Viz", inputProps: {} });
 
   const outDir = mkdtempSync(join(tmpdir(), "anim-timing-"));
-  const render = async (frame) => {
-    const output = join(outDir, `f${frame}.png`);
-    await renderer.renderStill({ serveUrl, composition, frame, output });
-    return ink(PNG, readFileSync(output));
+  const shoot = async (frame, camera) => {
+    const output = join(outDir, `f${frame}-${camera ? "live" : "parked"}.png`);
+    await renderer.renderStill({
+      serveUrl,
+      composition: camera ? live : parked,
+      frame,
+      output,
+      inputProps: camera ? {} : PARKED_CAMERA,
+    });
+    return readFileSync(output);
   };
+  const render = async (frame) => ink(PNG, await shoot(frame, false));
 
   const early = Math.min(5, Math.floor(settleFrame / 3));
   const mid = Math.floor(settleFrame / 2);
   const settle = settleFrame + FRAME_TOLERANCE;
-  const final = Math.min(composition.durationInFrames - 1, settle + 80);
+  const final = Math.min(parked.durationInFrames - 1, settle + 80);
 
   const samples = {
     [early]: await render(early),
@@ -104,8 +154,18 @@ async function main() {
     [final]: await render(final),
   };
   for (const [f, v] of Object.entries(samples)) {
-    console.log(`  frame ${f}: ink ${(v * 100).toFixed(2)}%`);
+    console.log(`  frame ${f}: ink ${(v * 100).toFixed(2)}%  (camera parked)`);
   }
+
+  // The same late frame with the camera running, for check 5.
+  const liveFinal = PNG.sync.read(await shoot(final, true));
+  const parkedFinal = PNG.sync.read(await shoot(final, false));
+  const cameraMoved =
+    pixelmatch(liveFinal.data, parkedFinal.data, null, liveFinal.width, liveFinal.height, {
+      threshold: 0.1,
+    }) /
+    (liveFinal.width * liveFinal.height);
+  console.log(`  frame ${final}: camera displaced ${(cameraMoved * 100).toFixed(2)}% of the frame`);
 
   const failures = [];
   const tol = INK_TOLERANCE * samples[final];
@@ -123,7 +183,12 @@ async function main() {
   // 4. Final frame agrees with settle (nothing more appears after).
   if (Math.abs(samples[settle] - samples[final]) > tol) failures.push(`settle (${samples[settle].toFixed(4)}) and final (${samples[final].toFixed(4)}) disagree by > ${INK_TOLERANCE * 100}%`);
 
-  // 5. Sanity: there is actually content.
+  // 5. The camera is alive. Everything above deliberately renders with it parked,
+  //    so without this the suite would pass a build in which it had stopped
+  //    working — which is the exact failure its own first implementation had.
+  if (cameraMoved < CAMERA_MOTION_FLOOR) failures.push(`the camera is not moving: frame ${final} with it running differs from the parked frame by only ${(cameraMoved * 100).toFixed(2)}% of pixels (want >= ${CAMERA_MOTION_FLOOR * 100}%)`);
+
+  // 6. Sanity: there is actually content.
   if (samples[final] <= 0) failures.push(`final frame ${final} is blank`);
 
   if (failures.length > 0) {
@@ -131,7 +196,7 @@ async function main() {
     for (const f of failures) console.error(`  - ${f}`);
     process.exit(1);
   }
-  console.log(`PASS animation_timing: D3Viz reveal builds and settles by frame ${settle} (predicted ${settleFrame})`);
+  console.log(`PASS animation_timing: D3Viz reveal builds and settles by frame ${settle} (predicted ${settleFrame}), and the camera is running`);
   process.exit(0);
 }
 

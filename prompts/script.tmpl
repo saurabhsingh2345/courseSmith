@@ -14,9 +14,10 @@ Rules:
 - Every technical claim must be correct. Do not invent facts that the outline does not state or clearly imply.
 - Create one section per top-level outline heading (## ...), in the same order. Derive each section id from its heading as a lowercase, hyphen-separated slug.
 - Set duration_est_sec to round(word count of the section's narration / {{.PaceWPM}} * 60).
-- The outline marks visuals with [DIAGRAM: id] and live demos with [DEMO: description]. For every marker, add a cue to that section's "cues" array:
+- The outline marks visuals with [DIAGRAM: id] and live demos with [DEMO: description] or [CAPTURE: tool=name; description]. For every marker, add a cue to that section's "cues" array:
   - a diagram marker becomes {"type": "diagram", "ref": "<id>", "at_word": N}
   - a demo marker becomes {"type": "demo", "ref": "<description>", "at_word": N}
+  - a capture marker becomes {"type": "demo", "ref": "<description>", "at_word": N} — the ref is the text AFTER the semicolon only, exactly as written, with no tool= part. A capture is a real recording of that tool running, so lead into it as something the viewer is about to watch happen ("watch what it does"), not as a picture.
   where at_word is the 0-based index of the word in that section's narration where the visual should appear. The narration must lead naturally into each cue (e.g. "let's look at that in a picture" before a diagram). Place each cue in the FIRST HALF of its section's narration and keep talking about the visual afterwards — the visual stays on screen only until the section ends, so a cue on the last words gives it no screen time.
 - You may add {"type": "pause", "ref": "", "at_word": N} cues to leave a beat after a key idea.
 - Only use diagram ids that the user message declares. Never invent diagram ids.
@@ -48,6 +49,13 @@ Declared diagrams (only these ids may appear in diagram cues):
 
 Lesson outline:
 {{.Outline}}
+{{- if .Captures}}
+
+REAL RECORDINGS ALREADY MADE FOR THIS LESSON. These are genuine screen recordings of the tools running — not illustrations, not reconstructions. Every figure below was measured by the recorder, not estimated:
+{{range .Captures}}- {{.}}
+{{end}}
+Write the narration around them. You may state these durations as fact — "in under a minute", "in about twenty seconds" — because they were measured. Lead into each as something the viewer is about to watch happen, and keep talking about it afterwards; never describe it as a picture or a diagram. Do NOT invent any other detail about what a recording contains: what is listed above is everything that is known about it.
+{{- end}}
 {{- if .Notes}}
 
 A human subject-matter reviewer left these notes on this lesson. Address every one in your draft:

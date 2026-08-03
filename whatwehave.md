@@ -1,8 +1,12 @@
 # What We Have — courseSmith
 
 _A living snapshot of the project: what it is, everything that's built, what's
-left, and where it's going. Last updated 2026-07-28 (snippets: the short-form
-surface and its eight-template catalog, now including `workspace` — see §9)._
+left, and where it's going. Last updated 2026-07-31 — the snippet catalog is
+**32 templates** in six browsable categories (§9–§11, §14), there is a house-style
+axis (**skins**) independent of branding and mode (§10), **reels** cut one
+video from several templates on a single timeline (§12), and the studio has a
+nav rail and a working light mode (§13). Content generation is **OpenAI-only**
+by default._
 
 ---
 
@@ -18,6 +22,12 @@ near-zero cost using free-tier APIs and open-source tooling.
 The whole thing is a Go CLI (`bin/coursesmith`) driving a 15-stage,
 idempotent, resumable pipeline, plus a Node/Remotion render engine, a Hugo
 site, and a React studio UI.
+
+**Two shorter shapes sit on the same spine.** A **snippet** (§9–§11) is a
+prompt plus one of 32 visual templates, planned into a standalone clip; a
+**reel** (§12) is an ordered run of segments, each with its own template, cut
+onto one timeline. Both reuse the whole pipeline below the plan stage, so they
+inherit the same quality moat with no second engine.
 
 ```
 lesson.md ─▶ script ─▶ verify ─▶ review ─▶ visuals ─▶ quiz ─▶ mistakes ─▶ exercises ─▶ demos
@@ -164,10 +174,15 @@ templates — change.
 
 ### Studio UI (`studio/`, React + Vite + Tailwind)
 - Served by `coursesmith serve` (Go JSON API in `internal/studio/`).
-- Pages: Courses, Course detail, Lesson detail, Quiz editor, Ledger.
+- Pages: Compose, Snippets, Reels, Courses, Course/Lesson detail and editors,
+  Quiz editor + strategy, Templates, Library, Results gallery, Adaptive
+  config, Showcase, Generation, Ledger — behind a grouped, collapsible nav
+  rail (§13).
 - Live run control over SSE (`/api/events`, `/api/run` POST/DELETE), feedback
   and regenerate endpoints, quiz-override editor, artifact serving, OpenAPI
   schema → typed client (`schema.d.ts`).
+- **Light and dark**, for real: the ink ramp inverts (§13), so one class name
+  is correct in both themes.
 
 ### Adaptive learning (`coursesmith-tutor`, workstream D)
 - **Adaptive-learning microservice** (`cmd/coursesmith-tutor`, `:8765`,
@@ -193,9 +208,12 @@ templates — change.
   an HTML player page; `--choose` writes the pick to `course.yaml`.
 
 ### Platform
-- **LLM layer** (`internal/llm/`): provider router (Groq + OpenAI-compatible),
-  disk cache, per-provider token-bucket rate limiter w/ persisted state,
-  quota-aware clean stops, retry logic, transcription.
+- **LLM layer** (`internal/llm/`): provider router (any OpenAI-compatible
+  backend; `openai/gpt-4o-mini` is the content default and Groq is no longer
+  wired in by default), disk cache, per-provider token-bucket rate limiter w/
+  persisted state, quota-aware clean stops, retry logic, transcription.
+  `completeWithRepairRounds` is the shared correction loop every template's
+  validator feeds.
 - **Layered config** (`internal/config/`): defaults < course.yaml < lesson
   front-matter < CLI flags.
 - **Prompts as templates** (`prompts/*.tmpl`) — editable, and editing one
@@ -225,29 +243,38 @@ coursesmith build-site               hugo (+ pagefind) build
 coursesmith bundle                   offline zip (videos included)
 coursesmith ebook                    print-styled PDF companion
 coursesmith compile-course <course>  join lesson finals into course.mp4
-coursesmith snippet templates        the template catalog
+coursesmith snippet templates        the template catalog, grouped by category
 coursesmith snippet new <prompt>     plan + render a clip
-    --template (required) | --seconds | --mode | --captions | --plan-only
+    --template (required) | --seconds | --mode | --captions | --skin | --plan-only
 coursesmith snippet run <id>         re-run one (up-to-date stages skipped)
 coursesmith snippet list             every snippet and its state
+coursesmith reel cast <brief>        brief → segment structure + template picks
+    --run goes straight through; otherwise writes reel.yaml and stops
+coursesmith reel new <title>         --segment template:prompt (repeatable)
+coursesmith reel run <id>            plan every segment, one timeline, one render
+coursesmith reel list | show <id>    inspect a reel and its segments
+coursesmith reel segment <reel> <seg>  edit one segment (template/prompt/skip)
 ```
 
 ---
 
 ## 5. What's left / rough edges
 
-- **API keys not wired into this environment.** `GROQ_API_KEY` /
-  `OPENAI_API_KEY` are not exported in the shell, so LLM-dependent stages and
-  commands can't be exercised end-to-end here without the user exporting them.
-- **Pace vs. voice mismatch.** Kokoro `af_heart` speaks ~160–195 wpm while the
-  course targets 145 wpm, so the pace report flags several sections. It's
-  informational today — no automatic tempo adjustment yet.
 - **Only two lessons authored** in the sample course (`python-basics/01`,
   `/02`). Full multi-lesson runs (spaced repetition, bridges, analyze at scale)
   are lightly exercised.
-- **Single content provider proven.** Router supports OpenAI-compatible
-  providers but the content path is validated mainly against Groq
-  llama-3.3-70b + gpt-4o-mini reviews.
+- **One content provider in practice.** The router still supports any
+  OpenAI-compatible backend, but the default and every shipped course manifest
+  now pin `openai/gpt-4o-mini` — Groq is no longer wired in anywhere by
+  default, and nothing else has been validated end to end at this scale.
+- **A reel is planned per segment, so a long one is a lot of calls.** Nine
+  segments is nine planning calls plus enrichment; plan-only is the studio's
+  default at that size for exactly that reason, but there is no cost estimate
+  in the UI before the button is pressed.
+- **The recast fallback hides a bad cast.** A segment whose template cannot be
+  planned is recast as `illustration` and the run continues — which is right,
+  but it means a reel can finish with a segment nobody chose. It is logged and
+  `reel.yaml` keeps the original pick; it is not surfaced in the studio.
 - **No release tagging.** It is a git repo now, with history, PR merges, and
   five GitHub Actions workflows (`quality-gates`, `visual-regression`,
   `accessibility`, `learning-science`, `deploy-site`) — but nothing is versioned
@@ -264,9 +291,9 @@ coursesmith snippet list             every snippet and its state
 
 Natural next moves, roughly in priority order:
 
-1. **Adaptive pacing** — let the audio stage retime narration (or nudge the
-   voice) so `pace_wpm` is actually hit, closing the pace-report loop instead
-   of just reporting it.
+1. **Reels past phase 4** — a cheap edit path that patches a rendered segment's
+   props without re-planning its narration (the shape `video-plan.yaml` already
+   has for lessons), and surfacing recast segments in the studio.
 2. **Full-course authoring at scale** — write out the rest of `python-basics`,
    then stress the cross-lesson features (concept graph, bridges, spaced
    repetition) on a real 10–15 lesson course.
@@ -290,16 +317,19 @@ Natural next moves, roughly in priority order:
 ## 7. Repo map
 
 ```
-cmd/coursesmith/     CLI commands (run, status, doctor, serve, analyze, …)
+cmd/coursesmith/     CLI commands (run, status, doctor, serve, snippet, reel, …)
 internal/
   pipeline/          the 15 stages + render/audio/align/quiz/ebook/bundle
+                     snippet*.go — the 32 templates, their prompts + validators
+                     reel*.go    — casting, per-segment planning, assembly
+                     videotheme.go, typing.go — theme/skins, keystroke rhythm
   llm/               providers, router, rate limiter, cache, transcribe
-  project/           course/lesson/state parsing, StageOrder
+  project/           course/lesson/state parsing, Stage/Snippet/Reel orders
   config/            layered config
   studio/            Go JSON API + SSE + ledger + artifacts
 prompts/             *.tmpl generation prompts + diagram_style exemplars
-renderer/            Remotion (Node/React) video engine
-studio/              React + Vite + Tailwind studio UI
+renderer/            Remotion (Node/React) video engine — a scene per template
+studio/              React + Vite + Tailwind studio UI (rail + light/dark)
 site/                Hugo skeleton + course theme
 sandbox/             Docker image for code verification + VHS demos
 tools/align/         whisperX venv (word-level timing)
@@ -931,8 +961,9 @@ video. Captions and mode are both per-snippet: CLI flags and Studio controls.
 
 **Every template has a picture of itself.** `Root.tsx` carries a development
 composition per scene type, and the visual-regression suite records a baseline
-from each: fifteen baselines, all 0px-deterministic, and the eight gallery
-previews are downscaled from them. Two of them exist because a scene cannot be
+from each — fifteen at the time of this pass, **51 now**, all
+0px-deterministic, with the gallery previews downscaled from them. Two exist
+because a scene cannot be
 checked by reading. There is a **light-mode VS Code twin**, since the editor
 carries its own palette and is the one scene whose light mode cannot be
 inferred from any other baseline; and `FigureSheet` / `CastSheet` render the
@@ -946,6 +977,577 @@ those beats had been rendering as a motionless character and the baselines had
 locked it in. A baseline is only a regression test for what it actually
 exercises.
 
-**The catalog is eight templates** — `vscode`, `workspace`, `whiteboard`,
-`flow`, `illustration`, `cast`, `story`, `data` — spanning code, hand-drawn
-board, systems diagram, kinetic type, presenter, directed short, and data.
+**That first catalog was eight templates** — `vscode`, `workspace`,
+`whiteboard`, `flow`, `illustration`, `cast`, `story`, `data` — spanning code,
+hand-drawn board, systems diagram, kinetic type, presenter, directed short, and
+data. It is 29 now (§11), sitting on a house-style layer that did not exist
+then (§10).
+
+---
+
+## 10. The house style — skins, surfaces, transitions, sound (2026-07-28)
+
+Four explainer videos were supplied as look-and-feel references, and most of
+what made them cohere was never templates. It was a house style. So this is an
+axis **independent of branding and of light/dark mode**, added before the
+templates that need it. The reference analysis, and the fourteen touchpoints an
+eleventh reference template would need, are in
+`docs/research/02-reference-visual-system.md`.
+
+**Skins.** `style.skin` picks `default` (unchanged), `broadcast` (near-black
+stage, standing chrome, large uppercase headlines, content set back in air) or
+`minimal` (flat charcoal, one accent, no furniture). Every skin derives in both
+polarities and right round the hue circle.
+
+They are **additive by construction**: `deriveVideoTheme` runs exactly as it
+always did and a skin overrides only the tokens it disagrees with. A course that
+never mentions `skin` gets a byte-identical scene graph, `omitempty` keeps the
+new keys out of its JSON so no recorded config fingerprint moves, and every
+pre-existing visual baseline passed with zero pixels differing.
+
+**Semantic accents — `quantity`, `limit`, `rival` — are deliberately not
+branding.** A bar that overruns its ceiling is red whatever the course is
+branded with, because the colour states what the picture *means*; running the
+anchor through the brand hue would make a green-branded course draw its failure
+state in green. They derive for every skin, including the default.
+
+The quantity role needed a hue rotation to survive light mode. Gold walked down
+to AA on paper lands on `#8d6d0b` — khaki — so a gauge's bars, a myth's
+replacement line and a rundown's lit card all read as mud rather than as the
+deliberate colour of the role. Rotating toward amber lands on `#a45c09`, a burnt
+orange that reads as chosen; chroma survives the drop in lightness where
+yellow's does not. **The hue moves only on paper.** Found by rendering all ten
+v1 templates in light mode rather than by trusting the contrast test, which
+passed the whole time: 4.5:1 says a colour is readable, not that it is still the
+colour you meant.
+
+**Air is a scale, not padding.** Nearly every scene sizes against the `STAGE_W`
+constant at module scope, so a fatter padding leaves a fixed-width card exactly
+as wide and merely overflows the box. It arrives via `StageAirContext`, so no
+scene component needed editing.
+
+**Four backdrops, derived from what is standing on them.** One softly glowing
+dot grid used to sit behind everything — a house style, and also the same shot
+every time, actively fighting half its content (a dot grid behind a chart
+competes with the chart's own gridlines; an even wash behind a character is the
+opposite of a stage). Now: `paper` for the whiteboard (a horizontal rule and
+flatter light, so the board has a top and a bottom — horizontal only, since a
+full grid under a hand-drawn board reads as graph paper), `blueprint` for flow
+(fine squares, a heavier line every fifth), `spotlight` for cast and story (one
+pool of light, deeper vignette), `clean` for data (nothing at all). The variant
+is **derived from the scene types in the video**, not passed in: a snippet is
+one template start to finish so its scenes agree, while a lesson mixes title,
+code, diagram, terminal and points, and mixed content keeps the neutral
+backdrop. They differ by degree — glow, field, vignette and grain multipliers
+over one shared canvas — so a variant reads as the same room lit differently
+rather than as a second design system.
+
+**Three transitions, and only three.** Every cut used to be the same
+rise-and-dissolve. `push` goes to `illustration` and `cast`, which alternate the
+figure's side every beat — moving both shots the same way reinforces what the
+layout is already doing; the displacement is small on purpose, since a push that
+crosses a 1920px frame reads as a slideshow control. `cut` goes to `story`,
+because a rising cross-dissolve between two deliberately framed shots is the
+transition a film would never use; it takes the motion language's `fast` window
+and nothing moves. Everything else keeps `rise`. Derived from the scene types
+the same way the backdrop is.
+
+**Typing has a rhythm, and Go owns it** (`internal/pipeline/typing.go`).
+Characters used to be evenly spaced with random jitter, which reads as a
+teleprompter. People type a word in a burst, stop at the end of a line, stop
+longer before the body of a block, and never type the indentation — the editor
+inserts it. That is modelled as relative weights normalised to whatever window
+the beat got: a newline costs 3.5 characters, a newline ending in `:` or `{`
+costs 5, four spaces of indent cost almost nothing, and `)` costs almost nothing
+when it is the closer an editor would have auto-inserted. Jitter is a hash of
+the character index, not a PRNG, because three processes have to compute the
+same answer. The scene graph carries `keystrokes` — one absolute millisecond per
+character — and the renderer keeps its old estimate only as a fallback.
+
+**It moved out of the renderer because of sound.** Every character the editor
+types now makes a click, **synthesised rather than sampled** — a recording of a
+keyboard is one keyboard, with a room, a mic, a licence, and an identical
+waveform every time. A press is a transient: 20ms of noise under a fast attack
+and exponential decay over a low sine, with deterministic per-keystroke pitch
+and level. Newlines get a bigger, lower key (0.108 against 0.064) because Enter
+is the beat a listener registers as punctuation. **The level is the whole
+feature** — a click loud enough to sit on a −16 LUFS voice makes a clip
+unwatchable, and it is exactly the sort of thing that survives review because
+reviews are read rather than listened to. Peak is 0.09 of full scale, and a test
+drives sixty keystrokes 1ms apart so their decays pile up, failing above 0.5.
+Generated in the scene graph's finishing pass *after* the video plan, so an edit
+that retimes a scene retimes its sound with it, and read back with the
+pipeline's independently-written `wavDuration` parser so agreeing on the header
+is evidence rather than one file believing its own arithmetic.
+
+**One art vocabulary instead of two.** `FIGURES` is ~100 hand-built drawings
+that each have parts, a staggered assembly and a continuous idle; `ICONS` is 43
+flat single-stroke glyphs that do nothing. `illustration`, `cast` and `story`
+drew from the first — `whiteboard` and `flow` drew from the second, putting a
+motionless line drawing in a box while a hundred animated figures sat unused in
+the next file. Both draw figures now, Go's vocabularies and drift tests moved
+with them, and `points` keeps the glyphs because a small chip beside a phrase is
+what an icon is *for*. **The fix was room, not detail:** figures are designed
+against a 200-unit box and were being drawn at 58px on a 450×272 board item, so
+a third of that turns a 2px bar into half a pixel. At 148px and 132px every
+mechanism reads and not one figure had to change. Sixteen new figures in a
+`learn` module (question, chalkboard, insight, timer, certificate, answer,
+library, highlighter, signpost, foundation, progress, discussion, study, steps,
+graduate, bookmark) — the vocabulary had been built for explaining systems, and
+had a load balancer but no question. **117 total.**
+
+**The whiteboard grew shapes and a visible marker.** Every item was the same
+rounded rectangle — the right default and the wrong only option. Four now, each
+meaning what a person at a board would mean: `box` is a component, `circle` is
+an actor or a moment, `cloud` is deliberately vague (the internet, everything
+else), `sticky` is an aside and gets five times the seeded tilt. The prompt caps
+non-box shapes at one or two per board, since their whole value is standing out.
+The fill is the outline's own path rather than a rect behind it, which matters
+the moment a shape is not a rectangle. The cloud needed **rectifying** — a plain
+sine scallop alternates in and out, so the inward halves cut back past the body
+and every bump ends in a point: it drew a star. And the marker is a **drawn
+pen** rather than a soft accent bead, because a bead says something is happening
+and a pen says a person is drawing this. Drawing it exposed a real bug:
+`roughSticky` sampled every edge with the same point count regardless of length,
+so `penAt()` (which indexes by point) and the draw-on (which advances by arc
+length) disagreed and the marker floated a corner away from its own stroke —
+during the one moment the marker exists for.
+
+**Flow nodes stopped being identical rectangles.** Kind showed only as a 4px
+colour stripe, which is a legend nobody can read without being told what it
+means. There is a silhouette per kind now — a store is a cylinder, a queue has
+slots down its trailing edge, a client has a title bar, an external system is
+dashed — drawn inside the same rect the ranking assigned, so layout is
+untouched.
+
+**The VS Code editor got a pointer and a completion list.** The scene already
+timed a hover and a click on the file it opens and drew no cursor at all, so the
+highlight moved on its own like a haunted menu. The pointer arrives from
+below-right, presses with a single soft ring, and withdraws between the click
+and the first keystroke because the hand has moved to the keyboard; it renders
+*inside* the row it clicks rather than at computed window coordinates, since the
+tree is a flex column and any absolute position would be a second copy of that
+layout waiting to part company with it. The **completion popup** is the
+strongest "somebody is coding here" signal an editor gives off; candidates come
+from the file's own identifiers rather than a table of Python builtins, which is
+what a real editor's word-based completion actually does and cannot go stale
+against a language nobody taught it. The exact match stays in the list —
+filtering it out made the popup vanish for one frame at the end of every word.
+Both were invisible to every baseline (the fixtures set neither `intro` nor
+`typeAtMs`, so the whole opening was switched off in one composition and
+happened at negative frames in the other), which is why `VSCodeIntroViz` exists.
+
+---
+
+## 11. The catalog at 29 templates (2026-07-28)
+
+Twenty-one templates were added on top of the original eight, in three waves:
+two rounding out the original plan, a set written for no-code and vibe-coding
+courses, and ten built against the reference clips.
+
+**Each earns its place by the rule that distinguishes it**, not by looking
+different. Where a new template overlaps an existing one, the error message
+names the one to use instead.
+
+| template | the frame | the rule that earns it |
+|---|---|---|
+| `anatomy` | one line of text, taken apart | a part is a **literal substring** of the subject; Go finds it and resolves rune spans, so a callout can never land on the wrong characters |
+| `timeline` | a spine that fills in as it is walked | monotonic — walking back is narrating a diagram; two milestones is a before/after and `compare` does it better |
+| `compare` | two columns, both in frame from the start | the `both` beat is required: describing two things separately then announcing a winner has compared nothing. A tie is a first-class answer |
+| `quiz` | ask, wait, then tell | **the gap is the feature** — ≥1 beat between ask and reveal, all of it `think`, and nothing may explain an option early. Every option needs an explanation, not just the right one |
+| `canvas` | app cards on a dotted grid, wired, then fired | the first card is the trigger and the only one; forward only; the last beat runs a real payload |
+| `promptloop` | the vibe-coding conversation | turns strictly alternate, it ends on an answer, and ≥2 prompts — one ask and one answer is a demo, not a loop. **No code on screen**, deliberately |
+| `mockup` | a screen assembling itself | built downward, ≤1 header and ≤1 footer; un-built blocks are *not* drawn (the layer list carries what is still to come) |
+| `stack` | tiers of tools, and where the handoff is | the walk goes **down and only down**; every tier states what it is for; no product appears in two layers |
+| `spec` | criteria written first, checked last | the beats write the criteria with nothing ticked and one closing beat checks them all. A criterion may be **missed**; a sheet where nothing was met is rejected |
+| `showcase` | a tool's card, honestly | the limitations column is **enforced twice** — on the card and spoken in a beat. The one validator in the catalog defending the viewer rather than the layout |
+| `breakdown` | a path whose phases open | an item beat may only spotlight something in the phase currently open; no re-opening, no walking back. **12 beats** — the case `MaxBeats` was added for |
+| `metric` | one figure at a time, counting up | every number needs a unit and a label, and not everything may be `neutral` |
+| `gauge` | a bar against a marked ceiling | the ceiling is set first, and nothing may exceed 4× it |
+| `verdict` | a ruling and its asterisk | at least one *narrated* condition under which the call is wrong |
+| `decision` | an axis of tiers | bounds ascend and the last band is open-ended, so the partition is total |
+| `myth` | a belief struck through and replaced | the correction may not be a bare negation of the claim |
+| `analogy` | a picture mapped part by part | nothing maps to nothing, and it must say where it breaks |
+| `rundown` | a numbered promise | a promise naming N is backed by exactly N cards |
+| `trace` | a system caught in the act | every step states the value after it, and the value must actually move |
+| `costing` | a bill built line by line | the total equals the sum, and one line must be a cost nobody budgets |
+| `constellation` | one idea and its properties | every spoke carries the relation word joining it to the centre |
+
+**A per-template beat ceiling.** `maxSnippetBeats` was a hard 7, and
+words-per-beat advice is derived from the budget divided by the beat count — so
+past ~140 seconds the prompt told the model to write 75-word beats while the
+validator rejected anything over 60. At 180s the writable window was 393–420
+words: every beat had to land within 7% of the ceiling. The same contradiction
+`beatBounds` documents at the short end, sitting unfixed at the long end,
+unnoticed because nothing had asked for three minutes. Templates may now raise
+their own ceiling with `MaxBeats`, and the beat count has a floor set by the
+words as well as by the ideal, so the advice is never something the validator
+will refuse.
+
+**Normalize before validate.** Templates declare `Owns` / `OwnsPlan`; a plan is
+normalized before it is validated, foreign payloads are stripped rather than
+rejected, and a payload filed under the wrong name is migrated instead of
+refused. A rule whose fix is "cut it to four words" teaches the model nothing,
+so spending a correction round to say so is a round not spent on the clip. What
+survives into validation is what only the model can fix — the line sits at
+arithmetic-and-spelling vs. a claim: clamping a label is a repair, quietly
+rewriting a winner is a different act.
+
+**Six categories, because 29 in one alphabetical list is a wall.** The problem
+is not length, it is that the list is sorted by something nobody knows when they
+arrive — somebody opening the gallery is not thinking "I want the gauge
+template", they are thinking "I need to show whether this fits". So the grouping
+is by the **job**, not the mechanism: sorting by what is on screen (charts here,
+editors there) would have been easier and useless. `gauge` and `metric` sit
+together because both answer "how much"; `trace` and `flow` sit together because
+both answer "how does this work", though one draws state and the other
+structure.
+
+```
+Numbers & scale        how big, how much, how long — and whether it fits
+Ideas & mental models  explaining, or replacing what someone believes
+Systems & process      how it works, how it is built, in what order
+Code & screens         anything whose subject is on a screen
+Choices & verdicts     weighing options and saying what to do
+Presenting & pacing    the shape of the delivery rather than the content
+```
+
+Category is **required** and `registerSnippetTemplate` panics without one: a
+catalog that *can* grow an uncategorised entry does, and it lands in whatever
+bucket the UI keeps for leftovers, which is where templates go to never be used
+again. A test fails any category holding more than a third of the catalog.
+Templates also carry `Since` ("v1" for the ten reference-clip templates) — a
+fact rather than a status, so unlike a "new" badge it stays true when the next
+batch lands. The gallery groups and filters (matching title and description as
+well as name, so "does it fit" finds `gauge`); `/api/snippet-templates` emits in
+category order, since the gallery keeps no copy of the vocabulary and arrival
+order *is* heading order.
+
+**Every description was rewritten to say when to reach for it.** They used to
+say what was on screen and stop, which answers the wrong question — somebody
+browsing 29 templates knows what they want to *say*. Each now states the frame
+and then the occasion: *"A bar filling toward a marked ceiling. Reach for it
+whenever the question is whether something fits — memory, budget, a latency
+target."* Same copy in the gallery, the CLI and the caster's catalog, so the
+model choosing templates reads the same guidance a person does.
+
+**Thin briefs are enriched before planning.** The planner is good at turning a
+rich brief into a clip and bad at inventing the facts a thin one leaves out, and
+when it fails at the second job it does not fail gently. Enrichment reads what
+the chosen template cannot be filled without — the same list the caster is
+given, in the same words — and writes the fuller brief a person would have
+written. It runs *before* planning rather than as a retry, because the thin
+prompts that fail loudly are a fraction of the thin prompts that quietly make a
+mediocre clip, and it never fails the pipeline: no rewrite means the original
+prompt is used.
+
+**A worked example outranks the prose above it.** "Plan has no beats" after
+three correction rounds turned out to be the `metric` and `gauge` prompts
+nesting `beats` *inside* their template object in the worked example, where
+`SnippetPlan` does not read it. The model returned exactly what it was shown.
+Nothing caught it — the templates' tests build plans in Go and the render tests
+use fixtures, so no test had ever read a prompt's example.
+`TestPromptExamplesPutBeatsAtTheTopLevel` now parses the worked example in all
+29 prompts, matching by balancing braces rather than by line.
+
+**Cross-template field guards** (`beatFields` / `rejectForeignBeatFields`) and
+the shared normalizer are what keep 32 templates from becoming 32 dialects, and
+**every template has a picture of itself**: 51 visual-regression baselines, all
+0px-deterministic, and 29 gallery previews downscaled from them. A Go test fails
+if a registered template has no preview.
+
+---
+
+## 12. Reels — one video cut from several templates (2026-07-29)
+
+A snippet is one template start to finish, which is right for thirty seconds and
+wrong for ten minutes: nothing holds attention through ten minutes of the same
+picture. **A reel is an ordered run of segments, each with its own template,
+rendered onto one timeline.**
+
+**It is not several clips stitched together**, and that is the decision that
+matters. There is one narration, one TTS pass and one alignment across the whole
+piece. Stitching would give a seam at every join, loudness drifting between
+segments, and a supercut rather than a video.
+
+What makes that cheap is that alignment spans are already absolute
+milliseconds. A template is handed the slice of spans covering its own beats —
+already timed against the finished audio — and lays out scenes exactly as it
+would in a snippet. **Assembly is slicing, not arithmetic, and no template knows
+it is in a reel.** The renderer needed no change at all: `LessonVideo` has
+always dispatched per scene on type.
+
+Segments are planned separately, each through its own template's prompt. One
+call for the whole reel would have been fewer round trips and worse in every
+other way — each prompt carries its own vocabulary, bounds and enforced shape,
+and merging them would either drop those or produce a document no model follows
+to the end. Per-segment planning also means a segment that fails its validator
+fails alone. `IsReel` branches ahead of `IsSnippet` in the two stages that
+differ — plan and scenegraph — and everything between them (verify, audio,
+align, captions, chapters, render) is the shared path. Verify is kept whenever
+*any* segment shows code.
+
+**`reel.yaml` is the edit surface**, built for the editing that comes after the
+first watch rather than retrofitted for it: segments carry stable ids generated
+once and never renumbered, so an edit stays addressed to the same segment when a
+neighbour moves; `skip: true` drops a segment from the cut without deleting the
+prompt that produced it (the commonest edit after a first watch is "lose that
+bit" and the second is "put it back"); and the file is a stage input, so editing
+it re-stales exactly the stages that depend on it. Saving prunes zero-valued
+keys through a generic tree — `config.Config` has no `omitempty` tags and cannot
+have them, since a course manifest legitimately records an explicit zero, and a
+file people are told to edit should be readable when they get there. Empty lists
+survive: `segments: []` is a useful thing to see.
+
+**Casting is the only genuinely new thinking; planning, assembly and rendering
+were all reuse.** `coursesmith reel cast "<brief>"` reads the brief and decides
+how the piece breaks into parts and which template carries each. The difficulty
+was never picking looks — it is that every template has a validator that rejects
+material it cannot express, so casting `gauge` on a part with no threshold burns
+correction rounds discovering it after the caster has gone.
+
+So the caster does the awkward part up front, the same move every template's own
+validator makes: **each segment must name the material it will be filled with**,
+and a segment that cannot name any is one whose template was wrong. *"24GB
+ceiling; 7B/13B at 14/26GB"* is material; *"information about memory"* is not.
+That moves failure from late and expensive to one call, before anything is
+spent. Rhythm is enforced rather than requested: a template may not follow
+itself, and none may appear more than three times — a prompt can ask for variety
+and a model will still return five identical looks when the subject leans that
+way. The catalog the caster reads is **rendered from the live registry**, not
+written into the prompt file, so a template added today is castable today.
+
+`cast` writes `reel.yaml` and stops by default, because the cast is a structural
+decision worth reading before nine planning calls are spent on it — and because
+it writes exactly the file a person would have written, changing a pick is
+editing one line. From the brief *"why two users buying the last item at the
+same time oversells your stock"* it returned **myth → trace → breakdown →
+decision → verdict** — open on the belief the viewer arrives with, show the race,
+close on a ruling — and all five planned cleanly into 28 beats and 955 words.
+
+**A miscast segment no longer kills the reel.** "Non-empty" is the only thing a
+validator can check about the material field, so a look chosen because the name
+fits, for a part with nothing to put in it, still gets through — `gauge` cast on
+"how vibe coding lets users build by communicating ideas with AI" failed an
+entire eight-segment reel. Seven good segments and one that cannot be planned is
+a video with a hole, not a failed video, so a segment whose template cannot be
+planned is **recast as `illustration`** — the one look with no data requirement
+at all — and the run continues. The log says which and why, and `reel.yaml`
+keeps the original choice. The caster prompt also now names the four templates
+that cannot be planned from a subject alone (`gauge`, `metric`, `costing`,
+`trace`): prevention and recovery, since neither is sufficient alone.
+
+**The studio page is two halves.** Building a reel is choosing an *order* —
+which look carries which part of the argument — so the builder is a list you add
+to and reorder rather than a grid you pick one thing from; that is the real
+difference from the snippets page, where the gallery is primary because a
+snippet is one decision. The template picker is a grouped native select rather
+than the card gallery, because here you are choosing for the fourth segment of
+nine and the choice has to sit inline beside its prompt.
+
+The editor is why the page exists rather than the CLI being enough. **Edits are
+staged locally and applied together**, because every edit here moves the
+narration — swapping a template re-plans the segment, dropping one takes its
+words out of the read — so each costs a full rebuild. Batching turns four edits
+into one run, and the banner says so before the button is pressed. Edited
+segments are ringed and dropped ones dimmed. PATCH takes **pointers** for every
+field, since a plain string cannot distinguish "set the prompt to empty" from
+"leave the prompt alone", and it writes `reel.yaml` and stops — running is a
+separate call, because only the user knows when they have finished editing.
+Plan-only defaults **on** here and off for snippets: planning a reel is one call
+per segment and rendering is minutes.
+
+Look controls — dark/light, captions, skin — are lifted verbatim from the
+snippets page so the two screens cannot drift, and they apply to the **whole
+reel** rather than per segment: a piece that changed polarity or caption style
+partway through would read as several videos stitched together, which is the one
+thing a reel is built not to be.
+
+Not yet built: a cheap props-only edit path (the `video-plan.yaml` shape).
+
+---
+
+## 13. Studio, pacing, and OpenAI-only (2026-07-29)
+
+**A rail instead of a link row.** The nav was nine text links in the header. It
+could not grow, and it read as nine equal things when the studio is really three
+groups: what you make on, what you configure, what you inspect. Now a grouped,
+icon-railed sidebar, collapsible to 16px (persisted, because it is a workspace
+preference), with an off-canvas drawer below `sm`. `App.tsx` is the route table
+again; the shell lives in `layout/StudioLayout.tsx`, and `store/studioStore.ts`
+holds what outlives a route behind selector subscriptions so collapsing the
+sidebar does not re-render a Remotion player mid-frame.
+
+**Light mode existed and nothing could reach it.** `applyTheme` resolved every
+token per mode and `preferredMode` read a stored choice; no control ever called
+them, because of the ink ramp — 640 usages of a *fixed* dark scale, so a toggle
+would have flipped the shell and left every page black.
+
+So **the ramp inverts**. It is ordered by distance from the reader rather than
+by lightness — 950 is the page behind everything, 100 is the brightest thing
+written on it — which is what lets one `text-ink-100` be correct in both themes
+instead of 640 class names needing a `dark:` variant. It is emitted as CSS
+variables from the same `tokens.ts`, with the dark values as the `var()`
+fallbacks in the Tailwind config so the first paint is right before React boots.
+A terminal is not chrome, so log panes opt out with `.surface-dark`, written as
+twelve `--ink-N: var(--ink-dark-N)` mappings against a second always-dark ramp
+rather than a copy of the palette in CSS. The markdown editors deliberately do
+not opt out: an editor in a light theme is light.
+
+Measuring the ramp found two real contrast defects. `text-ink-500` — the single
+most-used colour in the studio — was **2.3:1** on the page and ink-400 was
+4.1:1; both are body text and both now pass. And 28 places wrote hints and empty
+states at ink-600, **1.6:1**, near-invisible; those move to 500 rather than
+raising the step, which would have dragged `border-ink-600` and `bg-ink-600`
+with it. `ink.test.ts` asserts AA in both modes, the ramp's ordering, and that
+the fallbacks match.
+
+**Templates became a picker and a detail panel.** It was three lists of names,
+which answered neither question a reader has. Now: the palette as swatches, the
+motion language demonstrated *with itself* (real stagger, easing and duration
+off the Go-owned tokens), and Apply, which writes the archetype to a course
+through the endpoint the course editor already uses. There is no save button for
+the archetype itself and there should not be — `/api/archetypes` is a GET of a
+Go registry and the motion values are drift-guarded against `motion.go`, so a
+slider here would be a control with nothing behind it.
+
+**No more Groq.** The default `llm_content` is `openai/gpt-4o-mini`, the reels
+course pins it explicitly the way the snippets course already did, and the
+new-course scaffold no longer hands people Groq. That missing pin is why the
+first real reel ran on Groq at all: snippets named a model, reels inherited
+whatever the global default happened to be. A side benefit — gpt-4o-mini *is* in
+the ledger's price table, so runs now cost what the ledger says instead of being
+silently recorded at zero. Four router tests broke, and each was a coupling
+worth removing rather than a number to update: they read their model out of
+`config.Defaults()` while testing routing, caching and missing-key messages, so
+sharing a model between content and review made the routing test stop proving
+anything. They pin their own providers now.
+
+**New courses ship the house voice speed.** The scaffold writes `voice_speed:
+0.9` alongside `pace_wpm`, with a note that the align stage multiplies the two —
+so slowing the voice moves the pace target with it instead of reading as under
+pace. New coverage for the parts unit tests cannot reason about: `insertSilence`
+against **real ffmpeg** (`anullsrc` as an in-graph source, concat's format
+matching), `applySentencePauses` keeping audio and both timestamp tracks in
+step, and `effectivePaceWPM` scaling the target with voice speed. The TTS test
+servers had been decoding into `map[string]string`, so the numeric `speed` field
+failed the whole body decode and nothing had ever asserted that 0.9 reaches the
+server.
+
+**Studio pages** now: Compose, Snippets, Reels, Courses (+ course/lesson
+editors), Quiz editor and strategy, Templates, Library, Results gallery,
+Adaptive config, Showcase, Generation, Ledger.
+
+
+---
+
+## 14. Three templates for a course, not a question (2026-07-31)
+
+The catalog at 29 could answer almost any single question — how big, how it
+works, why the obvious belief is wrong — and had nothing at all for the shape a
+*course* has. Everything in it was about the subject. Nothing was about the
+viewer's position in a run of lessons, nothing could draw something that comes
+back round, and nothing could show two quantities more than four times apart.
+
+Three templates, each earned by a rule rather than by a look, and each written
+to carry very little text: **`chapter`**, **`cycle`**, **`scale`**. All three
+derive in both polarities and have a light-mode baseline of their own, because
+all three are structured almost entirely out of `accentQuantity` and light mode
+is where a fixture that forgot the semantic accents would show up.
+
+| template | category | the frame | the rule that earns it |
+|---|---|---|---|
+| `chapter` | Presenting & pacing | a 400px hollow ordinal, the section starting now, and the path it sits on | the marker only moves **forward**, and the clip **ends on what opens next** |
+| `cycle` | Systems & process | a closed ring, stages on it, a comet running the arc | the loop must **name what changes each lap**, and the return is the last beat |
+| `scale` | Numbers & scale | worlds nested inside worlds, the camera pulling back | every rung at least **4× the last**, strictly ascending |
+
+**`chapter` is furniture, and that is what separates it from `timeline`.** Both
+draw a path with stops on it. A timeline walks the milestones of a *subject*; a
+chapter break is punctuation between two stretches of teaching, so the path is a
+strip along the bottom and the ordinal is the loudest thing on the frame. The
+numeral is drawn hollow — stage-coloured fill, accent stroke — because a solid
+380px figure in the accent is the only thing anybody would see, and the section
+title has to stay the thing being read.
+
+The two enforced rules are one rule from either end. Looking back may only reach
+stops already behind the viewer, and even the looking back runs forwards; and
+`here` is the last beat, always. A break that closes by summarising what just
+finished leaves the viewer at a stopping point, and the words that carry
+somebody across a gap are the ones about what is on the other side of it. The
+one concession: at the first stop no look-back is demanded, because there is
+nothing behind and requiring one is asking the model to invent it.
+
+**`cycle` exists because `flow` cannot draw a ring at all** — its validator
+*requires* a fork or a join, so a loop drawn there becomes a chain, which states
+the one thing that is not true about a loop. The rule that earns it is
+`changes`: a ring whose second pass is identical to its first is a wheel
+spinning, and the template refuses to be planned without naming what each lap
+leaves behind. That line lands in the hub on the closing beat, inside a ring
+that has just closed.
+
+Two implementation notes worth keeping. The traversed arc is emitted in
+**quarter-circle pieces** rather than as one `A` command: a single arc cannot
+express a full circle — its start and end points coincide, so nothing is drawn —
+and at the last beat that path *is* a full circle. The first version used the
+large-arc flag and hung a loop off the top of the ring on exactly the frame the
+template exists to deliver. And the comet is drawn on **its own layer above the
+stages**, because the discs had to be made opaque (the 10px lit arc otherwise
+runs straight through the icon) and the one moving object on the stage must
+never end up behind a standing one. It also parks a shade short of each stage,
+so the light waits at the disc's edge rather than under it.
+
+**`scale` picks up exactly where `gauge` gives up.** A gauge caps at 4× its
+ceiling and says so in its own error, because past that the line is a hairline
+and the picture states nothing — but the interesting quantities in teaching are
+almost never within 4× of each other. So this frame does not compare lengths at
+all: it nests, and the camera pulls back a level at a time. The geometry is a
+fixed 3.4× and **not** the true ratio, which is deliberate and stated: drawn
+proportionally a thousand-fold rung puts the last world at a third of a pixel.
+The eye gets the containment, the rail gets the numbers, and `gauge`'s rejection
+message now names this template by name.
+
+The closing beat **compresses instead of pulling back further**, which was the
+one genuinely wrong frame in the first pass: at 3.4× a four-rung ladder renders
+"all four at once" as one box with a speck in it. The camera holds on the
+largest rung and the spacing tightens to 1.9×, so every world is legible, and
+the frame carries the end-to-end span (`×40 billion`) — the figure the clip is
+actually about and the one no single rung carries.
+
+**Sixteen new icons**, because the vocabulary of 44 was built for architecture
+diagrams: it had a load balancer and nothing for "you are three parts into a
+course". Added in three groups — a journey and its landmarks (`compass`, `map`,
+`signpost`, `milestone`, `trophy`, `graduate`), things that come back round
+(`orbit`, `refresh`, `recycle`, `sprout`, `infinity`), and things at a size
+(`ruler`, `mountain`, `atom`, `telescope`, `city`). Both sides of the mirror,
+guarded by `TestIconVocabularyInSync`.
+
+**All 53 baselines were re-recorded, and 44 of them had been stale since
+`2ef06f5`.** That commit made Stage's bottom reserve conditional on captions,
+which moves every centred composition up by 28 pixels, and the baselines were
+never re-taken — so `visual-regression` had been red against templates nobody
+had touched. The drift was verified as a pure vertical translation before
+re-recording rather than assumed. They are 0px-deterministic again, and the
+three new templates contribute six of them: a beat that hands over and a beat
+that looks back for `chapter`, the closed ring and a mid-walk for `cycle`, one
+rung and the compressed ladder for `scale`, plus a light-mode twin each.
+
+**The animation gate was red for the same reason, and it is a better test now.**
+`test/animation_timing.mjs` asserts a reveal builds and then settles, and it
+reads total ink to do it — a complete description of the frame until `d64f816`
+gave every scene a camera that creeps closer for eighteen seconds. Content keeps
+growing after the last node lands, so "nothing more appears after the reveal
+settles" went red on a scene nobody had touched. Measured on D3Viz between the
+settle frame and eighty frames later: camera running, ink +3.35% and 4% of
+pixels moved; camera parked, ink −0.01% and **zero** pixels different. The
+reveal was correct the whole time.
+
+So the four reveal checks render with the camera parked, and a fifth asserts the
+camera is still alive — the same late frame with it running must differ from the
+parked one (measured 3.7%; the floor is 1%). That check is not padding: the
+camera's own commit records that its first implementation produced no motion at
+all, and parking the camera to fix the first four would have removed the only
+frames in the suite that would ever notice. Verified by zeroing the token and
+watching it fail. One trap worth recording — input props must go to
+`selectComposition` **and** `renderStill`; passed to the latter alone they are
+silently dropped, and the parked frames come back byte-identical to the live
+ones, which reads as a dead camera rather than as a dropped override.

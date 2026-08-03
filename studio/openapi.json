@@ -205,7 +205,7 @@
         "type": "object",
         "properties": {
           "title": {"type": "string"},
-          "segments": {"type": "array", "items": {"type": "object", "properties": {"template": {"type": "string"}, "prompt": {"type": "string"}, "target_sec": {"type": "integer"}}, "required": ["template", "prompt"]}}
+          "segments": {"type": "array", "items": {"type": "object", "properties": {"template": {"type": "string"}, "prompt": {"type": "string"}, "material": {"type": "string", "description": "The concrete facts this template will be filled with. POST it back with the proposal — a segment created without it is planned from the one-line prompt alone, and its writer invents the specifics."}, "target_sec": {"type": "integer"}}, "required": ["template", "prompt"]}}
         },
         "required": ["title", "segments"]
       },
@@ -213,6 +213,7 @@
         "type": "object",
         "properties": {
           "id": {"type": "string"}, "template": {"type": "string"}, "prompt": {"type": "string"},
+          "material": {"type": "string", "description": "The concrete facts this segment is planned from. The field most worth correcting by hand: a wrong figure here becomes a wrong figure in the finished video."},
           "target_sec": {"type": "integer"}, "skip": {"type": "boolean"},
           "template_title": {"type": "string"}, "template_category": {"type": "string"}
         },
@@ -374,8 +375,8 @@
       },
       "LedgerRow": {
         "type": "object",
-        "properties": {"day": {"type": "string"}, "provider": {"type": "string"}, "model": {"type": "string"}, "calls": {"type": "integer"}, "prompt_tokens": {"type": "integer"}, "completion_tokens": {"type": "integer"}, "cost_usd": {"type": "number"}},
-        "required": ["day", "provider", "model", "calls", "prompt_tokens", "completion_tokens", "cost_usd"]
+        "properties": {"day": {"type": "string"}, "provider": {"type": "string"}, "model": {"type": "string"}, "calls": {"type": "integer"}, "prompt_tokens": {"type": "integer"}, "completion_tokens": {"type": "integer"}, "cost_usd": {"type": "number"}, "priced": {"type": "boolean", "description": "False when this model is absent from the pricing table, which makes cost_usd meaningless rather than zero. Render it as unknown, never as $0.00 — the tokens were really spent."}},
+        "required": ["day", "provider", "model", "calls", "prompt_tokens", "completion_tokens", "cost_usd", "priced"]
       },
       "QuotaStatus": {
         "type": "object",
@@ -387,6 +388,8 @@
         "properties": {
           "rows": {"type": "array", "items": {"$ref": "#/components/schemas/LedgerRow"}},
           "total_cost_usd": {"type": "number"}, "total_calls": {"type": "integer"},
+          "unpriced_models": {"type": "array", "items": {"type": "string"}, "description": "Models whose spend is missing from total_cost_usd, so the total is a floor rather than the bill."},
+          "unpriced_tokens": {"type": "integer"},
           "quotas": {"type": "array", "items": {"$ref": "#/components/schemas/QuotaStatus"}}
         },
         "required": ["rows", "total_cost_usd", "total_calls", "quotas"]

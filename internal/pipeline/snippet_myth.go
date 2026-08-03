@@ -55,7 +55,7 @@ func init() {
 		Normalize:        normalizeMythPlan,
 		Validate:         validateMythPlan,
 		Scenes:           mythScenes,
-		PromptData: func(_ SnippetSpec, _ config.Config) map[string]any {
+		PromptData: func(spec SnippetSpec, _ config.Config) map[string]any {
 			return map[string]any{
 				"Shows":            strings.Join(MythShows(), ", "),
 				"MinEvidence":      minMythEvidence,
@@ -64,6 +64,16 @@ func init() {
 				"MaxTruthWords":    maxMythTruthWords,
 				"MaxWhyWords":      maxMythWhyWords,
 				"MaxEvidenceWords": maxMythEvidenceWords,
+				// The beliefs the audience actually holds, from the substance
+				// stage. This prompt has always demanded a claim "in the words
+				// somebody actually uses" and warned that a strawman corrects
+				// nobody — while giving the model no source for what anybody
+				// believes, so it invented one and the warning could not bite.
+				//
+				// The substance stage collects these and, until now, nothing read
+				// them: a populated field with no consumer, which is a worse state
+				// than an absent one because it looks done.
+				"Misconceptions": substanceMisconceptions(spec.Substance),
 			}
 		},
 	})

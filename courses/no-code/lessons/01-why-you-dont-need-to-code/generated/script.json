@@ -1,0 +1,59 @@
+{
+  "title": "Why you don't need to learn to code",
+  "sections": [
+    {
+      "id": "the-claim-said-carefully",
+      "narration": "You don't need to learn to code is true now in a way it wasn't in 2022. But that doesn't mean code no longer matters. The code still exists, it still runs, and it can still be wrong. What really changed is who writes it, not whether it gets written. Everything we talk about in this course hinges on that distinction. If you skip this point, the first time a tool fails, you'll think the tool is broken.",
+      "duration_est_sec": 42,
+      "cues": []
+    },
+    {
+      "id": "the-three-jobs-hiding-inside-building-software",
+      "narration": "Let's break down what we mean by building software. There are three main jobs involved. First, there's deciding what to build. This means figuring out what problem you're solving, for whom, and what it must do. Second is writing the code, which is turning those decisions into instructions a computer can follow. And finally, keeping it running, which involves hosting, managing data, accounts, and fixing issues when they arise. People often mix these three jobs under the term coding, which is why learn to code sounded like the only door in. Let's look at that in a picture.",
+      "duration_est_sec": 55,
+      "cues": [
+        {
+          "type": "diagram",
+          "ref": "three-jobs",
+          "at_word": 85
+        }
+      ]
+    },
+    {
+      "id": "only-the-middle-one-got-automated",
+      "narration": "Now, out of those three jobs, only the middle one got automated. Generative AI is really good at producing code from a clear description. But it struggles with knowing which thing is worth building. It's also getting better at the third job, but it's not quite there yet. So, the skill that matters now is being able to describe precisely what you want. And that's a skill you already have, from every time you've briefed someone on something.",
+      "duration_est_sec": 54,
+      "cues": [
+        {
+          "type": "diagram",
+          "ref": "what-moved",
+          "at_word": 75
+        }
+      ]
+    },
+    {
+      "id": "who-is-actually-doing-this",
+      "narration": "You might be surprised to learn that most of the people using these tools aren't developers. They're founders, product managers, designers, and marketers. They're not building the next operating system. Instead, they're creating internal tools, landing pages, booking forms, and prototypes that help get meetings. This isn't a lesser category. In fact, most software that earns its keep falls into this space.",
+      "duration_est_sec": 42,
+      "cues": []
+    },
+    {
+      "id": "what-you-will-have-built-by-the-end",
+      "narration": "By the end of this course, you'll have built a real application with a real database, one that other people can access on the internet at an address you own. You'll also develop the habit of describing what you want clearly enough to get it. And you'll gain a clear sense of the edge — that point where you should stop and hire someone.",
+      "duration_est_sec": 42,
+      "cues": []
+    },
+    {
+      "id": "the-honest-caveat-up-front",
+      "narration": "Now, let's talk about some honest caveats. These tools do cost money, and the cost grows with your usage. They produce code that you might not read, and sometimes that code can be wrong in ways that only show up later. If you're dealing with payments, health data, or anyone's private information, you definitely want a professional's eyes on it before it goes live. Lesson twelve will revisit all of this properly. It’s the most important lesson in this course, and it's intentionally saved for last.",
+      "duration_est_sec": 54,
+      "cues": []
+    },
+    {
+      "id": "whats-next",
+      "narration": "So what's next? In the next lesson, we'll map out what each tool in this world is actually for. This way, the names stop being noise, and you can see how they fit into what you're trying to accomplish.",
+      "duration_est_sec": 42,
+      "cues": []
+    }
+  ]
+}

@@ -42,10 +42,30 @@ export function LedgerPage() {
       {data && (
         <>
           <div className="mb-6 flex flex-wrap gap-4">
-            <Stat label="Total cost" value={formatUsd(data.total_cost_usd)} />
+            <Stat
+              label={data.unpriced_models?.length ? "Total cost (at least)" : "Total cost"}
+              value={formatUsd(data.total_cost_usd)}
+            />
             <Stat label="Total calls" value={formatInt(data.total_calls)} />
             <Stat label="Days tracked" value={formatInt(byDay.length)} />
           </div>
+
+          {/* Spend the total does not include. A model absent from the pricing
+              table used to be billed at zero, so a grounded run reported its web
+              search as free — a wrong number that looked authoritative, which is
+              worse than an absent one. */}
+          {data.unpriced_models?.length ? (
+            <div className="mb-6 rounded-lg border border-amber-500/40 bg-amber-500/5 p-3 text-[13px] text-amber-200/90">
+              <strong className="font-semibold">
+                {formatInt(data.unpriced_tokens ?? 0)} tokens are not in the total.
+              </strong>{" "}
+              No price is known for {data.unpriced_models.join(", ")}, so their spend is
+              missing rather than zero — the figure above is a floor. Add them to{" "}
+              <code className="font-mono text-[12px]">modelPricing</code> in{" "}
+              <code className="font-mono text-[12px]">internal/studio/ledger.go</code> to
+              close the gap.
+            </div>
+          ) : null}
 
           {byDay.length > 0 && (
             <div className="mb-8 h-64 rounded-lg border border-ink-800 bg-ink-900 p-3">
@@ -132,7 +152,17 @@ export function LedgerPage() {
                     <td className="px-3 py-1.5 text-right text-ink-400">
                       {formatInt(r.completion_tokens)}
                     </td>
-                    <td className="px-3 py-1.5 text-right">{formatUsd(r.cost_usd)}</td>
+                    {/* Never $0.00 for a model we cannot price — the tokens were
+                        really spent and somebody really paid for them. */}
+                    <td className="px-3 py-1.5 text-right">
+                      {r.priced ? (
+                        formatUsd(r.cost_usd)
+                      ) : (
+                        <span className="text-amber-300/80" title="No price known for this model">
+                          unpriced
+                        </span>
+                      )}
+                    </td>
                   </tr>
                 ))}
                 {data.rows.length === 0 && (

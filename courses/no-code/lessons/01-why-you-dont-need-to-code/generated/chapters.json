@@ -1,0 +1,44 @@
+[
+  {
+    "id": "the-claim-said-carefully",
+    "title": "The claim, said carefully",
+    "start_ms": 0,
+    "end_ms": 26879
+  },
+  {
+    "id": "the-three-jobs-hiding-inside-building-software",
+    "title": "The three jobs hiding inside \"building software\"",
+    "start_ms": 26879,
+    "end_ms": 64971
+  },
+  {
+    "id": "only-the-middle-one-got-automated",
+    "title": "Only the middle one got automated",
+    "start_ms": 64971,
+    "end_ms": 93386
+  },
+  {
+    "id": "who-is-actually-doing-this",
+    "title": "Who is actually doing this",
+    "start_ms": 93386,
+    "end_ms": 120521
+  },
+  {
+    "id": "what-you-will-have-built-by-the-end",
+    "title": "What you will have built by the end",
+    "start_ms": 120521,
+    "end_ms": 140517
+  },
+  {
+    "id": "the-honest-caveat-up-front",
+    "title": "The honest caveat, up front",
+    "start_ms": 140517,
+    "end_ms": 173753
+  },
+  {
+    "id": "whats-next",
+    "title": "Whats Next",
+    "start_ms": 173753,
+    "end_ms": 185808
+  }
+]

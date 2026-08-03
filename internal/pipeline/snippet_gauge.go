@@ -246,7 +246,7 @@ func validateGaugePlan(p *SnippetPlan) error {
 		// The ratio cap: past this the ceiling is a hairline and the picture
 		// stops being a picture.
 		if r := b.Value / g.Ceiling.Value; r > maxGaugeRatio {
-			return fmt.Errorf("bar %q is %.1fx the ceiling, past the %gx this can draw. At that ratio the line renders as a hairline against the left edge and the diagram says nothing the number would not say better — either raise the ceiling to something %q is actually close to, or state it as a figure with the metric template",
+			return fmt.Errorf("bar %q is %.1fx the ceiling, past the %gx this can draw. At that ratio the line renders as a hairline against the left edge and the diagram says nothing the number would not say better — either raise the ceiling to something %q is actually close to, state it as a figure with the metric template, or draw the gap with the scale template, which nests each quantity inside the next and is built for exactly the ratios a bar cannot hold",
 				b.Label, r, maxGaugeRatio, b.Label)
 		}
 		key := strings.ToLower(strings.TrimSpace(b.Label))

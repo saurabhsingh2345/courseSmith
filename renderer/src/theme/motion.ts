@@ -13,10 +13,15 @@ import motionDefaults from './motion.defaults.json';
 export type MotionTiming = {fast: number; normal: number; slow: number; verySlow: number};
 export type MotionEasing = {entrance: string; exit: string; subtle: string};
 export type MotionStagger = {words: number; items: number; connections: number};
+/** The slow move the frame makes underneath a scene. See Go's MotionCamera —
+ *  `push` is the ceiling the move reaches, `settleSec` how long it takes to get
+ *  there, so the RATE is fixed rather than the distance-per-scene. */
+export type MotionCamera = {push: number; drift: number; settleSec: number};
 export type MotionTokens = {
   timing: MotionTiming;
   easing: MotionEasing;
   stagger: MotionStagger;
+  camera: MotionCamera;
 };
 
 /** Baseline tokens, byte-synced to Go's DefaultMotion(). */
@@ -31,6 +36,10 @@ export const resolveMotion = (m?: Partial<MotionTokens> | null): MotionTokens =>
   timing: {...defaultMotion.timing, ...m?.timing},
   easing: {...defaultMotion.easing, ...m?.easing},
   stagger: {...defaultMotion.stagger, ...m?.stagger},
+  // Every scene graph written before the camera existed carries no `camera` key,
+  // and spreading undefined over the defaults leaves the defaults — so an old
+  // graph re-rendered today gets the move rather than being frozen out of it.
+  camera: {...defaultMotion.camera, ...m?.camera},
 });
 
 /** Seconds → whole frames at the given fps (min 1 so nothing is zero-length). */

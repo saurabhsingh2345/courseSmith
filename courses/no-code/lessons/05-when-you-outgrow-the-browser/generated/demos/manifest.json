@@ -1,0 +1,12 @@
+{
+  "demos": [
+    {
+      "id": "capture-1",
+      "description": "ask the agent to add a weekly summary to the habit tracker, then show the files it changed",
+      "path": "demos/capture-1.mp4",
+      "durationMs": 93120,
+      "kind": "tool",
+      "tool": "claude"
+    }
+  ]
+}

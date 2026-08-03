@@ -111,6 +111,31 @@ type ReelSegment struct {
 	// planned through the template's own prompt, so a segment is exactly as
 	// good as the equivalent snippet would have been.
 	Prompt string `yaml:"prompt"`
+	// Role is this segment's job in the arc: hook, develop or payoff.
+	//
+	// Persisted because an enforced shape that leaves no trace cannot be checked
+	// or corrected. The arc is validated at cast time and then, without this, was
+	// gone — I could not tell from the finished reel.yaml whether the opener the
+	// caster called a hook actually put anything at stake, and neither could
+	// anybody else. A rule whose result is invisible is a rule nobody can audit.
+	//
+	// Not read by the planner. Said plainly because the last field added here that
+	// nothing consumed sat populated and orphaned until somebody asked what was
+	// left: this one is for the caster's arithmetic, the cast table, and the person
+	// deciding whether the shape is right.
+	Role string `yaml:"role,omitempty"`
+	// Material is the concrete facts this template will be filled with — the
+	// ceiling and its candidates, the line items that add up, the belief and the
+	// truth. The caster names it to prove the template can be filled at all
+	// (CastReel), and it is written down here because the segment's *writer*
+	// needs it more than the validator did.
+	//
+	// Persisted, unlike the rest of the planning context, because it is a
+	// per-segment choice a creator will want to edit — correcting a wrong figure
+	// here is the difference between re-running one segment and re-casting the
+	// reel. Empty is legal: a hand-authored reel need not supply it, and a
+	// segment without it is planned exactly as it was before this field existed.
+	Material string `yaml:"material,omitempty"`
 	// TargetSec is the runtime to aim for (0 = the template's own default).
 	TargetSec int `yaml:"target_sec,omitempty"`
 	// Skip drops the segment from the cut without deleting it from the file.
@@ -143,13 +168,21 @@ func (s ReelSegment) ResolvedTargetSec() int {
 // SnippetSpec projects a segment onto the request shape the template planners
 // already take, so a segment is planned by exactly the same code a snippet is.
 // Nothing in a template knows about reels.
-func (s ReelSegment) SnippetSpec(cfg config.Config) SnippetSpec {
+//
+// brief and priors come from the reel rather than the segment, so they are
+// parameters: a segment cannot know the piece it is part of, and asking the
+// caller to remember to set two fields afterwards is how one of them ends up
+// unset on the path nobody re-read.
+func (s ReelSegment) SnippetSpec(cfg config.Config, brief string, priors []string) SnippetSpec {
 	return SnippetSpec{
 		ID:        s.ID,
 		Prompt:    s.Prompt,
 		Template:  s.Template,
 		TargetSec: s.TargetSec,
 		Config:    cfg,
+		Brief:     brief,
+		Material:  s.Material,
+		Priors:    priors,
 	}
 }
 
@@ -372,7 +405,10 @@ func (p *ReelPlan) Script(paceWPM int) *Script {
 			words := len(strings.Fields(b.Narration))
 			est := max(1, int(float64(words)/float64(paceWPM)*60+0.5))
 			script.Sections = append(script.Sections, Section{
-				ID:             seg.ID + "--" + b.ID,
+				ID: seg.ID + "--" + b.ID,
+				// The beat's own heading, so the chapter list reads as the piece
+				// rather than as its assembly.
+				Title:          b.Heading,
 				Narration:      b.Narration,
 				DurationEstSec: est,
 			})
@@ -618,6 +654,18 @@ func buildReelSceneGraph(
 		return nil, fmt.Errorf("the reel produced no scenes — every segment is skipped or empty")
 	}
 	graph.DurationMs = audioDurMs + videoTailMs
+	// The same pass the lesson path runs, and for the same reason: a recording
+	// is longer than the narration over it, so the dead air has to be compressed
+	// onto the marks and the tool has to be credited on screen.
+	//
+	// This was missing here, which meant no reel and no no-code piece ever got
+	// either. A 161-second agent session was dropped whole into a 61-second slot
+	// and simply cut off partway: the video played the opening seconds of the
+	// clip, showed nothing happening, and moved on before the moment it was
+	// recorded for. Nothing errored — the graph was valid and the render
+	// reported done — which is exactly why this call belongs beside the one in
+	// buildSceneGraph rather than in a template.
+	applyTerminalPacing(graph, l)
 	return graph, nil
 }
 

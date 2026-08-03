@@ -1,0 +1,288 @@
+{
+  "theme": {
+    "primary": "#5b5bd6",
+    "accent": "#f5c26b",
+    "background": "#0b0d12",
+    "courseName": "Build Without Code",
+    "mode": "dark",
+    "bgTop": "#101028",
+    "bgBottom": "#0a0715",
+    "surface": "#1b1b32",
+    "surfaceBorder": "#323252",
+    "text": "#f2f2f8",
+    "textMuted": "#a6a6bf",
+    "accentQuantity": "#f5ca47",
+    "accentLimit": "#ec5b51",
+    "accentRival": "#518cec",
+    "mass": "#dedeed",
+    "ink": "#070718",
+    "accentText": "#f5c26b",
+    "fontDisplay": "Space Grotesk",
+    "fontBody": "Inter",
+    "fontMono": "JetBrains Mono",
+    "grain": 0.04
+  },
+  "motion": {
+    "timing": {
+      "fast": 0.2,
+      "normal": 0.6,
+      "slow": 1,
+      "verySlow": 2
+    },
+    "easing": {
+      "entrance": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "exit": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "subtle": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "stagger": {
+      "words": 0.05,
+      "items": 0.08,
+      "connections": 0.12
+    },
+    "camera": {
+      "push": 0.032,
+      "drift": 22,
+      "settleSec": 18
+    }
+  },
+  "audioFile": "voiceover.wav",
+  "durationMs": 189647,
+  "scenes": [
+    {
+      "type": "title",
+      "startMs": 31,
+      "endMs": 35953,
+      "props": {
+        "heading": "When you outgrow the browser",
+        "intro": true,
+        "outcomes": [
+          "Recognise the three signs a project has outgrown an app builder",
+          "Understand what an AI coding agent is actually doing to your files",
+          "Watch an agent read a real project and change it"
+        ],
+        "subtitle": "Build Without Code"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 35953,
+      "endMs": 39957,
+      "props": {
+        "items": [
+          {
+            "atMs": 39957,
+            "icon": "file",
+            "text": "Actual files on your computer"
+          },
+          {
+            "atMs": 43461,
+            "icon": "gear",
+            "text": "More control"
+          },
+          {
+            "atMs": 45983,
+            "icon": "cloud",
+            "text": "Safe storage"
+          },
+          {
+            "atMs": 52870,
+            "icon": "wrench",
+            "text": "Setup required"
+          }
+        ],
+        "title": "What actually changes"
+      }
+    },
+    {
+      "type": "diagram",
+      "startMs": 39957,
+      "endMs": 65543,
+      "props": {
+        "caption": "builder-vs-agent",
+        "kind": "mermaid",
+        "src": "diagrams/builder-vs-agent.svg",
+        "title": "What actually changes"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 65543,
+      "endMs": 70208,
+      "props": {
+        "items": [
+          {
+            "atMs": 68025,
+            "icon": "keyboard",
+            "text": "Not just autocomplete"
+          },
+          {
+            "atMs": 71869,
+            "icon": "search",
+            "text": "Analyzes your project"
+          },
+          {
+            "atMs": 74592,
+            "icon": "dot",
+            "text": "Makes edits"
+          },
+          {
+            "atMs": 80157,
+            "icon": "check",
+            "text": "Verifies its work"
+          }
+        ],
+        "title": "What an AI coding agent is doing"
+      }
+    },
+    {
+      "type": "diagram",
+      "startMs": 70208,
+      "endMs": 94045,
+      "props": {
+        "caption": "what-the-agent-does",
+        "kind": "mermaid",
+        "src": "diagrams/what-the-agent-does.svg",
+        "title": "What an AI coding agent is doing"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 94045,
+      "endMs": 102152,
+      "props": {
+        "items": [
+          {
+            "atMs": 97608,
+            "icon": "monitor",
+            "text": "Genuine recording"
+          },
+          {
+            "atMs": 103473,
+            "icon": "list",
+            "text": "Habit tracker project"
+          },
+          {
+            "atMs": 108938,
+            "icon": "layers",
+            "text": "Multiple parts involved"
+          }
+        ],
+        "title": "Watch it happen on a real project"
+      }
+    },
+    {
+      "type": "terminal",
+      "startMs": 102152,
+      "endMs": 122944,
+      "props": {
+        "durationMs": 53280,
+        "provenance": {
+          "tool": "Claude Code",
+          "version": "2.1.220",
+          "realMs": 53280,
+          "shownMs": 20792
+        },
+        "segments": [
+          {
+            "fromMs": 0,
+            "toMs": 2240,
+            "rate": 1
+          },
+          {
+            "fromMs": 2240,
+            "toMs": 44920,
+            "rate": 4.187598116169545
+          },
+          {
+            "fromMs": 44920,
+            "toMs": 47160,
+            "rate": 1
+          },
+          {
+            "fromMs": 47160,
+            "toMs": 50280,
+            "rate": 1
+          },
+          {
+            "fromMs": 50280,
+            "toMs": 53280,
+            "rate": 1
+          }
+        ],
+        "src": "demos/capture-1.mp4",
+        "title": "Claude Code"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 122944,
+      "endMs": 150265,
+      "props": {
+        "items": [
+          {
+            "atMs": 126008,
+            "icon": "dot",
+            "text": "Looks before changes"
+          },
+          {
+            "atMs": 132276,
+            "icon": "folder",
+            "text": "Changes multiple files"
+          },
+          {
+            "atMs": 136521,
+            "icon": "message",
+            "text": "Summary of changes"
+          }
+        ],
+        "title": "Reading what just happened"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 150265,
+      "endMs": 178398,
+      "props": {
+        "items": [
+          {
+            "atMs": 153790,
+            "icon": "database",
+            "text": "Use version control"
+          },
+          {
+            "atMs": 158296,
+            "icon": "book",
+            "text": "Read summary of changes"
+          },
+          {
+            "atMs": 166708,
+            "icon": "dot",
+            "text": "Ask for explanations"
+          }
+        ],
+        "title": "The habits that keep this safe"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 178398,
+      "endMs": 189647,
+      "props": {
+        "items": [
+          {
+            "atMs": 181727,
+            "icon": "target",
+            "text": "Focus on design"
+          },
+          {
+            "atMs": 183933,
+            "icon": "rocket",
+            "text": "Bring ideas to fruition"
+          }
+        ],
+        "title": "What's next"
+      }
+    }
+  ],
+  "captions": null
+}

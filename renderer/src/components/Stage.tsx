@@ -17,13 +17,34 @@ export const FRAME_W = 1920;
 export const FRAME_H = 1080;
 
 /**
- * Bottom reserve. With on-screen captions off (the default since 2026-07-26)
- * this is plain compositional breathing room. If a course turns karaoke
- * captions back on (style.captions: on), restore 200 — one caption line is
- * 161px tall (64 margin + 40 padding + 42px/1.35 text) plus pop headroom —
- * or tall scenes will run under the caption card again.
+ * Bottom reserve when a caption card is going to be drawn there.
+ *
+ * Stays at 120 — the value every scene's layout was tuned against — rather than
+ * the 200 a caption line actually wants (64 margin + 40 padding + 42px/1.35 text,
+ * plus pop headroom). Raising it looks like a fix and is a regression: a dozen
+ * scenes capture STAGE_H at module scope, so a bigger reserve shrinks every one
+ * of them, in the captions-OFF default where there is no card to make room for.
+ * The under-reservation is a known, pre-existing compromise for the rare
+ * captions-on video; making it worse for the common case to fix it is the wrong
+ * trade, and correcting it properly means giving those scenes a runtime height.
  */
 export const CAPTION_SAFE = 120;
+
+/**
+ * Bottom reserve when nothing is going to be drawn there — the frame margin, and
+ * nothing more.
+ *
+ * Captions have been off by default since 2026-07-26, and the reserve stayed
+ * unconditional: every frame in every default-configured video gave up a band at
+ * the bottom to a caption card that was never rendered. On a 1080-line frame that
+ * is 11% of the height held empty by a constant, which is a real part of why the
+ * output reads as content floating high in an under-filled frame.
+ *
+ * Kept as a named constant rather than folded into SAFE_TOP because the two are
+ * different ideas that happen to share a number, and a later change to the frame
+ * margin should not silently change what a caption needs.
+ */
+export const NO_CAPTION_SAFE = 64;
 
 /** Horizontal frame margin — content never runs to the edge. */
 export const SAFE_X = 110;
@@ -33,7 +54,33 @@ export const SAFE_TOP = 64;
 
 /** Usable drawing box. Scenes should size against these, not 1920x1080. */
 export const STAGE_W = FRAME_W - SAFE_X * 2;
+
+/**
+ * Usable height — unchanged, and deliberately not made conditional.
+ *
+ * Same reason the skin's `air` is a scale rather than padding: about a dozen
+ * scenes capture this at module scope (`const BODY_H = STAGE_H - HEADER_H - 150`),
+ * so it cannot vary per render without giving all of them a runtime height, which
+ * would put a layout regression in every one. Scenes keep sizing against exactly
+ * the height they were tuned against.
+ *
+ * What the conditional reserve below changes is the *padding*, and therefore where
+ * the content block sits. That is the part worth having: a short composition now
+ * centres in the whole frame instead of centring in a box with a permanent hole at
+ * the bottom, which is what left everything riding high.
+ */
 export const STAGE_H = FRAME_H - SAFE_TOP - CAPTION_SAFE;
+
+/**
+ * Whether a caption card will be drawn over this frame, supplied once by
+ * LessonVideo.
+ *
+ * A context for exactly the reason StageAirContext is one: Stage is composed into
+ * by around thirty scene components, and a prop would work in twenty-nine of them.
+ * Defaults to false — no captions — so a Stage rendered in a fixture or a test
+ * gets the full frame.
+ */
+export const StageCaptionsContext = createContext(false);
 
 /**
  * The skin's stage inset, supplied once by LessonVideo.
@@ -71,6 +118,12 @@ export const Stage: React.FC<{
   children: React.ReactNode;
 }> = ({justify = 'center', align = 'center', air, children}) => {
   const contextAir = useContext(StageAirContext);
+  const hasCaptions = useContext(StageCaptionsContext);
+  // The reserve the *padding* uses. STAGE_H stays pessimistic (see its comment),
+  // so a scene sized against it still fits; what this buys is that the content
+  // block centres in the whole frame rather than in a box with a permanent
+  // 120-pixel hole at the bottom.
+  const bottomReserve = hasCaptions ? CAPTION_SAFE : NO_CAPTION_SAFE;
   const inset = Math.max(0, Math.min(0.3, air ?? contextAir));
   // Air is a *scale*, not extra padding, and that is a deliberate correction.
   //
@@ -92,7 +145,7 @@ export const Stage: React.FC<{
         paddingTop: SAFE_TOP,
         paddingLeft: SAFE_X,
         paddingRight: SAFE_X,
-        paddingBottom: CAPTION_SAFE,
+        paddingBottom: bottomReserve,
         display: 'flex',
         flexDirection: 'column',
         alignItems: align,

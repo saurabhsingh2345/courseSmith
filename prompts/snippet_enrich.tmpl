@@ -12,14 +12,50 @@ WHAT THIS TEMPLATE CANNOT BE FILLED WITHOUT:
 {{end}}
 Audience: {{.Audience}}
 The finished clip runs about {{.TargetSec}} seconds.
+{{if .Brief}}
+THE WHOLE PIECE THIS IS ONE PART OF. This clip is one segment of a longer video. Here is the brief for the whole thing:
 
+{{.Brief}}
+
+This brief is your PRIMARY SOURCE. The request above is a one-line summary of which part of it this segment covers — it was compressed from this brief and lost the specifics on the way. Your job is to put them back. If the brief names products, tools, figures, versions or people that belong to this segment's part, the brief you write must name them too. A segment that says "various tools help you work faster" when the brief listed thirteen tools by name has thrown away the only thing that made it worth watching.
+{{end}}{{if .Material}}
+THE MATERIAL ALREADY CHOSEN FOR THIS SEGMENT. Whoever picked this template named the facts it would be filled with:
+
+{{.Material}}
+
+Use these. They are why this template was chosen, and a brief that quietly swaps them for different facts leaves the look with nothing to hold. If the material is thin, keep what is there and add to it; if it contradicts the brief, the brief wins.
+
+This is a POOL OF FACTS, not a running order. The number of items here is not the number of beats the clip has — the runtime decides that. Six facts in a forty-second clip means folding related ones together and cutting the weakest, not six half-sentences. Write the brief as prose that happens to contain these facts, never as a list mirroring them, because a brief that enumerates six items gets planned as six thin beats and a thin beat is what makes a clip feel like a slideshow.
+{{end}}{{if .Facts}}
+THE ESTABLISHED FACTS. These were checked before anything chose a template. Each is followed in brackets by what backs it — a URL it was read in, or the arithmetic behind it:
+{{range .Facts}}- {{.}}
+{{end}}
+These are the facts this piece is allowed to state. Pull whichever belong to THIS segment's part and put them in the brief, with their numbers intact. Do not round them, do not soften them into ranges, and do not restate one as a vaguer version of itself. Facts that belong to another segment's part are not yours to use — leave them.
+{{end}}{{if .Gaps}}
+WHAT COULD NOT BE ESTABLISHED. These were looked for and not found:
+{{range .Gaps}}- {{.}}
+{{end}}
+Do not supply these from your own knowledge. If this segment's template needs one of them, say plainly in the brief that the figure is not available, and let the writer work with what is real. That is the correct outcome — a template with a hole in it is fixable, and an invented number rendered as a chart is not.
+{{end}}{{if .Priors}}
+ALREADY COVERED, by the segments before this one:
+{{range .Priors}}- {{.}}
+{{end}}
+Do not cover these again. The viewer has just watched them. Advance the piece: if an earlier segment established a claim, this one builds on it rather than re-arguing it. Two segments making the same point is the commonest way a long video loses somebody.
+{{end}}
 WHAT TO DO:
 - Keep the subject exactly as asked. You are expanding a request, not replacing it.
 - Supply the specifics the template needs, in the brief. Real figures, real names, real thresholds. If the request says "what a 70B model costs at home", the brief should already contain the parameter count, the bytes per parameter, what a common card holds, and roughly what the hardware costs — because the writer needs those numbers and will otherwise make them up.
+- Take specifics from the sources above FIRST, where they are given. Reach for your own knowledge only where they are silent.
 - Use widely-known, checkable facts. Where a number varies, say the range or the assumption ("at 16-bit, so two bytes a parameter").
 - Keep the viewer's angle. If the request implies a question — should I, can I, how much — the brief should keep asking it.
-- Two to five sentences. This is an instruction, not the script.
+- Two to five sentences of prose. This is an instruction, not the script.
 - Do not write narration, headings, or beats. Do not mention the template by name.
+- Do not enumerate. No numbered points, no bulleted list, no "first... second... third". Whatever shape you write, the writer downstream copies — a brief in five parts becomes five beats of eight words each, which blows the length budget and reads as a list being read aloud. Fewer, fuller sentences.
+
+DO NOT INVENT ANY OF THESE, EVER:
+- A named product, company or person that does not exist. If you need an example, name a real one.
+- A named case study, customer, or success story — "a developer named X built Y and got thousands of downloads" is a fabrication even when it sounds typical, and it is the fastest way to destroy the credibility of a whole video.
+- A statistic, threshold or ceiling you do not actually know. A template that needs a number it cannot get is the wrong template: say so plainly in the brief instead, and let the writer work with what is real. An invented figure is worse than an absent one, because the finished clip renders it as fact.
 
 If the request genuinely does not suit this template, still write the best brief you can for it: say plainly what the closest honest version of this subject is in this format. Do not refuse and do not return the request unchanged.
 

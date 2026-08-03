@@ -80,6 +80,50 @@ func TestDefaultMotionValid(t *testing.T) {
 			t.Errorf("stagger.%s = %v, want > 0", name, s)
 		}
 	}
+
+	// The camera has to move, and has to move imperceptibly. The whole effect
+	// depends on being invisible frame to frame: past about 4% it stops being a
+	// camera and becomes a zoom the viewer notices, and content starts leaving the
+	// frame — the safe margins are 110px of 1920, which a 5% scale eats.
+	if m.Camera.Push <= 0 {
+		t.Error("camera.push is zero — every scene would hold perfectly still, which is what made the output read as slides")
+	}
+	if m.Camera.Push > 0.04 {
+		t.Errorf("camera.push = %v; past 0.04 the move is visible as a zoom and pushes content past the safe margin", m.Camera.Push)
+	}
+	if m.Camera.Drift < 0 {
+		t.Errorf("camera.drift = %v, want >= 0", m.Camera.Drift)
+	}
+	// Drift is in pixels of a 1920 frame and travels half its value either side of
+	// centre, so it must stay well inside SAFE_X (110).
+	if m.Camera.Drift > 60 {
+		t.Errorf("camera.drift = %vpx; past 60 the lateral travel is noticeable and eats the horizontal safe margin", m.Camera.Drift)
+	}
+}
+
+// An archetype must be able to retune the camera, and — the case that matters —
+// to switch it off. A "minimal" philosophy that wanted stillness could not ask
+// for it if zero meant "inherit", so this pins which way Merge treats it.
+func TestMotionCameraMerges(t *testing.T) {
+	base := DefaultMotion()
+
+	louder := base.Merge(&Motion{Camera: MotionCamera{Push: 0.035, Drift: 40}})
+	if louder.Camera.Push != 0.035 || louder.Camera.Drift != 40 {
+		t.Errorf("override did not apply: %+v", louder.Camera)
+	}
+	// And it must not disturb the rest of the token set.
+	if louder.Timing != base.Timing || louder.Easing != base.Easing || louder.Stagger != base.Stagger {
+		t.Error("overriding the camera changed another token group")
+	}
+
+	// Zero means inherit, consistent with every other field in Merge. Switching
+	// the camera off is therefore a renderer-side decision (a scene graph carrying
+	// an explicit zero), not something Merge can express — which is worth knowing
+	// rather than discovering.
+	inherited := base.Merge(&Motion{})
+	if inherited.Camera != base.Camera {
+		t.Errorf("an empty override changed the camera: %+v", inherited.Camera)
+	}
 }
 
 func TestMotionMerge(t *testing.T) {

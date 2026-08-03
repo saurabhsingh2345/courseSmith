@@ -1,0 +1,83 @@
+# Lesson 3's flagship shot: one sentence in, a running app out.
+#
+# This is the shot the whole course rests on. Two screenshots cannot carry it —
+# the point is watching it happen, including how long it takes — so this take
+# RECORDS, and the engine compresses the waiting so a ninety-second build fits
+# the narration without losing the moment the app appears.
+#
+# ⚠ THE SELECTORS BELOW ARE UNVERIFIED. They were written from the shape a
+# builder's page usually has, not from Lovable's actual markup, and nobody
+# should assume they match. Each one is a LIST — the precise guess first, a
+# looser fallback behind it — which is how a take survives a redesign; when
+# none of them match, the error names every alternative it tried. Before this
+# take is switched on:
+#
+#   1. coursesmith footage login lovable
+#   2. Open lovable.dev in that browser, inspect the prompt box and the preview
+#      pane, and replace the selectors here with the real ones.
+#   3. Run the lesson's demos stage and watch the clip.
+#
+# A take that fails names the step that stopped matching and what it was
+# looking for. A drifted selector is the normal, expected failure here — it is
+# what re-running this file is FOR — not a broken build.
+
+site: lovable
+
+viewport:
+  width: 1440
+  height: 900
+
+steps:
+  - do: goto
+    path: /
+
+  # Let the app boot before looking for anything inside it.
+  - do: wait
+    selector:
+      - "[data-testid=prompt]"
+      - "textarea[placeholder]"
+      - "textarea"
+    timeout: 60s
+
+  # A still of the empty state, for the "this is all there is" beat. Stills and
+  # a recording can live in one take; they answer different questions.
+  - do: shot
+    mark: landing
+    focus:
+      - "[data-testid=prompt]"
+      - "textarea"
+
+  - do: record
+  # The frame before anything is typed.
+  - do: mark
+    mark: empty
+
+  - do: type
+    selector:
+      - "[data-testid=prompt]"
+      - "textarea[placeholder]"
+      - "textarea"
+    text: a habit tracker where I tick things off and see my streak
+
+  - do: mark
+    mark: prompt-typed
+
+  # Submitting, then the wait that is the whole point. The engine speeds this
+  # stretch up because it knows it is dead air; without the marks it would have
+  # to cut away and lose the ending.
+  - do: click
+    selector:
+      - "[data-testid=submit]"
+      - "button[type=submit]"
+      - "form button"
+
+  - do: wait
+    selector:
+      - "[data-testid=preview] iframe"
+      - "iframe"
+    timeout: 5m
+
+  - do: mark
+    mark: app-built
+
+  - do: stop

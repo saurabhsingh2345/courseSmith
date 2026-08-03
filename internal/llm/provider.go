@@ -40,6 +40,26 @@ type Request struct {
 	// (vision models only). They participate in the cache key like any
 	// other request field.
 	Images []string `json:"images,omitempty"`
+	// WebSearch asks the provider to search the web before answering, and to
+	// return the sources it used in Response.Citations.
+	//
+	// Only the OpenAI provider implements this, and only on a search-capable
+	// model; anything else returns an error rather than silently answering from
+	// the model's own memory. That distinction is the entire point — a stage
+	// that believes it is grounded and is not is worse than one that never
+	// asked, because its output carries the same confidence with none of the
+	// backing.
+	//
+	// Being an ordinary Request field, it participates in the cache key like
+	// every other one, so a resumed run replays the same sources instead of
+	// searching again and quietly grounding itself in different facts. That is
+	// load-bearing for a pipeline whose contract is that re-running an unchanged
+	// input is free and produces the same artifact.
+	//
+	// Search-capable models reject `temperature`, so setting this drops it from
+	// the wire request (see openai_compat.go). Determinism therefore comes from
+	// the cache rather than from the sampling parameter.
+	WebSearch bool `json:"web_search,omitempty"`
 }
 
 // Validate checks a request before it is sent (or used as a cache key).
@@ -73,6 +93,20 @@ type Response struct {
 	// FromCache is true when the response was served from the disk cache
 	// without touching the provider. Never persisted as true.
 	FromCache bool `json:"-"`
+	// Citations are the sources a web-searching request actually used. Empty for
+	// every ordinary request.
+	//
+	// Cached with the response rather than recomputed, so a resumed run can still
+	// say where a fact came from. A grounded claim whose source is not recorded
+	// is indistinguishable from an invented one by the time anything downstream
+	// sees it, which is why this is part of the response and not a log line.
+	Citations []Citation `json:"citations,omitempty"`
+}
+
+// Citation is one source a web-searching response drew on.
+type Citation struct {
+	URL   string `json:"url"`
+	Title string `json:"title,omitempty"`
 }
 
 // Provider completes chat requests.

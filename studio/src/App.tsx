@@ -8,6 +8,7 @@ import { useShortcutContext } from "./state/ShortcutContext";
 import { ComposePage } from "./pages/ComposePage";
 import { SnippetsPage } from "./pages/SnippetsPage";
 import { ReelsPage } from "./pages/ReelsPage";
+import { NoCodePage } from "./pages/NoCodePage";
 import { CoursesPage } from "./pages/CoursesPage";
 import { CoursePage } from "./pages/CoursePage";
 import { CourseEditorPage } from "./pages/CourseEditorPage";
@@ -48,6 +49,7 @@ export function App() {
         <Route path="/" element={<ComposePage />} />
         <Route path="/snippets" element={<SnippetsPage />} />
         <Route path="/reels" element={<ReelsPage />} />
+        <Route path="/nocode" element={<NoCodePage />} />
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/generation" element={<GenerationPage />} />
         <Route path="/templates" element={<TemplatesPage />} />

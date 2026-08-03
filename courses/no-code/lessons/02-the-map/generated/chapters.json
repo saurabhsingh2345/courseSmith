@@ -1,0 +1,56 @@
+[
+  {
+    "id": "why-the-names-feel-like-noise",
+    "title": "Why the names feel like noise",
+    "start_ms": 0,
+    "end_ms": 25090
+  },
+  {
+    "id": "layer-one-where-you-describe-it",
+    "title": "Layer one: where you describe it",
+    "start_ms": 25090,
+    "end_ms": 45113
+  },
+  {
+    "id": "layer-two-where-it-gets-built",
+    "title": "Layer two: where it gets built",
+    "start_ms": 45113,
+    "end_ms": 72619
+  },
+  {
+    "id": "layer-three-where-it-looks-right",
+    "title": "Layer three: where it looks right",
+    "start_ms": 72619,
+    "end_ms": 94940
+  },
+  {
+    "id": "layer-four-where-the-data-lives",
+    "title": "Layer four: where the data lives",
+    "start_ms": 94940,
+    "end_ms": 119392
+  },
+  {
+    "id": "layer-five-where-it-runs",
+    "title": "Layer five: where it runs",
+    "start_ms": 119392,
+    "end_ms": 135777
+  },
+  {
+    "id": "reading-the-map-backwards",
+    "title": "Reading the map backwards",
+    "start_ms": 135777,
+    "end_ms": 153817
+  },
+  {
+    "id": "where-to-start-for-you-specifically",
+    "title": "Where to start, for you specifically",
+    "start_ms": 153817,
+    "end_ms": 172898
+  },
+  {
+    "id": "whats-next",
+    "title": "Whats Next",
+    "start_ms": 172898,
+    "end_ms": 183481
+  }
+]

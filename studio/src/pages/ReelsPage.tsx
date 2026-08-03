@@ -161,6 +161,18 @@ function SegmentRow({
           value={segment.prompt}
           onChange={(e) => onChange({ ...segment, prompt: e.target.value })}
         />
+        {/* The material is shown because it is the field that decides whether
+            this segment is true. The writer plans from it, so a figure that is
+            wrong here is wrong in the finished video — and left invisible, a
+            fact nobody can check is a fact nobody will. Smaller and quieter
+            than the prompt: read it, correct it, do not have to write it. */}
+        <textarea
+          className="min-h-[38px] w-full resize-y rounded-md border border-ink-800/60 bg-ink-950 p-2 font-mono text-[11.5px] leading-snug text-ink-300 placeholder:text-ink-600 focus:border-brand focus:outline-none"
+          placeholder="Facts this part is built from — figures, names, thresholds"
+          value={segment.material ?? ""}
+          onChange={(e) => onChange({ ...segment, material: e.target.value })}
+          aria-label={`Material for segment ${index + 1}`}
+        />
       </div>
       {/* Order is the argument, so reordering is a first-class control rather
           than something you do by deleting and re-adding. */}
@@ -213,6 +225,32 @@ function ReelEditor({ id, onClose }: { id: string; onClose: () => void }) {
   const [error, setError] = useState<string | null>(null);
 
   const segments = detail.data?.segment_list ?? [];
+
+  // What each segment gave up, keyed by id, out of the plan the run wrote.
+  //
+  // The plan stage ships the closest draft when the correction rounds run out —
+  // correct, since the clip still renders — but that used to leave no trace
+  // anywhere a creator looks. A segment that came in under its word budget was
+  // indistinguishable from one that passed, so the reels with three loose
+  // segments read as finished.
+  const compromises = useMemo(() => {
+    const out = new Map<string, string[]>();
+    const plan = detail.data?.plan;
+    if (!plan) return out;
+    try {
+      // The plan arrives as raw JSON so the page does not have to hold a mirror
+      // of every template's shape; only this one field is read from it.
+      const parsed = JSON.parse(typeof plan === "string" ? plan : JSON.stringify(plan));
+      for (const seg of parsed?.segments ?? []) {
+        const list = seg?.plan?.compromises;
+        if (Array.isArray(list) && list.length > 0) out.set(seg.id, list);
+      }
+    } catch {
+      // A plan that does not parse is not worth failing the editor over — the
+      // segments and their prompts are what this page is actually for.
+    }
+    return out;
+  }, [detail.data?.plan]);
   const dirty = Object.keys(pending).length > 0;
 
   const stage = (segId: string, patch: Partial<ReelSegmentInfo>) =>
@@ -304,6 +342,23 @@ function ReelEditor({ id, onClose }: { id: string; onClose: () => void }) {
                 value={v.prompt}
                 onChange={(e) => stage(seg.id, { prompt: e.target.value })}
               />
+              {/* The facts this segment is planned from, editable. This is the
+                  field that decides whether the segment is TRUE — the writer
+                  builds from it, so a wrong figure here becomes a wrong figure in
+                  the finished video, and correcting it is one edit rather than a
+                  re-cast. */}
+              <textarea
+                className="mt-2 min-h-[38px] w-full resize-y rounded-md border border-ink-800/60 bg-ink-900 p-2 font-mono text-[11.5px] leading-snug text-ink-300 placeholder:text-ink-600 focus:border-brand focus:outline-none"
+                placeholder="Facts this part is built from — figures, names, thresholds"
+                value={v.material ?? ""}
+                onChange={(e) => stage(seg.id, { material: e.target.value })}
+                aria-label={`Material for segment ${i + 1}`}
+              />
+              {compromises.get(seg.id)?.map((line, j) => (
+                <p key={j} className="mt-2 text-[11.5px] leading-snug text-amber-400/90">
+                  Shipped looser than asked: {line}
+                </p>
+              ))}
             </div>
           );
         })}

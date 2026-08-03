@@ -1,0 +1,14 @@
+{
+  "kind": "diagram:what-the-agent-does",
+  "round": 1,
+  "model": "openai/gpt-4o",
+  "passed": false,
+  "issues": [
+    "Diagram is vertical instead of left-to-right as specified",
+    "Only two nodes are visible instead of four",
+    "Missing nodes: 'Edits the files it decided to change', 'Runs it to check'"
+  ],
+  "svg_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/no-code/lessons/05-when-you-outgrow-the-browser/generated/diagrams/attempts/what-the-agent-does-round-1.svg",
+  "png_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/no-code/lessons/05-when-you-outgrow-the-browser/generated/diagrams/attempts/what-the-agent-does-round-1.png",
+  "checked_at": "2026-07-31T10:42:48Z"
+}

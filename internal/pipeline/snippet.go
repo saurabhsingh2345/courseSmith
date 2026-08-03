@@ -88,6 +88,61 @@ type SnippetSpec struct {
 	TargetSec int `yaml:"target_sec,omitempty"`
 	// CodeLanguage is the language for code-bearing templates ("" = python).
 	CodeLanguage string `yaml:"code_language,omitempty"`
+
+	// FootageMarks, FootageTool and FootageMs describe the recording a
+	// `footage` piece narrates. Derived from the capture's sidecar on every
+	// run rather than serialised, for the same reason a reel segment's Brief
+	// is: a copy in the spec would drift from the clip it describes.
+	FootageMarks []string `yaml:"-"`
+	FootageTool  string   `yaml:"-"`
+	FootageMs    int      `yaml:"-"`
+
+	// Brief, Material and Priors are the context a *reel segment* is planned
+	// inside. All three are empty for a standalone snippet, where Prompt is the
+	// whole input and there is nothing else to know.
+	//
+	// None is serialised. They are derived from reel.yaml on every run rather
+	// than copied into a snippet.yaml that would then disagree with the reel it
+	// came from — and a reel segment has no snippet.yaml anyway.
+	//
+	// Why they exist at all: a segment used to be planned from Prompt alone,
+	// which for a cast segment is the caster's one-line `covers`. Ten words, no
+	// brief, no facts, no idea what the segment before it said. The writer's only
+	// way to fill a template from that is to invent, and it did — a `showcase`
+	// for a product that does not exist, two `myth` segments arguing the same
+	// point. The material was never missing; it was collected by the caster and
+	// dropped one struct short of the writer.
+
+	// Brief is the whole piece's brief, in the creator's words.
+	Brief string `yaml:"-"`
+	// Material is the concrete facts the caster named for THIS segment when it
+	// chose this template — the ceiling and its candidates, the line items, the
+	// belief and what is true instead.
+	Material string `yaml:"-"`
+	// Priors is one line per segment already planned, in order: what it covered.
+	// The writer is told to advance past them rather than restate them.
+	Priors []string `yaml:"-"`
+
+	// Critique is the review gate's verdict on the previous attempt, fed back so
+	// the next one can fix what was named. Empty on a first attempt.
+	//
+	// Carried on the spec and appended to the rendered prompt rather than added
+	// to twenty-seven prompt files, for the reason the enrichment context is:
+	// every template prompt renders through planSnippetDefault, so one place to
+	// put it means no template can be the one that forgot. The shelved `story`
+	// template has its own planner and does not get this.
+	Critique string `yaml:"-"`
+
+	// Substance is the piece's fact sheet, from the substance stage. Nil when
+	// that stage has not run (an older snippet resumed mid-pipeline), and the
+	// planner then behaves exactly as it did before it existed.
+	//
+	// Piece-level rather than per-segment: one sheet covers the whole reel, and
+	// each segment selects the facts that belong to its part. Deliberately not a
+	// per-segment slice — deciding which facts belong to which segment is the
+	// writer's job and it needs to see the ones it is NOT using, or it cannot
+	// tell a fact that belongs elsewhere from a fact that does not exist.
+	Substance *Substance `yaml:"-"`
 	// Config overrides the course defaults for this snippet alone (voice,
 	// palette, captions…), merged in the ordinary layered way.
 	Config config.Config `yaml:",inline"`
@@ -157,6 +212,22 @@ type SnippetPlan struct {
 	// card ("" = no card).
 	Subtitle string        `json:"subtitle,omitempty"`
 	Beats    []SnippetBeat `json:"beats"`
+	// Compromises are the rules this plan never satisfied, written by the
+	// pipeline — not by the model — when the correction rounds ran out and the
+	// closest draft was shipped anyway.
+	//
+	// It exists because that outcome left no trace. The salvage path printed a
+	// warning to stdout and returned the draft, so a segment that shipped 47%
+	// under its word floor looked, on disk and in the studio, exactly like one
+	// that passed: same file, same shape, no marker. The old no-code reel had
+	// three such segments and nothing anywhere recorded it — I could only tell by
+	// re-deriving the budget from the template's defaults and comparing.
+	//
+	// On the plan rather than in a sidecar file because the plan is the thing
+	// being described, and both write paths (snippet-plan.json, reel-plan.json)
+	// already persist it — so the record travels with the artifact for free
+	// rather than needing a second file that can go missing or go stale.
+	Compromises []string `json:"compromises,omitempty"`
 	// Chart is the data template's dataset. It sits on the plan rather than on
 	// a beat because a data clip is one chart read several ways — the beats
 	// only move the emphasis around it. Every other template's visual state is
@@ -217,6 +288,22 @@ type SnippetPlan struct {
 	// because the claim outlives the beat that states it — it stays on screen,
 	// struck through, for the rest of the clip.
 	Myth *MythSpec `json:"myth,omitempty"`
+	// Footage is the recording this piece narrates. See snippet_footage.go.
+	Footage *FootagePlan `json:"footage,omitempty"`
+	// FootageKnownMarks are the moments the recording actually contains, read
+	// from its footage.json and injected before validation. Not written by the
+	// model — it is what the model is checked against.
+	FootageKnownMarks []string `json:"footageKnownMarks,omitempty"`
+	// FootageSrc, FootageMs, FootageTitle, FootageOrigin and FootageIsTerminal
+	// describe the clip for the scene. All resolved from the capture sidecar.
+	FootageSrc        string `json:"footageSrc,omitempty"`
+	FootageMs         int    `json:"footageMs,omitempty"`
+	FootageTitle      string `json:"footageTitle,omitempty"`
+	FootageOrigin     string `json:"footageOrigin,omitempty"`
+	FootageIsTerminal bool   `json:"footageIsTerminal,omitempty"`
+	// FootageToolName is the tool that was really recorded. The narration is
+	// checked against it — see the gate in validateFootagePlan.
+	FootageToolName string `json:"footageToolName,omitempty"`
 	// Rundown is the rundown template's promise and its numbered cards. On the
 	// plan because every card is on screen from the first frame.
 	Rundown *RundownSpec `json:"rundown,omitempty"`
@@ -232,6 +319,17 @@ type SnippetPlan struct {
 	// Constellation is the constellation template's idea and its properties. On
 	// the plan because the map is the subject and the beats only light it.
 	Constellation *ConstellationSpec `json:"constellation,omitempty"`
+	// Chapter is the chapter template's path and the position on it. On the
+	// plan because the path is standing furniture — it is drawn once and every
+	// beat after that only moves the light along it.
+	Chapter *ChapterSpec `json:"chapter,omitempty"`
+	// Cycle is the cycle template's ring. On the plan for the same reason: the
+	// ring is the subject and the beats run a light round it.
+	Cycle *CycleSpec `json:"cycle,omitempty"`
+	// Scale is the scale template's ladder. On the plan because the whole clip
+	// is one camera move through it, and a ladder that changed between beats
+	// would be a different picture each time the camera stopped.
+	Scale *ScaleSpec `json:"scale,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -462,6 +560,8 @@ type SnippetBeat struct {
 	// Myth says whether this beat states the belief, strikes it, backs up the
 	// truth, or says why the belief was tempting.
 	Myth *MythBeat `json:"myth,omitempty"`
+	// Footage anchors this beat to a moment in the recording.
+	Footage *FootageBeat `json:"footage,omitempty"`
 
 	// --- rundown template ---
 	// Rundown says whether this beat makes the promise, covers one card, or
@@ -487,6 +587,21 @@ type SnippetBeat struct {
 	// Constellation says whether this beat names the centre, lights one spoke,
 	// or shows the whole picture.
 	Constellation *ConstellationBeat `json:"constellation,omitempty"`
+
+	// --- chapter template ---
+	// Chapter says whether this beat draws the path, looks back at one stop
+	// already behind the viewer, or opens the section starting now.
+	Chapter *ChapterBeat `json:"chapter,omitempty"`
+
+	// --- cycle template ---
+	// Cycle says whether this beat draws the ring, runs the light to one
+	// stage, or comes back round to the start.
+	Cycle *CycleBeat `json:"cycle,omitempty"`
+
+	// --- scale template ---
+	// Scale says which rung of the ladder the camera pulls back to, or that
+	// the whole ladder is in frame at once.
+	Scale *ScaleBeat `json:"scale,omitempty"`
 }
 
 // QuizSpec is the clip's one question.
@@ -699,7 +814,12 @@ func (p *SnippetPlan) Script(paceWPM int) *Script {
 		words := len(strings.Fields(b.Narration))
 		est := max(1, int(float64(words)/float64(paceWPM)*60+0.5))
 		script.Sections = append(script.Sections, Section{
-			ID:             b.ID,
+			ID: b.ID,
+			// A snippet's beat id IS slugified from its heading, so slug matching
+			// happens to work here. Set anyway: relying on the round trip means a
+			// heading with a colon or an ampersand in it silently degrades to the
+			// humanized slug, and there is no reason to derive what we hold.
+			Title:          b.Heading,
 			Narration:      b.Narration,
 			DurationEstSec: est,
 		})
@@ -978,8 +1098,13 @@ func snippetStubTitle(prompt string) string {
 // snippet-plan.json, and from it the script.json and lesson.md the rest of the
 // pipeline expects.
 func runPlanStage(ctx context.Context, e *Env, course *project.Course, l *project.Lesson, cfg config.Config) error {
-	// A reel plans every segment through its own template's prompt; a snippet
-	// plans one. Everything after this branch is shared.
+	// A no-code piece and a reel are both several segments on one timeline; a
+	// snippet is one. The no-code branch comes first because a piece carries
+	// both files only if somebody hand-made that, and its rule is the stricter
+	// of the two. Everything after this branch is shared.
+	if IsNoCode(l) {
+		return runNoCodePlan(ctx, e, course, l, cfg)
+	}
 	if IsReel(l) {
 		return runReelPlan(ctx, e, course, l, cfg)
 	}
@@ -998,12 +1123,18 @@ func runPlanStage(ctx context.Context, e *Env, course *project.Course, l *projec
 	fmt.Fprintf(e.out(), "  → plan      %s template, ~%ds target (%s)...\n",
 		tpl.Name, spec.ResolvedTargetSec(), cfg.Pipeline.LLMContent)
 
+	sub, err := LoadSubstance(l)
+	if err != nil {
+		return err
+	}
+
 	// Enrich first. The planner is good at turning a rich brief into a clip and
 	// bad at inventing the facts a thin one leaves out — and when it fails at
 	// the second job it does not fail gently, it returns something that does
 	// not decode and burns the correction rounds saying so.
 	enriched := *spec
-	if p := EnrichSnippetPrompt(ctx, e, *spec, cfg); p != spec.Prompt {
+	enriched.Substance = sub
+	if p := EnrichSnippetPrompt(ctx, e, enriched, cfg); p != spec.Prompt {
 		enriched.Prompt = p
 		fmt.Fprintf(e.out(), "    brief     %s\n", truncateForLog(p, 68))
 	}
@@ -1017,6 +1148,9 @@ func runPlanStage(ctx context.Context, e *Env, course *project.Course, l *projec
 		return err
 	}
 	plan.Template = spec.Template
+	// The same gate the reel's segments go through. A snippet is one segment, so
+	// there is nothing to scope the critique to.
+	plan = e.gateSegmentPlan(ctx, l, cfg, enriched, plan)
 	if spec.Title != "" {
 		plan.Title = spec.Title
 	}

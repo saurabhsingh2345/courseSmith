@@ -21,7 +21,17 @@ const StateFileName = "state.json"
 // Stage names, in pipeline order. The pipeline package executes these;
 // the status command reports on them.
 const (
-	StagePlan         = "plan" // snippet-only: prompt + template → snippet-plan.json
+	// StageSubstance establishes the facts, with provenance, before any template
+	// is chosen. Snippet/reel-only: the lesson path gets its facts from the
+	// lesson.md somebody wrote.
+	StageSubstance    = "substance" // brief → substance.json (facts + sources)
+	StagePlan         = "plan"      // snippet-only: prompt + template → snippet-plan.json
+	// StageCapture records real tools — a CLI session, frames of somebody
+	// else's web product, an operator in a native app. It runs BEFORE the
+	// script, and that is the whole reason it is a separate stage from demos:
+	// narration written before anything was recorded cannot say what the
+	// recording showed. See docs/no-code-track.md.
+	StageCapture      = "capture"
 	StageScript       = "script"
 	StageVerify       = "verify"        // execute code blocks, capture real output
 	StageTrace        = "trace"         // step-by-step execution trace (code-viz)
@@ -44,7 +54,7 @@ const (
 
 // StageOrder lists all pipeline stages in execution order.
 var StageOrder = []string{
-	StageScript, StageVerify, StageTrace, StageReview, StageStoryboard,
+	StageCapture, StageScript, StageVerify, StageTrace, StageReview, StageStoryboard,
 	StageVisuals, StageQuiz,
 	StageQuizStrategy, StageMistakes, StageExercises,
 	StageDemos, StageAudio, StageAlign, StageCaptions, StageChapters,
@@ -83,8 +93,11 @@ var VideoStageOrder = func() []string {
 // everything after it is the ordinary video path, reused unchanged. Verify
 // still runs, so a snippet that shows code shows output the interpreter
 // actually produced.
+// Substance runs FIRST, ahead of plan, and that order is the point: the facts
+// have to exist before anything chooses a template, or the template's schema
+// decides what gets said and the writer invents whatever it demands.
 var SnippetStageOrder = []string{
-	StagePlan, StageVerify, StageAudio, StageAlign, StageCaptions,
+	StageSubstance, StagePlan, StageVerify, StageAudio, StageAlign, StageCaptions,
 	StageChapters, StageScenegraph, StageRender,
 }
 

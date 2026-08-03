@@ -1,0 +1,179 @@
+{
+  "round": 1,
+  "model": "openai/gpt-4o-mini",
+  "artifact_hash": "sha256:916949cd6e9970468a240e7e46e9a2a43384d98db3a7edba60279c2827b4d62c",
+  "claims": [
+    {
+      "claim": "You don't need to learn to code is true now in a way it wasn't in 2022.",
+      "section": "the-claim-said-carefully",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "The code still exists, it still runs, and it can still be wrong.",
+      "section": "the-claim-said-carefully",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "There are three main jobs involved in building software.",
+      "section": "the-three-jobs-hiding-inside-building-software",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "The second job is writing the code, which is turning those decisions into instructions a computer can follow.",
+      "section": "the-three-jobs-hiding-inside-building-software",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Only the middle job got automated.",
+      "section": "only-the-middle-one-got-automated",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Generative AI is really good at producing code from a clear description.",
+      "section": "only-the-middle-one-got-automated",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Most of the people using these tools aren't developers.",
+      "section": "who-is-actually-doing-this",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Most software that earns its keep falls into the category of internal tools, landing pages, booking forms, and prototypes.",
+      "section": "who-is-actually-doing-this",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "By the end of this course, you'll have built a real application with a real database.",
+      "section": "what-you-will-have-built-by-the-end",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "These tools do cost money, and the cost grows with your usage.",
+      "section": "the-honest-caveat-up-front",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "They produce code that you might not read, and sometimes that code can be wrong in ways that only show up later.",
+      "section": "the-honest-caveat-up-front",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "If you're dealing with payments, health data, or anyone's private information, you definitely want a professional's eyes on it before it goes live.",
+      "section": "the-honest-caveat-up-front",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "In the next lesson, we'll map out what each tool in this world is actually for.",
+      "section": "whats-next",
+      "checkable": false,
+      "executed": false
+    }
+  ],
+  "accuracy": {
+    "score": 10,
+    "verdicts": [
+      {
+        "claim": "You don't need to learn to code is true now in a way it wasn't in 2022.",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "The code still exists, it still runs, and it can still be wrong.",
+        "verdict": "correct",
+        "citation": "The Python Language Reference discusses the existence and execution of code."
+      },
+      {
+        "claim": "There are three main jobs involved in building software.",
+        "verdict": "unsupported",
+        "citation": "This is a subjective classification and not defined in Python documentation."
+      },
+      {
+        "claim": "The second job is writing the code, which is turning those decisions into instructions a computer can follow.",
+        "verdict": "correct",
+        "citation": "The Python Language Reference describes code as instructions for a computer."
+      },
+      {
+        "claim": "Only the middle job got automated.",
+        "verdict": "unsupported",
+        "citation": "This is a subjective statement and not explicitly defined in Python documentation."
+      },
+      {
+        "claim": "Generative AI is really good at producing code from a clear description.",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "Most of the people using these tools aren't developers.",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "Most software that earns its keep falls into the category of internal tools, landing pages, booking forms, and prototypes.",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "By the end of this course, you'll have built a real application with a real database.",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "These tools do cost money, and the cost grows with your usage.",
+        "verdict": "correct",
+        "citation": "This is a general statement about software tools and their pricing."
+      },
+      {
+        "claim": "They produce code that you might not read, and sometimes that code can be wrong in ways that only show up later.",
+        "verdict": "correct",
+        "citation": "The Python Language Reference discusses potential issues with code."
+      },
+      {
+        "claim": "If you're dealing with payments, health data, or anyone's private information, you definitely want a professional's eyes on it before it goes live.",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      },
+      {
+        "claim": "In the next lesson, we'll map out what each tool in this world is actually for.",
+        "verdict": "unsupported",
+        "citation": "This claim is subjective and cannot be confirmed."
+      }
+    ],
+    "critique": "The narration contains several unsupported claims that cannot be confirmed, such as the assertion that 'you don't need to learn to code is true now in a way it wasn't in 2022' and the classification of jobs involved in building software. These should be rephrased to reflect that they are opinions or trends rather than definitive statements. For example, instead of saying 'you don't need to learn to code is true now in a way it wasn't in 2022', it could state 'many believe that the necessity to learn coding has diminished due to advancements in tools since 2022'."
+  },
+  "pedagogy": {
+    "scores": {
+      "cognitive_load": 8,
+      "concept_ordering": 7,
+      "concrete_before_abstract": 8,
+      "worked_examples": 6
+    },
+    "score": 7,
+    "critique": "In section 'the-claim-said-carefully', the term 'code' is used before it is clearly defined, which violates concept ordering. Introduce the concept of 'code' earlier in the script to clarify its importance. In section 'the-three-jobs-hiding-inside-building-software', while the three jobs are listed, there are no worked examples provided for each job, which is necessary for learners to understand how to apply these concepts. Include specific examples of each job in practice. Additionally, in section 'only-the-middle-one-got-automated', the term 'generative AI' is introduced without prior context or explanation, which could confuse beginners. Provide a brief explanation of generative AI before discussing its capabilities."
+  },
+  "tone": {
+    "score": 8,
+    "critique": "The script generally maintains a plain-spoken and practical tone, but there are a few areas that could benefit from minor adjustments for clarity and to avoid any potential condescension. In the section 'who-is-actually-doing-this', the phrase 'You might be surprised to learn' could be perceived as condescending. A more neutral phrasing could be 'Many of the people using these tools are not developers.' In the section 'the-honest-caveat-up-front', the phrase 'let's talk about some honest caveats' could be simplified to 'Here are some important considerations.' These changes would enhance the tone and maintain consistency throughout the script."
+  },
+  "weights": {
+    "accuracy": 0.5,
+    "pedagogy": 0.35,
+    "tone": 0.15
+  },
+  "weighted": 8.65,
+  "threshold": 8,
+  "passed": true,
+  "reviewed_at": "2026-07-31T10:15:34.887356Z"
+}

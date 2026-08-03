@@ -2,6 +2,7 @@ import {interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {FPS} from '../types';
 import {ResolvedTheme} from '../theme/theme';
 import {Stage, STAGE_W} from './Stage';
+import {counted} from './counted';
 
 // MetricScene is one figure at a time, set large enough to be the whole frame.
 //
@@ -50,27 +51,6 @@ const roleColor = (theme: ResolvedTheme, role?: string): string => {
     default:
       return theme.text;
   }
-};
-
-/**
- * The figure part-way through its count-up.
- *
- * Only plain numbers count — Go decides that (see Metric.countsUp) and hands
- * the answer down, so the renderer never has to guess whether "313K–577K" is a
- * quantity. Anything else is shown whole from the first frame, because
- * animating a range to a wrong intermediate is the clip stating a false number
- * for a third of a second.
- *
- * The decimal places of the target are preserved throughout, so "2.8" does not
- * flicker between "3" and "2.80" on its way up.
- */
-const counted = (value: string, countsUp: boolean, t: number): string => {
-  if (!countsUp || t >= 1) return value;
-  const target = Number(value);
-  if (!Number.isFinite(target)) return value;
-  const dot = value.indexOf('.');
-  const places = dot < 0 ? 0 : value.length - dot - 1;
-  return (target * t).toFixed(places);
 };
 
 export const MetricScene: React.FC<{

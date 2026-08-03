@@ -56,6 +56,17 @@ type Env struct {
 	// TapeRunner records VHS terminal demos; nil makes the demos stage fail
 	// with instructions when a lesson declares [DEMO] markers.
 	TapeRunner TapeRunner
+	// DesktopInput is the operator's console for a desktop capture, which is
+	// the one stage that stops and waits for a person. Nil means no console is
+	// attached, and a desktop capture then fails with instructions rather than
+	// blocking a batch run on a keypress nobody is there to give.
+	DesktopInput io.Reader
+	// ToolTapeRunner resolves the recorder for a [CAPTURE] marker. It is a
+	// function rather than a runner because the choice depends on which tool
+	// the capture names — the binary has to be present and working before
+	// anything is generated. Nil uses resolveToolTapeRunner, which requires
+	// host vhs and refuses the docker sandbox on purpose (see capture.go).
+	ToolTapeRunner func(ctx context.Context, tool captureTool) (TapeRunner, error)
 	// Renderer produces final.mp4 from the scene graph (Remotion); nil
 	// falls back to the legacy ffmpeg assembly with a warning.
 	Renderer VideoRenderer
@@ -85,6 +96,10 @@ const artifactAbsent = "absent"
 
 // stageUpstream lists generated artifacts each stage consumes.
 var stageUpstream = map[string][]string{
+	// Plan consumes the fact sheet, so re-establishing the facts re-plans — and
+	// through plan, re-renders. That chain is the point: correcting a figure in
+	// substance.json must reach the screen, not just the file.
+	project.StagePlan:   {SubstanceFileName},
 	project.StageVerify: {ScriptFileName},
 	// Trace re-runs when verified code changes; it reads blocks from lesson.md
 	// (always a hashed input) but depends on verification to run after verify.
@@ -95,7 +110,11 @@ var stageUpstream = map[string][]string{
 	project.StageQuizStrategy: {QuizFileName},
 	project.StageMistakes:     {ScriptFileName, VerificationFileName},
 	project.StageExercises:    {ScriptFileName, VerificationFileName},
-	project.StageDemos:        {VerificationFileName},
+	project.StageDemos:        {VerificationFileName, DemosDirName + "/" + CaptureManifestFileName},
+	// The script reads what the captures recorded, so re-shooting one rewrites
+	// the narration around it. No cycle: capture depends on lesson.md and the
+	// take files, never on the script.
+	project.StageScript: {DemosDirName + "/" + CaptureManifestFileName},
 	// tts_fixes.json is written by the align stage's WER gate; its
 	// appearance makes audio stale so the next run re-synthesizes with the
 	// pronunciation fixes applied.
@@ -124,6 +143,10 @@ var stageLessonFiles = map[string][]string{
 	// A snippet's whole input is its request file; editing the prompt or
 	// swapping the template re-plans (and so re-renders) the clip.
 	project.StagePlan:       {SnippetFileName, ReelFileName},
+	// The same input as plan: substance is established from the request, so
+	// editing the prompt or the brief re-establishes the facts — and therefore
+	// re-plans, since plan consumes substance.json.
+	project.StageSubstance:  {SnippetFileName, ReelFileName},
 	project.StageScenegraph: {VideoPlanFileName},
 	project.StageRender:     {RecordingFileName},
 	project.StageHugo:       {QuizOverridesFileName},
@@ -133,6 +156,11 @@ var stageLessonFiles = map[string][]string{
 // template invalidates the stages that use it. Stages that gate their
 // output through the critic also depend on the review rubric.
 var stageTemplates = map[string][]string{
+	project.StageSubstance: {substanceTemplateName, substanceSearchTemplateName},
+	// The plan stage gates every plan through the plan rubric, so editing that
+	// rubric re-plans. The template a request names is added dynamically in
+	// StageInputs, which cannot list it statically.
+	project.StagePlan:   {snippetEnrichTemplateName, reviewPlanTemplateName},
 	project.StageScript: {scriptTemplateName},
 	// Review runs three passes (claims+accuracy, pedagogy, tone) and
 	// re-invokes the script generator on regeneration.
@@ -145,6 +173,7 @@ var stageTemplates = map[string][]string{
 	project.StageMistakes:   {mistakesTemplateName},
 	project.StageExercises:  {exercisesTemplateName},
 	project.StageDemos:      {demoTapeTemplateName},
+	project.StageCapture:    {captureTapeTemplateName},
 	project.StageCaptions:   {captionEmphasisTemplateName},
 	project.StageStoryboard: {storyboardTemplateName},
 }
@@ -155,6 +184,7 @@ type stageFunc func(ctx context.Context, e *Env, course *project.Course, l *proj
 // stageFuncs maps implemented stages to their implementations. Stages absent
 // from this map (still being built out in Phase 2) are reported as skipped.
 var stageFuncs = map[string]stageFunc{
+	project.StageSubstance:    runSubstanceStage,
 	project.StagePlan:         runPlanStage,
 	project.StageScript:       runScriptStage,
 	project.StageVerify:       runVerifyStage,
@@ -166,6 +196,7 @@ var stageFuncs = map[string]stageFunc{
 	project.StageQuizStrategy: runQuizStrategyStage,
 	project.StageMistakes:     runMistakesStage,
 	project.StageExercises:    runExercisesStage,
+	project.StageCapture:      runCaptureStage,
 	project.StageDemos:        runDemosStage,
 	project.StageAudio:        runAudioStage,
 	project.StageAlign:        runAlignStage,
@@ -245,6 +276,16 @@ func (e *Env) StageInputs(l *project.Lesson, cfg config.Config, stage string) (m
 		if spec, err := LoadSnippetSpec(l.Dir); err == nil {
 			if tpl, ok := SnippetTemplates[spec.Template]; ok {
 				inputs["prompts/"+tpl.PromptFile] = hashOrAbsent(filepath.Join(e.PromptsDir, tpl.PromptFile))
+			}
+		}
+		// A piece uses several templates, so all of their prompts are inputs —
+		// otherwise editing snippet_footage.tmpl would leave every piece that
+		// uses it reporting up to date.
+		if spec, err := LoadNoCodeSpec(l.Dir); err == nil {
+			for _, seg := range spec.Live() {
+				if tpl, ok := SnippetTemplates[seg.Template]; ok {
+					inputs["prompts/"+tpl.PromptFile] = hashOrAbsent(filepath.Join(e.PromptsDir, tpl.PromptFile))
+				}
 			}
 		}
 	}

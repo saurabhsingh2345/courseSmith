@@ -36,6 +36,7 @@ import (
 
 	"github.com/enfec/coursesmith/internal/config"
 	"github.com/enfec/coursesmith/internal/pipeline"
+	"github.com/enfec/coursesmith/internal/project"
 )
 
 func newReelCmd() *cobra.Command {
@@ -197,7 +198,10 @@ func newReelRunCmd() *cobra.Command {
 			return env.RunReel(ctx, course, lesson, pipeline.RunOptions{Stage: stage, Force: force})
 		},
 	}
-	cmd.Flags().StringVar(&stage, "stage", "", "run only this stage (plan, verify, audio, align, captions, chapters, scenegraph, render)")
+	// Generated from the real stage list rather than spelled out. The hand-written
+	// version was already stale the moment `substance` was inserted ahead of
+	// `plan`, and a help string that omits a stage is a stage nobody runs directly.
+	cmd.Flags().StringVar(&stage, "stage", "", "run only this stage ("+strings.Join(project.SnippetStageOrder, ", ")+")")
 	cmd.Flags().BoolVar(&force, "force", false, "re-run stages even if their inputs are unchanged")
 	cmd.Flags().IntVar(&concurrency, "concurrency", 0, "parallel browser tabs for the Remotion render (0 = auto)")
 	return cmd
@@ -450,9 +454,23 @@ func newReelCastCmd() *cobra.Command {
 			}
 			fmt.Fprintf(out, "\n%s\n\n", spec.Title)
 			w := tabwriter.NewWriter(out, 0, 0, 2, ' ', 0)
-			fmt.Fprintln(w, "  #\tTEMPLATE\tCOVERS")
+			// ROLE alongside the template, because the arc is the decision most
+			// worth reading here and it used to be invisible: an enforced shape
+			// that leaves no trace on the page cannot be corrected by the person
+			// looking at it.
+			fmt.Fprintln(w, "  #\tROLE\tTEMPLATE\tCOVERS")
 			for i, seg := range spec.Segments {
-				fmt.Fprintf(w, "  %d\t%s\t%s\n", i+1, seg.Template, truncate(seg.Prompt, 50))
+				fmt.Fprintf(w, "  %d\t%s\t%s\t%s\n", i+1, seg.Role, seg.Template, truncate(seg.Prompt, 46))
+				// The material on its own line under the segment it belongs to.
+				//
+				// This command stops before planning so the cast can be read and
+				// corrected, and the material is the part actually worth reading:
+				// the template names the look, but these are the facts the piece
+				// will state as true. A wrong figure spotted here costs one edit;
+				// the same figure spotted in the rendered video costs the render.
+				if m := strings.TrimSpace(seg.Material); m != "" {
+					fmt.Fprintf(w, "  \t\t\t%s\n", truncate(m, 46))
+				}
 			}
 			if err := w.Flush(); err != nil {
 				return err

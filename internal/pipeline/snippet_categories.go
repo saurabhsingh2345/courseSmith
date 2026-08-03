@@ -100,6 +100,14 @@ const (
 	SinceCore = ""
 	// SinceV1 is the batch built to match the reference explainer clips.
 	SinceV1 = "v1"
+	// SinceV2 is the batch written to carry a whole course rather than to
+	// answer one question: the break between sections, the loop that comes back
+	// round, and the ladder of magnitudes a chart cannot draw.
+	SinceV2 = "v2"
+	// SinceV3 is the capture batch: templates whose frame is a real recording
+	// rather than anything drawn. They arrived with the no-code surface, where
+	// every segment has to stand on evidence.
+	SinceV3 = "v3"
 )
 
 // SnippetCategoryGroup is one category with the templates in it.

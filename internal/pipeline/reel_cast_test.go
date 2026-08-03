@@ -9,10 +9,10 @@ func castFixture() *CastResult {
 	return &CastResult{
 		Title: "What decides whether a model runs",
 		Segments: []CastPick{
-			{Template: "myth", Covers: "the belief that a bigger card is enough", Material: "belief: buy the biggest GPU; truth: bandwidth sets speed"},
-			{Template: "rundown", Covers: "the three numbers that decide it", Material: "capacity GB; bandwidth TB/s; compute TFLOPs"},
-			{Template: "gauge", Covers: "which models fit in 24GB", Material: "24GB ceiling; 7B 14GB, 13B 26GB, 13B-4bit 8GB"},
-			{Template: "verdict", Covers: "what to actually buy", Material: "holds: under 24GB; breaks: compliance, past a few TB"},
+			{Template: "myth", Role: RoleHook, Covers: "the belief that a bigger card is enough", Material: "belief: buy the biggest GPU; truth: bandwidth sets speed"},
+			{Template: "rundown", Role: RoleDevelop, Covers: "the three numbers that decide it", Material: "capacity GB; bandwidth TB/s; compute TFLOPs"},
+			{Template: "gauge", Role: RoleDevelop, Covers: "which models fit in 24GB", Material: "24GB ceiling; 7B 14GB, 13B 26GB, 13B-4bit 8GB"},
+			{Template: "verdict", Role: RolePayoff, Covers: "what to actually buy", Material: "holds: under 24GB; breaks: compliance, past a few TB"},
 		},
 	}
 }

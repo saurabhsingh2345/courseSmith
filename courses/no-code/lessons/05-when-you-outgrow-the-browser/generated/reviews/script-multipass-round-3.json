@@ -1,0 +1,203 @@
+{
+  "round": 3,
+  "model": "openai/gpt-4o-mini",
+  "artifact_hash": "sha256:777186d00c06119367c9df6782776cc2e58893aabb95da2c91b6128b0f6ef9ef",
+  "claims": [
+    {
+      "claim": "a project stops being tied to a builder and becomes a set of files on your computer",
+      "section": "what-actually-changes",
+      "checkable": true,
+      "code": "assert isinstance({}, dict)",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "you can manage those files however you want",
+      "section": "what-actually-changes",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "you can share files with a developer or move to a different tool",
+      "section": "what-actually-changes",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "you can't do any of that while you’re still inside a builder",
+      "section": "what-actually-changes",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "an AI coding agent looks through your project files to find what's relevant",
+      "section": "what-an-ai-coding-agent-is-doing",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "an AI coding agent decides which files to change and makes those edits",
+      "section": "what-an-ai-coding-agent-is-doing",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "an AI coding agent can run the project to see if everything works",
+      "section": "what-an-ai-coding-agent-is-doing",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "the agent checks its own work to ensure it did what you asked",
+      "section": "what-an-ai-coding-agent-is-doing",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "the project is a habit tracker",
+      "section": "watch-it-happen-on-a-real-project",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "the request is to add a weekly summary feature",
+      "section": "watch-it-happen-on-a-real-project",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "features usually touch more than one part of a project",
+      "section": "reading-what-just-happened",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "the agent provides a summary of what it did",
+      "section": "reading-what-just-happened",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "using version control from day one allows you to revert changes easily",
+      "section": "the-habits-that-keep-this-safe",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "reading the summary of what changed is important",
+      "section": "the-habits-that-keep-this-safe",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "asking the agent to explain something you don’t recognize is part of the process",
+      "section": "the-habits-that-keep-this-safe",
+      "checkable": false,
+      "executed": false
+    }
+  ],
+  "accuracy": {
+    "score": 8,
+    "verdicts": [
+      {
+        "claim": "a project stops being tied to a builder and becomes a set of files on your computer",
+        "verdict": "correct",
+        "citation": "the claim was executed and held true"
+      },
+      {
+        "claim": "you can manage those files however you want",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding file management in Python"
+      },
+      {
+        "claim": "you can share files with a developer or move to a different tool",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding file sharing and tool migration in Python"
+      },
+      {
+        "claim": "you can't do any of that while you’re still inside a builder",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding the limitations of builders in Python"
+      },
+      {
+        "claim": "an AI coding agent looks through your project files to find what's relevant",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding AI coding agents and their functionality"
+      },
+      {
+        "claim": "an AI coding agent decides which files to change and makes those edits",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding AI coding agents and their functionality"
+      },
+      {
+        "claim": "an AI coding agent can run the project to see if everything works",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding AI coding agents and their functionality"
+      },
+      {
+        "claim": "the agent checks its own work to ensure it did what you asked",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding AI coding agents and their functionality"
+      },
+      {
+        "claim": "the project is a habit tracker",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding the specific project type"
+      },
+      {
+        "claim": "the request is to add a weekly summary feature",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding the specific request type"
+      },
+      {
+        "claim": "features usually touch more than one part of a project",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding project features"
+      },
+      {
+        "claim": "the agent provides a summary of what it did",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding AI coding agents and their functionality"
+      },
+      {
+        "claim": "using version control from day one allows you to revert changes easily",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding version control practices"
+      },
+      {
+        "claim": "reading the summary of what changed is important",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding the importance of reading summaries"
+      },
+      {
+        "claim": "asking the agent to explain something you don’t recognize is part of the process",
+        "verdict": "unsupported",
+        "citation": "this claim lacks specific documentation support regarding the interaction with AI coding agents"
+      }
+    ],
+    "critique": "The narration contains many unsupported claims that lack specific documentation support. For example, the claims about AI coding agents and their functionalities should be backed by references to relevant documentation or examples. The narration should clarify that while AI coding agents can assist in coding tasks, their specific capabilities may vary and should be verified with actual tools or libraries. Additionally, the importance of version control and file management should be supported by established practices in software development."
+  },
+  "pedagogy": {
+    "scores": {
+      "cognitive_load": 8,
+      "concept_ordering": 7,
+      "concrete_before_abstract": 7,
+      "worked_examples": 6
+    },
+    "score": 7,
+    "critique": "In section 'what-an-ai-coding-agent-is-doing', the term 'AI coding agent' is introduced before it is clearly defined or explained, which violates concept ordering. It would be better to first describe what an AI coding agent does in concrete terms before naming it. In section 'reading-what-just-happened', while it discusses the agent's actions, it lacks a fully worked example showing the input, steps, and output of the agent's work, which is necessary for worked examples. Additionally, in 'what-actually-changes', the mention of 'terminal' introduces a new concept without prior explanation, which could overload beginners. Consider providing a brief explanation of what a terminal is before mentioning it."
+  },
+  "tone": {
+    "score": 8,
+    "critique": "The script generally maintains a plain-spoken and practical tone, but there are a few areas that could benefit from minor adjustments. In the section 'the-habits-that-keep-this-safe', the phrase 'There are no stupid questions here, and the explanation is just part of the process.' could be perceived as condescending. A more neutral replacement could be: 'Feel free to ask the agent for clarification on anything you don’t recognize; it’s a normal part of the process.' Additionally, in the section 'whats-next', the phrase 'let’s get ready to dive into that' could be seen as informal and slightly chatty. A more straightforward alternative could be: 'Next, we will focus on design, an important step in developing your idea.' These changes would enhance the overall tone consistency."
+  },
+  "weights": {
+    "accuracy": 0.5,
+    "pedagogy": 0.35,
+    "tone": 0.15
+  },
+  "weighted": 7.65,
+  "threshold": 8,
+  "passed": false,
+  "reviewed_at": "2026-07-31T10:42:09.181933Z"
+}

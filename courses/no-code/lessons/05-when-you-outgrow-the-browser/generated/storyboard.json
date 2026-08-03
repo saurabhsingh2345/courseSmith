@@ -1,0 +1,139 @@
+{
+  "sections": [
+    {
+      "id": "three-signs-it-is-time",
+      "points": [
+        {
+          "text": "Same context every session",
+          "icon": "alert",
+          "at_word": 14
+        },
+        {
+          "text": "Specific needs unmet",
+          "icon": "bug",
+          "at_word": 29
+        },
+        {
+          "text": "Collaboration needed",
+          "icon": "users",
+          "at_word": 51
+        }
+      ]
+    },
+    {
+      "id": "what-actually-changes",
+      "points": [
+        {
+          "text": "Files on your computer",
+          "icon": "file",
+          "at_word": 17
+        },
+        {
+          "text": "Manage files freely",
+          "icon": "gear",
+          "at_word": 25
+        },
+        {
+          "text": "Setup required",
+          "icon": "wrench",
+          "at_word": 51
+        }
+      ]
+    },
+    {
+      "id": "what-an-ai-coding-agent-is-doing",
+      "points": [
+        {
+          "text": "Smart assistant for code",
+          "icon": "brain",
+          "at_word": 10
+        },
+        {
+          "text": "Finds relevant files",
+          "icon": "search",
+          "at_word": 20
+        },
+        {
+          "text": "Checks its own work",
+          "icon": "check",
+          "at_word": 58
+        }
+      ]
+    },
+    {
+      "id": "watch-it-happen-on-a-real-project",
+      "points": [
+        {
+          "text": "Genuine recording",
+          "icon": "dot",
+          "at_word": 12
+        },
+        {
+          "text": "Agent's thinking time",
+          "icon": "clock",
+          "at_word": 24
+        },
+        {
+          "text": "Habit tracker project",
+          "icon": "target",
+          "at_word": 40
+        }
+      ]
+    },
+    {
+      "id": "reading-what-just-happened",
+      "points": [
+        {
+          "text": "Context before writing",
+          "icon": "layers",
+          "at_word": 12
+        },
+        {
+          "text": "Updates multiple files",
+          "icon": "folder",
+          "at_word": 30
+        },
+        {
+          "text": "Read the summary",
+          "icon": "book",
+          "at_word": 54
+        }
+      ]
+    },
+    {
+      "id": "the-habits-that-keep-this-safe",
+      "points": [
+        {
+          "text": "Use version control",
+          "icon": "lock",
+          "at_word": 10
+        },
+        {
+          "text": "Revert changes easily",
+          "icon": "refresh",
+          "at_word": 21
+        },
+        {
+          "text": "Ask questions",
+          "icon": "message",
+          "at_word": 50
+        }
+      ]
+    },
+    {
+      "id": "whats-next",
+      "points": [
+        {
+          "text": "Focus on design",
+          "icon": "dot",
+          "at_word": 8
+        },
+        {
+          "text": "Key step in development",
+          "icon": "milestone",
+          "at_word": 19
+        }
+      ]
+    }
+  ]
+}

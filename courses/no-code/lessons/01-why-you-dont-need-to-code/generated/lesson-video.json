@@ -1,0 +1,215 @@
+{
+  "theme": {
+    "primary": "#5b5bd6",
+    "accent": "#f5c26b",
+    "background": "#0b0d12",
+    "courseName": "Build Without Code",
+    "mode": "dark",
+    "bgTop": "#101028",
+    "bgBottom": "#0a0715",
+    "surface": "#1b1b32",
+    "surfaceBorder": "#323252",
+    "text": "#f2f2f8",
+    "textMuted": "#a6a6bf",
+    "accentQuantity": "#f5ca47",
+    "accentLimit": "#ec5b51",
+    "accentRival": "#518cec",
+    "mass": "#dedeed",
+    "ink": "#070718",
+    "accentText": "#f5c26b",
+    "fontDisplay": "Space Grotesk",
+    "fontBody": "Inter",
+    "fontMono": "JetBrains Mono",
+    "grain": 0.04
+  },
+  "motion": {
+    "timing": {
+      "fast": 0.2,
+      "normal": 0.6,
+      "slow": 1,
+      "verySlow": 2
+    },
+    "easing": {
+      "entrance": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "exit": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "subtle": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "stagger": {
+      "words": 0.05,
+      "items": 0.08,
+      "connections": 0.12
+    },
+    "camera": {
+      "push": 0.032,
+      "drift": 22,
+      "settleSec": 18
+    }
+  },
+  "audioFile": "voiceover.wav",
+  "durationMs": 186608,
+  "scenes": [
+    {
+      "type": "title",
+      "startMs": 31,
+      "endMs": 26879,
+      "props": {
+        "heading": "Why you don't need to learn to code",
+        "intro": true,
+        "outcomes": [
+          "Say what actually changed, rather than that \"AI changed everything\"",
+          "Name the three jobs a developer does, and which one AI now does well",
+          "Decide honestly whether this course will get you what you want"
+        ],
+        "subtitle": "Build Without Code"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 26879,
+      "endMs": 60144,
+      "props": {
+        "items": [
+          {
+            "atMs": 34315,
+            "icon": "idea",
+            "text": "Deciding what to build"
+          },
+          {
+            "atMs": 40769,
+            "icon": "code",
+            "text": "Writing the code"
+          },
+          {
+            "atMs": 51730,
+            "icon": "gear",
+            "text": "Keeping it running"
+          }
+        ],
+        "title": "The three jobs hiding inside \"building software\""
+      }
+    },
+    {
+      "type": "diagram",
+      "startMs": 60144,
+      "endMs": 64971,
+      "props": {
+        "caption": "three-jobs",
+        "kind": "mermaid",
+        "src": "diagrams/three-jobs.svg",
+        "title": "The three jobs hiding inside \"building software\""
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 64971,
+      "endMs": 91324,
+      "props": {
+        "items": [
+          {
+            "atMs": 70858,
+            "icon": "atom",
+            "text": "Only the middle job automated"
+          },
+          {
+            "atMs": 82833,
+            "icon": "message",
+            "text": "Describe what you want"
+          }
+        ],
+        "title": "Only the middle one got automated"
+      }
+    },
+    {
+      "type": "diagram",
+      "startMs": 91324,
+      "endMs": 93386,
+      "props": {
+        "caption": "what-moved",
+        "kind": "mermaid",
+        "src": "diagrams/what-moved.svg",
+        "title": "Only the middle one got automated"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 93386,
+      "endMs": 120521,
+      "props": {
+        "items": [
+          {
+            "atMs": 95588,
+            "icon": "users",
+            "text": "Not just developers"
+          },
+          {
+            "atMs": 101234,
+            "icon": "heart",
+            "text": "Founders and marketers"
+          }
+        ],
+        "title": "Who is actually doing this"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 120521,
+      "endMs": 140517,
+      "props": {
+        "items": [
+          {
+            "atMs": 125973,
+            "icon": "rocket",
+            "text": "Build a real application"
+          },
+          {
+            "atMs": 132167,
+            "icon": "list",
+            "text": "Develop clear descriptions"
+          }
+        ],
+        "title": "What you will have built by the end"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 140517,
+      "endMs": 173753,
+      "props": {
+        "items": [
+          {
+            "atMs": 145947,
+            "icon": "dot",
+            "text": "Tools cost money"
+          },
+          {
+            "atMs": 152820,
+            "icon": "bug",
+            "text": "Code can be wrong"
+          },
+          {
+            "atMs": 165682,
+            "icon": "shield",
+            "text": "Professional eyes needed"
+          }
+        ],
+        "title": "The honest caveat, up front"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 173753,
+      "endMs": 186608,
+      "props": {
+        "items": [
+          {
+            "atMs": 176556,
+            "icon": "map",
+            "text": "Map out each tool"
+          }
+        ],
+        "title": "What's next"
+      }
+    }
+  ],
+  "captions": null
+}

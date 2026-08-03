@@ -1,0 +1,58 @@
+{
+  "source": "whisperx",
+  "overall_wer": 0,
+  "threshold": 0.05,
+  "sections": [
+    {
+      "id": "three-signs-it-is-time",
+      "words": 92,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "what-actually-changes",
+      "words": 81,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "what-an-ai-coding-agent-is-doing",
+      "words": 78,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "watch-it-happen-on-a-real-project",
+      "words": 78,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "reading-what-just-happened",
+      "words": 77,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "the-habits-that-keep-this-safe",
+      "words": 75,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "whats-next",
+      "words": 29,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    }
+  ],
+  "flagged": null,
+  "checked_at": "2026-07-31T09:33:00.510449Z"
+}

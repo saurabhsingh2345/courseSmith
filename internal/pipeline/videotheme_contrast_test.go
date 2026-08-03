@@ -31,6 +31,15 @@ func relativeLuminance(hex string) float64 {
 	return 0.2126*lin(r) + 0.7152*lin(g) + 0.0722*lin(b)
 }
 
+// hueDistance is the shorter way round the colour circle between two hues.
+func hueDistance(a, b float64) float64 {
+	d := math.Abs(a - b)
+	if d > 180 {
+		d = 360 - d
+	}
+	return d
+}
+
 // contrastRatio is the WCAG ratio between two colours, 1..21.
 func contrastRatio(a, b string) float64 {
 	la, lb := relativeLuminance(a), relativeLuminance(b)
@@ -79,6 +88,47 @@ func TestThemeContrastBothModes(t *testing.T) {
 			if got := contrastRatio(th.SurfaceBorder, th.Surface); got < 1.12 {
 				t.Errorf("%s/%s: surfaceBorder %s on surface %s = %.2f:1, want >= 1.12 (a visible edge)",
 					mode, primary, th.SurfaceBorder, th.Surface, got)
+			}
+			// And the card has to be visible against the PAGE. This pair was the
+			// one nobody checked, and it is the pair that decides whether a frame
+			// reads as composed or as empty: light mode shipped Surface at
+			// lightness 1.0 on a page at 0.985, so every card was invisible and a
+			// four-card frame looked like labels floating on nothing. Every other
+			// token passed its assertion the whole time.
+			//
+			// 1.06 rather than the hairline's 1.12, because a card is a large
+			// filled area and needs far less separation than a one-pixel line to
+			// register — but it does need some.
+			if got := contrastRatio(th.Surface, th.BgTop); got < 1.06 {
+				t.Errorf("%s/%s: surface %s on bgTop %s = %.2f:1, want >= 1.06 — a card the eye cannot separate from the page is not a card",
+					mode, primary, th.Surface, th.BgTop, got)
+			}
+			// The gradient must not become a hue shift. Rotating the hue for the
+			// bottom stop is invisible on a dark stage and blatant on paper: +14
+			// degrees off a blue primary landed in violet, and the lavender wash it
+			// put across every light frame is most of why they read as stock.
+			if mode == ThemeModeLight {
+				topH, topS, _ := hexToHSL(th.BgTop)
+				botH, botS, _ := hexToHSL(th.BgBottom)
+				// Rotation alone is the wrong measure, and asserting on it directly
+				// fails for the wrong reason: at 0.16 saturation and near-white
+				// lightness the hue barely survives the round trip to hex, so a
+				// cyan primary reads back 11 degrees apart when 6 were asked for.
+				// That is quantisation, not a colour cast.
+				//
+				// What the eye actually sees is rotation TIMES saturation — a big
+				// turn at no saturation is invisible, and the old palette was
+				// visible because it had both. So the two are judged together, with
+				// the +14-at-0.30 that shipped (4.2) failing and the +6-at-0.16
+				// that replaced it (~1.0) passing comfortably.
+				if cast := hueDistance(topH, botH) * botS; cast > 2.5 {
+					t.Errorf("light/%s: the gradient turns %.0f degrees at %.2f saturation (%s to %s) — that product reads as a colour cast rather than as light",
+						primary, hueDistance(topH, botH), botS, th.BgTop, th.BgBottom)
+				}
+				if botS > topS+0.02 {
+					t.Errorf("light/%s: bgBottom is more saturated (%.2f) than bgTop (%.2f), which tints the page toward its own hue",
+						primary, botS, topS)
+				}
 			}
 			// The accent set as type has to be readable, whatever the course
 			// branded with. A saturated yellow is very nearly the luminance of

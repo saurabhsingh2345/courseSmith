@@ -1,0 +1,14 @@
+{
+  "kind": "diagram:builder-vs-agent",
+  "round": 1,
+  "model": "openai/gpt-4o",
+  "passed": false,
+  "issues": [
+    "Misleading layout: The nodes are arranged in a single row instead of two columns, making it unclear which nodes belong to 'App builder' and which to 'AI editor'.",
+    "Poor visual hierarchy: There is no clear separation or distinction between the two categories, making it difficult to compare them.",
+    "Wasted space: The elements are spread out horizontally with large empty space above and below, which could be better utilized."
+  ],
+  "svg_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/no-code/lessons/05-when-you-outgrow-the-browser/generated/diagrams/attempts/builder-vs-agent-round-1.svg",
+  "png_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/no-code/lessons/05-when-you-outgrow-the-browser/generated/diagrams/attempts/builder-vs-agent-round-1.png",
+  "checked_at": "2026-07-31T10:42:37Z"
+}

@@ -18,6 +18,25 @@ package pipeline
 // This runs BEFORE planning rather than as a retry after it. A retry would only
 // rescue clips that had already failed, and the thin prompts that fail loudly
 // are a fraction of the thin prompts that quietly produce a mediocre clip.
+//
+// == Where this went wrong on the reel path, and why the fix is here ==
+//
+// For a standalone snippet the prompt is the creator's own request and there is
+// no other source of truth, so "write the specifics a person would have known"
+// is the only move available. For a *reel segment* it was actively harmful. The
+// segment arrived with the caster's one-line `covers` and nothing else — the
+// brief that named thirteen tools, and the material the caster had itself
+// written down to prove the template could be filled, were both sitting in
+// memory one struct away and neither was passed in. So this stage was asked to
+// invent specifics for a subject it could not know, and it did: a `showcase`
+// segment for a product called "Creation Tools" priced "free to premium".
+//
+// Given the brief and the material, the same call stops being an inventor and
+// becomes a selector — pull the facts that belong to THIS segment out of what is
+// already known, and only reach for outside knowledge where the brief is silent.
+// That is why the context lands here rather than in the twenty-seven template
+// prompts: every one of them renders {{.Prompt}}, so enriching the prompt
+// carries the facts into all of them at once, and none of them can drift.
 
 import (
 	"context"
@@ -60,6 +79,17 @@ func EnrichSnippetPrompt(ctx context.Context, e *Env, spec SnippetSpec, cfg conf
 		"Needs":        templateNeeds(tpl.Name),
 		"TargetSec":    spec.ResolvedTargetSec(),
 		"Audience":     cfg.Style.Audience,
+		// All three empty for a standalone snippet, and the prompt is written to
+		// read correctly either way rather than branching on a mode flag.
+		"Brief":    strings.TrimSpace(spec.Brief),
+		"Material": strings.TrimSpace(spec.Material),
+		"Priors":   spec.Priors,
+		// The established facts, pre-formatted rather than passed as a struct:
+		// the prompt should not have to know what a Provenance is, and the one
+		// thing it must convey — that a fact carries its backing — reads better
+		// as a line of text than as template logic over a nested field.
+		"Facts": substanceLines(spec.Substance),
+		"Gaps":  substanceGaps(spec.Substance),
 	})
 	if err != nil {
 		return original

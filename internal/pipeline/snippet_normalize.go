@@ -89,6 +89,7 @@ func normalizeSnippetBeats(p *SnippetPlan) {
 // planFields names the plan-level payloads a template consumes, the way
 // beatFields names the per-beat ones.
 type planFields struct {
+	Footage       bool
 	Chart         bool
 	Project       bool
 	Quiz          bool
@@ -112,6 +113,9 @@ type planFields struct {
 	Trace         bool
 	Costing       bool
 	Constellation bool
+	Chapter       bool
+	Cycle         bool
+	Scale         bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -259,6 +263,15 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Constellation {
 		p.Constellation = nil
+	}
+	if !owns.Chapter {
+		p.Chapter = nil
+	}
+	if !owns.Cycle {
+		p.Cycle = nil
+	}
+	if !owns.Scale {
+		p.Scale = nil
 	}
 }
 

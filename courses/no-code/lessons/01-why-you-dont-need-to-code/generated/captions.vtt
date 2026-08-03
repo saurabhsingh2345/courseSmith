@@ -1,0 +1,354 @@
+WEBVTT
+
+1
+00:00:00.031 --> 00:00:01.513
+You don't need to learn to code is
+
+2
+00:00:01.633 --> 00:00:03.254
+true now in a way it wasn't in
+
+3
+00:00:03.274 --> 00:00:03.895
+2022.
+
+4
+00:00:05.176 --> 00:00:07.078
+But that doesn't mean code no longer
+
+5
+00:00:07.138 --> 00:00:07.519
+matters.
+
+6
+00:00:08.220 --> 00:00:11.203
+The code still exists, it still runs, and
+
+7
+00:00:11.223 --> 00:00:12.304
+it can still be wrong.
+
+8
+00:00:12.844 --> 00:00:15.427
+What really changed is who writes it, not
+
+9
+00:00:15.487 --> 00:00:16.388
+whether it gets written.
+
+10
+00:00:17.189 --> 00:00:18.871
+Everything we talk about in this course
+
+11
+00:00:19.011 --> 00:00:20.432
+hinges on that distinction.
+
+12
+00:00:21.153 --> 00:00:23.095
+If you skip this point, the first time
+
+13
+00:00:23.175 --> 00:00:25.437
+a tool fails, you'll think the tool is
+
+14
+00:00:25.498 --> 00:00:27.299
+broken.
+
+15
+00:00:27.299 --> 00:00:29.243
+Let's break down what we mean by building
+
+16
+00:00:29.304 --> 00:00:29.825
+software.
+
+17
+00:00:30.346 --> 00:00:32.230
+There are three main jobs involved.
+
+18
+00:00:32.791 --> 00:00:34.736
+First, there's deciding what to build.
+
+19
+00:00:35.498 --> 00:00:37.201
+This means figuring out what problem
+
+20
+00:00:37.221 --> 00:00:39.567
+you're solving, for whom, and what it must
+
+21
+00:00:39.627 --> 00:00:39.807
+do.
+
+22
+00:00:40.389 --> 00:00:42.553
+Second is writing the code, which is
+
+23
+00:00:42.634 --> 00:00:44.778
+turning those decisions into instructions
+
+24
+00:00:44.999 --> 00:00:47.223
+a computer can follow.
+
+25
+00:00:47.223 --> 00:00:49.727
+And finally, keeping it running, which
+
+26
+00:00:49.827 --> 00:00:52.752
+involves hosting, managing data, accounts,
+
+27
+00:00:52.892 --> 00:00:54.535
+and fixing issues when they arise.
+
+28
+00:00:55.116 --> 00:00:57.319
+People often mix these three jobs under
+
+29
+00:00:57.359 --> 00:00:59.623
+the term coding, which is why learn to
+
+30
+00:00:59.683 --> 00:01:01.726
+code sounded like the only door in.
+
+31
+00:01:02.508 --> 00:01:04.571
+Let's look at that in a picture.
+
+32
+00:01:04.971 --> 00:01:07.554
+Now, out of those three jobs, only the
+
+33
+00:01:07.594 --> 00:01:08.956
+middle one got automated.
+
+34
+00:01:09.777 --> 00:01:12.300
+Generative AI is really good at producing
+
+35
+00:01:12.380 --> 00:01:13.902
+code from a clear description.
+
+36
+00:01:14.543 --> 00:01:16.345
+But it struggles with knowing which thing
+
+37
+00:01:16.405 --> 00:01:17.186
+is worth building.
+
+38
+00:01:17.727 --> 00:01:19.729
+It's also getting better at the third job,
+
+39
+00:01:20.150 --> 00:01:21.412
+but it's not quite there yet.
+
+40
+00:01:22.092 --> 00:01:24.636
+So, the skill that matters now is being
+
+41
+00:01:24.756 --> 00:01:26.979
+able to describe precisely what you want.
+
+42
+00:01:27.719 --> 00:01:30.082
+And that's a skill you already have, from
+
+43
+00:01:30.243 --> 00:01:31.744
+every time you've briefed someone on
+
+44
+00:01:31.805 --> 00:01:32.986
+something.
+
+45
+00:01:33.386 --> 00:01:35.368
+You might be surprised to learn that most
+
+46
+00:01:35.408 --> 00:01:37.310
+of the people using these tools aren't
+
+47
+00:01:37.350 --> 00:01:37.910
+developers.
+
+48
+00:01:38.631 --> 00:01:40.813
+They're founders, product managers,
+
+49
+00:01:41.234 --> 00:01:42.615
+designers, and marketers.
+
+50
+00:01:43.336 --> 00:01:45.138
+They're not building the next operating
+
+51
+00:01:45.218 --> 00:01:45.618
+system.
+
+52
+00:01:46.159 --> 00:01:48.341
+Instead, they're creating internal tools,
+
+53
+00:01:48.801 --> 00:01:51.063
+landing pages, booking forms, and
+
+54
+00:01:51.143 --> 00:01:52.765
+prototypes that help get meetings.
+
+55
+00:01:53.526 --> 00:01:54.987
+This isn't a lesser category.
+
+56
+00:01:55.548 --> 00:01:58.230
+In fact, most software that earns its keep
+
+57
+00:01:58.351 --> 00:01:59.832
+falls into this space.
+
+58
+00:02:00.521 --> 00:02:02.385
+By the end of this course, you'll have
+
+59
+00:02:02.425 --> 00:02:04.610
+built a real application with a real
+
+60
+00:02:04.690 --> 00:02:07.737
+database, one that other people can access
+
+61
+00:02:07.837 --> 00:02:09.802
+on the internet at an address you own.
+
+62
+00:02:10.523 --> 00:02:12.107
+You'll also develop the habit of
+
+63
+00:02:12.167 --> 00:02:14.312
+describing what you want clearly enough to
+
+64
+00:02:14.352 --> 00:02:14.612
+get it.
+
+65
+00:02:15.133 --> 00:02:16.557
+And you'll gain a clear sense of the
+
+66
+00:02:16.737 --> 00:02:18.661
+edge — that point where you should stop
+
+67
+00:02:18.761 --> 00:02:19.964
+and hire someone.
+
+68
+00:02:20.517 --> 00:02:23.042
+Now, let's talk about some honest caveats.
+
+69
+00:02:23.743 --> 00:02:26.328
+These tools do cost money, and the cost
+
+70
+00:02:26.408 --> 00:02:27.470
+grows with your usage.
+
+71
+00:02:28.231 --> 00:02:30.235
+They produce code that you might not read,
+
+72
+00:02:30.275 --> 00:02:32.880
+and sometimes that code can be wrong in
+
+73
+00:02:32.920 --> 00:02:34.603
+ways that only show up later.
+
+74
+00:02:35.184 --> 00:02:37.068
+If you're dealing with payments, health
+
+75
+00:02:37.108 --> 00:02:40.334
+data, or anyone's private information, you
+
+76
+00:02:40.394 --> 00:02:42.337
+definitely want a professional's eyes on
+
+77
+00:02:42.418 --> 00:02:44.681
+it before it goes live.
+
+78
+00:02:44.681 --> 00:02:46.924
+Lesson twelve will revisit all of this
+
+79
+00:02:47.004 --> 00:02:47.465
+properly.
+
+80
+00:02:48.005 --> 00:02:49.727
+It’s the most important lesson in this
+
+81
+00:02:49.788 --> 00:02:52.151
+course, and it's intentionally saved for
+
+82
+00:02:52.191 --> 00:02:52.571
+last.
+
+83
+00:02:53.753 --> 00:02:54.534
+So what's next?
+
+84
+00:02:55.214 --> 00:02:57.077
+In the next lesson, we'll map out what
+
+85
+00:02:57.157 --> 00:02:59.180
+each tool in this world is actually for.
+
+86
+00:02:59.961 --> 00:03:02.764
+This way, the names stop being noise, and
+
+87
+00:03:02.804 --> 00:03:04.326
+you can see how they fit into what
+
+88
+00:03:04.346 --> 00:03:05.808
+you're trying to accomplish.
+

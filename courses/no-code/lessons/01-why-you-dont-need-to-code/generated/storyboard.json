@@ -1,0 +1,114 @@
+{
+  "sections": [
+    {
+      "id": "the-claim-said-carefully",
+      "points": [
+        {
+          "text": "Code still matters",
+          "icon": "code",
+          "at_word": 14
+        },
+        {
+          "text": "Tool failures happen",
+          "icon": "bug",
+          "at_word": 66
+        }
+      ]
+    },
+    {
+      "id": "the-three-jobs-hiding-inside-building-software",
+      "points": [
+        {
+          "text": "Deciding what to build",
+          "icon": "idea",
+          "at_word": 19
+        },
+        {
+          "text": "Writing the code",
+          "icon": "code",
+          "at_word": 37
+        },
+        {
+          "text": "Keeping it running",
+          "icon": "gear",
+          "at_word": 61
+        }
+      ]
+    },
+    {
+      "id": "only-the-middle-one-got-automated",
+      "points": [
+        {
+          "text": "Only the middle job automated",
+          "icon": "atom",
+          "at_word": 14
+        },
+        {
+          "text": "Describe what you want",
+          "icon": "message",
+          "at_word": 50
+        }
+      ]
+    },
+    {
+      "id": "who-is-actually-doing-this",
+      "points": [
+        {
+          "text": "Not just developers",
+          "icon": "users",
+          "at_word": 10
+        },
+        {
+          "text": "Founders and marketers",
+          "icon": "heart",
+          "at_word": 20
+        }
+      ]
+    },
+    {
+      "id": "what-you-will-have-built-by-the-end",
+      "points": [
+        {
+          "text": "Build a real application",
+          "icon": "rocket",
+          "at_word": 16
+        },
+        {
+          "text": "Develop clear descriptions",
+          "icon": "list",
+          "at_word": 36
+        }
+      ]
+    },
+    {
+      "id": "the-honest-caveat-up-front",
+      "points": [
+        {
+          "text": "Tools cost money",
+          "icon": "dot",
+          "at_word": 14
+        },
+        {
+          "text": "Code can be wrong",
+          "icon": "bug",
+          "at_word": 34
+        },
+        {
+          "text": "Professional eyes needed",
+          "icon": "shield",
+          "at_word": 66
+        }
+      ]
+    },
+    {
+      "id": "whats-next",
+      "points": [
+        {
+          "text": "Map out each tool",
+          "icon": "map",
+          "at_word": 8
+        }
+      ]
+    }
+  ]
+}

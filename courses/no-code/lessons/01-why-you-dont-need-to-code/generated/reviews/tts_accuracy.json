@@ -1,0 +1,58 @@
+{
+  "source": "whisperx",
+  "overall_wer": 0,
+  "threshold": 0.05,
+  "sections": [
+    {
+      "id": "the-claim-said-carefully",
+      "words": 81,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "the-three-jobs-hiding-inside-building-software",
+      "words": 98,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "only-the-middle-one-got-automated",
+      "words": 78,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "who-is-actually-doing-this",
+      "words": 62,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "what-you-will-have-built-by-the-end",
+      "words": 63,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "the-honest-caveat-up-front",
+      "words": 86,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "whats-next",
+      "words": 39,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    }
+  ],
+  "flagged": null,
+  "checked_at": "2026-07-31T10:19:24.165794Z"
+}

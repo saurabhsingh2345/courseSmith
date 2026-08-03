@@ -43,6 +43,21 @@ type SnippetTemplate struct {
 	// Example is a prompt that shows this template at its best; the studio
 	// offers it as a starting point.
 	Example string
+	// Shelved keeps this template out of everything that *offers* a choice —
+	// the studio gallery, `snippet --list`, and the caster's catalog — while
+	// leaving it fully usable when named explicitly in a snippet.yaml or a
+	// reel.yaml.
+	//
+	// The distinction matters because the two failure modes are not symmetric.
+	// Deleting a template breaks every piece already on disk that names it;
+	// leaving a template that does not meet the bar in the gallery means it
+	// keeps being picked, and a caster handed a catalog will use everything in
+	// it. Shelving is the only state that stops new pieces choosing a look
+	// without invalidating the old ones.
+	//
+	// A shelved template is a judgement about the *output*, so the reason
+	// belongs on the field at the registration site, not here.
+	Shelved bool
 	// PromptFile is the prompt template rendered to plan a clip.
 	PromptFile string
 	// NeedsCode makes the verify stage part of this template's pipeline, so
@@ -80,6 +95,17 @@ type SnippetTemplate struct {
 	// the field it belongs in, or dropped, before the plan is validated.
 	Owns     beatFields
 	OwnsPlan planFields
+	// NoSalvage refuses the near-miss path when the correction rounds run out.
+	//
+	// Most templates ship their closest draft rather than nothing, because a
+	// slightly loose clip still renders and still teaches. A template whose
+	// rules are about truth rather than shape cannot take that trade: its
+	// closest draft is a clip that says something the evidence does not support.
+	NoSalvage bool
+	// PreValidate copies what the caller resolved onto the plan, before it is
+	// judged. A validator can only check against what is on the plan when
+	// Validate runs, and Validate runs inside the correction loop.
+	PreValidate func(spec SnippetSpec, p *SnippetPlan)
 	// Normalize repairs this template's own mechanical mistakes — a label a
 	// word too long, a vocabulary term the model invented, a link pointing at
 	// nothing — before Validate sees the plan. See snippet_normalize.go for
@@ -110,7 +136,14 @@ func registerSnippetTemplate(t *SnippetTemplate) {
 	SnippetTemplates[t.Name] = t
 }
 
-// SnippetTemplateNames returns the catalog's names, sorted.
+// SnippetTemplateNames returns every registered name, sorted — shelved
+// templates included.
+//
+// This is the *enumeration*, not the offer. It backs the "templates: ..." hint
+// on a validation error, where naming a shelved template is correct because
+// naming one explicitly still works, and promptDataFallbacks, which needs every
+// template's vocabularies whether or not the gallery shows it. Use
+// SnippetTemplateList for anything a creator or a model chooses from.
 func SnippetTemplateNames() []string {
 	out := make([]string, 0, len(SnippetTemplates))
 	for name := range SnippetTemplates {
@@ -120,12 +153,18 @@ func SnippetTemplateNames() []string {
 	return out
 }
 
-// SnippetTemplateList returns the catalog sorted by name, for the studio
-// gallery and `coursesmith snippet --list`.
+// SnippetTemplateList returns the templates on offer, sorted by name, for the
+// studio gallery, `coursesmith snippet --list` and the caster's catalog.
+//
+// Shelved templates are filtered here rather than at each of the three call
+// sites, so shelving one cannot land in two of them and be missed in the third
+// — which is the whole failure this single choke point exists to prevent.
 func SnippetTemplateList() []*SnippetTemplate {
 	out := make([]*SnippetTemplate, 0, len(SnippetTemplates))
 	for _, name := range SnippetTemplateNames() {
-		out = append(out, SnippetTemplates[name])
+		if t := SnippetTemplates[name]; !t.Shelved {
+			out = append(out, t)
+		}
 	}
 	return out
 }
@@ -200,6 +239,28 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 		"MinHeadlineWords": minHeadlineWords,
 		"MaxHeadlineWords": maxHeadlineWords,
 		"MaxCaptionWords":  maxCaptionWords,
+		// A reel segment's planning context, empty for a standalone snippet.
+		//
+		// The facts reach a template's writer through Prompt, which enrichment
+		// has already rewritten to carry them (snippet_enrich.go) — that is the
+		// path that works without editing twenty-seven prompt files. These keys
+		// are here so a template prompt that wants the piece's brief, or the
+		// ground already covered, can say {{.Brief}} or {{.Priors}} and get it
+		// rather than getting an empty string from the healing path.
+		"Brief":    spec.Brief,
+		"Material": spec.Material,
+		"Priors":   spec.Priors,
+		// The established facts and the known gaps. Shared rather than owned by
+		// the enrich prompt alone, for the reason the headline bounds above are:
+		// more than one prompt wants them, and a key that only one supplier
+		// defines renders empty through the healing path in every other — which
+		// looks like a drift warning rather than the missing data it is.
+		"Facts": substanceLines(spec.Substance),
+		"Gaps":  substanceGaps(spec.Substance),
+		// Shared as well as owned by `myth`, so any template that wants to open on
+		// a belief the viewer recognises can — and so a prompt referencing it does
+		// not fall through the healing path and render empty with a drift warning.
+		"Misconceptions": substanceMisconceptions(spec.Substance),
 	}
 }
 
@@ -244,6 +305,27 @@ func beatBounds(targetWords, ceiling int) (minBeats, maxBeats, suggest, wordsPer
 	suggest = min(suggest, ceiling)
 	minBeats = min(max(suggest-1, floorSnippetBeats), ceiling)
 	maxBeats = min(max(suggest+2, minBeats), ceiling)
+	// A list-shaped template must be able to reach the ceiling it declared.
+	//
+	// suggest+2 is the right width for a clip made of *moments* — it keeps a
+	// 45-second piece from becoming eight captions. It silently overrode the
+	// ceiling for the templates whose beat count is a property of their content,
+	// which is the one case MaxBeats exists to express. Measured: constellation
+	// defaults to 55s, so suggest+2 allowed 6 beats while its shape — centre,
+	// spokes, whole — needs 7 for five spokes; rundown allowed 6 while five cards
+	// plus an opener and a summary needs 7. Every run of those templates therefore
+	// failed its own validator, burned three correction rounds, salvaged the
+	// closest draft, and shipped it. "1 of the 5 cards are never covered" was the
+	// arithmetic saying so.
+	//
+	// So the ceiling is reachable when the budget can fund it at a substantial
+	// beat — half the ideal, not the bare ten-word minimum, because funding eight
+	// beats at ten words each is how a clip becomes the slideshow the width was
+	// protecting against. max() rather than assignment: this only ever widens the
+	// range, so no runtime that worked before gets a narrower one.
+	if fundable := targetWords / leanWordsPerBeat; fundable > maxBeats {
+		maxBeats = min(fundable, ceiling)
+	}
 	// And when even the ceiling cannot fund the budget, advise the most a beat
 	// may actually carry rather than the arithmetic answer. The clip will run
 	// short of its target; being told to write something that is rejected on
@@ -272,13 +354,78 @@ const (
 	// idealWordsPerBeat is how much narration one visual comfortably holds —
 	// the divisor that turns a word budget into a beat count.
 	idealWordsPerBeat = 40
+	// leanWordsPerBeat is the least a beat can carry and still be a thought
+	// rather than a label. It is what decides how far a list-shaped template may
+	// stretch toward its declared ceiling: dividing the budget by the ten-word
+	// hard minimum would licence eight beats of ten words, which is a slideshow.
+	leanWordsPerBeat = idealWordsPerBeat / 2
 )
 
 // Per-beat narration bounds. Under ten words a beat is a caption, not a
 // thought; over sixty it outlasts any single visual.
+// beatRole is the job a beat does, derived from where it sits.
+//
+// Position rather than a field the model declares, and that is a deliberate
+// choice about where to spend a rule. A `role` on SnippetBeat would need adding
+// to twenty-seven prompts, would be got wrong by some of them, and would tell us
+// nothing position does not: every template in this catalog opens by naming its
+// subject, develops through the middle, and closes on the whole. `constellation`
+// is centre → spokes → whole, `myth` is claim → evidence → why, `rundown` is
+// promise → items → all. The shape is the catalog's, not the model's to invent.
+type beatRole int
+
+const (
+	// roleOpen names the subject. Short by convention — "No-code is visual
+	// programming", "Four mindsets to adopt" — because its job is to put one
+	// thing on screen, not to explain it.
+	roleOpen beatRole = iota
+	// roleDevelop carries the actual teaching, and is where the words belong.
+	roleDevelop
+	// roleLand closes on the whole. Short again: a summary that runs as long as
+	// the thing it summarises has not summarised anything.
+	roleLand
+)
+
+// roleOf returns the job of beat i of n.
+//
+// A two-beat clip is open then land, with no middle: at ten to twenty seconds
+// there is one cut and no room to develop anything, which is what makes those
+// runtimes a hook rather than an explanation.
+func roleOf(i, n int) beatRole {
+	switch {
+	case i == 0:
+		return roleOpen
+	case i == n-1 && n > 1:
+		return roleLand
+	default:
+		return roleDevelop
+	}
+}
+
+// minWordsFor is the floor for a beat in this role.
+//
+// The flat ten-word floor was the last thing failing every run of the
+// list-shaped templates, and it was failing them on the beats the templates are
+// *designed* to keep short. Measured on the no-code reel after the beat-ceiling
+// fix, every remaining violation was an opener or a closer one or two words shy:
+// constellation's "No-code is visual programming" at eight, rundown's "Four
+// mindsets to adopt" at nine. The rule and the format were arguing, the format
+// was right, and the correction rounds spent settling it are most of why 71% of
+// this pipeline's token spend went on re-planning.
+func minWordsFor(role beatRole) int {
+	if role == roleDevelop {
+		return minWordsPerBeat
+	}
+	return minWordsOpenLand
+}
+
 const (
 	minWordsPerBeat = 10
-	maxWordsPerBeat = 60
+	// minWordsOpenLand is the floor for an opener or a closer. Six words is still
+	// a sentence — "No-code means building without code" — and below it a beat
+	// really is a label with a voice track.
+	minWordsOpenLand = 6
+	maxWordsPerBeat  = 60
 )
 
 // snippetPlanRepairRounds is how many correction attempts a plan gets. Replies
@@ -329,6 +476,11 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	}
 	target := spec.ResolvedTargetSec()
 	wantWords, minWords, maxWords := wordBudget(target, pace)
+	// Hoisted above the render because the appended arithmetic below quotes these
+	// bounds, and they must be the same ones the validator scores against — two
+	// calls to beatBounds either side of the prompt is how the number the model is
+	// told and the number it is judged by drift apart.
+	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords, templateBeatCeiling(spec.Template))
 	data := sharedPromptData(spec, cfg)
 	if tpl.PromptData != nil {
 		for k, v := range tpl.PromptData(spec, cfg) {
@@ -339,6 +491,29 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	if err != nil {
 		return nil, err
 	}
+	// The budget arithmetic, spelled out. Appended centrally for the same reason
+	// the critique below is: it is shared guidance, not a property of any one
+	// template's look, and twenty-seven copies means the twenty-eighth is wrong.
+	//
+	// Every prompt already quotes a per-beat word count. What none of them could
+	// say is what happens when the model takes the latitude in the beat range:
+	// told "3-7 beats, about 36 words each", it writes seven beats of nine words
+	// and fails the ten-word floor on all of them. Both numbers were followed —
+	// the count from one rule and the length from nowhere — and the arithmetic
+	// connecting them was never stated. Observed on every list-shaped template:
+	// constellation and rundown failed this and nothing else after the beat
+	// ceiling was fixed.
+	user += beatVariationAdvice(wantWords, minBeats, maxBeats) + budgetTotalsAdvice(minWords, maxWords)
+
+	// A review critique is appended to the rendered user message rather than
+	// rendered into the prompt file. Blunt, and chosen deliberately: the
+	// alternative is the same block copied into twenty-seven templates, where the
+	// twenty-eighth to be added silently ignores its reviewer. The prompts stay
+	// the description of a template's own rules, and regeneration stays one thing
+	// in one place.
+	if c := strings.TrimSpace(spec.Critique); c != "" {
+		user += "\n\nA reviewer scored your previous plan below the quality bar. Produce a new plan that fixes every point of this critique. Keep what was already good; change what it names.\n\n" + c
+	}
 	var plan SnippetPlan
 	// The closest attempt seen so far, kept for the salvage below: a plan that
 	// decoded and normalized is a clip, even when it never satisfied every rule.
@@ -346,7 +521,7 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	// A plan has more independent numeric rules than anything else the pipeline
 	// asks for — beat count, per-beat words, total words, and whatever the
 	// template adds on top. One correction round is not enough to land them all.
-	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords, templateBeatCeiling(spec.Template))
+	// The bounds themselves are computed above, before the prompt quotes them.
 	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.5, 6144, snippetPlanRepairRounds, &plan, func() error {
 		plan.Template = spec.Template // so Validate dispatches to this template
 		// The budget the prompt quoted, so the shared validators score the plan
@@ -355,6 +530,17 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 		// Repair what is mechanically repairable before judging the reply, so
 		// the correction rounds are spent on what only the model can fix.
 		normalizeSnippetPlan(&plan)
+		// Facts the caller resolved, injected before the plan is judged.
+		//
+		// Validation happens inside this loop, so anything a validator checks
+		// against must be on the plan *here* — setting it after the planner
+		// returns is setting it after every judgement has already been made.
+		// That is not hypothetical: the footage template's whole rule is
+		// "a beat may only name a moment the recording has", and with the marks
+		// attached afterwards the check silently passed on an empty set.
+		if tpl.PreValidate != nil {
+			tpl.PreValidate(spec, &plan)
+		}
 		snapshot := plan
 		closest = &snapshot
 		if err := plan.Validate(); err != nil {
@@ -387,14 +573,99 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 		return nil
 	})
 	if err != nil {
+		// Salvage is the right trade for a template whose rules are about
+		// shape: a clip that is a little loose still renders and still teaches.
+		// It is the wrong trade for one whose rules are about *truth*. The
+		// closest draft of a footage piece is a clip whose narration does not
+		// match the recording — shipping it, with a warning, is precisely the
+		// failure this surface exists to refuse, and a warning on stdout is not
+		// a defence against a video that says the wrong tool did the work.
+		if tpl.NoSalvage {
+			return nil, fmt.Errorf("planning %s: %w\nThis template does not ship a near miss: its rules are about whether the clip tells the truth, not about how it is shaped", spec.Template, err)
+		}
 		if salvaged := salvageSnippetPlan(ctx, e, spec, cfg, closest); salvaged != nil {
 			fmt.Fprintf(e.out(), "    ! the plan never satisfied every rule (%v)\n", err)
 			fmt.Fprintf(e.out(), "      shipping the closest one — it renders, so the clip is real; expect it to be looser than asked\n")
+			// Record it on the plan, not only on stdout. A warning nobody scrolled
+			// back to is how three segments of a finished reel shipped under their
+			// word floor with no way to tell them from the ones that passed.
+			salvaged.Compromises = compromiseLines(err)
 			return salvaged, nil
 		}
 		return nil, fmt.Errorf("planning %s snippet: %w", spec.Template, err)
 	}
 	return &plan, nil
+}
+
+// beatVariationAdvice is the arithmetic and the pacing, stated to every template.
+//
+// Appended by the shared planner rather than written into twenty-seven prompt
+// files, for the reason the critique is: this is shared guidance, not a property
+// of any one template's look, and twenty-seven copies means the twenty-eighth is
+// wrong.
+//
+// Two things it has to say, and neither was being said anywhere.
+//
+// The ARITHMETIC, because every prompt quoted a per-beat word count and none of
+// them could say what happens when the model uses the latitude in the beat range:
+// told "3-7 beats, about 36 words each" it wrote seven beats of nine words and
+// failed the floor on all of them. Both numbers were obeyed and the sum was never
+// mentioned.
+//
+// The VARIATION, because uniform beats are the commonest thing wrong with these
+// plans and nothing had ever asked for anything else. Every beat the same length,
+// the same shape and the same energy is a list read aloud — the review gate scores
+// it 6/10 on non-redundancy run after run, and it is why the narration reads
+// metronomic even when every individual sentence is fine.
+func beatVariationAdvice(wantWords, minBeats, maxBeats int) string {
+	return fmt.Sprintf(
+		"\n\nARITHMETIC, before you answer. You are writing %d-%d beats. That number and the word count are linked: at %d beats each is about %d words, at %d beats each is about %d words. Work out which you are writing and size the beats to match.\n\n"+
+			"THE BEATS MUST NOT ALL BE THE SAME LENGTH. This is the difference between a clip and a list read aloud, and it is the commonest thing wrong with these plans: every beat the same size, the same shape and the same energy, so nothing lands anywhere.\n"+
+			"- The FIRST beat names the subject and can be short — %d words is enough, and one clean sentence beats three hedged ones.\n"+
+			"- The MIDDLE beats do the teaching and should be the longest, comfortably past %d words. This is where the explanation lives; a short middle beat has stated something instead of explaining it.\n"+
+			"- The LAST beat closes and can be short again, %d words. A summary that runs as long as the thing it summarises has not summarised anything.\n"+
+			"No middle beat may be under %d words. If you cannot write one up to %d, you have a beat too many: merge it into its neighbour rather than padding it out.",
+		minBeats, maxBeats,
+		minBeats, wantWords/max(minBeats, 1), maxBeats, wantWords/max(maxBeats, 1),
+		minWordsOpenLand, minWordsPerBeat+10, minWordsOpenLand,
+		minWordsPerBeat, minWordsPerBeat,
+	)
+}
+
+// budgetTotalsAdvice states the one number the validators actually score the
+// whole plan against.
+func budgetTotalsAdvice(minWords, maxWords int) string {
+	return fmt.Sprintf("\nThe narration across every beat must total %d-%d words.", minWords, maxWords)
+}
+
+// compromiseLines splits a correction-loop error into one line per rule broken.
+//
+// The loop accumulates every round's complaint into one error joined by "; ", and
+// the same rule usually appears in several rounds — the observed shape is "these
+// beats are under the 10-word minimum: X; these beats are under the 10-word
+// minimum: Y; narration totals 61 words but...". Stored as one blob it is
+// unreadable and unqueryable; split and de-duplicated it answers the question
+// somebody actually has, which is "what is wrong with this clip".
+func compromiseLines(err error) []string {
+	if err == nil {
+		return nil
+	}
+	var out []string
+	seen := map[string]bool{}
+	for _, part := range strings.Split(err.Error(), ";") {
+		part = collapseSpaces(part)
+		// The loop's own framing ("content response invalid after 3 correction
+		// round(s):") is about the machinery rather than the clip.
+		if i := strings.Index(part, "correction round(s):"); i >= 0 {
+			part = collapseSpaces(part[i+len("correction round(s):"):])
+		}
+		if part == "" || seen[part] {
+			continue
+		}
+		seen[part] = true
+		out = append(out, part)
+	}
+	return out
 }
 
 // salvageSnippetPlan is the last thing between a creator and an empty hand.
@@ -486,12 +757,13 @@ func checkBeatShape(p *SnippetPlan) error {
 	}
 
 	var long, short []string
-	for _, b := range p.Beats {
+	for i, b := range p.Beats {
+		floor := minWordsFor(roleOf(i, len(p.Beats)))
 		switch n := len(strings.Fields(b.Narration)); {
 		case n > maxWordsPerBeat:
 			long = append(long, fmt.Sprintf("%q (%d words)", b.ID, n))
-		case n < minWordsPerBeat:
-			short = append(short, fmt.Sprintf("%q (%d words)", b.ID, n))
+		case n < floor:
+			short = append(short, fmt.Sprintf("%q (%d words, floor %d)", b.ID, n, floor))
 		}
 	}
 	if len(long) == 0 && len(short) == 0 {
@@ -514,8 +786,8 @@ func checkBeatShape(p *SnippetPlan) error {
 		msg = append(msg, m)
 	}
 	if len(short) > 0 {
-		msg = append(msg, fmt.Sprintf("these beats are under the %d-word minimum: %s; expand them or fold them into a neighbour",
-			minWordsPerBeat, strings.Join(short, ", ")))
+		msg = append(msg, fmt.Sprintf("these beats are under their floor: %s; the first and last beat may be as short as %d words, every beat between them needs %d. Expand them or fold them into a neighbour",
+			strings.Join(short, ", "), minWordsOpenLand, minWordsPerBeat))
 	}
 	return fmt.Errorf("%s", strings.Join(msg, ". "))
 }
@@ -528,6 +800,7 @@ func checkBeatShape(p *SnippetPlan) error {
 // is quadratic and rots as the catalog grows — means a model that puts a
 // whiteboard sketch on a flow diagram gets a loud error instead of silence.
 type beatFields struct {
+	Footage       bool
 	Code          bool
 	Run           bool
 	Sketch        bool
@@ -559,6 +832,9 @@ type beatFields struct {
 	Trace         bool
 	Costing       bool
 	Constellation bool
+	Chapter       bool
+	Cycle         bool
+	Scale         bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -613,6 +889,12 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "costing"
 		case !owned.Constellation && b.Constellation != nil:
 			set = "constellation"
+		case !owned.Chapter && b.Chapter != nil:
+			set = "chapter"
+		case !owned.Cycle && b.Cycle != nil:
+			set = "cycle"
+		case !owned.Scale && b.Scale != nil:
+			set = "scale"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

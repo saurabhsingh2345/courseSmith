@@ -26,6 +26,12 @@ const OUT = join(__dirname, "..", "studio", "public", "template-previews");
 // derived: the composition ids and the template names are deliberately
 // different vocabularies and guessing between them would break silently.
 const SOURCES = {
+  // The one preview that cannot show real content, and that is a property of
+  // the template rather than a shortcut: what `footage` produces is *your*
+  // recording, so a card showing somebody else's clip would misrepresent what
+  // you get. This shows what the template actually contributes — the frame,
+  // the origin, and the capture credit.
+  footage: "FootageViz-90",
   vscode: "VSCodeViz-200",
   quiz: "QuizViz-560",
   compare: "CompareViz-570",
@@ -60,6 +66,15 @@ const SOURCES = {
   trace: "TraceViz-1080",
   costing: "CostingViz-750",
   constellation: "ConstellationViz-1090",
+  // The handover rather than a look-back: the card should show the state the
+  // template is named for, which is the section that opens next.
+  chapter: "ChapterViz-750",
+  // The closed ring rather than a mid-walk: a card showing three quarters of a
+  // circle would advertise the one shape this template exists to avoid.
+  cycle: "CycleViz-1740",
+  // The compressed ladder rather than a single rung: it is the only frame where
+  // the nesting — the whole idea — is visible on a 480px card.
+  scale: "ScaleViz-1440",
   workspace: "WorkspaceViz-690",
   whiteboard: "WhiteboardViz-390",
   flow: "FlowViz-400",

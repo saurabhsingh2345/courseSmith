@@ -1,0 +1,263 @@
+{
+  "theme": {
+    "primary": "#5b5bd6",
+    "accent": "#f5c26b",
+    "background": "#0b0d12",
+    "courseName": "Build Without Code",
+    "mode": "dark",
+    "bgTop": "#101028",
+    "bgBottom": "#0a0715",
+    "surface": "#1b1b32",
+    "surfaceBorder": "#323252",
+    "text": "#f2f2f8",
+    "textMuted": "#a6a6bf",
+    "accentQuantity": "#f5ca47",
+    "accentLimit": "#ec5b51",
+    "accentRival": "#518cec",
+    "mass": "#dedeed",
+    "ink": "#070718",
+    "accentText": "#f5c26b",
+    "fontDisplay": "Space Grotesk",
+    "fontBody": "Inter",
+    "fontMono": "JetBrains Mono",
+    "grain": 0.04
+  },
+  "motion": {
+    "timing": {
+      "fast": 0.2,
+      "normal": 0.6,
+      "slow": 1,
+      "verySlow": 2
+    },
+    "easing": {
+      "entrance": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "exit": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "subtle": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "stagger": {
+      "words": 0.05,
+      "items": 0.08,
+      "connections": 0.12
+    },
+    "camera": {
+      "push": 0.032,
+      "drift": 22,
+      "settleSec": 18
+    }
+  },
+  "audioFile": "voiceover.wav",
+  "durationMs": 184281,
+  "scenes": [
+    {
+      "type": "title",
+      "startMs": 31,
+      "endMs": 25090,
+      "props": {
+        "heading": "The map: what each tool is for",
+        "intro": true,
+        "outcomes": [
+          "Place any new tool you meet into one of five layers",
+          "Explain what a database, a host, and a domain each do",
+          "Pick the right kind of tool for a job instead of the most-advertised one"
+        ],
+        "subtitle": "Build Without Code"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 25090,
+      "endMs": 45113,
+      "props": {
+        "items": [
+          {
+            "atMs": 28595,
+            "icon": "idea",
+            "text": "Describe your ideas"
+          },
+          {
+            "atMs": 31278,
+            "icon": "brain",
+            "text": "Brainstorming and planning"
+          },
+          {
+            "atMs": 39629,
+            "icon": "wrench",
+            "text": "Sharpen your idea"
+          }
+        ],
+        "title": "Layer one: where you describe it"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 45113,
+      "endMs": 72619,
+      "props": {
+        "items": [
+          {
+            "atMs": 46875,
+            "icon": "box",
+            "text": "Where it gets built"
+          },
+          {
+            "atMs": 50878,
+            "icon": "cloud",
+            "text": "App builders in browser"
+          },
+          {
+            "atMs": 56544,
+            "icon": "monitor",
+            "text": "AI editors on computer"
+          }
+        ],
+        "title": "Layer two: where it gets built"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 72619,
+      "endMs": 94940,
+      "props": {
+        "items": [
+          {
+            "atMs": 76546,
+            "icon": "star",
+            "text": "Design tools matter"
+          },
+          {
+            "atMs": 81997,
+            "icon": "filter",
+            "text": "Avoid generic looks"
+          },
+          {
+            "atMs": 91376,
+            "icon": "milestone",
+            "text": "Make a big difference"
+          }
+        ],
+        "title": "Layer three: where it looks right"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 94940,
+      "endMs": 119392,
+      "props": {
+        "items": [
+          {
+            "atMs": 98064,
+            "icon": "database",
+            "text": "Where the data lives"
+          },
+          {
+            "atMs": 101268,
+            "icon": "list",
+            "text": "Set of tables"
+          },
+          {
+            "atMs": 109378,
+            "icon": "clock",
+            "text": "Remember between visits"
+          }
+        ],
+        "title": "Layer four: where the data lives"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 119392,
+      "endMs": 135777,
+      "props": {
+        "items": [
+          {
+            "atMs": 121415,
+            "icon": "rocket",
+            "text": "Where it runs"
+          },
+          {
+            "atMs": 126043,
+            "icon": "server",
+            "text": "Hosting and domain"
+          },
+          {
+            "atMs": 132134,
+            "icon": "users",
+            "text": "Available to you"
+          }
+        ],
+        "title": "Layer five: where it runs"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 135777,
+      "endMs": 153817,
+      "props": {
+        "items": [
+          {
+            "atMs": 138784,
+            "icon": "map",
+            "text": "Read the map backwards"
+          },
+          {
+            "atMs": 143614,
+            "icon": "flag",
+            "text": "Order of issues"
+          },
+          {
+            "atMs": 149527,
+            "icon": "target",
+            "text": "Identify the layer"
+          }
+        ],
+        "title": "Reading the map backwards"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 153817,
+      "endMs": 172898,
+      "props": {
+        "items": [
+          {
+            "atMs": 156642,
+            "icon": "compass",
+            "text": "Where to start"
+          },
+          {
+            "atMs": 158647,
+            "icon": "arrow",
+            "text": "Go to layer two"
+          },
+          {
+            "atMs": 167165,
+            "icon": "play",
+            "text": "Jump to layer five"
+          }
+        ],
+        "title": "Where to start, for you specifically"
+      }
+    },
+    {
+      "type": "points",
+      "startMs": 172898,
+      "endMs": 184281,
+      "props": {
+        "items": [
+          {
+            "atMs": 175323,
+            "icon": "trophy",
+            "text": "Next lesson: one sentence"
+          },
+          {
+            "atMs": 179733,
+            "icon": "zap",
+            "text": "Turn it into an app"
+          }
+        ],
+        "title": "What's next"
+      }
+    }
+  ],
+  "captions": null
+}

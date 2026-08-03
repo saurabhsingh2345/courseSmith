@@ -45,6 +45,19 @@ var pointIconVocab = map[string]bool{
 	// read as an origin server showed a bare placeholder circle.
 	"server": true, "cloud": true, "lock": true, "users": true, "chart": true,
 	"shuffle": true, "filter": true, "network": true,
+	// A journey and its landmarks, for the chapter template. The set above was
+	// built for architecture diagrams — it has a load balancer and nothing at
+	// all for "you are three parts into a course", so every stop on a path
+	// normalized to "dot" and the whole row rendered as identical circles.
+	"compass": true, "map": true, "signpost": true, "milestone": true,
+	"trophy": true, "graduate": true,
+	// Things that come back round, for the cycle template.
+	"orbit": true, "refresh": true, "recycle": true, "sprout": true,
+	"infinity": true,
+	// Things at a size, for the scale template: a ladder of magnitudes wants
+	// objects the eye can rank before it reads the label under them.
+	"ruler": true, "mountain": true, "atom": true, "telescope": true,
+	"city": true,
 }
 
 // normalizePointIconName returns the icon name if it is in the vocabulary, and

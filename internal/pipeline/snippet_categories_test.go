@@ -99,10 +99,33 @@ func TestNoCategoryIsOversized(t *testing.T) {
 func TestSinceIsAKnownRelease(t *testing.T) {
 	for _, tpl := range SnippetTemplateList() {
 		switch tpl.Since {
-		case SinceCore, SinceV1:
+		case SinceCore, SinceV1, SinceV2, SinceV3:
 		default:
-			t.Errorf("template %q has release tag %q, want %q or %q",
-				tpl.Name, tpl.Since, SinceCore, SinceV1)
+			t.Errorf("template %q has release tag %q, want one of %q, %q, %q, %q",
+				tpl.Name, tpl.Since, SinceCore, SinceV1, SinceV2, SinceV3)
+		}
+	}
+}
+
+// The v3 batch is the capture templates: the ones whose frame is a real
+// recording rather than anything drawn. Asserted by name for the same reason
+// the others are — a template cannot quietly join or leave a batch.
+func TestV3BatchIsTheCaptureTemplates(t *testing.T) {
+	want := map[string]bool{"footage": true}
+	got := map[string]bool{}
+	for _, tpl := range SnippetTemplateList() {
+		if tpl.Since == SinceV3 {
+			got[tpl.Name] = true
+		}
+	}
+	for name := range want {
+		if !got[name] {
+			t.Errorf("%q is not tagged %s", name, SinceV3)
+		}
+	}
+	for name := range got {
+		if !want[name] {
+			t.Errorf("%q is tagged %s but is not a capture template", name, SinceV3)
 		}
 	}
 }
@@ -128,6 +151,28 @@ func TestV1BatchIsTheTenReferenceTemplates(t *testing.T) {
 	for name := range got {
 		if !want[name] {
 			t.Errorf("%q is tagged %s but is not part of that batch", name, SinceV1)
+		}
+	}
+}
+
+// The v2 batch is the three written to carry a whole course rather than to
+// answer one question. Asserted by name for the same reason v1 is.
+func TestV2BatchIsTheThreeCourseTemplates(t *testing.T) {
+	want := map[string]bool{"chapter": true, "cycle": true, "scale": true}
+	got := map[string]bool{}
+	for _, tpl := range SnippetTemplateList() {
+		if tpl.Since == SinceV2 {
+			got[tpl.Name] = true
+		}
+	}
+	for name := range want {
+		if !got[name] {
+			t.Errorf("%q is not tagged %s", name, SinceV2)
+		}
+	}
+	for name := range got {
+		if !want[name] {
+			t.Errorf("%q is tagged %s but is not part of that batch", name, SinceV2)
 		}
 	}
 }

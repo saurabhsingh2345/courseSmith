@@ -12,6 +12,7 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/enfec/coursesmith/internal/pipeline"
+	"github.com/enfec/coursesmith/internal/project"
 )
 
 // newSnippetCmd is the short-form product surface: one prompt plus one visual
@@ -61,8 +62,12 @@ func newSnippetTemplatesCmd() *cobra.Command {
 					return err
 				}
 			}
+			// Counted off the list actually printed above, not off the whole
+			// registry — a shelved template is not on offer, and a footer
+			// claiming twenty-nine over a table of twenty-seven is the kind of
+			// small lie that makes somebody go looking for the missing two.
 			fmt.Fprintf(out, "\n%d templates in %d groups. Start one with:\n\n",
-				len(pipeline.SnippetTemplateNames()), len(pipeline.SnippetTemplatesByCategory()))
+				len(pipeline.SnippetTemplateList()), len(pipeline.SnippetTemplatesByCategory()))
 			fmt.Fprintf(out, "  coursesmith snippet new --template <name> \"what it should teach\"\n\n")
 			return nil
 		},
@@ -174,7 +179,9 @@ func newSnippetRunCmd() *cobra.Command {
 			return env.RunSnippet(ctx, course, lesson, pipeline.RunOptions{Stage: stage, Force: force})
 		},
 	}
-	cmd.Flags().StringVar(&stage, "stage", "", "run only this stage (plan, verify, audio, align, captions, chapters, scenegraph, render)")
+	// See the note on the same flag in reel.go: generated, because the spelled-out
+	// list went stale as soon as a stage was added.
+	cmd.Flags().StringVar(&stage, "stage", "", "run only this stage ("+strings.Join(project.SnippetStageOrder, ", ")+")")
 	cmd.Flags().BoolVar(&force, "force", false, "re-run stages even if their inputs are unchanged")
 	cmd.Flags().IntVar(&concurrency, "concurrency", 0, "parallel browser tabs for the Remotion render (0 = auto)")
 	return cmd

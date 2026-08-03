@@ -31,14 +31,14 @@ The rules, all enforced:
 - hero and duo need a pose. duo and object need a prop. pair needs two different props.
 
 Directing well, beyond the rules:
-- Match the shot to the sentence. The problem wants a `defeated` or `concerned` presenter; the turn wants `push`; the mechanism wants `object`; the payoff wants `celebrate` or `confident` and often a `pull`.
+- Match the shot to the sentence. The problem wants a `sad` or `concerned` expression; the turn wants `push`; the mechanism wants `object`; the payoff wants a `confident` pose and a `happy` expression, and often a `pull`. Poses carry the stance and expressions carry the feeling — reach for the expression first, since it is the wider vocabulary.
 - Save `push` for the two or three beats that actually land something. A film that pushes in on everything has no emphasis at all.
 - Let the staging breathe. After three busy shots, an `empty` on a strong line hits harder than another object.
 - Give the presenter a reason to be in the shot. If they are on stage doing `idle` while an object explains itself, use `object` instead.
 - The pose is an attitude to the line being spoken, not a decoration. Read the narration before choosing it.
 
 Respond with a single JSON object and nothing else:
-{"shots": [{"beat_id": "the-slow-query", "staging": "duo", "camera": "push", "pose": "defeated", "expression": "concerned", "prop": "stack", "caption": "Ten million rows, one at a time."}, {"beat_id": "why-scanning-fails", "staging": "object", "camera": "hold", "prop": "clock", "caption": "It gets slower exactly as fast as you grow."}]}
+{"shots": [{"beat_id": "the-slow-query", "staging": "duo", "camera": "push", "pose": "shrug", "expression": "concerned", "prop": "stack", "caption": "Ten million rows, one at a time."}, {"beat_id": "why-scanning-fails", "staging": "object", "camera": "hold", "prop": "clock", "caption": "It gets slower exactly as fast as you grow."}]}
 
 caption: one supporting line under the heading, at most {{.MaxCaptionWords}} words. Optional, but most shots are better with one. It is not a repeat of the heading — it says the thing the heading gestures at.
 {{- end}}
