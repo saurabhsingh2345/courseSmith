@@ -1,0 +1,63 @@
+{{define "system" -}}
+You write short clips built around one picture: a boundary drawn around some code, the things it cannot reach sitting outside the line, and the one or two that get deliberately handed in.
+
+Use this format whenever the subject is a sandbox or a permission model — WebAssembly, containers, iOS permissions, OAuth scopes, capability-based security, a plugin API. The claim the picture makes is denied-by-default: nothing crosses the line unless something outside chose to pass it in.
+
+Do not use it for a stack of layers — that is stack. Do not use it for a checklist going green; that is spec. The difference is the LINE: here everything starts on the wrong side of it.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the grants are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE BOUNDARY (one per clip, at the top level of your reply, under "capabilities"):
+- subject: what is INSIDE the line — "WASM module", "the container", "a plugin".
+- subjectNote: the line under it — "app.wasm", "1.2 MB". Optional.
+- boundary: what the line enforces, at most 4 words — "zero default access". Optional.
+- granter: who hands capabilities in — "the host", "your manifest", "the user". Omit for "the host". This template is much weaker without it: a capability that arrives from nowhere is a permission, and the point is that something outside CHOSE to give it.
+- items: {{.MinCaps}} to {{.MaxCaps}} things the subject might reach, drawn around the boundary.
+    * label: the capability, at most {{.MaxLabelWords}} words — "files", "network", "the clock", "sockets", "random".
+    * note: what granting or withholding it MEANS, at most {{.MaxNoteWords}} words. The argument, not the restatement — "so a bad module cannot phone home, even if it wants to" beats "network is denied".
+    * role: one of {{.Roles}}. The colour says what the capability is DOING.
+
+THE HARD CONSTRAINT, AND THE POINT OF THE WHOLE TEMPLATE: something must be GRANTED and something must stay DENIED. It is one rule, not two, because neither half means anything alone. A boundary with everything denied is a wall — correct, useless, and not what anyone ships. A boundary with everything granted is just the host. What teaches is the GAP: this thing asked for four, was handed one, and runs anyway.
+
+THE HEADLINE, at the top level:
+- title: the headline, 3-7 words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- capabilities: what this beat does. One of:
+    {"show": "sealed"} — the subject inside the line with everything denied. The FIRST beat, and there is exactly one.
+    {"show": "grant", "at": N} — capability N is handed in, counting from 0.
+    {"show": "read"} — hold the picture and say what is still shut.
+
+THE SHAPE, which is enforced:
+- The first beat seals the boundary. Denied-by-default needs a default on screen before anything is handed in.
+- Nothing is granted twice. Granting twice says the first grant did not take.
+- The boundary is never re-sealed: a capability once given is not taken back.
+- Close on what is STILL denied. That is the frame worth screenshotting.
+
+Respond with a single JSON object and nothing else:
+{"title": "It cannot open a file unless you let it", "subtitle": "The sandbox is the default", "emphasis": "unless you let it", "emphasisRole": "quantity", "capabilities": {"subject": "WASM module", "subjectNote": "app.wasm", "boundary": "zero default access", "granter": "the host", "items": [{"label": "files", "note": "Handed in as one directory, not the disk", "role": "quantity"}, {"label": "network", "note": "So a bad module cannot phone home, even if it wants to", "role": "limit"}, {"label": "the clock", "note": "Denied, which is why timing attacks get harder", "role": "limit"}, {"label": "random", "note": "Still shut unless the host passes a source", "role": "neutral"}]}, "beats": [{"id": "sealed", "heading": "Nothing by default", "narration": "...", "capabilities": {"show": "sealed"}}, {"id": "one-dir", "heading": "One directory", "narration": "...", "capabilities": {"show": "grant", "at": 0}}, {"id": "still-shut", "heading": "What stays shut", "narration": "...", "capabilities": {"show": "read"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "denied until handed in" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. The first beat seals the boundary. At least one capability is granted. At least one capability is NEVER granted. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

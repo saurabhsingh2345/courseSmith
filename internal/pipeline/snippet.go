@@ -210,8 +210,16 @@ type SnippetPlan struct {
 	Title    string `json:"title"`
 	// Subtitle is the one-line promise shown under the title on the opening
 	// card ("" = no card).
-	Subtitle string        `json:"subtitle,omitempty"`
-	Beats    []SnippetBeat `json:"beats"`
+	Subtitle string `json:"subtitle,omitempty"`
+	// Emphasis is a literal phrase of Title set in a semantic accent, and
+	// EmphasisRole says which one. See snippet_headline.go — the phrase is
+	// quoted rather than described, for the same reason an anatomy part is.
+	//
+	// Optional, and omitempty: a plan that never sets them produces a scene
+	// graph byte-identical to the one it produced before this field existed.
+	Emphasis     string        `json:"emphasis,omitempty"`
+	EmphasisRole string        `json:"emphasisRole,omitempty"`
+	Beats        []SnippetBeat `json:"beats"`
 	// Compromises are the rules this plan never satisfied, written by the
 	// pipeline — not by the model — when the correction rounds ran out and the
 	// closest draft was shipped anyway.
@@ -330,6 +338,43 @@ type SnippetPlan struct {
 	// is one camera move through it, and a ladder that changed between beats
 	// would be a different picture each time the camera stopped.
 	Scale *ScaleSpec `json:"scale,omitempty"`
+	// Occupancy is the occupancy template's population and the claims on it. On
+	// the plan because the grid is one object that persists for the whole clip —
+	// the beats only change which of its cells are lit.
+	Occupancy *OccupancySpec `json:"occupancy,omitempty"`
+	// Ranking is the ranking template's board and the entries that land on it.
+	// On the plan because the board is one object the whole clip watches move.
+	Ranking *RankingSpec `json:"ranking,omitempty"`
+	// Journal is the journal template's append-only file. On the plan because
+	// the file is one object that grows across the whole clip.
+	Journal *JournalSpec `json:"journal,omitempty"`
+	// Multiplex is the multiplex template's pool, worker and rounds. On the plan
+	// because the pool is one object that persists for the whole clip.
+	Multiplex *MultiplexSpec `json:"multiplex,omitempty"`
+	// Fork is the fork template's two processes and the memory under them. On
+	// the plan because the memory is one object that persists for the whole clip.
+	Fork *ForkSpec `json:"fork,omitempty"`
+	// Capabilities is the capabilities template's boundary and what sits outside
+	// it. On the plan because the boundary persists for the whole clip.
+	Capabilities *CapabilitySpec `json:"capabilities,omitempty"`
+	// Budget is the budget template's pot and the claims against it. On the plan
+	// because every beat is measured against the same pot.
+	Budget *BudgetSpec `json:"budget,omitempty"`
+	// Latency is the latency template's set of timed operations. On the plan
+	// because they share one axis, and the axis is derived from all of them.
+	Latency *LatencySpec `json:"latency,omitempty"`
+	// Multiply is the multiply template's one statement: a per-unit figure, a
+	// count and the product. On the plan because the beats build one sentence.
+	Multiply *MultiplySpec `json:"multiply,omitempty"`
+	// Ratio is the ratio template's pair and the proportion between them. On the
+	// plan because the clip builds one statement across its beats.
+	Ratio *RatioSpec `json:"ratio,omitempty"`
+	// Table is the table template's spec sheet and the row that decides things.
+	// On the plan because the sheet is one object every beat looks at.
+	Table *TableSpec `json:"table,omitempty"`
+	// Toggle is the toggle template's question, switch and asterisks. On the plan
+	// because the switch is one object the whole clip argues with.
+	Toggle *ToggleSpec `json:"toggle,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -602,6 +647,64 @@ type SnippetBeat struct {
 	// Scale says which rung of the ladder the camera pulls back to, or that
 	// the whole ladder is in frame at once.
 	Scale *ScaleBeat `json:"scale,omitempty"`
+
+	// --- occupancy template ---
+	// Occupancy says whether this beat draws the empty grid, lights one band of
+	// it, or holds the finished picture and reads it.
+	Occupancy *OccupancyBeat `json:"occupancy,omitempty"`
+
+	// --- ranking template ---
+	// Ranking says whether this beat establishes the board, lands one arrival on
+	// it, or holds the settled board and reads it.
+	Ranking *RankingBeat `json:"ranking,omitempty"`
+
+	// --- journal template ---
+	// Journal says whether this beat opens the empty file, appends a line,
+	// replays one, or holds the finished log.
+	Journal *JournalBeat `json:"journal,omitempty"`
+
+	// --- multiplex template ---
+	// Multiplex says whether this beat draws the pool, runs one pass over it, or
+	// holds the picture and reads it.
+	Multiplex *MultiplexBeat `json:"multiplex,omitempty"`
+
+	// --- fork template ---
+	// Fork says whether this beat shows the shared memory, performs one write
+	// that splits a page, or holds the picture and reads it.
+	Fork *ForkBeat `json:"fork,omitempty"`
+
+	// --- capabilities template ---
+	// Capabilities says whether this beat seals the boundary, hands one thing
+	// in, or holds the picture and reads what is still shut.
+	Capabilities *CapabilityBeat `json:"capabilities,omitempty"`
+
+	// --- budget template ---
+	// Budget says whether this beat shows the pot whole, takes one claim out of
+	// it, or lands on the remainder.
+	Budget *BudgetBeat `json:"budget,omitempty"`
+
+	// --- latency template ---
+	// Latency says whether this beat draws the time axis, places one operation
+	// on it, or holds the picture and reads the gap.
+	Latency *LatencyBeat `json:"latency,omitempty"`
+
+	// --- multiply template ---
+	// Multiply says which part of the multiplication this beat states.
+	Multiply *MultiplyBeat `json:"multiply,omitempty"`
+
+	// --- ratio template ---
+	// Ratio says which part of the proportion this beat states.
+	Ratio *RatioBeat `json:"ratio,omitempty"`
+
+	// --- table template ---
+	// Table says whether this beat shows the whole sheet, focuses the row that
+	// matters, or reads what that row decides.
+	Table *TableBeat `json:"table,omitempty"`
+
+	// --- toggle template ---
+	// Toggle says whether this beat answers the question, raises one qualifier,
+	// or settles the answer with everything it now carries.
+	Toggle *ToggleBeat `json:"toggle,omitempty"`
 }
 
 // QuizSpec is the clip's one question.
@@ -756,6 +859,9 @@ type SketchItem struct {
 // template's own Validate.
 func (p *SnippetPlan) Validate() error {
 	if err := p.validateShape(); err != nil {
+		return err
+	}
+	if err := validatePlanEmphasis(p); err != nil {
 		return err
 	}
 	if tpl, ok := SnippetTemplates[p.Template]; ok && tpl.Validate != nil {

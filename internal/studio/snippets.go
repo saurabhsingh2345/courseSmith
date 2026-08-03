@@ -39,6 +39,12 @@ type SnippetTemplateInfo struct {
 	// Since is the catalog release the template arrived in ("" for the original
 	// set). The gallery shows it as a chip so a new batch is findable.
 	Since string `json:"since,omitempty"`
+	// Family is which surface offers this template ("" = the snippets gallery,
+	// "replica" = the replica page). One endpoint still ships the whole catalog
+	// and each page filters: two endpoints would mean two orderings to keep in
+	// step with snippet_categories.go, and the ordering is the part that is easy
+	// to get silently wrong.
+	Family string `json:"family,omitempty"`
 	// ShowsCode marks templates whose clips execute code for real, which is
 	// the difference the gallery needs to communicate.
 	ShowsCode bool `json:"shows_code"`
@@ -86,6 +92,10 @@ type CreateSnippetRequest struct {
 	Captions string `json:"captions,omitempty"`
 	// Mode is the video's polarity: "light" | "dark". "" is dark.
 	Mode string `json:"mode,omitempty"`
+	// Skin is the house style: "default" | "broadcast" | "minimal". "" takes the
+	// snippets course setting. An axis independent of Mode — every skin derives
+	// in both polarities. See videoskin.go.
+	Skin string `json:"skin,omitempty"`
 	// PlanOnly stops after planning, for reviewing the design before paying
 	// for TTS and a render.
 	PlanOnly bool `json:"plan_only,omitempty"`
@@ -117,6 +127,7 @@ func (s *Server) handleSnippetTemplates(w http.ResponseWriter, _ *http.Request) 
 				Category:         t.Category,
 				CategoryTitle:    catTitle(t.Category),
 				Since:            t.Since,
+				Family:           t.Family,
 				ShowsCode:        t.NeedsCode,
 				MinTargetSec:     t.MinTargetSec,
 				DefaultTargetSec: t.DefaultTargetSec,
@@ -220,6 +231,7 @@ func (s *Server) handleSnippetCreate(w http.ResponseWriter, r *http.Request) {
 		Voice:    req.Voice,
 		Captions: req.Captions,
 		Mode:     req.Mode,
+		Skin:     req.Skin,
 	}}
 	if err := spec.Validate(); err != nil {
 		writeError(w, http.StatusBadRequest, err)

@@ -123,6 +123,42 @@ const (
 	// SceneScale is a ladder of nested worlds with the camera pulling back an
 	// order of magnitude at a time.
 	SceneScale = "scale"
+	// SceneOccupancy is a grid of identical units, all of it visible at once,
+	// with bands of it claimed one at a time.
+	SceneOccupancy = "occupancy"
+	// SceneRanking is an ordered board that re-sorts as entries land on it, the
+	// rows sliding to their new places rather than being redrawn.
+	SceneRanking = "ranking"
+	// SceneJournal is an append-only file growing at the bottom, then replayed
+	// from the top with a cursor walking down it.
+	SceneJournal = "journal"
+	// SceneMultiplex is a pool of identical sources where several go ready at
+	// once and a single worker takes them in one pass.
+	SceneMultiplex = "multiplex"
+	// SceneFork is two processes over one memory, where a write splits a single
+	// page onto the writer's side and leaves the rest shared.
+	SceneFork = "fork"
+	// SceneCapabilities is a boundary around a subject with the things it cannot
+	// reach outside it, and the one or two deliberately handed in.
+	SceneCapabilities = "capabilities"
+	// SceneBudget is a fixed pot with claims taken out of it one at a time,
+	// closing on what is left.
+	SceneBudget = "budget"
+	// SceneLatency is a logarithmic time axis with its decades named and
+	// operations placed along it.
+	SceneLatency = "latency"
+	// SceneMultiply is a per-unit figure, a row of glyphs for the count, and the
+	// product that comes of the two.
+	SceneMultiply = "multiply"
+	// SceneRatio is two measurements on a shared scale with the proportion
+	// between them named in words.
+	SceneRatio = "ratio"
+	// SceneTable is a spec sheet shown evenly weighted and then stripped back to
+	// the one row that decides things.
+	SceneTable = "table"
+	// SceneToggle is a question answered by a switch in the first beat, with the
+	// qualifiers accumulating under it.
+	SceneToggle = "toggle"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

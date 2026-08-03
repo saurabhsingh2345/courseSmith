@@ -127,7 +127,19 @@ export type SceneType =
   | 'constellation'
   | 'chapter'
   | 'cycle'
-  | 'scale';
+  | 'scale'
+  | 'occupancy'
+  | 'ranking'
+  | 'journal'
+  | 'multiplex'
+  | 'fork'
+  | 'capabilities'
+  | 'budget'
+  | 'latency'
+  | 'multiply'
+  | 'ratio'
+  | 'table'
+  | 'toggle';
 
 export type Scene = {
   type: SceneType;

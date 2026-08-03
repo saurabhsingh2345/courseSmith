@@ -504,6 +504,7 @@ export interface components {
             category: string;
             category_title: string;
             since?: string;
+            family?: string;
         };
         SnippetSummary: {
             id: string;
@@ -530,6 +531,8 @@ export interface components {
             captions?: "on" | "off";
             /** @enum {string} */
             mode?: "dark" | "light";
+            /** @enum {string} */
+            skin?: "default" | "broadcast" | "minimal";
         };
         CreateSnippetResponse: components["schemas"]["SnippetSummary"] & {
             run_id?: string;

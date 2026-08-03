@@ -1199,6 +1199,753 @@ const gaugeVizProps: LessonVideoProps = {
 };
 
 /**
+ * The occupancy template on the clip that motivated it: a mixture-of-experts
+ * model where sixteen of eight hundred and ninety-six experts run per token.
+ *
+ * The population is deliberately near the top of the template's range, because
+ * the cell geometry is the part most likely to break: at 896 cells the squares
+ * are a few pixels across and the gap is derived rather than fixed. A fixture at
+ * twenty cells would prove nothing about the case the template exists for.
+ *
+ * The skin is `broadcast` because this batch assumes it — the grid is composed
+ * for a near-black stage with air around it, and the baseline should be of the
+ * thing people will actually render.
+ */
+const occupancyVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    // Carried explicitly for the same reason as the gauge: the band's role is
+    // the whole argument, and without the semantic accents an "active" band
+    // renders the same brand gold as a "limit" one.
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [
+    {
+      type: 'occupancy',
+      startMs: 0,
+      endMs: 30000,
+      props: {
+        title: '16 of 896 experts do the work',
+        emphasis: '16',
+        emphasisRole: 'quantity',
+        total: 896,
+        unit: 'expert',
+        label: "the model's experts",
+        // As occupancyGridShape derives them: round(sqrt(896 * 16/9)) = 40.
+        cols: 40,
+        rows: 23,
+        bands: [
+          {
+            count: 16,
+            from: 0,
+            label: 'Active this token',
+            note: 'Every other one sits idle while still holding memory',
+            role: 'quantity',
+          },
+          {
+            count: 120,
+            from: 16,
+            label: 'Warm in cache',
+            note: 'Recently used, so still resident and still costing you',
+            role: 'neutral',
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 9000, show: 'grid'},
+          {startMs: 9000, endMs: 17000, show: 'fill', at: 0},
+          {startMs: 17000, endMs: 24000, show: 'fill', at: 1},
+          {startMs: 24000, endMs: 30000, show: 'read'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The ranking template on the clip that motivated it: one write into a sorted
+ * set, and the board re-sorting around it.
+ *
+ * Two arrivals rather than one, because the interesting case is the SECOND —
+ * the board is already full, so a row landing inside it pushes the bottom row
+ * off, and the exit is the half of the picture a single arrival never exercises.
+ */
+const rankingVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 32000,
+  scenes: [
+    {
+      type: 'ranking',
+      startMs: 0,
+      endMs: 32000,
+      props: {
+        title: 'One write, and the board re-sorts',
+        emphasis: 'One write',
+        emphasisRole: 'quantity',
+        metric: 'score',
+        entries: [
+          {label: 'shadowwolf', value: 9842, role: 'neutral', arrival: false},
+          {label: 'neon_blade', value: 9610, role: 'neutral', arrival: false},
+          {label: 'kira_07', value: 9354, role: 'neutral', arrival: false},
+          {label: 'mochi', value: 9128, role: 'neutral', arrival: false},
+          {label: 'vortex', value: 8901, role: 'neutral', arrival: false},
+          {
+            label: 'phoenix',
+            value: 9501,
+            note: 'The write and the re-sort are one operation, not two',
+            role: 'quantity',
+            arrival: true,
+          },
+          {
+            label: 'ghoststep',
+            value: 9990,
+            note: 'Straight to the top, and mochi drops off the board',
+            role: 'quantity',
+            arrival: true,
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 9000, show: 'board', order: [0, 1, 2, 3, 4]},
+          {startMs: 9000, endMs: 17000, show: 'insert', at: 0, entered: 5, order: [0, 1, 5, 2, 3]},
+          {startMs: 17000, endMs: 26000, show: 'insert', at: 1, entered: 6, order: [6, 0, 1, 5, 2]},
+          {startMs: 26000, endMs: 32000, show: 'read', order: [6, 0, 1, 5, 2]},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The journal template on the clip that motivated it: an append-only file that
+ * rebuilds a dataset when it is read back.
+ *
+ * The fixture stops the replay on the DELETE rather than on a write, because the
+ * delete is the line that makes the point — an append-only log records the
+ * removal as another entry, and a viewer who has only seen SETs replay has not
+ * understood why the file is the source of truth.
+ */
+const journalVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 44000,
+  scenes: [
+    {
+      type: 'journal',
+      startMs: 0,
+      endMs: 44000,
+      props: {
+        title: 'The file that rebuilds your database',
+        emphasis: 'rebuilds',
+        emphasisRole: 'quantity',
+        file: 'appendonly.aof',
+        writeLabel: 'appending',
+        replayLabel: 'replaying — top to bottom',
+        entries: [
+          {text: 'SET user:42 alice', note: 'The first write anyone made', role: 'neutral'},
+          {text: 'SET cart:42 [items]', role: 'neutral'},
+          {text: 'INCR visits', role: 'neutral'},
+          {text: 'DEL cart:42', note: 'The delete is a record too, not an erasure', role: 'limit'},
+          {text: 'SET score:42 1200', role: 'neutral'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 7000, show: 'file', written: 0},
+          {startMs: 7000, endMs: 13000, show: 'append', at: 0, written: 1},
+          {startMs: 13000, endMs: 19000, show: 'append', at: 1, written: 2},
+          {startMs: 19000, endMs: 25000, show: 'append', at: 2, written: 3},
+          {startMs: 25000, endMs: 31000, show: 'append', at: 3, written: 4},
+          {startMs: 31000, endMs: 36000, show: 'replay', at: 0, written: 4},
+          {startMs: 36000, endMs: 41000, show: 'replay', at: 3, written: 4},
+          {startMs: 41000, endMs: 44000, show: 'read', written: 4},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The multiplex template on the clip that motivated it: one thread serving a
+ * pool of sockets.
+ *
+ * The fixture's second round wakes three sources rather than one, because that
+ * is the state the template exists for and the one a single-round fixture would
+ * never exercise — one ready socket draws the same picture as polling.
+ */
+const multiplexVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [
+    {
+      type: 'multiplex',
+      startMs: 0,
+      endMs: 30000,
+      props: {
+        title: 'One thread, a hundred thousand clients',
+        emphasis: 'One thread',
+        emphasisRole: 'quantity',
+        sourceKind: 'sockets',
+        worker: 'epoll',
+        workerNote: '1 thread',
+        sources: [
+          {label: '#00428'},
+          {label: '#00429'},
+          {label: '#00430'},
+          {label: '#00431'},
+          {label: '#00432'},
+          {label: '#00433'},
+          {label: '#00434'},
+          {label: '#00435'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'pool'},
+          {
+            startMs: 8000,
+            endMs: 15000,
+            show: 'round',
+            at: 0,
+            ready: [1],
+            note: 'One socket has data, so one gets handled',
+            role: 'neutral',
+          },
+          {
+            startMs: 15000,
+            endMs: 24000,
+            show: 'round',
+            at: 1,
+            ready: [4, 6, 7],
+            note: 'Three woke together, and one thread took all three',
+            role: 'quantity',
+          },
+          {startMs: 24000, endMs: 30000, show: 'read'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The fork template on the clip that motivated it: a background snapshot that
+ * never pauses the database.
+ *
+ * Six pages and one write, deliberately. The fixture has to prove the half of
+ * the picture that is easy to lose — five pages still shared, at full strength,
+ * beside the one that diverged.
+ */
+const forkVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 26000,
+  scenes: [
+    {
+      type: 'fork',
+      startMs: 0,
+      endMs: 26000,
+      props: {
+        title: 'A snapshot that never pauses the database',
+        emphasis: 'never pauses',
+        emphasisRole: 'quantity',
+        origin: 'redis-server',
+        originNote: 'pid 4271',
+        parent: 'parent',
+        child: 'child',
+        pages: [
+          {label: 'user:42'},
+          {label: 'cart:42'},
+          {label: 'session:7'},
+          {label: 'score:42'},
+          {label: 'keys G-M'},
+          {label: 'keys N-Z'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 9000, show: 'shared', copied: {}},
+          {
+            startMs: 9000,
+            endMs: 19000,
+            show: 'write',
+            at: 1,
+            by: 'parent',
+            note: 'The child still sees the old value, and nothing else moved',
+            role: 'quantity',
+            copied: {'1': 'parent'},
+          },
+          {
+            startMs: 19000,
+            endMs: 26000,
+            show: 'read',
+            note: 'Five of the six pages are still one page',
+            copied: {'1': 'parent'},
+          },
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The capabilities template on the clip that motivated it: a WebAssembly module
+ * that cannot open a file unless the host passes one in.
+ *
+ * Four capabilities and one grant, deliberately. The fixture has to hold both
+ * halves of the rule at once — something across the line and something still
+ * refused — because a frame with all four denied is a wall and a frame with all
+ * four granted is the host, and neither is what the template draws.
+ */
+const capabilitiesVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 28000,
+  scenes: [
+    {
+      type: 'capabilities',
+      startMs: 0,
+      endMs: 28000,
+      props: {
+        title: 'It cannot open a file unless you let it',
+        emphasis: 'unless you let it',
+        emphasisRole: 'quantity',
+        subject: 'WASM module',
+        subjectNote: 'app.wasm',
+        boundary: 'zero default access',
+        granter: 'the host',
+        items: [
+          {label: 'files', note: 'Handed in as one directory, not the disk', role: 'quantity'},
+          {label: 'network', note: 'So a bad module cannot phone home, even if it wants to', role: 'limit'},
+          {label: 'the clock', note: 'Denied, which is why timing attacks get harder', role: 'limit'},
+          {label: 'random', note: 'Still shut unless the host passes a source', role: 'neutral'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 10000, show: 'sealed', granted: []},
+          {startMs: 10000, endMs: 20000, show: 'grant', at: 0, granted: [0]},
+          {startMs: 20000, endMs: 28000, show: 'read', granted: [0]},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The budget template on the clip that motivated it: what is actually left of a
+ * card's memory once the weights, the runtime and the cache are paid for.
+ *
+ * The numbers are chosen so the remainder is small but POSITIVE. A busting
+ * budget is the more dramatic frame and the easier one to draw; a budget that
+ * only just survives is the case where the segment widths and the remainder gap
+ * all have to be right, so it is the one worth holding a baseline on.
+ */
+const budgetVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 36000,
+  scenes: [
+    {
+      type: 'budget',
+      startMs: 0,
+      endMs: 36000,
+      props: {
+        title: 'What is really left of 24GB',
+        emphasis: 'really left',
+        emphasisRole: 'quantity',
+        pot: 24,
+        unit: 'GB',
+        potLabel: 'what a 4090 holds',
+        remainderLabel: 'left for your context',
+        remainder: 1.5,
+        remainderFrac: 0.0625,
+        claims: [
+          {
+            amount: 14,
+            label: 'the model weights',
+            note: 'A 7B at 16-bit, before anything runs',
+            role: 'neutral',
+            frac: 0.5833,
+          },
+          {
+            amount: 2.5,
+            label: 'CUDA and the driver',
+            note: 'Gone before your code starts',
+            role: 'neutral',
+            frac: 0.1042,
+          },
+          {
+            amount: 6,
+            label: 'the KV cache at 8k',
+            note: 'And it grows with every token you add',
+            role: 'limit',
+            frac: 0.25,
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 7000, show: 'pot', taken: [], left: 24},
+          {startMs: 7000, endMs: 14000, show: 'claim', at: 0, taken: [0], left: 10},
+          {startMs: 14000, endMs: 21000, show: 'claim', at: 1, taken: [0, 1], left: 7.5},
+          {startMs: 21000, endMs: 29000, show: 'claim', at: 2, taken: [0, 1, 2], left: 1.5},
+          {startMs: 29000, endMs: 36000, show: 'remainder', taken: [0, 1, 2], left: 1.5},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The latency template on the case that motivated it: an in-memory read, an
+ * indexed query and the same query without its index.
+ *
+ * The span is deliberately wide — 0.12ms to 6.5s, five decades — because the
+ * axis derivation is the part most likely to be wrong, and a two-decade fixture
+ * would not exercise the tick padding at either end.
+ */
+const latencyVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 34000,
+  scenes: [
+    {
+      type: 'latency',
+      startMs: 0,
+      endMs: 34000,
+      props: {
+        title: 'Not the same kind of slow',
+        emphasis: 'kind of slow',
+        emphasisRole: 'limit',
+        // As latencyAxis derives them: floor(log10(0.12)) = -1, ceil(log10(6479)) = 4.
+        ticks: [
+          {label: '100µs', frac: 0},
+          {label: '1ms', frac: 0.2},
+          {label: '10ms', frac: 0.4},
+          {label: '100ms', frac: 0.6},
+          {label: '1s', frac: 0.8},
+          {label: '10s', frac: 1},
+        ],
+        operations: [
+          {
+            label: 'a Redis GET',
+            value: '0.1ms',
+            note: 'Memory, one hop, no parsing',
+            role: 'quantity',
+            frac: 0.0159,
+          },
+          {
+            label: 'an indexed SQL query',
+            value: '12ms',
+            note: 'A hundred times longer, and that is the good case',
+            role: 'neutral',
+            frac: 0.4157,
+          },
+          {
+            label: 'the same query unindexed',
+            value: '6.5s',
+            note: 'You could have done fifty thousand GETs in that time',
+            role: 'limit',
+            frac: 0.9527,
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 7000, show: 'axis', placed: []},
+          {startMs: 7000, endMs: 14000, show: 'place', at: 0, placed: [0]},
+          {startMs: 14000, endMs: 21000, show: 'place', at: 1, placed: [0, 1]},
+          {startMs: 21000, endMs: 28000, show: 'place', at: 2, placed: [0, 1, 2]},
+          {startMs: 28000, endMs: 34000, show: 'read', placed: [0, 1, 2]},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The multiply template on the frame that motivated it: one GPU node's power
+ * draw against a full rack's.
+ *
+ * 14.5 x 8 = 116, and those are the fixture's real numbers rather than round
+ * ones — the arithmetic validator is the whole reason this template exists, so
+ * the baseline should be of a case where the product is not obvious by eye.
+ */
+const multiplyVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 28000,
+  scenes: [
+    {
+      type: 'multiply',
+      startMs: 0,
+      endMs: 28000,
+      props: {
+        title: 'One node is fine. Eight is a substation.',
+        emphasis: 'a substation',
+        emphasisRole: 'limit',
+        unitValue: 14.5,
+        unit: 'kW',
+        unitLabel: 'one B200 node',
+        unitNote: 'About what a domestic oven pulls',
+        count: 8,
+        countLabel: 'nodes in one rack',
+        total: 116,
+        totalLabel: 'before cooling',
+        totalNote: 'More than most office floors are wired for',
+        caveat: 'And cooling adds roughly half again',
+        role: 'limit',
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'unit'},
+          {startMs: 8000, endMs: 15000, show: 'count'},
+          {startMs: 15000, endMs: 23000, show: 'total'},
+          {startMs: 23000, endMs: 28000, show: 'caveat'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The ratio template on the frame that motivated it: the DGX Spark's memory
+ * bandwidth against a Mac Studio's.
+ *
+ * 270 out of 800 is 0.3375, which the clip calls "a third" — the case the
+ * tolerance exists for. A fixture with round numbers would never exercise the
+ * gap between the arithmetic and the phrase a person actually says.
+ */
+const ratioVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 28000,
+  scenes: [
+    {
+      type: 'ratio',
+      startMs: 0,
+      endMs: 28000,
+      props: {
+        // Deliberately NOT "a third of the Mac": the phrase is set at 104px below
+        // the bars, and repeating it in the headline made the frame stutter — the
+        // same words twice reads as a rendering fault rather than as emphasis.
+        // The headline sets up the omission; the phrase is the payoff.
+        title: 'The spec sheet leaves this out',
+        emphasis: 'leaves this out',
+        emphasisRole: 'limit',
+        unit: 'GB/s',
+        reference: {label: 'Mac Studio M3 Ultra', value: 800, role: 'rival'},
+        subject: {label: 'DGX Spark', value: 270, role: 'limit', frac: 0.3375},
+        phrase: 'a third',
+        note: 'So every token comes out slower, whatever the spec sheet leads with',
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'reference'},
+          {startMs: 8000, endMs: 15000, show: 'subject'},
+          {startMs: 15000, endMs: 22000, show: 'fraction'},
+          {startMs: 22000, endMs: 28000, show: 'read'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The table template on the frame that motivated it: a GPU spec sheet where the
+ * line that decides whether a model fits is the fifth of six.
+ *
+ * The rows are in the order the real product page prints them, which is the
+ * subject — the fixture would prove nothing if the buried row had been moved to
+ * make it easier to bury.
+ */
+const tableVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 26000,
+  scenes: [
+    {
+      type: 'table',
+      startMs: 0,
+      endMs: 26000,
+      props: {
+        title: 'The line the spec sheet buries',
+        emphasis: 'buries',
+        emphasisRole: 'limit',
+        source: 'RTX 5090, from the product page',
+        rows: [
+          {label: 'CUDA Cores', value: '21,760'},
+          {label: 'Tensor Cores', value: '680'},
+          {label: 'Boost Clock', value: '2.52 GHz'},
+          {label: 'Memory Bandwidth', value: '1,792 GB/s'},
+          {label: 'Memory Capacity', value: '32 GB'},
+          {label: 'TDP', value: '575 W'},
+        ],
+        at: 4,
+        note: 'Every other number is irrelevant if the model does not fit in this one',
+        role: 'limit',
+        steps: [
+          {startMs: 0, endMs: 10000, show: 'sheet'},
+          {startMs: 10000, endMs: 19000, show: 'focus'},
+          {startMs: 19000, endMs: 26000, show: 'read'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The toggle template on the clip that motivated it: whether WebAssembly is
+ * replacing JavaScript.
+ *
+ * The fixture is captured on its SECOND qualifier, because that is the state
+ * where the switch has already receded into a header and the asterisks own the
+ * frame — the layout change is the part most likely to break, and the answer
+ * beat alone would never exercise it.
+ */
+const toggleVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [
+    {
+      type: 'toggle',
+      startMs: 0,
+      endMs: 30000,
+      props: {
+        title: 'No. But that is not the interesting part.',
+        emphasis: 'not the interesting part',
+        emphasisRole: 'quantity',
+        question: 'Is WebAssembly replacing JavaScript?',
+        from: 'yes',
+        to: 'no',
+        qualifiers: [
+          {
+            label: 'in the browser',
+            note: 'It cannot touch the DOM without going through JavaScript to get there',
+            role: 'limit',
+          },
+          {
+            label: 'outside it',
+            note: 'On the edge it replaced containers instead, which nobody was predicting',
+            role: 'quantity',
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 9000, show: 'answer', raised: []},
+          {startMs: 9000, endMs: 17000, show: 'qualify', at: 0, raised: [0]},
+          {startMs: 17000, endMs: 25000, show: 'qualify', at: 1, raised: [0, 1]},
+          {startMs: 25000, endMs: 30000, show: 'settle', raised: [0, 1]},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
  * The verdict template on the example that motivated it: whether to self-host a
  * database. Three conditions it holds on, two it breaks on, and a call.
  */
@@ -2360,6 +3107,114 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(gaugeVizProps.durationMs)}
       defaultProps={gaugeVizProps}
+    />
+    <Composition
+      id="ToggleViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(toggleVizProps.durationMs)}
+      defaultProps={toggleVizProps}
+    />
+    <Composition
+      id="TableViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(tableVizProps.durationMs)}
+      defaultProps={tableVizProps}
+    />
+    <Composition
+      id="RatioViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(ratioVizProps.durationMs)}
+      defaultProps={ratioVizProps}
+    />
+    <Composition
+      id="MultiplyViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(multiplyVizProps.durationMs)}
+      defaultProps={multiplyVizProps}
+    />
+    <Composition
+      id="LatencyViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(latencyVizProps.durationMs)}
+      defaultProps={latencyVizProps}
+    />
+    <Composition
+      id="BudgetViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(budgetVizProps.durationMs)}
+      defaultProps={budgetVizProps}
+    />
+    <Composition
+      id="CapabilitiesViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(capabilitiesVizProps.durationMs)}
+      defaultProps={capabilitiesVizProps}
+    />
+    <Composition
+      id="ForkViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(forkVizProps.durationMs)}
+      defaultProps={forkVizProps}
+    />
+    <Composition
+      id="MultiplexViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(multiplexVizProps.durationMs)}
+      defaultProps={multiplexVizProps}
+    />
+    <Composition
+      id="JournalViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(journalVizProps.durationMs)}
+      defaultProps={journalVizProps}
+    />
+    <Composition
+      id="RankingViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(rankingVizProps.durationMs)}
+      defaultProps={rankingVizProps}
+    />
+    <Composition
+      id="OccupancyViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(occupancyVizProps.durationMs)}
+      defaultProps={occupancyVizProps}
     />
     <Composition
       id="MetricViz"

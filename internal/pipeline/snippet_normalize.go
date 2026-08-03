@@ -51,6 +51,10 @@ func normalizeSnippetPlan(p *SnippetPlan) {
 	if p.Title == "" && len(p.Beats) > 0 {
 		p.Title = p.Beats[0].Heading
 	}
+	// After the title fallback, not before: the emphasis has to be checked
+	// against the title the frame will actually carry, and a plan that leaned on
+	// the fallback has no title to match at the top of this function.
+	normalizePlanEmphasis(p)
 }
 
 // normalizeSnippetBeats trims the beats, drops the ones with nothing to say,
@@ -116,6 +120,18 @@ type planFields struct {
 	Chapter       bool
 	Cycle         bool
 	Scale         bool
+	Occupancy     bool
+	Ranking       bool
+	Journal       bool
+	Multiplex     bool
+	Fork          bool
+	Capabilities  bool
+	Budget        bool
+	Latency       bool
+	Multiply      bool
+	Ratio         bool
+	Table         bool
+	Toggle        bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -272,6 +288,42 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Scale {
 		p.Scale = nil
+	}
+	if !owns.Occupancy {
+		p.Occupancy = nil
+	}
+	if !owns.Ranking {
+		p.Ranking = nil
+	}
+	if !owns.Journal {
+		p.Journal = nil
+	}
+	if !owns.Multiplex {
+		p.Multiplex = nil
+	}
+	if !owns.Fork {
+		p.Fork = nil
+	}
+	if !owns.Capabilities {
+		p.Capabilities = nil
+	}
+	if !owns.Budget {
+		p.Budget = nil
+	}
+	if !owns.Latency {
+		p.Latency = nil
+	}
+	if !owns.Multiply {
+		p.Multiply = nil
+	}
+	if !owns.Ratio {
+		p.Ratio = nil
+	}
+	if !owns.Table {
+		p.Table = nil
+	}
+	if !owns.Toggle {
+		p.Toggle = nil
 	}
 }
 

@@ -1,0 +1,63 @@
+{{define "system" -}}
+You write short clips built around one line: two measurements in the same unit, and the fraction between them said out loud.
+
+Use this format when the proportion is more memorable than the numbers. "Two hundred and seventy against eight hundred" is two numbers a viewer forgets; "a third of the Mac" is a line they repeat. The clip exists to land that line.
+
+Do not use it for a qualitative contrast — two approaches, two tools, before and after. That is compare, and it has columns and a verdict rather than arithmetic. Do not use it for several durations orders of magnitude apart; that is latency.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the beats are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE PAIR (one per clip, at the top level of your reply, under "ratio"):
+- unit: what BOTH quantities are measured in, at most {{.MaxUnitWords}} words — "GB/s", "ms", "$/mo". One unit: a proportion across two different units is a rate, not a ratio.
+- reference: the thing being measured against. This is the LARGER one.
+    * label: what it is, at most {{.MaxLabelWords}} words.
+    * value: the measurement. A number greater than zero.
+    * role: one of {{.Roles}}.
+- subject: the thing whose size is the point. This is the SMALLER one.
+    * label, value, role: as above.
+- phrase: the proportion IN WORDS, at most {{.MaxPhraseWords}} words. This is the line the whole clip is for. It must be one of: half, a third, a quarter, a fifth, a sixth, an eighth, a tenth, a twentieth, a fiftieth, a hundredth, two thirds, three quarters. You may qualify it — "roughly a third", "barely a fifth" — and you may add "of".
+- note: what the proportion means in practice, at most {{.MaxNoteWords}} words. The consequence, not the restatement — "so every token comes out three times slower, on paper and in practice" beats "it is smaller".
+
+TWO HARD CONSTRAINTS:
+1. THE PHRASE MUST BE TRUE. subject.value divided by reference.value must actually be the fraction the phrase claims. Work it out. 270 out of 800 is a third, not a half. The arithmetic is this template's entire content, so the one memorable line cannot be the false one. Rounding to a friendly fraction is expected and correct.
+2. The reference must be at least {{.MinSpread}}x the subject. A fraction that close is a rounding error with a preposition rather than a line anybody repeats — if your numbers are nearer than that, use the data template.
+
+THE HEADLINE, at the top level:
+- title: the headline, 3-7 words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- ratio: what this beat states. One of:
+    {"show": "reference"} — the larger quantity, alone. The FIRST beat, and there is exactly one.
+    {"show": "subject"} — the smaller one arrives beside it. Exactly one.
+    {"show": "fraction"} — the proportion lands. Exactly one, and AFTER the subject.
+    {"show": "read"} — what that proportion means in practice.
+
+THE ORDER IS THE ARGUMENT, and it is enforced: what it is measured against, then the measurement, then the proportion. Naming the fraction early throws away the only surprise the clip has.
+
+Respond with a single JSON object and nothing else:
+{"title": "A third of the Mac, for the same money", "subtitle": "Bandwidth is the number nobody quotes", "emphasis": "A third", "emphasisRole": "limit", "ratio": {"unit": "GB/s", "reference": {"label": "Mac Studio M3 Ultra", "value": 800, "role": "rival"}, "subject": {"label": "DGX Spark", "value": 270, "role": "limit"}, "phrase": "a third", "note": "So every token comes out slower, whatever the spec sheet leads with"}, "beats": [{"id": "the-mac", "heading": "What the Mac does", "narration": "...", "ratio": {"show": "reference"}}, {"id": "the-spark", "heading": "What the Spark does", "narration": "...", "ratio": {"show": "subject"}}, {"id": "a-third", "heading": "A third", "narration": "...", "ratio": {"show": "fraction"}}, {"id": "so-what", "heading": "What that costs you", "narration": "...", "ratio": {"show": "read"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "a fraction of the other" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, do the division. subject.value / reference.value must actually be the fraction your phrase claims — check it with the numbers you wrote. Then check that the reference is the larger of the two, that it is at least {{.MinSpread}}x the subject, that the first beat states the reference, and that the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

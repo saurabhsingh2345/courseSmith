@@ -108,6 +108,30 @@ const (
 	// rather than anything drawn. They arrived with the no-code surface, where
 	// every segment has to stand on evidence.
 	SinceV3 = "v3"
+	// SinceV4 is the replica batch, built frame-by-frame against four reference
+	// videos rather than from a description of them. See FamilyReplica.
+	SinceV4 = "v4"
+)
+
+// Template families. A family is which surface offers a template, and it exists
+// because the catalog now has two audiences rather than one.
+//
+// This is not a second category axis. A category says what a template is *for*
+// ("systems & process"), and the replica batch spans several of them. A family
+// says which front door it appears behind, so the snippets gallery keeps
+// offering the catalog it has always offered while a second page can offer a set
+// with its own house rules.
+const (
+	// FamilyCore is the empty family: every template that predates the split,
+	// offered on the snippets page. Empty rather than "core" so no registration
+	// site has to be touched and no persisted plan changes shape.
+	FamilyCore = ""
+	// FamilyReplica is the batch cut to the reference videos' visual grammar —
+	// a threshold bar racing a requirement line, a wrong number struck through
+	// and replaced. They are offered on their own page because they assume the
+	// broadcast skin's air and chrome, and dropped into a default-skin course
+	// they would read as a different production.
+	FamilyReplica = "replica"
 )
 
 // SnippetCategoryGroup is one category with the templates in it.

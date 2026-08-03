@@ -40,6 +40,11 @@ type SnippetTemplate struct {
 	// original set, "v1" for the reference-look batch). A fact rather than a
 	// status, so it does not go stale when the next batch lands.
 	Since string
+	// Family is which surface offers this template ("" = the snippets gallery).
+	// See snippet_categories.go — it is a routing fact, not a second category:
+	// the registry stays single so the CLI, the reel caster and every plan on
+	// disk keep resolving a template by name regardless of which page offered it.
+	Family string
 	// Example is a prompt that shows this template at its best; the studio
 	// offers it as a starting point.
 	Example string
@@ -835,6 +840,18 @@ type beatFields struct {
 	Chapter       bool
 	Cycle         bool
 	Scale         bool
+	Occupancy     bool
+	Ranking       bool
+	Journal       bool
+	Multiplex     bool
+	Fork          bool
+	Capabilities  bool
+	Budget        bool
+	Latency       bool
+	Multiply      bool
+	Ratio         bool
+	Table         bool
+	Toggle        bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -895,6 +912,30 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "cycle"
 		case !owned.Scale && b.Scale != nil:
 			set = "scale"
+		case !owned.Occupancy && b.Occupancy != nil:
+			set = "occupancy"
+		case !owned.Ranking && b.Ranking != nil:
+			set = "ranking"
+		case !owned.Journal && b.Journal != nil:
+			set = "journal"
+		case !owned.Multiplex && b.Multiplex != nil:
+			set = "multiplex"
+		case !owned.Fork && b.Fork != nil:
+			set = "fork"
+		case !owned.Capabilities && b.Capabilities != nil:
+			set = "capabilities"
+		case !owned.Budget && b.Budget != nil:
+			set = "budget"
+		case !owned.Latency && b.Latency != nil:
+			set = "latency"
+		case !owned.Multiply && b.Multiply != nil:
+			set = "multiply"
+		case !owned.Ratio && b.Ratio != nil:
+			set = "ratio"
+		case !owned.Table && b.Table != nil:
+			set = "table"
+		case !owned.Toggle && b.Toggle != nil:
+			set = "toggle"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

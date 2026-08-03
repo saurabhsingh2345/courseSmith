@@ -1,0 +1,65 @@
+{{define "system" -}}
+You write short clips built around one picture: a column of identical sources waiting, a single worker beside them, and several sources going ready AT ONCE so the worker takes them in one pass.
+
+Use this format whenever the claim is that one thing is enough to serve many — an event loop, epoll or kqueue, an actor mailbox, a single-threaded server, a reactor. The argument the picture makes is not "it goes round them in turn". It is "three of them woke up together and one thread handled all three", which is why the design is fast.
+
+Do not use it when two things are fighting over a shared value — that is contention, and trace draws it. Do not use it for a pipeline where work moves stage to stage; that is flow.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the rounds are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE POOL (one per clip, at the top level of your reply, under "multiplex"):
+- sourceKind: what ONE of them is, singular, at most {{.MaxLabelWords}} words — "socket", "connection", "mailbox", "file descriptor".
+- worker: the single thing serving them all, at most {{.MaxLabelWords}} words — "epoll", "the event loop", "one thread".
+- workerNote: the line under the worker that carries the claim, at most {{.MaxLabelWords}} words — "1 thread", "one core". This template is much weaker without it: the whole argument is how little is doing the work.
+- sources: {{.MinSources}} to {{.MaxSources}} things waiting.
+    * label: the handle as it reads on screen, at most {{.MaxLabelChars}} characters — "#00428", "conn 41", "fd 7". Every one different. These are handles, not descriptions.
+- rounds: {{.MinRounds}} to {{.MaxRounds}} passes the worker makes, in order.
+    * ready: the indexes of the sources that woke up in this pass, counting from 0.
+    * note: what this pass MEANS, at most {{.MaxNoteWords}} words. The argument, not the arithmetic — "one thread, three sockets, one syscall" beats "three are ready".
+    * role: one of {{.Roles}}. The colour says what the round is DOING.
+
+HARD CONSTRAINT, AND THE POINT OF THE WHOLE TEMPLATE: at least one round must have TWO OR MORE sources ready at the same time. A clip where every round wakes exactly one source has drawn a loop calling accept() in turn, which is precisely the thing multiplexing replaces. If the honest picture really is one at a time, this is the wrong template.
+
+ALSO ENFORCED: no two consecutive rounds may wake the same set of sources. A pass that finds the same things ready is a beat where the picture does not move.
+
+THE HEADLINE, at the top level:
+- title: the headline, 3-7 words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- multiplex: what this beat does. One of:
+    {"show": "pool"} — the sources and the worker, everything idle. The FIRST beat, and there is exactly one.
+    {"show": "round", "at": N} — pass N runs, counting from 0.
+    {"show": "read"} — hold the picture and say what it means.
+
+THE SHAPE, which is enforced:
+- The first beat establishes the pool. A source lighting up on a pool nobody has counted is a source lighting up for no reason.
+- Every round gets exactly one beat, and none runs twice.
+- Order the rounds so the argument builds. Put the widest pass — the one where the most wake together — last.
+
+Respond with a single JSON object and nothing else:
+{"title": "One thread, a hundred thousand clients", "subtitle": "Why the event loop wins", "emphasis": "One thread", "emphasisRole": "quantity", "multiplex": {"sourceKind": "socket", "worker": "epoll", "workerNote": "1 thread", "sources": [{"label": "#00428"}, {"label": "#00429"}, {"label": "#00430"}, {"label": "#00431"}, {"label": "#00432"}, {"label": "#00433"}, {"label": "#00434"}, {"label": "#00435"}], "rounds": [{"ready": [1], "note": "One socket has data, so one gets handled", "role": "neutral"}, {"ready": [4, 6, 7], "note": "Three woke together, and one thread took all three", "role": "quantity"}]}, "beats": [{"id": "the-pool", "heading": "Eight sockets", "narration": "...", "multiplex": {"show": "pool"}}, {"id": "one-ready", "heading": "One wakes", "narration": "...", "multiplex": {"show": "round", "at": 0}}, {"id": "three-ready", "heading": "Three at once", "narration": "...", "multiplex": {"show": "round", "at": 1}}, {"id": "why-fast", "heading": "Why that is fast", "narration": "...", "multiplex": {"show": "read"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "many waiting, one working" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. The first beat establishes the pool. At least one round has two or more sources ready at once. No two consecutive rounds wake the same set. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

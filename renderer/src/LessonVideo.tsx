@@ -35,6 +35,18 @@ import {SpecScene} from './components/SpecScene';
 import {ShowcaseScene} from './components/ShowcaseScene';
 import {BreakdownScene} from './components/BreakdownScene';
 import {MetricScene} from './components/MetricScene';
+import {OccupancyScene} from './components/OccupancyScene';
+import {RankingScene} from './components/RankingScene';
+import {JournalScene} from './components/JournalScene';
+import {MultiplexScene} from './components/MultiplexScene';
+import {ForkScene} from './components/ForkScene';
+import {CapabilitiesScene} from './components/CapabilitiesScene';
+import {BudgetScene} from './components/BudgetScene';
+import {LatencyScene} from './components/LatencyScene';
+import {MultiplyScene} from './components/MultiplyScene';
+import {RatioScene} from './components/RatioScene';
+import {TableScene} from './components/TableScene';
+import {ToggleScene} from './components/ToggleScene';
 import {GaugeScene} from './components/GaugeScene';
 import {VerdictScene} from './components/VerdictScene';
 import {DecisionScene} from './components/DecisionScene';
@@ -162,6 +174,30 @@ const sceneContent = (
       return <BreakdownScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'metric':
       return <MetricScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'occupancy':
+      return <OccupancyScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'ranking':
+      return <RankingScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'journal':
+      return <JournalScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'multiplex':
+      return <MultiplexScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'fork':
+      return <ForkScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'capabilities':
+      return <CapabilitiesScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'budget':
+      return <BudgetScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'latency':
+      return <LatencyScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'multiply':
+      return <MultiplyScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'ratio':
+      return <RatioScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'table':
+      return <TableScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'toggle':
+      return <ToggleScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'gauge':
       return <GaugeScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'verdict':
@@ -243,6 +279,42 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // A figure at 250pt is the only thing that should be bright on the frame.
     // Anything drifting behind it competes with the one mark the clip is about.
     case 'metric':
+    // A grid of up to twelve hundred cells is already the busiest frame in the
+    // catalog. A field behind it reads as more cells.
+    case 'occupancy':
+    // Rows travelling across a drifting field read as two things moving. The
+    // one movement on this frame has to be the re-sort.
+    case 'ranking':
+    // A monospace panel on a lit field is a code listing with a glow behind it.
+    // The cursor is the only thing here that should catch the eye.
+    case 'journal':
+    // The frame is mostly empty on purpose — that imbalance is the argument. A
+    // field filling the gap would take the emptiness away.
+    case 'multiplex':
+    // A row of near-identical cells with one lit. A field behind them would put
+    // a second brightness gradient across a row whose whole job is being even.
+    case 'fork':
+    // The boundary already carries a glow, and it is the only thing on the frame
+    // that should. A field behind it would blur the line the picture is about.
+    case 'capabilities':
+    // One bar and one figure. A drifting field behind a bar reads as a second
+    // fill, which is the one thing this picture cannot afford.
+    case 'budget':
+    // A dashed decade grid is a set of thin marks, and a field behind them reads
+    // as another gridline. The scale has to stay unambiguous.
+    case 'latency':
+    // Two figures and a row of glyphs. The product is the brightest thing here by
+    // design, and a field behind it would take that away.
+    case 'multiply':
+    // Two aligned bars whose difference in length IS the content. A gradient
+    // behind them would make one end of each bar read as longer than it is.
+    case 'ratio':
+    // The sheet's fidelity is the setup, and a field behind it would make it look
+    // like a designed object rather than something a manufacturer printed.
+    case 'table':
+    // The knob already carries a glow and it is the one thing that moves. A
+    // drifting field would put a second motion on a frame about one decision.
+    case 'toggle':
     // A dashed rule and a filling bar are thin marks. A field behind them
     // competes with the one line the whole clip is about.
     case 'gauge':

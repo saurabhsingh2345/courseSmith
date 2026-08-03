@@ -50,6 +50,42 @@ const SOURCES = {
   // The overrun frame: the card should show the moment the template exists for,
   // which is a bar crossing the line rather than one that comfortably clears it.
   gauge: "GaugeViz-600",
+  // Both bands settled rather than mid-sweep: the card should show the finished
+  // proportion, which is the thing somebody choosing this template is after.
+  occupancy: "OccupancyViz-660",
+  // Mid-re-sort rather than settled: a still of a finished board looks like any
+  // ordered list, and the card has to show the one thing this template does.
+  ranking: "RankingViz-540",
+  // The replay frame rather than an append: a card showing a half-filled file
+  // looks like any code panel, and the replay cursor is what names the template.
+  journal: "JournalViz-1140",
+  // The wide pass, for the same reason the baseline picks it: a card showing one
+  // ready source advertises polling.
+  multiplex: "MultiplexViz-560",
+  // After the split, so the card carries the divergence and the pages that did
+  // not diverge — a pre-write frame is just a row of cells.
+  fork: "ForkViz-420",
+  // After the grant, so the card shows the gap rather than a sealed box — a
+  // fully denied frame advertises a wall.
+  capabilities: "CapabilitiesViz-480",
+  // The remainder frame: the card should show the number the template exists to
+  // state, not a bar part-way through being eaten.
+  budget: "BudgetViz-1020",
+  // All three rows placed: a card with one bar on it looks like any chart, and
+  // the gap between the rows is the whole subject.
+  latency: "LatencyViz-960",
+  // The whole sentence rather than a mid-build state: the card has to show the
+  // small figure and the product together or it is just a number.
+  multiply: "MultiplyViz-750",
+  // With the phrase up: two bars alone are a chart, and the words are what makes
+  // this template itself.
+  ratio: "RatioViz-720",
+  // Stripped back rather than straight: an evenly weighted sheet is just a table,
+  // and the card has to show the move.
+  table: "TableViz-480",
+  // With the asterisks up: a switch on its own is a title card, and the
+  // qualifiers are what make this a template rather than a graphic.
+  toggle: "ToggleViz-660",
   // The two-column state rather than the call: the card should show the frame
   // the clip spends most of its time in, and a bare line of type would not read
   // as a distinct template on a gallery card.
