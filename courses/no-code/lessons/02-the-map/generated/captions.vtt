@@ -1,0 +1,362 @@
+WEBVTT
+
+1
+00:00:00.031 --> 00:00:01.913
+Every week, there's a new tool with a
+
+2
+00:00:01.973 --> 00:00:03.755
+catchy name and a bold claim.
+
+3
+00:00:04.376 --> 00:00:05.698
+It can feel overwhelming.
+
+4
+00:00:06.278 --> 00:00:08.081
+But here's the thing: they’re not all
+
+5
+00:00:08.141 --> 00:00:09.202
+doing something different.
+
+6
+00:00:09.823 --> 00:00:11.525
+Most of them fit into one of five
+
+7
+00:00:11.605 --> 00:00:12.005
+layers.
+
+8
+00:00:12.666 --> 00:00:14.748
+Once you learn these layers, every new
+
+9
+00:00:14.788 --> 00:00:16.871
+name you hear will just be another tool
+
+10
+00:00:16.971 --> 00:00:18.253
+in a familiar category.
+
+11
+00:00:18.873 --> 00:00:21.196
+It’s like saying, 'Oh, that’s another
+
+12
+00:00:21.216 --> 00:00:21.837
+one of those.'
+
+13
+00:00:22.638 --> 00:00:24.520
+It makes it easier to keep up.
+
+14
+00:00:25.090 --> 00:00:27.053
+The first layer is where you describe your
+
+15
+00:00:27.113 --> 00:00:27.533
+ideas.
+
+16
+00:00:28.274 --> 00:00:30.097
+These are plain chat assistants.
+
+17
+00:00:30.597 --> 00:00:32.219
+You type what you want in everyday
+
+18
+00:00:32.279 --> 00:00:32.720
+language.
+
+19
+00:00:33.381 --> 00:00:35.584
+They’re great for brainstorming, naming,
+
+20
+00:00:35.984 --> 00:00:37.767
+planning, and writing the brief you’ll
+
+21
+00:00:37.827 --> 00:00:39.229
+use everywhere else.
+
+22
+00:00:39.629 --> 00:00:41.711
+Just remember, they don’t build or host
+
+23
+00:00:41.791 --> 00:00:42.172
+anything.
+
+24
+00:00:42.613 --> 00:00:44.475
+They help you sharpen your idea.
+
+25
+00:00:45.113 --> 00:00:47.395
+Now, layer two is where it gets built.
+
+26
+00:00:47.856 --> 00:00:49.457
+There are two flavors here, and
+
+27
+00:00:49.517 --> 00:00:51.139
+understanding the difference is key.
+
+28
+00:00:52.020 --> 00:00:53.661
+App builders run in your browser.
+
+29
+00:00:54.182 --> 00:00:56.244
+You describe an app, it appears, and you
+
+30
+00:00:56.284 --> 00:00:57.204
+keep talking to it.
+
+31
+00:00:57.765 --> 00:00:59.226
+Nothing needs to be installed.
+
+32
+00:00:59.747 --> 00:01:01.008
+This is where you should start.
+
+33
+00:01:01.508 --> 00:01:03.070
+Then there are AI editors.
+
+34
+00:01:03.671 --> 00:01:05.512
+They run on your computer and work with
+
+35
+00:01:05.592 --> 00:01:06.293
+real files.
+
+36
+00:01:06.854 --> 00:01:08.795
+They offer more power but come with more
+
+37
+00:01:08.855 --> 00:01:09.456
+complexity.
+
+38
+00:01:10.057 --> 00:01:13.039
+We’ll dive into that in lesson five.
+
+39
+00:01:13.039 --> 00:01:15.404
+Layer three is where it looks right.
+
+40
+00:01:16.085 --> 00:01:18.510
+Design tools help decide how your app will
+
+41
+00:01:18.530 --> 00:01:19.612
+look before it’s built.
+
+42
+00:01:20.254 --> 00:01:22.077
+You can skip this layer and let the
+
+43
+00:01:22.117 --> 00:01:24.442
+builder pick the design, but it’ll look
+
+44
+00:01:24.502 --> 00:01:26.647
+generic — competent but forgettable.
+
+45
+00:01:27.208 --> 00:01:29.292
+Spending just an hour here can make a
+
+46
+00:01:29.392 --> 00:01:31.817
+big difference, especially when your app
+
+47
+00:01:31.937 --> 00:01:33.561
+is in front of people whose opinions
+
+48
+00:01:33.621 --> 00:01:34.302
+matter.
+
+49
+00:01:34.940 --> 00:01:37.363
+Next is layer four, where the data lives.
+
+50
+00:01:38.064 --> 00:01:40.307
+A database is basically a set of tables.
+
+51
+00:01:40.987 --> 00:01:42.830
+Think of a table as a spreadsheet with
+
+52
+00:01:42.930 --> 00:01:43.270
+rules.
+
+53
+00:01:44.011 --> 00:01:45.533
+This is where everything your app
+
+54
+00:01:45.573 --> 00:01:47.796
+remembers between visits is stored —
+
+55
+00:01:47.796 --> 00:01:50.599
+accounts, orders, posts, and settings.
+
+56
+00:01:51.140 --> 00:01:53.843
+Beginners often skip this layer and end up
+
+57
+00:01:53.903 --> 00:01:55.125
+having to rebuild later.
+
+58
+00:01:55.886 --> 00:01:57.988
+Lesson seven is all about getting this
+
+59
+00:01:58.068 --> 00:01:58.669
+right.
+
+60
+00:01:59.392 --> 00:02:01.756
+Finally, layer five is where it runs.
+
+61
+00:02:02.477 --> 00:02:04.661
+Hosting is a computer somewhere else that
+
+62
+00:02:04.741 --> 00:02:07.085
+stays on so people can access your app.
+
+63
+00:02:07.686 --> 00:02:09.850
+A domain is the readable address that
+
+64
+00:02:09.910 --> 00:02:10.551
+points to it.
+
+65
+00:02:11.192 --> 00:02:13.236
+Until you set this up, what you’ve built
+
+66
+00:02:13.356 --> 00:02:15.139
+is only available to you.
+
+67
+00:02:15.777 --> 00:02:17.180
+Let’s read the map backwards.
+
+68
+00:02:17.801 --> 00:02:20.087
+The layers also show the order things can
+
+69
+00:02:20.127 --> 00:02:21.951
+go wrong, from bottom to top.
+
+70
+00:02:22.552 --> 00:02:24.156
+If hosting breaks, it’s loud.
+
+71
+00:02:24.657 --> 00:02:26.120
+If data breaks, it’s worse.
+
+72
+00:02:26.661 --> 00:02:28.144
+Design issues are quieter.
+
+73
+00:02:28.666 --> 00:02:31.171
+When something goes wrong, ask which layer
+
+74
+00:02:31.231 --> 00:02:32.995
+it’s in before figuring out what to do
+
+75
+00:02:33.055 --> 00:02:34.237
+next.
+
+76
+00:02:34.237 --> 00:02:35.961
+So, where do you start?
+
+77
+00:02:36.562 --> 00:02:38.266
+If you have just an idea, go to
+
+78
+00:02:38.326 --> 00:02:40.110
+layer two, the browser flavor.
+
+79
+00:02:40.831 --> 00:02:43.076
+If you already have a design, use layer
+
+80
+00:02:43.096 --> 00:02:44.580
+two, the editor flavor.
+
+81
+00:02:45.221 --> 00:02:46.905
+If you have something working but nobody
+
+82
+00:02:46.945 --> 00:02:49.009
+can see it, jump to layer five.
+
+83
+00:02:49.611 --> 00:02:51.715
+Everything else is just optimization.
+
+84
+00:02:52.898 --> 00:02:53.519
+What’s next?
+
+85
+00:02:53.920 --> 00:02:55.544
+In the next lesson, we’ll take one
+
+86
+00:02:55.624 --> 00:02:57.488
+sentence and turn it into a working
+
+87
+00:02:57.588 --> 00:02:58.210
+application.
+
+88
+00:02:58.911 --> 00:03:00.695
+That’s the promise of this course, and
+
+89
+00:03:00.715 --> 00:03:01.918
+we’re going to demonstrate it.
+
+90
+00:03:02.619 --> 00:03:03.481
+Get ready!
+

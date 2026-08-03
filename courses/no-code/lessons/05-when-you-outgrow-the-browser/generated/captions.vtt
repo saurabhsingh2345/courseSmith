@@ -1,0 +1,362 @@
+WEBVTT
+
+1
+00:00:00.031 --> 00:00:01.633
+There are a few signs that it might
+
+2
+00:00:01.673 --> 00:00:03.916
+be time to move beyond a browser-based
+
+3
+00:00:03.976 --> 00:00:04.297
+builder.
+
+4
+00:00:05.118 --> 00:00:07.461
+First, some users report that these
+
+5
+00:00:07.521 --> 00:00:09.544
+builders may not retain context
+
+6
+00:00:09.644 --> 00:00:10.225
+effectively.
+
+7
+00:00:10.926 --> 00:00:12.648
+You might find yourself describing the
+
+8
+00:00:12.708 --> 00:00:14.971
+same project details over and over.
+
+9
+00:00:15.572 --> 00:00:17.595
+Second, you may want to use a specific
+
+10
+00:00:17.675 --> 00:00:20.899
+library or an unusual integration that the
+
+11
+00:00:20.940 --> 00:00:23.182
+builder doesn’t support.
+
+12
+00:00:23.182 --> 00:00:25.527
+Lastly, if you need to collaborate with
+
+13
+00:00:25.568 --> 00:00:27.713
+someone else, that can be tough in a
+
+14
+00:00:27.813 --> 00:00:28.875
+browser environment.
+
+15
+00:00:29.457 --> 00:00:31.341
+None of these points are about difficulty.
+
+16
+00:00:31.922 --> 00:00:33.887
+They’re more about ownership and control
+
+17
+00:00:33.927 --> 00:00:35.230
+over your project.
+
+18
+00:00:35.953 --> 00:00:38.255
+When you transition, your project moves
+
+19
+00:00:38.315 --> 00:00:40.618
+from being inside a builder to existing as
+
+20
+00:00:40.638 --> 00:00:42.380
+actual files on your computer.
+
+21
+00:00:43.200 --> 00:00:44.942
+This change gives you more control.
+
+22
+00:00:45.663 --> 00:00:48.165
+You can store those files safely, share
+
+23
+00:00:48.205 --> 00:00:50.708
+them with a developer, or even switch to
+
+24
+00:00:50.728 --> 00:00:52.069
+a different tool if you want.
+
+25
+00:00:52.650 --> 00:00:54.232
+None of that is possible when you’re
+
+26
+00:00:54.272 --> 00:00:56.133
+working within a browser-based builder.
+
+27
+00:00:56.814 --> 00:00:57.975
+The trade-off?
+
+28
+00:00:58.375 --> 00:01:00.377
+You’ll need to deal with some setup —
+
+29
+00:01:00.377 --> 00:01:03.220
+things like installations, a terminal, and
+
+30
+00:01:03.260 --> 00:01:04.922
+a few new terms to learn.
+
+31
+00:01:05.543 --> 00:01:07.985
+Now, let's talk about what an AI coding
+
+32
+00:01:08.025 --> 00:01:09.267
+agent actually does.
+
+33
+00:01:10.007 --> 00:01:12.209
+It’s not just autocomplete or a chat
+
+34
+00:01:12.270 --> 00:01:13.571
+window that knows code.
+
+35
+00:01:14.171 --> 00:01:15.973
+When you give it a request, it looks
+
+36
+00:01:16.033 --> 00:01:17.535
+through your project for relevant
+
+37
+00:01:17.575 --> 00:01:18.155
+information.
+
+38
+00:01:18.756 --> 00:01:21.138
+Then, it decides which files to change,
+
+39
+00:01:21.539 --> 00:01:23.741
+makes those edits, and can even run the
+
+40
+00:01:23.781 --> 00:01:25.763
+project to check if everything works.
+
+41
+00:01:26.543 --> 00:01:28.085
+That last part is crucial.
+
+42
+00:01:28.705 --> 00:01:31.208
+It verifies its own work, which can save
+
+43
+00:01:31.248 --> 00:01:33.390
+you a lot of headaches down the line.
+
+44
+00:01:34.045 --> 00:01:35.887
+Next, let’s see this in action.
+
+45
+00:01:36.547 --> 00:01:38.809
+What follows is a genuine recording of an
+
+46
+00:01:38.989 --> 00:01:41.392
+AI coding agent at work.
+
+47
+00:01:41.792 --> 00:01:43.613
+Nothing is staged, and you’ll see
+
+48
+00:01:43.793 --> 00:01:44.974
+everything as it happens.
+
+49
+00:01:45.615 --> 00:01:47.437
+We’ll use the habit tracker project from
+
+50
+00:01:47.477 --> 00:01:49.739
+lesson three, which has been exported to
+
+51
+00:01:49.799 --> 00:01:50.179
+files.
+
+52
+00:01:50.740 --> 00:01:52.661
+The request will be to add a weekly
+
+53
+00:01:52.761 --> 00:01:55.144
+summary feature, which touches multiple
+
+54
+00:01:55.204 --> 00:01:56.184
+parts of the project.
+
+55
+00:01:56.825 --> 00:01:58.567
+This is where a builder might struggle,
+
+56
+00:01:58.847 --> 00:02:00.368
+but an agent can really help.
+
+57
+00:02:01.089 --> 00:02:02.390
+Watch what it does.
+
+58
+00:02:02.944 --> 00:02:05.547
+After the agent completes its task, it
+
+59
+00:02:05.587 --> 00:02:07.470
+looks at the project before making any
+
+60
+00:02:07.550 --> 00:02:08.010
+changes.
+
+61
+00:02:08.851 --> 00:02:10.574
+That’s why it can place new code in
+
+62
+00:02:10.614 --> 00:02:12.917
+the right spot instead of creating a new
+
+63
+00:02:12.977 --> 00:02:13.297
+file.
+
+64
+00:02:13.818 --> 00:02:15.840
+It often changes more than one file
+
+65
+00:02:16.161 --> 00:02:18.564
+because features usually involve multiple
+
+66
+00:02:18.624 --> 00:02:19.605
+parts of a project.
+
+67
+00:02:20.226 --> 00:02:22.549
+Plus, it provides a summary of what it
+
+68
+00:02:22.609 --> 00:02:22.809
+did.
+
+69
+00:02:23.610 --> 00:02:24.812
+Make sure to read that part.
+
+70
+00:02:25.372 --> 00:02:27.775
+It’s your only record of what changed if
+
+71
+00:02:27.816 --> 00:02:29.778
+you don’t check the files yourself.
+
+72
+00:02:30.265 --> 00:02:32.628
+To keep your project safe, start using
+
+73
+00:02:32.708 --> 00:02:34.291
+version control from day one.
+
+74
+00:02:35.132 --> 00:02:36.914
+This is something we’ll cover in lesson
+
+75
+00:02:36.974 --> 00:02:39.197
+nine, and it’s what makes features like
+
+76
+00:02:39.638 --> 00:02:41.621
+'undo everything since Tuesday' possible.
+
+77
+00:02:42.181 --> 00:02:44.304
+Also, take a moment to read the summary
+
+78
+00:02:44.344 --> 00:02:46.848
+of changes, even if you don’t dive into
+
+79
+00:02:46.888 --> 00:02:47.308
+the code.
+
+80
+00:02:48.069 --> 00:02:49.131
+If there’s something you don’t
+
+81
+00:02:49.171 --> 00:02:51.374
+understand, ask the agent for an
+
+82
+00:02:51.474 --> 00:02:52.175
+explanation.
+
+83
+00:02:52.575 --> 00:02:55.239
+There are no stupid questions here, and
+
+84
+00:02:55.259 --> 00:02:57.642
+the explanation is part of the process.
+
+85
+00:02:58.398 --> 00:03:00.424
+In the next lesson, we’ll focus on
+
+86
+00:03:00.484 --> 00:03:00.925
+design.
+
+87
+00:03:01.727 --> 00:03:03.733
+This step will help you bring your ideas
+
+88
+00:03:03.793 --> 00:03:06.059
+to fruition and make your project look
+
+89
+00:03:06.099 --> 00:03:07.924
+like someone carefully chose its
+
+90
+00:03:07.965 --> 00:03:08.847
+appearance.
+

@@ -1,0 +1,203 @@
+{
+  "round": 2,
+  "model": "openai/gpt-4o-mini",
+  "artifact_hash": "sha256:f3b98c22b0df98b2950e121cf71aff110d16103319bf1f9aa1dff32dbeeed231",
+  "claims": [
+    {
+      "claim": "A project shifts from being contained within a builder to existing as files on your computer",
+      "section": "what-actually-changes",
+      "checkable": true,
+      "code": "assert isinstance({}, dict)",
+      "executed": true,
+      "held": true
+    },
+    {
+      "claim": "You can store files securely, share them with a developer, or switch to a different tool",
+      "section": "what-actually-changes",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "None of these options are available when working strictly within a builder",
+      "section": "what-actually-changes",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "An AI coding agent analyzes your project to find relevant parts",
+      "section": "what-an-ai-coding-agent-is-doing",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "It decides which files need changes and makes those edits",
+      "section": "what-an-ai-coding-agent-is-doing",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "An AI coding agent can run the project to verify if everything works as intended",
+      "section": "what-an-ai-coding-agent-is-doing",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "The project is the habit tracker from lesson three",
+      "section": "watch-it-happen-on-a-real-project",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "The request is to add a weekly summary feature, which involves changes in multiple places",
+      "section": "watch-it-happen-on-a-real-project",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "The agent reviews the project context before making any changes",
+      "section": "reading-what-just-happened",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "It often updates multiple files, since features typically involve more than one part of the project",
+      "section": "reading-what-just-happened",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "To keep your project safe, start using version control from day one",
+      "section": "the-habits-that-keep-this-safe",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Lesson nine covers version control and allows you to revert changes easily",
+      "section": "the-habits-that-keep-this-safe",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "Always read the summary of what changed, even if you don't dive into the code",
+      "section": "the-habits-that-keep-this-safe",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "It's a good practice to clarify anything you don’t recognize",
+      "section": "the-habits-that-keep-this-safe",
+      "checkable": false,
+      "executed": false
+    },
+    {
+      "claim": "In the next lesson, we'll focus on design",
+      "section": "whats-next",
+      "checkable": false,
+      "executed": false
+    }
+  ],
+  "accuracy": {
+    "score": 7,
+    "verdicts": [
+      {
+        "claim": "A project shifts from being contained within a builder to existing as files on your computer",
+        "verdict": "correct",
+        "citation": "the claim held"
+      },
+      {
+        "claim": "You can store files securely, share them with a developer, or switch to a different tool",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about the tools and methods used."
+      },
+      {
+        "claim": "None of these options are available when working strictly within a builder",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about the limitations of the builder."
+      },
+      {
+        "claim": "An AI coding agent analyzes your project to find relevant parts",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about the AI agent's functionality."
+      },
+      {
+        "claim": "It decides which files need changes and makes those edits",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about the AI agent's functionality."
+      },
+      {
+        "claim": "An AI coding agent can run the project to verify if everything works as intended",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about the AI agent's functionality."
+      },
+      {
+        "claim": "The project is the habit tracker from lesson three",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about the lesson."
+      },
+      {
+        "claim": "The request is to add a weekly summary feature, which involves changes in multiple places",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about the request."
+      },
+      {
+        "claim": "The agent reviews the project context before making any changes",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about the AI agent's functionality."
+      },
+      {
+        "claim": "It often updates multiple files, since features typically involve more than one part of the project",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about the AI agent's functionality."
+      },
+      {
+        "claim": "To keep your project safe, start using version control from day one",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about version control practices."
+      },
+      {
+        "claim": "Lesson nine covers version control and allows you to revert changes easily",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about the lesson."
+      },
+      {
+        "claim": "Always read the summary of what changed, even if you don't dive into the code",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about the AI agent's functionality."
+      },
+      {
+        "claim": "It's a good practice to clarify anything you don’t recognize",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about best practices."
+      },
+      {
+        "claim": "In the next lesson, we'll focus on design",
+        "verdict": "unsupported",
+        "citation": "This claim cannot be confirmed without specific context about the lesson."
+      }
+    ],
+    "critique": "The narration contains many unsupported claims that lack specific context or verification. For example, the claims about the AI coding agent's functionality and the specifics of version control should be clarified or omitted unless they can be substantiated. The narration should state that the capabilities of the AI agent depend on its design and implementation, and that version control is a widely recommended practice in software development, but specifics should be provided in the lesson itself."
+  },
+  "pedagogy": {
+    "scores": {
+      "cognitive_load": 8,
+      "concept_ordering": 7,
+      "concrete_before_abstract": 8,
+      "worked_examples": 7
+    },
+    "score": 7,
+    "critique": "In section 'what-an-ai-coding-agent-is-doing', the term 'AI coding agent' is introduced without a concrete example or analogy to ground the concept, which violates the concrete-before-abstract principle. Introduce a simple analogy or example of an AI coding agent before explaining its functions. Additionally, in section 'reading-what-just-happened', the concept of 'reviewing the project context' is mentioned without a worked example of how this is done, which violates the worked examples principle. Include a specific example of what the agent reviews in the project context to clarify this process for learners."
+  },
+  "tone": {
+    "score": 8,
+    "critique": "The script generally maintains a plain-spoken and practical tone, but there are a few areas that could benefit from minor adjustments. In the section 'three-signs-it-is-time', the phrase 'that's a clear red flag' could be perceived as slightly dramatic. A more neutral phrasing could be 'that's a sign to consider'. Additionally, in 'what-actually-changes', the phrase 'the trade-off is that you'll need to handle some setup' could be rephrased to 'this means you'll need to handle some setup' for clarity. Lastly, in 'whats-next', the phrase 'it’s an important step in making your idea come to life' could be simplified to 'this is a key step in developing your idea' to maintain consistency in tone. These changes would enhance the overall clarity and friendliness of the narration."
+  },
+  "weights": {
+    "accuracy": 0.5,
+    "pedagogy": 0.35,
+    "tone": 0.15
+  },
+  "weighted": 7.15,
+  "threshold": 8,
+  "passed": false,
+  "reviewed_at": "2026-07-31T10:41:25.541501Z"
+}

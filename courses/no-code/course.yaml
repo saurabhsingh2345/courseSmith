@@ -1,0 +1,40 @@
+name: "Build Without Code"
+slug: no-code
+description: >
+  Thirteen lessons that take somebody who has never written a line of code
+  from "I have an idea" to a working, deployed application — using AI tools
+  and no-code builders. Honest about what these tools do brilliantly and
+  honest about where they still need a developer.
+
+style:
+  voice: af_heart
+  tone: >
+    plain-spoken and practical, like a friend who builds things showing you
+    over their shoulder. Never breathless about AI; never sneering about it.
+  # The align stage checks delivered speech against pace_wpm x voice_speed, so
+  # the real target here is 157 wpm. 175 rather than the 150 a beginner
+  # programming course uses: 135 is a deliberately slow read for somebody
+  # meeting their first variable, and this audience are professionals who are
+  # new to building software rather than new to thinking. The first full run
+  # landed at 157-168 wpm across every section, which sits inside this band and
+  # sat 16-24% outside the old one.
+  pace_wpm: 175
+  voice_speed: 0.9   # the align stage multiplies pace_wpm by this
+  audience: >
+    people who are not developers — founders, product managers, designers,
+    marketers — who have an idea and no way to build it
+  language: en
+
+branding:
+  colors:
+    primary: "#5b5bd6"
+    accent: "#f5c26b"
+    background: "#0b0d12"
+  diagram_style: clean, flat, generous whitespace, few words per node
+
+pipeline:
+  llm_content: openai/gpt-4o-mini
+  # Companion material (pytest exercises, Python-traceback "common mistakes")
+  # is shaped for a programming course and has nothing to describe here. Turn
+  # this off once the quiz stage has been given a no-code question taxonomy.
+  video_only: true

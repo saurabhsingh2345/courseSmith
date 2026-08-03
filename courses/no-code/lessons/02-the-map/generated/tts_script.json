@@ -1,0 +1,58 @@
+{
+  "sections": [
+    {
+      "id": "why-the-names-feel-like-noise",
+      "paragraphs": [
+        "Every week, there's a new tool with a catchy name and a bold claim. It can feel overwhelming. But here's the thing: they’re not all doing something different. Most of them fit into one of five layers. Once you learn these layers, every new name you hear will just be another tool in a familiar category. It’s like saying, 'Oh, that’s another one of those.' It makes it easier to keep up."
+      ]
+    },
+    {
+      "id": "layer-one-where-you-describe-it",
+      "paragraphs": [
+        "The first layer is where you describe your ideas. These are plain chat assistants. You type what you want in everyday language. They’re great for brainstorming, naming, planning, and writing the brief you’ll use everywhere else. Just remember, they don’t build or host anything. They help you sharpen your idea."
+      ]
+    },
+    {
+      "id": "layer-two-where-it-gets-built",
+      "paragraphs": [
+        "Now, layer two is where it gets built. There are two flavors here, and understanding the difference is key. App builders run in your browser. You describe an app, it appears, and you keep talking to it. Nothing needs to be installed. This is where you should start. Then there are AI editors. They run on your computer and work with real files. They offer more power but come with more complexity. We’ll dive into that in lesson five."
+      ]
+    },
+    {
+      "id": "layer-three-where-it-looks-right",
+      "paragraphs": [
+        "Layer three is where it looks right. Design tools help decide how your app will look before it’s built. You can skip this layer and let the builder pick the design, but it’ll look generic — competent but forgettable. Spending just an hour here can make a big difference, especially when your app is in front of people whose opinions matter."
+      ]
+    },
+    {
+      "id": "layer-four-where-the-data-lives",
+      "paragraphs": [
+        "Next is layer four, where the data lives. A database is basically a set of tables. Think of a table as a spreadsheet with rules. This is where everything your app remembers between visits is stored — accounts, orders, posts, and settings. Beginners often skip this layer and end up having to rebuild later. Lesson seven is all about getting this right."
+      ]
+    },
+    {
+      "id": "layer-five-where-it-runs",
+      "paragraphs": [
+        "Finally, layer five is where it runs. Hosting is a computer somewhere else that stays on so people can access your app. A domain is the readable address that points to it. Until you set this up, what you’ve built is only available to you."
+      ]
+    },
+    {
+      "id": "reading-the-map-backwards",
+      "paragraphs": [
+        "Let’s read the map backwards. The layers also show the order things can go wrong, from bottom to top. If hosting breaks, it’s loud. If data breaks, it’s worse. Design issues are quieter. When something goes wrong, ask which layer it’s in before figuring out what to do next."
+      ]
+    },
+    {
+      "id": "where-to-start-for-you-specifically",
+      "paragraphs": [
+        "So, where do you start? If you have just an idea, go to layer two, the browser flavor. If you already have a design, use layer two, the editor flavor. If you have something working but nobody can see it, jump to layer five. Everything else is just optimization."
+      ]
+    },
+    {
+      "id": "whats-next",
+      "paragraphs": [
+        "What’s next? In the next lesson, we’ll take one sentence and turn it into a working application. That’s the promise of this course, and we’re going to demonstrate it. Get ready!"
+      ]
+    }
+  ]
+}

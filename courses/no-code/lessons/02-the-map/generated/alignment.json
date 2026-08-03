@@ -1,0 +1,5125 @@
+{
+  "source": "whisperx",
+  "words": [
+    {
+      "word": "Every",
+      "startMs": 31,
+      "endMs": 351
+    },
+    {
+      "word": "week",
+      "startMs": 391,
+      "endMs": 612
+    },
+    {
+      "word": "there's",
+      "startMs": 692,
+      "endMs": 932
+    },
+    {
+      "word": "a",
+      "startMs": 1012,
+      "endMs": 1032
+    },
+    {
+      "word": "new",
+      "startMs": 1112,
+      "endMs": 1272
+    },
+    {
+      "word": "tool",
+      "startMs": 1353,
+      "endMs": 1653
+    },
+    {
+      "word": "with",
+      "startMs": 1713,
+      "endMs": 1833
+    },
+    {
+      "word": "a",
+      "startMs": 1853,
+      "endMs": 1913
+    },
+    {
+      "word": "catchy",
+      "startMs": 1973,
+      "endMs": 2334
+    },
+    {
+      "word": "name",
+      "startMs": 2394,
+      "endMs": 2654
+    },
+    {
+      "word": "and",
+      "startMs": 2694,
+      "endMs": 2874
+    },
+    {
+      "word": "a",
+      "startMs": 2914,
+      "endMs": 2934
+    },
+    {
+      "word": "bold",
+      "startMs": 3035,
+      "endMs": 3335
+    },
+    {
+      "word": "claim.",
+      "startMs": 3435,
+      "endMs": 3755
+    },
+    {
+      "word": "It",
+      "startMs": 4376,
+      "endMs": 4436
+    },
+    {
+      "word": "can",
+      "startMs": 4476,
+      "endMs": 4616
+    },
+    {
+      "word": "feel",
+      "startMs": 4677,
+      "endMs": 4957
+    },
+    {
+      "word": "overwhelming.",
+      "startMs": 4977,
+      "endMs": 5698
+    },
+    {
+      "word": "But",
+      "startMs": 6278,
+      "endMs": 6358
+    },
+    {
+      "word": "here's",
+      "startMs": 6399,
+      "endMs": 6639
+    },
+    {
+      "word": "the",
+      "startMs": 6699,
+      "endMs": 6779
+    },
+    {
+      "word": "thing,",
+      "startMs": 6819,
+      "endMs": 7039
+    },
+    {
+      "word": "they're",
+      "startMs": 7460,
+      "endMs": 7660
+    },
+    {
+      "word": "not",
+      "startMs": 7700,
+      "endMs": 7840
+    },
+    {
+      "word": "all",
+      "startMs": 7860,
+      "endMs": 8081
+    },
+    {
+      "word": "doing",
+      "startMs": 8141,
+      "endMs": 8361
+    },
+    {
+      "word": "something",
+      "startMs": 8441,
+      "endMs": 8741
+    },
+    {
+      "word": "different.",
+      "startMs": 8821,
+      "endMs": 9202
+    },
+    {
+      "word": "Most",
+      "startMs": 9823,
+      "endMs": 10043
+    },
+    {
+      "word": "of",
+      "startMs": 10083,
+      "endMs": 10123
+    },
+    {
+      "word": "them",
+      "startMs": 10183,
+      "endMs": 10323
+    },
+    {
+      "word": "fit",
+      "startMs": 10443,
+      "endMs": 10624
+    },
+    {
+      "word": "into",
+      "startMs": 10664,
+      "endMs": 10864
+    },
+    {
+      "word": "one",
+      "startMs": 10964,
+      "endMs": 11044
+    },
+    {
+      "word": "of",
+      "startMs": 11084,
+      "endMs": 11124
+    },
+    {
+      "word": "five",
+      "startMs": 11224,
+      "endMs": 11525
+    },
+    {
+      "word": "layers.",
+      "startMs": 11605,
+      "endMs": 12005
+    },
+    {
+      "word": "Once",
+      "startMs": 12666,
+      "endMs": 12786
+    },
+    {
+      "word": "you",
+      "startMs": 12846,
+      "endMs": 12966
+    },
+    {
+      "word": "learn",
+      "startMs": 13006,
+      "endMs": 13187
+    },
+    {
+      "word": "these",
+      "startMs": 13227,
+      "endMs": 13387
+    },
+    {
+      "word": "layers,",
+      "startMs": 13427,
+      "endMs": 13867
+    },
+    {
+      "word": "every",
+      "startMs": 14348,
+      "endMs": 14568
+    },
+    {
+      "word": "new",
+      "startMs": 14628,
+      "endMs": 14748
+    },
+    {
+      "word": "name",
+      "startMs": 14788,
+      "endMs": 14989
+    },
+    {
+      "word": "you",
+      "startMs": 15029,
+      "endMs": 15169
+    },
+    {
+      "word": "hear",
+      "startMs": 15229,
+      "endMs": 15449
+    },
+    {
+      "word": "will",
+      "startMs": 15469,
+      "endMs": 15670
+    },
+    {
+      "word": "just",
+      "startMs": 15730,
+      "endMs": 15930
+    },
+    {
+      "word": "be",
+      "startMs": 15990,
+      "endMs": 16110
+    },
+    {
+      "word": "another",
+      "startMs": 16170,
+      "endMs": 16491
+    },
+    {
+      "word": "tool",
+      "startMs": 16551,
+      "endMs": 16871
+    },
+    {
+      "word": "in",
+      "startMs": 16971,
+      "endMs": 17031
+    },
+    {
+      "word": "a",
+      "startMs": 17051,
+      "endMs": 17071
+    },
+    {
+      "word": "familiar",
+      "startMs": 17131,
+      "endMs": 17632
+    },
+    {
+      "word": "category.",
+      "startMs": 17692,
+      "endMs": 18253
+    },
+    {
+      "word": "It's",
+      "startMs": 18873,
+      "endMs": 18973
+    },
+    {
+      "word": "like",
+      "startMs": 19013,
+      "endMs": 19154
+    },
+    {
+      "word": "saying,",
+      "startMs": 19234,
+      "endMs": 19654
+    },
+    {
+      "word": "oh,",
+      "startMs": 19674,
+      "endMs": 20395
+    },
+    {
+      "word": "that's",
+      "startMs": 20435,
+      "endMs": 20836
+    },
+    {
+      "word": "another",
+      "startMs": 20896,
+      "endMs": 21196
+    },
+    {
+      "word": "one",
+      "startMs": 21216,
+      "endMs": 21396
+    },
+    {
+      "word": "of",
+      "startMs": 21436,
+      "endMs": 21476
+    },
+    {
+      "word": "those.",
+      "startMs": 21496,
+      "endMs": 21837
+    },
+    {
+      "word": "It",
+      "startMs": 22638,
+      "endMs": 22698
+    },
+    {
+      "word": "makes",
+      "startMs": 22758,
+      "endMs": 22958
+    },
+    {
+      "word": "it",
+      "startMs": 23018,
+      "endMs": 23058
+    },
+    {
+      "word": "easier",
+      "startMs": 23218,
+      "endMs": 23519
+    },
+    {
+      "word": "to",
+      "startMs": 23559,
+      "endMs": 23619
+    },
+    {
+      "word": "keep",
+      "startMs": 23659,
+      "endMs": 23859
+    },
+    {
+      "word": "up.",
+      "startMs": 23979,
+      "endMs": 24520
+    },
+    {
+      "word": "The",
+      "startMs": 25090,
+      "endMs": 25230
+    },
+    {
+      "word": "first",
+      "startMs": 25290,
+      "endMs": 25551
+    },
+    {
+      "word": "layer",
+      "startMs": 25611,
+      "endMs": 25951
+    },
+    {
+      "word": "is",
+      "startMs": 25971,
+      "endMs": 26131
+    },
+    {
+      "word": "where",
+      "startMs": 26191,
+      "endMs": 26332
+    },
+    {
+      "word": "you",
+      "startMs": 26372,
+      "endMs": 26472
+    },
+    {
+      "word": "describe",
+      "startMs": 26512,
+      "endMs": 26892
+    },
+    {
+      "word": "your",
+      "startMs": 26932,
+      "endMs": 27053
+    },
+    {
+      "word": "ideas.",
+      "startMs": 27113,
+      "endMs": 27533
+    },
+    {
+      "word": "These",
+      "startMs": 28274,
+      "endMs": 28555
+    },
+    {
+      "word": "are",
+      "startMs": 28595,
+      "endMs": 28735
+    },
+    {
+      "word": "plain",
+      "startMs": 28815,
+      "endMs": 29215
+    },
+    {
+      "word": "chat",
+      "startMs": 29296,
+      "endMs": 29516
+    },
+    {
+      "word": "assistants.",
+      "startMs": 29556,
+      "endMs": 30097
+    },
+    {
+      "word": "You",
+      "startMs": 30597,
+      "endMs": 30717
+    },
+    {
+      "word": "type",
+      "startMs": 30757,
+      "endMs": 30918
+    },
+    {
+      "word": "what",
+      "startMs": 30958,
+      "endMs": 31038
+    },
+    {
+      "word": "you",
+      "startMs": 31078,
+      "endMs": 31218
+    },
+    {
+      "word": "want",
+      "startMs": 31278,
+      "endMs": 31538
+    },
+    {
+      "word": "in",
+      "startMs": 31619,
+      "endMs": 31699
+    },
+    {
+      "word": "everyday",
+      "startMs": 31859,
+      "endMs": 32219
+    },
+    {
+      "word": "language.",
+      "startMs": 32279,
+      "endMs": 32720
+    },
+    {
+      "word": "They're",
+      "startMs": 33381,
+      "endMs": 33561
+    },
+    {
+      "word": "great",
+      "startMs": 33581,
+      "endMs": 33801
+    },
+    {
+      "word": "for",
+      "startMs": 33842,
+      "endMs": 33962
+    },
+    {
+      "word": "brainstorming,",
+      "startMs": 34022,
+      "endMs": 34803
+    },
+    {
+      "word": "naming,",
+      "startMs": 35183,
+      "endMs": 35584
+    },
+    {
+      "word": "planning,",
+      "startMs": 35984,
+      "endMs": 36425
+    },
+    {
+      "word": "and",
+      "startMs": 36605,
+      "endMs": 36705
+    },
+    {
+      "word": "writing",
+      "startMs": 36745,
+      "endMs": 37066
+    },
+    {
+      "word": "the",
+      "startMs": 37106,
+      "endMs": 37206
+    },
+    {
+      "word": "brief",
+      "startMs": 37266,
+      "endMs": 37526
+    },
+    {
+      "word": "you'll",
+      "startMs": 37566,
+      "endMs": 37767
+    },
+    {
+      "word": "use",
+      "startMs": 37827,
+      "endMs": 37947
+    },
+    {
+      "word": "everywhere",
+      "startMs": 38047,
+      "endMs": 38367
+    },
+    {
+      "word": "else.",
+      "startMs": 38448,
+      "endMs": 39229
+    },
+    {
+      "word": "Just",
+      "startMs": 39629,
+      "endMs": 39829
+    },
+    {
+      "word": "remember",
+      "startMs": 39889,
+      "endMs": 40290
+    },
+    {
+      "word": "they",
+      "startMs": 40470,
+      "endMs": 40590
+    },
+    {
+      "word": "don't",
+      "startMs": 40630,
+      "endMs": 40810
+    },
+    {
+      "word": "build",
+      "startMs": 40870,
+      "endMs": 41211
+    },
+    {
+      "word": "or",
+      "startMs": 41331,
+      "endMs": 41391
+    },
+    {
+      "word": "host",
+      "startMs": 41451,
+      "endMs": 41711
+    },
+    {
+      "word": "anything.",
+      "startMs": 41791,
+      "endMs": 42172
+    },
+    {
+      "word": "They",
+      "startMs": 42613,
+      "endMs": 42733
+    },
+    {
+      "word": "help",
+      "startMs": 42773,
+      "endMs": 42953
+    },
+    {
+      "word": "you",
+      "startMs": 42993,
+      "endMs": 43113
+    },
+    {
+      "word": "sharpen",
+      "startMs": 43193,
+      "endMs": 43514
+    },
+    {
+      "word": "your",
+      "startMs": 43554,
+      "endMs": 43654
+    },
+    {
+      "word": "idea.",
+      "startMs": 43714,
+      "endMs": 44475
+    },
+    {
+      "word": "Now",
+      "startMs": 45113,
+      "endMs": 45453
+    },
+    {
+      "word": "Layer",
+      "startMs": 45493,
+      "endMs": 45974
+    },
+    {
+      "word": "2",
+      "startMs": 45994,
+      "endMs": 46274
+    },
+    {
+      "word": "is",
+      "startMs": 46474,
+      "endMs": 46534
+    },
+    {
+      "word": "where",
+      "startMs": 46574,
+      "endMs": 46735
+    },
+    {
+      "word": "it",
+      "startMs": 46795,
+      "endMs": 46835
+    },
+    {
+      "word": "gets",
+      "startMs": 46875,
+      "endMs": 47055
+    },
+    {
+      "word": "built.",
+      "startMs": 47115,
+      "endMs": 47395
+    },
+    {
+      "word": "There",
+      "startMs": 47856,
+      "endMs": 47976
+    },
+    {
+      "word": "are",
+      "startMs": 48016,
+      "endMs": 48096
+    },
+    {
+      "word": "two",
+      "startMs": 48136,
+      "endMs": 48316
+    },
+    {
+      "word": "flavors",
+      "startMs": 48396,
+      "endMs": 48817
+    },
+    {
+      "word": "here,",
+      "startMs": 48877,
+      "endMs": 49057
+    },
+    {
+      "word": "and",
+      "startMs": 49377,
+      "endMs": 49457
+    },
+    {
+      "word": "understanding",
+      "startMs": 49517,
+      "endMs": 50118
+    },
+    {
+      "word": "the",
+      "startMs": 50158,
+      "endMs": 50218
+    },
+    {
+      "word": "difference",
+      "startMs": 50258,
+      "endMs": 50638
+    },
+    {
+      "word": "is",
+      "startMs": 50738,
+      "endMs": 50798
+    },
+    {
+      "word": "key.",
+      "startMs": 50878,
+      "endMs": 51139
+    },
+    {
+      "word": "App",
+      "startMs": 52020,
+      "endMs": 52160
+    },
+    {
+      "word": "builders",
+      "startMs": 52200,
+      "endMs": 52580
+    },
+    {
+      "word": "run",
+      "startMs": 52620,
+      "endMs": 52920
+    },
+    {
+      "word": "in",
+      "startMs": 53000,
+      "endMs": 53040
+    },
+    {
+      "word": "your",
+      "startMs": 53081,
+      "endMs": 53181
+    },
+    {
+      "word": "browser.",
+      "startMs": 53221,
+      "endMs": 53661
+    },
+    {
+      "word": "You",
+      "startMs": 54182,
+      "endMs": 54282
+    },
+    {
+      "word": "describe",
+      "startMs": 54322,
+      "endMs": 54702
+    },
+    {
+      "word": "an",
+      "startMs": 54762,
+      "endMs": 54802
+    },
+    {
+      "word": "app,",
+      "startMs": 54982,
+      "endMs": 55263
+    },
+    {
+      "word": "it",
+      "startMs": 55283,
+      "endMs": 55343
+    },
+    {
+      "word": "appears,",
+      "startMs": 55403,
+      "endMs": 55863
+    },
+    {
+      "word": "and",
+      "startMs": 56023,
+      "endMs": 56103
+    },
+    {
+      "word": "you",
+      "startMs": 56143,
+      "endMs": 56244
+    },
+    {
+      "word": "keep",
+      "startMs": 56284,
+      "endMs": 56464
+    },
+    {
+      "word": "talking",
+      "startMs": 56544,
+      "endMs": 56904
+    },
+    {
+      "word": "to",
+      "startMs": 56944,
+      "endMs": 57044
+    },
+    {
+      "word": "it.",
+      "startMs": 57144,
+      "endMs": 57204
+    },
+    {
+      "word": "Nothing",
+      "startMs": 57765,
+      "endMs": 58065
+    },
+    {
+      "word": "needs",
+      "startMs": 58105,
+      "endMs": 58305
+    },
+    {
+      "word": "to",
+      "startMs": 58366,
+      "endMs": 58426
+    },
+    {
+      "word": "be",
+      "startMs": 58466,
+      "endMs": 58566
+    },
+    {
+      "word": "installed.",
+      "startMs": 58626,
+      "endMs": 59226
+    },
+    {
+      "word": "This",
+      "startMs": 59747,
+      "endMs": 59907
+    },
+    {
+      "word": "is",
+      "startMs": 59987,
+      "endMs": 60047
+    },
+    {
+      "word": "where",
+      "startMs": 60107,
+      "endMs": 60287
+    },
+    {
+      "word": "you",
+      "startMs": 60347,
+      "endMs": 60447
+    },
+    {
+      "word": "should",
+      "startMs": 60488,
+      "endMs": 60668
+    },
+    {
+      "word": "start.",
+      "startMs": 60728,
+      "endMs": 61008
+    },
+    {
+      "word": "Then",
+      "startMs": 61508,
+      "endMs": 61689
+    },
+    {
+      "word": "there",
+      "startMs": 61729,
+      "endMs": 61929
+    },
+    {
+      "word": "are",
+      "startMs": 61989,
+      "endMs": 62069
+    },
+    {
+      "word": "AI",
+      "startMs": 62229,
+      "endMs": 62570
+    },
+    {
+      "word": "editors.",
+      "startMs": 62690,
+      "endMs": 63070
+    },
+    {
+      "word": "They",
+      "startMs": 63671,
+      "endMs": 63811
+    },
+    {
+      "word": "run",
+      "startMs": 63871,
+      "endMs": 64051
+    },
+    {
+      "word": "on",
+      "startMs": 64111,
+      "endMs": 64151
+    },
+    {
+      "word": "your",
+      "startMs": 64171,
+      "endMs": 64271
+    },
+    {
+      "word": "computer",
+      "startMs": 64331,
+      "endMs": 64812
+    },
+    {
+      "word": "and",
+      "startMs": 64972,
+      "endMs": 65032
+    },
+    {
+      "word": "work",
+      "startMs": 65112,
+      "endMs": 65332
+    },
+    {
+      "word": "with",
+      "startMs": 65392,
+      "endMs": 65512
+    },
+    {
+      "word": "real",
+      "startMs": 65592,
+      "endMs": 65813
+    },
+    {
+      "word": "files.",
+      "startMs": 65893,
+      "endMs": 66293
+    },
+    {
+      "word": "They",
+      "startMs": 66854,
+      "endMs": 66994
+    },
+    {
+      "word": "offer",
+      "startMs": 67054,
+      "endMs": 67274
+    },
+    {
+      "word": "more",
+      "startMs": 67334,
+      "endMs": 67514
+    },
+    {
+      "word": "power",
+      "startMs": 67574,
+      "endMs": 67955
+    },
+    {
+      "word": "but",
+      "startMs": 68015,
+      "endMs": 68115
+    },
+    {
+      "word": "come",
+      "startMs": 68195,
+      "endMs": 68395
+    },
+    {
+      "word": "with",
+      "startMs": 68435,
+      "endMs": 68555
+    },
+    {
+      "word": "more",
+      "startMs": 68635,
+      "endMs": 68795
+    },
+    {
+      "word": "complexity.",
+      "startMs": 68855,
+      "endMs": 69456
+    },
+    {
+      "word": "We'll",
+      "startMs": 70057,
+      "endMs": 70237
+    },
+    {
+      "word": "dive",
+      "startMs": 70277,
+      "endMs": 70537
+    },
+    {
+      "word": "into",
+      "startMs": 70597,
+      "endMs": 70777
+    },
+    {
+      "word": "that",
+      "startMs": 70817,
+      "endMs": 71017
+    },
+    {
+      "word": "in",
+      "startMs": 71118,
+      "endMs": 71198
+    },
+    {
+      "word": "Lesson",
+      "startMs": 71258,
+      "endMs": 71578
+    },
+    {
+      "word": "5.",
+      "startMs": 71638,
+      "endMs": 73039
+    },
+    {
+      "word": "Layer",
+      "startMs": 72619,
+      "endMs": 73861
+    },
+    {
+      "word": "3",
+      "startMs": 73881,
+      "endMs": 74262
+    },
+    {
+      "word": "is",
+      "startMs": 74462,
+      "endMs": 74522
+    },
+    {
+      "word": "where",
+      "startMs": 74582,
+      "endMs": 74742
+    },
+    {
+      "word": "it",
+      "startMs": 74803,
+      "endMs": 74843
+    },
+    {
+      "word": "looks",
+      "startMs": 74883,
+      "endMs": 75083
+    },
+    {
+      "word": "right.",
+      "startMs": 75143,
+      "endMs": 75404
+    },
+    {
+      "word": "Design",
+      "startMs": 76085,
+      "endMs": 76466
+    },
+    {
+      "word": "tools",
+      "startMs": 76546,
+      "endMs": 76907
+    },
+    {
+      "word": "help",
+      "startMs": 77007,
+      "endMs": 77228
+    },
+    {
+      "word": "decide",
+      "startMs": 77268,
+      "endMs": 77688
+    },
+    {
+      "word": "how",
+      "startMs": 77769,
+      "endMs": 77889
+    },
+    {
+      "word": "your",
+      "startMs": 77929,
+      "endMs": 78069
+    },
+    {
+      "word": "app",
+      "startMs": 78209,
+      "endMs": 78330
+    },
+    {
+      "word": "will",
+      "startMs": 78370,
+      "endMs": 78510
+    },
+    {
+      "word": "look",
+      "startMs": 78530,
+      "endMs": 78711
+    },
+    {
+      "word": "before",
+      "startMs": 78791,
+      "endMs": 79111
+    },
+    {
+      "word": "it's",
+      "startMs": 79171,
+      "endMs": 79292
+    },
+    {
+      "word": "built.",
+      "startMs": 79352,
+      "endMs": 79612
+    },
+    {
+      "word": "You",
+      "startMs": 80254,
+      "endMs": 80334
+    },
+    {
+      "word": "can",
+      "startMs": 80374,
+      "endMs": 80494
+    },
+    {
+      "word": "skip",
+      "startMs": 80574,
+      "endMs": 80855
+    },
+    {
+      "word": "this",
+      "startMs": 80895,
+      "endMs": 81035
+    },
+    {
+      "word": "layer",
+      "startMs": 81135,
+      "endMs": 81456
+    },
+    {
+      "word": "and",
+      "startMs": 81697,
+      "endMs": 81777
+    },
+    {
+      "word": "let",
+      "startMs": 81837,
+      "endMs": 81977
+    },
+    {
+      "word": "the",
+      "startMs": 81997,
+      "endMs": 82077
+    },
+    {
+      "word": "builder",
+      "startMs": 82117,
+      "endMs": 82418
+    },
+    {
+      "word": "pick",
+      "startMs": 82478,
+      "endMs": 82679
+    },
+    {
+      "word": "the",
+      "startMs": 82719,
+      "endMs": 82799
+    },
+    {
+      "word": "design,",
+      "startMs": 82859,
+      "endMs": 83300
+    },
+    {
+      "word": "but",
+      "startMs": 83761,
+      "endMs": 83861
+    },
+    {
+      "word": "it'll",
+      "startMs": 84021,
+      "endMs": 84222
+    },
+    {
+      "word": "look",
+      "startMs": 84242,
+      "endMs": 84442
+    },
+    {
+      "word": "generic,",
+      "startMs": 84502,
+      "endMs": 85083
+    },
+    {
+      "word": "competent,",
+      "startMs": 85424,
+      "endMs": 85905
+    },
+    {
+      "word": "but",
+      "startMs": 86005,
+      "endMs": 86105
+    },
+    {
+      "word": "forgettable.",
+      "startMs": 86166,
+      "endMs": 86647
+    },
+    {
+      "word": "Spending",
+      "startMs": 87208,
+      "endMs": 87609
+    },
+    {
+      "word": "just",
+      "startMs": 87689,
+      "endMs": 87889
+    },
+    {
+      "word": "an",
+      "startMs": 87949,
+      "endMs": 87989
+    },
+    {
+      "word": "hour",
+      "startMs": 88069,
+      "endMs": 88310
+    },
+    {
+      "word": "here",
+      "startMs": 88390,
+      "endMs": 88590
+    },
+    {
+      "word": "can",
+      "startMs": 88931,
+      "endMs": 89051
+    },
+    {
+      "word": "make",
+      "startMs": 89071,
+      "endMs": 89212
+    },
+    {
+      "word": "a",
+      "startMs": 89272,
+      "endMs": 89292
+    },
+    {
+      "word": "big",
+      "startMs": 89392,
+      "endMs": 89593
+    },
+    {
+      "word": "difference,",
+      "startMs": 89633,
+      "endMs": 90033
+    },
+    {
+      "word": "especially",
+      "startMs": 90595,
+      "endMs": 91176
+    },
+    {
+      "word": "when",
+      "startMs": 91236,
+      "endMs": 91356
+    },
+    {
+      "word": "your",
+      "startMs": 91376,
+      "endMs": 91516
+    },
+    {
+      "word": "app",
+      "startMs": 91677,
+      "endMs": 91817
+    },
+    {
+      "word": "is",
+      "startMs": 91937,
+      "endMs": 92017
+    },
+    {
+      "word": "in",
+      "startMs": 92037,
+      "endMs": 92138
+    },
+    {
+      "word": "front",
+      "startMs": 92198,
+      "endMs": 92358
+    },
+    {
+      "word": "of",
+      "startMs": 92398,
+      "endMs": 92438
+    },
+    {
+      "word": "people",
+      "startMs": 92498,
+      "endMs": 92799
+    },
+    {
+      "word": "whose",
+      "startMs": 92859,
+      "endMs": 93060
+    },
+    {
+      "word": "opinions",
+      "startMs": 93120,
+      "endMs": 93561
+    },
+    {
+      "word": "matter.",
+      "startMs": 93621,
+      "endMs": 94302
+    },
+    {
+      "word": "Next",
+      "startMs": 94940,
+      "endMs": 95340
+    },
+    {
+      "word": "is",
+      "startMs": 95441,
+      "endMs": 95521
+    },
+    {
+      "word": "Layer",
+      "startMs": 95541,
+      "endMs": 95941
+    },
+    {
+      "word": "4,",
+      "startMs": 95961,
+      "endMs": 96222
+    },
+    {
+      "word": "where",
+      "startMs": 96482,
+      "endMs": 96622
+    },
+    {
+      "word": "the",
+      "startMs": 96662,
+      "endMs": 96722
+    },
+    {
+      "word": "data",
+      "startMs": 96762,
+      "endMs": 97003
+    },
+    {
+      "word": "lives.",
+      "startMs": 97063,
+      "endMs": 97363
+    },
+    {
+      "word": "A",
+      "startMs": 98064,
+      "endMs": 98084
+    },
+    {
+      "word": "database",
+      "startMs": 98144,
+      "endMs": 98725
+    },
+    {
+      "word": "is",
+      "startMs": 98805,
+      "endMs": 98865
+    },
+    {
+      "word": "basically",
+      "startMs": 98965,
+      "endMs": 99446
+    },
+    {
+      "word": "a",
+      "startMs": 99506,
+      "endMs": 99526
+    },
+    {
+      "word": "set",
+      "startMs": 99586,
+      "endMs": 99726
+    },
+    {
+      "word": "of",
+      "startMs": 99766,
+      "endMs": 99826
+    },
+    {
+      "word": "tables.",
+      "startMs": 99866,
+      "endMs": 100307
+    },
+    {
+      "word": "Think",
+      "startMs": 100987,
+      "endMs": 101168
+    },
+    {
+      "word": "of",
+      "startMs": 101188,
+      "endMs": 101228
+    },
+    {
+      "word": "a",
+      "startMs": 101268,
+      "endMs": 101328
+    },
+    {
+      "word": "table",
+      "startMs": 101388,
+      "endMs": 101788
+    },
+    {
+      "word": "as",
+      "startMs": 101929,
+      "endMs": 101989
+    },
+    {
+      "word": "a",
+      "startMs": 102029,
+      "endMs": 102089
+    },
+    {
+      "word": "spreadsheet",
+      "startMs": 102149,
+      "endMs": 102669
+    },
+    {
+      "word": "with",
+      "startMs": 102730,
+      "endMs": 102830
+    },
+    {
+      "word": "rules.",
+      "startMs": 102930,
+      "endMs": 103270
+    },
+    {
+      "word": "This",
+      "startMs": 104011,
+      "endMs": 104191
+    },
+    {
+      "word": "is",
+      "startMs": 104251,
+      "endMs": 104311
+    },
+    {
+      "word": "where",
+      "startMs": 104372,
+      "endMs": 104572
+    },
+    {
+      "word": "everything",
+      "startMs": 104692,
+      "endMs": 105052
+    },
+    {
+      "word": "your",
+      "startMs": 105092,
+      "endMs": 105253
+    },
+    {
+      "word": "app",
+      "startMs": 105393,
+      "endMs": 105533
+    },
+    {
+      "word": "remembers",
+      "startMs": 105573,
+      "endMs": 105953
+    },
+    {
+      "word": "between",
+      "startMs": 106014,
+      "endMs": 106314
+    },
+    {
+      "word": "visits",
+      "startMs": 106374,
+      "endMs": 106734
+    },
+    {
+      "word": "is",
+      "startMs": 106895,
+      "endMs": 106955
+    },
+    {
+      "word": "stored,",
+      "startMs": 107035,
+      "endMs": 107475
+    },
+    {
+      "word": "accounts,",
+      "startMs": 107796,
+      "endMs": 108697
+    },
+    {
+      "word": "orders,",
+      "startMs": 108717,
+      "endMs": 109077
+    },
+    {
+      "word": "posts,",
+      "startMs": 109378,
+      "endMs": 109818
+    },
+    {
+      "word": "and",
+      "startMs": 110018,
+      "endMs": 110119
+    },
+    {
+      "word": "settings.",
+      "startMs": 110199,
+      "endMs": 110599
+    },
+    {
+      "word": "Beginners",
+      "startMs": 111140,
+      "endMs": 111620
+    },
+    {
+      "word": "often",
+      "startMs": 111660,
+      "endMs": 112121
+    },
+    {
+      "word": "skip",
+      "startMs": 112181,
+      "endMs": 112441
+    },
+    {
+      "word": "this",
+      "startMs": 112461,
+      "endMs": 112602
+    },
+    {
+      "word": "layer",
+      "startMs": 112682,
+      "endMs": 113002
+    },
+    {
+      "word": "and",
+      "startMs": 113363,
+      "endMs": 113443
+    },
+    {
+      "word": "end",
+      "startMs": 113543,
+      "endMs": 113683
+    },
+    {
+      "word": "up",
+      "startMs": 113763,
+      "endMs": 113843
+    },
+    {
+      "word": "having",
+      "startMs": 113903,
+      "endMs": 114184
+    },
+    {
+      "word": "to",
+      "startMs": 114224,
+      "endMs": 114284
+    },
+    {
+      "word": "rebuild",
+      "startMs": 114364,
+      "endMs": 114744
+    },
+    {
+      "word": "later.",
+      "startMs": 114804,
+      "endMs": 115125
+    },
+    {
+      "word": "Lesson",
+      "startMs": 115886,
+      "endMs": 116246
+    },
+    {
+      "word": "7",
+      "startMs": 116266,
+      "endMs": 116627
+    },
+    {
+      "word": "is",
+      "startMs": 116647,
+      "endMs": 116987
+    },
+    {
+      "word": "all",
+      "startMs": 117147,
+      "endMs": 117287
+    },
+    {
+      "word": "about",
+      "startMs": 117327,
+      "endMs": 117528
+    },
+    {
+      "word": "getting",
+      "startMs": 117588,
+      "endMs": 117828
+    },
+    {
+      "word": "this",
+      "startMs": 117868,
+      "endMs": 117988
+    },
+    {
+      "word": "right.",
+      "startMs": 118068,
+      "endMs": 118669
+    },
+    {
+      "word": "Finally,",
+      "startMs": 119392,
+      "endMs": 119893
+    },
+    {
+      "word": "Layer",
+      "startMs": 120153,
+      "endMs": 120454
+    },
+    {
+      "word": "5",
+      "startMs": 120474,
+      "endMs": 120895
+    },
+    {
+      "word": "is",
+      "startMs": 120915,
+      "endMs": 121055
+    },
+    {
+      "word": "where",
+      "startMs": 121115,
+      "endMs": 121275
+    },
+    {
+      "word": "it",
+      "startMs": 121315,
+      "endMs": 121375
+    },
+    {
+      "word": "runs.",
+      "startMs": 121415,
+      "endMs": 121756
+    },
+    {
+      "word": "Hosting",
+      "startMs": 122477,
+      "endMs": 122918
+    },
+    {
+      "word": "is",
+      "startMs": 122938,
+      "endMs": 123058
+    },
+    {
+      "word": "a",
+      "startMs": 123118,
+      "endMs": 123138
+    },
+    {
+      "word": "computer",
+      "startMs": 123179,
+      "endMs": 123679
+    },
+    {
+      "word": "somewhere",
+      "startMs": 123780,
+      "endMs": 124180
+    },
+    {
+      "word": "else",
+      "startMs": 124280,
+      "endMs": 124441
+    },
+    {
+      "word": "that",
+      "startMs": 124521,
+      "endMs": 124661
+    },
+    {
+      "word": "stays",
+      "startMs": 124741,
+      "endMs": 125062
+    },
+    {
+      "word": "on",
+      "startMs": 125242,
+      "endMs": 125322
+    },
+    {
+      "word": "so",
+      "startMs": 125442,
+      "endMs": 125583
+    },
+    {
+      "word": "people",
+      "startMs": 125683,
+      "endMs": 126003
+    },
+    {
+      "word": "can",
+      "startMs": 126043,
+      "endMs": 126184
+    },
+    {
+      "word": "access",
+      "startMs": 126364,
+      "endMs": 126685
+    },
+    {
+      "word": "your",
+      "startMs": 126705,
+      "endMs": 126825
+    },
+    {
+      "word": "app.",
+      "startMs": 126945,
+      "endMs": 127085
+    },
+    {
+      "word": "A",
+      "startMs": 127686,
+      "endMs": 127726
+    },
+    {
+      "word": "domain",
+      "startMs": 127786,
+      "endMs": 128307
+    },
+    {
+      "word": "is",
+      "startMs": 128327,
+      "endMs": 128548
+    },
+    {
+      "word": "the",
+      "startMs": 128608,
+      "endMs": 128708
+    },
+    {
+      "word": "readable",
+      "startMs": 128808,
+      "endMs": 129209
+    },
+    {
+      "word": "address",
+      "startMs": 129269,
+      "endMs": 129670
+    },
+    {
+      "word": "that",
+      "startMs": 129730,
+      "endMs": 129850
+    },
+    {
+      "word": "points",
+      "startMs": 129910,
+      "endMs": 130171
+    },
+    {
+      "word": "to",
+      "startMs": 130251,
+      "endMs": 130351
+    },
+    {
+      "word": "it.",
+      "startMs": 130451,
+      "endMs": 130551
+    },
+    {
+      "word": "Until",
+      "startMs": 131192,
+      "endMs": 131433
+    },
+    {
+      "word": "you",
+      "startMs": 131453,
+      "endMs": 131593
+    },
+    {
+      "word": "set",
+      "startMs": 131613,
+      "endMs": 131793
+    },
+    {
+      "word": "this",
+      "startMs": 131833,
+      "endMs": 131994
+    },
+    {
+      "word": "up,",
+      "startMs": 132134,
+      "endMs": 132234
+    },
+    {
+      "word": "what",
+      "startMs": 132615,
+      "endMs": 132755
+    },
+    {
+      "word": "you've",
+      "startMs": 132795,
+      "endMs": 132975
+    },
+    {
+      "word": "built",
+      "startMs": 133015,
+      "endMs": 133236
+    },
+    {
+      "word": "is",
+      "startMs": 133356,
+      "endMs": 133416
+    },
+    {
+      "word": "only",
+      "startMs": 133436,
+      "endMs": 133797
+    },
+    {
+      "word": "available",
+      "startMs": 133877,
+      "endMs": 134378
+    },
+    {
+      "word": "to",
+      "startMs": 134418,
+      "endMs": 134518
+    },
+    {
+      "word": "you.",
+      "startMs": 134578,
+      "endMs": 135139
+    },
+    {
+      "word": "Let's",
+      "startMs": 135777,
+      "endMs": 136078
+    },
+    {
+      "word": "read",
+      "startMs": 136138,
+      "endMs": 136278
+    },
+    {
+      "word": "the",
+      "startMs": 136318,
+      "endMs": 136378
+    },
+    {
+      "word": "map",
+      "startMs": 136438,
+      "endMs": 136639
+    },
+    {
+      "word": "backwards.",
+      "startMs": 136699,
+      "endMs": 137180
+    },
+    {
+      "word": "The",
+      "startMs": 137801,
+      "endMs": 137902
+    },
+    {
+      "word": "layers",
+      "startMs": 137942,
+      "endMs": 138303
+    },
+    {
+      "word": "also",
+      "startMs": 138463,
+      "endMs": 138744
+    },
+    {
+      "word": "show",
+      "startMs": 138784,
+      "endMs": 139064
+    },
+    {
+      "word": "the",
+      "startMs": 139124,
+      "endMs": 139225
+    },
+    {
+      "word": "order",
+      "startMs": 139345,
+      "endMs": 139585
+    },
+    {
+      "word": "things",
+      "startMs": 139646,
+      "endMs": 139906
+    },
+    {
+      "word": "can",
+      "startMs": 139966,
+      "endMs": 140087
+    },
+    {
+      "word": "go",
+      "startMs": 140127,
+      "endMs": 140247
+    },
+    {
+      "word": "wrong",
+      "startMs": 140287,
+      "endMs": 140608
+    },
+    {
+      "word": "from",
+      "startMs": 140828,
+      "endMs": 140969
+    },
+    {
+      "word": "bottom",
+      "startMs": 141049,
+      "endMs": 141389
+    },
+    {
+      "word": "to",
+      "startMs": 141430,
+      "endMs": 141530
+    },
+    {
+      "word": "top.",
+      "startMs": 141590,
+      "endMs": 141951
+    },
+    {
+      "word": "If",
+      "startMs": 142552,
+      "endMs": 142632
+    },
+    {
+      "word": "hosting",
+      "startMs": 142692,
+      "endMs": 143053
+    },
+    {
+      "word": "breaks,",
+      "startMs": 143133,
+      "endMs": 143454
+    },
+    {
+      "word": "it's",
+      "startMs": 143614,
+      "endMs": 143735
+    },
+    {
+      "word": "loud.",
+      "startMs": 143815,
+      "endMs": 144156
+    },
+    {
+      "word": "If",
+      "startMs": 144657,
+      "endMs": 144737
+    },
+    {
+      "word": "data",
+      "startMs": 144797,
+      "endMs": 145058
+    },
+    {
+      "word": "breaks,",
+      "startMs": 145118,
+      "endMs": 145438
+    },
+    {
+      "word": "it's",
+      "startMs": 145599,
+      "endMs": 145719
+    },
+    {
+      "word": "worse.",
+      "startMs": 145779,
+      "endMs": 146120
+    },
+    {
+      "word": "Design",
+      "startMs": 146661,
+      "endMs": 147082
+    },
+    {
+      "word": "issues",
+      "startMs": 147162,
+      "endMs": 147503
+    },
+    {
+      "word": "are",
+      "startMs": 147583,
+      "endMs": 147663
+    },
+    {
+      "word": "quieter.",
+      "startMs": 147703,
+      "endMs": 148144
+    },
+    {
+      "word": "When",
+      "startMs": 148666,
+      "endMs": 148806
+    },
+    {
+      "word": "something",
+      "startMs": 148886,
+      "endMs": 149207
+    },
+    {
+      "word": "goes",
+      "startMs": 149267,
+      "endMs": 149467
+    },
+    {
+      "word": "wrong,",
+      "startMs": 149527,
+      "endMs": 149828
+    },
+    {
+      "word": "ask",
+      "startMs": 150429,
+      "endMs": 150590
+    },
+    {
+      "word": "which",
+      "startMs": 150630,
+      "endMs": 150790
+    },
+    {
+      "word": "layer",
+      "startMs": 150891,
+      "endMs": 151171
+    },
+    {
+      "word": "it's",
+      "startMs": 151231,
+      "endMs": 151331
+    },
+    {
+      "word": "in",
+      "startMs": 151432,
+      "endMs": 151552
+    },
+    {
+      "word": "before",
+      "startMs": 151652,
+      "endMs": 151973
+    },
+    {
+      "word": "figuring",
+      "startMs": 152053,
+      "endMs": 152394
+    },
+    {
+      "word": "out",
+      "startMs": 152474,
+      "endMs": 152554
+    },
+    {
+      "word": "what",
+      "startMs": 152594,
+      "endMs": 152715
+    },
+    {
+      "word": "to",
+      "startMs": 152755,
+      "endMs": 152835
+    },
+    {
+      "word": "do",
+      "startMs": 152875,
+      "endMs": 152995
+    },
+    {
+      "word": "next.",
+      "startMs": 153055,
+      "endMs": 154237
+    },
+    {
+      "word": "So,",
+      "startMs": 153817,
+      "endMs": 155159
+    },
+    {
+      "word": "where",
+      "startMs": 155279,
+      "endMs": 155420
+    },
+    {
+      "word": "do",
+      "startMs": 155440,
+      "endMs": 155480
+    },
+    {
+      "word": "you",
+      "startMs": 155520,
+      "endMs": 155600
+    },
+    {
+      "word": "start?",
+      "startMs": 155640,
+      "endMs": 155961
+    },
+    {
+      "word": "If",
+      "startMs": 156562,
+      "endMs": 156622
+    },
+    {
+      "word": "you",
+      "startMs": 156642,
+      "endMs": 156763
+    },
+    {
+      "word": "have",
+      "startMs": 156803,
+      "endMs": 156943
+    },
+    {
+      "word": "just",
+      "startMs": 157003,
+      "endMs": 157163
+    },
+    {
+      "word": "an",
+      "startMs": 157224,
+      "endMs": 157264
+    },
+    {
+      "word": "idea,",
+      "startMs": 157344,
+      "endMs": 157725
+    },
+    {
+      "word": "go",
+      "startMs": 157965,
+      "endMs": 158146
+    },
+    {
+      "word": "to",
+      "startMs": 158186,
+      "endMs": 158266
+    },
+    {
+      "word": "Layer",
+      "startMs": 158326,
+      "endMs": 158627
+    },
+    {
+      "word": "2,",
+      "startMs": 158647,
+      "endMs": 158927
+    },
+    {
+      "word": "the",
+      "startMs": 159208,
+      "endMs": 159288
+    },
+    {
+      "word": "browser",
+      "startMs": 159328,
+      "endMs": 159709
+    },
+    {
+      "word": "flavor.",
+      "startMs": 159769,
+      "endMs": 160110
+    },
+    {
+      "word": "If",
+      "startMs": 160831,
+      "endMs": 160892
+    },
+    {
+      "word": "you",
+      "startMs": 160932,
+      "endMs": 161072
+    },
+    {
+      "word": "already",
+      "startMs": 161132,
+      "endMs": 161413
+    },
+    {
+      "word": "have",
+      "startMs": 161453,
+      "endMs": 161593
+    },
+    {
+      "word": "a",
+      "startMs": 161633,
+      "endMs": 161653
+    },
+    {
+      "word": "design,",
+      "startMs": 161693,
+      "endMs": 162154
+    },
+    {
+      "word": "use",
+      "startMs": 162575,
+      "endMs": 162696
+    },
+    {
+      "word": "Layer",
+      "startMs": 162756,
+      "endMs": 163076
+    },
+    {
+      "word": "2,",
+      "startMs": 163096,
+      "endMs": 163397
+    },
+    {
+      "word": "the",
+      "startMs": 163618,
+      "endMs": 163718
+    },
+    {
+      "word": "editor",
+      "startMs": 163838,
+      "endMs": 164139
+    },
+    {
+      "word": "flavor.",
+      "startMs": 164219,
+      "endMs": 164580
+    },
+    {
+      "word": "If",
+      "startMs": 165221,
+      "endMs": 165281
+    },
+    {
+      "word": "you",
+      "startMs": 165321,
+      "endMs": 165422
+    },
+    {
+      "word": "have",
+      "startMs": 165462,
+      "endMs": 165602
+    },
+    {
+      "word": "something",
+      "startMs": 165642,
+      "endMs": 165943
+    },
+    {
+      "word": "working",
+      "startMs": 166023,
+      "endMs": 166364
+    },
+    {
+      "word": "but",
+      "startMs": 166424,
+      "endMs": 166524
+    },
+    {
+      "word": "nobody",
+      "startMs": 166584,
+      "endMs": 166905
+    },
+    {
+      "word": "can",
+      "startMs": 166945,
+      "endMs": 167085
+    },
+    {
+      "word": "see",
+      "startMs": 167165,
+      "endMs": 167326
+    },
+    {
+      "word": "it,",
+      "startMs": 167406,
+      "endMs": 167466
+    },
+    {
+      "word": "jump",
+      "startMs": 167867,
+      "endMs": 168127
+    },
+    {
+      "word": "to",
+      "startMs": 168168,
+      "endMs": 168268
+    },
+    {
+      "word": "Layer",
+      "startMs": 168308,
+      "endMs": 168568
+    },
+    {
+      "word": "5.",
+      "startMs": 168588,
+      "endMs": 169009
+    },
+    {
+      "word": "Everything",
+      "startMs": 169611,
+      "endMs": 169992
+    },
+    {
+      "word": "else",
+      "startMs": 170072,
+      "endMs": 170272
+    },
+    {
+      "word": "is",
+      "startMs": 170553,
+      "endMs": 170633
+    },
+    {
+      "word": "just",
+      "startMs": 170673,
+      "endMs": 170873
+    },
+    {
+      "word": "optimization.",
+      "startMs": 170994,
+      "endMs": 171715
+    },
+    {
+      "word": "What's",
+      "startMs": 172898,
+      "endMs": 173098
+    },
+    {
+      "word": "next?",
+      "startMs": 173178,
+      "endMs": 173519
+    },
+    {
+      "word": "In",
+      "startMs": 173920,
+      "endMs": 173960
+    },
+    {
+      "word": "the",
+      "startMs": 174000,
+      "endMs": 174060
+    },
+    {
+      "word": "next",
+      "startMs": 174121,
+      "endMs": 174321
+    },
+    {
+      "word": "lesson,",
+      "startMs": 174381,
+      "endMs": 174742
+    },
+    {
+      "word": "we'll",
+      "startMs": 174942,
+      "endMs": 175123
+    },
+    {
+      "word": "take",
+      "startMs": 175163,
+      "endMs": 175303
+    },
+    {
+      "word": "one",
+      "startMs": 175323,
+      "endMs": 175544
+    },
+    {
+      "word": "sentence",
+      "startMs": 175624,
+      "endMs": 176085
+    },
+    {
+      "word": "and",
+      "startMs": 176225,
+      "endMs": 176305
+    },
+    {
+      "word": "turn",
+      "startMs": 176365,
+      "endMs": 176606
+    },
+    {
+      "word": "it",
+      "startMs": 176646,
+      "endMs": 176686
+    },
+    {
+      "word": "into",
+      "startMs": 176766,
+      "endMs": 176967
+    },
+    {
+      "word": "a",
+      "startMs": 177007,
+      "endMs": 177067
+    },
+    {
+      "word": "working",
+      "startMs": 177147,
+      "endMs": 177488
+    },
+    {
+      "word": "application.",
+      "startMs": 177588,
+      "endMs": 178210
+    },
+    {
+      "word": "That's",
+      "startMs": 178911,
+      "endMs": 179132
+    },
+    {
+      "word": "the",
+      "startMs": 179192,
+      "endMs": 179272
+    },
+    {
+      "word": "promise",
+      "startMs": 179312,
+      "endMs": 179693
+    },
+    {
+      "word": "of",
+      "startMs": 179733,
+      "endMs": 179773
+    },
+    {
+      "word": "this",
+      "startMs": 179813,
+      "endMs": 179973
+    },
+    {
+      "word": "course,",
+      "startMs": 180054,
+      "endMs": 180394
+    },
+    {
+      "word": "and",
+      "startMs": 180615,
+      "endMs": 180695
+    },
+    {
+      "word": "we're",
+      "startMs": 180715,
+      "endMs": 180855
+    },
+    {
+      "word": "going",
+      "startMs": 180875,
+      "endMs": 181076
+    },
+    {
+      "word": "to",
+      "startMs": 181116,
+      "endMs": 181176
+    },
+    {
+      "word": "demonstrate",
+      "startMs": 181236,
+      "endMs": 181777
+    },
+    {
+      "word": "it.",
+      "startMs": 181837,
+      "endMs": 181918
+    },
+    {
+      "word": "Get",
+      "startMs": 182619,
+      "endMs": 182759
+    },
+    {
+      "word": "ready.",
+      "startMs": 182820,
+      "endMs": 183481
+    }
+  ],
+  "sections": [
+    {
+      "id": "why-the-names-feel-like-noise",
+      "startMs": 31,
+      "endMs": 24520,
+      "wordStart": 0,
+      "wordEnd": 72,
+      "wer": 0
+    },
+    {
+      "id": "layer-one-where-you-describe-it",
+      "startMs": 25090,
+      "endMs": 44475,
+      "wordStart": 72,
+      "wordEnd": 122,
+      "wer": 0
+    },
+    {
+      "id": "layer-two-where-it-gets-built",
+      "startMs": 45113,
+      "endMs": 73039,
+      "wordStart": 122,
+      "wordEnd": 201,
+      "wer": 0
+    },
+    {
+      "id": "layer-three-where-it-looks-right",
+      "startMs": 72619,
+      "endMs": 94302,
+      "wordStart": 201,
+      "wordEnd": 261,
+      "wer": 0
+    },
+    {
+      "id": "layer-four-where-the-data-lives",
+      "startMs": 94940,
+      "endMs": 118669,
+      "wordStart": 261,
+      "wordEnd": 322,
+      "wer": 0
+    },
+    {
+      "id": "layer-five-where-it-runs",
+      "startMs": 119392,
+      "endMs": 135139,
+      "wordStart": 322,
+      "wordEnd": 367,
+      "wer": 0
+    },
+    {
+      "id": "reading-the-map-backwards",
+      "startMs": 135777,
+      "endMs": 154237,
+      "wordStart": 367,
+      "wordEnd": 416,
+      "wer": 0
+    },
+    {
+      "id": "where-to-start-for-you-specifically",
+      "startMs": 153817,
+      "endMs": 171715,
+      "wordStart": 416,
+      "wordEnd": 465,
+      "wer": 0
+    },
+    {
+      "id": "whats-next",
+      "startMs": 172898,
+      "endMs": 183481,
+      "wordStart": 465,
+      "wordEnd": 496,
+      "wer": 0
+    }
+  ],
+  "displayWords": [
+    {
+      "word": "Every",
+      "startMs": 31,
+      "endMs": 351
+    },
+    {
+      "word": "week,",
+      "startMs": 391,
+      "endMs": 612
+    },
+    {
+      "word": "there's",
+      "startMs": 692,
+      "endMs": 932
+    },
+    {
+      "word": "a",
+      "startMs": 1012,
+      "endMs": 1032
+    },
+    {
+      "word": "new",
+      "startMs": 1112,
+      "endMs": 1272
+    },
+    {
+      "word": "tool",
+      "startMs": 1353,
+      "endMs": 1653
+    },
+    {
+      "word": "with",
+      "startMs": 1713,
+      "endMs": 1833
+    },
+    {
+      "word": "a",
+      "startMs": 1853,
+      "endMs": 1913
+    },
+    {
+      "word": "catchy",
+      "startMs": 1973,
+      "endMs": 2334
+    },
+    {
+      "word": "name",
+      "startMs": 2394,
+      "endMs": 2654
+    },
+    {
+      "word": "and",
+      "startMs": 2694,
+      "endMs": 2874
+    },
+    {
+      "word": "a",
+      "startMs": 2914,
+      "endMs": 2934
+    },
+    {
+      "word": "bold",
+      "startMs": 3035,
+      "endMs": 3335
+    },
+    {
+      "word": "claim.",
+      "startMs": 3435,
+      "endMs": 3755
+    },
+    {
+      "word": "It",
+      "startMs": 4376,
+      "endMs": 4436
+    },
+    {
+      "word": "can",
+      "startMs": 4476,
+      "endMs": 4616
+    },
+    {
+      "word": "feel",
+      "startMs": 4677,
+      "endMs": 4957
+    },
+    {
+      "word": "overwhelming.",
+      "startMs": 4977,
+      "endMs": 5698
+    },
+    {
+      "word": "But",
+      "startMs": 6278,
+      "endMs": 6358
+    },
+    {
+      "word": "here's",
+      "startMs": 6399,
+      "endMs": 6639
+    },
+    {
+      "word": "the",
+      "startMs": 6699,
+      "endMs": 6779
+    },
+    {
+      "word": "thing:",
+      "startMs": 6819,
+      "endMs": 7039
+    },
+    {
+      "word": "they’re",
+      "startMs": 7460,
+      "endMs": 7660
+    },
+    {
+      "word": "not",
+      "startMs": 7700,
+      "endMs": 7840
+    },
+    {
+      "word": "all",
+      "startMs": 7860,
+      "endMs": 8081
+    },
+    {
+      "word": "doing",
+      "startMs": 8141,
+      "endMs": 8361
+    },
+    {
+      "word": "something",
+      "startMs": 8441,
+      "endMs": 8741
+    },
+    {
+      "word": "different.",
+      "startMs": 8821,
+      "endMs": 9202
+    },
+    {
+      "word": "Most",
+      "startMs": 9823,
+      "endMs": 10043
+    },
+    {
+      "word": "of",
+      "startMs": 10083,
+      "endMs": 10123
+    },
+    {
+      "word": "them",
+      "startMs": 10183,
+      "endMs": 10323
+    },
+    {
+      "word": "fit",
+      "startMs": 10443,
+      "endMs": 10624
+    },
+    {
+      "word": "into",
+      "startMs": 10664,
+      "endMs": 10864
+    },
+    {
+      "word": "one",
+      "startMs": 10964,
+      "endMs": 11044
+    },
+    {
+      "word": "of",
+      "startMs": 11084,
+      "endMs": 11124
+    },
+    {
+      "word": "five",
+      "startMs": 11224,
+      "endMs": 11525
+    },
+    {
+      "word": "layers.",
+      "startMs": 11605,
+      "endMs": 12005
+    },
+    {
+      "word": "Once",
+      "startMs": 12666,
+      "endMs": 12786
+    },
+    {
+      "word": "you",
+      "startMs": 12846,
+      "endMs": 12966
+    },
+    {
+      "word": "learn",
+      "startMs": 13006,
+      "endMs": 13187
+    },
+    {
+      "word": "these",
+      "startMs": 13227,
+      "endMs": 13387
+    },
+    {
+      "word": "layers,",
+      "startMs": 13427,
+      "endMs": 13867
+    },
+    {
+      "word": "every",
+      "startMs": 14348,
+      "endMs": 14568
+    },
+    {
+      "word": "new",
+      "startMs": 14628,
+      "endMs": 14748
+    },
+    {
+      "word": "name",
+      "startMs": 14788,
+      "endMs": 14989
+    },
+    {
+      "word": "you",
+      "startMs": 15029,
+      "endMs": 15169
+    },
+    {
+      "word": "hear",
+      "startMs": 15229,
+      "endMs": 15449
+    },
+    {
+      "word": "will",
+      "startMs": 15469,
+      "endMs": 15670
+    },
+    {
+      "word": "just",
+      "startMs": 15730,
+      "endMs": 15930
+    },
+    {
+      "word": "be",
+      "startMs": 15990,
+      "endMs": 16110
+    },
+    {
+      "word": "another",
+      "startMs": 16170,
+      "endMs": 16491
+    },
+    {
+      "word": "tool",
+      "startMs": 16551,
+      "endMs": 16871
+    },
+    {
+      "word": "in",
+      "startMs": 16971,
+      "endMs": 17031
+    },
+    {
+      "word": "a",
+      "startMs": 17051,
+      "endMs": 17071
+    },
+    {
+      "word": "familiar",
+      "startMs": 17131,
+      "endMs": 17632
+    },
+    {
+      "word": "category.",
+      "startMs": 17692,
+      "endMs": 18253
+    },
+    {
+      "word": "It’s",
+      "startMs": 18873,
+      "endMs": 18973
+    },
+    {
+      "word": "like",
+      "startMs": 19013,
+      "endMs": 19154
+    },
+    {
+      "word": "saying,",
+      "startMs": 19234,
+      "endMs": 19654
+    },
+    {
+      "word": "'Oh,",
+      "startMs": 19674,
+      "endMs": 20395
+    },
+    {
+      "word": "that’s",
+      "startMs": 20435,
+      "endMs": 20836
+    },
+    {
+      "word": "another",
+      "startMs": 20896,
+      "endMs": 21196
+    },
+    {
+      "word": "one",
+      "startMs": 21216,
+      "endMs": 21396
+    },
+    {
+      "word": "of",
+      "startMs": 21436,
+      "endMs": 21476
+    },
+    {
+      "word": "those.'",
+      "startMs": 21496,
+      "endMs": 21837
+    },
+    {
+      "word": "It",
+      "startMs": 22638,
+      "endMs": 22698
+    },
+    {
+      "word": "makes",
+      "startMs": 22758,
+      "endMs": 22958
+    },
+    {
+      "word": "it",
+      "startMs": 23018,
+      "endMs": 23058
+    },
+    {
+      "word": "easier",
+      "startMs": 23218,
+      "endMs": 23519
+    },
+    {
+      "word": "to",
+      "startMs": 23559,
+      "endMs": 23619
+    },
+    {
+      "word": "keep",
+      "startMs": 23659,
+      "endMs": 23859
+    },
+    {
+      "word": "up.",
+      "startMs": 23979,
+      "endMs": 24520
+    },
+    {
+      "word": "The",
+      "startMs": 25090,
+      "endMs": 25230
+    },
+    {
+      "word": "first",
+      "startMs": 25290,
+      "endMs": 25551
+    },
+    {
+      "word": "layer",
+      "startMs": 25611,
+      "endMs": 25951
+    },
+    {
+      "word": "is",
+      "startMs": 25971,
+      "endMs": 26131
+    },
+    {
+      "word": "where",
+      "startMs": 26191,
+      "endMs": 26332
+    },
+    {
+      "word": "you",
+      "startMs": 26372,
+      "endMs": 26472
+    },
+    {
+      "word": "describe",
+      "startMs": 26512,
+      "endMs": 26892
+    },
+    {
+      "word": "your",
+      "startMs": 26932,
+      "endMs": 27053
+    },
+    {
+      "word": "ideas.",
+      "startMs": 27113,
+      "endMs": 27533
+    },
+    {
+      "word": "These",
+      "startMs": 28274,
+      "endMs": 28555
+    },
+    {
+      "word": "are",
+      "startMs": 28595,
+      "endMs": 28735
+    },
+    {
+      "word": "plain",
+      "startMs": 28815,
+      "endMs": 29215
+    },
+    {
+      "word": "chat",
+      "startMs": 29296,
+      "endMs": 29516
+    },
+    {
+      "word": "assistants.",
+      "startMs": 29556,
+      "endMs": 30097
+    },
+    {
+      "word": "You",
+      "startMs": 30597,
+      "endMs": 30717
+    },
+    {
+      "word": "type",
+      "startMs": 30757,
+      "endMs": 30918
+    },
+    {
+      "word": "what",
+      "startMs": 30958,
+      "endMs": 31038
+    },
+    {
+      "word": "you",
+      "startMs": 31078,
+      "endMs": 31218
+    },
+    {
+      "word": "want",
+      "startMs": 31278,
+      "endMs": 31538
+    },
+    {
+      "word": "in",
+      "startMs": 31619,
+      "endMs": 31699
+    },
+    {
+      "word": "everyday",
+      "startMs": 31859,
+      "endMs": 32219
+    },
+    {
+      "word": "language.",
+      "startMs": 32279,
+      "endMs": 32720
+    },
+    {
+      "word": "They’re",
+      "startMs": 33381,
+      "endMs": 33561
+    },
+    {
+      "word": "great",
+      "startMs": 33581,
+      "endMs": 33801
+    },
+    {
+      "word": "for",
+      "startMs": 33842,
+      "endMs": 33962
+    },
+    {
+      "word": "brainstorming,",
+      "startMs": 34022,
+      "endMs": 34803
+    },
+    {
+      "word": "naming,",
+      "startMs": 35183,
+      "endMs": 35584
+    },
+    {
+      "word": "planning,",
+      "startMs": 35984,
+      "endMs": 36425
+    },
+    {
+      "word": "and",
+      "startMs": 36605,
+      "endMs": 36705
+    },
+    {
+      "word": "writing",
+      "startMs": 36745,
+      "endMs": 37066
+    },
+    {
+      "word": "the",
+      "startMs": 37106,
+      "endMs": 37206
+    },
+    {
+      "word": "brief",
+      "startMs": 37266,
+      "endMs": 37526
+    },
+    {
+      "word": "you’ll",
+      "startMs": 37566,
+      "endMs": 37767
+    },
+    {
+      "word": "use",
+      "startMs": 37827,
+      "endMs": 37947
+    },
+    {
+      "word": "everywhere",
+      "startMs": 38047,
+      "endMs": 38367
+    },
+    {
+      "word": "else.",
+      "startMs": 38448,
+      "endMs": 39229
+    },
+    {
+      "word": "Just",
+      "startMs": 39629,
+      "endMs": 39829
+    },
+    {
+      "word": "remember,",
+      "startMs": 39889,
+      "endMs": 40290
+    },
+    {
+      "word": "they",
+      "startMs": 40470,
+      "endMs": 40590
+    },
+    {
+      "word": "don’t",
+      "startMs": 40630,
+      "endMs": 40810
+    },
+    {
+      "word": "build",
+      "startMs": 40870,
+      "endMs": 41211
+    },
+    {
+      "word": "or",
+      "startMs": 41331,
+      "endMs": 41391
+    },
+    {
+      "word": "host",
+      "startMs": 41451,
+      "endMs": 41711
+    },
+    {
+      "word": "anything.",
+      "startMs": 41791,
+      "endMs": 42172
+    },
+    {
+      "word": "They",
+      "startMs": 42613,
+      "endMs": 42733
+    },
+    {
+      "word": "help",
+      "startMs": 42773,
+      "endMs": 42953
+    },
+    {
+      "word": "you",
+      "startMs": 42993,
+      "endMs": 43113
+    },
+    {
+      "word": "sharpen",
+      "startMs": 43193,
+      "endMs": 43514
+    },
+    {
+      "word": "your",
+      "startMs": 43554,
+      "endMs": 43654
+    },
+    {
+      "word": "idea.",
+      "startMs": 43714,
+      "endMs": 44475
+    },
+    {
+      "word": "Now,",
+      "startMs": 45113,
+      "endMs": 45453
+    },
+    {
+      "word": "layer",
+      "startMs": 45493,
+      "endMs": 45974
+    },
+    {
+      "word": "two",
+      "startMs": 45994,
+      "endMs": 46274
+    },
+    {
+      "word": "is",
+      "startMs": 46474,
+      "endMs": 46534
+    },
+    {
+      "word": "where",
+      "startMs": 46574,
+      "endMs": 46735
+    },
+    {
+      "word": "it",
+      "startMs": 46795,
+      "endMs": 46835
+    },
+    {
+      "word": "gets",
+      "startMs": 46875,
+      "endMs": 47055
+    },
+    {
+      "word": "built.",
+      "startMs": 47115,
+      "endMs": 47395
+    },
+    {
+      "word": "There",
+      "startMs": 47856,
+      "endMs": 47976
+    },
+    {
+      "word": "are",
+      "startMs": 48016,
+      "endMs": 48096
+    },
+    {
+      "word": "two",
+      "startMs": 48136,
+      "endMs": 48316
+    },
+    {
+      "word": "flavors",
+      "startMs": 48396,
+      "endMs": 48817
+    },
+    {
+      "word": "here,",
+      "startMs": 48877,
+      "endMs": 49057
+    },
+    {
+      "word": "and",
+      "startMs": 49377,
+      "endMs": 49457
+    },
+    {
+      "word": "understanding",
+      "startMs": 49517,
+      "endMs": 50118
+    },
+    {
+      "word": "the",
+      "startMs": 50158,
+      "endMs": 50218
+    },
+    {
+      "word": "difference",
+      "startMs": 50258,
+      "endMs": 50638
+    },
+    {
+      "word": "is",
+      "startMs": 50738,
+      "endMs": 50798
+    },
+    {
+      "word": "key.",
+      "startMs": 50878,
+      "endMs": 51139
+    },
+    {
+      "word": "App",
+      "startMs": 52020,
+      "endMs": 52160
+    },
+    {
+      "word": "builders",
+      "startMs": 52200,
+      "endMs": 52580
+    },
+    {
+      "word": "run",
+      "startMs": 52620,
+      "endMs": 52920
+    },
+    {
+      "word": "in",
+      "startMs": 53000,
+      "endMs": 53040
+    },
+    {
+      "word": "your",
+      "startMs": 53081,
+      "endMs": 53181
+    },
+    {
+      "word": "browser.",
+      "startMs": 53221,
+      "endMs": 53661
+    },
+    {
+      "word": "You",
+      "startMs": 54182,
+      "endMs": 54282
+    },
+    {
+      "word": "describe",
+      "startMs": 54322,
+      "endMs": 54702
+    },
+    {
+      "word": "an",
+      "startMs": 54762,
+      "endMs": 54802
+    },
+    {
+      "word": "app,",
+      "startMs": 54982,
+      "endMs": 55263
+    },
+    {
+      "word": "it",
+      "startMs": 55283,
+      "endMs": 55343
+    },
+    {
+      "word": "appears,",
+      "startMs": 55403,
+      "endMs": 55863
+    },
+    {
+      "word": "and",
+      "startMs": 56023,
+      "endMs": 56103
+    },
+    {
+      "word": "you",
+      "startMs": 56143,
+      "endMs": 56244
+    },
+    {
+      "word": "keep",
+      "startMs": 56284,
+      "endMs": 56464
+    },
+    {
+      "word": "talking",
+      "startMs": 56544,
+      "endMs": 56904
+    },
+    {
+      "word": "to",
+      "startMs": 56944,
+      "endMs": 57044
+    },
+    {
+      "word": "it.",
+      "startMs": 57144,
+      "endMs": 57204
+    },
+    {
+      "word": "Nothing",
+      "startMs": 57765,
+      "endMs": 58065
+    },
+    {
+      "word": "needs",
+      "startMs": 58105,
+      "endMs": 58305
+    },
+    {
+      "word": "to",
+      "startMs": 58366,
+      "endMs": 58426
+    },
+    {
+      "word": "be",
+      "startMs": 58466,
+      "endMs": 58566
+    },
+    {
+      "word": "installed.",
+      "startMs": 58626,
+      "endMs": 59226
+    },
+    {
+      "word": "This",
+      "startMs": 59747,
+      "endMs": 59907
+    },
+    {
+      "word": "is",
+      "startMs": 59987,
+      "endMs": 60047
+    },
+    {
+      "word": "where",
+      "startMs": 60107,
+      "endMs": 60287
+    },
+    {
+      "word": "you",
+      "startMs": 60347,
+      "endMs": 60447
+    },
+    {
+      "word": "should",
+      "startMs": 60488,
+      "endMs": 60668
+    },
+    {
+      "word": "start.",
+      "startMs": 60728,
+      "endMs": 61008
+    },
+    {
+      "word": "Then",
+      "startMs": 61508,
+      "endMs": 61689
+    },
+    {
+      "word": "there",
+      "startMs": 61729,
+      "endMs": 61929
+    },
+    {
+      "word": "are",
+      "startMs": 61989,
+      "endMs": 62069
+    },
+    {
+      "word": "AI",
+      "startMs": 62229,
+      "endMs": 62570
+    },
+    {
+      "word": "editors.",
+      "startMs": 62690,
+      "endMs": 63070
+    },
+    {
+      "word": "They",
+      "startMs": 63671,
+      "endMs": 63811
+    },
+    {
+      "word": "run",
+      "startMs": 63871,
+      "endMs": 64051
+    },
+    {
+      "word": "on",
+      "startMs": 64111,
+      "endMs": 64151
+    },
+    {
+      "word": "your",
+      "startMs": 64171,
+      "endMs": 64271
+    },
+    {
+      "word": "computer",
+      "startMs": 64331,
+      "endMs": 64812
+    },
+    {
+      "word": "and",
+      "startMs": 64972,
+      "endMs": 65032
+    },
+    {
+      "word": "work",
+      "startMs": 65112,
+      "endMs": 65332
+    },
+    {
+      "word": "with",
+      "startMs": 65392,
+      "endMs": 65512
+    },
+    {
+      "word": "real",
+      "startMs": 65592,
+      "endMs": 65813
+    },
+    {
+      "word": "files.",
+      "startMs": 65893,
+      "endMs": 66293
+    },
+    {
+      "word": "They",
+      "startMs": 66854,
+      "endMs": 66994
+    },
+    {
+      "word": "offer",
+      "startMs": 67054,
+      "endMs": 67274
+    },
+    {
+      "word": "more",
+      "startMs": 67334,
+      "endMs": 67514
+    },
+    {
+      "word": "power",
+      "startMs": 67574,
+      "endMs": 67955
+    },
+    {
+      "word": "but",
+      "startMs": 68015,
+      "endMs": 68115
+    },
+    {
+      "word": "come",
+      "startMs": 68195,
+      "endMs": 68395
+    },
+    {
+      "word": "with",
+      "startMs": 68435,
+      "endMs": 68555
+    },
+    {
+      "word": "more",
+      "startMs": 68635,
+      "endMs": 68795
+    },
+    {
+      "word": "complexity.",
+      "startMs": 68855,
+      "endMs": 69456
+    },
+    {
+      "word": "We’ll",
+      "startMs": 70057,
+      "endMs": 70237
+    },
+    {
+      "word": "dive",
+      "startMs": 70277,
+      "endMs": 70537
+    },
+    {
+      "word": "into",
+      "startMs": 70597,
+      "endMs": 70777
+    },
+    {
+      "word": "that",
+      "startMs": 70817,
+      "endMs": 71017
+    },
+    {
+      "word": "in",
+      "startMs": 71118,
+      "endMs": 71198
+    },
+    {
+      "word": "lesson",
+      "startMs": 71258,
+      "endMs": 71578
+    },
+    {
+      "word": "five.",
+      "startMs": 71638,
+      "endMs": 73039
+    },
+    {
+      "word": "Layer",
+      "startMs": 73039,
+      "endMs": 73861
+    },
+    {
+      "word": "three",
+      "startMs": 73881,
+      "endMs": 74262
+    },
+    {
+      "word": "is",
+      "startMs": 74462,
+      "endMs": 74522
+    },
+    {
+      "word": "where",
+      "startMs": 74582,
+      "endMs": 74742
+    },
+    {
+      "word": "it",
+      "startMs": 74803,
+      "endMs": 74843
+    },
+    {
+      "word": "looks",
+      "startMs": 74883,
+      "endMs": 75083
+    },
+    {
+      "word": "right.",
+      "startMs": 75143,
+      "endMs": 75404
+    },
+    {
+      "word": "Design",
+      "startMs": 76085,
+      "endMs": 76466
+    },
+    {
+      "word": "tools",
+      "startMs": 76546,
+      "endMs": 76907
+    },
+    {
+      "word": "help",
+      "startMs": 77007,
+      "endMs": 77228
+    },
+    {
+      "word": "decide",
+      "startMs": 77268,
+      "endMs": 77688
+    },
+    {
+      "word": "how",
+      "startMs": 77769,
+      "endMs": 77889
+    },
+    {
+      "word": "your",
+      "startMs": 77929,
+      "endMs": 78069
+    },
+    {
+      "word": "app",
+      "startMs": 78209,
+      "endMs": 78330
+    },
+    {
+      "word": "will",
+      "startMs": 78370,
+      "endMs": 78510
+    },
+    {
+      "word": "look",
+      "startMs": 78530,
+      "endMs": 78711
+    },
+    {
+      "word": "before",
+      "startMs": 78791,
+      "endMs": 79111
+    },
+    {
+      "word": "it’s",
+      "startMs": 79171,
+      "endMs": 79292
+    },
+    {
+      "word": "built.",
+      "startMs": 79352,
+      "endMs": 79612
+    },
+    {
+      "word": "You",
+      "startMs": 80254,
+      "endMs": 80334
+    },
+    {
+      "word": "can",
+      "startMs": 80374,
+      "endMs": 80494
+    },
+    {
+      "word": "skip",
+      "startMs": 80574,
+      "endMs": 80855
+    },
+    {
+      "word": "this",
+      "startMs": 80895,
+      "endMs": 81035
+    },
+    {
+      "word": "layer",
+      "startMs": 81135,
+      "endMs": 81456
+    },
+    {
+      "word": "and",
+      "startMs": 81697,
+      "endMs": 81777
+    },
+    {
+      "word": "let",
+      "startMs": 81837,
+      "endMs": 81977
+    },
+    {
+      "word": "the",
+      "startMs": 81997,
+      "endMs": 82077
+    },
+    {
+      "word": "builder",
+      "startMs": 82117,
+      "endMs": 82418
+    },
+    {
+      "word": "pick",
+      "startMs": 82478,
+      "endMs": 82679
+    },
+    {
+      "word": "the",
+      "startMs": 82719,
+      "endMs": 82799
+    },
+    {
+      "word": "design,",
+      "startMs": 82859,
+      "endMs": 83300
+    },
+    {
+      "word": "but",
+      "startMs": 83761,
+      "endMs": 83861
+    },
+    {
+      "word": "it’ll",
+      "startMs": 84021,
+      "endMs": 84222
+    },
+    {
+      "word": "look",
+      "startMs": 84242,
+      "endMs": 84442
+    },
+    {
+      "word": "generic",
+      "startMs": 84502,
+      "endMs": 85083
+    },
+    {
+      "word": "—",
+      "startMs": 85083,
+      "endMs": 85424
+    },
+    {
+      "word": "competent",
+      "startMs": 85424,
+      "endMs": 85905
+    },
+    {
+      "word": "but",
+      "startMs": 86005,
+      "endMs": 86105
+    },
+    {
+      "word": "forgettable.",
+      "startMs": 86166,
+      "endMs": 86647
+    },
+    {
+      "word": "Spending",
+      "startMs": 87208,
+      "endMs": 87609
+    },
+    {
+      "word": "just",
+      "startMs": 87689,
+      "endMs": 87889
+    },
+    {
+      "word": "an",
+      "startMs": 87949,
+      "endMs": 87989
+    },
+    {
+      "word": "hour",
+      "startMs": 88069,
+      "endMs": 88310
+    },
+    {
+      "word": "here",
+      "startMs": 88390,
+      "endMs": 88590
+    },
+    {
+      "word": "can",
+      "startMs": 88931,
+      "endMs": 89051
+    },
+    {
+      "word": "make",
+      "startMs": 89071,
+      "endMs": 89212
+    },
+    {
+      "word": "a",
+      "startMs": 89272,
+      "endMs": 89292
+    },
+    {
+      "word": "big",
+      "startMs": 89392,
+      "endMs": 89593
+    },
+    {
+      "word": "difference,",
+      "startMs": 89633,
+      "endMs": 90033
+    },
+    {
+      "word": "especially",
+      "startMs": 90595,
+      "endMs": 91176
+    },
+    {
+      "word": "when",
+      "startMs": 91236,
+      "endMs": 91356
+    },
+    {
+      "word": "your",
+      "startMs": 91376,
+      "endMs": 91516
+    },
+    {
+      "word": "app",
+      "startMs": 91677,
+      "endMs": 91817
+    },
+    {
+      "word": "is",
+      "startMs": 91937,
+      "endMs": 92017
+    },
+    {
+      "word": "in",
+      "startMs": 92037,
+      "endMs": 92138
+    },
+    {
+      "word": "front",
+      "startMs": 92198,
+      "endMs": 92358
+    },
+    {
+      "word": "of",
+      "startMs": 92398,
+      "endMs": 92438
+    },
+    {
+      "word": "people",
+      "startMs": 92498,
+      "endMs": 92799
+    },
+    {
+      "word": "whose",
+      "startMs": 92859,
+      "endMs": 93060
+    },
+    {
+      "word": "opinions",
+      "startMs": 93120,
+      "endMs": 93561
+    },
+    {
+      "word": "matter.",
+      "startMs": 93621,
+      "endMs": 94302
+    },
+    {
+      "word": "Next",
+      "startMs": 94940,
+      "endMs": 95340
+    },
+    {
+      "word": "is",
+      "startMs": 95441,
+      "endMs": 95521
+    },
+    {
+      "word": "layer",
+      "startMs": 95541,
+      "endMs": 95941
+    },
+    {
+      "word": "four,",
+      "startMs": 95961,
+      "endMs": 96222
+    },
+    {
+      "word": "where",
+      "startMs": 96482,
+      "endMs": 96622
+    },
+    {
+      "word": "the",
+      "startMs": 96662,
+      "endMs": 96722
+    },
+    {
+      "word": "data",
+      "startMs": 96762,
+      "endMs": 97003
+    },
+    {
+      "word": "lives.",
+      "startMs": 97063,
+      "endMs": 97363
+    },
+    {
+      "word": "A",
+      "startMs": 98064,
+      "endMs": 98084
+    },
+    {
+      "word": "database",
+      "startMs": 98144,
+      "endMs": 98725
+    },
+    {
+      "word": "is",
+      "startMs": 98805,
+      "endMs": 98865
+    },
+    {
+      "word": "basically",
+      "startMs": 98965,
+      "endMs": 99446
+    },
+    {
+      "word": "a",
+      "startMs": 99506,
+      "endMs": 99526
+    },
+    {
+      "word": "set",
+      "startMs": 99586,
+      "endMs": 99726
+    },
+    {
+      "word": "of",
+      "startMs": 99766,
+      "endMs": 99826
+    },
+    {
+      "word": "tables.",
+      "startMs": 99866,
+      "endMs": 100307
+    },
+    {
+      "word": "Think",
+      "startMs": 100987,
+      "endMs": 101168
+    },
+    {
+      "word": "of",
+      "startMs": 101188,
+      "endMs": 101228
+    },
+    {
+      "word": "a",
+      "startMs": 101268,
+      "endMs": 101328
+    },
+    {
+      "word": "table",
+      "startMs": 101388,
+      "endMs": 101788
+    },
+    {
+      "word": "as",
+      "startMs": 101929,
+      "endMs": 101989
+    },
+    {
+      "word": "a",
+      "startMs": 102029,
+      "endMs": 102089
+    },
+    {
+      "word": "spreadsheet",
+      "startMs": 102149,
+      "endMs": 102669
+    },
+    {
+      "word": "with",
+      "startMs": 102730,
+      "endMs": 102830
+    },
+    {
+      "word": "rules.",
+      "startMs": 102930,
+      "endMs": 103270
+    },
+    {
+      "word": "This",
+      "startMs": 104011,
+      "endMs": 104191
+    },
+    {
+      "word": "is",
+      "startMs": 104251,
+      "endMs": 104311
+    },
+    {
+      "word": "where",
+      "startMs": 104372,
+      "endMs": 104572
+    },
+    {
+      "word": "everything",
+      "startMs": 104692,
+      "endMs": 105052
+    },
+    {
+      "word": "your",
+      "startMs": 105092,
+      "endMs": 105253
+    },
+    {
+      "word": "app",
+      "startMs": 105393,
+      "endMs": 105533
+    },
+    {
+      "word": "remembers",
+      "startMs": 105573,
+      "endMs": 105953
+    },
+    {
+      "word": "between",
+      "startMs": 106014,
+      "endMs": 106314
+    },
+    {
+      "word": "visits",
+      "startMs": 106374,
+      "endMs": 106734
+    },
+    {
+      "word": "is",
+      "startMs": 106895,
+      "endMs": 106955
+    },
+    {
+      "word": "stored",
+      "startMs": 107035,
+      "endMs": 107475
+    },
+    {
+      "word": "—",
+      "startMs": 107475,
+      "endMs": 107796
+    },
+    {
+      "word": "accounts,",
+      "startMs": 107796,
+      "endMs": 108697
+    },
+    {
+      "word": "orders,",
+      "startMs": 108717,
+      "endMs": 109077
+    },
+    {
+      "word": "posts,",
+      "startMs": 109378,
+      "endMs": 109818
+    },
+    {
+      "word": "and",
+      "startMs": 110018,
+      "endMs": 110119
+    },
+    {
+      "word": "settings.",
+      "startMs": 110199,
+      "endMs": 110599
+    },
+    {
+      "word": "Beginners",
+      "startMs": 111140,
+      "endMs": 111620
+    },
+    {
+      "word": "often",
+      "startMs": 111660,
+      "endMs": 112121
+    },
+    {
+      "word": "skip",
+      "startMs": 112181,
+      "endMs": 112441
+    },
+    {
+      "word": "this",
+      "startMs": 112461,
+      "endMs": 112602
+    },
+    {
+      "word": "layer",
+      "startMs": 112682,
+      "endMs": 113002
+    },
+    {
+      "word": "and",
+      "startMs": 113363,
+      "endMs": 113443
+    },
+    {
+      "word": "end",
+      "startMs": 113543,
+      "endMs": 113683
+    },
+    {
+      "word": "up",
+      "startMs": 113763,
+      "endMs": 113843
+    },
+    {
+      "word": "having",
+      "startMs": 113903,
+      "endMs": 114184
+    },
+    {
+      "word": "to",
+      "startMs": 114224,
+      "endMs": 114284
+    },
+    {
+      "word": "rebuild",
+      "startMs": 114364,
+      "endMs": 114744
+    },
+    {
+      "word": "later.",
+      "startMs": 114804,
+      "endMs": 115125
+    },
+    {
+      "word": "Lesson",
+      "startMs": 115886,
+      "endMs": 116246
+    },
+    {
+      "word": "seven",
+      "startMs": 116266,
+      "endMs": 116627
+    },
+    {
+      "word": "is",
+      "startMs": 116647,
+      "endMs": 116987
+    },
+    {
+      "word": "all",
+      "startMs": 117147,
+      "endMs": 117287
+    },
+    {
+      "word": "about",
+      "startMs": 117327,
+      "endMs": 117528
+    },
+    {
+      "word": "getting",
+      "startMs": 117588,
+      "endMs": 117828
+    },
+    {
+      "word": "this",
+      "startMs": 117868,
+      "endMs": 117988
+    },
+    {
+      "word": "right.",
+      "startMs": 118068,
+      "endMs": 118669
+    },
+    {
+      "word": "Finally,",
+      "startMs": 119392,
+      "endMs": 119893
+    },
+    {
+      "word": "layer",
+      "startMs": 120153,
+      "endMs": 120454
+    },
+    {
+      "word": "five",
+      "startMs": 120474,
+      "endMs": 120895
+    },
+    {
+      "word": "is",
+      "startMs": 120915,
+      "endMs": 121055
+    },
+    {
+      "word": "where",
+      "startMs": 121115,
+      "endMs": 121275
+    },
+    {
+      "word": "it",
+      "startMs": 121315,
+      "endMs": 121375
+    },
+    {
+      "word": "runs.",
+      "startMs": 121415,
+      "endMs": 121756
+    },
+    {
+      "word": "Hosting",
+      "startMs": 122477,
+      "endMs": 122918
+    },
+    {
+      "word": "is",
+      "startMs": 122938,
+      "endMs": 123058
+    },
+    {
+      "word": "a",
+      "startMs": 123118,
+      "endMs": 123138
+    },
+    {
+      "word": "computer",
+      "startMs": 123179,
+      "endMs": 123679
+    },
+    {
+      "word": "somewhere",
+      "startMs": 123780,
+      "endMs": 124180
+    },
+    {
+      "word": "else",
+      "startMs": 124280,
+      "endMs": 124441
+    },
+    {
+      "word": "that",
+      "startMs": 124521,
+      "endMs": 124661
+    },
+    {
+      "word": "stays",
+      "startMs": 124741,
+      "endMs": 125062
+    },
+    {
+      "word": "on",
+      "startMs": 125242,
+      "endMs": 125322
+    },
+    {
+      "word": "so",
+      "startMs": 125442,
+      "endMs": 125583
+    },
+    {
+      "word": "people",
+      "startMs": 125683,
+      "endMs": 126003
+    },
+    {
+      "word": "can",
+      "startMs": 126043,
+      "endMs": 126184
+    },
+    {
+      "word": "access",
+      "startMs": 126364,
+      "endMs": 126685
+    },
+    {
+      "word": "your",
+      "startMs": 126705,
+      "endMs": 126825
+    },
+    {
+      "word": "app.",
+      "startMs": 126945,
+      "endMs": 127085
+    },
+    {
+      "word": "A",
+      "startMs": 127686,
+      "endMs": 127726
+    },
+    {
+      "word": "domain",
+      "startMs": 127786,
+      "endMs": 128307
+    },
+    {
+      "word": "is",
+      "startMs": 128327,
+      "endMs": 128548
+    },
+    {
+      "word": "the",
+      "startMs": 128608,
+      "endMs": 128708
+    },
+    {
+      "word": "readable",
+      "startMs": 128808,
+      "endMs": 129209
+    },
+    {
+      "word": "address",
+      "startMs": 129269,
+      "endMs": 129670
+    },
+    {
+      "word": "that",
+      "startMs": 129730,
+      "endMs": 129850
+    },
+    {
+      "word": "points",
+      "startMs": 129910,
+      "endMs": 130171
+    },
+    {
+      "word": "to",
+      "startMs": 130251,
+      "endMs": 130351
+    },
+    {
+      "word": "it.",
+      "startMs": 130451,
+      "endMs": 130551
+    },
+    {
+      "word": "Until",
+      "startMs": 131192,
+      "endMs": 131433
+    },
+    {
+      "word": "you",
+      "startMs": 131453,
+      "endMs": 131593
+    },
+    {
+      "word": "set",
+      "startMs": 131613,
+      "endMs": 131793
+    },
+    {
+      "word": "this",
+      "startMs": 131833,
+      "endMs": 131994
+    },
+    {
+      "word": "up,",
+      "startMs": 132134,
+      "endMs": 132234
+    },
+    {
+      "word": "what",
+      "startMs": 132615,
+      "endMs": 132755
+    },
+    {
+      "word": "you’ve",
+      "startMs": 132795,
+      "endMs": 132975
+    },
+    {
+      "word": "built",
+      "startMs": 133015,
+      "endMs": 133236
+    },
+    {
+      "word": "is",
+      "startMs": 133356,
+      "endMs": 133416
+    },
+    {
+      "word": "only",
+      "startMs": 133436,
+      "endMs": 133797
+    },
+    {
+      "word": "available",
+      "startMs": 133877,
+      "endMs": 134378
+    },
+    {
+      "word": "to",
+      "startMs": 134418,
+      "endMs": 134518
+    },
+    {
+      "word": "you.",
+      "startMs": 134578,
+      "endMs": 135139
+    },
+    {
+      "word": "Let’s",
+      "startMs": 135777,
+      "endMs": 136078
+    },
+    {
+      "word": "read",
+      "startMs": 136138,
+      "endMs": 136278
+    },
+    {
+      "word": "the",
+      "startMs": 136318,
+      "endMs": 136378
+    },
+    {
+      "word": "map",
+      "startMs": 136438,
+      "endMs": 136639
+    },
+    {
+      "word": "backwards.",
+      "startMs": 136699,
+      "endMs": 137180
+    },
+    {
+      "word": "The",
+      "startMs": 137801,
+      "endMs": 137902
+    },
+    {
+      "word": "layers",
+      "startMs": 137942,
+      "endMs": 138303
+    },
+    {
+      "word": "also",
+      "startMs": 138463,
+      "endMs": 138744
+    },
+    {
+      "word": "show",
+      "startMs": 138784,
+      "endMs": 139064
+    },
+    {
+      "word": "the",
+      "startMs": 139124,
+      "endMs": 139225
+    },
+    {
+      "word": "order",
+      "startMs": 139345,
+      "endMs": 139585
+    },
+    {
+      "word": "things",
+      "startMs": 139646,
+      "endMs": 139906
+    },
+    {
+      "word": "can",
+      "startMs": 139966,
+      "endMs": 140087
+    },
+    {
+      "word": "go",
+      "startMs": 140127,
+      "endMs": 140247
+    },
+    {
+      "word": "wrong,",
+      "startMs": 140287,
+      "endMs": 140608
+    },
+    {
+      "word": "from",
+      "startMs": 140828,
+      "endMs": 140969
+    },
+    {
+      "word": "bottom",
+      "startMs": 141049,
+      "endMs": 141389
+    },
+    {
+      "word": "to",
+      "startMs": 141430,
+      "endMs": 141530
+    },
+    {
+      "word": "top.",
+      "startMs": 141590,
+      "endMs": 141951
+    },
+    {
+      "word": "If",
+      "startMs": 142552,
+      "endMs": 142632
+    },
+    {
+      "word": "hosting",
+      "startMs": 142692,
+      "endMs": 143053
+    },
+    {
+      "word": "breaks,",
+      "startMs": 143133,
+      "endMs": 143454
+    },
+    {
+      "word": "it’s",
+      "startMs": 143614,
+      "endMs": 143735
+    },
+    {
+      "word": "loud.",
+      "startMs": 143815,
+      "endMs": 144156
+    },
+    {
+      "word": "If",
+      "startMs": 144657,
+      "endMs": 144737
+    },
+    {
+      "word": "data",
+      "startMs": 144797,
+      "endMs": 145058
+    },
+    {
+      "word": "breaks,",
+      "startMs": 145118,
+      "endMs": 145438
+    },
+    {
+      "word": "it’s",
+      "startMs": 145599,
+      "endMs": 145719
+    },
+    {
+      "word": "worse.",
+      "startMs": 145779,
+      "endMs": 146120
+    },
+    {
+      "word": "Design",
+      "startMs": 146661,
+      "endMs": 147082
+    },
+    {
+      "word": "issues",
+      "startMs": 147162,
+      "endMs": 147503
+    },
+    {
+      "word": "are",
+      "startMs": 147583,
+      "endMs": 147663
+    },
+    {
+      "word": "quieter.",
+      "startMs": 147703,
+      "endMs": 148144
+    },
+    {
+      "word": "When",
+      "startMs": 148666,
+      "endMs": 148806
+    },
+    {
+      "word": "something",
+      "startMs": 148886,
+      "endMs": 149207
+    },
+    {
+      "word": "goes",
+      "startMs": 149267,
+      "endMs": 149467
+    },
+    {
+      "word": "wrong,",
+      "startMs": 149527,
+      "endMs": 149828
+    },
+    {
+      "word": "ask",
+      "startMs": 150429,
+      "endMs": 150590
+    },
+    {
+      "word": "which",
+      "startMs": 150630,
+      "endMs": 150790
+    },
+    {
+      "word": "layer",
+      "startMs": 150891,
+      "endMs": 151171
+    },
+    {
+      "word": "it’s",
+      "startMs": 151231,
+      "endMs": 151331
+    },
+    {
+      "word": "in",
+      "startMs": 151432,
+      "endMs": 151552
+    },
+    {
+      "word": "before",
+      "startMs": 151652,
+      "endMs": 151973
+    },
+    {
+      "word": "figuring",
+      "startMs": 152053,
+      "endMs": 152394
+    },
+    {
+      "word": "out",
+      "startMs": 152474,
+      "endMs": 152554
+    },
+    {
+      "word": "what",
+      "startMs": 152594,
+      "endMs": 152715
+    },
+    {
+      "word": "to",
+      "startMs": 152755,
+      "endMs": 152835
+    },
+    {
+      "word": "do",
+      "startMs": 152875,
+      "endMs": 152995
+    },
+    {
+      "word": "next.",
+      "startMs": 153055,
+      "endMs": 154237
+    },
+    {
+      "word": "So,",
+      "startMs": 154237,
+      "endMs": 155159
+    },
+    {
+      "word": "where",
+      "startMs": 155279,
+      "endMs": 155420
+    },
+    {
+      "word": "do",
+      "startMs": 155440,
+      "endMs": 155480
+    },
+    {
+      "word": "you",
+      "startMs": 155520,
+      "endMs": 155600
+    },
+    {
+      "word": "start?",
+      "startMs": 155640,
+      "endMs": 155961
+    },
+    {
+      "word": "If",
+      "startMs": 156562,
+      "endMs": 156622
+    },
+    {
+      "word": "you",
+      "startMs": 156642,
+      "endMs": 156763
+    },
+    {
+      "word": "have",
+      "startMs": 156803,
+      "endMs": 156943
+    },
+    {
+      "word": "just",
+      "startMs": 157003,
+      "endMs": 157163
+    },
+    {
+      "word": "an",
+      "startMs": 157224,
+      "endMs": 157264
+    },
+    {
+      "word": "idea,",
+      "startMs": 157344,
+      "endMs": 157725
+    },
+    {
+      "word": "go",
+      "startMs": 157965,
+      "endMs": 158146
+    },
+    {
+      "word": "to",
+      "startMs": 158186,
+      "endMs": 158266
+    },
+    {
+      "word": "layer",
+      "startMs": 158326,
+      "endMs": 158627
+    },
+    {
+      "word": "two,",
+      "startMs": 158647,
+      "endMs": 158927
+    },
+    {
+      "word": "the",
+      "startMs": 159208,
+      "endMs": 159288
+    },
+    {
+      "word": "browser",
+      "startMs": 159328,
+      "endMs": 159709
+    },
+    {
+      "word": "flavor.",
+      "startMs": 159769,
+      "endMs": 160110
+    },
+    {
+      "word": "If",
+      "startMs": 160831,
+      "endMs": 160892
+    },
+    {
+      "word": "you",
+      "startMs": 160932,
+      "endMs": 161072
+    },
+    {
+      "word": "already",
+      "startMs": 161132,
+      "endMs": 161413
+    },
+    {
+      "word": "have",
+      "startMs": 161453,
+      "endMs": 161593
+    },
+    {
+      "word": "a",
+      "startMs": 161633,
+      "endMs": 161653
+    },
+    {
+      "word": "design,",
+      "startMs": 161693,
+      "endMs": 162154
+    },
+    {
+      "word": "use",
+      "startMs": 162575,
+      "endMs": 162696
+    },
+    {
+      "word": "layer",
+      "startMs": 162756,
+      "endMs": 163076
+    },
+    {
+      "word": "two,",
+      "startMs": 163096,
+      "endMs": 163397
+    },
+    {
+      "word": "the",
+      "startMs": 163618,
+      "endMs": 163718
+    },
+    {
+      "word": "editor",
+      "startMs": 163838,
+      "endMs": 164139
+    },
+    {
+      "word": "flavor.",
+      "startMs": 164219,
+      "endMs": 164580
+    },
+    {
+      "word": "If",
+      "startMs": 165221,
+      "endMs": 165281
+    },
+    {
+      "word": "you",
+      "startMs": 165321,
+      "endMs": 165422
+    },
+    {
+      "word": "have",
+      "startMs": 165462,
+      "endMs": 165602
+    },
+    {
+      "word": "something",
+      "startMs": 165642,
+      "endMs": 165943
+    },
+    {
+      "word": "working",
+      "startMs": 166023,
+      "endMs": 166364
+    },
+    {
+      "word": "but",
+      "startMs": 166424,
+      "endMs": 166524
+    },
+    {
+      "word": "nobody",
+      "startMs": 166584,
+      "endMs": 166905
+    },
+    {
+      "word": "can",
+      "startMs": 166945,
+      "endMs": 167085
+    },
+    {
+      "word": "see",
+      "startMs": 167165,
+      "endMs": 167326
+    },
+    {
+      "word": "it,",
+      "startMs": 167406,
+      "endMs": 167466
+    },
+    {
+      "word": "jump",
+      "startMs": 167867,
+      "endMs": 168127
+    },
+    {
+      "word": "to",
+      "startMs": 168168,
+      "endMs": 168268
+    },
+    {
+      "word": "layer",
+      "startMs": 168308,
+      "endMs": 168568
+    },
+    {
+      "word": "five.",
+      "startMs": 168588,
+      "endMs": 169009
+    },
+    {
+      "word": "Everything",
+      "startMs": 169611,
+      "endMs": 169992
+    },
+    {
+      "word": "else",
+      "startMs": 170072,
+      "endMs": 170272
+    },
+    {
+      "word": "is",
+      "startMs": 170553,
+      "endMs": 170633
+    },
+    {
+      "word": "just",
+      "startMs": 170673,
+      "endMs": 170873
+    },
+    {
+      "word": "optimization.",
+      "startMs": 170994,
+      "endMs": 171715
+    },
+    {
+      "word": "What’s",
+      "startMs": 172898,
+      "endMs": 173098
+    },
+    {
+      "word": "next?",
+      "startMs": 173178,
+      "endMs": 173519
+    },
+    {
+      "word": "In",
+      "startMs": 173920,
+      "endMs": 173960
+    },
+    {
+      "word": "the",
+      "startMs": 174000,
+      "endMs": 174060
+    },
+    {
+      "word": "next",
+      "startMs": 174121,
+      "endMs": 174321
+    },
+    {
+      "word": "lesson,",
+      "startMs": 174381,
+      "endMs": 174742
+    },
+    {
+      "word": "we’ll",
+      "startMs": 174942,
+      "endMs": 175123
+    },
+    {
+      "word": "take",
+      "startMs": 175163,
+      "endMs": 175303
+    },
+    {
+      "word": "one",
+      "startMs": 175323,
+      "endMs": 175544
+    },
+    {
+      "word": "sentence",
+      "startMs": 175624,
+      "endMs": 176085
+    },
+    {
+      "word": "and",
+      "startMs": 176225,
+      "endMs": 176305
+    },
+    {
+      "word": "turn",
+      "startMs": 176365,
+      "endMs": 176606
+    },
+    {
+      "word": "it",
+      "startMs": 176646,
+      "endMs": 176686
+    },
+    {
+      "word": "into",
+      "startMs": 176766,
+      "endMs": 176967
+    },
+    {
+      "word": "a",
+      "startMs": 177007,
+      "endMs": 177067
+    },
+    {
+      "word": "working",
+      "startMs": 177147,
+      "endMs": 177488
+    },
+    {
+      "word": "application.",
+      "startMs": 177588,
+      "endMs": 178210
+    },
+    {
+      "word": "That’s",
+      "startMs": 178911,
+      "endMs": 179132
+    },
+    {
+      "word": "the",
+      "startMs": 179192,
+      "endMs": 179272
+    },
+    {
+      "word": "promise",
+      "startMs": 179312,
+      "endMs": 179693
+    },
+    {
+      "word": "of",
+      "startMs": 179733,
+      "endMs": 179773
+    },
+    {
+      "word": "this",
+      "startMs": 179813,
+      "endMs": 179973
+    },
+    {
+      "word": "course,",
+      "startMs": 180054,
+      "endMs": 180394
+    },
+    {
+      "word": "and",
+      "startMs": 180615,
+      "endMs": 180695
+    },
+    {
+      "word": "we’re",
+      "startMs": 180715,
+      "endMs": 180855
+    },
+    {
+      "word": "going",
+      "startMs": 180875,
+      "endMs": 181076
+    },
+    {
+      "word": "to",
+      "startMs": 181116,
+      "endMs": 181176
+    },
+    {
+      "word": "demonstrate",
+      "startMs": 181236,
+      "endMs": 181777
+    },
+    {
+      "word": "it.",
+      "startMs": 181837,
+      "endMs": 181918
+    },
+    {
+      "word": "Get",
+      "startMs": 182619,
+      "endMs": 182759
+    },
+    {
+      "word": "ready!",
+      "startMs": 182820,
+      "endMs": 183481
+    }
+  ],
+  "displaySections": [
+    {
+      "id": "why-the-names-feel-like-noise",
+      "startMs": 31,
+      "endMs": 24520,
+      "wordStart": 0,
+      "wordEnd": 72,
+      "wer": 0
+    },
+    {
+      "id": "layer-one-where-you-describe-it",
+      "startMs": 25090,
+      "endMs": 44475,
+      "wordStart": 72,
+      "wordEnd": 122,
+      "wer": 0
+    },
+    {
+      "id": "layer-two-where-it-gets-built",
+      "startMs": 45113,
+      "endMs": 73039,
+      "wordStart": 122,
+      "wordEnd": 201,
+      "wer": 0
+    },
+    {
+      "id": "layer-three-where-it-looks-right",
+      "startMs": 73039,
+      "endMs": 94302,
+      "wordStart": 201,
+      "wordEnd": 262,
+      "wer": 0
+    },
+    {
+      "id": "layer-four-where-the-data-lives",
+      "startMs": 94940,
+      "endMs": 118669,
+      "wordStart": 262,
+      "wordEnd": 324,
+      "wer": 0
+    },
+    {
+      "id": "layer-five-where-it-runs",
+      "startMs": 119392,
+      "endMs": 135139,
+      "wordStart": 324,
+      "wordEnd": 369,
+      "wer": 0
+    },
+    {
+      "id": "reading-the-map-backwards",
+      "startMs": 135777,
+      "endMs": 154237,
+      "wordStart": 369,
+      "wordEnd": 418,
+      "wer": 0
+    },
+    {
+      "id": "where-to-start-for-you-specifically",
+      "startMs": 154237,
+      "endMs": 171715,
+      "wordStart": 418,
+      "wordEnd": 467,
+      "wer": 0
+    },
+    {
+      "id": "whats-next",
+      "startMs": 172898,
+      "endMs": 183481,
+      "wordStart": 467,
+      "wordEnd": 498,
+      "wer": 0
+    }
+  ]
+}

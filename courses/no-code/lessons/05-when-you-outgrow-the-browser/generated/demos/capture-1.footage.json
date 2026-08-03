@@ -1,0 +1,28 @@
+{
+  "id": "capture-1",
+  "kind": "tool",
+  "tool": "claude",
+  "toolVersion": "2.1.220 (Claude Code)",
+  "capturedAt": "2026-07-31T10:44:35Z",
+  "durationMs": 93120,
+  "tapeTimeMs": 18560,
+  "waits": 1,
+  "marks": [
+    {
+      "name": "project-open",
+      "atMs": 2240
+    },
+    {
+      "name": "feature-added",
+      "atMs": 84760
+    },
+    {
+      "name": "files-changed",
+      "atMs": 87000
+    },
+    {
+      "name": "readme-content",
+      "atMs": 90120
+    }
+  ]
+}

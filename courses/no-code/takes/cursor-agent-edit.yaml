@@ -1,0 +1,47 @@
+# Lesson 5's alternative shot: the same agent work, in an editor rather than a
+# terminal, for viewers whose mental picture of "coding" is a window with files
+# in it.
+#
+# Unlike the other two kinds, this one has YOU in it. Cursor exposes no
+# selectors, so the engine does what a person is bad at — framing the window
+# identically every time, recording, cropping, timing — and you do the part a
+# person is good at, which is using the app.
+#
+# Record it with:
+#
+#   coursesmith footage shoot no-code/05
+#
+# It shows one beat at a time and stamps a mark when you press Enter. Take your
+# time: the engine compresses the waiting afterwards, so pausing to get it right
+# costs nothing in the finished video.
+#
+# Before the first shoot:
+#   - System Settings → Privacy & Security → Screen Recording → tick your terminal
+#   - System Settings → Privacy & Security → Accessibility → tick your terminal
+#   - Open Cursor on the habit-tracker fixture, with one window
+#
+# `coursesmith doctor` checks the first two.
+
+app: cursor
+
+# Fixed, not "whatever the window happened to be". A re-shoot has to frame
+# identically or the new clip cannot be cut into the lesson the old one is in.
+window:
+  width: 1440
+  height: 900
+
+beats:
+  - mark: project-open
+    prompt: Show the habit-tracker project in the sidebar, with src/habits.js open
+
+  - mark: request-made
+    prompt: Ask the agent, in your own words, to add a weekly summary
+
+  - mark: diff-shown
+    prompt: Wait for the diff to appear, then scroll so the changed lines are visible
+
+  - mark: accepted
+    prompt: Accept the change
+
+  - mark: it-runs
+    prompt: Run it in the integrated terminal and let the output land

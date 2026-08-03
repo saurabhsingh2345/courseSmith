@@ -1,0 +1,65 @@
+{
+  "title": "When you outgrow the browser",
+  "sections": [
+    {
+      "id": "three-signs-it-is-time",
+      "narration": "There are a few signs that it might be time to move on from your current setup. First, if you're finding yourself describing the same context every session, that's a sign to consider. The builder might be losing track of what you've done. Second, if you're looking for something specific, like a library or an unusual integration, and the builder just won't do it, that's another sign. Lastly, if someone else needs to collaborate with you, that's a clear indication that you need a different approach. None of these signs are about difficulty; they’re about ownership and control over your project.",
+      "duration_est_sec": 42,
+      "cues": []
+    },
+    {
+      "id": "what-actually-changes",
+      "narration": "When you make the switch, your project stops being tied to a builder and becomes a set of files on your computer. You can manage those files however you want. You might share them with a developer or even move to a different tool if you need to. But you can't do any of that while you’re still inside a builder. This means you'll need to handle some setup, like installing new software and getting familiar with a terminal. But these are just steps to take, not barriers.",
+      "duration_est_sec": 43,
+      "cues": [
+        {
+          "type": "diagram",
+          "ref": "builder-vs-agent",
+          "at_word": 12
+        }
+      ]
+    },
+    {
+      "id": "what-an-ai-coding-agent-is-doing",
+      "narration": "Think of an AI coding agent like a smart assistant for your code. It’s not just autocomplete or a chat window that knows code. When you give it a request, it looks through your project files to find what’s relevant. Then, it decides which files to change, makes those edits, and can even run the project to see if everything works. That last part is key; it checks its own work to ensure it did what you asked.",
+      "duration_est_sec": 42,
+      "cues": [
+        {
+          "type": "diagram",
+          "ref": "what-the-agent-does",
+          "at_word": 12
+        }
+      ]
+    },
+    {
+      "id": "watch-it-happen-on-a-real-project",
+      "narration": "Now, let’s watch this in action. What follows is a genuine recording of an AI coding agent at work. Nothing is staged, and nothing is cut. You’ll see the agent’s thinking time condensed, so it fits into this video. The corner of the frame shows how long it really took versus what you’re watching. You’ll see every step it takes, just not every second of waiting. The project is a habit tracker, and the request is to add a weekly summary feature. This kind of request often involves changes in multiple areas, which is where the agent can really help.",
+      "duration_est_sec": 48,
+      "cues": [
+        {
+          "type": "demo",
+          "ref": "ask the agent to add a weekly summary to the habit tracker, then show the files it changed",
+          "at_word": 0
+        }
+      ]
+    },
+    {
+      "id": "reading-what-just-happened",
+      "narration": "After the agent makes changes, it looks at the project context before writing anything. This is why it places new code correctly instead of creating a new file. It often updates multiple files, since features usually touch more than one part of a project. And importantly, it provides a summary of what it did. Make sure to read that part; it’s the only record of what changed if you don’t check the files yourself.",
+      "duration_est_sec": 42,
+      "cues": []
+    },
+    {
+      "id": "the-habits-that-keep-this-safe",
+      "narration": "To keep your project safe, start using version control from day one. This practice is what allows you to revert changes easily. Even if you don’t dive into the code, take a moment to read the summary of what changed. And if you see something you don’t recognize, ask the agent to explain it. There are no stupid questions here, and the explanation is just part of the process.",
+      "duration_est_sec": 45,
+      "cues": []
+    },
+    {
+      "id": "whats-next",
+      "narration": "In the next lesson, we’ll focus on design. This is a key step in developing your idea and making it look like someone chose how it looks. So, let’s get ready to dive into that.",
+      "duration_est_sec": 30,
+      "cues": []
+    }
+  ]
+}

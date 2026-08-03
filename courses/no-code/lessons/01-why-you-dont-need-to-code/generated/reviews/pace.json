@@ -1,0 +1,67 @@
+{
+  "target_wpm": 158,
+  "tolerance": 0.15,
+  "sections": [
+    {
+      "id": "the-claim-said-carefully",
+      "words": 80,
+      "duration_ms": 26868,
+      "wpm": 178.65118356409113,
+      "deviation": 0.13070369344361474,
+      "flagged": false
+    },
+    {
+      "id": "the-three-jobs-hiding-inside-building-software",
+      "words": 98,
+      "duration_ms": 36892,
+      "wpm": 159.38414832484008,
+      "deviation": 0.00876043243569673,
+      "flagged": false
+    },
+    {
+      "id": "only-the-middle-one-got-automated",
+      "words": 78,
+      "duration_ms": 28015,
+      "wpm": 167.05336426914153,
+      "deviation": 0.05729977385532611,
+      "flagged": false
+    },
+    {
+      "id": "who-is-actually-doing-this",
+      "words": 62,
+      "duration_ms": 26446,
+      "wpm": 140.66399455494215,
+      "deviation": -0.10972155344973324,
+      "flagged": false
+    },
+    {
+      "id": "what-you-will-have-built-by-the-end",
+      "words": 63,
+      "duration_ms": 19443,
+      "wpm": 194.41444221570745,
+      "deviation": 0.23047115326397122,
+      "flagged": true
+    },
+    {
+      "id": "the-honest-caveat-up-front",
+      "words": 86,
+      "duration_ms": 31654,
+      "wpm": 163.01257345043282,
+      "deviation": 0.03172514842046092,
+      "flagged": false
+    },
+    {
+      "id": "whats-next",
+      "words": 39,
+      "duration_ms": 12055,
+      "wpm": 194.11032766486935,
+      "deviation": 0.22854637762575536,
+      "flagged": true
+    }
+  ],
+  "flagged": [
+    "what-you-will-have-built-by-the-end",
+    "whats-next"
+  ],
+  "checked_at": "2026-07-31T10:19:24.166126Z"
+}

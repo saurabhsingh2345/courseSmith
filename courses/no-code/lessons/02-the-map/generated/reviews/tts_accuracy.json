@@ -1,0 +1,72 @@
+{
+  "source": "whisperx",
+  "overall_wer": 0,
+  "threshold": 0.05,
+  "sections": [
+    {
+      "id": "why-the-names-feel-like-noise",
+      "words": 72,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "layer-one-where-you-describe-it",
+      "words": 50,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "layer-two-where-it-gets-built",
+      "words": 79,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "layer-three-where-it-looks-right",
+      "words": 60,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "layer-four-where-the-data-lives",
+      "words": 61,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "layer-five-where-it-runs",
+      "words": 45,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "reading-the-map-backwards",
+      "words": 49,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "where-to-start-for-you-specifically",
+      "words": 49,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    },
+    {
+      "id": "whats-next",
+      "words": 31,
+      "errors": 0,
+      "wer": 0,
+      "flagged": false
+    }
+  ],
+  "flagged": null,
+  "checked_at": "2026-07-31T10:28:35.933279Z"
+}

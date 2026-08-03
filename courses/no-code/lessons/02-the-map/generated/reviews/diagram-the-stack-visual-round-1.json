@@ -1,0 +1,13 @@
+{
+  "kind": "diagram:the-stack",
+  "round": 1,
+  "model": "openai/gpt-4o",
+  "passed": false,
+  "issues": [
+    "Only two layers are visible; the diagram should have five stacked layers.",
+    "The bottom three layers are missing: 'Where it looks right (design tools)', 'Where the data lives (database)', 'Where it runs (hosting and a domain)'."
+  ],
+  "svg_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/no-code/lessons/02-the-map/generated/diagrams/attempts/the-stack-round-1.svg",
+  "png_path": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/courses/no-code/lessons/02-the-map/generated/diagrams/attempts/the-stack-round-1.png",
+  "checked_at": "2026-07-31T10:26:57Z"
+}

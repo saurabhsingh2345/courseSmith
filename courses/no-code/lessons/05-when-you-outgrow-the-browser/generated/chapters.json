@@ -1,0 +1,44 @@
+[
+  {
+    "id": "three-signs-it-is-time",
+    "title": "Three signs it is time",
+    "start_ms": 0,
+    "end_ms": 35953
+  },
+  {
+    "id": "what-actually-changes",
+    "title": "What actually changes",
+    "start_ms": 35953,
+    "end_ms": 65543
+  },
+  {
+    "id": "what-an-ai-coding-agent-is-doing",
+    "title": "What an AI coding agent is doing",
+    "start_ms": 65543,
+    "end_ms": 94045
+  },
+  {
+    "id": "watch-it-happen-on-a-real-project",
+    "title": "Watch it happen on a real project",
+    "start_ms": 94045,
+    "end_ms": 122944
+  },
+  {
+    "id": "reading-what-just-happened",
+    "title": "Reading what just happened",
+    "start_ms": 122944,
+    "end_ms": 150265
+  },
+  {
+    "id": "the-habits-that-keep-this-safe",
+    "title": "The habits that keep this safe",
+    "start_ms": 150265,
+    "end_ms": 178398
+  },
+  {
+    "id": "whats-next",
+    "title": "Whats Next",
+    "start_ms": 178398,
+    "end_ms": 188847
+  }
+]

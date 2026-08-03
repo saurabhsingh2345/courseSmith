@@ -1,0 +1,179 @@
+{
+  "sections": [
+    {
+      "id": "why-the-names-feel-like-noise",
+      "points": [
+        {
+          "text": "Overwhelming new tools",
+          "icon": "alert",
+          "at_word": 10
+        },
+        {
+          "text": "Five familiar layers",
+          "icon": "layers",
+          "at_word": 18
+        },
+        {
+          "text": "Easier to keep up",
+          "icon": "refresh",
+          "at_word": 30
+        }
+      ]
+    },
+    {
+      "id": "layer-one-where-you-describe-it",
+      "points": [
+        {
+          "text": "Describe your ideas",
+          "icon": "idea",
+          "at_word": 10
+        },
+        {
+          "text": "Brainstorming and planning",
+          "icon": "brain",
+          "at_word": 18
+        },
+        {
+          "text": "Sharpen your idea",
+          "icon": "wrench",
+          "at_word": 36
+        }
+      ]
+    },
+    {
+      "id": "layer-two-where-it-gets-built",
+      "points": [
+        {
+          "text": "Where it gets built",
+          "icon": "box",
+          "at_word": 6
+        },
+        {
+          "text": "App builders in browser",
+          "icon": "cloud",
+          "at_word": 18
+        },
+        {
+          "text": "AI editors on computer",
+          "icon": "monitor",
+          "at_word": 34
+        }
+      ]
+    },
+    {
+      "id": "layer-three-where-it-looks-right",
+      "points": [
+        {
+          "text": "Design tools matter",
+          "icon": "star",
+          "at_word": 8
+        },
+        {
+          "text": "Avoid generic looks",
+          "icon": "filter",
+          "at_word": 26
+        },
+        {
+          "text": "Make a big difference",
+          "icon": "milestone",
+          "at_word": 50
+        }
+      ]
+    },
+    {
+      "id": "layer-four-where-the-data-lives",
+      "points": [
+        {
+          "text": "Where the data lives",
+          "icon": "database",
+          "at_word": 8
+        },
+        {
+          "text": "Set of tables",
+          "icon": "list",
+          "at_word": 18
+        },
+        {
+          "text": "Remember between visits",
+          "icon": "clock",
+          "at_word": 38
+        }
+      ]
+    },
+    {
+      "id": "layer-five-where-it-runs",
+      "points": [
+        {
+          "text": "Where it runs",
+          "icon": "rocket",
+          "at_word": 6
+        },
+        {
+          "text": "Hosting and domain",
+          "icon": "server",
+          "at_word": 18
+        },
+        {
+          "text": "Available to you",
+          "icon": "users",
+          "at_word": 36
+        }
+      ]
+    },
+    {
+      "id": "reading-the-map-backwards",
+      "points": [
+        {
+          "text": "Read the map backwards",
+          "icon": "map",
+          "at_word": 8
+        },
+        {
+          "text": "Order of issues",
+          "icon": "flag",
+          "at_word": 22
+        },
+        {
+          "text": "Identify the layer",
+          "icon": "target",
+          "at_word": 36
+        }
+      ]
+    },
+    {
+      "id": "where-to-start-for-you-specifically",
+      "points": [
+        {
+          "text": "Where to start",
+          "icon": "compass",
+          "at_word": 6
+        },
+        {
+          "text": "Go to layer two",
+          "icon": "arrow",
+          "at_word": 14
+        },
+        {
+          "text": "Jump to layer five",
+          "icon": "play",
+          "at_word": 38
+        }
+      ]
+    },
+    {
+      "id": "whats-next",
+      "points": [
+        {
+          "text": "Next lesson: one sentence",
+          "icon": "trophy",
+          "at_word": 8
+        },
+        {
+          "text": "Turn it into an app",
+          "icon": "zap",
+          "at_word": 20
+        }
+      ]
+    }
+  ]
+}
