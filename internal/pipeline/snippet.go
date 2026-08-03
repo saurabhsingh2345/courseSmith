@@ -363,6 +363,9 @@ type SnippetPlan struct {
 	// Latency is the latency template's set of timed operations. On the plan
 	// because they share one axis, and the axis is derived from all of them.
 	Latency *LatencySpec `json:"latency,omitempty"`
+	// Multiply is the multiply template's one statement: a per-unit figure, a
+	// count and the product. On the plan because the beats build one sentence.
+	Multiply *MultiplySpec `json:"multiply,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -675,6 +678,10 @@ type SnippetBeat struct {
 	// Latency says whether this beat draws the time axis, places one operation
 	// on it, or holds the picture and reads the gap.
 	Latency *LatencyBeat `json:"latency,omitempty"`
+
+	// --- multiply template ---
+	// Multiply says which part of the multiplication this beat states.
+	Multiply *MultiplyBeat `json:"multiply,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

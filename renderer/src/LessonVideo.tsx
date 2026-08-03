@@ -43,6 +43,7 @@ import {ForkScene} from './components/ForkScene';
 import {CapabilitiesScene} from './components/CapabilitiesScene';
 import {BudgetScene} from './components/BudgetScene';
 import {LatencyScene} from './components/LatencyScene';
+import {MultiplyScene} from './components/MultiplyScene';
 import {GaugeScene} from './components/GaugeScene';
 import {VerdictScene} from './components/VerdictScene';
 import {DecisionScene} from './components/DecisionScene';
@@ -186,6 +187,8 @@ const sceneContent = (
       return <BudgetScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'latency':
       return <LatencyScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'multiply':
+      return <MultiplyScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'gauge':
       return <GaugeScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'verdict':
@@ -291,6 +294,9 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // A dashed decade grid is a set of thin marks, and a field behind them reads
     // as another gridline. The scale has to stay unambiguous.
     case 'latency':
+    // Two figures and a row of glyphs. The product is the brightest thing here by
+    // design, and a field behind it would take that away.
+    case 'multiply':
     // A dashed rule and a filling bar are thin marks. A field behind them
     // competes with the one line the whole clip is about.
     case 'gauge':

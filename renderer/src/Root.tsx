@@ -1731,6 +1731,59 @@ const latencyVizProps: LessonVideoProps = {
 };
 
 /**
+ * The multiply template on the frame that motivated it: one GPU node's power
+ * draw against a full rack's.
+ *
+ * 14.5 x 8 = 116, and those are the fixture's real numbers rather than round
+ * ones — the arithmetic validator is the whole reason this template exists, so
+ * the baseline should be of a case where the product is not obvious by eye.
+ */
+const multiplyVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 28000,
+  scenes: [
+    {
+      type: 'multiply',
+      startMs: 0,
+      endMs: 28000,
+      props: {
+        title: 'One node is fine. Eight is a substation.',
+        emphasis: 'a substation',
+        emphasisRole: 'limit',
+        unitValue: 14.5,
+        unit: 'kW',
+        unitLabel: 'one B200 node',
+        unitNote: 'About what a domestic oven pulls',
+        count: 8,
+        countLabel: 'nodes in one rack',
+        total: 116,
+        totalLabel: 'before cooling',
+        totalNote: 'More than most office floors are wired for',
+        caveat: 'And cooling adds roughly half again',
+        role: 'limit',
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'unit'},
+          {startMs: 8000, endMs: 15000, show: 'count'},
+          {startMs: 15000, endMs: 23000, show: 'total'},
+          {startMs: 23000, endMs: 28000, show: 'caveat'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
  * The verdict template on the example that motivated it: whether to self-host a
  * database. Three conditions it holds on, two it breaks on, and a call.
  */
@@ -2892,6 +2945,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(gaugeVizProps.durationMs)}
       defaultProps={gaugeVizProps}
+    />
+    <Composition
+      id="MultiplyViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(multiplyVizProps.durationMs)}
+      defaultProps={multiplyVizProps}
     />
     <Composition
       id="LatencyViz"

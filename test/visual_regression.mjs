@@ -136,6 +136,10 @@ const TARGETS = [
   // and one running almost the full width to 6.5s, over five named decades. It is
   // the only state where the categorical gap the template exists for is visible.
   { id: "LatencyViz", frame: 960 },
+  // The multiply on its caveat beat: the per-unit figure still where it was set,
+  // eight glyphs, the product beneath it, and the caveat chip. It is the only
+  // state that holds the whole sentence at once.
+  { id: "MultiplyViz", frame: 750 },
   // And mid-bite on the third claim, which is the only state that shows a segment
   // growing into a bar the earlier segments are not re-scaling inside.
   { id: "BudgetViz", frame: 660 },

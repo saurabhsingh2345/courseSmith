@@ -848,6 +848,7 @@ type beatFields struct {
 	Capabilities  bool
 	Budget        bool
 	Latency       bool
+	Multiply      bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -924,6 +925,8 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "budget"
 		case !owned.Latency && b.Latency != nil:
 			set = "latency"
+		case !owned.Multiply && b.Multiply != nil:
+			set = "multiply"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

@@ -147,6 +147,9 @@ const (
 	// SceneLatency is a logarithmic time axis with its decades named and
 	// operations placed along it.
 	SceneLatency = "latency"
+	// SceneMultiply is a per-unit figure, a row of glyphs for the count, and the
+	// product that comes of the two.
+	SceneMultiply = "multiply"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

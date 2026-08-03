@@ -74,6 +74,9 @@ const SOURCES = {
   // All three rows placed: a card with one bar on it looks like any chart, and
   // the gap between the rows is the whole subject.
   latency: "LatencyViz-960",
+  // The whole sentence rather than a mid-build state: the card has to show the
+  // small figure and the product together or it is just a number.
+  multiply: "MultiplyViz-750",
   // The two-column state rather than the call: the card should show the frame
   // the clip spends most of its time in, and a bare line of type would not read
   // as a distinct template on a gallery card.
