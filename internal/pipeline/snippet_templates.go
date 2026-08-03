@@ -851,6 +851,7 @@ type beatFields struct {
 	Multiply      bool
 	Ratio         bool
 	Table         bool
+	Toggle        bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -933,6 +934,8 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "ratio"
 		case !owned.Table && b.Table != nil:
 			set = "table"
+		case !owned.Toggle && b.Toggle != nil:
+			set = "toggle"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

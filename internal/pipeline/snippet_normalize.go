@@ -131,6 +131,7 @@ type planFields struct {
 	Multiply      bool
 	Ratio         bool
 	Table         bool
+	Toggle        bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -320,6 +321,9 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Table {
 		p.Table = nil
+	}
+	if !owns.Toggle {
+		p.Toggle = nil
 	}
 }
 

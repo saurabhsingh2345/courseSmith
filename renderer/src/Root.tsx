@@ -1888,6 +1888,64 @@ const tableVizProps: LessonVideoProps = {
 };
 
 /**
+ * The toggle template on the clip that motivated it: whether WebAssembly is
+ * replacing JavaScript.
+ *
+ * The fixture is captured on its SECOND qualifier, because that is the state
+ * where the switch has already receded into a header and the asterisks own the
+ * frame — the layout change is the part most likely to break, and the answer
+ * beat alone would never exercise it.
+ */
+const toggleVizProps: LessonVideoProps = {
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    skin: 'broadcast',
+    accentQuantity: '#f0c74c',
+    accentLimit: '#ec5b51',
+    accentRival: '#518cec',
+  },
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [
+    {
+      type: 'toggle',
+      startMs: 0,
+      endMs: 30000,
+      props: {
+        title: 'No. But that is not the interesting part.',
+        emphasis: 'not the interesting part',
+        emphasisRole: 'quantity',
+        question: 'Is WebAssembly replacing JavaScript?',
+        from: 'yes',
+        to: 'no',
+        qualifiers: [
+          {
+            label: 'in the browser',
+            note: 'It cannot touch the DOM without going through JavaScript to get there',
+            role: 'limit',
+          },
+          {
+            label: 'outside it',
+            note: 'On the edge it replaced containers instead, which nobody was predicting',
+            role: 'quantity',
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 9000, show: 'answer', raised: []},
+          {startMs: 9000, endMs: 17000, show: 'qualify', at: 0, raised: [0]},
+          {startMs: 17000, endMs: 25000, show: 'qualify', at: 1, raised: [0, 1]},
+          {startMs: 25000, endMs: 30000, show: 'settle', raised: [0, 1]},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
  * The verdict template on the example that motivated it: whether to self-host a
  * database. Three conditions it holds on, two it breaks on, and a call.
  */
@@ -3049,6 +3107,15 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(gaugeVizProps.durationMs)}
       defaultProps={gaugeVizProps}
+    />
+    <Composition
+      id="ToggleViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(toggleVizProps.durationMs)}
+      defaultProps={toggleVizProps}
     />
     <Composition
       id="TableViz"

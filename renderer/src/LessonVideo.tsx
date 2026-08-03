@@ -46,6 +46,7 @@ import {LatencyScene} from './components/LatencyScene';
 import {MultiplyScene} from './components/MultiplyScene';
 import {RatioScene} from './components/RatioScene';
 import {TableScene} from './components/TableScene';
+import {ToggleScene} from './components/ToggleScene';
 import {GaugeScene} from './components/GaugeScene';
 import {VerdictScene} from './components/VerdictScene';
 import {DecisionScene} from './components/DecisionScene';
@@ -195,6 +196,8 @@ const sceneContent = (
       return <RatioScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'table':
       return <TableScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'toggle':
+      return <ToggleScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'gauge':
       return <GaugeScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'verdict':
@@ -309,6 +312,9 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // The sheet's fidelity is the setup, and a field behind it would make it look
     // like a designed object rather than something a manufacturer printed.
     case 'table':
+    // The knob already carries a glow and it is the one thing that moves. A
+    // drifting field would put a second motion on a frame about one decision.
+    case 'toggle':
     // A dashed rule and a filling bar are thin marks. A field behind them
     // competes with the one line the whole clip is about.
     case 'gauge':

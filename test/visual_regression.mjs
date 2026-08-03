@@ -147,6 +147,10 @@ const TARGETS = [
   // weight on a tinted plate with its rule, and every row still at the pixel it
   // occupied while it was being skimmed past.
   { id: "TableViz", frame: 480 },
+  // The toggle on its second qualifier: the switch thrown and receded into a
+  // header, both answers still legible, and two asterisks stacked under it. The
+  // answer beat alone would never exercise the layout change.
+  { id: "ToggleViz", frame: 660 },
   // And straight, before the weighting goes — the setup the burial depends on.
   { id: "TableViz", frame: 240 },
   // And mid-bite on the third claim, which is the only state that shows a segment

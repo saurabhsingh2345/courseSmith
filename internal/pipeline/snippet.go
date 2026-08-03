@@ -372,6 +372,9 @@ type SnippetPlan struct {
 	// Table is the table template's spec sheet and the row that decides things.
 	// On the plan because the sheet is one object every beat looks at.
 	Table *TableSpec `json:"table,omitempty"`
+	// Toggle is the toggle template's question, switch and asterisks. On the plan
+	// because the switch is one object the whole clip argues with.
+	Toggle *ToggleSpec `json:"toggle,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -697,6 +700,11 @@ type SnippetBeat struct {
 	// Table says whether this beat shows the whole sheet, focuses the row that
 	// matters, or reads what that row decides.
 	Table *TableBeat `json:"table,omitempty"`
+
+	// --- toggle template ---
+	// Toggle says whether this beat answers the question, raises one qualifier,
+	// or settles the answer with everything it now carries.
+	Toggle *ToggleBeat `json:"toggle,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

@@ -138,7 +138,8 @@ export type SceneType =
   | 'latency'
   | 'multiply'
   | 'ratio'
-  | 'table';
+  | 'table'
+  | 'toggle';
 
 export type Scene = {
   type: SceneType;

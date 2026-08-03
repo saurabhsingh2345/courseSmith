@@ -156,6 +156,9 @@ const (
 	// SceneTable is a spec sheet shown evenly weighted and then stripped back to
 	// the one row that decides things.
 	SceneTable = "table"
+	// SceneToggle is a question answered by a switch in the first beat, with the
+	// qualifiers accumulating under it.
+	SceneToggle = "toggle"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

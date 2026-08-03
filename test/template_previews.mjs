@@ -83,6 +83,9 @@ const SOURCES = {
   // Stripped back rather than straight: an evenly weighted sheet is just a table,
   // and the card has to show the move.
   table: "TableViz-480",
+  // With the asterisks up: a switch on its own is a title card, and the
+  // qualifiers are what make this a template rather than a graphic.
+  toggle: "ToggleViz-660",
   // The two-column state rather than the call: the card should show the frame
   // the clip spends most of its time in, and a bare line of type would not read
   // as a distinct template on a gallery card.
