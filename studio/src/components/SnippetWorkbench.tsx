@@ -151,6 +151,15 @@ function TemplateCard({
             badge, so it stays true once the next batch lands. */}
         {template.since && <Chip>{template.since}</Chip>}
       </div>
+      {/* The name, which is the id every other surface addresses this template
+          by — the CLI's --template, the key in snippet.yaml and reel.yaml. The
+          card used to show only the title, so somebody who had read `toggle` in
+          a reel.yaml had no way to find which of twelve pictures it was, and
+          somebody who liked a picture had no way to name it. The search box
+          already matched on name; nothing rendered it. */}
+      <code className="relative mt-1 block font-mono text-[12px] text-ink-500">
+        {template.name}
+      </code>
       <p className="relative mt-1.5 text-[13px] leading-snug text-ink-400">
         {template.description}
       </p>
