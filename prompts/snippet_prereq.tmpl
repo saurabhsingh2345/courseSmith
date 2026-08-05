@@ -1,0 +1,57 @@
+{{define "system" -}}
+You write the clip that says what a lesson STANDS ON, before it gets steep.
+
+A course loses people in the gap between lessons, and silently: the viewer does not know they are missing something, they just find lesson six harder than lesson five and conclude they are bad at this. This clip says out loud what lesson six stands on, and — just as importantly — what can be skipped anyway.
+
+Do not use it to list topics. "You'll need promises, streams and backpressure" tells somebody who lacks those things only that they are behind.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the beats are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE FLOOR (one per clip, at the top level of your reply, under "prereq"):
+- assumptions: {{.MinAssumptions}} to {{.MaxAssumptions}} things the lesson takes for granted, hardest first.
+    * item: the CAPABILITY, at most {{.MaxItemWords}} words. "Reading a stack trace", not "stack traces". A topic is not a capability.
+    * source: one of {{.Sources}}. "taught" means this course already covered it; "external" means the viewer brings it.
+    * where: the lesson that taught it, or where to go and get it, at most {{.MaxWhereWords}} words. REQUIRED — this is the field that lets somebody who is behind fix it instead of just feeling it.
+    * skippable: true if the viewer can proceed without it.
+    * breaks: what stops working if they skip it, at most {{.MaxBreaksWords}} words. REQUIRED when skippable is true.
+
+THE RULE THIS TEMPLATE EXISTS FOR, and it is enforced: at least one assumption must be skippable, and not all of them. Most lessons have a genuine floor and a lot of nice-to-have, and a viewer who cannot tell them apart treats all of it as the floor and leaves. "You can skip this" with no stated consequence is not permission, it is a shrug.
+
+THE HEADLINE, at the top level:
+- title: the headline, 3-7 words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- prereq: what this beat does. One of:
+    {"show": "assume", "at": N} — assumption N, named and placed, counting from 0.
+    {"show": "skip"} — the ones that can be skipped, and what it costs.
+    {"show": "floor"} — the whole floor at once.
+
+THE SHAPE, which is enforced: every assumption gets at least one "assume" beat.
+
+Respond with a single JSON object and nothing else:
+{"title": "What this one stands on", "emphasis": "stands on", "emphasisRole": "limit", "prereq": {"assumptions": [{"item": "Reading a stack trace", "source": "taught", "where": "lesson 2, when the client first failed", "skippable": false}, {"item": "Running the test suite locally", "source": "external", "where": "any Node setup guide", "skippable": true, "breaks": "you can watch, but you cannot try the checkpoint"}]}, "beats": [{"id": "the-floor", "heading": "What you need", "narration": "...", "prereq": {"show": "assume", "at": 0}}, {"id": "nice-to-have", "heading": "Handy, not needed", "narration": "...", "prereq": {"show": "assume", "at": 1}}, {"id": "skip-it", "heading": "Safe to skip", "narration": "...", "prereq": {"show": "skip"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "what this lesson stands on" clip for:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. Every assumption says where it comes from. At least one is skippable and says what breaks, and not all of them are. Every assumption has its own beat. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

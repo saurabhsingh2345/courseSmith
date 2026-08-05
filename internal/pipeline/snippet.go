@@ -376,6 +376,23 @@ type SnippetPlan struct {
 	// because the switch is one object the whole clip argues with.
 	Toggle *ToggleSpec `json:"toggle,omitempty"`
 
+	// --- the v5 course-scaffolding batch ---
+	// Each of these sits on the PLAN rather than on a beat because each is one
+	// object the whole clip is about: a lesson has one outcome contract, one set
+	// of things it assumes, one thing the last lesson left behind, one mistake
+	// at this step, one task that proves you can do it.
+
+	// Objective is what the viewer will be able to DO after this lesson.
+	Objective *ObjectiveSpec `json:"objective,omitempty"`
+	// Prereq is what this lesson assumes, and what can safely be skipped.
+	Prereq *PrereqSpec `json:"prereq,omitempty"`
+	// Recap is what earlier lessons established, compressed.
+	Recap *RecapSpec `json:"recap,omitempty"`
+	// Pitfall is the mistake made at this exact step, and how it shows.
+	Pitfall *PitfallSpec `json:"pitfall,omitempty"`
+	// Checkpoint is the task that proves the outcome was reached.
+	Checkpoint *CheckpointSpec `json:"checkpoint,omitempty"`
+
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
 	// validators can size the beat count against the same budget the prompt
@@ -705,6 +722,18 @@ type SnippetBeat struct {
 	// Toggle says whether this beat answers the question, raises one qualifier,
 	// or settles the answer with everything it now carries.
 	Toggle *ToggleBeat `json:"toggle,omitempty"`
+
+	// --- the v5 course-scaffolding batch ---
+	// Objective says which outcome this beat is on.
+	Objective *ObjectiveBeat `json:"objective,omitempty"`
+	// Prereq says which assumption this beat is on.
+	Prereq *PrereqBeat `json:"prereq,omitempty"`
+	// Recap says which established claim this beat is bringing back.
+	Recap *RecapBeat `json:"recap,omitempty"`
+	// Pitfall says whether this beat shows the mistake, its symptom, or the fix.
+	Pitfall *PitfallBeat `json:"pitfall,omitempty"`
+	// Checkpoint says which step of the task this beat is on.
+	Checkpoint *CheckpointBeat `json:"checkpoint,omitempty"`
 }
 
 // QuizSpec is the clip's one question.
@@ -1041,12 +1070,26 @@ style:
   captions: "on"
 pipeline:
   video_only: true
-  # Snippet planning runs on gpt-4o-mini rather than the default Groq model.
-  # Groq's free tier is 100k tokens per day and one snippet plan is ~14k, so a
-  # handful of clips — or one clip whose plan needs correction rounds —
-  # exhausts the day and every later plan fails on a 429 that looks like a bug
-  # in the planner. gpt-4o-mini plans these as well and is not rationed.
-  llm_content: openai/gpt-4o-mini
+  # Snippet planning runs on OpenAI rather than the default Groq model. Groq's
+  # free tier is 100k tokens per day and one snippet plan is ~14k, so a handful
+  # of clips — or one clip whose plan needs correction rounds — exhausts the day
+  # and every later plan fails on a 429 that looks like a bug in the planner.
+  # OpenAI is not rationed that way.
+  llm_content: openai/gpt-5-mini
+  # Grounding OFF for snippets, and this is the biggest cost line there was.
+  #
+  # A web-search call bills its RESULTS as prompt tokens: measured at 24,360
+  # prompt tokens per call, about five cents, and roughly a minute of wall time.
+  # On a 30-second clip that was a third of the entire bill to source facts for
+  # 130 words of narration, most of which come from the creator's own prompt
+  # anyway — a snippet's prompt IS its brief, so those facts are already "given"
+  # and render fine without anybody searching for them.
+  #
+  # What is lost: facts the model believes but the prompt does not state stay
+  # labelled "unverified" and never reach the screen. That is the correct
+  # outcome for a clip and the wrong one for a course lesson, which is why this
+  # is set here rather than in Defaults.
+  llm_search: "off"
 `
 
 // EnsureSnippetsCourse creates (or opens) the synthetic snippets course under

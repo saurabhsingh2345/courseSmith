@@ -59,6 +59,11 @@ import {ConstellationScene} from './components/ConstellationScene';
 import {ChapterScene} from './components/ChapterScene';
 import {CycleScene} from './components/CycleScene';
 import {ScaleScene} from './components/ScaleScene';
+import {ObjectiveScene} from './components/ObjectiveScene';
+import {PrereqScene} from './components/PrereqScene';
+import {RecapScene} from './components/RecapScene';
+import {PitfallScene} from './components/PitfallScene';
+import {CheckpointScene} from './components/CheckpointScene';
 import {SceneChrome, Watermark} from './components/SceneChrome';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
@@ -222,8 +227,41 @@ const sceneContent = (
       return <CycleScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'scale':
       return <ScaleScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'objective':
+      return <ObjectiveScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'prereq':
+      return <PrereqScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'recap':
+      return <RecapScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'pitfall':
+      return <PitfallScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'checkpoint':
+      return <CheckpointScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
-      return null;
+      // THROW, do not return null.
+      //
+      // Returning null was the old behaviour and it is the worst possible one: a
+      // scene type this switch does not know drew nothing, so the render
+      // SUCCEEDED and produced a blank frame with the voiceover playing over it.
+      // Every expensive stage had already run — the plan, the review rounds, the
+      // TTS, the alignment — and the only signal that anything was wrong was
+      // watching the finished video.
+      //
+      // It happened for real: five templates were registered in the catalog with
+      // their Go half complete and no component here yet, and the first clip cut
+      // with one came out white and silent-looking. The pipeline had no way to
+      // notice, because "renders nothing" and "renders correctly" are the same
+      // outcome to everything downstream of this function.
+      //
+      // Failing here costs the render and nothing else, and the message names the
+      // two things that are actually wrong.
+      throw new Error(
+        `LessonVideo has no component for scene type "${scene.type}". ` +
+          `Either the template's <Name>Scene.tsx has not been written yet, or it exists ` +
+          `and was never added to this switch. Refusing to render a blank frame — ` +
+          `a scene that draws nothing is indistinguishable from one that drew correctly, ` +
+          `so this would otherwise ship as a video with a voiceover over an empty screen.`,
+      );
   }
 };
 

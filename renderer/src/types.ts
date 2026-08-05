@@ -139,7 +139,13 @@ export type SceneType =
   | 'multiply'
   | 'ratio'
   | 'table'
-  | 'toggle';
+  | 'toggle'
+  // The v5 course-scaffolding scenes.
+  | 'objective'
+  | 'prereq'
+  | 'recap'
+  | 'pitfall'
+  | 'checkpoint';
 
 export type Scene = {
   type: SceneType;

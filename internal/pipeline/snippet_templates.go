@@ -852,6 +852,11 @@ type beatFields struct {
 	Ratio         bool
 	Table         bool
 	Toggle        bool
+	Objective     bool
+	Prereq        bool
+	Recap         bool
+	Pitfall       bool
+	Checkpoint    bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -934,6 +939,16 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "ratio"
 		case !owned.Table && b.Table != nil:
 			set = "table"
+		case !owned.Objective && b.Objective != nil:
+			return fmt.Errorf("beat %q carries a `objective` payload, which the %s template does not use", b.ID, p.Template)
+		case !owned.Prereq && b.Prereq != nil:
+			return fmt.Errorf("beat %q carries a `prereq` payload, which the %s template does not use", b.ID, p.Template)
+		case !owned.Recap && b.Recap != nil:
+			return fmt.Errorf("beat %q carries a `recap` payload, which the %s template does not use", b.ID, p.Template)
+		case !owned.Pitfall && b.Pitfall != nil:
+			return fmt.Errorf("beat %q carries a `pitfall` payload, which the %s template does not use", b.ID, p.Template)
+		case !owned.Checkpoint && b.Checkpoint != nil:
+			return fmt.Errorf("beat %q carries a `checkpoint` payload, which the %s template does not use", b.ID, p.Template)
 		case !owned.Toggle && b.Toggle != nil:
 			set = "toggle"
 		case !owned.Sketch && len(b.Sketch) > 0:

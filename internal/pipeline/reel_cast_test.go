@@ -110,9 +110,34 @@ func TestCastNormalizeRepairs(t *testing.T) {
 // would silently stop offering the newest looks.
 func TestCatalogForPromptCoversTheWholeRegistry(t *testing.T) {
 	cat := SnippetCatalogForPrompt()
+	// The OFFERED templates, not every registered one. A shelved template is
+	// deliberately absent from anything that presents a choice — that is what
+	// shelving is — and the caster is the most important of those surfaces,
+	// because handed a catalog it will use everything in it.
+	//
+	// This used to iterate SnippetTemplateNames(), which includes shelved
+	// entries, and passed only because the one shelved template was called
+	// `story` and that word appears in other templates' copy. The first shelved
+	// name that was not also an English word broke it.
+	for _, tpl := range SnippetTemplateList() {
+		if !strings.Contains(cat, tpl.Name) {
+			t.Errorf("template %q is offered but missing from the caster's catalog", tpl.Name)
+		}
+	}
+	// And the inverse, which is the contract that actually matters: a shelved
+	// template must NOT be castable. One that cannot be rendered but can be
+	// picked produces a video with a voiceover over an empty screen, after
+	// paying for the plan, the review rounds and the audio.
 	for _, name := range SnippetTemplateNames() {
-		if !strings.Contains(cat, name) {
-			t.Errorf("template %q is missing from the caster's catalog", name)
+		tpl := SnippetTemplates[name]
+		if !tpl.Shelved {
+			continue
+		}
+		// Matched on the catalog's own line format rather than the bare name, so
+		// a shelved template whose name happens to occur inside another entry's
+		// description does not read as a false positive.
+		if strings.Contains(cat, "\n  "+name+" ") {
+			t.Errorf("shelved template %q is being offered to the caster", name)
 		}
 	}
 	// And the group headings are there, since the caster picks by job.

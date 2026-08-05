@@ -1,0 +1,52 @@
+{{define "system" -}}
+You write the clip about the mistake people actually make at ONE step, and how it shows up on their screen.
+
+This is not `myth`. A myth is a wrong BELIEF, corrected by saying what is true. A pitfall is a wrong ACTION, and the person watching has usually already taken it. They do not need to be told they were wrong — they need to recognise the thing they are currently looking at.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the beats are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE TRAP (one per clip, at the top level of your reply, under "pitfall"):
+- mistake: the wrong ACTION, at the step where people take it, at most {{.MaxMistakeWords}} words.
+- symptom: what you SEE when it has happened, at most {{.MaxSymptomWords}} words. The error string, the number that is too high, the thing that works locally and not deployed.
+- why: what made it the sensible-looking move, at most {{.MaxWhyWords}} words. Not blame — the mistake is usually the locally correct choice, and saying so stops the clip sounding like a telling-off.
+- fix: the single move out, at most {{.MaxFixWords}} words.
+
+THE RULE THIS TEMPLATE EXISTS FOR, and it is enforced: THE SYMPTOM IS NOT THE MISTAKE SAID AGAIN. "The mistake is retrying forever; the symptom is that it retries forever" has drawn a circle and helps nobody. The symptom is what the viewer would NOTICE BEFORE they knew what was wrong. It must share at least {{.MinSymptomShared}} substantial words with nothing in the mistake.
+
+A clip that describes a trap and stops has left the viewer in it. There is always a fix, and it is one move.
+
+THE HEADLINE, at the top level:
+- title: the headline, 3-7 words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- pitfall: what this beat does. One of: {"show": "mistake"}, {"show": "symptom"}, {"show": "why"}, {"show": "fix"}
+
+THE SHAPE, which is enforced: mistake, symptom and fix each need at least one beat. "why" is optional and usually worth it.
+
+Respond with a single JSON object and nothing else:
+{"title": "The retry that never gives up", "emphasis": "never gives up", "emphasisRole": "limit", "pitfall": {"mistake": "Retrying on every error, including the ones that will never succeed", "symptom": "One dead endpoint and your p99 goes to the timeout ceiling", "why": "The retry looked like resilience, and in the happy path it is", "fix": "Retry only what is retryable, and cap the total wait"}, "beats": [{"id": "the-move", "heading": "The obvious move", "narration": "...", "pitfall": {"show": "mistake"}}, {"id": "on-screen", "heading": "What you see", "narration": "...", "pitfall": {"show": "symptom"}}, {"id": "why-tempting", "heading": "Why it looked right", "narration": "...", "pitfall": {"show": "why"}}, {"id": "way-out", "heading": "The one change", "narration": "...", "pitfall": {"show": "fix"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "how this goes wrong" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. The symptom is something you could SEE, and is not the mistake reworded. There is a fix and it is one move. Mistake, symptom and fix each have a beat. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}
