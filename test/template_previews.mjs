@@ -26,6 +26,12 @@ const OUT = join(__dirname, "..", "studio", "public", "template-previews");
 // derived: the composition ids and the template names are deliberately
 // different vocabularies and guessing between them would break silently.
 const SOURCES = {
+  objective: "ObjectiveViz-750",
+  prereq: "PrereqViz-700",
+  recap: "RecapViz-700",
+  pitfall: "PitfallViz-840",
+  checkpoint: "CheckpointViz-800",
+
   // The one preview that cannot show real content, and that is a property of
   // the template rather than a shortcut: what `footage` produces is *your*
   // recording, so a card showing somebody else's clip would misrepresent what

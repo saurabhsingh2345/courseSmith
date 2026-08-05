@@ -194,7 +194,7 @@ func CastReel(ctx context.Context, e *Env, brief, title string, want int, cfg co
 	}
 
 	var cast CastResult
-	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.6, 4096, castRepairRounds, &cast, func() error {
+	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.6, thinkingBudget(4096), castRepairRounds, effortInterlocking, &cast, func() error {
 		normalizeCast(&cast)
 		return validateCast(&cast)
 	})

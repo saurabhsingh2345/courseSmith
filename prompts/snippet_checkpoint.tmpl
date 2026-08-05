@@ -1,0 +1,60 @@
+{{define "system" -}}
+You write the clip that CLOSES a lesson: a short task the viewer does now, and the condition that tells them it worked.
+
+The viewer is alone at the end of a video with nobody to mark their work. So the clip has to hand them something they can check themselves — a command that exits zero, a number under a threshold, a page that loads.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the beats are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE TASK (one per clip, at the top level of your reply, under "checkpoint"):
+- task: what to do, at most {{.MaxTaskWords}} words. It MUST open with one of these verbs: {{.Verbs}}
+- steps: {{.MinSteps}} to {{.MaxSteps}} moves, in order, each at most {{.MaxStepWords}} words.
+- done: the condition that says it worked, at most {{.MaxDoneWords}} words.
+- stuck: the one thing to check first when it does not work, at most {{.MaxStuckWords}} words. Optional, and it is the difference between a checkpoint and a cliff.
+
+TWO RULES, BOTH ENFORCED:
+
+The task opens with an observable verb. These are rejected — {{.BeliefVerbs}} — for the same reason they are rejected in the `objective` template that opens the lesson: the two share one verb list on purpose, because a lesson's promise and its proof have to be the same kind of thing.
+
+THE DONE-WHEN IS A CONDITION, NOT A FEELING. "You should feel comfortable with retries" is rejected. Nobody can check whether they feel ready. Give them something to LOOK at.
+
+And keep it the size of the LESSON, not the size of the subject. A checkpoint asking for a production-grade implementation after eight minutes is a way of telling people they failed.
+
+THE HEADLINE, at the top level:
+- title: the headline, 3-7 words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- checkpoint: what this beat does. One of:
+    {"show": "task"} — the task, stated.
+    {"show": "step", "at": N} — step N, walked, counting from 0.
+    {"show": "done"} — the condition that settles it.
+    {"show": "stuck"} — what to check when it does not work.
+
+THE SHAPE, which is enforced: there must be a "task" beat and a "done" beat, and every step needs its own "step" beat.
+
+Respond with a single JSON object and nothing else:
+{"title": "Make it give up", "emphasis": "give up", "emphasisRole": "limit", "checkpoint": {"task": "Write a retry that stops after four tries", "steps": ["Point the client at an endpoint that always fails", "Add a counter and break at four", "Log the total elapsed time"], "done": "the log shows four attempts and the call returns", "stuck": "if it hangs, your timeout is longer than your budget"}, "beats": [{"id": "the-task", "heading": "Your turn", "narration": "...", "checkpoint": {"show": "task"}}, {"id": "point-it", "heading": "A failing endpoint", "narration": "...", "checkpoint": {"show": "step", "at": 0}}, {"id": "count", "heading": "Count and break", "narration": "...", "checkpoint": {"show": "step", "at": 1}}, {"id": "time-it", "heading": "Log the time", "narration": "...", "checkpoint": {"show": "step", "at": 2}}, {"id": "how-you-know", "heading": "How you know", "narration": "...", "checkpoint": {"show": "done"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "prove you can do it" closing clip for:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. The task opens with an allowed verb. The done-when is something to look at, not something to feel. Every step has its own beat, and there is a task beat and a done beat. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

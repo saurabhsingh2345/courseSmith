@@ -13,6 +13,48 @@ import (
 	"github.com/enfec/coursesmith/internal/llm"
 )
 
+// How hard a stage asks its model to think ON A RETRY. Everything else, and
+// every FIRST attempt, inherits the course's reasoning_effort.
+//
+// The axis is NOT importance — it is whether the stage has to satisfy several
+// independent rules at once. Reasoning tokens bill as output tokens, so effort
+// spent where a single well-specified field was wanted is money for nothing;
+// but a stage juggling a beat count against a per-beat word range against a
+// total word budget cannot land them all in one pass, and measurably does not:
+// at low effort a 45-second clip came back 101 words (34s) against a budget the
+// prompt calls a hard requirement, and at medium the same prompt landed 136
+// words (46s). The correction rounds hid it — they were being spent re-fixing
+// arithmetic instead of the content.
+const (
+	// effortInherit takes whatever the course configured.
+	effortInherit = ""
+	// effortInterlocking is for artifacts with several interacting numeric
+	// rules, where one pass cannot satisfy all of them at once. It applies only
+	// after a reply has been rejected — see completeWithRepairRounds.
+	effortInterlocking = "medium"
+)
+
+// thinkingBudget widens an output budget to cover reasoning.
+//
+// A reasoning model spends its thinking from the SAME max_completion_tokens
+// pool as the answer, and spends it FIRST. So a budget sized for the artifact —
+// 6144 for a snippet plan, which is about four times what the JSON needs — is
+// not generous once effort goes up: the thinking consumes it and the reply is
+// cut off mid-object.
+//
+// That failure is nasty because it does not look like a budget problem. It
+// surfaces as `response was truncated`, after the retry stack has burned four
+// attempts, and the stage reports that it could not run — so the visible symptom
+// is a missing quality gate, not a number that needs raising. It was introduced
+// here the moment planning moved to effortInterlocking, and caught only because
+// the truncation error names ReasoningEffort.
+//
+// Tripled rather than tuned: the point is headroom, and an unused ceiling costs
+// nothing (only tokens actually emitted are billed). Callers that raise effort
+// must pass their budget through here — the coupling is easy to forget, which
+// is exactly why it is a named function and not a bigger literal at each site.
+func thinkingBudget(contentTokens int) int { return contentTokens * 3 }
+
 // completeWithRepair sends a system+user prompt and passes the reply through
 // accept, which validates it and returns the normalized artifact (e.g. JSON
 // as-is, or an SVG extracted from surrounding noise). If accept rejects the
@@ -44,7 +86,7 @@ func (e *Env) completeWithRepairImages(
 	jsonMode bool,
 	accept func(content string) (string, error),
 ) (string, error) {
-	return e.completeWithRepairRounds(ctx, pcfg, task, system, user, images, temperature, maxTokens, jsonMode, 1, accept)
+	return e.completeWithRepairRounds(ctx, pcfg, task, system, user, images, temperature, maxTokens, jsonMode, 1, effortInherit, accept)
 }
 
 // completeWithRepairRounds is the general form: up to `rounds` correction
@@ -66,6 +108,7 @@ func (e *Env) completeWithRepairRounds(
 	maxTokens int,
 	jsonMode bool,
 	rounds int,
+	effort string,
 	accept func(content string) (string, error),
 ) (string, error) {
 	if e.Router == nil {
@@ -81,6 +124,9 @@ func (e *Env) completeWithRepairRounds(
 		MaxTokens:   maxTokens,
 		JSONMode:    jsonMode,
 		Images:      images,
+		// The FIRST attempt always runs at the course's configured effort, even
+		// when this call asked for more. See the escalation note below.
+		ReasoningEffort: effortInherit,
 	}
 
 	resp, err := e.Router.Complete(ctx, pcfg, task, req)
@@ -100,6 +146,23 @@ func (e *Env) completeWithRepairRounds(
 			sb.WriteString("- " + r + "\n")
 		}
 		sb.WriteString("Respond again with only the corrected output — no fences, no commentary.")
+
+		// Escalate the thinking budget only now, on a reply that was actually
+		// rejected — this is the whole cost model of the stage.
+		//
+		// Paying for effort on the first attempt was measured and it is bad
+		// value: a snippet plan's JSON is one to two thousand tokens, and at
+		// medium the calls averaged 3,398 completion tokens, so roughly two
+		// thirds of the bill was thinking — on every plan, including the many
+		// that would have been right at low effort. Reasoning tokens bill as
+		// completion, so that is not a rounding error: it took a 30-second clip
+		// from about two cents to twenty.
+		//
+		// A rejection is the signal that this particular plan is one of the hard
+		// ones — the beat count fought the word budget, or the template's own
+		// rules did. THAT is worth thinking about, and only that. Most plans pass
+		// first time and never pay.
+		req.ReasoningEffort = effort
 
 		req.Messages = append(messages,
 			llm.Message{Role: llm.RoleAssistant, Content: resp.Content},
@@ -148,7 +211,7 @@ func (e *Env) completeJSONWithImages(
 	out any,
 	validate func() error,
 ) error {
-	return e.completeJSONRounds(ctx, pcfg, task, system, user, images, temperature, maxTokens, 1, out, validate)
+	return e.completeJSONRounds(ctx, pcfg, task, system, user, images, temperature, maxTokens, 1, effortInherit, out, validate)
 }
 
 // completeJSONRounds is completeJSON with an explicit correction-round budget,
@@ -162,10 +225,11 @@ func (e *Env) completeJSONRounds(
 	temperature float64,
 	maxTokens int,
 	rounds int,
+	effort string,
 	out any,
 	validate func() error,
 ) error {
-	_, err := e.completeWithRepairRounds(ctx, pcfg, task, system, user, images, temperature, maxTokens, true, rounds,
+	_, err := e.completeWithRepairRounds(ctx, pcfg, task, system, user, images, temperature, maxTokens, true, rounds, effort,
 		func(content string) (string, error) {
 			if err := parseJSONStrict(content, out, validate); err != nil {
 				return "", err
@@ -194,10 +258,11 @@ func (e *Env) completeJSONLenientRounds(
 	temperature float64,
 	maxTokens int,
 	rounds int,
+	effort string,
 	out any,
 	validate func() error,
 ) error {
-	_, err := e.completeWithRepairRounds(ctx, pcfg, task, system, user, nil, temperature, maxTokens, true, rounds,
+	_, err := e.completeWithRepairRounds(ctx, pcfg, task, system, user, nil, temperature, maxTokens, true, rounds, effort,
 		func(content string) (string, error) {
 			if err := parseJSONLenient(content, out, validate); err != nil {
 				return "", err

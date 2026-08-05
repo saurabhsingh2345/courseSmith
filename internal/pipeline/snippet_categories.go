@@ -111,6 +111,23 @@ const (
 	// SinceV4 is the replica batch, built frame-by-frame against four reference
 	// videos rather than from a description of them. See FamilyReplica.
 	SinceV4 = "v4"
+	// SinceV5 is the course-scaffolding batch: the five templates that structure
+	// a course rather than answer a question inside one.
+	//
+	// The catalog reached forty-four templates that could each explain
+	// something, and still had no way to say what a lesson is FOR, what it
+	// assumes, what the last one established, where people go wrong at this
+	// exact step, or whether the viewer can now do the thing. Every one of the
+	// forty-four is an answer; none of them is the scaffolding a course hangs
+	// answers on, which is why a run of them reads as a playlist rather than a
+	// course.
+	//
+	// What makes these five a batch rather than five more looks: each one's
+	// validator checks a relationship to the REST of the course — an outcome
+	// that must be observable, a prerequisite that must resolve to something
+	// actually taught, a recap claim that must trace to a prior lesson. They are
+	// the first templates that cannot be validated by looking at one clip alone.
+	SinceV5 = "v5"
 )
 
 // Template families. A family is which surface offers a template, and it exists

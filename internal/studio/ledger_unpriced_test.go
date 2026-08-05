@@ -34,6 +34,12 @@ func writeCacheEntry(t *testing.T, dir, name, provider, model string, prompt, co
 // substance stage's grounding put a model in the pipeline the table had never
 // heard of, so every grounded run recorded its search as costing exactly $0.00 —
 // a wrong number that looked authoritative.
+//
+// gpt-5-search-api is priced now, so the fixture below uses a model that really
+// is unknown. Note that it has to be one which prefix-matches NOTHING: because
+// priceFor takes the longest matching prefix, "gpt-5-something" would not be
+// reported unpriced at all — it would quietly bill at gpt-5's rate, which is the
+// same class of silent-wrong-number this test exists to prevent.
 func TestLedgerFlagsUnpricedModels(t *testing.T) {
 	state := t.TempDir()
 	cache := filepath.Join(state, "cache")
@@ -41,7 +47,7 @@ func TestLedgerFlagsUnpricedModels(t *testing.T) {
 		t.Fatal(err)
 	}
 	writeCacheEntry(t, cache, "a", "openai", "gpt-4o-mini-2024-07-18", 100000, 10000)
-	writeCacheEntry(t, cache, "b", "openai", "gpt-5-search-api-2025-10-14", 32000, 2000)
+	writeCacheEntry(t, cache, "b", "openai", "mistral-large-2411", 32000, 2000)
 
 	l, err := BuildLedger(state)
 	if err != nil {
@@ -62,7 +68,7 @@ func TestLedgerFlagsUnpricedModels(t *testing.T) {
 	if unpriced == nil {
 		t.Fatal("the unknown model was marked priced — its spend is silently missing")
 	}
-	if unpriced.Model != "gpt-5-search-api-2025-10-14" {
+	if unpriced.Model != "mistral-large-2411" {
 		t.Errorf("wrong row flagged: %s", unpriced.Model)
 	}
 
@@ -76,7 +82,7 @@ func TestLedgerFlagsUnpricedModels(t *testing.T) {
 	if diff := l.TotalCostUSD - want; diff > 1e-9 || diff < -1e-9 {
 		t.Errorf("total = %v, want only the priced spend %v", l.TotalCostUSD, want)
 	}
-	if !slices.Contains(l.UnpricedModels, "gpt-5-search-api-2025-10-14") {
+	if !slices.Contains(l.UnpricedModels, "mistral-large-2411") {
 		t.Errorf("UnpricedModels = %v, does not name the unpriced model", l.UnpricedModels)
 	}
 	// The size of the gap, not only its existence: a caller deciding whether it
@@ -172,7 +178,7 @@ func TestPriceForReportsWhetherItKnows(t *testing.T) {
 	if _, _, known := priceFor("gpt-4o-mini-2024-07-18"); !known {
 		t.Error("a dated known model was not recognised")
 	}
-	if _, _, known := priceFor("gpt-5-search-api-2025-10-14"); known {
+	if _, _, known := priceFor("mistral-large-2411"); known {
 		t.Error("an unknown model reported a price")
 	}
 	// Longest-prefix wins, so gpt-4o-mini must not be priced as gpt-4o.
@@ -180,5 +186,54 @@ func TestPriceForReportsWhetherItKnows(t *testing.T) {
 	pp4o, _, _ := priceFor("gpt-4o")
 	if pp >= pp4o {
 		t.Errorf("gpt-4o-mini priced at %v, not below gpt-4o at %v — prefix matching is wrong", pp, pp4o)
+	}
+}
+
+// The GPT-5 family is where longest-prefix matching is most dangerous, because
+// "gpt-5" is a prefix of every other member and the rates differ by up to 60x on
+// output. A variant that fell through to the base entry would not look broken
+// anywhere — it would just report a confident, wrong number, which is the exact
+// failure the Priced/unpriced distinction was built to stop.
+// closeEnough compares per-token rates, which are small enough that dividing a
+// table written per 1M tokens leaves float noise well below any real difference.
+func closeEnough(got, want float64) bool {
+	diff := got - want
+	return diff < 1e-12 && diff > -1e-12
+}
+
+func TestGPT5VariantsDoNotFallThroughToTheBaseModel(t *testing.T) {
+	base, baseOut, known := priceFor("gpt-5")
+	if !known {
+		t.Fatal("gpt-5 is not priced")
+	}
+
+	for _, tc := range []struct {
+		model              string
+		wantIn, wantOutput float64
+	}{
+		{"gpt-5-mini", 0.25, 2.00},
+		{"gpt-5-nano", 0.05, 0.40},
+		{"gpt-5-pro", 15.00, 120.00},
+		{"gpt-5-search-api", 1.25, 10.00},
+		{"gpt-5.4", 2.50, 15.00},
+		{"gpt-5.4-mini", 0.75, 4.50},
+		{"gpt-5.4-nano", 0.20, 1.25},
+		{"gpt-5.5", 5.00, 30.00},
+		{"gpt-5.5-pro", 30.00, 180.00},
+		// Dated ids are what actually arrive in a cache entry's response.model.
+		{"gpt-5-mini-2025-08-07", 0.25, 2.00},
+		{"gpt-5.4-mini-2026-03-17", 0.75, 4.50},
+	} {
+		in, out, ok := priceFor(tc.model)
+		if !ok {
+			t.Errorf("%s is not priced at all", tc.model)
+			continue
+		}
+		// priceFor returns PER-TOKEN rates; the table is written per 1M.
+		wantIn, wantOut := tc.wantIn/1e6, tc.wantOutput/1e6
+		if !closeEnough(in, wantIn) || !closeEnough(out, wantOut) {
+			t.Errorf("%s priced at %v/%v, want %v/%v (fell through to gpt-5 at %v/%v?)",
+				tc.model, in, out, wantIn, wantOut, base, baseOut)
+		}
 	}
 }

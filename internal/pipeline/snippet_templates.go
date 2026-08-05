@@ -508,7 +508,7 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	// connecting them was never stated. Observed on every list-shaped template:
 	// constellation and rundown failed this and nothing else after the beat
 	// ceiling was fixed.
-	user += beatVariationAdvice(wantWords, minBeats, maxBeats) + budgetTotalsAdvice(minWords, maxWords)
+	user += beatVariationAdvice(wantWords, minBeats, maxBeats) + budgetTotalsAdvice(minWords, maxWords) + spokenVoiceAdvice()
 
 	// A review critique is appended to the rendered user message rather than
 	// rendered into the prompt file. Blunt, and chosen deliberately: the
@@ -527,7 +527,7 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	// asks for — beat count, per-beat words, total words, and whatever the
 	// template adds on top. One correction round is not enough to land them all.
 	// The bounds themselves are computed above, before the prompt quotes them.
-	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.5, 6144, snippetPlanRepairRounds, &plan, func() error {
+	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.5, thinkingBudget(6144), snippetPlanRepairRounds, effortInterlocking, &plan, func() error {
 		plan.Template = spec.Template // so Validate dispatches to this template
 		// The budget the prompt quoted, so the shared validators score the plan
 		// against the same beat range the model was asked for.
@@ -852,6 +852,11 @@ type beatFields struct {
 	Ratio         bool
 	Table         bool
 	Toggle        bool
+	Objective     bool
+	Prereq        bool
+	Recap         bool
+	Pitfall       bool
+	Checkpoint    bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -934,6 +939,16 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "ratio"
 		case !owned.Table && b.Table != nil:
 			set = "table"
+		case !owned.Objective && b.Objective != nil:
+			return fmt.Errorf("beat %q carries a `objective` payload, which the %s template does not use", b.ID, p.Template)
+		case !owned.Prereq && b.Prereq != nil:
+			return fmt.Errorf("beat %q carries a `prereq` payload, which the %s template does not use", b.ID, p.Template)
+		case !owned.Recap && b.Recap != nil:
+			return fmt.Errorf("beat %q carries a `recap` payload, which the %s template does not use", b.ID, p.Template)
+		case !owned.Pitfall && b.Pitfall != nil:
+			return fmt.Errorf("beat %q carries a `pitfall` payload, which the %s template does not use", b.ID, p.Template)
+		case !owned.Checkpoint && b.Checkpoint != nil:
+			return fmt.Errorf("beat %q carries a `checkpoint` payload, which the %s template does not use", b.ID, p.Template)
 		case !owned.Toggle && b.Toggle != nil:
 			set = "toggle"
 		case !owned.Sketch && len(b.Sketch) > 0:

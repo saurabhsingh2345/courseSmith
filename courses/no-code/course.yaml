@@ -33,7 +33,7 @@ branding:
   diagram_style: clean, flat, generous whitespace, few words per node
 
 pipeline:
-  llm_content: openai/gpt-4o-mini
+  llm_content: openai/gpt-5-mini
   # Companion material (pytest exercises, Python-traceback "common mistakes")
   # is shaped for a programming course and has nothing to describe here. Turn
   # this off once the quiz stage has been given a no-code question taxonomy.

@@ -58,6 +58,11 @@ func TestWebSearchSendsOptionsAndDropsTemperature(t *testing.T) {
 
 // The inverse, and the one that would break every other stage if it regressed:
 // an ordinary request must still pin its temperature, including zero.
+//
+// Pinned to a gpt-4 model deliberately. This test guards the *float64/omitempty
+// mechanic — that &0.0 survives to the wire — and that mechanic only has
+// anything to guard on the families which accept an explicit temperature at
+// all. The GPT-5 contract is asserted separately in TestParamStyle*.
 func TestOrdinaryRequestStillSendsExplicitZeroTemperature(t *testing.T) {
 	var rawBody map[string]any
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -69,6 +74,7 @@ func TestOrdinaryRequestStillSendsExplicitZeroTemperature(t *testing.T) {
 	defer server.Close()
 
 	req := testRequest()
+	req.Model = "gpt-4o-mini"
 	req.Temperature = 0
 	if _, err := NewOpenAI("sk_test", WithBaseURL(server.URL)).Complete(context.Background(), req); err != nil {
 		t.Fatal(err)

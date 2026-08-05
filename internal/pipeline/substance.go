@@ -437,7 +437,7 @@ func (e *Env) establishSubstance(ctx context.Context, brief string, cfg config.C
 	}
 
 	var sub Substance
-	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.2, 4096, substanceRepairRounds, &sub, func() error {
+	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.2, thinkingBudget(4096), substanceRepairRounds, effortInterlocking, &sub, func() error {
 		normalizeSubstance(&sub)
 		return sub.Validate()
 	})

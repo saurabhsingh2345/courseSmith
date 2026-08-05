@@ -19,8 +19,8 @@ branding:
   diagram_style: clean, flat, rounded corners, generous whitespace
 
 pipeline:
-  llm_content: openai/gpt-4o-mini
-  llm_review: openai/gpt-4o-mini
+  llm_content: openai/gpt-5-mini
+  llm_review: openai/gpt-5-mini
   review_threshold: 8
   captions_model: whisper-large-v3
   # The course is its videos: skip quiz/mistakes/exercises/site stages.

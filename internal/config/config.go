@@ -129,7 +129,7 @@ type Colors struct {
 }
 
 // Pipeline selects models and thresholds for the generation stages.
-// Model references use "provider/model" form, e.g. "openai/gpt-4o-mini".
+// Model references use "provider/model" form, e.g. "openai/gpt-5-mini".
 type Pipeline struct {
 	LLMContent string `yaml:"llm_content"`
 	LLMReview  string `yaml:"llm_review"`
@@ -148,7 +148,30 @@ type Pipeline struct {
 	// because it is the one model reference somebody may want to turn OFF: empty
 	// disables grounding and the substance stage falls back to what the brief
 	// states, rather than failing the run.
-	LLMSearch       string  `yaml:"llm_search"`
+	LLMSearch string `yaml:"llm_search"`
+	// ReasoningEffort is how hard a reasoning model thinks before answering
+	// ("minimal", "low", "medium", "high"), and it is a COST control more than a
+	// quality one: reasoning tokens bill as output tokens, and output is around
+	// three quarters of what generating a course costs.
+	//
+	// The default is deliberately low. Most calls in a run are filling defined
+	// fields against a fact sheet that is already established, with validators
+	// behind them that reject a wrong answer anyway — that job does not improve
+	// with more thinking, it just costs more. The stages where reasoning is the
+	// actual work raise it at the call site.
+	//
+	// Ignored by non-reasoning models: the provider drops it for the gpt-4
+	// families, which return a 400 if it is sent.
+	//
+	// omitempty, for the reason every other field added since this struct was
+	// written carries it — and this one learned it the hard way. Without it the
+	// key is marshaled into every snippet.yaml and lesson front-matter as
+	// `reasoning_effort: ""`, which (a) changes the config fingerprint of work
+	// recorded before the field existed, so every stage reads as stale, and
+	// (b) makes those files unreadable to any build that predates the field:
+	// front-matter is decoded strictly, so an unknown key is a hard parse error
+	// on a lesson that was fine an hour earlier.
+	ReasoningEffort string  `yaml:"reasoning_effort,omitempty"`
 	ReviewThreshold float64 `yaml:"review_threshold"`
 	CaptionsModel   string  `yaml:"captions_model"`
 	// VideoOnly skips the companion-material stages (quiz, quiz-strategy,
@@ -184,12 +207,33 @@ func Defaults() Config {
 			DiagramStyle: "clean, flat, rounded corners, generous whitespace",
 		},
 		Pipeline: Pipeline{
-			LLMContent: "openai/gpt-4o-mini",
-			LLMReview:  "openai/gpt-4o-mini",
-			LLMVision:  "openai/gpt-4o",
+			// gpt-5-mini, not gpt-4o-mini, and the gap between those two is the
+			// single biggest quality lever in this repo. Everything ever
+			// generated here — 2,296 calls, 3.85M prompt and 681K completion
+			// tokens — cost $0.99 on gpt-4o-mini, and it showed: prompts like
+			// substance.tmpl set out a provenance contract (sourced needs a real
+			// URL, derived needs the arithmetic) that a model that small cannot
+			// honour, so it returned thin, hedged, generic facts.
+			//
+			// The same volume on gpt-5-mini is about $12. That is the entire
+			// price of the difference between "content poor" and content that
+			// knows its subject.
+			//
+			// This could not be changed before the provider layer learned the
+			// GPT-5 wire contract — see legacyModelPrefixes in openai_compat.go.
+			// The config string was never the thing standing in the way.
+			LLMContent: "openai/gpt-5-mini",
+			LLMReview:  "openai/gpt-5-mini",
+			// Vision stays on gpt-4o pending a real comparison. The warning on
+			// LLMVision above was learned the hard way — a weak judge reports
+			// overlaps that are not there on clean, layout-engine diagrams — and
+			// swapping the judge on the same day as the writer would make a
+			// regression in either impossible to attribute.
+			LLMVision: "openai/gpt-4o",
 			// gpt-5-search-api rather than the gpt-4o-*-search-preview pair,
 			// which are deprecated.
 			LLMSearch:       "openai/gpt-5-search-api",
+			ReasoningEffort: "low",
 			ReviewThreshold: 8,
 			CaptionsModel:   "whisper-large-v3",
 		},
@@ -286,6 +330,9 @@ func Merge(base, over Config) Config {
 	}
 	if over.Pipeline.LLMSearch != "" {
 		out.Pipeline.LLMSearch = over.Pipeline.LLMSearch
+	}
+	if over.Pipeline.ReasoningEffort != "" {
+		out.Pipeline.ReasoningEffort = over.Pipeline.ReasoningEffort
 	}
 	if over.Pipeline.ReviewThreshold != 0 {
 		out.Pipeline.ReviewThreshold = over.Pipeline.ReviewThreshold

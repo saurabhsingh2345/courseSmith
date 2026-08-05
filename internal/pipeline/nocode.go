@@ -398,7 +398,7 @@ branding:
   diagram_style: clean, flat, generous whitespace, few words per node
 
 pipeline:
-  llm_content: openai/gpt-4o-mini
+  llm_content: openai/gpt-5-mini
   video_only: true
 `
 

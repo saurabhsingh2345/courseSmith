@@ -699,5 +699,5 @@ pipeline:
   # A reel is one planning call per segment plus the cast, so the model is a
   # cost and quality decision this course should state rather than take from
   # whatever the global default happens to be.
-  llm_content: openai/gpt-4o-mini
+  llm_content: openai/gpt-5-mini
 `

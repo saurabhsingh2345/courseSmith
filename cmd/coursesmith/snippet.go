@@ -145,7 +145,7 @@ func newSnippetNewCmd() *cobra.Command {
 	cmd.Flags().IntVar(&targetSec, "seconds", 0, "approximate runtime to aim for, in seconds (default 45)")
 	cmd.Flags().StringVar(&codeLang, "code-language", "", "programming language for code templates (default python)")
 	cmd.Flags().StringVar(&voice, "voice", "", "TTS voice id (default: the snippets course voice)")
-	cmd.Flags().StringVar(&model, "model", "", "planning model as provider/model, e.g. openai/gpt-4o-mini (default: the course's llm_content)")
+	cmd.Flags().StringVar(&model, "model", "", "planning model as provider/model, e.g. openai/gpt-5-mini (default: the course's llm_content)")
 	cmd.Flags().StringVar(&captions, "captions", "", "burn the caption track into the video: on | off (default: the snippets course setting)")
 	cmd.Flags().StringVar(&mode, "mode", "", "light or dark video (default dark)")
 	cmd.Flags().BoolVar(&planOnly, "plan-only", false, "stop after planning; do not synthesize or render")

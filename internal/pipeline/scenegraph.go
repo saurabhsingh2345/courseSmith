@@ -159,6 +159,13 @@ const (
 	// SceneToggle is a question answered by a switch in the first beat, with the
 	// qualifiers accumulating under it.
 	SceneToggle = "toggle"
+	// The v5 course-scaffolding scenes. Each draws the shape of a lesson's
+	// relationship to the rest of the course rather than a subject inside it.
+	SceneObjective  = "objective"
+	ScenePrereq     = "prereq"
+	SceneRecap      = "recap"
+	ScenePitfall    = "pitfall"
+	SceneCheckpoint = "checkpoint"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

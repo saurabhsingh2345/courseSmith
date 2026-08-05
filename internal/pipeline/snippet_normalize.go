@@ -132,6 +132,11 @@ type planFields struct {
 	Ratio         bool
 	Table         bool
 	Toggle        bool
+	Objective     bool
+	Prereq        bool
+	Recap         bool
+	Pitfall       bool
+	Checkpoint    bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -325,6 +330,22 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	if !owns.Toggle {
 		p.Toggle = nil
 	}
+	if !owns.Objective {
+		p.Objective = nil
+	}
+	if !owns.Prereq {
+		p.Prereq = nil
+	}
+	if !owns.Recap {
+		p.Recap = nil
+	}
+	if !owns.Pitfall {
+		p.Pitfall = nil
+	}
+	if !owns.Checkpoint {
+		p.Checkpoint = nil
+	}
+
 }
 
 // clampWords cuts a phrase to at most n words, keeping the first ones — the

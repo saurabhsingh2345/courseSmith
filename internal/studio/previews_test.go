@@ -31,10 +31,15 @@ func TestEveryTemplateHasAPreview(t *testing.T) {
 		}
 	}
 
-	for _, name := range pipeline.SnippetTemplateNames() {
-		if !have[name] {
+	// Only the OFFERED templates need a preview. The gallery is the thing this
+	// guards, and a shelved template is not in it — by definition it has no
+	// renderer component yet, so there is nothing to take a picture of. Asking
+	// for one would mean a template could never be shelved pending its scene,
+	// which is precisely the state shelving exists to express.
+	for _, tpl := range pipeline.SnippetTemplateList() {
+		if !have[tpl.Name] {
 			t.Errorf("template %q has no preview at %s/%s.png — regenerate with `node test/template_previews.mjs`",
-				name, previewDir, name)
+				tpl.Name, previewDir, tpl.Name)
 		}
 	}
 	for name := range have {

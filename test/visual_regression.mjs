@@ -77,6 +77,15 @@ const TARGETS = [
   // The stack on its third tier: two bands walked and lit, the current one
   // raised, the one below still dim. It is the only state that shows reached,
   // current and unreached at once, which is the whole grammar of the scene.
+  // The v5 course-scaffolding batch, all under the editorial skin — the
+  // catalog's first baselines of an off-centre composition. Each is caught on
+  // the frame where the list is complete, which is the only state that holds
+  // every row at once and is the frame the template is actually for.
+  { id: "ObjectiveViz", frame: 750 },
+  { id: "PrereqViz", frame: 700 },
+  { id: "RecapViz", frame: 700 },
+  { id: "PitfallViz", frame: 840 },
+  { id: "CheckpointViz", frame: 800 },
   { id: "StackViz", frame: 430 },
   // The spec after its cascade, with one line missed — the only state holding a
   // filled tick, a crossed box, struck text and a tally short of the total at

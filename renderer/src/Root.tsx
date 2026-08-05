@@ -1896,6 +1896,128 @@ const tableVizProps: LessonVideoProps = {
  * frame — the layout change is the part most likely to break, and the answer
  * beat alone would never exercise it.
  */
+
+// The v5 course-scaffolding fixtures. All five run under the `editorial` skin —
+// the batch and the skin arrived together, and these are the catalog's first
+// baselines of an off-centre composition.
+const V5_THEME = {
+  primary: '#306998',
+  accent: '#ffd43b',
+  background: '#ffffff',
+  courseName: 'Coursesmith',
+  skin: 'editorial' as const,
+  accentQuantity: '#f5ca47',
+  accentLimit: '#ec5b51',
+  accentRival: '#518cec',
+};
+
+const objectiveVizProps: LessonVideoProps = {
+  theme: V5_THEME,
+  audioFile: '',
+  durationMs: 28000,
+  scenes: [{type: 'objective', startMs: 0, endMs: 28000, props: {
+    title: "What you'll be able to do",
+    emphasis: 'be able to do', emphasisRole: 'quantity',
+    audience: 'you have shipped an API client',
+    outcomes: [
+      {action: 'Write a retry that gives up', evidence: 'your client stops after four attempts instead of hanging'},
+      {action: 'Size a backoff to a real timeout', evidence: "total retry time lands under the caller's deadline"},
+    ],
+    steps: [
+      {startMs: 0, endMs: 8000, show: 'frame', lit: []},
+      {startMs: 8000, endMs: 16000, show: 'outcome', at: 0, lit: [0]},
+      {startMs: 16000, endMs: 23000, show: 'outcome', at: 1, lit: [0, 1]},
+      {startMs: 23000, endMs: 28000, show: 'contract', lit: [0, 1]},
+    ],
+  }}],
+  captions: [],
+};
+
+const prereqVizProps: LessonVideoProps = {
+  theme: V5_THEME,
+  audioFile: '',
+  durationMs: 26000,
+  scenes: [{type: 'prereq', startMs: 0, endMs: 26000, props: {
+    title: 'What this one stands on',
+    emphasis: 'stands on', emphasisRole: 'limit',
+    assumptions: [
+      {item: 'Reading a stack trace', source: 'taught', where: 'lesson 2, when the client first failed', skippable: false},
+      {item: 'Running the suite locally', source: 'external', where: 'any Node setup guide', skippable: true,
+       breaks: 'you can watch, but you cannot try the checkpoint'},
+    ],
+    steps: [
+      {startMs: 0, endMs: 9000, show: 'assume', at: 0, lit: [0]},
+      {startMs: 9000, endMs: 18000, show: 'assume', at: 1, lit: [0, 1]},
+      {startMs: 18000, endMs: 26000, show: 'floor', lit: [0, 1]},
+    ],
+  }}],
+  captions: [],
+};
+
+const recapVizProps: LessonVideoProps = {
+  theme: V5_THEME,
+  audioFile: '',
+  durationMs: 27000,
+  scenes: [{type: 'recap', startMs: 0, endMs: 27000, props: {
+    title: 'Where we got to',
+    emphasis: 'got to', emphasisRole: 'quantity',
+    thread: 'all of it has been about what to do when the consumer is slower',
+    claims: [
+      {claim: 'A queue absorbs a burst, not a trend', from: 'lesson 2'},
+      {claim: 'An unbounded queue turns latency into memory', from: 'lesson 4'},
+    ],
+    steps: [
+      {startMs: 0, endMs: 9000, show: 'claim', at: 0, lit: [0]},
+      {startMs: 9000, endMs: 18000, show: 'claim', at: 1, lit: [0, 1]},
+      {startMs: 18000, endMs: 27000, show: 'standing', lit: [0, 1]},
+    ],
+  }}],
+  captions: [],
+};
+
+const pitfallVizProps: LessonVideoProps = {
+  theme: V5_THEME,
+  audioFile: '',
+  durationMs: 32000,
+  scenes: [{type: 'pitfall', startMs: 0, endMs: 32000, props: {
+    title: 'The retry that never gives up',
+    emphasis: 'never gives up', emphasisRole: 'limit',
+    mistake: 'Retrying every error, including the ones that will never succeed',
+    symptom: 'one dead endpoint and your p99 pins to the timeout ceiling',
+    why: 'The retry looked like resilience, and in the happy path it is.',
+    fix: 'Retry only what is retryable, and cap the total wait',
+    steps: [
+      {startMs: 0, endMs: 8000, show: 'mistake'},
+      {startMs: 8000, endMs: 16000, show: 'symptom'},
+      {startMs: 16000, endMs: 23000, show: 'why'},
+      {startMs: 23000, endMs: 32000, show: 'fix'},
+    ],
+  }}],
+  captions: [],
+};
+
+const checkpointVizProps: LessonVideoProps = {
+  theme: V5_THEME,
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [{type: 'checkpoint', startMs: 0, endMs: 30000, props: {
+    title: 'Make it give up',
+    emphasis: 'give up', emphasisRole: 'limit',
+    task: 'Write a retry that stops after four tries',
+    list: ['Point the client at an endpoint that always fails', 'Add a counter and break at four', 'Log the total elapsed time'],
+    done: 'the log shows four attempts and the call returns',
+    stuck: 'if it hangs, your timeout is longer than your budget',
+    steps: [
+      {startMs: 0, endMs: 7000, show: 'task', ticked: []},
+      {startMs: 7000, endMs: 13000, show: 'step', at: 0, ticked: [0]},
+      {startMs: 13000, endMs: 19000, show: 'step', at: 1, ticked: [0, 1]},
+      {startMs: 19000, endMs: 24000, show: 'step', at: 2, ticked: [0, 1, 2]},
+      {startMs: 24000, endMs: 30000, show: 'done', ticked: [0, 1, 2]},
+    ],
+  }}],
+  captions: [],
+};
+
 const toggleVizProps: LessonVideoProps = {
   theme: {
     primary: '#306998',
@@ -3197,6 +3319,51 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(journalVizProps.durationMs)}
       defaultProps={journalVizProps}
+    />
+    <Composition
+      id="ObjectiveViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(objectiveVizProps.durationMs)}
+      defaultProps={objectiveVizProps}
+    />
+    <Composition
+      id="PrereqViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(prereqVizProps.durationMs)}
+      defaultProps={prereqVizProps}
+    />
+    <Composition
+      id="RecapViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(recapVizProps.durationMs)}
+      defaultProps={recapVizProps}
+    />
+    <Composition
+      id="PitfallViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(pitfallVizProps.durationMs)}
+      defaultProps={pitfallVizProps}
+    />
+    <Composition
+      id="CheckpointViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(checkpointVizProps.durationMs)}
+      defaultProps={checkpointVizProps}
     />
     <Composition
       id="RankingViz"
