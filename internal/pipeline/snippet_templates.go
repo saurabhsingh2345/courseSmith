@@ -508,7 +508,7 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	// connecting them was never stated. Observed on every list-shaped template:
 	// constellation and rundown failed this and nothing else after the beat
 	// ceiling was fixed.
-	user += beatVariationAdvice(wantWords, minBeats, maxBeats) + budgetTotalsAdvice(minWords, maxWords)
+	user += beatVariationAdvice(wantWords, minBeats, maxBeats) + budgetTotalsAdvice(minWords, maxWords) + spokenVoiceAdvice()
 
 	// A review critique is appended to the rendered user message rather than
 	// rendered into the prompt file. Blunt, and chosen deliberately: the

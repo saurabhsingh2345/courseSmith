@@ -864,6 +864,9 @@ func (p *SnippetPlan) Validate() error {
 	if err := validatePlanEmphasis(p); err != nil {
 		return err
 	}
+	if err := validateSpokenVoice(p); err != nil {
+		return err
+	}
 	if tpl, ok := SnippetTemplates[p.Template]; ok && tpl.Validate != nil {
 		return tpl.Validate(p)
 	}
