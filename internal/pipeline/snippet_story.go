@@ -241,7 +241,7 @@ func planStoryScript(ctx context.Context, e *Env, spec SnippetSpec, cfg config.C
 	// A two-minute script is several times the length of a snippet's, so the
 	// token ceiling has to rise with it or the reply is truncated mid-beat and
 	// comes back as a JSON parse error that looks like a model failure.
-	err = e.completeJSONRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, nil, 0.6, 12288, snippetPlanRepairRounds, &script, func() error {
+	err = e.completeJSONRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, nil, 0.6, thinkingBudget(12288), snippetPlanRepairRounds, effortInterlocking, &script, func() error {
 		if n := len(script.Beats); n < minStoryBeats || n > maxStoryBeats {
 			return fmt.Errorf("script has %d beats, want %d-%d", n, minStoryBeats, maxStoryBeats)
 		}
@@ -309,7 +309,7 @@ func planStoryShots(ctx context.Context, e *Env, spec SnippetSpec, cfg config.Co
 		ids[line.ID] = true
 	}
 	var shots StoryShots
-	err = e.completeJSONRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, nil, 0.7, 8192, snippetPlanRepairRounds, &shots, func() error {
+	err = e.completeJSONRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, nil, 0.7, thinkingBudget(8192), snippetPlanRepairRounds, effortInterlocking, &shots, func() error {
 		if len(shots.Shots) != len(script.Beats) {
 			return fmt.Errorf("got %d shots for %d beats — stage every beat exactly once", len(shots.Shots), len(script.Beats))
 		}

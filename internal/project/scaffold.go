@@ -85,8 +85,12 @@ branding:
   diagram_style: clean, flat, rounded corners, generous whitespace
 
 pipeline:
-  llm_content: openai/gpt-4o-mini
-  llm_review: openai/gpt-4o-mini
+  llm_content: openai/gpt-5-mini
+  llm_review: openai/gpt-5-mini
+  # Thinking budget for reasoning models. "low" suits the stages that fill
+  # defined fields against an established fact sheet, which is most of them;
+  # reasoning tokens bill as output, so this is the main cost dial.
+  reasoning_effort: low
   review_threshold: 8
   captions_model: whisper-large-v3
   # The course is its videos: skip quiz/mistakes/exercises/site stages.

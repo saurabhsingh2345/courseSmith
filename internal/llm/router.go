@@ -152,6 +152,16 @@ func (r *Router) Complete(ctx context.Context, pcfg config.Pipeline, task TaskTy
 		return nil, err
 	}
 	req.Model = model
+	// Config supplies the default thinking budget; a stage that has already set
+	// one keeps it. The override direction matters: the cheap default is right
+	// for the many calls that fill fields against an established fact sheet, and
+	// the few stages that actually reason — establishing those facts, and the
+	// argument built on them — ask for more at the call site, where the reason
+	// is visible. A single global value would have to be set for the hardest
+	// stage and would then be paid for by every easy one.
+	if req.ReasoningEffort == "" {
+		req.ReasoningEffort = pcfg.ReasoningEffort
+	}
 	return p.Complete(ctx, req)
 }
 

@@ -36,6 +36,23 @@ type Request struct {
 	// JSONMode asks the provider to emit a single valid JSON object
 	// (response_format: json_object).
 	JSONMode bool `json:"json_mode,omitempty"`
+	// ReasoningEffort tunes how much a reasoning model thinks before answering
+	// ("minimal", "low", "medium", "high"). Empty leaves the model's default.
+	//
+	// This is the pipeline's main COST dial, not a quality knob to leave alone.
+	// Reasoning tokens bill as output tokens, and output is roughly three
+	// quarters of a course's bill, so a stage that thinks harder than its job
+	// needs is the most expensive mistake available here. The stages that fill
+	// well-defined fields against an established fact sheet — with validators
+	// behind them that will reject a wrong answer anyway — do not need to think
+	// hard; the stages that establish the facts and the argument do.
+	//
+	// Ignored by models that are not reasoning models: sending it to gpt-4o is a
+	// 400, so openai_compat.go drops it for the legacy families.
+	//
+	// Being an ordinary Request field it participates in the cache key, so
+	// turning effort up re-runs rather than serving the cheaper answer back.
+	ReasoningEffort string `json:"reasoning_effort,omitempty"`
 	// Images are base64-encoded PNGs attached to the final user message
 	// (vision models only). They participate in the cache key like any
 	// other request field.

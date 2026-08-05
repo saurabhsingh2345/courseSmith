@@ -47,11 +47,11 @@ func TestModelFor(t *testing.T) {
 	pcfg := config.Defaults().Pipeline
 
 	ref, err := ModelFor(pcfg, TaskContent)
-	if err != nil || ref != "openai/gpt-4o-mini" {
+	if err != nil || ref != "openai/gpt-5-mini" {
 		t.Errorf("ModelFor(content) = %q, %v", ref, err)
 	}
 	ref, err = ModelFor(pcfg, TaskReview)
-	if err != nil || ref != "openai/gpt-4o-mini" {
+	if err != nil || ref != "openai/gpt-5-mini" {
 		t.Errorf("ModelFor(review) = %q, %v", ref, err)
 	}
 	if _, err := ModelFor(config.Pipeline{}, TaskContent); err == nil {

@@ -99,7 +99,7 @@ func EnrichSnippetPrompt(ctx context.Context, e *Env, spec SnippetSpec, cfg conf
 	// One round, no correction loop. If the rewrite does not come back cleanly
 	// the original is a perfectly good input — spending three more calls to
 	// improve an input is worse than planning from what the user typed.
-	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.5, 1024, 1, &out, func() error {
+	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.5, 1024, 1, effortInherit, &out, func() error {
 		if len(strings.Fields(out.Prompt)) < 8 {
 			return fmt.Errorf("the rewrite is shorter than the request; expand it into the specifics the template needs")
 		}

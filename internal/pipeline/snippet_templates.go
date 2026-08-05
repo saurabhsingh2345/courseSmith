@@ -527,7 +527,7 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	// asks for — beat count, per-beat words, total words, and whatever the
 	// template adds on top. One correction round is not enough to land them all.
 	// The bounds themselves are computed above, before the prompt quotes them.
-	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.5, 6144, snippetPlanRepairRounds, &plan, func() error {
+	err = e.completeJSONLenientRounds(ctx, cfg.Pipeline, llm.TaskContent, system, user, 0.5, thinkingBudget(6144), snippetPlanRepairRounds, effortInterlocking, &plan, func() error {
 		plan.Template = spec.Template // so Validate dispatches to this template
 		// The budget the prompt quoted, so the shared validators score the plan
 		// against the same beat range the model was asked for.

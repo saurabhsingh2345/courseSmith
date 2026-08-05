@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -33,12 +34,33 @@ func WithHTTPClient(c *http.Client) Option {
 	return func(p *httpProvider) { p.client = c }
 }
 
+// Request deadlines. Two of them, because a reasoning model and a classic one
+// fail in opposite directions against a single number.
+//
+// 120s was the whole budget and it was right for chat completions. A reasoning
+// model at medium effort on a long review prompt runs past it, and the shape of
+// the failure is the worst kind: the retry stack exhausts, the review stage
+// reports "could not run, keeping the plan as-is", and the pipeline carries on
+// with the quality gate silently switched off. That is the same class of quiet
+// degradation as the 401s that once left the no-code course unreviewed for a
+// whole run — right to keep going, wrong to be invisible.
+//
+// So the classic deadline stays where it was (a gpt-4o call that has not
+// answered in two minutes is stuck, and waiting ten does not help), and only
+// the models that legitimately think for longer get the longer one.
+const (
+	classicRequestTimeout   = 120 * time.Second
+	reasoningRequestTimeout = 10 * time.Minute
+)
+
 func newHTTPProvider(name, baseURL, apiKey string, opts ...Option) *httpProvider {
 	p := &httpProvider{
-		name:    name,
+		name:   name,
+		apiKey: apiKey,
+		// The ceiling; Complete narrows it per request via the context, which is
+		// the only place the model — and so the right deadline — is known.
 		baseURL: baseURL,
-		apiKey:  apiKey,
-		client:  &http.Client{Timeout: 120 * time.Second},
+		client:  &http.Client{Timeout: reasoningRequestTimeout},
 	}
 	for _, opt := range opts {
 		opt(p)
@@ -56,10 +78,65 @@ type chatRequest struct {
 	// tests nil, not zero, so &0.0 still goes out as `"temperature": 0` and only
 	// a deliberate nil is dropped — which is what a web-search request needs,
 	// because search-capable models reject the parameter outright.
-	Temperature      *float64          `json:"temperature,omitempty"`
-	MaxTokens        int               `json:"max_tokens,omitempty"`
-	ResponseFormat   *responseFormat   `json:"response_format,omitempty"`
-	WebSearchOptions *webSearchOptions `json:"web_search_options,omitempty"`
+	Temperature *float64 `json:"temperature,omitempty"`
+	// MaxTokens and MaxCompletionTokens are the SAME budget under two names;
+	// exactly one goes on the wire, chosen by paramStyleFor. See legacyModelPrefixes.
+	MaxTokens           int               `json:"max_tokens,omitempty"`
+	MaxCompletionTokens int               `json:"max_completion_tokens,omitempty"`
+	ReasoningEffort     string            `json:"reasoning_effort,omitempty"`
+	ResponseFormat      *responseFormat   `json:"response_format,omitempty"`
+	WebSearchOptions    *webSearchOptions `json:"web_search_options,omitempty"`
+}
+
+// legacyModelPrefixes are the OpenAI families that still speak the pre-GPT-5
+// chat-completions contract: `max_tokens`, and any temperature you like.
+//
+// This list is CLOSED, and that is the whole design. Every OpenAI model from
+// gpt-5 onward renamed the output budget to `max_completion_tokens` and accepts
+// only the default temperature, and both are hard 400s rather than parameters
+// the API politely ignores:
+//
+//	"Unsupported parameter: 'max_tokens' is not supported with this model."
+//	"'temperature' does not support 0 with this model. Only the default (1)."
+//
+// So we detect the OLD families and treat everything else as current. The
+// inverse — an allow-list of known-new models — is what pinned this pipeline to
+// gpt-4o-mini for its whole life: the config string could not be changed
+// without the provider layer rejecting the call, so nobody changed it. A list
+// of things that already exist cannot go stale; a list of things that don't
+// yet, always does.
+//
+// "gpt-4" covers gpt-4, gpt-4o, gpt-4o-mini, gpt-4.1 and gpt-4-turbo by prefix.
+// The o-series (o1/o3/o4) is deliberately absent: it wants the new contract.
+var legacyModelPrefixes = []string{"gpt-4", "gpt-3.5", "chatgpt-4o"}
+
+// paramStyle is how one model wants its sampling knobs on the wire.
+type paramStyle struct {
+	// maxCompletionTokens sends the budget under the newer name.
+	maxCompletionTokens bool
+	// temperature reports whether an explicit temperature is accepted at all.
+	temperature bool
+	// reasoning reports whether reasoning_effort is meaningful. Sending it to a
+	// non-reasoning model is a 400, so it follows the same closed-list rule.
+	reasoning bool
+}
+
+// paramStyleFor picks the wire contract for a provider/model pair.
+//
+// Only OpenAI ever changed the contract. Groq (and anything else routed through
+// this same OpenAI-compatible client) still speaks the classic one, so the
+// provider name gates the whole question before the model name is consulted.
+func paramStyleFor(provider, model string) paramStyle {
+	classic := paramStyle{maxCompletionTokens: false, temperature: true, reasoning: false}
+	if provider != "openai" {
+		return classic
+	}
+	for _, prefix := range legacyModelPrefixes {
+		if strings.HasPrefix(model, prefix) {
+			return classic
+		}
+	}
+	return paramStyle{maxCompletionTokens: true, temperature: false, reasoning: true}
 }
 
 // webSearchOptions turns on the chat-completions search path. Empty is
@@ -170,11 +247,23 @@ func (p *httpProvider) Complete(ctx context.Context, req Request) (*Response, er
 	if err := req.Validate(); err != nil {
 		return nil, err
 	}
+	style := paramStyleFor(p.name, req.Model)
 	body := chatRequest{
-		Model:       req.Model,
-		Messages:    wireMessages(req),
-		Temperature: &req.Temperature, // always explicit, for reproducibility
-		MaxTokens:   req.MaxTokens,
+		Model:    req.Model,
+		Messages: wireMessages(req),
+	}
+	if style.maxCompletionTokens {
+		body.MaxCompletionTokens = req.MaxTokens
+	} else {
+		body.MaxTokens = req.MaxTokens
+	}
+	if style.temperature {
+		body.Temperature = &req.Temperature // always explicit, for reproducibility
+	}
+	// Determinism for the models that refuse an explicit temperature comes from
+	// the response cache instead, exactly as it does for web search below.
+	if style.reasoning {
+		body.ReasoningEffort = req.ReasoningEffort
 	}
 	if req.JSONMode {
 		body.ResponseFormat = &responseFormat{Type: "json_object"}
@@ -188,11 +277,27 @@ func (p *httpProvider) Complete(ctx context.Context, req Request) (*Response, er
 		// safe because a grounded call's reproducibility comes from the response
 		// cache, not from sampling.
 		body.Temperature = nil
+		// And reasoning_effort goes with it. The search models are a much shorter
+		// list than the rest and accept a narrower set of parameters; sending one
+		// they do not take is a hard 400 that fails the substance stage, which is
+		// the stage a course's factual grounding depends on. There is nothing to
+		// gain either way — the thinking on a grounded call is the search.
+		body.ReasoningEffort = ""
 	}
 	payload, err := json.Marshal(body)
 	if err != nil {
 		return nil, fmt.Errorf("encoding %s request: %w", p.name, err)
 	}
+
+	// Narrow the client's ceiling to what this particular model should need.
+	// A caller that already set a shorter deadline keeps it — context.WithTimeout
+	// never extends an existing one.
+	deadline := classicRequestTimeout
+	if style.reasoning {
+		deadline = reasoningRequestTimeout
+	}
+	ctx, cancel := context.WithTimeout(ctx, deadline)
+	defer cancel()
 
 	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, p.baseURL+"/chat/completions", bytes.NewReader(payload))
 	if err != nil {
@@ -225,7 +330,19 @@ func (p *httpProvider) Complete(ctx context.Context, req Request) (*Response, er
 	}
 	choice := parsed.Choices[0]
 	if choice.FinishReason == "length" {
-		return nil, fmt.Errorf("%s response was truncated at the max_tokens limit (%d) — raise MaxTokens", p.name, req.MaxTokens)
+		// On a reasoning model the budget is shared with thinking that never
+		// reaches Content, so this fires with an EMPTY reply and "raise the
+		// limit" is only half the advice — lowering ReasoningEffort buys back
+		// the same room more cheaply. Say so, because an empty response with a
+		// truncation error reads like a broken prompt.
+		field := "max_tokens"
+		hint := "raise MaxTokens"
+		if style.reasoning {
+			field = "max_completion_tokens"
+			hint = fmt.Sprintf("raise MaxTokens or lower ReasoningEffort (currently %q) — reasoning tokens are spent from this same budget before any content is emitted", req.ReasoningEffort)
+		}
+		return nil, fmt.Errorf("%s response was truncated at the %s limit (%d), returning %d characters — %s",
+			p.name, field, req.MaxTokens, len(choice.Message.Content), hint)
 	}
 	if req.WebSearch && len(choice.Message.Annotations) == 0 {
 		// A search request that came back with no sources did not search. The

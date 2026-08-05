@@ -29,11 +29,30 @@ import (
 // reporting it as unpriced would raise a warning on every ledger that has ever
 // used it — and a warning that fires when nothing is wrong is one nobody reads by
 // the third time, which would leave the real gap just as hidden as before.
+// ⚠ MATCHING IS BY LONGEST PREFIX (see priceFor), which makes a MISSING variant
+// worse than a missing family. "gpt-5-nano" absent from this table does not
+// report as unpriced — it matches "gpt-5" and is billed at the full model's
+// rate, silently and wrongly. So when adding a family, add every variant of it
+// you might route to, or deliberately leave the whole family out.
 var modelPricing = map[string][2]float64{
 	"gpt-4o-mini":  {0.15, 0.60},
 	"gpt-4o":       {2.50, 10.00},
 	"gpt-4.1":      {2.00, 8.00},
 	"gpt-4.1-mini": {0.40, 1.60},
+
+	// GPT-5 family. Reasoning tokens bill as COMPLETION tokens, so the second
+	// figure is what a run's cost actually turns on — and why the pipeline
+	// defaults to a low reasoning_effort.
+	"gpt-5":            {1.25, 10.00},
+	"gpt-5-mini":       {0.25, 2.00},
+	"gpt-5-nano":       {0.05, 0.40},
+	"gpt-5-pro":        {15.00, 120.00},
+	"gpt-5-search-api": {1.25, 10.00},
+	"gpt-5.4":          {2.50, 15.00},
+	"gpt-5.4-mini":     {0.75, 4.50},
+	"gpt-5.4-nano":     {0.20, 1.25},
+	"gpt-5.5":          {5.00, 30.00},
+	"gpt-5.5-pro":      {30.00, 180.00},
 }
 
 // freeProviders bill nothing, so a zero for them is a fact rather than a gap.
