@@ -9,7 +9,9 @@ import {PointsScene} from './components/PointsScene';
 import {PythonExecutionViz} from './components/PythonExecutionViz';
 import {MemoryLayout} from './components/MemoryLayout';
 import {SceneBackground, type Surface} from './components/SceneBackground';
-import {StageAirContext, StageCaptionsContext} from './components/Stage';
+import {StageAirContext,
+  StageAlignContext,
+  StageJustifyContext, StageCaptionsContext} from './components/Stage';
 import {SceneCamera} from './components/SceneCamera';
 import {SectionTransition, type CutStyle} from './components/SectionTransition';
 import {FootageScene} from './components/FootageScene';
@@ -434,6 +436,17 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
   return (
     <StageCaptionsContext.Provider value={hasCaptions}>
     <StageAirContext.Provider value={theme.air}>
+    {/* The editorial skin is the only one that composes off the centre line;
+        every other skin keeps the placement each scene has always had. */}
+    <StageAlignContext.Provider value={theme.skin === 'editorial' ? 'flex-start' : 'center'}>
+    {/* flex-start, NOT space-between. space-between was tried first and is
+        wrong: it distributes the SCENE'S OWN children, so a budget bar, its
+        label and its figure got pushed to opposite ends of the frame with dead
+        gaps between them — the composition came apart to fill the space. The
+        block stays tight and gets anchored to the top margin instead, which is
+        what a left axis wants: a dense corner of type and picture, and the
+        emptiness gathered in one place rather than ringed around it. */}
+    <StageJustifyContext.Provider value={theme.skin === 'editorial' ? 'flex-start' : undefined}>
       <AbsoluteFill style={{fontFamily: theme.fontBody}}>
         <SceneBackground theme={theme} surface={surface} />
         {audioFile ? <Audio src={staticFile(`${assetBase ?? ''}/${audioFile}`)} /> : null}
@@ -499,6 +512,8 @@ export const LessonVideo: React.FC<LessonVideoProps> = (props) => {
           watermark that fades with the beats is one the eye keeps noticing. */}
         {chrome ? <Watermark theme={theme} /> : null}
       </AbsoluteFill>
+    </StageJustifyContext.Provider>
+    </StageAlignContext.Provider>
     </StageAirContext.Provider>
     </StageCaptionsContext.Provider>
   );

@@ -45,6 +45,23 @@ const (
 	// sentence case, no headline furniture and no chrome at all. The diagram is
 	// the whole frame and nothing else competes with it.
 	SkinMinimal = "minimal"
+	// SkinEditorial breaks the centre line.
+	//
+	// The three skins above are all axially symmetric: headline centred, subject
+	// centred under it, caption centred under that. It is a good composition and
+	// it is the ONLY composition — measured across the catalog, 37 of the 41
+	// explicit placements are `justify="center"` and not one of the fifty scenes
+	// passes an `align` at all. Two templates as different as a leaderboard and a
+	// memory budget come out looking like the same slide with a different middle,
+	// which is most of why a catalog of forty-four reads as one template.
+	//
+	// This is the asymmetric counterpart: the headline sits left against a hard
+	// vertical axis with a rule marking it, set larger and tighter than any other
+	// skin, and the frame is allowed to be unbalanced. Nothing else changes —
+	// which is the point of doing it as a skin. Every existing template inherits
+	// the new composition without being touched, because the placement lives in
+	// the shared header and the stage rather than in any scene.
+	SkinEditorial = "editorial"
 )
 
 // normalizeSkin maps config input onto a known skin. Anything unrecognised —
@@ -56,6 +73,8 @@ func normalizeSkin(skin string) string {
 		return SkinBroadcast
 	case SkinMinimal:
 		return SkinMinimal
+	case SkinEditorial:
+		return SkinEditorial
 	default:
 		return SkinDefault
 	}
@@ -63,7 +82,7 @@ func normalizeSkin(skin string) string {
 
 // SkinNames returns the selectable skins, for the CLI and the studio picker.
 func SkinNames() []string {
-	return []string{SkinDefault, SkinBroadcast, SkinMinimal}
+	return []string{SkinDefault, SkinBroadcast, SkinMinimal, SkinEditorial}
 }
 
 // ResolvedSkin is the house style this theme is in. The field is empty on an
@@ -144,6 +163,9 @@ func applySkin(t *SceneTheme, h float64, skin, mode string) {
 	case SkinMinimal:
 		t.Skin = SkinMinimal
 		applyMinimalSkin(t, h, mode)
+	case SkinEditorial:
+		t.Skin = SkinEditorial
+		applyEditorialSkin(t, h, mode)
 	}
 }
 
@@ -187,6 +209,49 @@ func applyBroadcastSkin(t *SceneTheme, h float64, mode string) {
 	// The accent has to be re-proven against the new background — a brand
 	// colour that cleared AA on the default slate is being asked to sit on
 	// something much darker or much lighter now.
+	t.AccentText = readableOn(t.Accent, t.BgTop, 4.5)
+	deriveSemanticAccents(t, mode)
+}
+
+// applyEditorialSkin keeps the brand hue visible and gives the card an edge.
+//
+// The composition is what makes this skin, and composition is not a colour
+// token — it lives in SceneHeader and Stage. What the palette has to do is hold
+// up a hard left axis, and that asks for two things the other dark skins do not:
+//
+// A backdrop with the brand hue actually IN it. Broadcast drops saturation to
+// ~10% so that every bit of luminance belongs to the diagram; that is right when
+// one small picture floats in the middle of nothing, and wrong here, where the
+// frame is deliberately unbalanced and the empty right-hand side is a large area
+// of pure backdrop the viewer will look at. At 10% that area reads as a black
+// hole beside the type. At 22% it reads as a chosen colour, which is what makes
+// the asymmetry look intended rather than broken.
+//
+// And a surface that steps clearly off it. A centred composition can let a card
+// dissolve into the background because its position already says where it is; a
+// left-aligned one cannot, because the edge IS the axis.
+func applyEditorialSkin(t *SceneTheme, h float64, mode string) {
+	if mode == ThemeModeLight {
+		t.BgTop = hslToHex(h, 0.16, 0.965)
+		t.BgBottom = hslToHex(h, 0.14, 0.935)
+		t.Surface = hslToHex(h, 0.12, 0.995)
+		t.SurfaceBorder = hslToHex(h, 0.20, 0.84)
+		t.Text = hslToHex(h, 0.28, 0.08)
+		t.TextMuted = hslToHex(h, 0.14, 0.34)
+		t.Mass = hslToHex(h, 0.16, 0.58)
+		t.Ink = hslToHex(h, 0.30, 0.14)
+		t.Grain = defaultGrain / 4
+	} else {
+		t.BgTop = hslToHex(h, 0.22, 0.085)
+		t.BgBottom = hslToHex(h, 0.26, 0.055)
+		t.Surface = hslToHex(h, 0.20, 0.145)
+		t.SurfaceBorder = hslToHex(h, 0.24, 0.30)
+		t.Text = hslToHex(h, 0.08, 0.97)
+		t.TextMuted = hslToHex(h, 0.12, 0.66)
+		t.Mass = hslToHex(h, 0.14, 0.84)
+		t.Ink = hslToHex(h, 0.34, 0.07)
+		t.Grain = defaultGrain / 2
+	}
 	t.AccentText = readableOn(t.Accent, t.BgTop, 4.5)
 	deriveSemanticAccents(t, mode)
 }
@@ -248,6 +313,21 @@ func skinAir(skin string) float64 {
 		return 0.06
 	case SkinMinimal:
 		return 0.03
+	case SkinEditorial:
+		// Zero, and a negative value was TRIED and reverted. Scaling the block up
+		// to fill the height is the obvious answer to a top-anchored composition
+		// leaving the bottom empty, and it does not work: air is applied as a
+		// transform about the centre (see Stage.tsx), so scaling past 1.0 grows
+		// the content straight through the frame margins — at 1.1x the headline
+		// clipped off the top edge and the picture ran to x=20 against a SAFE_X
+		// of 110. Stage exists to make that impossible; a skin must not be the
+		// thing that breaks it.
+		//
+		// The empty lower band on a short scene is real and is NOT a skin
+		// problem. It is per-scene layout — around thirty scenes capture STAGE_H
+		// at module scope — and fixing it properly means giving those scenes a
+		// runtime height, which is its own piece of work.
+		return 0
 	default:
 		return 0
 	}

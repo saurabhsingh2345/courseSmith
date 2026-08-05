@@ -8,7 +8,7 @@ import {Theme} from '../types';
 import {bodyFamily, displayFamily, monoFamily} from './fonts';
 
 /** The house styles a video can be cut in. Mirrors videoskin.go. */
-export type Skin = 'default' | 'broadcast' | 'minimal';
+export type Skin = 'default' | 'broadcast' | 'minimal' | 'editorial';
 
 export type ResolvedTheme = {
   primary: string;

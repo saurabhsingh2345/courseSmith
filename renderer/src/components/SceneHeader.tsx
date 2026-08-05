@@ -171,6 +171,88 @@ export const SceneHeader: React.FC<{
     );
   }
 
+  // The editorial skin is the only one that does not centre.
+  //
+  // Every other treatment on this page stacks kicker, headline and rule on the
+  // frame's vertical axis. That is a good composition, and because all
+  // forty-four templates share this component it is also the ONLY composition
+  // the catalog has ever had — which is why a leaderboard and a memory budget
+  // come out looking like the same slide.
+  //
+  // Here the type is set against a hard left axis with the rule turned upright
+  // to mark it, and the measure is deliberately short so a headline WRAPS. The
+  // wrap is not a side effect, it is the composition: two or three ragged lines
+  // against an open right-hand side is what reads as designed rather than as
+  // centred-by-default. A headline that fits on one line at this size gets the
+  // same axis and simply leaves more of the frame empty, which is still the
+  // point.
+  if (theme.skin === 'editorial') {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'stretch',
+          alignSelf: 'flex-start',
+          gap: display ? 32 : 22,
+          flexShrink: 0,
+          marginBottom: marginBottom ?? (display ? 56 : 32),
+          opacity: enter,
+          // Enters from the axis rather than from above, so the movement agrees
+          // with where the eye is being sent.
+          transform: `translateX(${(1 - enter) * -24}px)`,
+        }}
+      >
+        <div
+          style={{
+            width: display ? 8 : 5,
+            borderRadius: 4,
+            flexShrink: 0,
+            background: `linear-gradient(180deg, ${theme.accent}, ${theme.primary})`,
+          }}
+        />
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+          {kicker ? (
+            <div
+              style={{
+                fontFamily: theme.fontBody,
+                fontSize: display ? 20 : 16,
+                letterSpacing: display ? 7 : 5,
+                textTransform: 'uppercase',
+                color: theme.accentText,
+                fontWeight: 600,
+                marginBottom: display ? 14 : 10,
+              }}
+            >
+              {kicker}
+            </div>
+          ) : null}
+          <Headline
+            theme={theme}
+            title={title}
+            emphasis={emphasis}
+            emphasisRole={emphasisRole}
+            style={{
+              fontFamily: theme.fontDisplay,
+              // Larger and tighter than any other skin. The size is affordable
+              // because the measure is short: the type can be loud without
+              // filling the frame, which is the trade the whole look rests on.
+              fontSize: display ? 92 : 54,
+              fontWeight: 800,
+              letterSpacing: display ? -3 : -1.4,
+              lineHeight: 0.98,
+              color: theme.text,
+              textAlign: 'left',
+              // ~62% of the drawing box. Short enough to force the wrap that
+              // makes the composition, wide enough that a seven-word headline
+              // does not break into six lines.
+              maxWidth: display ? 1060 : 820,
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       style={{

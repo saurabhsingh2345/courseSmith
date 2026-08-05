@@ -13,7 +13,7 @@ export type Theme = {
   mode?: 'dark' | 'light';
   /** House style. Absent (the default) is the look the catalog has always had;
    *  see internal/pipeline/videoskin.go. */
-  skin?: 'default' | 'broadcast' | 'minimal';
+  skin?: 'default' | 'broadcast' | 'minimal' | 'editorial';
   /** How far a skin pulls content in from the stage edges, as a fraction of
    *  the drawing box. Absent/0 fills the stage. */
   air?: number;

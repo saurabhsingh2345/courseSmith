@@ -93,10 +93,50 @@ export const StageCaptionsContext = createContext(false);
  */
 export const StageAirContext = createContext(0);
 
+/**
+ * The skin's horizontal placement for the content block, supplied once by
+ * LessonVideo.
+ *
+ * A context for the same reason air is one: fifty scene components render their
+ * own `<Stage>` and not one of them passes an `align`, so a prop would work in
+ * forty-nine of them and silently not in the fiftieth. Threading it through
+ * every scene is also the thing a skin is supposed to avoid — the placement is a
+ * house-style decision, not a property of any template's picture.
+ *
+ * Defaults to 'center', which is what every scene has always got, so a Stage
+ * rendered outside a provider — a fixture, a Storybook entry, a baseline —
+ * composes exactly as it did before this existed.
+ */
+export const StageAlignContext = createContext<React.CSSProperties['alignItems']>('center');
+
+/**
+ * The skin's VERTICAL placement, supplied once by LessonVideo.
+ *
+ * The companion to StageAlignContext, and it exists because fixing only the
+ * horizontal axis made the vertical one worse. Thirty-seven scenes pass
+ * `justify="center"`, so a short composition centres inside the drawing box and
+ * leaves the bottom third of the frame empty — a problem this file already
+ * describes ("content floating high in an under-filled frame"). Centred, that
+ * emptiness is symmetric and reads as margin. Left-weighted, it reads as a
+ * frame that did not get finished.
+ *
+ * Defaults to undefined, meaning "whatever the scene asked for" — so every skin
+ * but `editorial` composes exactly as it always has.
+ */
+export const StageJustifyContext = createContext<React.CSSProperties['justifyContent'] | undefined>(undefined);
+
 export const Stage: React.FC<{
-  /** Vertical placement of the content block within the stage box. */
+  /**
+   * Vertical placement of the content block within the stage box. A skin may
+   * override it through StageJustifyContext; scenes keep passing what they
+   * always passed.
+   */
   justify?: React.CSSProperties['justifyContent'];
-  /** Horizontal placement. Defaults to centred. */
+  /**
+   * Horizontal placement. Omitted, it comes from StageAlignContext — the skin's
+   * choice — which is 'center' for every skin but `editorial`. A scene passes it
+   * explicitly only to opt out, the same way it does with `air`.
+   */
   align?: React.CSSProperties['alignItems'];
   /**
    * Extra inset as a fraction of the drawing box, from the theme's skin.
@@ -116,14 +156,26 @@ export const Stage: React.FC<{
    */
   air?: number;
   children: React.ReactNode;
-}> = ({justify = 'center', align = 'center', air, children}) => {
+}> = ({justify = 'center', align, air, children}) => {
   const contextAir = useContext(StageAirContext);
+  const contextAlign = useContext(StageAlignContext);
+  const contextJustify = useContext(StageJustifyContext);
+  const placement = align ?? contextAlign;
+  // Skin wins over the scene here, unlike `align`: the scenes all say the same
+  // thing (`center`), so honouring them would mean the skin never applied.
+  const flow = contextJustify ?? justify;
   const hasCaptions = useContext(StageCaptionsContext);
   // The reserve the *padding* uses. STAGE_H stays pessimistic (see its comment),
   // so a scene sized against it still fits; what this buys is that the content
   // block centres in the whole frame rather than in a box with a permanent
   // 120-pixel hole at the bottom.
   const bottomReserve = hasCaptions ? CAPTION_SAFE : NO_CAPTION_SAFE;
+  // Clamped at zero on the low end, deliberately. A negative inset — scaling the
+  // composition UP to fill more of the frame — was tried for the editorial skin
+  // and reverted: the transform is about the centre, so anything above 1.0 grows
+  // the content through SAFE_X and SAFE_TOP, and the frame margin this file
+  // exists to guarantee stops being guaranteed. If filling the height is wanted,
+  // it has to come from the scenes' own layout, not from here.
   const inset = Math.max(0, Math.min(0.3, air ?? contextAir));
   // Air is a *scale*, not extra padding, and that is a deliberate correction.
   //
@@ -148,8 +200,8 @@ export const Stage: React.FC<{
         paddingBottom: bottomReserve,
         display: 'flex',
         flexDirection: 'column',
-        alignItems: align,
-        justifyContent: justify,
+        alignItems: placement,
+        justifyContent: flow,
       }}
     >
       {inset === 0 ? (
@@ -159,8 +211,8 @@ export const Stage: React.FC<{
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: align,
-            justifyContent: justify,
+            alignItems: placement,
+            justifyContent: flow,
             width: '100%',
             height: '100%',
             transform: `scale(${scale})`,
