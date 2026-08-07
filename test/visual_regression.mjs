@@ -316,6 +316,41 @@ const TARGETS = [
   { id: "DataViz", frame: 2250 },
   { id: "D3Viz", frame: 130 },
   { id: "MemoryViz", frame: 90 },
+  // The v7 foundations batch. Every frame here is its fixture's CLOSING step
+  // plus a settle, rather than a number chosen per template — each of these
+  // templates ends on the shot that shows its subject entire (the whole board,
+  // the full ladder, all three bases lit), so the closer is both the richest
+  // state and the one a regression in any earlier step still shows up in.
+  { id: "SyllabusViz", frame: 813 },
+  { id: "OutcomeViz", frame: 783 },
+  { id: "BridgeViz", frame: 753 },
+  { id: "DrillViz", frame: 753 },
+  { id: "LabCardViz", frame: 873 },
+  { id: "MissionViz", frame: 873 },
+  { id: "MachineViz", frame: 933 },
+  { id: "BlueprintViz", frame: 933 },
+  { id: "RelayViz", frame: 1053 },
+  { id: "LayersViz", frame: 993 },
+  { id: "PipelineViz", frame: 933 },
+  { id: "RadixViz", frame: 693 },
+  { id: "CarryViz", frame: 948 },
+  { id: "BitfieldViz", frame: 798 },
+  { id: "EncodeViz", frame: 843 },
+  { id: "GatesViz", frame: 783 },
+  { id: "LadderViz", frame: 1068 },
+  { id: "RegionsViz", frame: 1128 },
+  { id: "LookupViz", frame: 903 },
+  { id: "StatesViz", frame: 1113 },
+  { id: "SchedulerViz", frame: 948 },
+  { id: "ShellViz", frame: 903 },
+  { id: "JourneyViz", frame: 753 },
+  { id: "HandshakeViz", frame: 723 },
+  { id: "StepperViz", frame: 843 },
+  { id: "GrowthViz", frame: 843 },
+  { id: "CallStackViz", frame: 1128 },
+  { id: "HistoryViz", frame: 1053 },
+  { id: "VersusViz", frame: 873 },
+  { id: "ErasViz", frame: 1008 },
   { id: "LessonVideo", frame: 15 },
 ];
 
@@ -365,8 +400,28 @@ function compare(pixelmatch, PNG, baselineBuf, actualBuf, diffPath) {
   return { ok: true, reason: `${changed}/${total} px differ (${(ratio * 100).toFixed(2)}%)` };
 }
 
+// --only=<regex> narrows the run to the compositions whose id matches.
+//
+// The full sweep is a hundred and sixty renders, which is the right cost for
+// the guard it is — and the wrong cost when a batch of new templates is being
+// baselined for the first time and every other baseline is already correct.
+// Filtering is not a weaker check: the unmatched targets keep the baselines
+// they already had, and the next unfiltered run still compares all of them.
+function selectedTargets() {
+  const arg = process.argv.find((a) => a.startsWith("--only="));
+  if (!arg) return TARGETS;
+  const re = new RegExp(arg.slice("--only=".length));
+  const picked = TARGETS.filter((t) => re.test(t.id));
+  if (picked.length === 0) {
+    console.error(`--only matched no composition; ids are ${TARGETS.map((t) => t.id).join(", ")}`);
+    process.exit(1);
+  }
+  return picked;
+}
+
 async function main() {
   const update = process.argv.includes("--update");
+  const targets = selectedTargets();
   const { bundler, renderer, pixelmatch, PNG } = await importOrSkip();
 
   mkdirSync(BASELINE_DIR, { recursive: true });
@@ -374,7 +429,7 @@ async function main() {
   const serveUrl = await bundler.bundle({ entryPoint: join(RENDERER_DIR, "src", "index.ts") });
 
   let failures = 0;
-  for (const { id, frame } of TARGETS) {
+  for (const { id, frame } of targets) {
     const stem = `${id}-${frame}`;
     const baseline = join(BASELINE_DIR, `${stem}.png`);
     const actual = join(BASELINE_DIR, `${stem}.actual.png`);

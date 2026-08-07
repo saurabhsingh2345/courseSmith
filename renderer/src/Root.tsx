@@ -3155,6 +3155,1034 @@ const footageVizProps: LessonVideoProps = {
   ],
 };
 
+// ---------------------------------------------------------------------------
+// The v7 `foundations` batch: thirty templates built for a CS-foundations
+// course. Every fixture below is a real frame from that course — a real base
+// conversion, a real truth table, a real UTF-8 encoding — because the gallery
+// card is the only thing a creator sees before picking a template, and a card
+// full of placeholder words teaches nothing about what the template is for.
+//
+// All thirty run under the `editorial` skin, the way the v5 batch does: the
+// batch and the gallery arrived together, so these are its baselines.
+const V7_THEME = {
+  primary: '#306998',
+  accent: '#ffd43b',
+  background: '#ffffff',
+  courseName: 'Coursesmith',
+  skin: 'editorial' as const,
+  accentQuantity: '#f5ca47',
+  accentLimit: '#ec5b51',
+  accentRival: '#518cec',
+};
+
+const syllabusVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 32000,
+  scenes: [{type: 'syllabus', startMs: 0, endMs: 32000, props: {
+    title: 'Eight modules, and where you are',
+    emphasis: 'where you are', emphasisRole: 'quantity',
+    modules: [
+      {label: 'Computer Fundamentals', sub: 'what a computer actually is'},
+      {label: 'Binary & Digital Systems', sub: 'every number is a switch'},
+      {label: 'Computer Architecture', sub: 'CPU, RAM, and the bus between'},
+      {label: 'Memory & Storage', sub: 'the hierarchy under your files'},
+      {label: 'Operating Systems', sub: 'who decides what runs next'},
+      {label: 'Networking & Internet', sub: 'a packet leaves your laptop'},
+      {label: 'Algorithms & Complexity', sub: 'why one loop beats two'},
+      {label: 'Git & Professional Development', sub: 'the history of your work'},
+    ],
+    current: 4,
+    steps: [
+      {startMs: 0, endMs: 6000, show: 'map', ticked: []},
+      {startMs: 6000, endMs: 11000, show: 'stop', at: 0, ticked: []},
+      {startMs: 11000, endMs: 16000, show: 'stop', at: 1, ticked: []},
+      {startMs: 16000, endMs: 21000, show: 'stop', at: 2, ticked: []},
+      {startMs: 21000, endMs: 26000, show: 'stop', at: 3, ticked: []},
+      {startMs: 26000, endMs: 32000, show: 'here', ticked: [0, 1, 2, 3]},
+    ],
+  }}],
+  captions: [],
+};
+
+const outcomeVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [{type: 'outcome', startMs: 0, endMs: 30000, props: {
+    title: 'Three things you can do after this',
+    emphasis: 'Three things', emphasisRole: 'quantity',
+    lesson: 'Binary & Digital Systems',
+    abilities: [
+      {skill: 'Convert 172 to binary by hand', payoff: 'subnet masks stop being magic numbers'},
+      {skill: 'Read a hex dump without a table', payoff: 'a corrupted file tells you where it broke'},
+      {skill: 'Size a value to the right integer type', payoff: 'the overflow bug never ships'},
+    ],
+    steps: [
+      {startMs: 0, endMs: 6000, show: 'promise', lit: []},
+      {startMs: 6000, endMs: 13000, show: 'ability', at: 0, lit: [0]},
+      {startMs: 13000, endMs: 19000, show: 'ability', at: 1, lit: [0, 1]},
+      {startMs: 19000, endMs: 25000, show: 'ability', at: 2, lit: [0, 1, 2]},
+      {startMs: 25000, endMs: 30000, show: 'contract', lit: [0, 1, 2]},
+    ],
+  }}],
+  captions: [],
+};
+
+const bridgeVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 28000,
+  scenes: [{type: 'bridge', startMs: 0, endMs: 28000, props: {
+    title: 'From bits to the machine that moves them',
+    emphasis: 'the machine that moves them', emphasisRole: 'rival',
+    from: 'Binary & Digital Systems',
+    to: 'Computer Architecture',
+    established: [
+      'A byte is eight switches, nothing more',
+      'Hex is four bits written as one digit',
+      'Every instruction is a number too',
+    ],
+    gap: 'So what reads those numbers, and in what order?',
+    steps: [
+      {startMs: 0, endMs: 6000, show: 'back', carried: [], gapOpen: false, arrived: false},
+      {startMs: 6000, endMs: 11000, show: 'carry', at: 0, carried: [0], gapOpen: false, arrived: false},
+      {startMs: 11000, endMs: 15500, show: 'carry', at: 1, carried: [0, 1], gapOpen: false, arrived: false},
+      {startMs: 15500, endMs: 20000, show: 'carry', at: 2, carried: [0, 1, 2], gapOpen: false, arrived: false},
+      {startMs: 20000, endMs: 24000, show: 'gap', carried: [0, 1, 2], gapOpen: true, arrived: false},
+      {startMs: 24000, endMs: 28000, show: 'ahead', carried: [0, 1, 2], gapOpen: true, arrived: true},
+    ],
+  }}],
+  captions: [],
+};
+
+const drillVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 28000,
+  scenes: [{type: 'drill', startMs: 0, endMs: 28000, props: {
+    title: 'How many bytes does a 32-bit address bus reach?',
+    emphasis: '32-bit address bus', emphasisRole: 'quantity',
+    question: 'How much memory can a 32-bit address bus address?',
+    options: ['32 bytes', '4 gigabytes', '32 gigabytes', '4 terabytes'],
+    answer: 1,
+    why: 'Two to the thirty-second addresses, one byte each, is 4 GiB',
+    steps: [
+      {startMs: 0, endMs: 7000, show: 'ask', struck: [], revealed: false, whyOn: false},
+      {startMs: 7000, endMs: 12000, show: 'eliminate', at: 0, struck: [0], revealed: false, whyOn: false},
+      {startMs: 12000, endMs: 16500, show: 'eliminate', at: 2, struck: [0, 2], revealed: false, whyOn: false},
+      {startMs: 16500, endMs: 20000, show: 'eliminate', at: 3, struck: [0, 2, 3], revealed: false, whyOn: false},
+      {startMs: 20000, endMs: 24000, show: 'reveal', struck: [0, 2, 3], revealed: true, whyOn: false},
+      {startMs: 24000, endMs: 28000, show: 'why', struck: [0, 2, 3], revealed: true, whyOn: true},
+    ],
+  }}],
+  captions: [],
+};
+
+const labcardVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 32000,
+  scenes: [{type: 'labcard', startMs: 0, endMs: 32000, props: {
+    title: 'Watch a packet leave your laptop',
+    emphasis: 'leave your laptop', emphasisRole: 'rival',
+    task: 'Trace the route from your laptop to a server',
+    tools: [{name: 'Terminal'}, {name: 'traceroute'}, {name: 'dig'}],
+    stepList: [
+      {n: 1, text: 'Run dig example.com and note the A record'},
+      {n: 2, text: 'Run traceroute to that IP address'},
+      {n: 3, text: 'Count the hops before the first timeout'},
+      {n: 4, text: 'Re-run it over your phone hotspot'},
+    ],
+    expect: 'The first hop is your router, on 192.168.x.x',
+    steps: [
+      {startMs: 0, endMs: 6000, show: 'task', reached: []},
+      {startMs: 6000, endMs: 12000, show: 'step', at: 0, reached: [0]},
+      {startMs: 12000, endMs: 18000, show: 'step', at: 1, reached: [0, 1]},
+      {startMs: 18000, endMs: 23000, show: 'step', at: 2, reached: [0, 1, 2]},
+      {startMs: 23000, endMs: 28000, show: 'step', at: 3, reached: [0, 1, 2, 3]},
+      {startMs: 28000, endMs: 32000, show: 'expect', reached: [0, 1, 2, 3]},
+    ],
+  }}],
+  captions: [],
+};
+
+const missionVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 32000,
+  scenes: [{type: 'mission', startMs: 0, endMs: 32000, props: {
+    title: 'Build the tool that reads your disk',
+    emphasis: 'reads your disk', emphasisRole: 'rival',
+    goal: 'Write a script that reports every drive and its free space',
+    specs: [
+      'Lists every mounted volume',
+      'Prints sizes in GiB, not bytes',
+      'Flags any volume over 90 percent full',
+      'Exits non-zero when a flag fires',
+    ],
+    deliverable: 'a CLI script and its README',
+    done: 'a full disk makes the script exit 1',
+    steps: [
+      {startMs: 0, endMs: 6000, show: 'brief', landed: [], deliverableOn: false, doneOn: false},
+      {startMs: 6000, endMs: 11000, show: 'spec', at: 0, landed: [0], deliverableOn: false, doneOn: false},
+      {startMs: 11000, endMs: 15500, show: 'spec', at: 1, landed: [0, 1], deliverableOn: false, doneOn: false},
+      {startMs: 15500, endMs: 20000, show: 'spec', at: 2, landed: [0, 1, 2], deliverableOn: false, doneOn: false},
+      {startMs: 20000, endMs: 24000, show: 'spec', at: 3, landed: [0, 1, 2, 3], deliverableOn: false, doneOn: false},
+      {startMs: 24000, endMs: 28000, show: 'deliverable', landed: [0, 1, 2, 3], deliverableOn: true, doneOn: false},
+      {startMs: 28000, endMs: 32000, show: 'done', landed: [0, 1, 2, 3], deliverableOn: true, doneOn: true},
+    ],
+  }}],
+  captions: [],
+};
+
+const machineVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 34000,
+  scenes: [{type: 'machine', startMs: 0, endMs: 34000, props: {
+    title: 'Open the box: five parts, five jobs',
+    emphasis: 'five parts, five jobs', emphasisRole: 'quantity',
+    chassis: 'a desktop PC',
+    parts: [
+      {label: 'CPU', job: 'fetches, decodes and executes instructions', size: 'large'},
+      {label: 'RAM', job: 'holds what the CPU is working on right now', size: 'large'},
+      {label: 'SSD', job: 'keeps the files when the power goes off', size: 'medium'},
+      {label: 'GPU', job: 'does the same arithmetic on thousands of pixels', size: 'medium'},
+      {label: 'Power supply', job: 'turns wall AC into the 12V the board wants', size: 'small'},
+    ],
+    steps: [
+      {startMs: 0, endMs: 6000, show: 'whole', visited: []},
+      {startMs: 6000, endMs: 11000, show: 'part', at: 0, visited: [0]},
+      {startMs: 11000, endMs: 16000, show: 'part', at: 1, visited: [0, 1]},
+      {startMs: 16000, endMs: 21000, show: 'part', at: 2, visited: [0, 1, 2]},
+      {startMs: 21000, endMs: 26000, show: 'part', at: 3, visited: [0, 1, 2, 3]},
+      {startMs: 26000, endMs: 30000, show: 'part', at: 4, visited: [0, 1, 2, 3, 4]},
+      {startMs: 30000, endMs: 34000, show: 'fit', visited: [0, 1, 2, 3, 4]},
+    ],
+  }}],
+  captions: [],
+};
+
+const blueprintVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 34000,
+  scenes: [{type: 'blueprint', startMs: 0, endMs: 34000, props: {
+    title: 'The bus is the whole architecture',
+    emphasis: 'the whole architecture', emphasisRole: 'rival',
+    blocks: [
+      {id: 'cpu', label: 'CPU', role: 'unit'},
+      {id: 'ram', label: 'RAM', role: 'store'},
+      {id: 'ssd', label: 'SSD', role: 'store'},
+      {id: 'io', label: 'I/O controller', role: 'io'},
+    ],
+    wires: [
+      {from: 0, to: 1, label: 'address bus'},
+      {from: 1, to: 0, label: 'data bus'},
+      {from: 0, to: 3, label: 'control bus'},
+      {from: 3, to: 2, label: 'SATA'},
+    ],
+    steps: [
+      {startMs: 0, endMs: 6000, show: 'board', lit: []},
+      {startMs: 6000, endMs: 10000, show: 'block', at: 0, lit: []},
+      {startMs: 10000, endMs: 15000, show: 'path', at: 0, lit: [0]},
+      {startMs: 15000, endMs: 20000, show: 'path', at: 1, lit: [0, 1]},
+      {startMs: 20000, endMs: 25000, show: 'path', at: 2, lit: [0, 1, 2]},
+      {startMs: 25000, endMs: 30000, show: 'path', at: 3, lit: [0, 1, 2, 3]},
+      {startMs: 30000, endMs: 34000, show: 'whole', lit: [0, 1, 2, 3]},
+    ],
+  }}],
+  captions: [],
+};
+
+const relayVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 38000,
+  scenes: [{type: 'relay', startMs: 0, endMs: 38000, props: {
+    title: 'Power on to login prompt, in six legs',
+    emphasis: 'six legs', emphasisRole: 'quantity',
+    stages: [
+      {label: 'Power on', does: 'holds the CPU in reset until the rails settle', hands: 'the reset vector'},
+      {label: 'Firmware', does: 'runs POST, then finds a bootable device', hands: 'the boot sector'},
+      {label: 'Bootloader', does: 'loads the kernel image and the initramfs', hands: 'a kernel in RAM'},
+      {label: 'Kernel', does: 'mounts the root filesystem and starts drivers', hands: 'process number one'},
+      {label: 'Init', does: 'starts services in dependency order', hands: 'a login prompt'},
+      {label: 'Login shell', does: 'authenticates you and starts your session', hands: ''},
+    ],
+    steps: [
+      {startMs: 0, endMs: 6000, show: 'line', lit: []},
+      {startMs: 6000, endMs: 11000, show: 'ignite', at: 0, lit: [0]},
+      {startMs: 11000, endMs: 15500, show: 'ignite', at: 1, from: 0, lit: [0, 1]},
+      {startMs: 15500, endMs: 20000, show: 'ignite', at: 2, from: 1, lit: [0, 1, 2]},
+      {startMs: 20000, endMs: 25000, show: 'ignite', at: 3, from: 2, lit: [0, 1, 2, 3]},
+      {startMs: 25000, endMs: 29500, show: 'ignite', at: 4, from: 3, lit: [0, 1, 2, 3, 4]},
+      {startMs: 29500, endMs: 34000, show: 'ignite', at: 5, from: 4, lit: [0, 1, 2, 3, 4, 5]},
+      {startMs: 34000, endMs: 38000, show: 'chain', lit: [0, 1, 2, 3, 4, 5]},
+    ],
+  }}],
+  captions: [],
+};
+
+const layersVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 36000,
+  scenes: [{type: 'layers', startMs: 0, endMs: 36000, props: {
+    title: 'Nothing above the syscall line touches hardware',
+    emphasis: 'the syscall line', emphasisRole: 'limit',
+    strata: [
+      {label: 'Application', holds: 'the code you actually wrote', above: true},
+      {label: 'Standard library', holds: 'printf, malloc, fopen', above: true},
+      {label: 'Kernel', holds: 'the scheduler and the filesystem', above: false},
+      {label: 'Device drivers', holds: 'one module per piece of hardware', above: false},
+      {label: 'Hardware', holds: 'the CPU, the disk, the NIC', above: false},
+    ],
+    boundary: 1,
+    boundaryLabel: 'the syscall line',
+    steps: [
+      {startMs: 0, endMs: 5000, show: 'stack', lit: [], crossed: false},
+      {startMs: 5000, endMs: 9500, show: 'stratum', at: 0, lit: [0], crossed: false},
+      {startMs: 9500, endMs: 14000, show: 'stratum', at: 1, lit: [0, 1], crossed: false},
+      {startMs: 14000, endMs: 19000, show: 'cross', lit: [0, 1], crossed: true},
+      {startMs: 19000, endMs: 23500, show: 'stratum', at: 2, lit: [0, 1, 2], crossed: true},
+      {startMs: 23500, endMs: 28000, show: 'stratum', at: 3, lit: [0, 1, 2, 3], crossed: true},
+      {startMs: 28000, endMs: 32000, show: 'stratum', at: 4, lit: [0, 1, 2, 3, 4], crossed: true},
+      {startMs: 32000, endMs: 36000, show: 'whole', lit: [0, 1, 2, 3, 4], crossed: true},
+    ],
+  }}],
+  captions: [],
+};
+
+// The pipeline grid is simulated in Go, one occupancy row per tick. The rows
+// below are that simulation's output for five instructions through IF/ID/EX/
+// MEM/WB with one load-use bubble — hand-run so the fixture is a real trace
+// rather than a plausible-looking one. -1 is an empty stage.
+const pipelineVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 34000,
+  scenes: [{type: 'pipeline', startMs: 0, endMs: 34000, props: {
+    title: 'Five stages, one instruction finishing every tick',
+    emphasis: 'every tick', emphasisRole: 'quantity',
+    stages: [{name: 'IF'}, {name: 'ID'}, {name: 'EX'}, {name: 'MEM'}, {name: 'WB'}],
+    items: [{label: 'lw'}, {label: 'add'}, {label: 'sub'}, {label: 'and'}, {label: 'beq'}],
+    stall: 'the load result is not back before add needs it',
+    sequentialTicks: 25,
+    pipelinedTicks: 9,
+    steps: [
+      {startMs: 0, endMs: 5000, show: 'empty', occ: [-1, -1, -1, -1, -1], bubble: -1, tick: 0, retired: 0, inFlight: []},
+      {startMs: 5000, endMs: 9000, show: 'fill', occ: [0, -1, -1, -1, -1], bubble: -1, tick: 1, retired: 0, inFlight: [0]},
+      {startMs: 9000, endMs: 13000, show: 'fill', occ: [1, 0, -1, -1, -1], bubble: -1, tick: 2, retired: 0, inFlight: [0, 1]},
+      {startMs: 13000, endMs: 17000, show: 'fill', occ: [2, 1, 0, -1, -1], bubble: -1, tick: 3, retired: 0, inFlight: [0, 1, 2]},
+      {startMs: 17000, endMs: 22000, show: 'stall', occ: [2, 1, -1, 0, -1], bubble: 2, tick: 4, retired: 0, inFlight: [0, 1, 2]},
+      {startMs: 22000, endMs: 26000, show: 'fill', occ: [3, 2, 1, -1, 0], bubble: -1, tick: 5, retired: 0, inFlight: [0, 1, 2, 3]},
+      {startMs: 26000, endMs: 30000, show: 'fill', occ: [4, 3, 2, 1, -1], bubble: -1, tick: 6, retired: 1, inFlight: [1, 2, 3, 4]},
+      {startMs: 30000, endMs: 34000, show: 'flow', occ: [4, 3, 2, 1, -1], bubble: -1, tick: 6, retired: 1, inFlight: [1, 2, 3, 4]},
+    ],
+  }}],
+  captions: [],
+};
+
+const radixVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 26000,
+  scenes: [{type: 'radix', startMs: 0, endMs: 26000, props: {
+    title: '172 is 10101100 is AC',
+    emphasis: '10101100', emphasisRole: 'quantity',
+    decimal: 172,
+    story: 'the first octet of 172.16.0.0, a private range',
+    hex: 'AC',
+    cells: [
+      {bit: '1', weight: 128},
+      {bit: '0', weight: 64},
+      {bit: '1', weight: 32},
+      {bit: '0', weight: 16},
+      {bit: '1', weight: 8},
+      {bit: '1', weight: 4},
+      {bit: '0', weight: 2},
+      {bit: '0', weight: 1},
+    ],
+    sumSteps: [
+      {at: 0, weight: 128, total: 128},
+      {at: 2, weight: 32, total: 160},
+      {at: 4, weight: 8, total: 168},
+      {at: 5, weight: 4, total: 172},
+    ],
+    nibbles: [
+      {bits: '1010', hex: 'A'},
+      {bits: '1100', hex: 'C'},
+    ],
+    steps: [
+      {startMs: 0, endMs: 5000, show: 'value'},
+      {startMs: 5000, endMs: 10000, show: 'weights'},
+      {startMs: 10000, endMs: 17000, show: 'sum'},
+      {startMs: 17000, endMs: 22000, show: 'hex'},
+      {startMs: 22000, endMs: 26000, show: 'same'},
+    ],
+  }}],
+  captions: [],
+};
+
+// 1011 + 110 = 10001, which is 11 + 6 = 17. The columns below are indexed by
+// significance — entry 0 is the RIGHTMOST — and carry out of column 1 rides
+// all the way to column 3, which is the hop this template exists to draw.
+const carryVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 34000,
+  scenes: [{type: 'carry', startMs: 0, endMs: 34000, props: {
+    title: 'Eleven plus six, one column at a time',
+    emphasis: 'one column at a time', emphasisRole: 'limit',
+    a: '1011',
+    b: '110',
+    sum: '10001',
+    aDecimal: 11,
+    bDecimal: 6,
+    sumDecimal: 17,
+    columns: [
+      {a: '1', b: '0', carryIn: 0, digit: '1', carryOut: 0},
+      {a: '1', b: '1', carryIn: 0, digit: '0', carryOut: 1},
+      {a: '0', b: '1', carryIn: 1, digit: '0', carryOut: 1},
+      {a: '1', b: '0', carryIn: 1, digit: '0', carryOut: 1},
+      {a: '0', b: '0', carryIn: 1, digit: '1', carryOut: 0},
+    ],
+    steps: [
+      {startMs: 0, endMs: 5000, show: 'problem', done: []},
+      {startMs: 5000, endMs: 9000, show: 'column', at: 0, done: [0]},
+      {startMs: 9000, endMs: 13500, show: 'column', at: 1, done: [0, 1]},
+      {startMs: 13500, endMs: 18000, show: 'column', at: 2, done: [0, 1, 2]},
+      {startMs: 18000, endMs: 22500, show: 'column', at: 3, done: [0, 1, 2, 3]},
+      {startMs: 22500, endMs: 26500, show: 'column', at: 4, done: [0, 1, 2, 3, 4]},
+      {startMs: 26500, endMs: 30500, show: 'carrychain', done: [0, 1, 2, 3, 4]},
+      {startMs: 30500, endMs: 34000, show: 'answer', done: [0, 1, 2, 3, 4]},
+    ],
+  }}],
+  captions: [],
+};
+
+// 0xC0C80000 — the IEEE-754 single-precision encoding of -6.25. Sign, then an
+// eight-bit exponent, then a twenty-three bit mantissa: 1 + 8 + 23 tiles the
+// row exactly, which is what the validator's interval arithmetic checks.
+const bitfieldVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [{type: 'bitfield', startMs: 0, endMs: 30000, props: {
+    title: 'These 32 bits are three fields, not one number',
+    emphasis: '32 bits', emphasisRole: 'quantity',
+    bits: '11000000110010000000000000000000',
+    cells: [
+      {bit: '1', index: 0},
+      {bit: '1', index: 1},
+      {bit: '0', index: 2},
+      {bit: '0', index: 3},
+      {bit: '0', index: 4},
+      {bit: '0', index: 5},
+      {bit: '0', index: 6},
+      {bit: '0', index: 7},
+      {bit: '1', index: 8},
+      {bit: '1', index: 9},
+      {bit: '0', index: 10},
+      {bit: '0', index: 11},
+      {bit: '1', index: 12},
+      {bit: '0', index: 13},
+      {bit: '0', index: 14},
+      {bit: '0', index: 15},
+      {bit: '0', index: 16},
+      {bit: '0', index: 17},
+      {bit: '0', index: 18},
+      {bit: '0', index: 19},
+      {bit: '0', index: 20},
+      {bit: '0', index: 21},
+      {bit: '0', index: 22},
+      {bit: '0', index: 23},
+      {bit: '0', index: 24},
+      {bit: '0', index: 25},
+      {bit: '0', index: 26},
+      {bit: '0', index: 27},
+      {bit: '0', index: 28},
+      {bit: '0', index: 29},
+      {bit: '0', index: 30},
+      {bit: '0', index: 31},
+    ],
+    fields: [
+      {label: 'sign', from: 0, to: 0, means: 'one, so the number is negative', bits: '1', value: 1},
+      {label: 'exponent', from: 1, to: 8, means: '129 less the bias of 127, so times four', bits: '10000001', value: 129},
+      {label: 'mantissa', from: 9, to: 31, means: '1.5625, once the hidden leading one is put back', bits: '10010000000000000000000', value: 4718592},
+    ],
+    steps: [
+      {startMs: 0, endMs: 5000, show: 'row', done: []},
+      {startMs: 5000, endMs: 9500, show: 'split', done: []},
+      {startMs: 9500, endMs: 14500, show: 'field', at: 0, done: [0]},
+      {startMs: 14500, endMs: 20000, show: 'field', at: 1, done: [0, 1]},
+      {startMs: 20000, endMs: 25500, show: 'field', at: 2, done: [0, 1, 2]},
+      {startMs: 25500, endMs: 30000, show: 'read', done: [0, 1, 2]},
+    ],
+  }}],
+  captions: [],
+};
+
+// U+1F600 really is F0 9F 98 80. Stripping each byte's marker prefix and
+// concatenating the payloads gives 000 011111 011000 000000 — 0x1F600 — which
+// is the arithmetic the byte boxes are drawn from.
+const encodeVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 32000,
+  scenes: [{type: 'encode', startMs: 0, endMs: 32000, props: {
+    title: 'One emoji, four bytes',
+    emphasis: 'four bytes', emphasisRole: 'quantity',
+    glyph: '😀',
+    codepoint: 'U+1F600',
+    note: 'one character, four bytes, and every one of them is needed',
+    bytes: [
+      {hex: '0xF0', bits: '11110000', marker: '11110', payload: '000', lead: true},
+      {hex: '0x9F', bits: '10011111', marker: '10', payload: '011111', lead: false},
+      {hex: '0x98', bits: '10011000', marker: '10', payload: '011000', lead: false},
+      {hex: '0x80', bits: '10000000', marker: '10', payload: '000000', lead: false},
+    ],
+    steps: [
+      {startMs: 0, endMs: 5000, show: 'glyph', landed: 0},
+      {startMs: 5000, endMs: 10000, show: 'codepoint', landed: 0},
+      {startMs: 10000, endMs: 14500, show: 'bytes', at: 0, landed: 1},
+      {startMs: 14500, endMs: 18500, show: 'bytes', at: 1, landed: 2},
+      {startMs: 18500, endMs: 22500, show: 'bytes', at: 2, landed: 3},
+      {startMs: 22500, endMs: 27000, show: 'bytes', at: 3, landed: 4},
+      {startMs: 27000, endMs: 32000, show: 'note', landed: 4},
+    ],
+  }}],
+  captions: [],
+};
+
+const gatesVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [{type: 'gates', startMs: 0, endMs: 30000, props: {
+    title: 'XOR fires only when the inputs differ',
+    emphasis: 'the inputs differ', emphasisRole: 'rival',
+    gate: 'XOR',
+    law: 'one when the inputs differ',
+    inputs: ['A', 'B'],
+    rows: [
+      {in: [0, 0], out: 0},
+      {in: [0, 1], out: 1},
+      {in: [1, 0], out: 1},
+      {in: [1, 1], out: 0},
+    ],
+    steps: [
+      {startMs: 0, endMs: 5000, show: 'circuit', done: []},
+      {startMs: 5000, endMs: 10000, show: 'row', at: 0, done: [0]},
+      {startMs: 10000, endMs: 15000, show: 'row', at: 1, done: [0, 1]},
+      {startMs: 15000, endMs: 20000, show: 'row', at: 2, done: [0, 1, 2]},
+      {startMs: 20000, endMs: 25000, show: 'row', at: 3, done: [0, 1, 2, 3]},
+      {startMs: 25000, endMs: 30000, show: 'law', done: [0, 1, 2, 3]},
+    ],
+  }}],
+  captions: [],
+};
+
+// The latency numbers every programmer should know, on a log axis running from
+// 0.3 ns to 10 ms. `logPos` and the decade ticks are computed in Go and
+// rounded to six places; the values below are that computation's output.
+const ladderVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 40000,
+  scenes: [{type: 'ladder', startMs: 0, endMs: 40000, props: {
+    title: 'Every rung down costs an order of magnitude',
+    emphasis: 'an order of magnitude', emphasisRole: 'limit',
+    rungs: [
+      {label: 'registers', capacity: 'a few hundred bytes', latencyNs: 0.3, latency: '0.3 ns', logPos: 0},
+      {label: 'L1 cache', capacity: '64 KB per core', latencyNs: 1, latency: '1 ns', logPos: 0.069505},
+      {label: 'L2 cache', capacity: '1 MB per core', latencyNs: 7, latency: '7 ns', logPos: 0.181842},
+      {label: 'main memory', capacity: '16 GB', latencyNs: 100, latency: '100 ns', logPos: 0.335361},
+      {label: 'SSD', capacity: '1 TB', latencyNs: 150000, latency: '150 µs', logPos: 0.757552},
+      {label: 'spinning disk', capacity: '4 TB', latencyNs: 10000000, latency: '10 ms', logPos: 1},
+    ],
+    ticks: [
+      {pos: 0.069505, label: '1 ns'},
+      {pos: 0.202433, label: '10 ns'},
+      {pos: 0.335361, label: '100 ns'},
+      {pos: 0.468289, label: '1 µs'},
+      {pos: 0.601216, label: '10 µs'},
+      {pos: 0.734144, label: '100 µs'},
+      {pos: 0.867072, label: '1 ms'},
+      {pos: 1, label: '10 ms'},
+    ],
+    ratio: '×33,333,333',
+    steps: [
+      {startMs: 0, endMs: 4500, show: 'ladder'},
+      {startMs: 4500, endMs: 8500, show: 'rung', at: 0},
+      {startMs: 8500, endMs: 12500, show: 'rung', at: 1},
+      {startMs: 12500, endMs: 16500, show: 'rung', at: 2},
+      {startMs: 16500, endMs: 21000, show: 'rung', at: 3},
+      {startMs: 21000, endMs: 26000, show: 'miss', at: 3, to: 4, cost: '×1,500 slower'},
+      {startMs: 26000, endMs: 30000, show: 'rung', at: 4},
+      {startMs: 30000, endMs: 34500, show: 'rung', at: 5},
+      {startMs: 34500, endMs: 40000, show: 'spread'},
+    ],
+  }}],
+  captions: [],
+};
+
+const regionsVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 40000,
+  scenes: [{type: 'regions', startMs: 0, endMs: 40000, props: {
+    title: 'The heap and the stack spend the same gap',
+    emphasis: 'the same gap', emphasisRole: 'limit',
+    regions: [
+      {label: 'code', role: 'code', note: 'the instructions, mapped read-only', grows: ''},
+      {label: 'static data', role: 'static', note: 'globals, sized before the program starts', grows: ''},
+      {label: 'the heap', role: 'heap', note: 'malloc hands out addresses from here upward', grows: 'up'},
+      {label: 'free space', role: 'gap', note: 'unclaimed, and both fronts are spending it', grows: ''},
+      {label: 'the stack', role: 'stack', note: 'one frame per call, growing downward', grows: 'down'},
+    ],
+    heapAt: 2,
+    stackAt: 4,
+    gapAt: 3,
+    steps: [
+      {startMs: 0, endMs: 4500, show: 'map', seen: [], grown: [], collided: false},
+      {startMs: 4500, endMs: 8500, show: 'region', at: 0, seen: [0], grown: [], collided: false},
+      {startMs: 8500, endMs: 12500, show: 'region', at: 1, seen: [0, 1], grown: [], collided: false},
+      {startMs: 12500, endMs: 17000, show: 'region', at: 2, seen: [0, 1, 2], grown: [], collided: false},
+      {startMs: 17000, endMs: 21000, show: 'region', at: 3, seen: [0, 1, 2, 3], grown: [], collided: false},
+      {startMs: 21000, endMs: 25000, show: 'region', at: 4, seen: [0, 1, 2, 3, 4], grown: [], collided: false},
+      {startMs: 25000, endMs: 29000, show: 'grow', at: 2, seen: [0, 1, 2, 3, 4], grown: [2], collided: false},
+      {startMs: 29000, endMs: 33000, show: 'grow', at: 4, seen: [0, 1, 2, 3, 4], grown: [2, 4], collided: false},
+      {startMs: 33000, endMs: 36500, show: 'collide', seen: [0, 1, 2, 3, 4], grown: [2, 4], collided: true},
+      {startMs: 36500, endMs: 40000, show: 'whole', seen: [0, 1, 2, 3, 4], grown: [2, 4], collided: true},
+    ],
+  }}],
+  captions: [],
+};
+
+const lookupVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 34000,
+  scenes: [{type: 'lookup', startMs: 0, endMs: 34000, props: {
+    title: 'Four questions to turn a name into an address',
+    emphasis: 'Four questions', emphasisRole: 'quantity',
+    key: 'www.example.com',
+    answer: '93.184.216.34',
+    hops: [
+      {where: 'your resolver', gives: 'nothing cached, so it starts at the root', miss: 'a cold cache means the full walk'},
+      {where: 'the root server', gives: 'go ask the .com servers', miss: 'the root knows no hostnames at all'},
+      {where: 'the .com servers', gives: 'go ask ns1.example.com', miss: 'a TLD knows delegations, not addresses'},
+      {where: 'the authoritative server', gives: 'www.example.com is 93.184.216.34', miss: ''},
+    ],
+    steps: [
+      {startMs: 0, endMs: 5000, show: 'ask', visited: [], answered: false, cached: false},
+      {startMs: 5000, endMs: 9500, show: 'hop', at: 0, visited: [0], answered: false, cached: false},
+      {startMs: 9500, endMs: 14000, show: 'hop', at: 1, visited: [0, 1], answered: false, cached: false},
+      {startMs: 14000, endMs: 18500, show: 'hop', at: 2, visited: [0, 1, 2], answered: false, cached: false},
+      {startMs: 18500, endMs: 23500, show: 'hop', at: 3, visited: [0, 1, 2, 3], answered: false, cached: false},
+      {startMs: 23500, endMs: 29000, show: 'hit', visited: [0, 1, 2, 3], answered: true, cached: false},
+      {startMs: 29000, endMs: 34000, show: 'cache', visited: [0, 1, 2, 3], answered: true, cached: true},
+    ],
+  }}],
+  captions: [],
+};
+
+// The token walk is validated arc by arc: a transition may only fire when it
+// starts where the dot is standing. `from` is the node before the beat acts and
+// `token` the node after, so the component animates the slide without deriving
+// either. This route runs new → ready → running, gets pre-empted, blocks on a
+// read, and exits — which is every arc in the machine.
+const statesVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 40000,
+  scenes: [{type: 'states', startMs: 0, endMs: 40000, props: {
+    title: 'A process is only ever in one of five states',
+    emphasis: 'one of five states', emphasisRole: 'quantity',
+    nodes: [
+      {id: 'new', label: 'new'},
+      {id: 'ready', label: 'ready'},
+      {id: 'running', label: 'running'},
+      {id: 'blocked', label: 'blocked'},
+      {id: 'terminated', label: 'terminated'},
+    ],
+    arcs: [
+      {from: 0, to: 1, on: 'admitted by the scheduler'},
+      {from: 1, to: 2, on: 'the scheduler picks it'},
+      {from: 2, to: 3, on: 'it asks for disk'},
+      {from: 3, to: 1, on: 'the read completes'},
+      {from: 2, to: 1, on: 'its time slice expires'},
+      {from: 2, to: 4, on: 'it calls exit'},
+    ],
+    steps: [
+      {startMs: 0, endMs: 4500, show: 'machine', from: 0, token: 0, lit: []},
+      {startMs: 4500, endMs: 8500, show: 'fire', at: 0, from: 0, token: 1, lit: [0]},
+      {startMs: 8500, endMs: 12500, show: 'fire', at: 1, from: 1, token: 2, lit: [0, 1]},
+      {startMs: 12500, endMs: 16500, show: 'fire', at: 4, from: 2, token: 1, lit: [0, 1, 4]},
+      {startMs: 16500, endMs: 20500, show: 'fire', at: 1, from: 1, token: 2, lit: [0, 1, 4]},
+      {startMs: 20500, endMs: 24500, show: 'fire', at: 2, from: 2, token: 3, lit: [0, 1, 2, 4]},
+      {startMs: 24500, endMs: 28500, show: 'fire', at: 3, from: 3, token: 1, lit: [0, 1, 2, 3, 4]},
+      {startMs: 28500, endMs: 32000, show: 'fire', at: 1, from: 1, token: 2, lit: [0, 1, 2, 3, 4]},
+      {startMs: 32000, endMs: 36000, show: 'fire', at: 5, from: 2, token: 4, lit: [0, 1, 2, 3, 4, 5]},
+      {startMs: 36000, endMs: 40000, show: 'walk', from: 4, token: 4, lit: [0, 1, 2, 3, 4, 5]},
+    ],
+  }}],
+  captions: [],
+};
+
+const schedulerVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 36000,
+  scenes: [{type: 'scheduler', startMs: 0, endMs: 36000, props: {
+    title: 'Round Robin: nobody waits more than one quantum',
+    emphasis: 'one quantum', emphasisRole: 'limit',
+    policy: 'Round Robin',
+    procs: [
+      {label: 'P1', total: 6},
+      {label: 'P2', total: 4},
+      {label: 'P3', total: 2},
+    ],
+    slots: [
+      {proc: 0, len: 2, start: 0},
+      {proc: 1, len: 2, start: 2},
+      {proc: 2, len: 2, start: 4},
+      {proc: 0, len: 2, start: 6},
+      {proc: 1, len: 2, start: 8},
+      {proc: 0, len: 2, start: 10},
+    ],
+    units: 12,
+    steps: [
+      {startMs: 0, endMs: 4500, show: 'queue', laid: 0},
+      {startMs: 4500, endMs: 8000, show: 'run', at: 0, laid: 1},
+      {startMs: 8000, endMs: 11500, show: 'run', at: 1, laid: 2},
+      {startMs: 11500, endMs: 16000, show: 'switch', at: 1, boundary: 2, laid: 2},
+      {startMs: 16000, endMs: 19500, show: 'run', at: 2, laid: 3},
+      {startMs: 19500, endMs: 23000, show: 'run', at: 3, laid: 4},
+      {startMs: 23000, endMs: 26500, show: 'run', at: 4, laid: 5},
+      {startMs: 26500, endMs: 30500, show: 'run', at: 5, laid: 6},
+      {startMs: 30500, endMs: 36000, show: 'fair', laid: 6},
+    ],
+  }}],
+  captions: [],
+};
+
+const shellVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 34000,
+  scenes: [{type: 'shell', startMs: 0, endMs: 34000, props: {
+    title: 'One command says the disk is 88 percent full',
+    emphasis: '88 percent full', emphasisRole: 'limit',
+    host: 'ubuntu',
+    entries: [
+      {
+        cmd: 'ls -l /var/log',
+        output: [
+          '-rw-r--r--  1 root root  1.2M Aug  7 09:14 syslog',
+          '-rw-r-----  1 root adm    48K Aug  7 09:02 auth.log',
+          'drwxr-xr-x  2 root root  4.0K Aug  1 00:00 nginx',
+        ],
+        note: 'the first column is the permission bits',
+      },
+      {
+        cmd: 'df -h /',
+        output: [
+          'Filesystem      Size  Used Avail Use% Mounted on',
+          '/dev/nvme0n1p2  468G  391G   54G  88% /',
+        ],
+        note: 'eighty-eight percent is the number to watch',
+      },
+      {
+        cmd: 'chmod 640 /var/log/auth.log',
+        output: [],
+        note: 'six-four-zero is rw-, then r--, then nothing',
+      },
+    ],
+    steps: [
+      {startMs: 0, endMs: 4000, show: 'prompt', typed: [], shown: []},
+      {startMs: 4000, endMs: 8000, show: 'type', at: 0, typed: [0], shown: []},
+      {startMs: 8000, endMs: 13000, show: 'output', at: 0, typed: [0], shown: [0]},
+      {startMs: 13000, endMs: 17000, show: 'type', at: 1, typed: [0, 1], shown: [0]},
+      {startMs: 17000, endMs: 23000, show: 'output', at: 1, typed: [0, 1], shown: [0, 1]},
+      {startMs: 23000, endMs: 29000, show: 'type', at: 2, typed: [0, 1, 2], shown: [0, 1]},
+      {startMs: 29000, endMs: 34000, show: 'recap', typed: [0, 1, 2], shown: [0, 1, 2]},
+    ],
+  }}],
+  captions: [],
+};
+
+const journeyVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 30000,
+  scenes: [{type: 'journey', startMs: 0, endMs: 30000, props: {
+    title: 'Four stops between your keystroke and the page',
+    emphasis: 'Four stops', emphasisRole: 'quantity',
+    stops: [
+      {label: 'your laptop', kind: 'device', adds: 'opens a socket and writes the request'},
+      {label: 'the hall router', kind: 'router', adds: 'rewrites the source address and forwards'},
+      {label: 'the DNS resolver', kind: 'dns', adds: 'turns example.com into 93.184.216.34'},
+      {label: 'the web server', kind: 'server', adds: 'renders the page and writes it back'},
+    ],
+    return: 'the HTML for the page',
+    steps: [
+      {startMs: 0, endMs: 6000, show: 'map', reached: 0, legs: []},
+      {startMs: 6000, endMs: 12000, show: 'hop', at: 1, reached: 1, legs: [1]},
+      {startMs: 12000, endMs: 18000, show: 'hop', at: 2, reached: 2, legs: [1, 2]},
+      {startMs: 18000, endMs: 24000, show: 'reach', at: 3, reached: 3, legs: [1, 2, 3]},
+      {startMs: 24000, endMs: 30000, show: 'return', reached: 3, legs: [1, 2, 3]},
+    ],
+  }}],
+  captions: [],
+};
+
+const handshakeVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 28000,
+  scenes: [{type: 'handshake', startMs: 0, endMs: 28000, props: {
+    title: 'Three packets before a single byte of data',
+    emphasis: 'Three packets', emphasisRole: 'quantity',
+    left: 'your browser',
+    right: 'the server',
+    msgs: [
+      {dir: 'ltr', label: 'SYN, sequence 0', means: 'I want to talk, and here is my start'},
+      {dir: 'rtl', label: 'SYN-ACK, sequence 0, ack 1', means: 'so do I, and I heard yours'},
+      {dir: 'ltr', label: 'ACK, ack 1', means: 'I heard yours too, so we are open'},
+    ],
+    steps: [
+      {startMs: 0, endMs: 5000, show: 'wire', delivered: []},
+      {startMs: 5000, endMs: 11000, show: 'msg', at: 0, delivered: [0]},
+      {startMs: 11000, endMs: 17000, show: 'msg', at: 1, delivered: [0, 1]},
+      {startMs: 17000, endMs: 23000, show: 'msg', at: 2, delivered: [0, 1, 2]},
+      {startMs: 23000, endMs: 28000, show: 'open', delivered: [0, 1, 2]},
+    ],
+  }}],
+  captions: [],
+};
+
+// A real binary search for 31 in a sorted row of eight: mid lands on 17, which
+// is too small, low moves past it, and the second probe is the answer. Two
+// comparisons for eight cells — which is the whole point of the picture.
+const stepperVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 32000,
+  scenes: [{type: 'stepper', startMs: 0, endMs: 32000, props: {
+    title: 'Eight cells, two comparisons, one answer',
+    emphasis: 'two comparisons', emphasisRole: 'quantity',
+    values: [3, 8, 12, 17, 23, 31, 42, 56],
+    pointers: ['low', 'mid', 'high'],
+    target: 31,
+    steps: [
+      {startMs: 0, endMs: 5000, show: 'array', values: [3, 8, 12, 17, 23, 31, 42, 56],
+       ops: 0, ptr: {low: 0, mid: -1, high: 7}, touched: []},
+      {startMs: 5000, endMs: 9000, show: 'point', values: [3, 8, 12, 17, 23, 31, 42, 56],
+       ops: 0, ptr: {low: 0, mid: 3, high: 7}, touched: []},
+      {startMs: 9000, endMs: 14000, show: 'compare', at: [3], values: [3, 8, 12, 17, 23, 31, 42, 56],
+       ops: 1, ptr: {low: 0, mid: 3, high: 7}, touched: [3]},
+      {startMs: 14000, endMs: 18000, show: 'point', values: [3, 8, 12, 17, 23, 31, 42, 56],
+       ops: 1, ptr: {low: 4, mid: 3, high: 7}, touched: [3]},
+      {startMs: 18000, endMs: 22000, show: 'point', values: [3, 8, 12, 17, 23, 31, 42, 56],
+       ops: 1, ptr: {low: 4, mid: 5, high: 7}, touched: [3]},
+      {startMs: 22000, endMs: 27000, show: 'compare', at: [5], values: [3, 8, 12, 17, 23, 31, 42, 56],
+       ops: 2, ptr: {low: 4, mid: 5, high: 7}, touched: [3, 5]},
+      {startMs: 27000, endMs: 32000, show: 'found', at: [5], values: [3, 8, 12, 17, 23, 31, 42, 56],
+       ops: 2, ptr: {low: 4, mid: 5, high: 7}, touched: [3, 5]},
+    ],
+  }}],
+  captions: [],
+};
+
+// The curves are sampled in Go: 24 points at n = 1..24, each cost divided by a
+// ceiling of 40 and clamped to the top of the frame. O(n²) leaves the chart at
+// n = 7, which is the shot. The probe readings are the real costs at a million.
+const growthVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 32000,
+  scenes: [{type: 'growth', startMs: 0, endMs: 32000, props: {
+    title: 'Doubling the input is not always doubling the work',
+    emphasis: 'not always doubling the work', emphasisRole: 'limit',
+    curves: [
+      {
+        class: 'logn', label: 'binary search', notation: 'O(log n)', reading: '20',
+        points: [0, 0.025, 0.0396, 0.05, 0.058, 0.0646, 0.0702, 0.075, 0.0792, 0.083, 0.0865, 0.0896,
+                 0.0925, 0.0952, 0.0977, 0.1, 0.1022, 0.1042, 0.1062, 0.108, 0.1098, 0.1115, 0.1131, 0.1146],
+      },
+      {
+        class: 'n', label: 'the linear scan', notation: 'O(n)', reading: '1,000,000',
+        points: [0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.225, 0.25, 0.275, 0.3,
+                 0.325, 0.35, 0.375, 0.4, 0.425, 0.45, 0.475, 0.5, 0.525, 0.55, 0.575, 0.6],
+      },
+      {
+        class: 'n2', label: 'the nested loop', notation: 'O(n²)', reading: '1,000,000,000,000',
+        points: [0.025, 0.1, 0.225, 0.4, 0.625, 0.9, 1, 1, 1, 1, 1, 1,
+                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      },
+    ],
+    probe: 1000000,
+    probeLabel: '1,000,000',
+    worst: 2,
+    steps: [
+      {startMs: 0, endMs: 5000, show: 'axes', drawn: []},
+      {startMs: 5000, endMs: 10000, show: 'curve', at: 0, drawn: [0]},
+      {startMs: 10000, endMs: 15000, show: 'curve', at: 1, drawn: [0, 1]},
+      {startMs: 15000, endMs: 20500, show: 'curve', at: 2, drawn: [0, 1, 2]},
+      {startMs: 20500, endMs: 27000, show: 'probe', drawn: [0, 1, 2]},
+      {startMs: 27000, endMs: 32000, show: 'moral', drawn: [0, 1, 2]},
+    ],
+  }}],
+  captions: [],
+};
+
+// factorial(4). Four plates go on in call order and come off in reverse, each
+// handing its value down into the plate below — 1, then 2, then 6, then 24.
+// `onStack` and `returned` are the Go simulation's output, not a guess.
+const callstackVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 40000,
+  scenes: [{type: 'callstack', startMs: 0, endMs: 40000, props: {
+    title: 'factorial(4) is four calls before a single answer',
+    emphasis: 'four calls', emphasisRole: 'quantity',
+    fn: 'factorial',
+    base: 'one is where it stops calling',
+    answer: '24',
+    frames: [
+      {args: 'n=4', returns: '24', base: false},
+      {args: 'n=3', returns: '6', base: false},
+      {args: 'n=2', returns: '2', base: false},
+      {args: 'n=1', returns: '1', base: true},
+    ],
+    steps: [
+      {startMs: 0, endMs: 4000, show: 'call', at: 0, onStack: [0], returned: []},
+      {startMs: 4000, endMs: 8000, show: 'call', at: 1, onStack: [0, 1], returned: []},
+      {startMs: 8000, endMs: 12000, show: 'call', at: 2, onStack: [0, 1, 2], returned: []},
+      {startMs: 12000, endMs: 16000, show: 'call', at: 3, onStack: [0, 1, 2, 3], returned: []},
+      {startMs: 16000, endMs: 21000, show: 'base', at: 3, onStack: [0, 1, 2, 3], returned: []},
+      {startMs: 21000, endMs: 25000, show: 'return', at: 3, value: '1', into: 2, onStack: [0, 1, 2], returned: [3]},
+      {startMs: 25000, endMs: 29000, show: 'return', at: 2, value: '2', into: 1, onStack: [0, 1], returned: [2, 3]},
+      {startMs: 29000, endMs: 33000, show: 'return', at: 1, value: '6', into: 0, onStack: [0], returned: [1, 2, 3]},
+      {startMs: 33000, endMs: 36500, show: 'return', at: 0, value: '24', onStack: [], returned: [0, 1, 2, 3]},
+      {startMs: 36500, endMs: 40000, show: 'empty', onStack: [], returned: [0, 1, 2, 3]},
+    ],
+  }}],
+  captions: [],
+};
+
+const historyVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 38000,
+  scenes: [{type: 'history', startMs: 0, endMs: 38000, props: {
+    title: 'A branch is two edges leaving one commit',
+    emphasis: 'two edges', emphasisRole: 'quantity',
+    lanes: ['main', 'feature'],
+    commits: [
+      {col: 0, lane: 0, label: 'initial commit', parents: [], children: [1], merge: false},
+      {col: 1, lane: 0, label: 'add the parser', parents: [0], children: [2, 3], merge: false},
+      {col: 2, lane: 1, label: 'start the cache', parents: [1], children: [4], merge: false},
+      {col: 3, lane: 0, label: 'fix the parser', parents: [1], children: [5], merge: false},
+      {col: 4, lane: 1, label: 'cache lookups', parents: [2], children: [5], merge: false},
+      {col: 5, lane: 0, label: 'merge the cache', parents: [3, 4], children: [], merge: true},
+    ],
+    edges: [
+      {from: 0, to: 1, fromLane: 0, toLane: 0, curved: false},
+      {from: 1, to: 2, fromLane: 0, toLane: 1, curved: true},
+      {from: 1, to: 3, fromLane: 0, toLane: 0, curved: false},
+      {from: 2, to: 4, fromLane: 1, toLane: 1, curved: false},
+      {from: 3, to: 5, fromLane: 0, toLane: 0, curved: false},
+      {from: 4, to: 5, fromLane: 1, toLane: 0, curved: true},
+    ],
+    steps: [
+      {startMs: 0, endMs: 4500, show: 'graph', landed: [], head: -1},
+      {startMs: 4500, endMs: 8500, show: 'commit', at: 0, landed: [0], head: 0},
+      {startMs: 8500, endMs: 12500, show: 'commit', at: 1, landed: [0, 1], head: 1},
+      {startMs: 12500, endMs: 16500, show: 'commit', at: 2, landed: [0, 1, 2], head: 2},
+      {startMs: 16500, endMs: 20500, show: 'commit', at: 3, landed: [0, 1, 2, 3], head: 3},
+      {startMs: 20500, endMs: 25500, show: 'branch', at: 1, kids: [2, 3], landed: [0, 1, 2, 3], head: 3},
+      {startMs: 25500, endMs: 29500, show: 'commit', at: 4, landed: [0, 1, 2, 3, 4], head: 4},
+      {startMs: 29500, endMs: 34000, show: 'merge', at: 5, landed: [0, 1, 2, 3, 4, 5], head: 5},
+      {startMs: 34000, endMs: 38000, show: 'log', landed: [0, 1, 2, 3, 4, 5], head: 5},
+    ],
+  }}],
+  captions: [],
+};
+
+const versusVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 34000,
+  scenes: [{type: 'versus', startMs: 0, endMs: 34000, props: {
+    title: 'TCP guarantees order; UDP guarantees nothing',
+    emphasis: 'UDP guarantees nothing', emphasisRole: 'rival',
+    left: 'TCP',
+    right: 'UDP',
+    rows: [
+      {dim: 'ordering', leftVal: 'bytes arrive in order', rightVal: 'datagrams can arrive out of order', edge: 'left'},
+      {dim: 'delivery', leftVal: 'retransmits until acknowledged', rightVal: 'sends once, no retries', edge: 'left'},
+      {dim: 'setup cost', leftVal: 'three packets before data', rightVal: 'no handshake at all', edge: 'right'},
+      {dim: 'head-of-line blocking', leftVal: 'one lost packet stalls everything', rightVal: 'a lost datagram stalls nothing', edge: 'right'},
+      {dim: 'header overhead', leftVal: 'twenty bytes per segment', rightVal: 'eight bytes per datagram', edge: 'right'},
+    ],
+    verdict: 'Reach for TCP when every byte matters, UDP when late data is useless',
+    leftWins: 2,
+    rightWins: 3,
+    evens: 0,
+    sweep: false,
+    steps: [
+      {startMs: 0, endMs: 5000, show: 'face', landed: []},
+      {startMs: 5000, endMs: 9500, show: 'row', at: 0, landed: [0]},
+      {startMs: 9500, endMs: 14000, show: 'row', at: 1, landed: [0, 1]},
+      {startMs: 14000, endMs: 18500, show: 'row', at: 2, landed: [0, 1, 2]},
+      {startMs: 18500, endMs: 23000, show: 'row', at: 3, landed: [0, 1, 2, 3]},
+      {startMs: 23000, endMs: 28000, show: 'row', at: 4, landed: [0, 1, 2, 3, 4]},
+      {startMs: 28000, endMs: 34000, show: 'verdict', landed: [0, 1, 2, 3, 4]},
+    ],
+  }}],
+  captions: [],
+};
+
+const erasVizProps: LessonVideoProps = {
+  theme: V7_THEME,
+  audioFile: '',
+  durationMs: 38000,
+  scenes: [{type: 'eras', startMs: 0, endMs: 38000, props: {
+    title: 'Five generations, each handing the next a problem',
+    emphasis: 'Five generations', emphasisRole: 'quantity',
+    eras: [
+      {label: 'vacuum tubes', when: '1940s', mark: 'ENIAC filled a room and drew 150 kilowatts', carry: 'the stored-program idea'},
+      {label: 'transistors', when: '1950s', mark: 'the TX-0 ran without warming up first', carry: 'switching without heat'},
+      {label: 'integrated circuits', when: '1960s', mark: 'the System/360 made a family of machines', carry: 'one instruction set, many machines'},
+      {label: 'microprocessors', when: '1970s', mark: 'the Intel 4004 put a CPU on one chip', carry: 'a computer per person'},
+      {label: 'the internet', when: '1990s', mark: 'TCP/IP made every machine reachable', carry: 'a computer per pocket'},
+    ],
+    threads: [
+      {from: 0, to: 1, carry: 'the stored-program idea'},
+      {from: 1, to: 2, carry: 'switching without heat'},
+      {from: 2, to: 3, carry: 'one instruction set, many machines'},
+      {from: 3, to: 4, carry: 'a computer per person'},
+    ],
+    carryNow: 'a computer per pocket',
+    steps: [
+      {startMs: 0, endMs: 4500, show: 'band', lit: []},
+      {startMs: 4500, endMs: 9000, show: 'era', at: 0, lit: [0]},
+      {startMs: 9000, endMs: 13500, show: 'era', at: 1, lit: [0, 1]},
+      {startMs: 13500, endMs: 18000, show: 'era', at: 2, lit: [0, 1, 2]},
+      {startMs: 18000, endMs: 22500, show: 'era', at: 3, lit: [0, 1, 2, 3]},
+      {startMs: 22500, endMs: 27000, show: 'era', at: 4, lit: [0, 1, 2, 3, 4]},
+      {startMs: 27000, endMs: 32500, show: 'thread', lit: [0, 1, 2, 3, 4]},
+      {startMs: 32500, endMs: 38000, show: 'now', at: 4, lit: [0, 1, 2, 3, 4]},
+    ],
+  }}],
+  captions: [],
+};
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
@@ -3733,6 +4761,276 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(memoryVizProps.durationMs)}
       defaultProps={memoryVizProps}
+    />
+    <Composition
+      id="SyllabusViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(syllabusVizProps.durationMs)}
+      defaultProps={syllabusVizProps}
+    />
+    <Composition
+      id="OutcomeViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(outcomeVizProps.durationMs)}
+      defaultProps={outcomeVizProps}
+    />
+    <Composition
+      id="BridgeViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(bridgeVizProps.durationMs)}
+      defaultProps={bridgeVizProps}
+    />
+    <Composition
+      id="DrillViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(drillVizProps.durationMs)}
+      defaultProps={drillVizProps}
+    />
+    <Composition
+      id="LabCardViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(labcardVizProps.durationMs)}
+      defaultProps={labcardVizProps}
+    />
+    <Composition
+      id="MissionViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(missionVizProps.durationMs)}
+      defaultProps={missionVizProps}
+    />
+    <Composition
+      id="MachineViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(machineVizProps.durationMs)}
+      defaultProps={machineVizProps}
+    />
+    <Composition
+      id="BlueprintViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(blueprintVizProps.durationMs)}
+      defaultProps={blueprintVizProps}
+    />
+    <Composition
+      id="RelayViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(relayVizProps.durationMs)}
+      defaultProps={relayVizProps}
+    />
+    <Composition
+      id="LayersViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(layersVizProps.durationMs)}
+      defaultProps={layersVizProps}
+    />
+    <Composition
+      id="PipelineViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(pipelineVizProps.durationMs)}
+      defaultProps={pipelineVizProps}
+    />
+    <Composition
+      id="RadixViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(radixVizProps.durationMs)}
+      defaultProps={radixVizProps}
+    />
+    <Composition
+      id="CarryViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(carryVizProps.durationMs)}
+      defaultProps={carryVizProps}
+    />
+    <Composition
+      id="BitfieldViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(bitfieldVizProps.durationMs)}
+      defaultProps={bitfieldVizProps}
+    />
+    <Composition
+      id="EncodeViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(encodeVizProps.durationMs)}
+      defaultProps={encodeVizProps}
+    />
+    <Composition
+      id="GatesViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(gatesVizProps.durationMs)}
+      defaultProps={gatesVizProps}
+    />
+    <Composition
+      id="LadderViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(ladderVizProps.durationMs)}
+      defaultProps={ladderVizProps}
+    />
+    <Composition
+      id="RegionsViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(regionsVizProps.durationMs)}
+      defaultProps={regionsVizProps}
+    />
+    <Composition
+      id="LookupViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(lookupVizProps.durationMs)}
+      defaultProps={lookupVizProps}
+    />
+    <Composition
+      id="StatesViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(statesVizProps.durationMs)}
+      defaultProps={statesVizProps}
+    />
+    <Composition
+      id="SchedulerViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(schedulerVizProps.durationMs)}
+      defaultProps={schedulerVizProps}
+    />
+    <Composition
+      id="ShellViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(shellVizProps.durationMs)}
+      defaultProps={shellVizProps}
+    />
+    <Composition
+      id="JourneyViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(journeyVizProps.durationMs)}
+      defaultProps={journeyVizProps}
+    />
+    <Composition
+      id="HandshakeViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(handshakeVizProps.durationMs)}
+      defaultProps={handshakeVizProps}
+    />
+    <Composition
+      id="StepperViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(stepperVizProps.durationMs)}
+      defaultProps={stepperVizProps}
+    />
+    <Composition
+      id="GrowthViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(growthVizProps.durationMs)}
+      defaultProps={growthVizProps}
+    />
+    <Composition
+      id="CallStackViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(callstackVizProps.durationMs)}
+      defaultProps={callstackVizProps}
+    />
+    <Composition
+      id="HistoryViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(historyVizProps.durationMs)}
+      defaultProps={historyVizProps}
+    />
+    <Composition
+      id="VersusViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(versusVizProps.durationMs)}
+      defaultProps={versusVizProps}
+    />
+    <Composition
+      id="ErasViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(erasVizProps.durationMs)}
+      defaultProps={erasVizProps}
     />
     <Composition
       id="LessonVideo"

@@ -129,6 +129,43 @@ const SOURCES = {
   cast: "CastViz-200",
   story: "StoryViz-340",
   data: "DataViz-2250",
+
+  // The v7 foundations batch. Unlike most of the entries above, the gallery
+  // frame and the regression frame are the SAME one here, and deliberately so:
+  // these templates all close on the shot that shows the subject entire, which
+  // is both what a card wants to advertise and the state a regression anywhere
+  // earlier still shows up in. Picking an earlier beat would sell each card on
+  // a half-drawn diagram.
+  syllabus: "SyllabusViz-813",
+  outcome: "OutcomeViz-783",
+  bridge: "BridgeViz-753",
+  drill: "DrillViz-753",
+  labcard: "LabCardViz-873",
+  mission: "MissionViz-873",
+  machine: "MachineViz-933",
+  blueprint: "BlueprintViz-933",
+  relay: "RelayViz-1053",
+  layers: "LayersViz-993",
+  pipeline: "PipelineViz-933",
+  radix: "RadixViz-693",
+  carry: "CarryViz-948",
+  bitfield: "BitfieldViz-798",
+  encode: "EncodeViz-843",
+  gates: "GatesViz-783",
+  ladder: "LadderViz-1068",
+  regions: "RegionsViz-1128",
+  lookup: "LookupViz-903",
+  states: "StatesViz-1113",
+  scheduler: "SchedulerViz-948",
+  shell: "ShellViz-903",
+  journey: "JourneyViz-753",
+  handshake: "HandshakeViz-723",
+  stepper: "StepperViz-843",
+  growth: "GrowthViz-843",
+  callstack: "CallStackViz-1128",
+  history: "HistoryViz-1053",
+  versus: "VersusViz-873",
+  eras: "ErasViz-1008",
 };
 
 // 480x270 is 2x a card at its widest, so it stays crisp on a retina display
