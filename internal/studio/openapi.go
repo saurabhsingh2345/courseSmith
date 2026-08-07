@@ -284,7 +284,7 @@ const openAPISpec = `{
           "voice": {"type": "string"}, "plan_only": {"type": "boolean"},
           "captions": {"type": "string", "enum": ["on", "off"]},
           "mode": {"type": "string", "enum": ["dark", "light"]},
-          "skin": {"type": "string", "enum": ["default", "broadcast", "minimal"]}
+          "skin": {"type": "string", "enum": ["default", "broadcast", "minimal", "editorial"]}
         },
         "required": ["prompt", "template"]
       },

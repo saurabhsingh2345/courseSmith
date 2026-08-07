@@ -17,6 +17,7 @@ import {
   BookOpen,
   ChevronLeft,
   FlaskConical,
+  GraduationCap,
   Layers,
   Library,
   PlayCircle,
@@ -51,6 +52,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { to: "/", label: "Compose", icon: Sparkles },
       { to: "/snippets", label: "Snippets", icon: Scissors },
       { to: "/replica", label: "Replica", icon: Wand2 },
+      { to: "/foundations", label: "Foundations", icon: GraduationCap },
       { to: "/reels", label: "Reels", icon: Film },
       { to: "/nocode", label: "No-code", icon: Camera },
       {

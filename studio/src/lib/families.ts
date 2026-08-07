@@ -21,5 +21,18 @@ export const FamilyReplica = "replica";
  */
 export const ReplicaSkin = "broadcast" as const;
 
+/** The batch built to teach computer science itself — the CS foundations course. */
+export const FamilyFoundations = "foundations";
+
+/**
+ * The house style the foundations batch assumes.
+ *
+ * These templates are diagram-dense — bit rows, block diagrams, packet maps —
+ * and they are composed against the editorial skin's hard left axis, where the
+ * headline holds one edge and the picture is allowed to be unbalanced. As with
+ * replica, the gallery fixes the skin rather than offering it as a choice.
+ */
+export const FoundationsSkin = "editorial" as const;
+
 /** The house styles a clip can be cut in. Mirrors videoskin.go. */
-export type Skin = "default" | "broadcast" | "minimal";
+export type Skin = "default" | "broadcast" | "minimal" | "editorial";
