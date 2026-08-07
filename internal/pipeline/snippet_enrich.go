@@ -147,6 +147,45 @@ func templateNeeds(name string) string {
 		return "dated or ordered milestones, and why each one mattered"
 	case "quiz":
 		return "one question with a real answer and wrong options that are genuinely tempting"
+	// The foundations batch. These are the templates whose validators do the
+	// arithmetic, so enrichment has to arrive carrying numbers that are true —
+	// a plan built on invented figures fails the checks rather than the vibe.
+	case "radix":
+		return "one number worth caring about, its correct binary and hex forms, and the reason this exact number matters"
+	case "carry":
+		return "two small binary operands and their correct sum, chosen so at least one carry actually happens"
+	case "bitfield":
+		return "a real bit pattern, the named fields that tile it exactly with their bit ranges, and what each field's value decodes to"
+	case "encode":
+		return "one character, its real codepoint, and its actual UTF-8 bytes"
+	case "gates":
+		return "one gate, its inputs, and the complete correct truth table"
+	case "ladder":
+		return "four to eight storage tiers with real latencies that genuinely increase down the ladder, and a capacity for each"
+	case "growth":
+		return "two to four complexity classes each tied to a named algorithm, and one value of n where the difference becomes fatal"
+	case "stepper":
+		return "a concrete starting array, the pointers by name, and the exact sequence of compares and swaps the algorithm really makes"
+	case "callstack":
+		return "the function, each call's arguments in order down to the base case, and the value each frame returns"
+	case "scheduler":
+		return "the policy by name, the processes, and the exact order and length of the time slices"
+	case "states":
+		return "the states by name and every transition with the event that fires it"
+	case "history":
+		return "the branches by name and the commits in order, including which two a merge joins"
+	case "journey":
+		return "the stops between the user and the server in order, and what each one adds to the trip"
+	case "handshake":
+		return "both parties, the messages in their real order, and what each message accomplishes"
+	case "versus":
+		return "two named options, the dimensions they genuinely differ on with a value for each side, and when to use which"
+	case "drill":
+		return "one question with a real answer, options that are genuinely tempting, and the one-line reason the answer is right"
+	case "lookup":
+		return "the key being resolved, each table or party asked in order, and what each one answers"
+	case "eras":
+		return "three to six eras in order, each with a date, its defining artifact, and what it handed the next"
 	default:
 		return ""
 	}
