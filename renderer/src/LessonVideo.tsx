@@ -67,6 +67,36 @@ import {PrereqScene} from './components/PrereqScene';
 import {RecapScene} from './components/RecapScene';
 import {PitfallScene} from './components/PitfallScene';
 import {CheckpointScene} from './components/CheckpointScene';
+import {SyllabusScene} from './components/SyllabusScene';
+import {OutcomeScene} from './components/OutcomeScene';
+import {BridgeScene} from './components/BridgeScene';
+import {DrillScene} from './components/DrillScene';
+import {LabCardScene} from './components/LabCardScene';
+import {MissionScene} from './components/MissionScene';
+import {MachineScene} from './components/MachineScene';
+import {BlueprintScene} from './components/BlueprintScene';
+import {RelayScene} from './components/RelayScene';
+import {LayersScene} from './components/LayersScene';
+import {PipelineScene} from './components/PipelineScene';
+import {RadixScene} from './components/RadixScene';
+import {CarryScene} from './components/CarryScene';
+import {BitfieldScene} from './components/BitfieldScene';
+import {EncodeScene} from './components/EncodeScene';
+import {GatesScene} from './components/GatesScene';
+import {LadderScene} from './components/LadderScene';
+import {RegionsScene} from './components/RegionsScene';
+import {LookupScene} from './components/LookupScene';
+import {StatesScene} from './components/StatesScene';
+import {SchedulerScene} from './components/SchedulerScene';
+import {ShellScene} from './components/ShellScene';
+import {JourneyScene} from './components/JourneyScene';
+import {HandshakeScene} from './components/HandshakeScene';
+import {StepperScene} from './components/StepperScene';
+import {GrowthScene} from './components/GrowthScene';
+import {CallStackScene} from './components/CallStackScene';
+import {HistoryScene} from './components/HistoryScene';
+import {VersusScene} from './components/VersusScene';
+import {ErasScene} from './components/ErasScene';
 import {SceneChrome, Watermark} from './components/SceneChrome';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
@@ -249,6 +279,67 @@ const sceneContent = (
       return <PitfallScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'checkpoint':
       return <CheckpointScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    // The v7 foundations scenes, all on the standard contract.
+    case 'syllabus':
+      return <SyllabusScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'outcome':
+      return <OutcomeScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'bridge':
+      return <BridgeScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'drill':
+      return <DrillScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'labcard':
+      return <LabCardScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'mission':
+      return <MissionScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'machine':
+      return <MachineScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'blueprint':
+      return <BlueprintScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'relay':
+      return <RelayScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'layers':
+      return <LayersScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'pipeline':
+      return <PipelineScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'radix':
+      return <RadixScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'carry':
+      return <CarryScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'bitfield':
+      return <BitfieldScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'encode':
+      return <EncodeScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'gates':
+      return <GatesScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'ladder':
+      return <LadderScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'regions':
+      return <RegionsScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'lookup':
+      return <LookupScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'states':
+      return <StatesScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'scheduler':
+      return <SchedulerScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'shell':
+      return <ShellScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'journey':
+      return <JourneyScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'handshake':
+      return <HandshakeScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'stepper':
+      return <StepperScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'growth':
+      return <GrowthScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'callstack':
+      return <CallStackScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'history':
+      return <HistoryScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'versus':
+      return <VersusScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'eras':
+      return <ErasScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       // THROW, do not return null.
       //
@@ -390,6 +481,42 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // stage with edges. Any repeating field behind them competes with the one
     // thing the picture is doing, and a drifting glow reads as a sixth world.
     case 'scale':
+    // The v7 foundations scenes, together. Every one of them is a technical
+    // diagram — bit rows, block diagrams, lanes over a time axis, curves on a
+    // grid — and each carries its own thin marks and its own one glow. A
+    // drifting field behind a technical drawing is the difference between a
+    // figure in a textbook and a poster about one, and this family is the
+    // textbook.
+    case 'syllabus':
+    case 'outcome':
+    case 'bridge':
+    case 'drill':
+    case 'labcard':
+    case 'mission':
+    case 'machine':
+    case 'blueprint':
+    case 'relay':
+    case 'layers':
+    case 'pipeline':
+    case 'radix':
+    case 'carry':
+    case 'bitfield':
+    case 'encode':
+    case 'gates':
+    case 'ladder':
+    case 'regions':
+    case 'lookup':
+    case 'states':
+    case 'scheduler':
+    case 'shell':
+    case 'journey':
+    case 'handshake':
+    case 'stepper':
+    case 'growth':
+    case 'callstack':
+    case 'history':
+    case 'versus':
+    case 'eras':
       return 'clean';
     default:
       return 'default';
