@@ -442,6 +442,73 @@ type SnippetPlan struct {
 	// Checkpoint is the task that proves the outcome was reached.
 	Checkpoint *CheckpointSpec `json:"checkpoint,omitempty"`
 
+	// --- the v7 foundations batch ---
+	// The catalog for teaching computer science itself. Each payload sits on
+	// the plan because each is the one picture its whole clip is about: a
+	// machine has one set of parts, a number has one representation in each
+	// base, a network has one route, a repository has one graph.
+
+	// Syllabus is the course map: the modules, in order, and where we are.
+	Syllabus *SyllabusSpec `json:"syllabus,omitempty"`
+	// Outcome is the lesson opener: the abilities this lesson buys.
+	Outcome *OutcomeSpec `json:"outcome,omitempty"`
+	// Bridge is the hand-off: what the last lesson left, what this one adds.
+	Bridge *BridgeSpec `json:"bridge,omitempty"`
+	// Drill is one sharp check-question with its options and the reveal.
+	Drill *DrillSpec `json:"drill,omitempty"`
+	// LabCard is the lab briefing: task, tools, steps, expected result.
+	LabCard *LabCardSpec `json:"labcard,omitempty"`
+	// Mission is the project brief: goal, spec checklist, definition of done.
+	Mission *MissionSpec `json:"mission,omitempty"`
+	// Machine is the labeled hardware diagram and its parts.
+	Machine *MachineSpec `json:"machine,omitempty"`
+	// Blueprint is the block diagram: blocks, ports, and the paths data takes.
+	Blueprint *BlueprintSpec `json:"blueprint,omitempty"`
+	// Relay is the strict ordered chain where each stage hands off to the next.
+	Relay *RelaySpec `json:"relay,omitempty"`
+	// Layers is the stratified stack and the boundary things cross.
+	Layers *LayersSpec `json:"layers,omitempty"`
+	// Pipeline is the staged assembly line with work streaming through it.
+	Pipeline *PipelineSpec `json:"pipeline,omitempty"`
+	// Radix is one value carried between number bases, place by place.
+	Radix *RadixSpec `json:"radix,omitempty"`
+	// Carry is column arithmetic worked digit by digit with its carries.
+	Carry *CarrySpec `json:"carry,omitempty"`
+	// Bitfield is a bit row segmented into labeled fields that decode.
+	Bitfield *BitfieldSpec `json:"bitfield,omitempty"`
+	// Encode is the journey from a character to its bytes.
+	Encode *EncodeSpec `json:"encode,omitempty"`
+	// Gates is the wired logic circuit and its truth table.
+	Gates *GatesSpec `json:"gates,omitempty"`
+	// Ladder is the memory hierarchy: rungs, latencies, capacities.
+	Ladder *LadderSpec `json:"ladder,omitempty"`
+	// Regions is the address-space map: segments, growth, and the gap.
+	Regions *RegionsSpec `json:"regions,omitempty"`
+	// Lookup is a key resolved through a chain of tables, hop by hop.
+	Lookup *LookupSpec `json:"lookup,omitempty"`
+	// States is the state machine: nodes, transitions, and the token on it.
+	States *StatesSpec `json:"states,omitempty"`
+	// Scheduler is the lanes-over-time chart of who holds the CPU.
+	Scheduler *SchedulerSpec `json:"scheduler,omitempty"`
+	// Shell is the terminal session: commands, output, exit codes.
+	Shell *ShellSpec `json:"shell,omitempty"`
+	// Journey is the packet's trip across the network map.
+	Journey *JourneySpec `json:"journey,omitempty"`
+	// Handshake is the two-column wire dialogue and its arrows.
+	Handshake *HandshakeSpec `json:"handshake,omitempty"`
+	// Stepper is the algorithm caught mid-run on its data.
+	Stepper *StepperSpec `json:"stepper,omitempty"`
+	// Growth is the complexity chart: curves that diverge as n grows.
+	Growth *GrowthSpec `json:"growth,omitempty"`
+	// CallStack is the frames of a recursion, pushed and unwound.
+	CallStack *CallStackSpec `json:"callstack,omitempty"`
+	// History is the commit graph: lanes, branches, merges, HEAD.
+	History *HistorySpec `json:"history,omitempty"`
+	// Versus is the head-to-head: two panels, their rows, and a verdict.
+	Versus *VersusSpec `json:"versus,omitempty"`
+	// Eras is the era band: how the subject got to now, one age at a time.
+	Eras *ErasSpec `json:"eras,omitempty"`
+
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
 	// validators can size the beat count against the same budget the prompt
@@ -798,6 +865,39 @@ type SnippetBeat struct {
 	Pitfall *PitfallBeat `json:"pitfall,omitempty"`
 	// Checkpoint says which step of the task this beat is on.
 	Checkpoint *CheckpointBeat `json:"checkpoint,omitempty"`
+
+	// --- the v7 foundations batch ---
+	// One direction each: what this moment of the clip does to the picture.
+	Syllabus  *SyllabusBeat  `json:"syllabus,omitempty"`
+	Outcome   *OutcomeBeat   `json:"outcome,omitempty"`
+	Bridge    *BridgeBeat    `json:"bridge,omitempty"`
+	Drill     *DrillBeat     `json:"drill,omitempty"`
+	LabCard   *LabCardBeat   `json:"labcard,omitempty"`
+	Mission   *MissionBeat   `json:"mission,omitempty"`
+	Machine   *MachineBeat   `json:"machine,omitempty"`
+	Blueprint *BlueprintBeat `json:"blueprint,omitempty"`
+	Relay     *RelayBeat     `json:"relay,omitempty"`
+	Layers    *LayersBeat    `json:"layers,omitempty"`
+	Pipeline  *PipelineBeat  `json:"pipeline,omitempty"`
+	Radix     *RadixBeat     `json:"radix,omitempty"`
+	Carry     *CarryBeat     `json:"carry,omitempty"`
+	Bitfield  *BitfieldBeat  `json:"bitfield,omitempty"`
+	Encode    *EncodeBeat    `json:"encode,omitempty"`
+	Gates     *GatesBeat     `json:"gates,omitempty"`
+	Ladder    *LadderBeat    `json:"ladder,omitempty"`
+	Regions   *RegionsBeat   `json:"regions,omitempty"`
+	Lookup    *LookupBeat    `json:"lookup,omitempty"`
+	States    *StatesBeat    `json:"states,omitempty"`
+	Scheduler *SchedulerBeat `json:"scheduler,omitempty"`
+	Shell     *ShellBeat     `json:"shell,omitempty"`
+	Journey   *JourneyBeat   `json:"journey,omitempty"`
+	Handshake *HandshakeBeat `json:"handshake,omitempty"`
+	Stepper   *StepperBeat   `json:"stepper,omitempty"`
+	Growth    *GrowthBeat    `json:"growth,omitempty"`
+	CallStack *CallStackBeat `json:"callstack,omitempty"`
+	History   *HistoryBeat   `json:"history,omitempty"`
+	Versus    *VersusBeat    `json:"versus,omitempty"`
+	Eras      *ErasBeat      `json:"eras,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

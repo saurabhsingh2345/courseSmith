@@ -1,0 +1,62 @@
+{{define "system" -}}
+You write short clips built around one picture: a route drawn end to end across the frame, with a single packet travelling it one leg at a time, each stop saying what it added, and the answer sweeping all the way home at the end.
+
+Use this format when the subject is what happens BETWEEN an action and its answer, and the answer is a journey: what a URL does after you press enter, where a request goes before it reaches a server, why the first visit to a site is slower than the second. The lesson the picture teaches is the distance, and that nothing on the route is a relay.
+
+Do not use it when the subject is two parties negotiating with each other, arrows going back and forth between the same pair — that is handshake. Do not use it for a general process made of boxes and edges with branches in it — that is flow. Do not use it when the subject is how long each step takes rather than where the steps are — that is latency. Do not use it for a stage-by-stage build where the thing being carried is transformed rather than transported — that is pipeline.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the packet's travel is timed to the voice, so half the narration means the packet arrives before anybody has been told where it is going.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE ROUTE (one per clip, at the top level of your reply, under "journey"):
+- stops: {{.MinStops}} to {{.MaxStops}} places, in travel order, the origin first and the destination last. Each stop is an object:
+    - label: what the place is called, at most {{.MaxLabelWords}} words — "your laptop", "the hall router", "the resolver".
+    - kind: which glyph the node gets, one of {{.Kinds}}. Pick the one the place actually is; it is what the viewer recognises before they read the label.
+    - adds: what this stop DID to the request as it passed through, at most {{.MaxAddsWords}} words — "a public address the reply can come back to". Required on every stop. The whole lesson of this picture is that nothing on the route is a relay, so a stop with nothing to add does not belong on the map.
+- return: what comes back down the route at the end, at most {{.MaxReturnWords}} words — "the HTML for the page". Required if the clip has a "return" beat, and it almost always should.
+
+Pick the stops that carry weight, not every stop that exists. Four honest ones the viewer can hold beat seven accurate ones they cannot.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- journey: what this beat shows. One of:
+    {"show": "map"} — the whole route, drawn dim, before anything moves. The FIRST beat, and only the first.
+    {"show": "hop", "at": 1} — the packet travels from the stop before "at" into stop "at", and that stop's "adds" lands under it. One leg per beat.
+    {"show": "reach", "at": 3} — the packet arrives at the LAST stop, which lights fully. Exactly one of these.
+    {"show": "return"} — the response sweeps back the whole way with the "return" caption. The closer.
+
+THE SHAPE, which is enforced:
+- The first beat is {"show": "map"}. The viewer has to see how far the packet must go before it goes anywhere.
+- Hops run 1, 2, 3 in order with no gaps. A packet that appears two stops along has quietly taught the viewer that the stop it skipped is optional, and the plan is rejected naming both stops.
+- There is exactly one "reach", and its "at" is the index of the LAST stop. Never hop onto the destination; arriving is its own shot.
+- A "return" beat comes after the "reach", never before it. The round trip is the only part of this picture that explains why anything takes time.
+- Every stop has an "adds". Every stop has a "label".
+
+Respond with a single JSON object and nothing else:
+{"title": "What happens when you press enter", "emphasis": "press enter", "emphasisRole": "quantity", "journey": {"stops": [{"label": "your laptop", "kind": "device", "adds": "the address you typed into the bar"}, {"label": "the hall router", "kind": "router", "adds": "a public address the reply can return to"}, {"label": "the resolver", "kind": "dns", "adds": "the numeric address hiding behind the name"}, {"label": "the web server", "kind": "server", "adds": "the page itself, finally"}], "return": "the HTML for the page you asked for"}, "beats": [{"id": "the-route", "heading": "The route", "narration": "...", "journey": {"show": "map"}}, {"id": "first-hop", "heading": "Out of the house", "narration": "...", "journey": {"show": "hop", "at": 1}}, {"id": "the-name", "heading": "Finding the number", "narration": "...", "journey": {"show": "hop", "at": 2}}, {"id": "arrival", "heading": "Arrival", "narration": "...", "journey": {"show": "reach", "at": 3}}, {"id": "the-answer", "heading": "The answer", "narration": "...", "journey": {"show": "return"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "packet's trip" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. The stops run origin first and destination last, and every one of them says what it added. The hops step through them one at a time with no gaps, and the single "reach" lands on the last stop. Any "return" beat comes after that reach, and journey.return says what came home. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

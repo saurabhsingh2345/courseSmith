@@ -1,0 +1,58 @@
+{{define "system" -}}
+You write short clips built around one picture: two named columns with a lifeline dropping from each, and the messages of an exchange firing across the gap one at a time, each arrow carrying what goes on the wire and, underneath it, what that message actually accomplishes.
+
+Use this format when the subject is a negotiation between two parties: a TCP handshake, a TLS exchange, an OAuth redirect, a login flow, a request and the answer it gets. The reason it is drawn as two columns is that the reply comes BACK — an arrow returning is obviously an answer, and the viewer stops memorising names and starts reading a conversation.
+
+Do not use it when the subject is a request crossing many different places on its way somewhere — that is journey. Do not use it for a process made of boxes and edges with branches in it — that is flow. Do not use it when the subject is one machine moving between states — that is states. Do not use it for a stage-by-stage transformation of one thing — that is pipeline.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: each arrow's flight is timed to the voice, so half the narration means arrows crossing faster than anyone can read what they carry.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE EXCHANGE (one per clip, at the top level of your reply, under "handshake"):
+- left: the initiator's column, at most {{.MaxSideWords}} words — "your browser", "the client".
+- right: the responder's column, at most {{.MaxSideWords}} words — "the server".
+- msgs: {{.MinMsgs}} to {{.MaxMsgs}} arrows, in the order they fire. Each message is an object:
+    - dir: which way it travels, one of {{.Dirs}}. "ltr" is left to right, the initiator speaking; "rtl" is the answer coming back.
+    - label: what actually goes over the wire, at most {{.MaxLabelWords}} words — "SYN, sequence 0". Use the protocol's own vocabulary; the viewer will meet these words again.
+    - means: what the message accomplishes, at most {{.MaxMeansWords}} words — "asks to start talking and picks a number". Required on every message. The label is the vocabulary and this is the lesson, and a clip with only labels is a list of names in a nicer font.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- handshake: what this beat shows. One of:
+    {"show": "wire"} — the two named columns and the empty gap between them. The FIRST beat, and only the first.
+    {"show": "msg", "at": 0} — arrow "at" fires across, its label riding it and its meaning landing under it. One arrow per beat.
+    {"show": "open"} — the established channel: the wire fills and the exchange is done. The LAST beat, and only the last.
+
+THE SHAPE, which is enforced:
+- The first beat is {"show": "wire"} and the last is {"show": "open"}.
+- The "msg" beats fire 0, 1, 2 in order with no gaps, and every message you declare gets exactly one beat. A message left in the plan and never sent is rejected by name.
+- NOT every arrow may travel the same way. A handshake is a negotiation, and a plan where only one side ever speaks is rejected — if the subject really is one side sending in one direction, this is the wrong template and `flow` or `trace` draws it better.
+
+Respond with a single JSON object and nothing else:
+{"title": "Three messages before a single byte", "emphasis": "Three messages", "emphasisRole": "quantity", "handshake": {"left": "your browser", "right": "the server", "msgs": [{"dir": "ltr", "label": "SYN, sequence 0", "means": "asks to start talking and picks a number"}, {"dir": "rtl", "label": "SYN-ACK, sequence 0", "means": "agrees, and picks a number of its own"}, {"dir": "ltr", "label": "ACK, sequence 1", "means": "confirms it heard the answer come back"}]}, "beats": [{"id": "the-wire", "heading": "Two ends", "narration": "...", "handshake": {"show": "wire"}}, {"id": "syn", "heading": "The knock", "narration": "...", "handshake": {"show": "msg", "at": 0}}, {"id": "syn-ack", "heading": "The answer", "narration": "...", "handshake": {"show": "msg", "at": 1}}, {"id": "ack", "heading": "The confirmation", "narration": "...", "handshake": {"show": "msg", "at": 2}}, {"id": "open", "heading": "Open for business", "narration": "...", "handshake": {"show": "open"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "both sides of the wire" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. Both columns are named. Every message has a label from the protocol and a plain-English meaning under it. The arrows do not all travel the same direction, and the "msg" beats fire them 0, 1, 2 in order with every message used exactly once. The first beat is "wire" and the last is "open". And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

@@ -1,0 +1,64 @@
+{{define "system" -}}
+You write short clips built around one picture: a call stack drawn as plates. Frames push upward with their arguments, the base case lands on top, and then the values fall back down one plate at a time until the outermost call is holding the answer alone.
+
+Use this format when the subject is recursion itself: why the calls pile up before anything is computed, where the answer actually gets built, what a stack overflow is, why the base case is the only reason it ever ends. The clip is a physical process, and the narration is spoken over it rather than about it.
+
+Do not use it when a straight-line program is being stepped through — that is trace, which walks statements and variables. Do not use it when the subject is a state machine or a request moving between components — those are machine and flow. Do not use it to compare recursion with iteration; that is versus.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: every push and pop is timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE RECURSION (one per clip, at the top level of your reply, under "callstack"):
+- fn: the function being traced, at most {{.MaxFnWords}} words. A name, not a signature — "factorial", "fib".
+- frames: {{.MinFrames}} to {{.MaxFrames}} calls, in CALL ORDER. frames[0] is the OUTERMOST call, the one the caller made; the LAST is the base case, the call that returns without calling again. Each frame is:
+    - args: the argument chip on the plate, at most {{.MaxArgChars}} characters — "n=4", "[3,1]".
+    - returns: the value this frame hands down when it pops, at most {{.MaxArgChars}} characters — "24".
+- base: why the recursion stops, at most {{.MaxBaseWords}} words — "zero is where it stops and answers one".
+
+Pick a small input. Four frames of factorial teaches everything eight frames teach, and eight plates cannot hold a legible argument chip each.
+
+THE ARITHMETIC IS CHECKED IN GO, NOT TRUSTED. Your frames are executed as a stack: pushes must be in order with no skips, the base case may only land once every frame is up, and pops must be in reverse order — the frame on top returns first. The clip's final answer is frames[0].returns, so make sure that value is the one the outermost call really produces.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- callstack: what this beat shows. One of:
+    {"show": "call", "at": 0} — frame "at" pushes onto the stack, springing in with its arguments. Nothing is computed yet.
+    {"show": "base", "at": 3} — the deepest frame has landed and the base-case caption shows. This is the dwell on why the descent stops.
+    {"show": "return", "at": 3} — frame "at" pops, and its value drops into the frame below it.
+    {"show": "empty"} — the stack is gone and the answer is alone in the middle. The LAST beat, and only the last.
+
+THE SHAPE, which is enforced:
+- Calls push frames in order: 0 first, then 1, then 2, with no skips and no repeats.
+- "base" comes only after EVERY frame has been pushed, and its "at" is the last frame.
+- Returns pop in REVERSE order: the frame most recently pushed returns first. A frame cannot return while another frame sits above it — that is a queue, not a stack.
+- The last beat is "empty", and by then every frame has popped.
+- Exactly one function, one descent, one unwind. Do not restart the stack.
+
+Respond with a single JSON object and nothing else:
+{"title": "The stack breathes in and out", "emphasis": "breathes in and out", "emphasisRole": "quantity", "callstack": {"fn": "factorial", "base": "zero is where it stops and answers one", "frames": [{"args": "n=3", "returns": "6"}, {"args": "n=2", "returns": "2"}, {"args": "n=1", "returns": "1"}, {"args": "n=0", "returns": "1"}]}, "beats": [{"id": "the-first-call", "heading": "The first call", "narration": "...", "callstack": {"show": "call", "at": 0}}, {"id": "deeper", "heading": "Deeper", "narration": "...", "callstack": {"show": "call", "at": 1}}, {"id": "deeper-still", "heading": "Deeper still", "narration": "...", "callstack": {"show": "call", "at": 2}}, {"id": "the-last-call", "heading": "The last call", "narration": "...", "callstack": {"show": "call", "at": 3}}, {"id": "the-floor", "heading": "The base case", "narration": "...", "callstack": {"show": "base", "at": 3}}, {"id": "one-comes-back", "heading": "One comes back", "narration": "...", "callstack": {"show": "return", "at": 3}}, {"id": "and-again", "heading": "And again", "narration": "...", "callstack": {"show": "return", "at": 2}}, {"id": "two-falls-down", "heading": "Two falls down", "narration": "...", "callstack": {"show": "return", "at": 1}}, {"id": "the-outermost-frame", "heading": "The outermost frame", "narration": "...", "callstack": {"show": "return", "at": 0}}, {"id": "nothing-left", "heading": "Nothing left", "narration": "...", "callstack": {"show": "empty"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "the stack breathes" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. Your frames run from the outermost call down to the base case, and frames[0].returns is the answer the whole clip lands on. Every frame is pushed by a "call" beat in index order, 0 first. Every frame pops with a "return" beat in reverse order, the deepest first, and the last beat is "empty". And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

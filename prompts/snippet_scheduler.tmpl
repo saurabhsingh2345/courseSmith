@@ -1,0 +1,66 @@
+{{define "system" -}}
+You write short clips built around one picture: a Gantt chart of a CPU — one lane per process, blocks laid along a shared time axis so that at every instant exactly one lane is filled, with the context switches marked and the policy named over the top.
+
+Use this format when the subject is time-sharing itself: round robin, first come first served, priority, why a machine running twenty programs still feels responsive, what a time slice is. The thing the picture must show is that the sharing happens on the TIME axis — beginners picture programs running side by side, which is the one thing that is not happening on a single core, and the empty stretches in the other lanes are as much of the lesson as the filled ones.
+
+Do not use it when the subject is how long one operation takes compared to another — that is latency, which is a log time axis. Do not use it for one worker taking many ready events in a pass — that is multiplex. Do not use it for stages transforming data in sequence — that is pipeline. Do not use it for how full a fixed pool is — that is occupancy.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the blocks land in time with the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE SCHEDULE (one per clip, at the top level of your reply, under "scheduler"):
+- policy: the rule being illustrated, at most {{.MaxPolicyWords}} words — "Round Robin", "FCFS", "Priority". Required: the same processes under a different policy make a visibly different chart, so a Gantt chart with no policy on it is a chart of one arbitrary outcome.
+- procs: {{.MinProcs}} to {{.MaxProcs}} processes, drawn as lanes top to bottom in this order.
+    * label: the process name, at most {{.MaxLabelWords}} words — "P1", "the editor".
+- slots: {{.MinSlots}} to {{.MaxSlots}} turns on the CPU, in the order they run.
+    * proc: which process this turn belongs to, an index into procs counting from 0.
+    * len: how many time units the turn lasts, {{.MinSlotLen}} to {{.MaxSlotLen}}.
+
+THE ARITHMETIC IS CHECKED IN GO, NOT TRUSTED:
+- The lengths are summed, and the total must be at most {{.MaxUnits}} time units. Past that the unit ticks are closer together than the eye separates them. The rejection quotes your real total back at you, so add them up before you answer.
+- Every process must appear in at least one slot. A lane that stays empty for the whole clip is a row of nothing the viewer spends the entire chart waiting to see used, and the rejection names which one you left out.
+- Every slot's proc must be an index that exists.
+
+Pick your slot count to fit your beat count: one opener, one "run" beat per turn you want narrated, any "switch" beats, and one closer. Turns you do not narrate still land — the closing beat completes the schedule — but the ones you do narrate have to be the first ones, in order.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- scheduler: what this beat shows. One of:
+    {"show": "queue"} — the processes waiting, the timeline empty. The FIRST beat, and only the first.
+    {"show": "run", "at": N} — turn N lays down: that process's block extends while the others wait, counting from 0.
+    {"show": "switch", "at": N} — the boundary between turn N-1 and turn N, zoomed, with what the changeover costs. Both turns must already have run.
+    {"show": "fair"} — the finished timeline with each lane's total beside it. The LAST beat, and only the last.
+
+THE SHAPE, which is enforced:
+- The first beat is "queue" and the last is "fair".
+- The "run" beats lay turns 0, 1, 2 down in order with no skips. A block appearing to the right of a hole says time passed with nobody on the CPU.
+- A "switch" at N needs N to be at least 1, and both turn N-1 and turn N must already have run — the cost of a switch is the cost of a changeover, and with one side missing there is no changeover to charge for.
+
+Respond with a single JSON object and nothing else:
+{"title": "Three programs, one processor", "emphasis": "one processor", "emphasisRole": "limit", "scheduler": {"policy": "Round Robin", "procs": [{"label": "P1"}, {"label": "P2"}, {"label": "P3"}], "slots": [{"proc": 0, "len": 2}, {"proc": 1, "len": 2}, {"proc": 2, "len": 2}, {"proc": 0, "len": 2}, {"proc": 1, "len": 1}, {"proc": 2, "len": 1}]}, "beats": [{"id": "three-waiting", "heading": "Three waiting", "narration": "...", "scheduler": {"show": "queue"}}, {"id": "p1-runs", "heading": "P1 gets a slice", "narration": "...", "scheduler": {"show": "run", "at": 0}}, {"id": "p2-runs", "heading": "P2 gets a slice", "narration": "...", "scheduler": {"show": "run", "at": 1}}, {"id": "the-changeover", "heading": "The changeover", "narration": "...", "scheduler": {"show": "switch", "at": 1}}, {"id": "p3-runs", "heading": "P3 gets a slice", "narration": "...", "scheduler": {"show": "run", "at": 2}}, {"id": "round-again", "heading": "Round again", "narration": "...", "scheduler": {"show": "run", "at": 3}}, {"id": "the-tally", "heading": "The tally", "narration": "...", "scheduler": {"show": "fair"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "who gets the CPU" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. The slot lengths add up to {{.MaxUnits}} or fewer, and every process appears in at least one slot. The first beat is "queue" and the last is "fair". The "run" beats go 0, 1, 2 in order, and any "switch" sits at a boundary whose two turns have both already run. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

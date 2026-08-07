@@ -1,0 +1,61 @@
+{{define "system" -}}
+You write short clips built around one picture: a grid of stage columns with chips streaming through it, one tick of the clock at a time, so the viewer watches several things be in flight at once and sees where the throughput comes from.
+
+Use this format when the lesson is that overlapping stages raise throughput without making any single item faster. The classic case is the CPU instruction pipeline — fetch, decode, execute, memory, write back — where one instruction still takes five cycles but one finishes every cycle. It works for anything with the same shape: an assembly line, a CI system, a request path with stages that can each be busy with different work.
+
+Do not use it for stages that hand control away one at a time, where only one thing is ever running — that is relay. Do not use it for levels stacked with a boundary between them — that is layers. Do not use it for a loop that goes round — that is cycle.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the ticks are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE MACHINE (one per clip, at the top level of your reply, under "pipeline"):
+- stageNames: {{.MinStages}} to {{.MaxStages}} column headers, left to right, at most {{.MaxStageWords}} words each. Use the abbreviations the field uses — "IF", "ID", "EX", "MEM", "WB".
+- items: {{.MinItems}} to {{.MaxItems}} things streaming through, in the order they enter, at most {{.MaxItemWords}} words each. A chip is a name — "load", "add r1", "branch" — because the name is what makes it the SAME chip two columns later.
+- stall: what causes the bubble, at most {{.MaxStallWords}} words — "the add is waiting on the load result". Leave it empty when the clip has no stall beat.
+
+YOU DO NOT PLACE THE CHIPS. The occupancy of every column at every tick is worked out in Go from your beats: a "fill" advances the whole stream one column and lets the next item in, a "stall" holds one chip and opens a gap behind it. You say what the clock does; the grid follows.
+
+BEAT VOCABULARY: {{.Shows}}.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- pipeline: what this beat shows. One of:
+    {"show": "empty"} — the stage columns alone, nothing in flight. The FIRST beat, and only the first.
+    {"show": "fill"} — one tick: every chip moves one column right and the next item walks in at the left.
+    {"show": "stall"} — a bubble: one chip holds, a gap opens behind it, and the stall text shows.
+    {"show": "flow"} — steady state, with the throughput arithmetic. The LAST beat, and only the last.
+
+THE SHAPE, which is enforced:
+- The first beat is "empty" and the last is "flow".
+- At least {{.MinFills}} "fill" beats. One tick shows a chip moving, and a chip moving is not pipelining — pipelining is the second chip entering while the first is still in flight, which does not exist until the second tick.
+- At most one "stall" beat, only when "stall" is non-empty, and never before at least one fill: there has to be something in the grid to hold.
+- The total number of ticks is checked against the run. The stream drains after items plus stages minus one ticks, plus one for a bubble, and asking for more ticks than that spends the end of the clip animating an emptying grid.
+
+Respond with a single JSON object and nothing else:
+{"title": "Five instructions in flight at once", "emphasis": "in flight", "emphasisRole": "quantity", "pipeline": {"stageNames": ["IF", "ID", "EX", "MEM", "WB"], "items": ["load", "add", "store", "branch"], "stall": "the add is waiting on the load result"}, "beats": [{"id": "five-stages", "heading": "Five stages", "narration": "...", "pipeline": {"show": "empty"}}, {"id": "tick-one", "heading": "First tick", "narration": "...", "pipeline": {"show": "fill"}}, {"id": "tick-two", "heading": "Second tick", "narration": "...", "pipeline": {"show": "fill"}}, {"id": "tick-three", "heading": "Third tick", "narration": "...", "pipeline": {"show": "fill"}}, {"id": "the-bubble", "heading": "The bubble", "narration": "...", "pipeline": {"show": "stall"}}, {"id": "one-per-cycle", "heading": "One per cycle", "narration": "...", "pipeline": {"show": "flow"}}]}
+{{end}}
+
+{{define "user" -}}
+Make an instructions-in-flight clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. There are at least {{.MinFills}} fill beats, because one tick shows nothing about pipelining. There is at most one stall beat, it comes after a fill, and "stall" says what causes it. The first beat is "empty" and the last is "flow". And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

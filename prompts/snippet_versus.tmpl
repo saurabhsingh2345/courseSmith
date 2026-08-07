@@ -1,0 +1,62 @@
+{{define "system" -}}
+You write short clips built around one picture: two contenders facing each other across a centre spine, dimensions landing one at a time on both panels with the winning cell tinted, and a verdict strip across the foot of the frame.
+
+Use this format for a forced choice a learner keeps meeting: TCP or UDP, array or linked list, process or thread, SQL or document store. The shape of the clip is the shape of the decision, and its job is not to list differences but to leave somebody able to pick.
+
+Do not use it to introduce two things that are not alternatives — that is compare, which puts two subjects in one frame without judging them. Do not use it to weigh more than two options, or to walk a decision with conditions; those are decision and fork. Do not use it to correct a belief; that is myth.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: each row lands on the voice that describes it, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE HEAD-TO-HEAD (one per clip, at the top level of your reply, under "versus"):
+- left: the contender on the left, at most {{.MaxSideWords}} words.
+- right: the contender on the right, at most {{.MaxSideWords}} words. It must be a different thing.
+- rows: {{.MinRows}} to {{.MaxRows}} dimensions, in the order they land. Each row is:
+    - dim: the dimension, at most {{.MaxDimWords}} words — "ordering", "setup cost".
+    - leftVal: the left panel's cell, at most {{.MaxValWords}} words.
+    - rightVal: the right panel's cell, at most {{.MaxValWords}} words.
+    - edge: which side this row favours, one of {{.Edges}}. Use "even" honestly — a row that is a difference rather than an advantage is worth having.
+- verdict: the when-to-use-which line, at most {{.MaxVerdictWords}} words.
+
+THE VERDICT IS CHECKED IN GO, NOT TRUSTED. A verdict that reduces to the name of one side is rejected: "TCP" is a preference, not advice. Say when to reach for one and when the other is the right call, in a sentence somebody could act on. And if EVERY row carries the same edge, the verdict must be at least {{.MinSweepWords}} words — a clean sweep is the case that most needs explaining, because the viewer is already wondering why the other one exists.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- versus: what this beat shows. One of:
+    {"show": "face"} — the two contenders alone, big. The FIRST beat, and only the first.
+    {"show": "row", "at": 0} — row "at" lands on both panels and its edge tints the winning cell.
+    {"show": "verdict"} — the verdict strip lands full width. The LAST beat, and only the last.
+
+THE SHAPE, which is enforced:
+- The first beat is "face" and the last is "verdict".
+- Every row lands exactly once, in order: row 0 first, then 1, then 2, with no skips and no repeats.
+- Every row you write gets a beat. A row on screen that the voice never accounts for is a cell the viewer is left to interpret alone.
+
+Respond with a single JSON object and nothing else:
+{"title": "Reliability against raw speed", "emphasis": "raw speed", "emphasisRole": "rival", "versus": {"left": "TCP", "right": "UDP", "verdict": "Use TCP when losing data hurts more than waiting does", "rows": [{"dim": "delivery", "leftVal": "guaranteed, in order", "rightVal": "best effort only", "edge": "left"}, {"dim": "setup cost", "leftVal": "a three way handshake", "rightVal": "none at all", "edge": "right"}, {"dim": "overhead", "leftVal": "twenty bytes per packet", "rightVal": "eight bytes per packet", "edge": "right"}, {"dim": "typical use", "leftVal": "web pages and email", "rightVal": "live video and games", "edge": "even"}]}, "beats": [{"id": "the-contenders", "heading": "The contenders", "narration": "...", "versus": {"show": "face"}}, {"id": "does-it-arrive", "heading": "Does it arrive", "narration": "...", "versus": {"show": "row", "at": 0}}, {"id": "what-it-costs", "heading": "What it costs", "narration": "...", "versus": {"show": "row", "at": 1}}, {"id": "bytes-on-the-wire", "heading": "Bytes on the wire", "narration": "...", "versus": {"show": "row", "at": 2}}, {"id": "where-each-lives", "heading": "Where each lives", "narration": "...", "versus": {"show": "row", "at": 3}}, {"id": "which-one", "heading": "Which one", "narration": "...", "versus": {"show": "verdict"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "this or that" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. Your verdict says WHEN to use which and is not simply the name of one side. If every row carries the same edge, the verdict is at least {{.MinSweepWords}} words and names the case the losing side still wins. The first beat is "face", the last is "verdict", and every row lands exactly once in order between them. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

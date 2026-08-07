@@ -137,6 +137,36 @@ type planFields struct {
 	Recap         bool
 	Pitfall       bool
 	Checkpoint    bool
+	Syllabus      bool
+	Outcome       bool
+	Bridge        bool
+	Drill         bool
+	LabCard       bool
+	Mission       bool
+	Machine       bool
+	Blueprint     bool
+	Relay         bool
+	Layers        bool
+	Pipeline      bool
+	Radix         bool
+	Carry         bool
+	Bitfield      bool
+	Encode        bool
+	Gates         bool
+	Ladder        bool
+	Regions       bool
+	Lookup        bool
+	States        bool
+	Scheduler     bool
+	Shell         bool
+	Journey       bool
+	Handshake     bool
+	Stepper       bool
+	Growth        bool
+	CallStack     bool
+	History       bool
+	Versus        bool
+	Eras          bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -345,7 +375,96 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	if !owns.Checkpoint {
 		p.Checkpoint = nil
 	}
-
+	if !owns.Syllabus {
+		p.Syllabus = nil
+	}
+	if !owns.Outcome {
+		p.Outcome = nil
+	}
+	if !owns.Bridge {
+		p.Bridge = nil
+	}
+	if !owns.Drill {
+		p.Drill = nil
+	}
+	if !owns.LabCard {
+		p.LabCard = nil
+	}
+	if !owns.Mission {
+		p.Mission = nil
+	}
+	if !owns.Machine {
+		p.Machine = nil
+	}
+	if !owns.Blueprint {
+		p.Blueprint = nil
+	}
+	if !owns.Relay {
+		p.Relay = nil
+	}
+	if !owns.Layers {
+		p.Layers = nil
+	}
+	if !owns.Pipeline {
+		p.Pipeline = nil
+	}
+	if !owns.Radix {
+		p.Radix = nil
+	}
+	if !owns.Carry {
+		p.Carry = nil
+	}
+	if !owns.Bitfield {
+		p.Bitfield = nil
+	}
+	if !owns.Encode {
+		p.Encode = nil
+	}
+	if !owns.Gates {
+		p.Gates = nil
+	}
+	if !owns.Ladder {
+		p.Ladder = nil
+	}
+	if !owns.Regions {
+		p.Regions = nil
+	}
+	if !owns.Lookup {
+		p.Lookup = nil
+	}
+	if !owns.States {
+		p.States = nil
+	}
+	if !owns.Scheduler {
+		p.Scheduler = nil
+	}
+	if !owns.Shell {
+		p.Shell = nil
+	}
+	if !owns.Journey {
+		p.Journey = nil
+	}
+	if !owns.Handshake {
+		p.Handshake = nil
+	}
+	if !owns.Stepper {
+		p.Stepper = nil
+	}
+	if !owns.Growth {
+		p.Growth = nil
+	}
+	if !owns.CallStack {
+		p.CallStack = nil
+	}
+	if !owns.History {
+		p.History = nil
+	}
+	if !owns.Versus {
+		p.Versus = nil
+	}
+	if !owns.Eras {
+		p.Eras = nil
+	}
 }
 
 // clampWords cuts a phrase to at most n words, keeping the first ones — the

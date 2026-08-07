@@ -138,6 +138,18 @@ const (
 	// it is also the first to accept a script the creator wrote and stage it
 	// word for word instead of writing its own.
 	SinceV6 = "v6"
+	// SinceV7 is the foundations batch: the catalog for teaching computer
+	// science itself rather than a product built on it.
+	//
+	// Every earlier batch answers "how do I show this fact well". A CS
+	// fundamentals course keeps asking for pictures no general template can
+	// draw honestly: a number carried between bases digit by digit, a bit row
+	// whose fields mean sign and exponent, a packet crossing a network, a call
+	// stack breathing, a commit graph diverging. These are templates whose
+	// validators can often check the *arithmetic* — the binary shown must equal
+	// the decimal claimed, the truth table must match the gate — because a
+	// diagram of computing that is wrong is worse than no diagram at all.
+	SinceV7 = "v7"
 )
 
 // Template families. A family is which surface offers a template, and it exists
@@ -159,7 +171,31 @@ const (
 	// broadcast skin's air and chrome, and dropped into a default-skin course
 	// they would read as a different production.
 	FamilyReplica = "replica"
+	// FamilyFoundations is the batch built to teach computer science itself —
+	// bit rows, base conversions, packet journeys, call stacks, commit graphs.
+	// It has its own page for the same two reasons replica does: the batch
+	// assumes the editorial skin's hard left axis, and thirty more cards on the
+	// snippets scroll would tax everyone who came for the ones already there.
+	FamilyFoundations = "foundations"
 )
+
+// templateFamilies is the closed set a registration may declare. A family is
+// unchecked nowhere else — an unknown string would put a template on no page
+// at all, which is a silent disappearance rather than an error.
+var templateFamilies = map[string]bool{
+	FamilyCore:        true,
+	FamilyReplica:     true,
+	FamilyFoundations: true,
+}
+
+// checkTemplateFamily is the guard registerSnippetTemplate runs beside the
+// category one, and panics for the same reason: a template on no page is a
+// programming mistake best caught at init.
+func checkTemplateFamily(t *SnippetTemplate) {
+	if !templateFamilies[t.Family] {
+		panic(fmt.Sprintf("snippet template %q has unknown family %q", t.Name, t.Family))
+	}
+}
 
 // SnippetCategoryGroup is one category with the templates in it.
 type SnippetCategoryGroup struct {

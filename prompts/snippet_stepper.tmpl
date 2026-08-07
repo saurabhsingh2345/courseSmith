@@ -1,0 +1,59 @@
+{{define "system" -}}
+You write short clips built around one picture: a row of numbered cells with named pointer flags standing over them, and an algorithm running ON that row — cells pulsing when they are compared, tiles arcing over each other when they swap, and a counter in the corner ticking every time the algorithm does work.
+
+Use this format when the subject is an algorithm's mechanics: how binary search halves the row, how a bubble sort walks a pair at a time, what a two-pointer scan is actually doing, why an index is off by one. Nothing is described in the abstract — the row is simply in a different state than it was a second ago, and the narration says why.
+
+Do not use it when the subject is how an approach scales rather than how it works — that is growth. Do not use it for lines of code executing one at a time — that is trace. Do not use it when the subject is a function calling itself and the frames piling up — that is callstack. Do not use it for a machine moving between named states — that is states.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: each operation is timed to the voice, so half the narration means the row changing faster than anybody can re-read it.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE DATA (one per clip, at the top level of your reply, under "stepper"):
+- values: {{.MinCells}} to {{.MaxCells}} whole numbers, 0 to {{.MaxValue}} each, in their STARTING order. If the algorithm needs sorted input, sort them here.
+- pointers: {{.MinPointers}} to {{.MaxPointers}} names for the flags that will stand over cells, at most {{.MaxPointerWords}} words each — "low", "high", "mid", or "i" and "j". Declare every name you are going to move.
+- target: the value being searched for, or -1 when the clip is a sort and there is nothing to find.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- stepper: the operation this beat performs. "show" is one of {{.Shows}}; "at" is the list of cell indices it acts on; "ptr" says where each named flag stands after the beat, and a flag you leave out stays where it was.
+    {"show": "array"} — the row appears with its values. The FIRST beat, and only the first.
+    {"show": "point", "ptr": {"low": 0, "high": 7}} — flags move to new cells. It must move at least one, or nothing on screen changes for the length of the beat.
+    {"show": "compare", "at": [3], "ptr": {"mid": 3}} — the named cells pulse. One cell weighed against the target, or two weighed against each other. Never three.
+    {"show": "swap", "at": [1, 4]} — exactly two cells trade places, arcing over each other. The row really changes, and it stays changed for the rest of the clip.
+    {"show": "found", "at": [4]} — the named cell holds the target and takes the frame.
+    {"show": "done"} — the run is over and the row rests. A closer for a clip with no target.
+
+THE MECHANICS, which are checked in Go and not trusted:
+- Every name in a "ptr" object must be one of the pointers you declared, and every cell index must be a real cell. Both are quoted back at you when they are not.
+- A "swap" names exactly 2 cells. A "compare" names 1 or 2.
+- THE ARRAY IS TRACKED THROUGH EVERY SWAP. A "found" beat must name a cell that actually holds the target at that moment in the run, after everything that moved it. If it does not, the rejection reads "beat says 42 was found at cell 3, which holds 17" — so walk your own algorithm on your own values before you answer, and write down the row after each swap.
+- The first beat is "array". The last beat is "found" or "done".
+
+Respond with a single JSON object and nothing else:
+{"title": "Eight cells, three looks", "emphasis": "three looks", "emphasisRole": "quantity", "stepper": {"values": [3, 9, 14, 20, 42, 55, 71, 88], "pointers": ["low", "high", "mid"], "target": 42}, "beats": [{"id": "the-row", "heading": "The row", "narration": "...", "stepper": {"show": "array"}}, {"id": "the-edges", "heading": "The edges", "narration": "...", "stepper": {"show": "point", "ptr": {"low": 0, "high": 7}}}, {"id": "first-look", "heading": "The first look", "narration": "...", "stepper": {"show": "compare", "at": [3], "ptr": {"mid": 3}}}, {"id": "move-low", "heading": "Half gone", "narration": "...", "stepper": {"show": "point", "ptr": {"low": 4}}}, {"id": "second-look", "heading": "The second look", "narration": "...", "stepper": {"show": "compare", "at": [5], "ptr": {"mid": 5}}}, {"id": "found-it", "heading": "Found", "narration": "...", "stepper": {"show": "found", "at": [4], "ptr": {"high": 4, "mid": 4}}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "watch the algorithm think" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. Run your algorithm on your own values by hand and write out the row after every swap, so that any "found" beat names the cell the target is really in at that point. Every pointer you move is one you declared, and every index is a real cell. Swaps name exactly two cells and comparisons name one or two. The first beat is "array" and the last is "found" or "done". And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

@@ -1,0 +1,64 @@
+{{define "system" -}}
+You write short clips built around one picture: a small state machine — a handful of named states as pills, labelled transitions curving between them — with one bright token that sits on exactly one state and slides along an arc when a beat fires it.
+
+Use this format when the subject is something that is always in exactly one condition and only changes on a named event: the states of a process, a TCP connection opening and closing, a request's lifecycle, a lock. The thing the picture must show is that you are in ONE state, and the arrow out of it has a name — a static graph of circles makes no claim about where you are, and that missing claim is the whole misunderstanding this clip exists to fix.
+
+Do not use it when the subject is a physical box and its parts — that is machine, which shares nothing but the word. Do not use it for a loop of stages that always run in the same order — that is cycle. Do not use it for a branching decision — that is decision. Do not use it for stages transforming data — that is pipeline.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the token's slides are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE MACHINE (one per clip, at the top level of your reply, under "states"):
+- nodes: {{.MinNodes}} to {{.MaxNodes}} states.
+    * id: a short lowercase-hyphen slug the arcs refer to — "ready", "waiting".
+    * label: what the pill reads, at most {{.MaxLabelWords}} words.
+- arcs: {{.MinArcs}} to {{.MaxArcs}} transitions.
+    * from: the id of the state the arrow leaves.
+    * to: the id of the state it arrives at.
+    * on: the event that fires it, at most {{.MaxEventWords}} words — "the scheduler picks it". Required: an unlabelled arrow says the token moves for reasons the viewer is not told.
+
+THE TOKEN WALK IS CHECKED IN GO, NOT TRUSTED. The opening beat places the token on a state, and then the token is walked through your fire beats one at a time. Every transition you fire must LEAVE the state the token is currently standing on. Fire one that starts somewhere else and the plan is rejected with the arc and the token's real position quoted back at you — because the dot would have to jump a gap with no arrow across it, and a state machine whose token teleports is a diagram telling a lie. Trace your own walk before you answer: start state, arc, new state, arc, new state.
+
+Both endpoints of every arc must be ids you actually declared under nodes. An arrow to a state that is not on screen has nowhere to go.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- states: what this beat shows. One of:
+    {"show": "machine", "at": N} — the whole graph dim, with the token placed on NODE N, counting from 0. The FIRST beat, and only the first.
+    {"show": "fire", "at": N} — ARC N fires: it lights, the token slides along it, the event caption shows. N indexes arcs, not nodes.
+    {"show": "state", "at": N} — a dwell on NODE N: what being in this state actually means.
+    {"show": "walk"} — the route the token took, left lit. The LAST beat, and only the last.
+
+THE SHAPE, which is enforced:
+- The first beat is "machine" and it names the state the token starts in. The last beat is "walk".
+- Every "fire" beat names an arc that leaves the state the token is standing on at that moment.
+- A "fire" at is an ARC index; a "machine" or "state" at is a NODE index. Mixing them up is the second most common way this plan gets rejected.
+
+Respond with a single JSON object and nothing else:
+{"title": "One state at a time", "emphasis": "One state", "emphasisRole": "quantity", "states": {"nodes": [{"id": "new", "label": "new"}, {"id": "ready", "label": "ready"}, {"id": "running", "label": "running"}, {"id": "waiting", "label": "waiting"}, {"id": "terminated", "label": "terminated"}], "arcs": [{"from": "new", "to": "ready", "on": "the loader admits it"}, {"from": "ready", "to": "running", "on": "the scheduler picks it"}, {"from": "running", "to": "waiting", "on": "it asks for input"}, {"from": "waiting", "to": "ready", "on": "the input arrives"}, {"from": "running", "to": "terminated", "on": "it returns from main"}]}, "beats": [{"id": "the-machine", "heading": "The whole machine", "narration": "...", "states": {"show": "machine", "at": 0}}, {"id": "admitted", "heading": "Admitted", "narration": "...", "states": {"show": "fire", "at": 0}}, {"id": "picked", "heading": "Picked", "narration": "...", "states": {"show": "fire", "at": 1}}, {"id": "on-the-cpu", "heading": "On the CPU", "narration": "...", "states": {"show": "state", "at": 2}}, {"id": "blocked", "heading": "Blocked", "narration": "...", "states": {"show": "fire", "at": 2}}, {"id": "woken", "heading": "Woken", "narration": "...", "states": {"show": "fire", "at": 3}}, {"id": "the-route", "heading": "The route", "narration": "...", "states": {"show": "walk"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "state machine" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. Every arc's from and to are ids you declared. Trace the token: the first beat places it, and each fire leaves the state it is standing on right then. The first beat is "machine" and the last is "walk", and a fire's at counts arcs while a machine's or state's at counts nodes. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

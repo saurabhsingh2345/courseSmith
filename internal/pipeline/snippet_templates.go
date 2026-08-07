@@ -158,6 +158,7 @@ func registerSnippetTemplate(t *SnippetTemplate) {
 		panic("duplicate snippet template " + t.Name)
 	}
 	checkTemplateCategory(t)
+	checkTemplateFamily(t)
 	SnippetTemplates[t.Name] = t
 }
 
@@ -895,6 +896,36 @@ type beatFields struct {
 	Recap         bool
 	Pitfall       bool
 	Checkpoint    bool
+	Syllabus      bool
+	Outcome       bool
+	Bridge        bool
+	Drill         bool
+	LabCard       bool
+	Mission       bool
+	Machine       bool
+	Blueprint     bool
+	Relay         bool
+	Layers        bool
+	Pipeline      bool
+	Radix         bool
+	Carry         bool
+	Bitfield      bool
+	Encode        bool
+	Gates         bool
+	Ladder        bool
+	Regions       bool
+	Lookup        bool
+	States        bool
+	Scheduler     bool
+	Shell         bool
+	Journey       bool
+	Handshake     bool
+	Stepper       bool
+	Growth        bool
+	CallStack     bool
+	History       bool
+	Versus        bool
+	Eras          bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -989,6 +1020,66 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			return fmt.Errorf("beat %q carries a `checkpoint` payload, which the %s template does not use", b.ID, p.Template)
 		case !owned.Toggle && b.Toggle != nil:
 			set = "toggle"
+		case !owned.Syllabus && b.Syllabus != nil:
+			set = "syllabus"
+		case !owned.Outcome && b.Outcome != nil:
+			set = "outcome"
+		case !owned.Bridge && b.Bridge != nil:
+			set = "bridge"
+		case !owned.Drill && b.Drill != nil:
+			set = "drill"
+		case !owned.LabCard && b.LabCard != nil:
+			set = "labcard"
+		case !owned.Mission && b.Mission != nil:
+			set = "mission"
+		case !owned.Machine && b.Machine != nil:
+			set = "machine"
+		case !owned.Blueprint && b.Blueprint != nil:
+			set = "blueprint"
+		case !owned.Relay && b.Relay != nil:
+			set = "relay"
+		case !owned.Layers && b.Layers != nil:
+			set = "layers"
+		case !owned.Pipeline && b.Pipeline != nil:
+			set = "pipeline"
+		case !owned.Radix && b.Radix != nil:
+			set = "radix"
+		case !owned.Carry && b.Carry != nil:
+			set = "carry"
+		case !owned.Bitfield && b.Bitfield != nil:
+			set = "bitfield"
+		case !owned.Encode && b.Encode != nil:
+			set = "encode"
+		case !owned.Gates && b.Gates != nil:
+			set = "gates"
+		case !owned.Ladder && b.Ladder != nil:
+			set = "ladder"
+		case !owned.Regions && b.Regions != nil:
+			set = "regions"
+		case !owned.Lookup && b.Lookup != nil:
+			set = "lookup"
+		case !owned.States && b.States != nil:
+			set = "states"
+		case !owned.Scheduler && b.Scheduler != nil:
+			set = "scheduler"
+		case !owned.Shell && b.Shell != nil:
+			set = "shell"
+		case !owned.Journey && b.Journey != nil:
+			set = "journey"
+		case !owned.Handshake && b.Handshake != nil:
+			set = "handshake"
+		case !owned.Stepper && b.Stepper != nil:
+			set = "stepper"
+		case !owned.Growth && b.Growth != nil:
+			set = "growth"
+		case !owned.CallStack && b.CallStack != nil:
+			set = "callstack"
+		case !owned.History && b.History != nil:
+			set = "history"
+		case !owned.Versus && b.Versus != nil:
+			set = "versus"
+		case !owned.Eras && b.Eras != nil:
+			set = "eras"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

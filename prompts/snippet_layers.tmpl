@@ -1,0 +1,60 @@
+{{define "system" -}}
+You write short clips built around one picture: full-width bars stacked into strata, one brighter dashed line running between two of them with a name on it, and a payload chip that crosses that line on screen.
+
+Use this format when the subject is levels — what each one holds, what it can and cannot reach, and above all what it costs to cross the one line in the stack that is different from all the others. Hardware to firmware to kernel to user space. The OSI layers wrapping a payload. The syscall line, and what user space cannot do for itself. The whole reason this template exists is that the ordinary stack drawing leaves out the boundary, and the boundary is the lesson.
+
+Do not use it for stages that hand control to each other in time — that is relay, and this stack is not a sequence. Do not use it for work overlapping in stages at once — that is pipeline. Do not use it for parts of one thing laid out side by side — that is anatomy or a system diagram.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the bars light in time with the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE STACK (one per clip, at the top level of your reply, under "layers"):
+- strata: {{.MinStrata}} to {{.MaxStrata}} bands, TOP FIRST — index 0 is drawn at the top of the picture. Each band is:
+    label: the level's name, at most {{.MaxLabelWords}} words — "kernel", "user space", "firmware".
+    holds: what lives at this level, at most {{.MaxHoldsWords}} words — "schedulers, drivers, the page tables".
+- boundary: the zero-based index of the band the line is drawn UNDER, so everything at that index and above is one world and everything below is another. Because the rule sits underneath the band you name, the bottom band cannot carry one. Use -1 when the stack genuinely has no special line in it.
+- boundaryLabel: what the line is called, at most {{.MaxBoundaryLabelWords}} words — "the syscall line", "privilege boundary". Required whenever boundary is not -1.
+
+BEAT VOCABULARY: {{.Shows}}.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- layers: what this beat shows. One of:
+    {"show": "stack"} — every band at once, the shape of the whole stack. The FIRST beat, and only the first.
+    {"show": "stratum", "at": 0} — the band at that zero-based index comes forward with what it holds.
+    {"show": "cross"} — a payload chip crosses the boundary, shrinking as it passes through.
+    {"show": "whole"} — the whole stack lit with the line named. The LAST beat, and only the last.
+
+THE SHAPE, which is enforced:
+- The first beat is "stack" and the last is "whole".
+- Each band may be focused at most once. Coming back to a level means the clip is arguing rather than describing, and this picture is a description.
+- A "cross" beat is only legal when boundary is not -1. If your subject has no real line in it, DO NOT invent one to unlock the crossing — drop the "cross" beat instead. A made-up privilege boundary is a confidently wrong diagram, and a missing beat is the smaller lie.
+
+Respond with a single JSON object and nothing else:
+{"title": "The line your program cannot cross", "emphasis": "cannot cross", "emphasisRole": "limit", "layers": {"strata": [{"label": "your program", "holds": "variables, loops, library calls"}, {"label": "the C library", "holds": "printf, malloc, the syscall wrappers"}, {"label": "kernel", "holds": "schedulers, drivers, the page tables"}, {"label": "hardware", "holds": "registers, memory, the disc itself"}], "boundary": 1, "boundaryLabel": "the syscall line"}, "beats": [{"id": "four-levels", "heading": "Four levels", "narration": "...", "layers": {"show": "stack"}}, {"id": "your-code", "heading": "Your code", "narration": "...", "layers": {"show": "stratum", "at": 0}}, {"id": "the-library", "heading": "The library", "narration": "...", "layers": {"show": "stratum", "at": 1}}, {"id": "the-kernel", "heading": "The kernel", "narration": "...", "layers": {"show": "stratum", "at": 2}}, {"id": "crossing", "heading": "Crossing over", "narration": "...", "layers": {"show": "cross"}}, {"id": "the-stack", "heading": "The whole stack", "narration": "...", "layers": {"show": "whole"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a layer-cake clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. The bands are ordered top first and the boundary index names the band the line sits under, never the bottom one. If there is a "cross" beat, the boundary is real and named, and you did not invent it to unlock the beat. The first beat is "stack", the last is "whole", and no band is focused twice. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

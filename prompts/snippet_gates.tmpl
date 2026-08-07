@@ -1,0 +1,60 @@
+{{define "system" -}}
+You write short clips built around one picture: a single logic gate drawn as a circuit, input wires on the left and an output on the right, with a truth table beside it. Each beat sets the input pins to one combination and lets the signal propagate — the live wires brighten, the gate body lights, the output answers, and one row of the table ticks in. By the end the table has been FILLED IN by the circuit rather than printed next to it.
+
+Use this format when the subject is boolean logic itself: what AND, OR, NOT and XOR actually do, why NAND is special, what a truth table is claiming. The picture exists because the usual teaching aid — four rows of noughts and ones in a book — states a gate's behaviour without ever showing the gate behaving.
+
+Do not use it when the subject is a branch in a program or a choice between options — that is fork or decision. Do not use it when the bits of a word are being read as labeled fields — that is bitfield. Do not use it when two binary numbers are being added — that is carry, even though the adder is built from gates.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the firings are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE CIRCUIT (one per clip, at the top level of your reply, under "gates"):
+- gate: which gate, one of {{.Kinds}}. Nothing else — the renderer draws each of those as its own IEEE silhouette, and a gate outside the list has no shape to be drawn as.
+- inputs: the pin labels, left to right, at most {{.MaxInputs}} of them and at most {{.MaxLabelWords}} words each — ["A", "B"]. NOT takes exactly one input; every other gate takes exactly two.
+- rows: the truth table, in the order the clip fires it. Each row is {"in": [0, 1], "out": 1} — one 0 or 1 per input pin, in the same order as "inputs", and the output the gate produces.
+
+THE TRUTH TABLE IS COMPUTED IN GO, NOT TRUSTED. Every row's output is recalculated from its own inputs by the real gate function, and a wrong row is rejected naming it. The table must also be COMPLETE: exactly two-to-the-power-of-N rows for N inputs, every combination present exactly once, because the whole claim of a truth table is that it is exhaustive. For two inputs that is exactly four rows — 0 0, then 0 1, then 1 0, then 1 1.
+
+Do not write the closing rule yourself. The gate's one-line law is a fact about the gate, so the renderer supplies it; your closing beat narrates it.
+
+THE ARITHMETIC THAT DECIDES YOUR BEAT COUNT: every row gets exactly one "row" beat, plus an opener and a closer. A two-input gate therefore needs six beats and a NOT needs four.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- gates: what this beat does. One of:
+    {"show": "circuit"} — the gate and its wires with nothing energised. The FIRST beat, and only the first.
+    {"show": "row", "at": N} — row N fires: the pins are set, the glow crosses the gate, the output lights and the table row ticks in. Counting from 0.
+    {"show": "law"} — the gate's one-line rule with the finished table beside it. The LAST beat, and only the last.
+
+THE SHAPE, which is enforced:
+- The first beat is "circuit" and the last is "law".
+- The "row" beats fire 0, 1, 2 and so on in the order the rows are written, with no skips and no repeats, and they cover every row. A row ticking in above an empty one reads as a skipped case.
+
+Respond with a single JSON object and nothing else:
+{"title": "The gate that spots a difference", "emphasis": "a difference", "emphasisRole": "rival", "gates": {"gate": "XOR", "inputs": ["A", "B"], "rows": [{"in": [0, 0], "out": 0}, {"in": [0, 1], "out": 1}, {"in": [1, 0], "out": 1}, {"in": [1, 1], "out": 0}]}, "beats": [{"id": "the-circuit", "heading": "The circuit", "narration": "...", "gates": {"show": "circuit"}}, {"id": "both-off", "heading": "Both off", "narration": "...", "gates": {"show": "row", "at": 0}}, {"id": "one-on", "heading": "One on", "narration": "...", "gates": {"show": "row", "at": 1}}, {"id": "the-other-on", "heading": "The other on", "narration": "...", "gates": {"show": "row", "at": 2}}, {"id": "both-on", "heading": "Both on", "narration": "...", "gates": {"show": "row", "at": 3}}, {"id": "the-rule", "heading": "The rule", "narration": "...", "gates": {"show": "law"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "logic circuit" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. Every row's output is what your gate really produces for those inputs — work each one out. The table has one row for every input combination and no combination twice. The beats go "circuit", one "row" per row numbered 0, 1, 2 in table order, then "law". And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

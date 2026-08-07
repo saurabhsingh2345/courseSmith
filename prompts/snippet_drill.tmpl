@@ -1,0 +1,61 @@
+{{define "system" -}}
+You write the check-question clip: one sharp question, a board of lettered options, and the wrong ones struck off ONE AT A TIME, each strike getting its own beat of narration about why that answer is tempting and why it is wrong. Then the survivor lights, and one line says why.
+
+Use this format right after a concept lands, when the wrong answers are worth killing — when the plausible-but-wrong options are the misconceptions a beginner actually holds.
+
+Do not use it for the end-of-lesson knowledge check with several questions — that is quiz, which puts a question up, pauses, and lights the answer. The difference is the elimination: quiz never engages the wrong answers, which leaves them alive. Do not use it to name a mistake and correct it in prose — that is pitfall. Do not use it to state a belief and dismantle it — that is myth.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the strikes are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE BOARD (one per clip, at the top level of your reply, under "drill"):
+- question: the check itself, at most {{.MaxQuestionWords}} words. It is set large; past that it wraps and stops being a question at a glance.
+- options: {{.MinOptions}} to {{.MaxOptions}} lettered plates, top to bottom, each at most {{.MaxOptionWords}} words. Every wrong one should be a mistake somebody actually makes — a distractor nobody would pick teaches nothing when it is struck.
+- answer: the index of the plate that survives, counting from 0.
+- why: the one-line reason the answer is right, at most {{.MaxWhyWords}} words. It is a line under the winning plate, not a second lesson.
+
+WATCH THE ANSWER INDEX. If you reorder the options while drafting, update `answer` to match. Striking the answer is checked in Go and rejected, because on screen that is the clip telling the viewer the right answer is wrong.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- drill: what this beat does. One of:
+    {"show": "ask"} — the question and every option, whole. The FIRST beat, and only the first.
+    {"show": "eliminate", "at": N} — option N grays and takes a strike through it, while the narration says why it is wrong. Counting from 0.
+    {"show": "reveal"} — the answer plate lights and lifts.
+    {"show": "why"} — the one-line reason lands under the answer. A good closer.
+
+THE SHAPE, which is enforced:
+- The board has a question, {{.MinOptions}}-{{.MaxOptions}} options, and an answer index that points at one of them.
+- The first beat is "ask", and no later beat asks again — re-asking un-strikes a board the viewer watched get struck.
+- An "eliminate" beat may not strike the answer, and no option may be struck twice.
+- There is EXACTLY ONE "reveal" beat. Two reveals is two right answers; none is a question the clip never answers.
+- At most one "why" beat, and it comes AFTER the reveal. The reason attaches to the answer, so the answer lands first. If you use a "why" beat, the drill's `why` line must not be empty.
+
+Respond with a single JSON object and nothing else:
+{"title": "Why floats miss by a hair", "emphasis": "miss by a hair", "emphasisRole": "limit", "drill": {"question": "Why does 0.1 plus 0.2 not equal 0.3?", "options": ["Computers round randomly", "The maths library has a bug", "One tenth has no exact binary form", "Floats only keep seven digits"], "answer": 2, "why": "Base two cannot write one tenth exactly, so the stored value is already slightly off"}, "beats": [{"id": "the-question", "heading": "The classic surprise", "narration": "...", "drill": {"show": "ask"}}, {"id": "not-random", "heading": "Nothing is random", "narration": "...", "drill": {"show": "eliminate", "at": 0}}, {"id": "not-a-bug", "heading": "Not a bug", "narration": "...", "drill": {"show": "eliminate", "at": 1}}, {"id": "not-digits", "heading": "Not about digits", "narration": "...", "drill": {"show": "eliminate", "at": 3}}, {"id": "the-answer", "heading": "What survives", "narration": "...", "drill": {"show": "reveal"}}, {"id": "the-reason", "heading": "Why it holds", "narration": "...", "drill": {"show": "why"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a quick-check clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. The `answer` index points at the plate you actually mean, and no "eliminate" beat strikes it. No option is struck twice. There is exactly one "reveal", and any "why" beat comes after it. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

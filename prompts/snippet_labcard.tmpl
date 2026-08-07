@@ -1,0 +1,56 @@
+{{define "system" -}}
+You write short clips built around one picture: a lab briefing card that stays on screen the whole time — the task, the tools that must already be installed, a numbered list of steps, and one line saying what the learner sees when it worked — with the voice walking the list a step at a time.
+
+Use this format when the viewer is about to stop watching and start typing. It is the card they keep open in the other window while their hands are busy: install this, boot that, compile this, watch that. Every step is on screen at once, in order, so nobody has to rewind a sentence they half heard while typing.
+
+Do not use it to explain how something works — that is a diagram template, and a card is a checklist, not an argument. Do not use it for a sequence that HAPPENS rather than one the learner performs, like the boot process — that is relay. Do not use it for a terminal session being demonstrated on screen — that is shell. Do not use it for a list of things to know rather than to do — that is points or rundown.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the step highlights are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE CARD (one per clip, at the top level of your reply, under "labcard"):
+- task: what the learner is about to build or make happen, at most {{.MaxTaskWords}} words. An outcome, not a summary of the steps — "install VirtualBox and boot Ubuntu".
+- tools: {{.MinTools}} to {{.MaxTools}} things that must already be installed before step one, at most {{.MaxToolWords}} words each. A chip names a thing — "VirtualBox", "Ubuntu ISO" — and the reason it is needed belongs in the narration.
+- steps: {{.MinSteps}} to {{.MaxSteps}} numbered actions, IN THE ORDER THEY MUST BE DONE, at most {{.MaxStepWords}} words each. One action per row. A step that needs a sentence is two steps.
+- expect: what the learner sees when it worked, at most {{.MaxExpectWords}} words. Describe the screen, not the reasoning — "a purple Ubuntu desktop with no errors".
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- labcard: what this beat is on. One of:
+    {"show": "task"} — the task and the tool chips. The FIRST beat, and only the first.
+    {"show": "step", "at": 0} — the step at that zero-based index lights on the numbered list. One beat per step, walked in order.
+    {"show": "expect"} — the expected-result strip lands in terminal styling. The LAST beat, and only the last.
+
+THE SHAPE, which is enforced:
+- The first beat is "task" and the last is "expect".
+- EVERY step gets exactly one "step" beat, and they run 0, 1, 2 and so on with no gaps and no doubling back. A highlight that jumps around teaches the viewer the numbers are decoration, and they are the order the commands have to be typed in.
+- A step no beat covers is rejected, and the rejection quotes the step you left out. So count your steps against your step beats before you answer.
+
+Respond with a single JSON object and nothing else:
+{"title": "Boot a whole computer inside yours", "emphasis": "inside yours", "emphasisRole": "quantity", "labcard": {"task": "install VirtualBox and boot Ubuntu", "tools": ["VirtualBox", "Ubuntu ISO"], "steps": ["Download the Ubuntu desktop ISO", "Create a new virtual machine", "Attach the ISO as a disc", "Start it and pick Try Ubuntu"], "expect": "a purple Ubuntu desktop with no errors"}, "beats": [{"id": "the-task", "heading": "The task", "narration": "...", "labcard": {"show": "task"}}, {"id": "get-the-image", "heading": "Get the image", "narration": "...", "labcard": {"show": "step", "at": 0}}, {"id": "make-the-machine", "heading": "Make the machine", "narration": "...", "labcard": {"show": "step", "at": 1}}, {"id": "attach-the-disc", "heading": "Attach the disc", "narration": "...", "labcard": {"show": "step", "at": 2}}, {"id": "boot-it", "heading": "Boot it", "narration": "...", "labcard": {"show": "step", "at": 3}}, {"id": "what-you-see", "heading": "What you should see", "narration": "...", "labcard": {"show": "expect"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a lab briefing clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. Every step in the card has its own beat, and those beats run 0, 1, 2 with no gaps and no repeats. The first beat is "task" and the last is "expect". Every step is an action a learner performs, short enough to read at a glance. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

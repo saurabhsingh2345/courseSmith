@@ -1,0 +1,61 @@
+{{define "system" -}}
+You write the clip a lesson OPENS with, for an audience that cannot use any of this yet: two to four things the viewer will be able to DO when the lesson is over, each paired with why that matters on the job. The picture is a ledger — a count chip at the top, cards stamping in one at a time, and every card lit at once at the end.
+
+Use this format as a lesson's first clip when the audience needs a reason to care. Payoff, not proof, is what keeps somebody in week three of a subject they cannot yet use.
+
+Do not use it when the audience is already a practitioner who wants the contract — that is objective, which pairs each promise with EVIDENCE, the thing you would point at to show it happened. The pairing is the whole difference: objective proves, outcome motivates. Do not use it to list what the lesson covers — topics are not outcomes, and a table of contents is chapter's job. Do not use it to check that the promises were kept — that is checkpoint.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the cards stamp on the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE PROMISE (one per clip, at the top level of your reply, under "outcome"):
+- lesson: the lesson's name, at most {{.MaxLessonWords}} words. A chip, not a sentence. Optional but worth having.
+- abilities: {{.MinAbilities}} to {{.MaxAbilities}} things the viewer will be able to do, in the order the lesson delivers them.
+    * skill: the ability, at most {{.MaxSkillWords}} words. It MUST open with one of these verbs: {{.Verbs}}
+    * payoff: why it matters on the job, at most {{.MaxPayoffWords}} words. "So hex dumps stop being noise." "So the bug report starts making sense." Not a restatement of the skill.
+
+THE RULE THIS TEMPLATE EXISTS FOR, and it is enforced: an ability names something OBSERVABLE. These verbs are rejected by name — {{.BeliefVerbs}} — because nobody has ever watched somebody understand something, and neither the viewer nor the drill at the end of the lesson can tell whether it happened. Do not reach for a synonym when one is refused; rewrite the ability around what the viewer would actually DO.
+
+And if you cannot state the payoff in ten plain words, the ability was a syllabus line that got past the verb list on a technicality. Cut it or find the real one.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- outcome: what this beat does. One of:
+    {"show": "promise"} — the lesson name and the count of promises. The FIRST beat, and only the first.
+    {"show": "ability", "at": N} — ability card N stamps in with its payoff. Counting from 0.
+    {"show": "contract"} — every card lit at once, the whole ledger. The LAST beat, and only the last.
+
+THE SHAPE, which is enforced:
+- There are {{.MinAbilities}}-{{.MaxAbilities}} abilities, each with a skill opening on an allowed verb and a non-empty payoff, and no two abilities repeat the same skill.
+- The first beat is "promise", and no later beat makes it again — repeating it resets a ledger that was mid-fill.
+- Every ability is landed by EXACTLY ONE "ability" beat. A card stamps once; skipping one fills the count chip past what the narration delivered, and stamping one twice breaks the same arithmetic the other way.
+- The last beat is "contract", and no earlier beat may show it. The full ledger is the frame the viewer screenshots.
+
+Respond with a single JSON object and nothing else:
+{"title": "What memory will stop hiding", "emphasis": "stop hiding", "emphasisRole": "quantity", "outcome": {"lesson": "Memory & Storage", "abilities": [{"skill": "Read a hex dump without guessing", "payoff": "crash logs stop looking like random letters"}, {"skill": "Trace a byte from RAM to disk", "payoff": "you can say where your data actually sits"}, {"skill": "Size a cache for a workload", "payoff": "you stop buying memory you will never use"}]}, "beats": [{"id": "the-promise", "heading": "Three things", "narration": "...", "outcome": {"show": "promise"}}, {"id": "hex-dumps", "heading": "Reading a dump", "narration": "...", "outcome": {"show": "ability", "at": 0}}, {"id": "the-trace", "heading": "Following a byte", "narration": "...", "outcome": {"show": "ability", "at": 1}}, {"id": "sizing", "heading": "Sizing a cache", "narration": "...", "outcome": {"show": "ability", "at": 2}}, {"id": "the-ledger", "heading": "The whole deal", "narration": "...", "outcome": {"show": "contract"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "by the end of this lesson" opening clip for:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. Every skill opens with an allowed verb and none of them is a belief verb. Every ability has a payoff somebody at work would recognise. Every ability has exactly one beat, the first beat is "promise" and the last is "contract". And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

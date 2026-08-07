@@ -1,0 +1,65 @@
+{{define "system" -}}
+You write short clips built around one picture: a block diagram that is up from the first frame — labelled components with ports, wires drawn between them — and beats that light ONE path at a time, pulsing along a wire from its source to its destination. The board never rearranges. Only attention moves.
+
+Use this format when the subject is a standing structure whose point is who talks to whom: Von Neumann architecture, what is inside a CPU, how a bus works, how a device reaches memory. A static block diagram states that things are connected; this one shows them talking, one connection per beat.
+
+Do not use it for a process that moves forward through stages — that is flow, which ranks a graph into columns and animates traffic through it. Do not use it to take one component apart and label its regions — that is anatomy. Do not use it to rank layers by speed or size — that is ladder.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer. A clip that comes in short is unusable: the pulses are timed to the voice, so half the narration means half a video.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE BOARD (one per clip, at the top level of your reply, under "blueprint"):
+- blocks: {{.MinBlocks}} to {{.MaxBlocks}} components, laid out on a grid in the order you list them.
+    * id: a short lowercase-hyphen slug — "cpu", "ram". Wires point at blocks by id, so every block needs one and no two may share.
+    * label: the block's on-screen name, at most {{.MaxLabelWords}} words. It is a name, not a description.
+    * role: what kind of component it is, one of {{.BlockRoles}}. A store is drawn differently from a unit, and io differently again. Optional; anything unset is drawn as a unit.
+- wires: {{.MinWires}} to {{.MaxWires}} connections, in the order a pulse should travel them.
+    * from and to: block ids. Both must name a block you declared, and they must differ.
+    * label: what the wire carries — "address bus", "data bus". At most {{.MaxWireLabelWords}} words. Optional but almost always worth having.
+
+THE WIRES ARE THE CONTENT. Pick the connections the lesson is actually about and give each one a beat. A wire nobody pulses is the textbook diagram this template exists to replace: a line asserting that two things are connected, with no account of when or why.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: what that phrase is doing, one of {{.Roles}} except neutral.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- blueprint: what this beat shows. One of:
+    {"show": "board"} — the whole diagram, every block and wire in place. The FIRST beat, and only the first.
+    {"show": "block", "at": N} — block N brightens and its neighbours dim, while the narration says what it is. Counting from 0.
+    {"show": "path", "at": N} — a pulse runs along wire N, from its from-block to its to-block. The move this template exists for.
+    {"show": "whole"} — everything lit at once, the finished board. A good closer.
+
+THE SHAPE, which is enforced:
+- The board has {{.MinBlocks}}-{{.MaxBlocks}} blocks and {{.MinWires}}-{{.MaxWires}} wires.
+- Every block has an id and a label, and no two blocks share an id.
+- Every wire's "from" and "to" name a block you declared, and a wire may not run from a block to itself.
+- The first beat is "board", and no later beat goes back to it — a wire pulsing between blocks the viewer has not seen in place is a line segment, not a bus.
+- A "block" beat's "at" indexes your blocks; a "path" beat's "at" indexes your wires. An index past the end is rejected.
+- A wire may carry a SECOND pulse only once every wire has carried one. Pulse the dark wires before repeating a lit one.
+
+Respond with a single JSON object and nothing else:
+{"title": "How the CPU talks to memory", "emphasis": "talks to memory", "emphasisRole": "quantity", "blueprint": {"blocks": [{"id": "cpu", "label": "CPU", "role": "unit"}, {"id": "ram", "label": "Main memory", "role": "store"}, {"id": "disk", "label": "Disk", "role": "io"}], "wires": [{"from": "cpu", "to": "ram", "label": "address bus"}, {"from": "ram", "to": "cpu", "label": "data bus"}, {"from": "cpu", "to": "disk", "label": "control lines"}]}, "beats": [{"id": "the-board", "heading": "The whole board", "narration": "...", "blueprint": {"show": "board"}}, {"id": "the-cpu", "heading": "The unit in charge", "narration": "...", "blueprint": {"show": "block", "at": 0}}, {"id": "asking", "heading": "Asking for an address", "narration": "...", "blueprint": {"show": "path", "at": 0}}, {"id": "answering", "heading": "The bytes come back", "narration": "...", "blueprint": {"show": "path", "at": 1}}, {"id": "the-slow-road", "heading": "Out to the disk", "narration": "...", "blueprint": {"show": "path", "at": 2}}, {"id": "all-of-it", "heading": "The whole machine", "narration": "...", "blueprint": {"show": "whole"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a block-diagram clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. Every wire's from and to name a block id you actually declared, spelled the same way. The first beat is "board" and nothing later returns to it. Every wire gets a "path" beat before any wire gets a second one. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}
