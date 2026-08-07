@@ -34,6 +34,8 @@ import * as nature from './artwork/nature';
 import * as work from './artwork/work';
 import * as abstract from './artwork/abstract';
 import * as learn from './artwork/learn';
+import * as build from './artwork/build';
+import * as signal from './artwork/signal';
 
 /**
  * The closed figure vocabulary.
@@ -163,6 +165,45 @@ export const FIGURES: Record<string, Figure> = {
   steps: learn.StepsFigure,
   graduate: learn.GraduateFigure,
   bookmark: learn.BookmarkFigure,
+
+  // Building something without writing code: the assistant, the blocks, the
+  // board you wire together, the thing you publish. The drawer could draw a
+  // load balancer and not a drag-and-drop block, which is the wrong way round
+  // for a course whose whole subject is assembling tools that already exist.
+  robot: build.RobotFigure,
+  wand: build.WandFigure,
+  blocks: build.BlocksFigure,
+  plug: build.PlugFigure,
+  dashboard: build.DashboardFigure,
+  deploy: build.DeployFigure,
+  app: build.AppFigure,
+  spreadsheet: build.SpreadsheetFigure,
+  automation: build.AutomationFigure,
+  sitemap: build.SitemapFigure,
+  prompt: build.PromptFigure,
+  blueprint: build.BlueprintFigure,
+  dataset: build.DatasetFigure,
+  guardrail: build.GuardrailFigure,
+
+  // Situations rather than things: the catch, the block, the win, the one that
+  // matters, the thing that knocks over the next thing. Every other figure in
+  // this map is a noun, and most of what connective narration points at is not.
+  warning: signal.WarningFigure,
+  blocked: signal.BlockedFigure,
+  celebrate: signal.CelebrateFigure,
+  milestone: signal.MilestoneFigure,
+  map: signal.MapFigure,
+  detour: signal.DetourFigure,
+  coin: signal.CoinFigure,
+  stamp: signal.StampFigure,
+  spotlight: signal.SpotlightFigure,
+  anchor: signal.AnchorFigure,
+  knot: signal.KnotFigure,
+  domino: signal.DominoFigure,
+  traffic: signal.TrafficFigure,
+  handoff: signal.HandoffFigure,
+  pin: signal.PinFigure,
+  hurdle: signal.HurdleFigure,
 
   // Shapes for ideas that are not objects.
   arrow: abstract.ArrowFigure,

@@ -128,6 +128,16 @@ const (
 	// actually taught, a recap claim that must trace to a prior lesson. They are
 	// the first templates that cannot be validated by looking at one clip alone.
 	SinceV5 = "v5"
+	// SinceV6 is the spine: one template rather than a batch, and the first one
+	// whose input can be the narration itself.
+	//
+	// Every template before it is chosen for what the clip is about, which
+	// leaves the connective material of a course — the opening, the hand-off,
+	// the aside, the sign-off — with no template at all, because its subject is
+	// only ever "whatever is being said right now". This is that template, and
+	// it is also the first to accept a script the creator wrote and stage it
+	// word for word instead of writing its own.
+	SinceV6 = "v6"
 )
 
 // Template families. A family is which surface offers a template, and it exists

@@ -48,6 +48,9 @@ type SnippetTemplateInfo struct {
 	// ShowsCode marks templates whose clips execute code for real, which is
 	// the difference the gallery needs to communicate.
 	ShowsCode bool `json:"shows_code"`
+	// TakesNarration marks the templates that will speak a script you wrote
+	// instead of writing one. The gallery offers the script box only for these.
+	TakesNarration bool `json:"takes_narration,omitempty"`
 	// MinTargetSec and DefaultTargetSec are the runtimes this template can
 	// actually satisfy. The picker needs them: `story` is built from eight or
 	// more beats, so a twenty-second story is not a short clip, it is a plan
@@ -82,6 +85,10 @@ type CreateSnippetRequest struct {
 	Prompt   string `json:"prompt"`
 	Template string `json:"template"`
 	Title    string `json:"title,omitempty"`
+	// Narration is the creator's own script, spoken word for word instead of
+	// the pipeline writing one. Read by the `spine` template; the runtime then
+	// follows the script rather than the other way round.
+	Narration string `json:"narration,omitempty"`
 	// TargetSec is the runtime to aim for (0 = the default).
 	TargetSec int `json:"target_sec,omitempty"`
 	// CodeLanguage applies to code-bearing templates ("" = python).
@@ -129,6 +136,7 @@ func (s *Server) handleSnippetTemplates(w http.ResponseWriter, _ *http.Request) 
 				Since:            t.Since,
 				Family:           t.Family,
 				ShowsCode:        t.NeedsCode,
+				TakesNarration:   t.TakesNarration,
 				MinTargetSec:     t.MinTargetSec,
 				DefaultTargetSec: t.DefaultTargetSec,
 			})
@@ -201,7 +209,10 @@ func (s *Server) handleSnippetDetail(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, err)
 		return
 	}
-	detail := SnippetDetail{SnippetSummary: summary, TargetSec: spec.ResolvedTargetSec()}
+	// The runtime this snippet is actually planned against: for one carrying a
+	// script that is the length of the script, not the value in the request.
+	// Pace 0 means the house pace, which is all this endpoint knows.
+	detail := SnippetDetail{SnippetSummary: summary, TargetSec: spec.ScriptTargetSec(0)}
 	// The plan is passed through raw: it is the pipeline's own artifact and the
 	// UI shows it as data.
 	if raw, err := os.ReadFile(filepath.Join(lesson.GeneratedDir(), pipeline.SnippetPlanFileName)); err == nil && json.Valid(raw) {
@@ -222,8 +233,16 @@ func (s *Server) handleSnippetCreate(w http.ResponseWriter, r *http.Request) {
 		Prompt:       strings.TrimSpace(req.Prompt),
 		Template:     req.Template,
 		Title:        strings.TrimSpace(req.Title),
+		Narration:    strings.TrimSpace(req.Narration),
 		TargetSec:    req.TargetSec,
 		CodeLanguage: req.CodeLanguage,
+	}
+	// A script stands in for the prompt when the creator gave one and nothing
+	// else. The prompt is required — it is what names the snippet and what the
+	// gallery shows — and asking somebody who just pasted a script to also
+	// describe it is asking them to write the same thing twice.
+	if spec.Prompt == "" && spec.Narration != "" {
+		spec.Prompt = spec.Narration
 	}
 	// One assignment rather than three: building the override per-field
 	// overwrote whichever of them was set first.
@@ -271,6 +290,9 @@ func (s *Server) handleSnippetDelete(w http.ResponseWriter, r *http.Request) {
 	_, lesson, err := pipeline.FindSnippet(s.projectRoot(), filepath.Base(r.PathValue("id")))
 	if err != nil {
 		writeError(w, http.StatusNotFound, err)
+		return
+	}
+	if s.refuseDeleteWhileRunning(w, pipeline.SnippetsCourseSlug, lesson.ID) {
 		return
 	}
 	if err := os.RemoveAll(lesson.Dir); err != nil {

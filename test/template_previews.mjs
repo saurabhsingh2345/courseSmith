@@ -121,6 +121,11 @@ const SOURCES = {
   whiteboard: "WhiteboardViz-390",
   flow: "FlowViz-400",
   illustration: "IllustrationViz-250",
+  // The pair shot rather than the opening: the card should show that this
+  // template arranges objects, which is the thing that distinguishes it from
+  // every other big-type look in the catalog. Its `open` shot would show a
+  // title card and sell it as one.
+  spine: "SpineViz-330",
   cast: "CastViz-200",
   story: "StoryViz-340",
   data: "DataViz-2250",

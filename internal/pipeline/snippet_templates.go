@@ -68,6 +68,14 @@ type SnippetTemplate struct {
 	// NeedsCode makes the verify stage part of this template's pipeline, so
 	// any code shown is code that really ran.
 	NeedsCode bool
+	// TakesNarration means this template can be handed a script and will speak
+	// it word for word instead of writing its own (SnippetSpec.Narration).
+	//
+	// Declared rather than inferred so the studio can offer the box only where
+	// it does something. A creator who pastes a script into a template that
+	// ignores it has been quietly told their words do not matter, which is a
+	// worse outcome than not being offered the field.
+	TakesNarration bool
 	// DefaultTargetSec is the runtime this template aims for when the request
 	// does not say (0 = defaultSnippetTargetSec). A template with a beat floor
 	// well above the shared one needs its own default, or the standard 45s
@@ -82,6 +90,18 @@ type SnippetTemplate struct {
 	// worth opening — because there the beat count is a property of the content
 	// rather than of how long a viewer's attention lasts on one picture.
 	MaxBeats int
+	// IdealWordsPerBeat is how much narration one beat of this template should
+	// carry (0 = the shared idealWordsPerBeat).
+	//
+	// It is really a statement about how long this template's picture can hold
+	// the frame. The shared forty is right where a beat is a step in an
+	// argument and the visual accumulates under it. It is wrong where a beat is
+	// a SHOT: forty words is about thirteen seconds of one static arrangement,
+	// and a clip that cuts three times in forty seconds is a slideshow with a
+	// voiceover. Lowering it does not shorten the clip — the word budget is set
+	// by the runtime — it cuts the same narration into more beats, which is
+	// exactly what "cut more often" means to everything downstream.
+	IdealWordsPerBeat int
 	// MinTargetSec is the shortest runtime this template can actually satisfy
 	// (0 = the shared floor). A default is a suggestion and callers override it;
 	// this is the arithmetic. `story` needs eight beats, and eight beats of the
@@ -213,7 +233,7 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 	}
 	target := spec.ResolvedTargetSec()
 	wantWords, minWords, maxWords := wordBudget(target, pace)
-	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords, templateBeatCeiling(spec.Template))
+	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords, templateBeatCeiling(spec.Template), templateIdealWords(spec.Template))
 	return map[string]any{
 		"Prompt":          spec.Prompt,
 		"Title":           spec.Title,
@@ -289,16 +309,25 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 // The `ceiling` is the most beats this template can hold — maxSnippetBeats for
 // almost everything, and higher for the few whose structure is a *list* rather
 // than a handful of moments. See SnippetTemplate.MaxBeats.
-func beatBounds(targetWords, ceiling int) (minBeats, maxBeats, suggest, wordsPerBeat int) {
+//
+// `ideal` is how many words one beat of THIS template should carry, which is
+// really a statement about how long its picture can hold the frame. Forty is
+// right for a beat that is a step in an argument; it is far too long for one
+// that is a shot, where forty words is thirteen seconds of one static
+// arrangement. See SnippetTemplate.IdealWordsPerBeat.
+func beatBounds(targetWords, ceiling, ideal int) (minBeats, maxBeats, suggest, wordsPerBeat int) {
 	if ceiling <= 0 {
 		ceiling = maxSnippetBeats
+	}
+	if ideal <= 0 {
+		ideal = idealWordsPerBeat
 	}
 	if targetWords <= 0 {
 		// A plan built by hand (a test, a fixture) has no budget to size
 		// against; fall back to the range that was fixed before this existed.
-		return floorSnippetBeats, ceiling, idealWordsPerBeat, idealWordsPerBeat
+		return floorSnippetBeats, ceiling, ideal, ideal
 	}
-	suggest = max((targetWords+idealWordsPerBeat/2)/idealWordsPerBeat, floorSnippetBeats)
+	suggest = max((targetWords+ideal/2)/ideal, floorSnippetBeats)
 	// A beat can only hold so much, so the *words* set a floor on the beat count
 	// as surely as the ideal sets a target. Without this the two halves of the
 	// instructions contradict each other at long runtimes exactly as they used to
@@ -336,6 +365,14 @@ func beatBounds(targetWords, ceiling int) (minBeats, maxBeats, suggest, wordsPer
 	// short of its target; being told to write something that is rejected on
 	// arrival would leave it with no clip at all.
 	return minBeats, maxBeats, suggest, min(targetWords/suggest, maxWordsPerBeat)
+}
+
+// templateIdealWords is how many words one beat of the named template carries.
+func templateIdealWords(name string) int {
+	if tpl, ok := SnippetTemplates[name]; ok && tpl.IdealWordsPerBeat > 0 {
+		return tpl.IdealWordsPerBeat
+	}
+	return idealWordsPerBeat
 }
 
 // templateBeatCeiling is the most beats the named template may use.
@@ -485,7 +522,7 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 	// bounds, and they must be the same ones the validator scores against — two
 	// calls to beatBounds either side of the prompt is how the number the model is
 	// told and the number it is judged by drift apart.
-	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords, templateBeatCeiling(spec.Template))
+	minBeats, maxBeats, suggest, perBeat := beatBounds(wantWords, templateBeatCeiling(spec.Template), templateIdealWords(spec.Template))
 	data := sharedPromptData(spec, cfg)
 	if tpl.PromptData != nil {
 		for k, v := range tpl.PromptData(spec, cfg) {
@@ -756,7 +793,7 @@ func dryRunSnippetScenes(spec SnippetSpec, cfg config.Config, p *SnippetPlan) er
 // is one visual, so sixty words is not a style guide, it is how long any single
 // image stays interesting.
 func checkBeatShape(p *SnippetPlan) error {
-	minBeats, maxBeats, _, _ := beatBounds(p.targetWords, templateBeatCeiling(p.Template))
+	minBeats, maxBeats, _, _ := beatBounds(p.targetWords, templateBeatCeiling(p.Template), templateIdealWords(p.Template))
 	if n := len(p.Beats); n < minBeats || n > maxBeats {
 		return fmt.Errorf("plan has %d beats, want %d-%d", n, minBeats, maxBeats)
 	}
@@ -812,6 +849,7 @@ type beatFields struct {
 	Nodes         bool
 	Focus         bool
 	Art           bool
+	Spine         bool
 	Cast          bool
 	Shot          bool
 	Data          bool
@@ -959,6 +997,8 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "focus"
 		case !owned.Art && b.Art != nil:
 			set = "art"
+		case !owned.Spine && b.Spine != nil:
+			set = "spine"
 		case !owned.Cast && b.Cast != nil:
 			set = "cast"
 		case !owned.Shot && b.Shot != nil:

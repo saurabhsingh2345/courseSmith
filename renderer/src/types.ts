@@ -101,6 +101,7 @@ export type SceneType =
   | 'whiteboard'
   | 'flow'
   | 'illustration'
+  | 'spine'
   | 'cast'
   | 'story'
   | 'data'

@@ -22,6 +22,7 @@ import {WorkspaceScene} from './components/WorkspaceScene';
 import {WhiteboardScene} from './components/WhiteboardScene';
 import {FlowScene} from './components/FlowScene';
 import {IllustrationScene} from './components/IllustrationScene';
+import {SpineScene} from './components/SpineScene';
 import {CastScene} from './components/CastScene';
 import {StoryScene} from './components/StoryScene';
 import {DataScene} from './components/DataScene';
@@ -151,6 +152,15 @@ const sceneContent = (
       return <FlowScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'illustration':
       return <IllustrationScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'spine':
+      return (
+        <SpineScene
+          theme={theme}
+          sceneStartMs={scene.startMs}
+          durationInFrames={durationInFrames}
+          props={scene.props}
+        />
+      );
     case 'cast':
       return <CastScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'story':

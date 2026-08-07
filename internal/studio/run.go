@@ -8,6 +8,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"net/http"
 	"slices"
 	"strings"
 	"sync"
@@ -57,6 +58,55 @@ func (m *runManager) Status() RunStatus {
 	m.mu.Lock()
 	defer m.mu.Unlock()
 	return m.status
+}
+
+// RunningOn reports whether the current run is working on this lesson, and
+// which stage it is in.
+//
+// Deleting a lesson directory out from under a running stage is the one way to
+// break a run that no amount of care inside the pipeline can defend against:
+// the stage holds a *project.Lesson pointing at a path that no longer exists,
+// finishes its LLM call, writes its artifact into a directory it silently
+// recreates, and then fails hashing the lesson.md that went away — an error
+// about a missing file that names neither the deletion nor the run. So the
+// delete handlers ask first.
+func (m *runManager) RunningOn(courseSlug, lessonID string) (string, bool) {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	if !m.running || m.status.Course != courseSlug || m.status.Lesson != lessonID {
+		return "", false
+	}
+	return m.status.Stage, true
+}
+
+// RunningInCourse reports whether the current run is working anywhere inside
+// this course, and on which lesson.
+func (m *runManager) RunningInCourse(courseSlug string) (string, bool) {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+	if !m.running || m.status.Course != courseSlug {
+		return "", false
+	}
+	return m.status.Lesson, true
+}
+
+// refuseDeleteWhileRunning answers the request with 409 when the thing being
+// deleted is what the pipeline is working on right now, and reports whether it
+// did. Cancelling the run instead would be the friendlier-sounding choice and
+// the wrong one: a stage killed mid-write leaves the same half-state, and the
+// creator did not ask to lose the run.
+func (s *Server) refuseDeleteWhileRunning(w http.ResponseWriter, courseSlug, lessonID string) bool {
+	stage, running := s.runs.RunningOn(courseSlug, lessonID)
+	if !running {
+		return false
+	}
+	where := "a run"
+	if stage != "" {
+		where = "the " + stage + " stage"
+	}
+	writeError(w, http.StatusConflict, fmt.Errorf(
+		"%s is running on %s right now — cancel it first (DELETE /api/run), then delete", where, lessonID))
+	return true
 }
 
 // Cancel stops the current run, if any.

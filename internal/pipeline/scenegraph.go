@@ -38,6 +38,12 @@ const (
 	// word beside a flat-vector figure. Unlike the board and the diagram it
 	// does not accumulate — a clip is a run of these, one per beat.
 	SceneIllustration = "illustration"
+	// SceneSpine is one staged shot of a narration: a headline, an arrangement
+	// of figures chosen from nine layouts, and a rail down the left edge saying
+	// where in the clip this beat sits. Like the illustration it does not
+	// accumulate — but unlike it, consecutive shots may be arranged completely
+	// differently, which is what lets one clip open, explain, turn and close.
+	SceneSpine = "spine"
 	// SceneCast is one shot of a character explaining something: a posed,
 	// breathing person beside a kinetic headline.
 	SceneCast = "cast"

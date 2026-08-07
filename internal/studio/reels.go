@@ -312,6 +312,9 @@ func (s *Server) handleReelDelete(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusNotFound, err)
 		return
 	}
+	if s.refuseDeleteWhileRunning(w, pipeline.ReelsCourseSlug, lesson.ID) {
+		return
+	}
 	if err := os.RemoveAll(lesson.Dir); err != nil {
 		writeError(w, http.StatusInternalServerError, err)
 		return

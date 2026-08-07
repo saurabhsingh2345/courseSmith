@@ -255,7 +255,8 @@ const openAPISpec = `{
           "example": {"type": "string"}, "shows_code": {"type": "boolean"},
           "min_target_sec": {"type": "integer"}, "default_target_sec": {"type": "integer"},
           "category": {"type": "string"}, "category_title": {"type": "string"},
-          "since": {"type": "string"}, "family": {"type": "string"}
+          "since": {"type": "string"}, "family": {"type": "string"},
+          "takes_narration": {"type": "boolean"}
         },
         "required": ["name", "title", "description", "example", "shows_code", "category", "category_title"]
       },
@@ -278,6 +279,7 @@ const openAPISpec = `{
         "type": "object",
         "properties": {
           "prompt": {"type": "string"}, "template": {"type": "string"}, "title": {"type": "string"},
+          "narration": {"type": "string"},
           "target_sec": {"type": "integer"}, "code_language": {"type": "string"},
           "voice": {"type": "string"}, "plan_only": {"type": "boolean"},
           "captions": {"type": "string", "enum": ["on", "off"]},

@@ -88,6 +88,16 @@ function Segmented<T extends string | number>({
   );
 }
 
+/**
+ * Words in a script, counted the way the pipeline counts them.
+ *
+ * Shown live under the script box because the length of a written script IS the
+ * length of the clip — there is no runtime to pick any more — and somebody
+ * pasting three paragraphs deserves to find out it is a two-minute video before
+ * they render it rather than after.
+ */
+const wordCount = (s: string) => s.split(/\s+/).filter(Boolean).length;
+
 /** Small monospace chip used for template metadata. */
 function Chip({ children }: { children: React.ReactNode }) {
   return (
@@ -324,6 +334,8 @@ export function SnippetWorkbench({
 
   const [prompt, setPrompt] = useState("");
   const [title, setTitle] = useState("");
+  // The creator's own script, for the templates that speak one word for word.
+  const [narration, setNarration] = useState("");
   const [template, setTemplate] = useState<string | null>(null);
   const [targetSec, setTargetSec] = useState<number | null>(null);
   const [captions, setCaptions] = useState<"off" | "on">("off");
@@ -425,17 +437,28 @@ export function SnippetWorkbench({
     }
   };
 
+  // A script is only sent to a template that will actually speak it, so
+  // switching away from `spine` with text still in the box cannot silently
+  // change what the clip says.
+  const script = chosenTemplate?.takes_narration ? narration.trim() : "";
+
   const create = async (planOnly: boolean) => {
-    const text = prompt.trim();
+    // A script stands in for the prompt: somebody who has already written the
+    // words should not have to also describe them.
+    const text = prompt.trim() || script;
     if (!text || !chosen) return;
     setBusy(true);
     setError(null);
     try {
       const created = await api.createSnippet({
         prompt: text,
+        narration: script || undefined,
         title: title.trim() || undefined,
         template: chosen,
-        target_sec: effectiveTargetSec,
+        // A script sets its own runtime — it is as long as it is — so the
+        // picker's value is not sent with one. Sending it would ask the
+        // pipeline to fit the creator's words into somebody's guess.
+        target_sec: script ? undefined : effectiveTargetSec,
         captions,
         mode,
         skin,
@@ -443,6 +466,7 @@ export function SnippetWorkbench({
       });
       setPrompt("");
       setTitle("");
+      setNarration("");
       setTargetSec(null);
       setOpen(created.id);
       snippets.reload();
@@ -523,6 +547,40 @@ export function SnippetWorkbench({
           onChange={(e) => setPrompt(e.target.value)}
         />
 
+        {/* The script box, offered only by the templates that speak one word
+            for word. Below the prompt rather than instead of it: the prompt is
+            still what the clip is FOR, and the planner uses it to decide what
+            each line should be looking at. */}
+        {chosenTemplate?.takes_narration && (
+          <>
+            <label
+              className="mb-2 mt-4 block text-[11px] uppercase tracking-wide text-ink-500"
+              htmlFor="snippet-narration"
+            >
+              Your narration{" "}
+              <span className="normal-case tracking-normal text-ink-500">
+                — optional. Written here, it is spoken word for word and only the pictures are
+                decided for you.
+              </span>
+            </label>
+            <textarea
+              id="snippet-narration"
+              className="min-h-[120px] w-full resize-y rounded-lg border border-ink-800 bg-ink-950 p-3 font-mono text-[13px] leading-relaxed text-ink-100 placeholder:text-ink-500 focus:border-brand focus:outline-none"
+              placeholder={
+                "Paste or write the script. Every word of it gets spoken, in this order.\n\nThe clip's length comes from the script, so the runtime picker is ignored while there is one here."
+              }
+              value={narration}
+              onChange={(e) => setNarration(e.target.value)}
+            />
+            {script && (
+              <div className="mt-1.5 text-[12px] text-ink-500">
+                {wordCount(script)} words — about {Math.round((wordCount(script) * 60) / 150)}s at
+                the house pace.
+              </div>
+            )}
+          </>
+        )}
+
         <label
           className="mb-2 mt-4 block text-[11px] uppercase tracking-wide text-ink-500"
           htmlFor="snippet-title"
@@ -574,7 +632,7 @@ export function SnippetWorkbench({
             type="button"
             className={PRIMARY_BTN}
             onClick={() => void create(false)}
-            disabled={busy || !prompt.trim() || !chosen || run.running}
+            disabled={busy || (!prompt.trim() && !script) || !chosen || run.running}
             title={run.running ? "A generation run is already in progress" : undefined}
           >
             {busy ? "Starting…" : "Generate clip"}
@@ -583,7 +641,7 @@ export function SnippetWorkbench({
             type="button"
             className={SECONDARY_BTN}
             onClick={() => void create(true)}
-            disabled={busy || !prompt.trim() || !chosen || run.running}
+            disabled={busy || (!prompt.trim() && !script) || !chosen || run.running}
             title="Plan the beats and code without synthesizing audio or rendering"
           >
             Plan only
@@ -615,7 +673,18 @@ export function SnippetWorkbench({
               snippet={s}
               onOpen={() => setOpen(s.id)}
               onDelete={async () => {
-                await api.deleteSnippet(s.id);
+                // A delete can be refused — the server keeps a snippet its own
+                // run is mid-stage on, because deleting the directory out from
+                // under a running stage is what strands a half-generated one.
+                // Swallowing that rejection would leave a button that does
+                // nothing and says nothing.
+                try {
+                  setError(null);
+                  await api.deleteSnippet(s.id);
+                } catch (err) {
+                  setError(err instanceof Error ? err.message : String(err));
+                  return;
+                }
                 if (open === s.id) setOpen(null);
                 snippets.reload();
               }}

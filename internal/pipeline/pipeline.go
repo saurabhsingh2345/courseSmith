@@ -11,6 +11,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/fs"
 	"net/http"
 	"path/filepath"
 	"slices"
@@ -409,6 +410,16 @@ func (e *Env) runStages(
 		// hashes must describe what it actually left on disk.
 		post, err := e.StageInputs(l, cfg, name)
 		if err != nil {
+			// The inputs hashed fine before the stage ran, so a missing file
+			// here means it went away underneath us — the lesson was deleted
+			// while the stage was mid-call. Say that, rather than reporting a
+			// failure to open a path the reader has no reason to think should
+			// have moved. The stage's own output is on disk and correct; only
+			// the bookkeeping has nowhere to live.
+			if errors.Is(err, fs.ErrNotExist) && !fileExists(l.SourcePath()) {
+				return fmt.Errorf("lesson %s, stage %s: the lesson directory was removed while the stage was running, so its result could not be recorded (%s is gone). The stage's output was written to %s; delete that directory to clear it",
+					l.ID, name, project.LessonFileName, l.GeneratedDir())
+			}
 			return fmt.Errorf("lesson %s, stage %s: %w", l.ID, name, err)
 		}
 		state.MarkDone(name, post, time.Now())

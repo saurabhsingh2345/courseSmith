@@ -181,7 +181,7 @@ func TestShowcaseBeatCeilingFundsItsOwnShape(t *testing.T) {
 	}
 	spec := SnippetSpec{Template: "showcase", Prompt: "x"}
 	want, _, _ := wordBudget(spec.ResolvedTargetSec(), 175)
-	minBeats, maxBeats, _, perBeat := beatBounds(want, templateBeatCeiling("showcase"))
+	minBeats, maxBeats, _, perBeat := beatBounds(want, templateBeatCeiling("showcase"), 0)
 	if minBeats > 7 || maxBeats < 8 {
 		t.Errorf("at the default runtime the range is %d-%d, which cannot hold a 7- or 8-beat card", minBeats, maxBeats)
 	}

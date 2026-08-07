@@ -84,6 +84,19 @@ type SnippetSpec struct {
 	Template string `yaml:"template"`
 	// Title overrides the title the model would have written ("" = let it).
 	Title string `yaml:"title,omitempty"`
+	// Narration is the creator's own script, spoken word for word.
+	//
+	// Empty is the ordinary case: the prompt is the request and the pipeline
+	// writes the narration from it. Set, it inverts the deal — the words are
+	// fixed and the only thing left to decide is what is on screen while each
+	// one is spoken. The runtime is then derived from the script rather than
+	// the script being written to fit a runtime (planSpine).
+	//
+	// Read by the `spine` template, which is the one built around it. A
+	// template that ignores it is not an error: a creator who supplies a script
+	// and picks `gauge` gets the gauge's own narration, which is what asking
+	// for a gauge means.
+	Narration string `yaml:"narration,omitempty"`
 	// TargetSec is the runtime to aim for (0 = defaultSnippetTargetSec).
 	TargetSec int `yaml:"target_sec,omitempty"`
 	// CodeLanguage is the language for code-bearing templates ("" = python).
@@ -164,6 +177,42 @@ func (s SnippetSpec) ResolvedTargetSec() int {
 		}
 	}
 	return min(max(t, minSnippetTargetSec), maxSnippetTargetSec)
+}
+
+// ScriptTargetSec is the runtime this request actually plans against.
+//
+// The same as ResolvedTargetSec for every ordinary snippet. When the creator
+// supplied a script and the template speaks it, the runtime is derived FROM the
+// words instead: a written script is as long as it is, and planning it against a
+// runtime somebody picked from a menu hands the model two instructions it cannot
+// both obey — keep every word, and fit a budget the words do not fit.
+//
+// Keyed off the template's declared TakesNarration rather than off its name, so
+// the second template to accept a script gets this without an edit here.
+func (s SnippetSpec) ScriptTargetSec(paceWPM int) int {
+	script := strings.TrimSpace(s.Narration)
+	if tpl, ok := SnippetTemplates[s.Template]; script == "" || !ok || !tpl.TakesNarration {
+		return s.ResolvedTargetSec()
+	}
+	return scriptTargetSec(script, paceWPM)
+}
+
+// scriptTargetSec is how long a written script takes to say, clamped to what a
+// snippet can be.
+//
+// The clamp is not a safety net, it is the honest answer at the edges: below the
+// floor there is not enough clip for the visuals to land, and above the ceiling
+// this is a lesson rather than a snippet. Both ends show up in the duration line
+// at the end of the run, so a creator who wrote four minutes finds out what they
+// actually got.
+func scriptTargetSec(script string, paceWPM int) int {
+	if paceWPM <= 0 {
+		paceWPM = 150
+	}
+	words := len(strings.Fields(script))
+	// Round up: a script landing between two seconds needs the second one.
+	sec := (words*60 + paceWPM - 1) / paceWPM
+	return min(max(sec, minSnippetTargetSec), maxSnippetTargetSec)
 }
 
 // ResolvedCodeLanguage returns the language for code-bearing templates.
@@ -399,6 +448,15 @@ type SnippetPlan struct {
 	// quoted. Zero (a plan built by hand in a test) falls back to the fixed
 	// range; see beatBounds.
 	targetWords int
+	// spineScript is the creator's own narration, when they wrote one. Stashed
+	// here for the same reason targetWords is: the rule that the beats say
+	// exactly these words is checked inside the correction loop, and a
+	// validator can only check against what is on the plan when it runs.
+	//
+	// Unexported, so it is not written to snippet-plan.json — the script is an
+	// input, and a copy of it inside the artifact would be a second version of
+	// the creator's words to disagree with snippet.yaml.
+	spineScript string
 }
 
 // ProjectSpec is a small multi-file program: what the workspace template
@@ -523,6 +581,12 @@ type SnippetBeat struct {
 	// the headline carries the emphasis, and the line under it. Unlike the
 	// board and the diagram, nothing here accumulates — one beat is one shot.
 	Art *ArtBeat `json:"art,omitempty"`
+
+	// --- spine template ---
+	// Spine is this beat's shot: which of the nine arrangements it uses, and
+	// the figures in it. Like Art, one beat is one shot and nothing carries
+	// over — which is what lets one clip open, explain, turn and close.
+	Spine *SpineBeat `json:"spine,omitempty"`
 
 	// --- cast template ---
 	// Cast is this beat's direction for the character: what they do and how
@@ -1272,8 +1336,12 @@ func runPlanStage(ctx context.Context, e *Env, course *project.Course, l *projec
 		return fmt.Errorf("planning a snippet needs an LLM — set GROQ_API_KEY (or an OpenAI-compatible provider) and retry")
 	}
 
+	// The runtime the planner will actually use, which for a supplied script is
+	// derived from the script rather than from the request. Printing the request's
+	// value here said "~45s target" over a plan being built to 43 seconds of
+	// somebody's own words.
 	fmt.Fprintf(e.out(), "  → plan      %s template, ~%ds target (%s)...\n",
-		tpl.Name, spec.ResolvedTargetSec(), cfg.Pipeline.LLMContent)
+		tpl.Name, spec.ScriptTargetSec(cfg.Style.PaceWPM), cfg.Pipeline.LLMContent)
 
 	sub, err := LoadSubstance(l)
 	if err != nil {

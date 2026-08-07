@@ -505,6 +505,7 @@ export interface components {
             category_title: string;
             since?: string;
             family?: string;
+            takes_narration?: boolean;
         };
         SnippetSummary: {
             id: string;
@@ -523,6 +524,7 @@ export interface components {
             prompt: string;
             template: string;
             title?: string;
+            narration?: string;
             target_sec?: number;
             code_language?: string;
             voice?: string;

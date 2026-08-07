@@ -76,16 +76,17 @@ func newSnippetTemplatesCmd() *cobra.Command {
 
 func newSnippetNewCmd() *cobra.Command {
 	var (
-		template    string
-		title       string
-		targetSec   int
-		codeLang    string
-		voice       string
-		model       string
-		captions    string
-		mode        string
-		planOnly    bool
-		concurrency int
+		template     string
+		title        string
+		narrationArg string
+		targetSec    int
+		codeLang     string
+		voice        string
+		model        string
+		captions     string
+		mode         string
+		planOnly     bool
+		concurrency  int
 	)
 	cmd := &cobra.Command{
 		Use:   "new <prompt>",
@@ -95,10 +96,15 @@ func newSnippetNewCmd() *cobra.Command {
 			ctx, cancel := signal.NotifyContext(cmd.Context(), os.Interrupt, syscall.SIGTERM)
 			defer cancel()
 
+			narration, err := readNarration(narrationArg)
+			if err != nil {
+				return err
+			}
 			spec := pipeline.SnippetSpec{
 				Prompt:       args[0],
 				Template:     template,
 				Title:        title,
+				Narration:    narration,
 				TargetSec:    targetSec,
 				CodeLanguage: codeLang,
 			}
@@ -142,6 +148,7 @@ func newSnippetNewCmd() *cobra.Command {
 	}
 	cmd.Flags().StringVar(&template, "template", "", "visual template (see `coursesmith snippet templates`)")
 	cmd.Flags().StringVar(&title, "title", "", "override the title the model would write")
+	cmd.Flags().StringVar(&narrationArg, "narration", "", "speak this script word for word instead of writing one; @file reads it from a file (spine template)")
 	cmd.Flags().IntVar(&targetSec, "seconds", 0, "approximate runtime to aim for, in seconds (default 45)")
 	cmd.Flags().StringVar(&codeLang, "code-language", "", "programming language for code templates (default python)")
 	cmd.Flags().StringVar(&voice, "voice", "", "TTS voice id (default: the snippets course voice)")
@@ -217,6 +224,28 @@ func newSnippetListCmd() *cobra.Command {
 			return w.Flush()
 		},
 	}
+}
+
+// readNarration resolves the --narration flag: the script itself, or @path to
+// read it from a file.
+//
+// The @ form is not a convenience. A script long enough to be worth writing by
+// hand is longer than a shell argument anybody wants to quote, and it has
+// newlines in it — so without a file form the flag would exist and nobody would
+// use it for the case it was built for.
+func readNarration(arg string) (string, error) {
+	if !strings.HasPrefix(arg, "@") {
+		return strings.TrimSpace(arg), nil
+	}
+	path := strings.TrimPrefix(arg, "@")
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return "", fmt.Errorf("reading the narration script: %w", err)
+	}
+	if s := strings.TrimSpace(string(data)); s != "" {
+		return s, nil
+	}
+	return "", fmt.Errorf("%s is empty — --narration@file expects the script to speak", path)
 }
 
 // relOrAbs shortens a path against the working directory when it is below it.

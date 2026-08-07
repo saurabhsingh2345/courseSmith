@@ -134,6 +134,11 @@ func (s *Server) handleCourseDelete(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusNotFound, err)
 		return
 	}
+	if lessonID, running := s.runs.RunningInCourse(course.Slug); running {
+		writeError(w, http.StatusConflict, fmt.Errorf(
+			"a run is working on %s/%s right now — cancel it first (DELETE /api/run), then delete the course", course.Slug, lessonID))
+		return
+	}
 	if !withinDir(s.coursesDir, course.Dir) {
 		writeError(w, http.StatusBadRequest, fmt.Errorf("refusing to delete outside courses dir"))
 		return
@@ -245,9 +250,12 @@ func (s *Server) handleLessonUpdate(w http.ResponseWriter, r *http.Request) {
 
 // handleLessonDelete removes a lesson directory (source + generated artifacts).
 func (s *Server) handleLessonDelete(w http.ResponseWriter, r *http.Request) {
-	_, lesson, err := s.resolveLesson(r.PathValue("course"), r.PathValue("id"))
+	course, lesson, err := s.resolveLesson(r.PathValue("course"), r.PathValue("id"))
 	if err != nil {
 		writeError(w, http.StatusNotFound, err)
+		return
+	}
+	if s.refuseDeleteWhileRunning(w, course.Slug, lesson.ID) {
 		return
 	}
 	if !withinDir(s.coursesDir, lesson.Dir) {

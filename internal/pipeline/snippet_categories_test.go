@@ -99,10 +99,10 @@ func TestNoCategoryIsOversized(t *testing.T) {
 func TestSinceIsAKnownRelease(t *testing.T) {
 	for _, tpl := range SnippetTemplateList() {
 		switch tpl.Since {
-		case SinceCore, SinceV1, SinceV2, SinceV3, SinceV4, SinceV5:
+		case SinceCore, SinceV1, SinceV2, SinceV3, SinceV4, SinceV5, SinceV6:
 		default:
-			t.Errorf("template %q has release tag %q, want one of %q, %q, %q, %q, %q, %q",
-				tpl.Name, tpl.Since, SinceCore, SinceV1, SinceV2, SinceV3, SinceV4, SinceV5)
+			t.Errorf("template %q has release tag %q, want one of %q, %q, %q, %q, %q, %q, %q",
+				tpl.Name, tpl.Since, SinceCore, SinceV1, SinceV2, SinceV3, SinceV4, SinceV5, SinceV6)
 		}
 	}
 }

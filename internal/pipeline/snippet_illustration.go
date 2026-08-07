@@ -182,6 +182,41 @@ var artFigureVocab = map[string]bool{
 	"graduate":    true,
 	"bookmark":    true,
 
+	// Building something without writing code.
+	"robot":       true,
+	"wand":        true,
+	"blocks":      true,
+	"plug":        true,
+	"dashboard":   true,
+	"deploy":      true,
+	"app":         true,
+	"spreadsheet": true,
+	"automation":  true,
+	"sitemap":     true,
+	"prompt":      true,
+	"blueprint":   true,
+	"dataset":     true,
+	"guardrail":   true,
+
+	// Situations rather than things: what the narration is pointing at when it
+	// is not naming an object.
+	"warning":   true,
+	"blocked":   true,
+	"celebrate": true,
+	"milestone": true,
+	"map":       true,
+	"detour":    true,
+	"coin":      true,
+	"stamp":     true,
+	"spotlight": true,
+	"anchor":    true,
+	"knot":      true,
+	"domino":    true,
+	"traffic":   true,
+	"handoff":   true,
+	"pin":       true,
+	"hurdle":    true,
+
 	// Shapes for ideas that are not objects.
 	"arrow":  true,
 	"loop":   true,

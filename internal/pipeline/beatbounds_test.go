@@ -25,7 +25,7 @@ func TestDeclaredCeilingIsReachableWhenFundable(t *testing.T) {
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
 			words, _, _ := wordBudget(c.target, 174)
-			_, maxBeats, _, _ := beatBounds(words, c.ceiling)
+			_, maxBeats, _, _ := beatBounds(words, c.ceiling, 0)
 			if maxBeats < c.wantAtLeast {
 				t.Errorf("maxBeats = %d at %ds, want at least %d — the template's own shape is illegal",
 					maxBeats, c.target, c.wantAtLeast)
@@ -44,7 +44,7 @@ func TestWideningKeepsBeatsSubstantial(t *testing.T) {
 	for _, target := range []int{45, 55, 60, 95, 120, 180} {
 		words, _, _ := wordBudget(target, 174)
 		// A generous ceiling, so only the budget limits the count.
-		_, maxBeats, _, _ := beatBounds(words, 12)
+		_, maxBeats, _, _ := beatBounds(words, 12, 0)
 		if maxBeats == 0 {
 			t.Fatalf("%ds produced no beats", target)
 		}
@@ -62,7 +62,7 @@ func TestWideningNeverNarrows(t *testing.T) {
 	for _, target := range []int{10, 15, 20, 30, 45, 55, 60, 90, 120, 180} {
 		for _, ceiling := range []int{0, 7, 8, 9, 10, 12} {
 			words, _, _ := wordBudget(target, 174)
-			minBeats, maxBeats, suggest, _ := beatBounds(words, ceiling)
+			minBeats, maxBeats, suggest, _ := beatBounds(words, ceiling, 0)
 
 			// The pre-fix maximum, recomputed here so the guarantee is asserted
 			// rather than assumed.
@@ -92,7 +92,7 @@ func TestShortClipsKeepTheirDocumentedSuggestion(t *testing.T) {
 		{10, 2}, {20, 2}, {45, 3},
 	} {
 		words, _, _ := wordBudget(c.target, 174)
-		_, _, suggest, _ := beatBounds(words, 0)
+		_, _, suggest, _ := beatBounds(words, 0, 0)
 		if suggest != c.wantSuggest {
 			t.Errorf("%ds suggests %d beats, want %d", c.target, suggest, c.wantSuggest)
 		}
@@ -101,7 +101,7 @@ func TestShortClipsKeepTheirDocumentedSuggestion(t *testing.T) {
 
 // A hand-built plan has no budget to size against and must not divide by zero.
 func TestBeatBoundsWithNoBudget(t *testing.T) {
-	minBeats, maxBeats, suggest, perBeat := beatBounds(0, 0)
+	minBeats, maxBeats, suggest, perBeat := beatBounds(0, 0, 0)
 	if minBeats != floorSnippetBeats || maxBeats != maxSnippetBeats {
 		t.Errorf("no-budget bounds = %d-%d", minBeats, maxBeats)
 	}

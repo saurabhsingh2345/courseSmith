@@ -237,6 +237,195 @@ const illustrationVizProps: LessonVideoProps = {
   captions: [],
 };
 
+// A demo of the spine scene: one shot of each of the twelve layouts, in the
+// order a real clip tends to use them.
+//
+// Twelve rather than a representative three, because this template's whole claim
+// is that a single clip can open, explain, turn and close — a fixture showing
+// three `state` shots would prove the opposite of what it exists to show. It is
+// also the only way to check the rail, which is the one element that has to be
+// continuous ACROSS the cut and therefore cannot be judged from one frame, and
+// the only place the segment count is exercised at all.
+const SPINE_SHOT_MS = 3000;
+const spineShots: {shot: string; headline: string; props: Record<string, unknown>}[] = [
+  {
+    shot: 'open',
+    headline: 'You are still clicking',
+    props: {
+      note: 'PART ONE',
+      emphasis: 'clicking',
+      caption: 'An hour of it produces exactly one result, and then it is gone.',
+      objects: [{figure: 'cursor', label: 'Clicking'}],
+    },
+  },
+  {
+    shot: 'chapter',
+    headline: 'Part one: the instruction',
+    props: {
+      note: 'CHAPTER',
+      ordinal: 1,
+      emphasis: 'instruction',
+      caption: 'Three things to get straight before you build anything.',
+      objects: [
+        {figure: 'prompt', label: 'Writing one'},
+        {figure: 'guardrail', label: 'Keeping it honest'},
+        {figure: 'automation', label: 'Running it twice'},
+      ],
+    },
+  },
+  {
+    shot: 'state',
+    headline: 'A prompt is an instruction you keep',
+    props: {
+      emphasis: 'you keep',
+      caption: 'Write it once and it runs again tomorrow, unchanged.',
+      objects: [{figure: 'prompt', label: 'The prompt'}],
+    },
+  },
+  {
+    shot: 'pair',
+    headline: 'One is gone, one stays',
+    props: {
+      emphasis: 'stays',
+      caption: 'The difference is not effort. It is whether anything survives the work.',
+      objects: [
+        {figure: 'cursor', label: 'A click', detail: 'Gone the moment it finishes.'},
+        {figure: 'notebook', label: 'A prompt', detail: 'Runs again tomorrow, unchanged.'},
+      ],
+    },
+  },
+  {
+    shot: 'row',
+    headline: 'Three things you get back',
+    props: {
+      objects: [
+        {figure: 'clock', label: 'Time', detail: 'The second run is free.'},
+        {figure: 'recycle', label: 'Repeatability', detail: 'Same input, same output.'},
+        {figure: 'share', label: 'Handover', detail: 'Somebody else can run it.'},
+      ],
+    },
+  },
+  {
+    shot: 'orbit',
+    headline: 'Everything hangs off one habit',
+    props: {
+      emphasis: 'one habit',
+      caption: 'Write the instruction down. The rest follows from having it.',
+      objects: [
+        {figure: 'brain', label: 'The habit'},
+        {figure: 'code', label: 'Code'},
+        {figure: 'checklist', label: 'Reviews'},
+        {figure: 'chart', label: 'Reports'},
+        {figure: 'envelope', label: 'Email'},
+      ],
+    },
+  },
+  {
+    shot: 'steps',
+    headline: 'How the loop actually runs',
+    props: {
+      objects: [
+        {figure: 'pencil', label: 'Write it', detail: 'One sentence is enough to start.'},
+        {figure: 'terminal', label: 'Run it', detail: 'Watch what it actually does.'},
+        {figure: 'highlighter', label: 'Fix it', detail: 'Change the words, not the output.'},
+      ],
+    },
+  },
+  {
+    shot: 'recap',
+    headline: 'That is the loop, done',
+    props: {
+      emphasis: 'done',
+      caption: 'Nothing here needed a line of code.',
+      objects: [
+        {figure: 'blueprint', label: 'Planned', detail: 'You knew what you wanted.'},
+        {figure: 'blocks', label: 'Assembled', detail: 'Out of parts that existed.'},
+        {figure: 'deploy', label: 'Shipped', detail: 'And other people can use it.'},
+      ],
+    },
+  },
+  {
+    shot: 'aside',
+    headline: 'If you have used a spreadsheet, you already know this',
+    props: {
+      emphasis: 'already know',
+      caption: 'A formula is an instruction you keep too. This is the same habit, aimed somewhere else.',
+      objects: [{figure: 'spreadsheet'}],
+    },
+  },
+  {
+    shot: 'focus',
+    headline: 'Then stop touching it',
+    props: {
+      emphasis: 'stop',
+      caption: 'A prompt you keep editing is a prompt you have not finished thinking about.',
+      objects: [{figure: 'lock'}],
+    },
+  },
+  {
+    shot: 'quote',
+    headline: 'The work you can hand over is the only work that scales',
+    props: {
+      emphasis: 'hand over',
+      caption: 'Everything else is a thing only you can do, forever.',
+      objects: [],
+    },
+  },
+  {
+    shot: 'close',
+    headline: 'Write your first one today',
+    props: {
+      note: 'NEXT',
+      emphasis: 'today',
+      caption: 'Open the next lesson and write one',
+      objects: [{figure: 'rocket'}],
+    },
+  },
+];
+
+const spineVizProps: LessonVideoProps = {
+  theme: {primary: '#306998', accent: '#ffd43b', background: '#ffffff', courseName: 'Coursesmith'},
+  audioFile: '',
+  durationMs: SPINE_SHOT_MS * spineShots.length,
+  scenes: spineShots.map((s, i) => ({
+    type: 'spine' as const,
+    startMs: i * SPINE_SHOT_MS,
+    endMs: (i + 1) * SPINE_SHOT_MS,
+    props: {
+      shot: s.shot,
+      headline: s.headline,
+      index: i,
+      total: spineShots.length,
+      ...s.props,
+    },
+  })),
+  captions: [],
+};
+
+// The same clip in light mode. Every scene that quietly assumed a dark stage
+// looks fine until this frame is rendered — and this one leans on `surface` for
+// its tiles and on the accent as *type*, which are the two tokens that flip.
+const spineLightProps: LessonVideoProps = {
+  ...spineVizProps,
+  theme: {
+    primary: '#306998',
+    accent: '#ffd43b',
+    background: '#ffffff',
+    courseName: 'Coursesmith',
+    mode: 'light',
+    bgTop: '#fafbfc',
+    bgBottom: '#ebeef4',
+    surface: '#ffffff',
+    surfaceBorder: '#d3dce3',
+    text: '#13222f',
+    textMuted: '#4b6071',
+    mass: '#8ea2b4',
+    ink: '#1c354a',
+    accentText: '#8d6e00',
+    grain: 0.01,
+  },
+};
+
 // The same illustration clip in light mode, with the tokens Go derives for
 // style.mode: light. It has its own baseline because light mode is the branch
 // nobody's default config exercises — every scene that quietly assumed a dark
@@ -3012,7 +3201,7 @@ export const RemotionRoot: React.FC = () => {
       component={FigureSheet}
       fps={FPS}
       width={1700}
-      height={1800}
+      height={2280}
       durationInFrames={300}
     />
     <Composition
@@ -3445,6 +3634,24 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(vscodeIntroProps.durationMs)}
       defaultProps={vscodeIntroProps}
+    />
+    <Composition
+      id="SpineViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(spineVizProps.durationMs)}
+      defaultProps={spineVizProps}
+    />
+    <Composition
+      id="SpineLightViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(spineLightProps.durationMs)}
+      defaultProps={spineLightProps}
     />
     <Composition
       id="IllustrationViz"

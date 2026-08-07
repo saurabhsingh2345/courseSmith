@@ -272,6 +272,32 @@ const TARGETS = [
   // still running — so the frame covers the alternated layout, the marker
   // stroke and an assembled figure at once.
   { id: "IllustrationViz", frame: 250 },
+  // The spine on its `pair` shot: the rail part-filled, a headline with its
+  // marker stroke, and two settled tiles with their labels and details. It is
+  // the frame that covers the most of this template at once — the rail, the
+  // type treatment and a panelled layout — and the one where a regression in
+  // the tile geometry shows immediately.
+  { id: "SpineViz", frame: 330 },
+  // And the `orbit` shot, which is the only layout whose geometry is computed
+  // rather than laid out by flexbox: a centre, four spokes on a circle, and a
+  // connector drawn to each. Nothing else in this template would catch a
+  // regression in that arithmetic — and it is also the only frame where the
+  // headline wraps mid-emphasis, which is the case that used to leave a marker
+  // stroke drawn out into the right margin of the first line.
+  { id: "SpineViz", frame: 510 },
+  // The `chapter` shot, which is the one that makes a spine clip legible as a
+  // course rather than as a video: the part number set enormous behind the
+  // title, and the chips for what the part covers. The ordinal is supplied by
+  // the planner and was briefly the beat index, which rendered "Part one" under
+  // a giant 2 — a frame is the only place that shows.
+  { id: "SpineViz", frame: 150 },
+  // The `recap` shot on its settled state: three tiles with their ticks landed.
+  // The tick is the entire difference between this shot and a `row`, and it is
+  // drawn nowhere else in the template.
+  { id: "SpineViz", frame: 690 },
+  // The same clip in light mode. This template leans on `surface` for its tiles
+  // and on the accent as *type*, which are exactly the two tokens that flip.
+  { id: "SpineLightViz", frame: 330 },
   // The same shot in light mode, with captions on. Light mode is the branch no
   // default config exercises, so without a baseline every scene that quietly
   // assumed a dark stage regresses silently.

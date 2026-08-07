@@ -202,7 +202,7 @@ func TestBreakdownCeilingFundsSixPhasesWithItems(t *testing.T) {
 	}
 	spec := SnippetSpec{Template: "breakdown", Prompt: "x", TargetSec: 150}
 	want, _, _ := wordBudget(spec.ResolvedTargetSec(), 175)
-	_, maxBeats, _, perBeat := beatBounds(want, templateBeatCeiling("breakdown"))
+	_, maxBeats, _, perBeat := beatBounds(want, templateBeatCeiling("breakdown"), 0)
 	if maxBeats < 11 {
 		t.Errorf("a 150s breakdown may use only %d beats, too few for a deep path", maxBeats)
 	}
