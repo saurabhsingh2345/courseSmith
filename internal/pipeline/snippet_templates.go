@@ -42,16 +42,27 @@ type SnippetTemplate struct {
 	Since string
 	// Family is which surface offers this template ("" = the snippets gallery).
 	// See snippet_categories.go — it is a routing fact, not a second category:
-	// the registry stays single so the CLI, the reel caster and every plan on
+	// the registry stays single so the CLI, the combo caster and every plan on
 	// disk keep resolving a template by name regardless of which page offered it.
 	Family string
 	// Example is a prompt that shows this template at its best; the studio
 	// offers it as a starting point.
 	Example string
+	// Bio is what this template tells a DIRECTOR about itself: the material it
+	// must be filled with, the subject it is wrongly reached for, and where in
+	// an arc it can sit.
+	//
+	// Not set at the registration site — attached by registerSnippetTemplate
+	// from the table in snippet_bio.go, which panics when one is missing. The
+	// reasoning for writing them together rather than here is in that file's
+	// header, and it comes down to this being the one field read comparatively:
+	// eighty-one bios have to be pitched alike to be told apart, and that is
+	// only visible when they are written side by side.
+	Bio TemplateBio
 	// Shelved keeps this template out of everything that *offers* a choice —
 	// the studio gallery, `snippet --list`, and the caster's catalog — while
 	// leaving it fully usable when named explicitly in a snippet.yaml or a
-	// reel.yaml.
+	// combo.yaml.
 	//
 	// The distinction matters because the two failure modes are not symmetric.
 	// Deleting a template breaks every piece already on disk that names it;
@@ -159,6 +170,7 @@ func registerSnippetTemplate(t *SnippetTemplate) {
 	}
 	checkTemplateCategory(t)
 	checkTemplateFamily(t)
+	checkTemplateBio(t)
 	SnippetTemplates[t.Name] = t
 }
 
@@ -265,7 +277,7 @@ func sharedPromptData(spec SnippetSpec, cfg config.Config) map[string]any {
 		"MinHeadlineWords": minHeadlineWords,
 		"MaxHeadlineWords": maxHeadlineWords,
 		"MaxCaptionWords":  maxCaptionWords,
-		// A reel segment's planning context, empty for a standalone snippet.
+		// A combo segment's planning context, empty for a standalone snippet.
 		//
 		// The facts reach a template's writer through Prompt, which enrichment
 		// has already rewritten to carry them (snippet_enrich.go) — that is the
@@ -449,7 +461,7 @@ func roleOf(i, n int) beatRole {
 //
 // The flat ten-word floor was the last thing failing every run of the
 // list-shaped templates, and it was failing them on the beats the templates are
-// *designed* to keep short. Measured on the no-code reel after the beat-ceiling
+// *designed* to keep short. Measured on the no-code combo after the beat-ceiling
 // fix, every remaining violation was an opener or a closer one or two words shy:
 // constellation's "No-code is visual programming" at eight, rundown's "Four
 // mindsets to adopt" at nine. The rule and the format were arguing, the format
@@ -630,7 +642,7 @@ func planSnippetDefault(ctx context.Context, e *Env, spec SnippetSpec, cfg confi
 			fmt.Fprintf(e.out(), "    ! the plan never satisfied every rule (%v)\n", err)
 			fmt.Fprintf(e.out(), "      shipping the closest one — it renders, so the clip is real; expect it to be looser than asked\n")
 			// Record it on the plan, not only on stdout. A warning nobody scrolled
-			// back to is how three segments of a finished reel shipped under their
+			// back to is how three segments of a finished combo shipped under their
 			// word floor with no way to tell them from the ones that passed.
 			salvaged.Compromises = compromiseLines(err)
 			return salvaged, nil
