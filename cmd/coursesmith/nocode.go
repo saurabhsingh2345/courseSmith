@@ -17,12 +17,12 @@ func newNoCodeCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "nocode",
 		Short: "Build a piece where every segment is backed by a real recording",
-		Long: "A no-code piece is several segments cut onto one timeline, like a reel —\n" +
+		Long: "A no-code piece is several segments cut onto one timeline, like a combo —\n" +
 			"with one extra rule that is the whole point: every segment must stand on\n" +
 			"evidence that exists on disk. A real capture, or facts written out.\n\n" +
 			"A segment that can name neither is refused before a single planning call is\n" +
 			"spent, and nothing is ever recast onto a drawn figure to fill the gap. That\n" +
-			"is what separates this from a reel about no-code tools.",
+			"is what separates this from a combo about no-code tools.",
 	}
 	cmd.AddCommand(newNoCodeNewCmd())
 	cmd.AddCommand(newNoCodeListCmd())
@@ -170,7 +170,7 @@ func newNoCodeTemplatesCmd() *cobra.Command {
 			}
 			fmt.Fprintln(out, "\nExcluded here: cast, story, illustration — they put a drawn figure")
 			fmt.Fprintln(out, "on screen, which is the fastest way to fill a frame with no evidence")
-			fmt.Fprintln(out, "behind it. Use them in a reel, where that is a fair trade.")
+			fmt.Fprintln(out, "behind it. Use them in a combo, where that is a fair trade.")
 			return nil
 		},
 	}

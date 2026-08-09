@@ -9,7 +9,7 @@ import (
 
 // The correction loop joins every round's complaint into one error, and the same
 // rule reappears each round. This is the exact shape observed in the field, from
-// the rundown segment of the no-code reel.
+// the rundown segment of the no-code combo.
 const observedLoopError = "content response invalid after 3 correction round(s): " +
 	`these beats are under the 10-word minimum: "five" (8 words); expand them or fold them into a neighbour; ` +
 	`these beats are under the 10-word minimum: "five" (8 words); expand them or fold them into a neighbour; ` +

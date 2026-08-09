@@ -22,7 +22,7 @@ const StateFileName = "state.json"
 // the status command reports on them.
 const (
 	// StageSubstance establishes the facts, with provenance, before any template
-	// is chosen. Snippet/reel-only: the lesson path gets its facts from the
+	// is chosen. Snippet/combo-only: the lesson path gets its facts from the
 	// lesson.md somebody wrote.
 	StageSubstance    = "substance" // brief → substance.json (facts + sources)
 	StagePlan         = "plan"      // snippet-only: prompt + template → snippet-plan.json

@@ -16,7 +16,7 @@ import (
 // renderer. story_shots.tmpl advised that "the payoff wants `celebrate`" and its
 // worked JSON example used `defeated`; neither has existed in POSES since the
 // character stopped being a stick figure. Both silently fell back to `idle`,
-// which is why every character in a finished reel stood in the same neutral
+// which is why every character in a finished combo stood in the same neutral
 // stance through its punchline — and why the same grinning man appeared six shots
 // running.
 //

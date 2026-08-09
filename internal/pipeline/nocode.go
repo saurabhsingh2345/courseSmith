@@ -4,15 +4,15 @@ package pipeline
 //
 //	courses   a document first, a video second — chapters, quizzes, a site
 //	snippets  one prompt, one template, one clip
-//	reels     several templates cut onto one timeline
+//	combos     several templates cut onto one timeline
 //	nocode    several segments, every one of them backed by something real
 //
 // == The rule that earns it ==
 //
-// A reel about no-code tools is not this. A reel will happily draw a person
-// gesturing at a chart of numbers nobody measured, because a reel's contract is
+// A combo about no-code tools is not this. A combo will happily draw a person
+// gesturing at a chart of numbers nobody measured, because a combo's contract is
 // "each segment names material it can be filled with" and prose counts as
-// material. That is right for a reel and wrong here.
+// material. That is right for a combo and wrong here.
 //
 // **Every segment of a no-code piece must be backed by evidence that exists on
 // disk**: a real capture — a browser driven against the product, a terminal
@@ -238,7 +238,7 @@ func (s *NoCodeSpec) Live() []NoCodeSegment {
 //
 // It runs before any planning call, because the whole point is to move "this
 // segment has nothing real behind it" from late and expensive to immediate and
-// free. A reel discovers a hollow segment after the caster has gone and a
+// free. A combo discovers a hollow segment after the caster has gone and a
 // template's validator refuses the material; here it is a parse error.
 func (s *NoCodeSpec) Validate() error {
 	live := s.Live()

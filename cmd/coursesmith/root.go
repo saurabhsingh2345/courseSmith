@@ -26,7 +26,7 @@ func newRootCmd() *cobra.Command {
 	root.AddCommand(newInitCmd())
 	root.AddCommand(newAuthorCmd())
 	root.AddCommand(newSnippetCmd())
-	root.AddCommand(newReelCmd())
+	root.AddCommand(newComboCmd())
 	root.AddCommand(newNoCodeCmd())
 	root.AddCommand(newRunCmd())
 	root.AddCommand(newStatusCmd())

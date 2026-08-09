@@ -9,25 +9,25 @@ import (
 	"github.com/enfec/coursesmith/internal/project"
 )
 
-// reelPlanFixture is a two-segment reel: a rundown followed by a gauge. It
+// comboPlanFixture is a two-segment combo: a rundown followed by a gauge. It
 // reuses the per-template plan fixtures, which is the point — a segment is
 // planned by exactly the code a snippet is, so the fixtures are the same ones.
-func reelPlanFixture() *ReelPlan {
-	return &ReelPlan{
+func comboPlanFixture() *ComboPlan {
+	return &ComboPlan{
 		Title: "What actually decides whether a model runs",
-		Segments: []ReelPlanSegment{
+		Segments: []ComboPlanSegment{
 			{ID: "the-three", Template: "rundown", Plan: rundownPlan()},
 			{ID: "does-it-fit", Template: "gauge", Plan: gaugePlan()},
 		},
 	}
 }
 
-func reelSpecFixture() ReelSpec {
-	s := ReelSpec{
-		ID:    "gpu-reel",
+func comboSpecFixture() ComboSpec {
+	s := ComboSpec{
+		ID:    "gpu-combo",
 		Title: "What actually decides whether a model runs",
 		Brief: "Explain what decides whether a model runs on your machine.",
-		Segments: []ReelSegment{
+		Segments: []ComboSegment{
 			{Template: "rundown", Prompt: "the three numbers that decide it"},
 			{Template: "gauge", Prompt: "which models fit in 24GB"},
 		},
@@ -36,9 +36,9 @@ func reelSpecFixture() ReelSpec {
 	return s
 }
 
-// reelAlignment fakes the aligner: one section per beat across every segment,
+// comboAlignment fakes the aligner: one section per beat across every segment,
 // evenly spaced, which is the shape CaptionSections really returns.
-func reelAlignment(plan *ReelPlan, beatMs int) *Alignment {
+func comboAlignment(plan *ComboPlan, beatMs int) *Alignment {
 	a := &Alignment{}
 	i := 0
 	for _, seg := range plan.Segments {
@@ -56,25 +56,25 @@ func reelAlignment(plan *ReelPlan, beatMs int) *Alignment {
 
 // The claim Phase 1 exists to prove: several templates land on one timeline,
 // in order, with no gaps and no overlaps.
-func TestReelAssemblesTemplatesOntoOneTimeline(t *testing.T) {
-	plan := reelPlanFixture()
-	spec := reelSpecFixture()
+func TestComboAssemblesTemplatesOntoOneTimeline(t *testing.T) {
+	plan := comboPlanFixture()
+	spec := comboSpecFixture()
 	const beatMs = 6000
-	align := reelAlignment(plan, beatMs)
+	align := comboAlignment(plan, beatMs)
 	total := plan.Beats() * beatMs
 
-	graph, err := buildReelSceneGraph(
-		&project.Course{Name: "Reels", Slug: "reels"},
-		&project.Lesson{ID: "gpu-reel"},
+	graph, err := buildComboSceneGraph(
+		&project.Course{Name: "Combos", Slug: "combos"},
+		&project.Lesson{ID: "gpu-combo"},
 		config.Defaults(), spec, plan, align, nil, total)
 	if err != nil {
-		t.Fatalf("buildReelSceneGraph: %v", err)
+		t.Fatalf("buildComboSceneGraph: %v", err)
 	}
 	if len(graph.Scenes) < 2 {
 		t.Fatalf("got %d scenes, want at least one per segment", len(graph.Scenes))
 	}
 
-	// Both templates are represented, in the order the reel declares them.
+	// Both templates are represented, in the order the combo declares them.
 	kinds := []string{}
 	for _, s := range graph.Scenes {
 		if len(kinds) == 0 || kinds[len(kinds)-1] != s.Type {
@@ -97,23 +97,23 @@ func TestReelAssemblesTemplatesOntoOneTimeline(t *testing.T) {
 		}
 	}
 	if graph.Scenes[0].StartMs != 0 {
-		t.Errorf("the reel opens at %dms, want 0", graph.Scenes[0].StartMs)
+		t.Errorf("the combo opens at %dms, want 0", graph.Scenes[0].StartMs)
 	}
 }
 
 // The join between two segments has to land on a word, not on a gap: the last
 // beat of one segment holds until the first beat of the next begins.
-func TestReelSegmentsMeetExactly(t *testing.T) {
-	plan := reelPlanFixture()
+func TestComboSegmentsMeetExactly(t *testing.T) {
+	plan := comboPlanFixture()
 	const beatMs = 6000
 	first := len(plan.Segments[0].Plan.Beats)
 
-	graph, err := buildReelSceneGraph(
-		&project.Course{Name: "Reels"}, &project.Lesson{ID: "r"},
-		config.Defaults(), reelSpecFixture(), plan,
-		reelAlignment(plan, beatMs), nil, plan.Beats()*beatMs)
+	graph, err := buildComboSceneGraph(
+		&project.Course{Name: "Combos"}, &project.Lesson{ID: "r"},
+		config.Defaults(), comboSpecFixture(), plan,
+		comboAlignment(plan, beatMs), nil, plan.Beats()*beatMs)
 	if err != nil {
-		t.Fatalf("buildReelSceneGraph: %v", err)
+		t.Fatalf("buildComboSceneGraph: %v", err)
 	}
 	// Both templates lay their whole segment out as one scene, so the boundary
 	// is the boundary between scene 0 and scene 1.
@@ -125,21 +125,21 @@ func TestReelSegmentsMeetExactly(t *testing.T) {
 	// last syllable.
 	last := graph.Scenes[len(graph.Scenes)-1]
 	if last.EndMs <= plan.Beats()*beatMs {
-		t.Errorf("the reel ends at %dms, want a tail past the last word at %dms",
+		t.Errorf("the combo ends at %dms, want a tail past the last word at %dms",
 			last.EndMs, plan.Beats()*beatMs)
 	}
 }
 
 // A miscounted alignment is the failure that would otherwise render every
 // segment after the mistake against the wrong audio.
-func TestReelRejectsMismatchedAlignment(t *testing.T) {
-	plan := reelPlanFixture()
-	align := reelAlignment(plan, 6000)
+func TestComboRejectsMismatchedAlignment(t *testing.T) {
+	plan := comboPlanFixture()
+	align := comboAlignment(plan, 6000)
 	align.Sections = align.Sections[:len(align.Sections)-1]
 
-	_, err := buildReelSceneGraph(
-		&project.Course{Name: "Reels"}, &project.Lesson{ID: "r"},
-		config.Defaults(), reelSpecFixture(), plan, align, nil, 60000)
+	_, err := buildComboSceneGraph(
+		&project.Course{Name: "Combos"}, &project.Lesson{ID: "r"},
+		config.Defaults(), comboSpecFixture(), plan, align, nil, 60000)
 	if err == nil {
 		t.Fatal("an alignment with the wrong number of sections was accepted")
 	}
@@ -150,8 +150,8 @@ func TestReelRejectsMismatchedAlignment(t *testing.T) {
 
 // One narration, one read: the script is every segment's beats in order, and
 // the TTS stage never learns where a segment ends.
-func TestReelScriptIsOneContinuousRead(t *testing.T) {
-	plan := reelPlanFixture()
+func TestComboScriptIsOneContinuousRead(t *testing.T) {
+	plan := comboPlanFixture()
 	script := plan.Script(150)
 	if len(script.Sections) != plan.Beats() {
 		t.Fatalf("script has %d sections, want %d (every beat of every segment)",
@@ -174,9 +174,9 @@ func TestReelScriptIsOneContinuousRead(t *testing.T) {
 
 // Skip is how the editor drops a segment without losing the prompt that made
 // it, so it must actually leave the cut.
-func TestReelSkipRemovesSegmentFromTheCut(t *testing.T) {
-	spec := reelSpecFixture()
-	spec.Segments = append(spec.Segments, ReelSegment{
+func TestComboSkipRemovesSegmentFromTheCut(t *testing.T) {
+	spec := comboSpecFixture()
+	spec.Segments = append(spec.Segments, ComboSegment{
 		ID: "extra", Template: "metric", Prompt: "the memory arithmetic", Skip: true,
 	})
 	if got := len(spec.Active()); got != 2 {
@@ -189,30 +189,30 @@ func TestReelSkipRemovesSegmentFromTheCut(t *testing.T) {
 	}
 }
 
-func TestReelValidate(t *testing.T) {
-	ok := reelSpecFixture()
+func TestComboValidate(t *testing.T) {
+	ok := comboSpecFixture()
 	if err := ok.Validate(); err != nil {
-		t.Fatalf("a well-formed reel was rejected: %v", err)
+		t.Fatalf("a well-formed combo was rejected: %v", err)
 	}
 
 	// One segment is a snippet.
 	one := ok
 	one.Segments = ok.Segments[:1]
 	if err := one.Validate(); err == nil {
-		t.Error("a single-segment reel was accepted")
+		t.Error("a single-segment combo was accepted")
 	} else if !strings.Contains(err.Error(), "snippet") {
 		t.Errorf("the error does not point at the right tool: %v", err)
 	}
 
 	// An unknown template names the catalog rather than failing at render.
-	bad := reelSpecFixture()
+	bad := comboSpecFixture()
 	bad.Segments[1].Template = "nonsense"
 	if err := bad.Validate(); err == nil {
 		t.Error("an unknown template was accepted")
 	}
 
 	// A segment with nothing to cover cannot be planned.
-	empty := reelSpecFixture()
+	empty := comboSpecFixture()
 	empty.Segments[0].Prompt = ""
 	if err := empty.Validate(); err == nil {
 		t.Error("a segment with no prompt was accepted")
@@ -221,12 +221,12 @@ func TestReelValidate(t *testing.T) {
 
 // Ids are how an edit addresses a segment, so they must survive their
 // neighbours moving.
-func TestReelSegmentIDsAreStable(t *testing.T) {
-	spec := reelSpecFixture()
+func TestComboSegmentIDsAreStable(t *testing.T) {
+	spec := comboSpecFixture()
 	before := []string{spec.Segments[0].ID, spec.Segments[1].ID}
 
 	// Insert at the front — the commonest edit after a first watch.
-	spec.Segments = append([]ReelSegment{
+	spec.Segments = append([]ComboSegment{
 		{Template: "myth", Prompt: "the belief everyone starts with"},
 	}, spec.Segments...)
 	spec.EnsureSegmentIDs()
@@ -248,58 +248,58 @@ func TestReelSegmentIDsAreStable(t *testing.T) {
 	}
 }
 
-// A reel mixing a code template with nine that show none still has to verify,
+// A combo mixing a code template with nine that show none still has to verify,
 // or it ships a clip claiming output nothing produced.
-func TestReelStagesKeepVerifyWhenAnySegmentShowsCode(t *testing.T) {
+func TestComboStagesKeepVerifyWhenAnySegmentShowsCode(t *testing.T) {
 	dir := t.TempDir()
-	spec := &ReelSpec{
-		Segments: []ReelSegment{
+	spec := &ComboSpec{
+		Segments: []ComboSegment{
 			{Template: "metric", Prompt: "the numbers"},
 			{Template: "vscode", Prompt: "the code that proves it"},
 		},
 	}
-	if err := SaveReelSpec(dir, spec); err != nil {
-		t.Fatalf("SaveReelSpec: %v", err)
+	if err := SaveComboSpec(dir, spec); err != nil {
+		t.Fatalf("SaveComboSpec: %v", err)
 	}
-	stages, err := ReelStages(&project.Lesson{ID: "r", Dir: dir})
+	stages, err := ComboStages(&project.Lesson{ID: "r", Dir: dir})
 	if err != nil {
-		t.Fatalf("ReelStages: %v", err)
+		t.Fatalf("ComboStages: %v", err)
 	}
 	if !slices.Contains(stages, project.StageVerify) {
-		t.Error("verify was dropped from a reel containing a code template")
+		t.Error("verify was dropped from a combo containing a code template")
 	}
 
-	// And a reel with no code at all does not pay for it.
-	noCode := &ReelSpec{Segments: []ReelSegment{
+	// And a combo with no code at all does not pay for it.
+	noCode := &ComboSpec{Segments: []ComboSegment{
 		{Template: "metric", Prompt: "the numbers"},
 		{Template: "gauge", Prompt: "what fits"},
 	}}
 	dir2 := t.TempDir()
-	if err := SaveReelSpec(dir2, noCode); err != nil {
-		t.Fatalf("SaveReelSpec: %v", err)
+	if err := SaveComboSpec(dir2, noCode); err != nil {
+		t.Fatalf("SaveComboSpec: %v", err)
 	}
-	stages, err = ReelStages(&project.Lesson{ID: "r", Dir: dir2})
+	stages, err = ComboStages(&project.Lesson{ID: "r", Dir: dir2})
 	if err != nil {
-		t.Fatalf("ReelStages: %v", err)
+		t.Fatalf("ComboStages: %v", err)
 	}
 	if slices.Contains(stages, project.StageVerify) {
-		t.Error("verify runs for a reel where nothing shows code")
+		t.Error("verify runs for a combo where nothing shows code")
 	}
 }
 
-// Round-tripping reel.yaml is what makes it an edit surface: what a person
+// Round-tripping combo.yaml is what makes it an edit surface: what a person
 // writes has to survive being read back.
-func TestReelSpecRoundTrips(t *testing.T) {
+func TestComboSpecRoundTrips(t *testing.T) {
 	dir := t.TempDir()
-	want := reelSpecFixture()
+	want := comboSpecFixture()
 	want.Segments[1].Skip = true
 	want.Segments[1].TargetSec = 60
-	if err := SaveReelSpec(dir, &want); err != nil {
-		t.Fatalf("SaveReelSpec: %v", err)
+	if err := SaveComboSpec(dir, &want); err != nil {
+		t.Fatalf("SaveComboSpec: %v", err)
 	}
-	got, err := LoadReelSpec(dir)
+	got, err := LoadComboSpec(dir)
 	if err != nil {
-		t.Fatalf("LoadReelSpec: %v", err)
+		t.Fatalf("LoadComboSpec: %v", err)
 	}
 	if got.Title != want.Title || got.Brief != want.Brief {
 		t.Errorf("title/brief did not survive the round trip")

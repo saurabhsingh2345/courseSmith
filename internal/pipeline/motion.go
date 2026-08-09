@@ -73,7 +73,7 @@ type MotionCamera struct {
 	//
 	// This exists because pacing the move across the whole scene — the obvious
 	// implementation, and the first one written here — produced no motion at all
-	// on the scenes that needed it most. A reel segment runs sixty to a hundred
+	// on the scenes that needed it most. A combo segment runs sixty to a hundred
 	// seconds, so spreading 2% over it gives 0.03% a second: measured on a
 	// rendered frame the content moved twenty-eight pixels across seventy
 	// seconds, which is not a camera, it is a rounding error. Documentary-style

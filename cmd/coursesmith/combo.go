@@ -1,10 +1,10 @@
 package main
 
-// The reel surface: one video cut from several templates.
+// The combo surface: one video cut from several templates.
 //
 // The verbs split into two groups, and the split is the point. `new` and `run`
-// make a reel; `segment` edits one after you have watched it. Everything in the
-// second group writes reel.yaml and nothing else — the pipeline then re-stales
+// make a combo; `segment` edits one after you have watched it. Everything in the
+// second group writes combo.yaml and nothing else — the pipeline then re-stales
 // exactly the stages that file feeds, so the cost of an edit is a property of
 // what you changed rather than of which command you typed.
 //
@@ -39,21 +39,30 @@ import (
 	"github.com/enfec/coursesmith/internal/project"
 )
 
-func newReelCmd() *cobra.Command {
+func newComboCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "reel",
-		Short: "Build a longer video from several templates on one timeline",
-		Long: "A reel is an ordered run of segments, each with its own visual template,\n" +
+		Use: "combo",
+		// `reel` was this surface's name until the director landed. Kept as an
+		// alias rather than removed, because the rename is not a reason for
+		// somebody's script or muscle memory to start erroring — and it costs one
+		// line. It is undocumented on purpose: the help should teach the current
+		// name, not preserve the old one.
+		Aliases: []string{"reel"},
+		Short:   "Build a longer video from several templates on one timeline",
+		Long: "A combo is an ordered run of segments, each with its own visual template,\n" +
 			"narrated as one continuous read and rendered onto one timeline.\n\n" +
-			"Use a snippet for one idea in one look. Use a reel when the piece is long\n" +
-			"enough that one look would not hold it.",
+			"Use a snippet for one idea in one look. Use a combo when the piece is long\n" +
+			"enough that one look would not hold it.\n\n" +
+			"`coursesmith combo direct \"<subject>\"` is the whole surface in one command:\n" +
+			"it decides what the piece argues, how it divides, which look carries each\n" +
+			"part and how long each runs.",
 	}
-	cmd.AddCommand(newReelCastCmd())
-	cmd.AddCommand(newReelNewCmd())
-	cmd.AddCommand(newReelRunCmd())
-	cmd.AddCommand(newReelListCmd())
-	cmd.AddCommand(newReelShowCmd())
-	cmd.AddCommand(newReelSegmentCmd())
+	cmd.AddCommand(newComboDirectCmd())
+	cmd.AddCommand(newComboNewCmd())
+	cmd.AddCommand(newComboRunCmd())
+	cmd.AddCommand(newComboListCmd())
+	cmd.AddCommand(newComboShowCmd())
+	cmd.AddCommand(newComboSegmentCmd())
 	return cmd
 }
 
@@ -63,20 +72,20 @@ func newReelCmd() *cobra.Command {
 // lists silently mis-pair the moment one has an entry the other does not, and
 // the failure shows up as a segment covering the wrong thing rather than as an
 // error.
-func parseSegmentFlag(v string) (pipeline.ReelSegment, error) {
+func parseSegmentFlag(v string) (pipeline.ComboSegment, error) {
 	name, prompt, ok := strings.Cut(v, ":")
 	if !ok {
-		return pipeline.ReelSegment{}, fmt.Errorf("segment %q is not template:prompt — try --segment 'gauge:which models fit in 24GB'", v)
+		return pipeline.ComboSegment{}, fmt.Errorf("segment %q is not template:prompt — try --segment 'gauge:which models fit in 24GB'", v)
 	}
 	name = strings.TrimSpace(name)
 	prompt = strings.TrimSpace(prompt)
 	if name == "" || prompt == "" {
-		return pipeline.ReelSegment{}, fmt.Errorf("segment %q needs both a template and a prompt", v)
+		return pipeline.ComboSegment{}, fmt.Errorf("segment %q needs both a template and a prompt", v)
 	}
-	return pipeline.ReelSegment{Template: name, Prompt: prompt}, nil
+	return pipeline.ComboSegment{Template: name, Prompt: prompt}, nil
 }
 
-func newReelNewCmd() *cobra.Command {
+func newComboNewCmd() *cobra.Command {
 	var (
 		segments    []string
 		id          string
@@ -92,9 +101,9 @@ func newReelNewCmd() *cobra.Command {
 	)
 	cmd := &cobra.Command{
 		Use:   "new",
-		Short: "Create a reel from a list of segments and render it",
+		Short: "Create a combo from a list of segments and render it",
 		Long: "Each --segment is 'template:what it should cover', in order.\n\n" +
-			"  coursesmith reel new --title \"What decides whether a model runs\" \\\n" +
+			"  coursesmith combo new --title \"What decides whether a model runs\" \\\n" +
 			"    --segment 'rundown:the three numbers that decide it' \\\n" +
 			"    --segment 'gauge:which models fit in 24GB' \\\n" +
 			"    --segment 'verdict:what to actually buy'\n\n" +
@@ -105,7 +114,7 @@ func newReelNewCmd() *cobra.Command {
 			ctx, cancel := signal.NotifyContext(cmd.Context(), os.Interrupt, syscall.SIGTERM)
 			defer cancel()
 
-			spec := pipeline.ReelSpec{
+			spec := pipeline.ComboSpec{
 				ID:        id,
 				Title:     title,
 				Brief:     brief,
@@ -134,7 +143,7 @@ func newReelNewCmd() *cobra.Command {
 				spec.Config.Style.Skin = skin
 			}
 
-			course, lesson, err := pipeline.CreateReel(".", spec)
+			course, lesson, err := pipeline.CreateCombo(".", spec)
 			if err != nil {
 				return err
 			}
@@ -148,7 +157,7 @@ func newReelNewCmd() *cobra.Command {
 			if planOnly {
 				opts.Stage = "plan"
 			}
-			if err := env.RunReel(ctx, course, lesson, opts); err != nil {
+			if err := env.RunCombo(ctx, course, lesson, opts); err != nil {
 				return err
 			}
 			if !planOnly {
@@ -159,10 +168,10 @@ func newReelNewCmd() *cobra.Command {
 		},
 	}
 	cmd.Flags().StringArrayVar(&segments, "segment", nil, "a segment, as template:prompt (repeat, in order)")
-	cmd.Flags().StringVar(&id, "id", "", "reel id (default: derived from the title)")
+	cmd.Flags().StringVar(&id, "id", "", "combo id (default: derived from the title)")
 	cmd.Flags().StringVar(&title, "title", "", "the finished piece's title")
 	cmd.Flags().StringVar(&brief, "brief", "", "what the whole piece is about, in your words")
-	cmd.Flags().StringVar(&voice, "voice", "", "TTS voice id (default: the reels course voice)")
+	cmd.Flags().StringVar(&voice, "voice", "", "TTS voice id (default: the combos course voice)")
 	cmd.Flags().StringVar(&model, "model", "", "planning model as provider/model (default: the course's llm_content)")
 	cmd.Flags().StringVar(&captions, "captions", "", "burn the caption track in: on | off")
 	cmd.Flags().StringVar(&mode, "mode", "", "light or dark video (default dark)")
@@ -173,7 +182,7 @@ func newReelNewCmd() *cobra.Command {
 	return cmd
 }
 
-func newReelRunCmd() *cobra.Command {
+func newComboRunCmd() *cobra.Command {
 	var (
 		stage       string
 		force       bool
@@ -181,13 +190,13 @@ func newReelRunCmd() *cobra.Command {
 	)
 	cmd := &cobra.Command{
 		Use:   "run <id>",
-		Short: "Re-run an existing reel (up-to-date stages are skipped)",
+		Short: "Re-run an existing combo (up-to-date stages are skipped)",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			ctx, cancel := signal.NotifyContext(cmd.Context(), os.Interrupt, syscall.SIGTERM)
 			defer cancel()
 
-			course, lesson, err := pipeline.FindReel(".", args[0])
+			course, lesson, err := pipeline.FindCombo(".", args[0])
 			if err != nil {
 				return err
 			}
@@ -195,7 +204,7 @@ func newReelRunCmd() *cobra.Command {
 			if r, ok := env.Renderer.(*pipeline.RemotionRenderer); ok {
 				r.Concurrency = concurrency
 			}
-			return env.RunReel(ctx, course, lesson, pipeline.RunOptions{Stage: stage, Force: force})
+			return env.RunCombo(ctx, course, lesson, pipeline.RunOptions{Stage: stage, Force: force})
 		},
 	}
 	// Generated from the real stage list rather than spelled out. The hand-written
@@ -207,24 +216,24 @@ func newReelRunCmd() *cobra.Command {
 	return cmd
 }
 
-func newReelListCmd() *cobra.Command {
+func newComboListCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "list",
-		Short: "List the reels in this project",
+		Short: "List the combos in this project",
 		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, _ []string) error {
-			reels, err := pipeline.ListReels(".")
+			combos, err := pipeline.ListCombos(".")
 			if err != nil {
 				return err
 			}
-			if len(reels) == 0 {
-				fmt.Fprintln(cmd.OutOrStdout(), "no reels yet — try `coursesmith reel new --help`")
+			if len(combos) == 0 {
+				fmt.Fprintln(cmd.OutOrStdout(), "no combos yet — try `coursesmith combo new --help`")
 				return nil
 			}
 			w := tabwriter.NewWriter(cmd.OutOrStdout(), 0, 0, 2, ' ', 0)
 			fmt.Fprintln(w, "ID\tSEGMENTS\tVIDEO\tTITLE")
-			for _, l := range reels {
-				spec, err := pipeline.LoadReelSpec(l.Dir)
+			for _, l := range combos {
+				spec, err := pipeline.LoadComboSpec(l.Dir)
 				if err != nil {
 					continue
 				}
@@ -244,17 +253,17 @@ func newReelListCmd() *cobra.Command {
 	}
 }
 
-func newReelShowCmd() *cobra.Command {
+func newComboShowCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "show <id>",
-		Short: "Show a reel's segments, in order",
+		Short: "Show a combo's segments, in order",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			_, lesson, err := pipeline.FindReel(".", args[0])
+			_, lesson, err := pipeline.FindCombo(".", args[0])
 			if err != nil {
 				return err
 			}
-			spec, err := pipeline.LoadReelSpec(lesson.Dir)
+			spec, err := pipeline.LoadComboSpec(lesson.Dir)
 			if err != nil {
 				return err
 			}
@@ -276,15 +285,15 @@ func newReelShowCmd() *cobra.Command {
 			if err := w.Flush(); err != nil {
 				return err
 			}
-			fmt.Fprintf(out, "\nEdit with `coursesmith reel segment %s <segment-id> --…`, then re-run.\n", spec.ID)
+			fmt.Fprintf(out, "\nEdit with `coursesmith combo segment %s <segment-id> --…`, then re-run.\n", spec.ID)
 			return nil
 		},
 	}
 }
 
-// newReelSegmentCmd is the customisation surface: change one segment of an
-// already-generated reel and re-run only what that actually invalidates.
-func newReelSegmentCmd() *cobra.Command {
+// newComboSegmentCmd is the customisation surface: change one segment of an
+// already-generated combo and re-run only what that actually invalidates.
+func newComboSegmentCmd() *cobra.Command {
 	var (
 		template string
 		prompt   string
@@ -293,9 +302,9 @@ func newReelSegmentCmd() *cobra.Command {
 		unskip   bool
 	)
 	cmd := &cobra.Command{
-		Use:   "segment <reel-id> <segment-id>",
-		Short: "Change one segment of an existing reel",
-		Long: "Edits reel.yaml in place. The pipeline then re-stales exactly the\n" +
+		Use:   "segment <combo-id> <segment-id>",
+		Short: "Change one segment of an existing combo",
+		Long: "Edits combo.yaml in place. The pipeline then re-stales exactly the\n" +
 			"stages that file feeds.\n\n" +
 			"Every edit here moves the words: swapping a template re-plans the segment\n" +
 			"and gets different beats, and skipping one takes its narration out of the\n" +
@@ -305,11 +314,11 @@ func newReelSegmentCmd() *cobra.Command {
 			"the run to you.",
 		Args: cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			_, lesson, err := pipeline.FindReel(".", args[0])
+			_, lesson, err := pipeline.FindCombo(".", args[0])
 			if err != nil {
 				return err
 			}
-			spec, err := pipeline.LoadReelSpec(lesson.Dir)
+			spec, err := pipeline.LoadComboSpec(lesson.Dir)
 			if err != nil {
 				return err
 			}
@@ -329,7 +338,7 @@ func newReelSegmentCmd() *cobra.Command {
 				for _, s := range spec.Segments {
 					ids = append(ids, s.ID)
 				}
-				return fmt.Errorf("reel %q has no segment %q (segments: %s)",
+				return fmt.Errorf("combo %q has no segment %q (segments: %s)",
 					args[0], args[1], strings.Join(ids, ", "))
 			}
 
@@ -365,7 +374,7 @@ func newReelSegmentCmd() *cobra.Command {
 			if err := spec.Validate(); err != nil {
 				return err
 			}
-			if err := pipeline.SaveReelSpec(lesson.Dir, spec); err != nil {
+			if err := pipeline.SaveComboSpec(lesson.Dir, spec); err != nil {
 				return err
 			}
 
@@ -377,7 +386,7 @@ func newReelSegmentCmd() *cobra.Command {
 			// The cheap path exists at the props level and is the studio's job.
 			if narrationChanged {
 				fmt.Fprintf(out, "\nThis changes what is said, so the plan, the voice track and every\n"+
-					"timing after it are now stale. Re-run with:\n\n  coursesmith reel run %s\n", spec.ID)
+					"timing after it are now stale. Re-run with:\n\n  coursesmith combo run %s\n", spec.ID)
 			}
 			return nil
 		},
@@ -399,29 +408,37 @@ func truncate(s string, n int) string {
 	return string([]rune(s)[:n-1]) + "…"
 }
 
-// newReelCastCmd is the one-input path: a brief, and the machine decides the
-// structure. It writes reel.yaml and stops by default, because the cast is a
-// structural decision worth reading before nine planning calls are spent on it
-// — and because the file it writes is the same one a person would have written,
-// so overriding a pick is editing a line rather than starting again.
-func newReelCastCmd() *cobra.Command {
+// newComboDirectCmd is the one-input path: a subject, and the machine decides
+// everything else.
+//
+// It writes combo.yaml and stops by default, because the structure is worth
+// reading before a dozen planning calls are spent on it — and because the file
+// it writes is the same one a person would have written, so overriding a
+// decision is editing a line rather than starting again.
+func newComboDirectCmd() *cobra.Command {
 	var (
 		title       string
-		segments    int
+		minutes     int
 		run         bool
 		skin        string
+		captions    string
+		mode        string
 		concurrency int
 	)
 	cmd := &cobra.Command{
-		Use:   "cast <brief>",
-		Short: "Let the model choose the segments from a brief",
-		Long: "Casting reads the brief and decides how the piece breaks into parts and\n" +
-			"which template carries each. It writes reel.yaml and stops, so you can\n" +
-			"read the structure — and change any of it — before paying for the plan.\n\n" +
-			"  coursesmith reel cast \"why two users buying the last item oversells stock\"\n" +
-			"  coursesmith reel show <id>          # read what it chose\n" +
-			"  coursesmith reel segment <id> …     # override a pick\n" +
-			"  coursesmith reel run <id>           # then build it\n\n" +
+		Use:   "direct <subject>",
+		Short: "Direct a whole piece from one line: outline it, cast the looks, write it",
+		Long: "Directing reads the subject and decides what the piece argues, how it\n" +
+			"divides into parts, which template carries each one and how long each runs.\n" +
+			"It writes combo.yaml and stops, so you can read the structure — and change\n" +
+			"any of it — before paying for the plan.\n\n" +
+			"  coursesmith combo direct \"What is artificial intelligence?\" --minutes 6\n" +
+			"  coursesmith combo show <id>          # read what it decided\n" +
+			"  coursesmith combo segment <id> …     # override a pick\n" +
+			"  coursesmith combo run <id>           # then build it\n\n" +
+			"The theme decides which templates can be cast: default and minimal draw\n" +
+			"from the core catalog, broadcast adds the replica batch, editorial adds\n" +
+			"the foundations batch. A piece is cut in one house style throughout.\n\n" +
 			"Pass --run to go straight through.",
 		Args: cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -429,45 +446,56 @@ func newReelCastCmd() *cobra.Command {
 			defer cancel()
 
 			env := newEnv(cmd)
-			course, err := pipeline.EnsureReelsCourse(".")
+			course, err := pipeline.EnsureCombosCourse(".")
 			if err != nil {
 				return err
 			}
 			out := cmd.OutOrStdout()
-			fmt.Fprintf(out, "casting %d segments...\n", segments)
 
-			// Layered over the defaults, not the bare course manifest: the reels
+			// Layered over the defaults, not the bare course manifest: the combos
 			// course records only what it overrides, so course.Config alone has
-			// no model configured and casting would fail before it began.
+			// no model configured and directing would fail before it began.
 			cfg := config.Resolve(course.Config, config.Config{}, config.Config{})
-			spec, err := pipeline.CastReel(ctx, env, args[0], title, segments, cfg)
+			result, err := pipeline.DirectCombo(ctx, env, pipeline.ComboRequest{
+				Subject:  args[0],
+				Title:    title,
+				Minutes:  minutes,
+				Skin:     skin,
+				Captions: captions,
+				Mode:     mode,
+			}, cfg)
 			if err != nil {
 				return err
 			}
-			if skin != "" {
-				spec.Config.Style.Skin = skin
+			spec := result.Spec
+
+			_, lesson, err := pipeline.CreateCombo(".", *spec)
+			if err != nil {
+				return err
 			}
 
-			_, lesson, err := pipeline.CreateReel(".", *spec)
-			if err != nil {
-				return err
-			}
-			fmt.Fprintf(out, "\n%s\n\n", spec.Title)
+			// The ANGLE first, because it is the decision everything else serves
+			// and the one most worth disagreeing with. A piece can be about the
+			// right subject and be making the wrong point, and this is the only
+			// place that is visible before the render.
+			fmt.Fprintf(out, "\n%s\n", spec.Title)
+			fmt.Fprintf(out, "  the argument: %s\n\n", spec.Angle)
+
 			w := tabwriter.NewWriter(out, 0, 0, 2, ' ', 0)
-			// ROLE alongside the template, because the arc is the decision most
-			// worth reading here and it used to be invisible: an enforced shape
-			// that leaves no trace on the page cannot be corrected by the person
-			// looking at it.
-			fmt.Fprintln(w, "  #\tROLE\tTEMPLATE\tCOVERS")
+			// ROLE alongside the template, because the arc is a decision worth
+			// reading and it used to be invisible: an enforced shape that leaves no
+			// trace on the page cannot be corrected by the person looking at it.
+			fmt.Fprintln(w, "  #\tROLE\tTEMPLATE\tESTABLISHES")
 			for i, seg := range spec.Segments {
 				fmt.Fprintf(w, "  %d\t%s\t%s\t%s\n", i+1, seg.Role, seg.Template, truncate(seg.Prompt, 46))
 				// The material on its own line under the segment it belongs to.
 				//
-				// This command stops before planning so the cast can be read and
-				// corrected, and the material is the part actually worth reading:
-				// the template names the look, but these are the facts the piece
-				// will state as true. A wrong figure spotted here costs one edit;
-				// the same figure spotted in the rendered video costs the render.
+				// This command stops before planning so the structure can be read
+				// and corrected, and the material is the part actually worth
+				// reading: the template names the look, but these are the facts the
+				// piece will state as true. A wrong figure spotted here costs one
+				// edit; the same figure spotted in the rendered video costs the
+				// render.
 				if m := strings.TrimSpace(seg.Material); m != "" {
 					fmt.Fprintf(w, "  \t\t\t%s\n", truncate(m, 46))
 				}
@@ -478,25 +506,27 @@ func newReelCastCmd() *cobra.Command {
 			fmt.Fprintf(out, "\n%s\n", relOrAbs(lesson.Dir))
 
 			if !run {
-				// lesson.ID, not spec.ID: CreateReel takes the spec by value and
+				// lesson.ID, not spec.ID: CreateCombo takes the spec by value and
 				// derives the id on its own copy, so the caller's is still empty.
-				fmt.Fprintf(out, "\nRead it, change anything, then build:\n\n  coursesmith reel run %s\n", lesson.ID)
+				fmt.Fprintf(out, "\nRead it, change anything, then build:\n\n  coursesmith combo run %s\n", lesson.ID)
 				return nil
 			}
 			if r, ok := env.Renderer.(*pipeline.RemotionRenderer); ok {
 				r.Concurrency = concurrency
 			}
-			if err := env.RunReel(ctx, course, lesson, pipeline.RunOptions{}); err != nil {
+			if err := env.RunCombo(ctx, course, lesson, pipeline.RunOptions{}); err != nil {
 				return err
 			}
 			fmt.Fprintf(out, "\n%s\n", relOrAbs(filepath.Join(lesson.GeneratedDir(), pipeline.FinalVideoName)))
 			return nil
 		},
 	}
-	cmd.Flags().StringVar(&title, "title", "", "the finished piece's title (default: the caster writes one)")
-	cmd.Flags().IntVar(&segments, "segments", 5, "how many segments to aim for")
-	cmd.Flags().BoolVar(&run, "run", false, "build it immediately instead of stopping at the cast")
-	cmd.Flags().StringVar(&skin, "skin", "", "house style: default | broadcast | minimal")
+	cmd.Flags().StringVar(&title, "title", "", "the finished piece's title (default: the director writes one)")
+	cmd.Flags().IntVar(&minutes, "minutes", 0, "how long the piece should run (0 = read it out of the subject, else the default)")
+	cmd.Flags().BoolVar(&run, "run", false, "build it immediately instead of stopping at the structure")
+	cmd.Flags().StringVar(&skin, "skin", "", "theme, which also decides the template pool: default | broadcast | minimal | editorial")
+	cmd.Flags().StringVar(&captions, "captions", "", "burn the caption track in: on | off")
+	cmd.Flags().StringVar(&mode, "mode", "", "light or dark video (default dark)")
 	cmd.Flags().IntVar(&concurrency, "concurrency", 0, "parallel browser tabs for the Remotion render (0 = auto)")
 	return cmd
 }

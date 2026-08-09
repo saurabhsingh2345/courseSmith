@@ -203,7 +203,7 @@ func TestGateNeverLosesThePlan(t *testing.T) {
 	}
 }
 
-// And a nil plan in is a nil plan out rather than a panic — the reel path hands
+// And a nil plan in is a nil plan out rather than a panic — the combo path hands
 // over whatever the planner returned.
 func TestGateToleratesANilPlan(t *testing.T) {
 	e := &Env{}

@@ -8,7 +8,7 @@ import (
 )
 
 // The enrich prompt renders in two shapes from one file: a standalone snippet,
-// where the creator's prompt is the only source there is, and a reel segment,
+// where the creator's prompt is the only source there is, and a combo segment,
 // where the piece's brief, the caster's material and the ground already covered
 // are all in hand. Every one of those three blocks is conditional, so the
 // standalone shape exercises none of them and would keep passing while the
@@ -61,10 +61,10 @@ func TestEnrichPromptRendersForAStandaloneSnippet(t *testing.T) {
 	if !strings.Contains(user, spec.Prompt) {
 		t.Error("the request did not reach the user message")
 	}
-	// None of the reel-only blocks may appear when there is no reel.
+	// None of the combo-only blocks may appear when there is no combo.
 	for _, phrase := range []string{"THE WHOLE PIECE", "MATERIAL ALREADY CHOSEN", "ALREADY COVERED"} {
 		if strings.Contains(system, phrase) {
-			t.Errorf("standalone snippet got the reel-only block %q", phrase)
+			t.Errorf("standalone snippet got the combo-only block %q", phrase)
 		}
 	}
 	if strings.Contains(system, "<no value>") || strings.Contains(user, "<no value>") {
@@ -72,7 +72,7 @@ func TestEnrichPromptRendersForAStandaloneSnippet(t *testing.T) {
 	}
 }
 
-func TestEnrichPromptCarriesReelContext(t *testing.T) {
+func TestEnrichPromptCarriesComboContext(t *testing.T) {
 	spec := SnippetSpec{
 		Prompt:   "how various tools help people create faster",
 		Template: "showcase",

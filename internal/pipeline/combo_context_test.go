@@ -7,27 +7,45 @@ import (
 	"github.com/enfec/coursesmith/internal/config"
 )
 
-// The caster names the material to prove the template can be filled, and the
-// segment's writer is the thing that actually needs it. It was validated and
-// then dropped, which is why a `showcase` cast from a brief naming thirteen
-// tools rendered a card for a product called "Creation Tools".
-func TestCastCarriesMaterialOntoTheSegment(t *testing.T) {
+// The material is the outline's now, not the caster's, and that is a change of
+// who answers for it: the facts are a property of the subject, and the template
+// is a choice about how to show them. The old order let the caster invent
+// material to justify a template it had already chosen, which is why a
+// `showcase` cast from a brief naming thirteen tools rendered a card for a
+// product called "Creation Tools".
+//
+// What must not change is that it reaches the segment's WRITER. It was once
+// validated and then dropped, so every writer started from a one-line prompt and
+// invented the rest.
+func TestDirectorCarriesOutlineMaterialOntoTheSegment(t *testing.T) {
+	outline := outlineFixture()
 	cast := castFixture()
-	spec := &ReelSpec{}
-	for _, p := range cast.Segments {
-		spec.Segments = append(spec.Segments, ReelSegment{
+	spec := &ComboSpec{Angle: outline.Angle}
+	for i, p := range cast.Picks {
+		spec.Segments = append(spec.Segments, ComboSegment{
 			Template: p.Template,
-			Prompt:   p.Covers,
-			Material: p.Material,
+			Prompt:   outline.Parts[i].Establishes,
+			Heading:  outline.Parts[i].Heading,
+			Role:     outline.Parts[i].Role,
+			Material: outline.Parts[i].Material,
 		})
 	}
 	for i, seg := range spec.Segments {
 		if seg.Material == "" {
 			t.Errorf("segment %d (%s) reached the spec with no material", i, seg.Template)
 		}
-		if seg.Material != cast.Segments[i].Material {
-			t.Errorf("segment %d material is %q, want %q", i, seg.Material, cast.Segments[i].Material)
+		if seg.Material != outline.Parts[i].Material {
+			t.Errorf("segment %d material is %q, want %q", i, seg.Material, outline.Parts[i].Material)
 		}
+		// The prompt is the INCREMENT the part establishes, not a topic. That
+		// difference is what stops two segments arriving at the same content from
+		// different directions.
+		if seg.Prompt != outline.Parts[i].Establishes {
+			t.Errorf("segment %d was asked to cover %q rather than what its part establishes", i, seg.Prompt)
+		}
+	}
+	if spec.Angle == "" {
+		t.Error("the angle did not reach the spec — the critic scores every segment against it")
 	}
 }
 
@@ -35,7 +53,7 @@ func TestCastCarriesMaterialOntoTheSegment(t *testing.T) {
 // parameters. The point of the assertion is that all four pieces of context
 // arrive together — the earlier bug was three of them silently absent.
 func TestSnippetSpecCarriesTheWholePlanningContext(t *testing.T) {
-	seg := ReelSegment{
+	seg := ComboSegment{
 		ID:       "gauge-3",
 		Template: "gauge",
 		Prompt:   "which models fit in 24GB",
@@ -59,9 +77,9 @@ func TestSnippetSpecCarriesTheWholePlanningContext(t *testing.T) {
 	}
 }
 
-// A standalone snippet has no reel around it, and must plan exactly as it did
+// A standalone snippet has no combo around it, and must plan exactly as it did
 // before any of this existed.
-func TestStandaloneSnippetHasNoReelContext(t *testing.T) {
+func TestStandaloneSnippetHasNoComboContext(t *testing.T) {
 	cfg := config.Defaults()
 	spec := SnippetSpec{Prompt: "why indexes matter", Template: "gauge"}
 	data := sharedPromptData(spec, cfg)
@@ -76,7 +94,7 @@ func TestStandaloneSnippetHasNoReelContext(t *testing.T) {
 }
 
 func TestSegmentPriorSummarisesWhatWasCovered(t *testing.T) {
-	seg := ReelSegment{Template: "myth", Prompt: "the belief that you need years of experience"}
+	seg := ComboSegment{Template: "myth", Prompt: "the belief that you need years of experience"}
 	plan := &SnippetPlan{
 		Title: "What everyone gets wrong about building software",
 		Beats: []SnippetBeat{
@@ -105,7 +123,7 @@ func TestSegmentPriorIsBounded(t *testing.T) {
 		beats[i] = SnippetBeat{Heading: "A heading long enough to matter number " + string(rune('a'+i))}
 	}
 	got := segmentPrior(
-		ReelSegment{Template: "rundown", Prompt: "the mindsets"},
+		ComboSegment{Template: "rundown", Prompt: "the mindsets"},
 		&SnippetPlan{Title: "Four mindsets to adopt", Beats: beats},
 	)
 	if n := strings.Count(got, ";"); n >= len(beats) {
@@ -119,7 +137,7 @@ func TestSegmentPriorIsBounded(t *testing.T) {
 // A segment whose plan came back bare still has to say something useful, or the
 // next writer is told only "myth:" and learns nothing.
 func TestSegmentPriorFallsBackToThePrompt(t *testing.T) {
-	seg := ReelSegment{Template: "verdict", Prompt: "what to actually do about it"}
+	seg := ComboSegment{Template: "verdict", Prompt: "what to actually do about it"}
 	got := segmentPrior(seg, &SnippetPlan{})
 	if !strings.Contains(got, "what to actually do") {
 		t.Errorf("an empty plan produced a useless prior: %q", got)

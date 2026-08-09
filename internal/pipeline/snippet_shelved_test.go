@@ -8,7 +8,7 @@ import (
 // Shelving has to hold on two sides at once, and they pull in opposite
 // directions: nothing may *offer* a shelved template, and everything must still
 // *render* one. A change that only got the first half right would look correct
-// in the gallery and break every reel already on disk that names `story`.
+// in the gallery and break every combo already on disk that names `story`.
 
 // shelvedTemplate returns the name of some shelved template, or skips. Written
 // this way rather than hard-coding `story` so these tests keep testing the
@@ -57,22 +57,22 @@ func TestShelvedTemplatesAreNotOnOffer(t *testing.T) {
 	}
 }
 
-// A reel authored before the template was shelved must still plan and render.
+// A combo authored before the template was shelved must still plan and render.
 // This is the half that a delete-the-template change would have broken, and it
-// is not hypothetical: three reels under .coursesmith/ name `story`.
-func TestShelvedTemplateStillValidatesInAReel(t *testing.T) {
+// is not hypothetical: three combos under .coursesmith/ name `story`.
+func TestShelvedTemplateStillValidatesInACombo(t *testing.T) {
 	name := shelvedTemplate(t)
-	spec := ReelSpec{
+	spec := ComboSpec{
 		ID:    "already-on-disk",
-		Title: "A reel cast before the shelf",
-		Segments: []ReelSegment{
+		Title: "A combo cast before the shelf",
+		Segments: []ComboSegment{
 			{ID: "a", Template: name, Prompt: "the part that was cast with a character in it"},
 			{ID: "b", Template: "myth", Prompt: "the belief this corrects"},
 			{ID: "c", Template: "verdict", Prompt: "what to do about it"},
 		},
 	}
 	if err := spec.Validate(); err != nil {
-		t.Fatalf("a reel naming the shelved template %q no longer validates: %v", name, err)
+		t.Fatalf("a combo naming the shelved template %q no longer validates: %v", name, err)
 	}
 }
 
@@ -80,9 +80,9 @@ func TestShelvedTemplateStillValidatesInAReel(t *testing.T) {
 // explicitly is still a working thing to do.
 func TestShelvedTemplateIsStillNamedInTheHint(t *testing.T) {
 	name := shelvedTemplate(t)
-	spec := ReelSpec{
+	spec := ComboSpec{
 		ID: "typo",
-		Segments: []ReelSegment{
+		Segments: []ComboSegment{
 			{ID: "a", Template: name + "x", Prompt: "misspelled"},
 			{ID: "b", Template: "myth", Prompt: "the belief this corrects"},
 			{ID: "c", Template: "verdict", Prompt: "what to do about it"},

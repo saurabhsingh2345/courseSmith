@@ -29,7 +29,7 @@ type Section struct {
 	// it. Empty for a hand-written lesson, where the heading lives in lesson.md
 	// and is recovered by matching slugs (see sectionTitles).
 	//
-	// It exists for the assembled paths. A reel's section id is
+	// It exists for the assembled paths. A combo's section id is
 	// "<segment>--<beat>", which matches no heading in the generated lesson.md,
 	// so title recovery fell through to humanizing the id — and every chapter
 	// read "Myth 1  Everyone Says": the template name, the cast ordinal, and a

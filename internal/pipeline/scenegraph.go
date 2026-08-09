@@ -852,11 +852,11 @@ func runScenegraphStage(ctx context.Context, e *Env, course *project.Course, l *
 	// A snippet's scenes come from its template, not from the lesson-shaped
 	// script/storyboard/diagram machinery. Everything after this branch —
 	// captions, the video-plan edit layer, the written artifact — is shared.
-	// A no-code piece is segments on one timeline, which is what the reel
+	// A no-code piece is segments on one timeline, which is what the combo
 	// assembler already does — the surfaces differ in what a segment must
 	// stand on, not in how the cut is made.
-	if IsReel(l) || IsNoCode(l) {
-		return runReelScenegraph(ctx, e, course, l, cfg)
+	if IsCombo(l) || IsNoCode(l) {
+		return runComboScenegraph(ctx, e, course, l, cfg)
 	}
 	if IsSnippet(l) {
 		return runSnippetScenegraph(ctx, e, course, l, cfg)

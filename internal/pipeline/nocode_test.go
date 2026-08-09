@@ -74,7 +74,7 @@ func TestLoadNoCodeSpec(t *testing.T) {
 }
 
 // The rule that earns the surface. A segment standing on nothing is refused
-// before a single planning call is spent — a reel discovers that after the
+// before a single planning call is spent — a combo discovers that after the
 // caster has gone; here it is a parse error.
 func TestNoCodeRefusesASegmentWithNoEvidence(t *testing.T) {
 	spec, err := specFrom(t, `

@@ -5,16 +5,16 @@ import (
 	"testing"
 )
 
-// A reel's chapter list used to read "Myth 1  Everyone Says": the template name,
+// A combo's chapter list used to read "Myth 1  Everyone Says": the template name,
 // the caster's ordinal, and a double space where the "--" in the section id was.
 // Nothing was wrong with the heading — it was known when the section was built
 // and dropped one field short of the chapters stage, which then recovered a title
 // by matching slugs against lesson.md and, finding no match for a composed id,
 // humanized the id itself.
-func TestReelChaptersUseTheBeatHeading(t *testing.T) {
-	plan := &ReelPlan{
+func TestComboChaptersUseTheBeatHeading(t *testing.T) {
+	plan := &ComboPlan{
 		Title: "Welcome to the era of no-code",
-		Segments: []ReelPlanSegment{{
+		Segments: []ComboPlanSegment{{
 			ID:       "myth-1",
 			Template: "myth",
 			Plan: &SnippetPlan{Beats: []SnippetBeat{

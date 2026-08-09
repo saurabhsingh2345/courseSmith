@@ -4,7 +4,7 @@ package pipeline
 //
 // The lesson path has always had one: script → three-pass review (accuracy,
 // pedagogy, tone) against a threshold, regenerating with the critique. The
-// snippet and reel path had none, and said so in a comment — SnippetStageOrder
+// snippet and combo path had none, and said so in a comment — SnippetStageOrder
 // listed "no review rounds" as a feature, on the reasoning that the plan stage
 // does all the thinking in one call and everything after it is the ordinary
 // video path.

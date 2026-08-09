@@ -195,7 +195,7 @@ func newSnippetRunCmd() *cobra.Command {
 			return env.RunSnippet(ctx, course, lesson, pipeline.RunOptions{Stage: stage, Force: force})
 		},
 	}
-	// See the note on the same flag in reel.go: generated, because the spelled-out
+	// See the note on the same flag in combo.go: generated, because the spelled-out
 	// list went stale as soon as a stage was added.
 	cmd.Flags().StringVar(&stage, "stage", "", "run only this stage ("+strings.Join(project.SnippetStageOrder, ", ")+")")
 	cmd.Flags().BoolVar(&force, "force", false, "re-run stages even if their inputs are unchanged")

@@ -3,7 +3,7 @@ package pipeline
 // How long the creator asked for, and how that gets spread over segments.
 //
 // A brief that says "create a 25-30 minute introduction video" was read for its
-// subject and not for its length. CastReel never set TargetSec, so every segment
+// subject and not for its length. CastCombo never set TargetSec, so every segment
 // took its template's default and the finished file ran 9:43 against a 25-minute
 // ask — a third of what was requested, with nothing anywhere saying so.
 //
@@ -27,10 +27,29 @@ import (
 // preferredSegmentSec is the runtime a segment is aimed at when a whole-piece
 // length has to be divided up.
 //
-// Ninety seconds rather than the 45-second snippet default: a segment of a long
-// piece is a chapter and can afford to develop an idea, and dividing a long ask
-// into 45-second pieces produces more segments than maxReelSegments allows.
-const preferredSegmentSec = 90
+// It was ninety, on the argument that a segment of a long piece is a chapter and
+// can afford to develop an idea. That was written for twenty-five-minute asks,
+// where dividing at forty-five would have wanted seventeen segments against a cap
+// of twelve — and at that length it was right.
+//
+// It is wrong at the lengths this surface is actually used at, and wrong in the
+// direction that matters. Five minutes came out as THREE segments of a hundred
+// seconds each: a longer ask bought longer clips rather than more of them, which
+// is the opposite of why anyone reaches for a combo. The whole point of cutting
+// between looks is the cut, and a five-minute piece with two cuts in it is three
+// snippets in a trenchcoat.
+//
+// There is a second reason, and it is about quality rather than variety. Every
+// template in the catalog is designed around defaultSnippetTargetSec — forty-five
+// seconds, seven beats at most, one picture per beat. Stretching one to a hundred
+// seconds does not give it more room; it gives it the same seven beats holding
+// the frame for fourteen seconds each, which is where a good template starts
+// reading as a slideshow. Aiming at the design point keeps each segment inside
+// what its own picture can hold, and spends the extra runtime on another look.
+//
+// So: five minutes is now eight segments of ~42s, and ten minutes is twelve of
+// ~50s. The cap does the limiting past that, which is what it is for.
+const preferredSegmentSec = defaultSnippetTargetSec
 
 // runtimeRe matches the ways people write a length: "25-30 minute", "2 minutes",
 // "90 seconds", "10 min", "1 hour". The unit is required — a bare number in a
@@ -113,7 +132,7 @@ func BudgetRuntime(requestedSec, wantSegments int) RuntimeBudget {
 
 	// Start from the runtime a segment wants to be, then clamp the count.
 	b.Segments = (requestedSec + preferredSegmentSec/2) / preferredSegmentSec
-	b.Segments = min(max(b.Segments, minReelSegments), maxReelSegments)
+	b.Segments = min(max(b.Segments, minComboSegments), maxComboSegments)
 
 	// Divide, then clamp the per-segment runtime to what a template can hold. A
 	// long ask hits the ceiling; a very short one hits the floor.
@@ -124,9 +143,9 @@ func BudgetRuntime(requestedSec, wantSegments int) RuntimeBudget {
 	// the first division left — 25 minutes over 12 segments is 125s each, but
 	// 17 segments would be needed at 90s and only 12 are allowed, so the segments
 	// stretch instead.
-	if got := b.Achievable(); got < requestedSec && b.Segments < maxReelSegments {
+	if got := b.Achievable(); got < requestedSec && b.Segments < maxComboSegments {
 		needed := (requestedSec + b.PerSegmentSec - 1) / b.PerSegmentSec
-		b.Segments = min(needed, maxReelSegments)
+		b.Segments = min(needed, maxComboSegments)
 	}
 	if got := b.Achievable(); got < requestedSec {
 		b.Shortfall = requestedSec - got
@@ -144,7 +163,7 @@ func (b RuntimeBudget) Describe() string {
 		durationWords(b.RequestedSec), b.Segments, durationWords(b.PerSegmentSec))
 	if b.Shortfall > 0 {
 		s += fmt.Sprintf("\n    ! that is the most %d segments can carry (%s); the piece will run about %s short of the ask",
-			maxReelSegments, durationWords(b.Achievable()), durationWords(b.Shortfall))
+			maxComboSegments, durationWords(b.Achievable()), durationWords(b.Shortfall))
 	}
 	return s
 }
@@ -154,7 +173,7 @@ func (b RuntimeBudget) Describe() string {
 //
 // A template's MinTargetSec is arithmetic, not preference: `story` needs eight
 // beats and eight beats cannot be written inside a twenty-second word budget, so
-// asking for one is a plan that cannot come out at all. ReelSpec.Validate
+// asking for one is a plan that cannot come out at all. ComboSpec.Validate
 // rejects a TargetSec below the floor, which means an evenly-divided budget could
 // produce a spec that fails validation immediately after casting — the caster's
 // work thrown away over arithmetic it was never told about.

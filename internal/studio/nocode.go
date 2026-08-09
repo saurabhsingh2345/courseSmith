@@ -3,7 +3,7 @@ package studio
 // The no-code API: pieces where every segment stands on a real recording or a
 // stated fact.
 //
-// It mirrors the reels API because the object is the same shape — several
+// It mirrors the combos API because the object is the same shape — several
 // segments cut onto one timeline — and differs in exactly one place, which is
 // the place that matters: a segment carries **evidence**, and the page's job is
 // to make that impossible to leave out. So the detail response labels every
@@ -138,7 +138,7 @@ func noCodeSummary(l *project.Lesson) (NoCodeSummary, error) {
 	final := filepath.Join(l.GeneratedDir(), pipeline.FinalVideoName)
 	if _, err := os.Stat(final); err == nil {
 		sum.Ready = true
-		// The artifact route, the same one snippets and reels use. It used to be
+		// The artifact route, the same one snippets and combos use. It used to be
 		// `/api/lessons/{id}/artifacts/{name}`, which is not a route this server
 		// has — so a finished piece advertised a URL that 404'd and the page's
 		// player showed nothing. That is the whole of "where did my clip go".
@@ -202,7 +202,7 @@ func (s *Server) handleNoCodeDetail(w http.ResponseWriter, r *http.Request) {
 		}
 		detail.SegmentList = append(detail.SegmentList, info)
 	}
-	if raw, err := os.ReadFile(filepath.Join(lesson.GeneratedDir(), pipeline.ReelPlanFileName)); err == nil {
+	if raw, err := os.ReadFile(filepath.Join(lesson.GeneratedDir(), pipeline.ComboPlanFileName)); err == nil {
 		detail.Plan = raw
 	}
 	writeJSON(w, http.StatusOK, detail)

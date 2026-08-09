@@ -1,38 +1,38 @@
 package pipeline
 
-// Reels: one video cut from several templates.
+// Combos: one video cut from several templates.
 //
 // A snippet is one template start to finish, which is the right shape for
 // thirty seconds and the wrong one for ten minutes — nothing holds attention
-// through ten minutes of the same picture. A reel is an ordered run of
+// through ten minutes of the same picture. A combo is an ordered run of
 // segments, each with its own template, rendered onto ONE timeline.
 //
-// The decision that matters is that a reel is not several clips stitched
+// The decision that matters is that a combo is not several clips stitched
 // together. There is one narration, one TTS pass and one alignment across the
 // whole piece. Stitching would give seams at every join, loudness that drifts
 // between segments, and a supercut rather than a video; more practically, it
 // would mean the boundaries could never move without re-rendering both sides.
 //
 // What makes this cheap is that alignment spans are absolute milliseconds. A
-// segment's template does not know it is part of a reel and does not need to:
+// segment's template does not know it is part of a combo and does not need to:
 // it is handed the slice of spans covering its own beats, already timed against
 // the finished audio, and lays its scenes out exactly as it would in a snippet.
-// Assembly is slicing, not arithmetic. See buildReelSceneGraph.
+// Assembly is slicing, not arithmetic. See buildComboSceneGraph.
 //
-// On disk a reel is an ordinary lesson directory inside a synthetic course,
+// On disk a combo is an ordinary lesson directory inside a synthetic course,
 // exactly like a snippet, so the stage machinery, state tracking and artifact
 // serving work with no special cases:
 //
-//	.coursesmith/reels/
+//	.coursesmith/combos/
 //	  course.yaml
 //	  lessons/<id>/
-//	    reel.yaml            the request: brief, and the ordered segments
+//	    combo.yaml            the request: brief, and the ordered segments
 //	    lesson.md            synthesized by the plan stage
-//	    generated/           reel-plan.json, script.json, …, final.mp4
+//	    generated/           combo-plan.json, script.json, …, final.mp4
 //
 // Phase 1 is deliberately manual: you name the template for each segment. The
 // casting stage that picks them is the next piece, and it writes exactly the
-// same reel.yaml a person would — which is what makes it possible to hand-edit
+// same combo.yaml a person would — which is what makes it possible to hand-edit
 // the result afterwards rather than being stuck with whatever the model chose.
 
 import (
@@ -51,71 +51,97 @@ import (
 )
 
 const (
-	// ReelFileName is the request file in a reel's directory.
-	ReelFileName = "reel.yaml"
-	// ReelPlanFileName is the plan stage output in generated/.
-	ReelPlanFileName = "reel-plan.json"
-	// ReelsCourseSlug is the slug of the synthetic course reels live in.
-	ReelsCourseSlug = "reels"
+	// ComboFileName is the request file in a combo's directory.
+	ComboFileName = "combo.yaml"
+	// ComboPlanFileName is the plan stage output in generated/.
+	ComboPlanFileName = "combo-plan.json"
+	// CombosCourseSlug is the slug of the synthetic course combos live in.
+	CombosCourseSlug = "combos"
 )
 
-// ReelsRoot is where reel courses live, relative to the project root.
-var ReelsRoot = filepath.Join(".coursesmith", "reels")
+// CombosRoot is where combo courses live, relative to the project root.
+var CombosRoot = filepath.Join(".coursesmith", "combos")
 
-// Reel length bounds. The floor is two segments because one is a snippet and
-// should be made as one — the whole point of a reel is the cut between looks.
+// Combo length bounds. The floor is two segments because one is a snippet and
+// should be made as one — the whole point of a combo is the cut between looks.
 // The ceiling is not about rendering but about attention and cost: twelve
 // segments is roughly a fifteen-minute piece, and every segment is its own
 // planning call.
 const (
-	minReelSegments = 2
-	maxReelSegments = 12
+	minComboSegments = 2
+	maxComboSegments = 12
+	// defaultComboSegments is what the director aims for when nothing decides
+	// otherwise. Five is a piece with an opening, three moves and a close — the
+	// smallest shape that is an argument rather than a statement with a title.
+	defaultComboSegments = 5
 )
 
-// ReelSpec is reel.yaml: the request, and the edit surface.
+// ComboSpec is combo.yaml: the request, and the edit surface.
 //
 // This file is what a person changes after seeing the first cut — retitle a
 // segment, rewrite its prompt, swap its template, drop it. Editing it re-stales
 // the stages that depend on it, the same way editing a lesson does, which is
 // why the segments carry stable ids: an edit has to be addressable to something
 // that does not move when its neighbours change.
-type ReelSpec struct {
-	// ID is the reel's directory name, and its stable handle everywhere.
+type ComboSpec struct {
+	// ID is the combo's directory name, and its stable handle everywhere.
 	ID string `yaml:"id"`
 	// Title is the finished piece's title.
 	Title string `yaml:"title,omitempty"`
 	// Brief is the creator's description of the whole piece in their own words.
 	//
-	// Unused by the Phase 1 pipeline, and deliberately carried anyway: it is
-	// the input the casting stage will read, and recording it now means a reel
-	// authored by hand today can be re-cast later without the intent having
-	// been thrown away.
+	// Handed to every segment's writer, which is what keeps twelve independently
+	// planned parts sounding like one video rather than twelve answers to twelve
+	// questions. Also what a re-direct reads, so a piece cast today can be
+	// re-cast later without the original intent having been thrown away.
 	Brief string `yaml:"brief,omitempty"`
+	// Angle is the single claim the whole piece advances, written by the
+	// outliner (see combo_outline.go).
+	//
+	// Persisted because it is what the critic scores finished segments against.
+	// "Does this advance the angle" is answerable; "is this segment good" is not,
+	// and a critic given only the second question returns opinions about prose.
+	// It is also the field a person should change when the piece is about the
+	// right subject and making the wrong point — the cheapest fix available, and
+	// impossible to make if the angle only ever existed inside one LLM call.
+	Angle string `yaml:"angle,omitempty"`
 	// Segments are the parts, in order.
-	Segments []ReelSegment `yaml:"segments"`
-	// Config overrides the course defaults for this reel alone.
+	Segments []ComboSegment `yaml:"segments"`
+	// Config overrides the course defaults for this combo alone.
 	Config config.Config `yaml:",inline"`
 
 	CreatedAt time.Time `yaml:"created_at,omitempty"`
 }
 
-// ReelSegment is one part of the reel: a template, and what it should cover.
-type ReelSegment struct {
+// ComboSegment is one part of the combo: a template, and what it should cover.
+type ComboSegment struct {
 	// ID is stable across edits and is how the editor addresses this segment.
 	// Generated from the position when absent, but only once — renumbering on
 	// every edit would make every id a lie the moment a segment moved.
 	ID string `yaml:"id"`
 	// Template names a registered template (see snippet_templates.go).
 	Template string `yaml:"template"`
-	// Prompt is what this segment should cover, in the creator's words. It is
-	// planned through the template's own prompt, so a segment is exactly as
-	// good as the equivalent snippet would have been.
+	// Prompt is what this segment should cover. It is planned through the
+	// template's own prompt, so a segment is exactly as good as the equivalent
+	// snippet would have been.
+	//
+	// From the director this is the outline part's INCREMENT — what the viewer
+	// knows after this segment that they did not before — rather than a topic.
+	// The difference decides whether two segments can arrive at the same content
+	// from different directions, which is what "that bit was already covered"
+	// looks like from the inside.
 	Prompt string `yaml:"prompt"`
+	// Heading is the outline part this segment came from, in a few words.
+	//
+	// Kept because it is the only handle a person has on the ARGUMENT rather than
+	// on the clip: reading a combo.yaml, the headings in order are the piece, and
+	// the prompts are how each bit gets made. Empty on a hand-authored combo.
+	Heading string `yaml:"heading,omitempty"`
 	// Role is this segment's job in the arc: hook, develop or payoff.
 	//
 	// Persisted because an enforced shape that leaves no trace cannot be checked
 	// or corrected. The arc is validated at cast time and then, without this, was
-	// gone — I could not tell from the finished reel.yaml whether the opener the
+	// gone — I could not tell from the finished combo.yaml whether the opener the
 	// caster called a hook actually put anything at stake, and neither could
 	// anybody else. A rule whose result is invisible is a rule nobody can audit.
 	//
@@ -127,15 +153,23 @@ type ReelSegment struct {
 	// Material is the concrete facts this template will be filled with — the
 	// ceiling and its candidates, the line items that add up, the belief and the
 	// truth. The caster names it to prove the template can be filled at all
-	// (CastReel), and it is written down here because the segment's *writer*
+	// (CastCombo), and it is written down here because the segment's *writer*
 	// needs it more than the validator did.
 	//
 	// Persisted, unlike the rest of the planning context, because it is a
 	// per-segment choice a creator will want to edit — correcting a wrong figure
 	// here is the difference between re-running one segment and re-casting the
-	// reel. Empty is legal: a hand-authored reel need not supply it, and a
+	// combo. Empty is legal: a hand-authored combo need not supply it, and a
 	// segment without it is planned exactly as it was before this field existed.
 	Material string `yaml:"material,omitempty"`
+	// Why is the caster's reason for this look.
+	//
+	// Not read by anything downstream, and kept anyway: it is the first thing a
+	// person reads when deciding whether to override a pick, and it is the only
+	// place the machine's reasoning survives long enough to be argued with. A
+	// choice you cannot see the reason for is one you either accept or replace
+	// blindly.
+	Why string `yaml:"why,omitempty"`
 	// TargetSec is the runtime to aim for (0 = the template's own default).
 	TargetSec int `yaml:"target_sec,omitempty"`
 	// Skip drops the segment from the cut without deleting it from the file.
@@ -148,8 +182,8 @@ type ReelSegment struct {
 }
 
 // Active returns the segments that are actually in the cut, in order.
-func (r ReelSpec) Active() []ReelSegment {
-	out := make([]ReelSegment, 0, len(r.Segments))
+func (r ComboSpec) Active() []ComboSegment {
+	out := make([]ComboSegment, 0, len(r.Segments))
 	for _, s := range r.Segments {
 		if !s.Skip {
 			out = append(out, s)
@@ -160,20 +194,20 @@ func (r ReelSpec) Active() []ReelSegment {
 
 // ResolvedTargetSec returns the runtime this segment aims for, defaulted from
 // the template the same way a snippet's is.
-func (s ReelSegment) ResolvedTargetSec() int {
+func (s ComboSegment) ResolvedTargetSec() int {
 	spec := SnippetSpec{Template: s.Template, TargetSec: s.TargetSec}
 	return spec.ResolvedTargetSec()
 }
 
 // SnippetSpec projects a segment onto the request shape the template planners
 // already take, so a segment is planned by exactly the same code a snippet is.
-// Nothing in a template knows about reels.
+// Nothing in a template knows about combos.
 //
-// brief and priors come from the reel rather than the segment, so they are
+// brief and priors come from the combo rather than the segment, so they are
 // parameters: a segment cannot know the piece it is part of, and asking the
 // caller to remember to set two fields afterwards is how one of them ends up
 // unset on the path nobody re-read.
-func (s ReelSegment) SnippetSpec(cfg config.Config, brief string, priors []string) SnippetSpec {
+func (s ComboSegment) SnippetSpec(cfg config.Config, brief string, priors []string) SnippetSpec {
 	return SnippetSpec{
 		ID:        s.ID,
 		Prompt:    s.Prompt,
@@ -187,15 +221,15 @@ func (s ReelSegment) SnippetSpec(cfg config.Config, brief string, priors []strin
 }
 
 // Validate checks a request before anything is written to disk.
-func (r ReelSpec) Validate() error {
+func (r ComboSpec) Validate() error {
 	active := r.Active()
-	if len(active) < minReelSegments {
-		return fmt.Errorf("a reel needs at least %d segments in the cut (found %d). One template start to finish is a snippet, and `coursesmith snippet` makes a better job of it",
-			minReelSegments, len(active))
+	if len(active) < minComboSegments {
+		return fmt.Errorf("a combo needs at least %d segments in the cut (found %d). One template start to finish is a snippet, and `coursesmith snippet` makes a better job of it",
+			minComboSegments, len(active))
 	}
-	if len(r.Segments) > maxReelSegments {
-		return fmt.Errorf("a reel takes at most %d segments (found %d) — every segment is its own planning call, and past this it is a course",
-			maxReelSegments, len(r.Segments))
+	if len(r.Segments) > maxComboSegments {
+		return fmt.Errorf("a combo takes at most %d segments (found %d) — every segment is its own planning call, and past this it is a course",
+			maxComboSegments, len(r.Segments))
 	}
 	seen := map[string]bool{}
 	for i, s := range r.Segments {
@@ -231,7 +265,7 @@ func (r ReelSpec) Validate() error {
 // Derived from the template name plus an ordinal, and only for segments that
 // have none: an id that changed when a neighbour moved would break every edit
 // addressed to it, which is the one thing ids exist to prevent.
-func (r *ReelSpec) EnsureSegmentIDs() {
+func (r *ComboSpec) EnsureSegmentIDs() {
 	used := map[string]bool{}
 	for _, s := range r.Segments {
 		if s.ID != "" {
@@ -255,21 +289,21 @@ func (r *ReelSpec) EnsureSegmentIDs() {
 	}
 }
 
-// IsReel reports whether a lesson directory is a reel.
-func IsReel(l *project.Lesson) bool {
-	_, err := os.Stat(filepath.Join(l.Dir, ReelFileName))
+// IsCombo reports whether a lesson directory is a combo.
+func IsCombo(l *project.Lesson) bool {
+	_, err := os.Stat(filepath.Join(l.Dir, ComboFileName))
 	return err == nil
 }
 
-// LoadReelSpec reads reel.yaml from a lesson directory.
-func LoadReelSpec(dir string) (*ReelSpec, error) {
-	raw, err := os.ReadFile(filepath.Join(dir, ReelFileName))
+// LoadComboSpec reads combo.yaml from a lesson directory.
+func LoadComboSpec(dir string) (*ComboSpec, error) {
+	raw, err := os.ReadFile(filepath.Join(dir, ComboFileName))
 	if err != nil {
 		return nil, err
 	}
-	var spec ReelSpec
+	var spec ComboSpec
 	if err := yaml.Unmarshal(raw, &spec); err != nil {
-		return nil, fmt.Errorf("parsing %s: %w", ReelFileName, err)
+		return nil, fmt.Errorf("parsing %s: %w", ComboFileName, err)
 	}
 	if spec.ID == "" {
 		spec.ID = filepath.Base(dir)
@@ -278,34 +312,34 @@ func LoadReelSpec(dir string) (*ReelSpec, error) {
 	return &spec, nil
 }
 
-// SaveReelSpec writes reel.yaml, filling in segment ids first so the file on
+// SaveComboSpec writes combo.yaml, filling in segment ids first so the file on
 // disk is the addressable one.
 //
 // The inline config is pruned of everything left at its zero value before
 // writing. config.Config has no omitempty tags — it cannot, since a course
 // manifest legitimately records an explicit zero — so marshalling the spec
 // straight out buries the twelve lines that matter under forty lines of empty
-// strings. That is tolerable for a file nobody opens; reel.yaml is the
+// strings. That is tolerable for a file nobody opens; combo.yaml is the
 // documented edit surface, and a surface people are told to edit has to be
 // readable when they get there.
-func SaveReelSpec(dir string, spec *ReelSpec) error {
+func SaveComboSpec(dir string, spec *ComboSpec) error {
 	spec.EnsureSegmentIDs()
 	raw, err := yaml.Marshal(spec)
 	if err != nil {
-		return fmt.Errorf("encoding %s: %w", ReelFileName, err)
+		return fmt.Errorf("encoding %s: %w", ComboFileName, err)
 	}
 	// Round-trip through a generic tree so the pruning is structural rather
 	// than a set of string rules about which keys to drop.
 	var tree map[string]any
 	if err := yaml.Unmarshal(raw, &tree); err != nil {
-		return fmt.Errorf("encoding %s: %w", ReelFileName, err)
+		return fmt.Errorf("encoding %s: %w", ComboFileName, err)
 	}
 	pruneEmpty(tree)
 	out, err := yaml.Marshal(tree)
 	if err != nil {
-		return fmt.Errorf("encoding %s: %w", ReelFileName, err)
+		return fmt.Errorf("encoding %s: %w", ComboFileName, err)
 	}
-	return os.WriteFile(filepath.Join(dir, ReelFileName), out, 0o644)
+	return os.WriteFile(filepath.Join(dir, ComboFileName), out, 0o644)
 }
 
 // pruneEmpty removes keys whose value is a zero scalar, or a map that is empty
@@ -350,29 +384,29 @@ func pruneEmpty(m map[string]any) {
 	}
 }
 
-// ReelPlan is reel-plan.json: every segment planned, in order.
+// ComboPlan is combo-plan.json: every segment planned, in order.
 //
 // One SnippetPlan per segment rather than a merged plan, because merging would
 // throw away the thing the scenegraph stage needs — which beats belong to which
 // template. The templates' validators also only make sense against their own
 // plan.
-type ReelPlan struct {
+type ComboPlan struct {
 	Title    string            `json:"title"`
-	Segments []ReelPlanSegment `json:"segments"`
+	Segments []ComboPlanSegment `json:"segments"`
 }
 
-// ReelPlanSegment is one planned segment.
-type ReelPlanSegment struct {
-	// ID matches the ReelSegment it came from, so an edit to reel.yaml can be
+// ComboPlanSegment is one planned segment.
+type ComboPlanSegment struct {
+	// ID matches the ComboSegment it came from, so an edit to combo.yaml can be
 	// traced to the plan it produced.
 	ID       string       `json:"id"`
 	Template string       `json:"template"`
 	Plan     *SnippetPlan `json:"plan"`
 }
 
-// Beats returns the total beat count across the reel — the number of aligned
+// Beats returns the total beat count across the combo — the number of aligned
 // sections the scenegraph stage expects.
-func (p *ReelPlan) Beats() int {
+func (p *ComboPlan) Beats() int {
 	n := 0
 	for _, s := range p.Segments {
 		if s.Plan != nil {
@@ -386,13 +420,13 @@ func (p *ReelPlan) Beats() int {
 // audio, align and chapters stages already consume.
 //
 // The sections are the beats of every segment in order, which is what makes the
-// whole reel a single continuous read: the TTS stage never learns where one
+// whole combo a single continuous read: the TTS stage never learns where one
 // segment ends, so there is no seam to hear.
 //
 // Section ids are prefixed with the segment id. Beat ids are only unique within
 // a template's plan — two segments that both open on a beat called "intro"
 // would otherwise collide, and the aligner keys sections by id.
-func (p *ReelPlan) Script(paceWPM int) *Script {
+func (p *ComboPlan) Script(paceWPM int) *Script {
 	if paceWPM <= 0 {
 		paceWPM = 150
 	}
@@ -417,9 +451,9 @@ func (p *ReelPlan) Script(paceWPM int) *Script {
 	return script
 }
 
-// Markdown renders the reel as an ordinary lesson.md, so nothing downstream
+// Markdown renders the combo as an ordinary lesson.md, so nothing downstream
 // needs to know the piece was assembled rather than written.
-func (p *ReelPlan) Markdown(spec ReelSpec) (string, error) {
+func (p *ComboPlan) Markdown(spec ComboSpec) (string, error) {
 	fm := project.FrontMatter{
 		Title:    p.Title,
 		Style:    spec.Config.Style,
@@ -428,7 +462,7 @@ func (p *ReelPlan) Markdown(spec ReelSpec) (string, error) {
 	}
 	fmData, err := yaml.Marshal(fm)
 	if err != nil {
-		return "", fmt.Errorf("encoding reel front-matter: %w", err)
+		return "", fmt.Errorf("encoding combo front-matter: %w", err)
 	}
 	var sb strings.Builder
 	sb.WriteString("---\n")
@@ -449,36 +483,36 @@ func (p *ReelPlan) Markdown(spec ReelSpec) (string, error) {
 	return sb.String(), nil
 }
 
-// LoadReelPlan reads generated/reel-plan.json.
-func LoadReelPlan(l *project.Lesson) (*ReelPlan, error) {
-	path := filepath.Join(l.GeneratedDir(), ReelPlanFileName)
+// LoadComboPlan reads generated/combo-plan.json.
+func LoadComboPlan(l *project.Lesson) (*ComboPlan, error) {
+	path := filepath.Join(l.GeneratedDir(), ComboPlanFileName)
 	raw, err := os.ReadFile(path)
 	if err != nil {
 		if os.IsNotExist(err) {
-			return nil, fmt.Errorf("no %s yet — the plan stage must run first", ReelPlanFileName)
+			return nil, fmt.Errorf("no %s yet — the plan stage must run first", ComboPlanFileName)
 		}
 		return nil, fmt.Errorf("reading %s: %w", path, err)
 	}
-	var plan ReelPlan
+	var plan ComboPlan
 	// Read back the way it was written, and for the same reason LoadSnippetPlan
 	// gives: the plan stage already applied every template's standards with the
 	// model in the room to answer for them, so re-judging the file here can only
 	// reject the best answer anyone is going to get.
 	if err := parseJSONLenient(string(raw), &plan, nil); err != nil {
-		return nil, fmt.Errorf("parsing %s: %w", ReelPlanFileName, err)
+		return nil, fmt.Errorf("parsing %s: %w", ComboPlanFileName, err)
 	}
 	return &plan, nil
 }
 
-// ReelStages returns the stage list a reel runs: the same pipeline a snippet
+// ComboStages returns the stage list a combo runs: the same pipeline a snippet
 // walks, keeping the verify stage only when some segment actually shows code.
 //
-// Per-reel rather than per-template because a reel is a mixture: one `vscode`
+// Per-combo rather than per-template because a combo is a mixture: one `vscode`
 // segment among nine that show no code still has to have its code executed, and
 // dropping verify because most segments do not need it would ship a clip
 // claiming output nothing produced.
-func ReelStages(l *project.Lesson) ([]string, error) {
-	spec, err := LoadReelSpec(l.Dir)
+func ComboStages(l *project.Lesson) ([]string, error) {
+	spec, err := LoadComboSpec(l.Dir)
 	if err != nil {
 		return nil, err
 	}
@@ -486,7 +520,7 @@ func ReelStages(l *project.Lesson) ([]string, error) {
 	for _, s := range spec.Active() {
 		tpl, ok := SnippetTemplates[s.Template]
 		if !ok {
-			return nil, fmt.Errorf("reel %s: unknown template %q (templates: %s)",
+			return nil, fmt.Errorf("combo %s: unknown template %q (templates: %s)",
 				l.ID, s.Template, strings.Join(SnippetTemplateNames(), ", "))
 		}
 		if tpl.NeedsCode {
@@ -500,15 +534,15 @@ func ReelStages(l *project.Lesson) ([]string, error) {
 	return stages, nil
 }
 
-// EnsureReelsCourse creates (or loads) the synthetic course reels live in.
-func EnsureReelsCourse(root string) (*project.Course, error) {
-	dir := filepath.Join(root, ReelsRoot)
+// EnsureCombosCourse creates (or loads) the synthetic course combos live in.
+func EnsureCombosCourse(root string) (*project.Course, error) {
+	dir := filepath.Join(root, CombosRoot)
 	manifest := filepath.Join(dir, project.CourseFileName)
 	if _, err := os.Stat(manifest); os.IsNotExist(err) {
 		if err := os.MkdirAll(filepath.Join(dir, "lessons"), 0o755); err != nil {
-			return nil, fmt.Errorf("creating reels course: %w", err)
+			return nil, fmt.Errorf("creating combos course: %w", err)
 		}
-		if err := writeFileAtomic(manifest, []byte(reelsCourseYAML)); err != nil {
+		if err := writeFileAtomic(manifest, []byte(combosCourseYAML)); err != nil {
 			return nil, err
 		}
 	} else if err != nil {
@@ -517,9 +551,9 @@ func EnsureReelsCourse(root string) (*project.Course, error) {
 	return project.LoadCourse(dir)
 }
 
-// ListReels returns every reel, newest first.
-func ListReels(root string) ([]*project.Lesson, error) {
-	course, err := EnsureReelsCourse(root)
+// ListCombos returns every combo, newest first.
+func ListCombos(root string) ([]*project.Lesson, error) {
+	course, err := EnsureCombosCourse(root)
 	if err != nil {
 		return nil, err
 	}
@@ -538,9 +572,9 @@ func ListReels(root string) ([]*project.Lesson, error) {
 		}
 		l, err := project.LoadLesson(filepath.Join(dir, e.Name()))
 		if err != nil {
-			continue // a half-written reel should not break the list
+			continue // a half-written combo should not break the list
 		}
-		if IsReel(l) {
+		if IsCombo(l) {
 			out = append(out, l)
 		}
 	}
@@ -548,32 +582,32 @@ func ListReels(root string) ([]*project.Lesson, error) {
 	return out, nil
 }
 
-// FindReel resolves a reel by id.
-func FindReel(root, id string) (*project.Course, *project.Lesson, error) {
-	course, err := EnsureReelsCourse(root)
+// FindCombo resolves a combo by id.
+func FindCombo(root, id string) (*project.Course, *project.Lesson, error) {
+	course, err := EnsureCombosCourse(root)
 	if err != nil {
 		return nil, nil, err
 	}
 	l, err := project.LoadLesson(filepath.Join(course.Dir, "lessons", id))
 	if err != nil {
-		return nil, nil, fmt.Errorf("reel %q not found: %w", id, err)
+		return nil, nil, fmt.Errorf("combo %q not found: %w", id, err)
 	}
 	return course, l, nil
 }
 
-// buildReelSceneGraph lays every segment onto one timeline.
+// buildComboSceneGraph lays every segment onto one timeline.
 //
 // The whole assembly is the slice: each template is handed the spans covering
 // its own beats — already absolute, already measured against the finished
 // audio — and lays out scenes exactly as it would for a snippet. No template
-// knows it is in a reel, nothing is offset, and a segment's internal timing is
+// knows it is in a combo, nothing is offset, and a segment's internal timing is
 // identical to what the same prompt would have produced on its own.
-func buildReelSceneGraph(
+func buildComboSceneGraph(
 	course *project.Course,
 	l *project.Lesson,
 	cfg config.Config,
-	spec ReelSpec,
-	plan *ReelPlan,
+	spec ComboSpec,
+	plan *ComboPlan,
 	alignment *Alignment,
 	verification *VerificationReport,
 	audioDurMs int,
@@ -594,13 +628,13 @@ func buildReelSceneGraph(
 
 	spans := alignment.CaptionSections()
 	if want := plan.Beats(); len(spans) != want {
-		return nil, fmt.Errorf("alignment has %d sections but the reel has %d beats across %d segments — re-run the align stage",
+		return nil, fmt.Errorf("alignment has %d sections but the combo has %d beats across %d segments — re-run the align stage",
 			len(spans), want, len(plan.Segments))
 	}
 
 	// A beat's visual holds until the next beat starts — including across a
 	// segment boundary, which is what makes the cut between two templates land
-	// on a word rather than on a gap. Only the very last beat of the reel runs
+	// on a word rather than on a gap. Only the very last beat of the combo runs
 	// past its span, so the piece does not cut on the final syllable.
 	ends := make([]int, len(spans))
 	for i := range spans {
@@ -651,14 +685,14 @@ func buildReelSceneGraph(
 		at += n
 	}
 	if len(graph.Scenes) == 0 {
-		return nil, fmt.Errorf("the reel produced no scenes — every segment is skipped or empty")
+		return nil, fmt.Errorf("the combo produced no scenes — every segment is skipped or empty")
 	}
 	graph.DurationMs = audioDurMs + videoTailMs
 	// The same pass the lesson path runs, and for the same reason: a recording
 	// is longer than the narration over it, so the dead air has to be compressed
 	// onto the marks and the tool has to be credited on screen.
 	//
-	// This was missing here, which meant no reel and no no-code piece ever got
+	// This was missing here, which meant no combo and no no-code piece ever got
 	// either. A 161-second agent session was dropped whole into a 61-second slot
 	// and simply cut off partway: the video played the opening seconds of the
 	// clip, showed nothing happening, and moved on before the moment it was
@@ -670,7 +704,7 @@ func buildReelSceneGraph(
 }
 
 // SegmentSpec rebuilds the request shape a template's Scenes call expects.
-func (s ReelPlanSegment) SegmentSpec(spec ReelSpec, cfg config.Config) SnippetSpec {
+func (s ComboPlanSegment) SegmentSpec(spec ComboSpec, cfg config.Config) SnippetSpec {
 	return SnippetSpec{
 		ID:       s.ID,
 		Template: s.Template,
@@ -679,13 +713,13 @@ func (s ReelPlanSegment) SegmentSpec(spec ReelSpec, cfg config.Config) SnippetSp
 	}
 }
 
-// reelsCourseYAML is the synthetic course reels live in. Deliberately a
+// combosCourseYAML is the synthetic course combos live in. Deliberately a
 // separate course from snippets rather than a folder inside it: the two have
-// different default runtimes (a reel segment is planned to its own template's
+// different default runtimes (a combo segment is planned to its own template's
 // default, but the piece as a whole is minutes long), and sharing a course
 // would mean one config had to serve both.
-const reelsCourseYAML = `name: Reels
-slug: reels
+const combosCourseYAML = `name: Combos
+slug: combos
 description: Multi-template videos assembled from one narration.
 style:
   tone: crisp, confident, direct
@@ -696,7 +730,7 @@ style:
   pace_wpm: 174
 pipeline:
   # Pinned rather than inherited, the same way the snippets course pins it.
-  # A reel is one planning call per segment plus the cast, so the model is a
+  # A combo is one planning call per segment plus the cast, so the model is a
   # cost and quality decision this course should state rather than take from
   # whatever the global default happens to be.
   llm_content: openai/gpt-5-mini

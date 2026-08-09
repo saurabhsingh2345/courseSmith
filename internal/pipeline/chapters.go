@@ -52,7 +52,7 @@ func sectionTitles(body string, script *Script) map[string]string {
 	for _, sec := range script.Sections {
 		switch {
 		// What the section says it is called, when it knows. Assembled scripts
-		// (reels, snippets) set this; matching slugs cannot work for them because
+		// (combos, snippets) set this; matching slugs cannot work for them because
 		// their ids are composed rather than derived from a heading.
 		case strings.TrimSpace(sec.Title) != "":
 			titles[sec.ID] = collapseSpaces(sec.Title)

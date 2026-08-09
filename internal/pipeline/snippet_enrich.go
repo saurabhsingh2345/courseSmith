@@ -19,11 +19,11 @@ package pipeline
 // rescue clips that had already failed, and the thin prompts that fail loudly
 // are a fraction of the thin prompts that quietly produce a mediocre clip.
 //
-// == Where this went wrong on the reel path, and why the fix is here ==
+// == Where this went wrong on the combo path, and why the fix is here ==
 //
 // For a standalone snippet the prompt is the creator's own request and there is
 // no other source of truth, so "write the specifics a person would have known"
-// is the only move available. For a *reel segment* it was actively harmful. The
+// is the only move available. For a *combo segment* it was actively harmful. The
 // segment arrived with the caster's one-line `covers` and nothing else — the
 // brief that named thirteen tools, and the material the caster had itself
 // written down to prove the template could be filled, were both sitting in

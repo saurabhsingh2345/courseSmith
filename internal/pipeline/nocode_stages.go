@@ -2,8 +2,8 @@ package pipeline
 
 // Planning a no-code piece.
 //
-// Structurally this is a reel: several segments, each planned through its own
-// template's prompt, cut onto one timeline. So it reuses the reel's plan
+// Structurally this is a combo: several segments, each planned through its own
+// template's prompt, cut onto one timeline. So it reuses the combo's plan
 // format, script assembly, markdown and scenegraph wholesale rather than
 // growing a second copy of all of it — the differences are at the two ends.
 //
@@ -13,8 +13,8 @@ package pipeline
 // the validator can check the plan against it. A fact-backed segment has its
 // claims attached the same way.
 //
-// **On failure**, nothing is recast. A reel rescues a miscast segment onto
-// `illustration`, which is right for a reel and forbidden here — that template
+// **On failure**, nothing is recast. A combo rescues a miscast segment onto
+// `illustration`, which is right for a combo and forbidden here — that template
 // is excluded from this surface precisely because it fills a frame without
 // evidence. A no-code segment that cannot be planned is a segment whose
 // evidence did not survive contact with its template, and quietly replacing it
@@ -139,7 +139,7 @@ func runNoCodePlan(ctx context.Context, e *Env, _ *project.Course, l *project.Le
 	live := spec.Live()
 	fmt.Fprintf(e.out(), "  → plan      %d segments (%s)...\n", len(live), cfg.Pipeline.LLMContent)
 
-	plan := &ReelPlan{Title: spec.Title}
+	plan := &ComboPlan{Title: spec.Title}
 	var priors []string
 	for i, seg := range live {
 		tpl, ok := SnippetTemplates[seg.Template]
@@ -181,7 +181,7 @@ func runNoCodePlan(ctx context.Context, e *Env, _ *project.Course, l *project.Le
 		segSpec.Prompt = EnrichSnippetPrompt(ctx, e, segSpec, cfg)
 		segPlan, err := planner(ctx, e, segSpec, cfg)
 		if err != nil {
-			// Nothing is recast here, unlike a reel. A reel rescues a miscast
+			// Nothing is recast here, unlike a combo. A combo rescues a miscast
 			// segment onto `illustration`; that template is excluded from this
 			// surface precisely because it fills a frame without evidence, so
 			// using it as a rescue would break the one promise the surface makes.
@@ -197,7 +197,7 @@ func runNoCodePlan(ctx context.Context, e *Env, _ *project.Course, l *project.Le
 		}
 		segPlan = e.gateSegmentPlan(ctx, l, cfg, segSpec, segPlan)
 
-		plan.Segments = append(plan.Segments, ReelPlanSegment{
+		plan.Segments = append(plan.Segments, ComboPlanSegment{
 			ID:       seg.ID,
 			Template: seg.Template,
 			Plan:     segPlan,
@@ -209,13 +209,13 @@ func runNoCodePlan(ctx context.Context, e *Env, _ *project.Course, l *project.Le
 		plan.Title = plan.Segments[0].Plan.Title
 	}
 
-	if err := writeJSON(filepath.Join(l.GeneratedDir(), ReelPlanFileName), plan); err != nil {
+	if err := writeJSON(filepath.Join(l.GeneratedDir(), ComboPlanFileName), plan); err != nil {
 		return err
 	}
 	if err := writeJSON(filepath.Join(l.GeneratedDir(), ScriptFileName), plan.Script(cfg.Style.PaceWPM)); err != nil {
 		return err
 	}
-	md, err := plan.Markdown(ReelSpec{ID: spec.ID, Title: spec.Title, Brief: spec.Brief})
+	md, err := plan.Markdown(ComboSpec{ID: spec.ID, Title: spec.Title, Brief: spec.Brief})
 	if err != nil {
 		return err
 	}
@@ -245,7 +245,7 @@ func runNoCodePlan(ctx context.Context, e *Env, _ *project.Course, l *project.Le
 
 // RunNoCode executes the no-code pipeline for one piece.
 //
-// A separate entry point for the same reason snippets and reels have one: the
+// A separate entry point for the same reason snippets and combos have one: the
 // stage list is not the course's. Calling RunLesson here walks the lesson
 // pipeline — trace, review, storyboard, visuals — spends real tokens on stages
 // that have nothing to do, and then fails at scenegraph looking for a plan no

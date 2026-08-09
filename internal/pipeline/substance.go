@@ -10,7 +10,7 @@ package pipeline
 // A template's schema is a demand. `gauge` demands a numeric ceiling and things
 // measured against it; `costing` demands line items that add up. Handed a subject
 // with no figures in it, a writer asked to fill that schema does not fail — it
-// invents. That is not a hypothetical: a reel cast from a brief about no-code
+// invents. That is not a hypothetical: a combo cast from a brief about no-code
 // tools produced a gauge captioned "MAX CONCEPTS IN A SESSION — 10 concepts",
 // bars at 2/5/10/12, rendered as authoritative data. The number does not exist.
 // The same run produced a developer named Emily whose app got "thousands of
@@ -303,7 +303,7 @@ func substanceMisconceptions(s *Substance) []string {
 	return s.Misconceptions
 }
 
-// runSubstanceStage establishes the facts for a snippet or a reel.
+// runSubstanceStage establishes the facts for a snippet or a combo.
 func runSubstanceStage(ctx context.Context, e *Env, _ *project.Course, l *project.Lesson, cfg config.Config) error {
 	brief, err := substanceBrief(l)
 	if err != nil {
@@ -332,7 +332,7 @@ func groundedNote(grounded bool) string {
 	return " (ungrounded — llm_search is off, so nothing was looked up)"
 }
 
-// substanceBrief is the whole input to establish facts from: a piece's or reel's
+// substanceBrief is the whole input to establish facts from: a piece's or combo's
 // brief, or a snippet's prompt.
 func substanceBrief(l *project.Lesson) (string, error) {
 	if IsNoCode(l) {
@@ -363,14 +363,14 @@ func substanceBrief(l *project.Lesson) (string, error) {
 		}
 		return brief, nil
 	}
-	if IsReel(l) {
-		spec, err := LoadReelSpec(l.Dir)
+	if IsCombo(l) {
+		spec, err := LoadComboSpec(l.Dir)
 		if err != nil {
 			return "", err
 		}
 		brief := strings.TrimSpace(spec.Brief)
 		if brief == "" {
-			// A hand-authored reel need not have one; the segment prompts are
+			// A hand-authored combo need not have one; the segment prompts are
 			// then all there is to go on, and they are better than nothing.
 			var parts []string
 			for _, seg := range spec.Active() {

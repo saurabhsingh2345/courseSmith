@@ -53,7 +53,7 @@ func init() {
 		// cast.tsx offers five poses, so a shot list written for an arc gets
 		// `idle` for most of it. There is no notion of gender anywhere in the
 		// pipeline or the renderer, so a script that says "Emily... she" is
-		// drawn as whichever peep the hash picks — in the vibe-coding reel, a
+		// drawn as whichever peep the hash picks — in the vibe-coding combo, a
 		// grinning man, six shots running. The busts are cropped at the top of
 		// frame at the size this scene renders them.
 		//

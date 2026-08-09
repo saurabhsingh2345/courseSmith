@@ -54,7 +54,7 @@ var (
 	// scriptRubric judges written prose. The original four dimensions.
 	scriptRubric = rubric{Template: reviewTemplateName, Scores: requiredScores}
 
-	// planRubric judges a snippet or reel plan before it is spoken aloud.
+	// planRubric judges a snippet or combo plan before it is spoken aloud.
 	//
 	// The dimensions are the four failures actually observed in shipped output,
 	// not a general notion of quality:

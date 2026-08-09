@@ -143,7 +143,7 @@ func paramStyleFor(provider, model string) paramStyle {
 // deliberate: the defaults are what we want, and every knob it accepts
 // (search_context_size, user_location) would either cost more or make the
 // result depend on where the machine is — which for a cached, resumable
-// pipeline means two developers grounding the same reel differently.
+// pipeline means two developers grounding the same combo differently.
 type webSearchOptions struct{}
 
 // wireMessage allows string content or multimodal content parts.

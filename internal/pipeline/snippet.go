@@ -104,19 +104,19 @@ type SnippetSpec struct {
 
 	// FootageMarks, FootageTool and FootageMs describe the recording a
 	// `footage` piece narrates. Derived from the capture's sidecar on every
-	// run rather than serialised, for the same reason a reel segment's Brief
+	// run rather than serialised, for the same reason a combo segment's Brief
 	// is: a copy in the spec would drift from the clip it describes.
 	FootageMarks []string `yaml:"-"`
 	FootageTool  string   `yaml:"-"`
 	FootageMs    int      `yaml:"-"`
 
-	// Brief, Material and Priors are the context a *reel segment* is planned
+	// Brief, Material and Priors are the context a *combo segment* is planned
 	// inside. All three are empty for a standalone snippet, where Prompt is the
 	// whole input and there is nothing else to know.
 	//
-	// None is serialised. They are derived from reel.yaml on every run rather
-	// than copied into a snippet.yaml that would then disagree with the reel it
-	// came from — and a reel segment has no snippet.yaml anyway.
+	// None is serialised. They are derived from combo.yaml on every run rather
+	// than copied into a snippet.yaml that would then disagree with the combo it
+	// came from — and a combo segment has no snippet.yaml anyway.
 	//
 	// Why they exist at all: a segment used to be planned from Prompt alone,
 	// which for a cast segment is the caster's one-line `covers`. Ten words, no
@@ -150,7 +150,7 @@ type SnippetSpec struct {
 	// that stage has not run (an older snippet resumed mid-pipeline), and the
 	// planner then behaves exactly as it did before it existed.
 	//
-	// Piece-level rather than per-segment: one sheet covers the whole reel, and
+	// Piece-level rather than per-segment: one sheet covers the whole combo, and
 	// each segment selects the facts that belong to its part. Deliberately not a
 	// per-segment slice — deciding which facts belong to which segment is the
 	// writer's job and it needs to see the ones it is NOT using, or it cannot
@@ -276,12 +276,12 @@ type SnippetPlan struct {
 	// It exists because that outcome left no trace. The salvage path printed a
 	// warning to stdout and returned the draft, so a segment that shipped 47%
 	// under its word floor looked, on disk and in the studio, exactly like one
-	// that passed: same file, same shape, no marker. The old no-code reel had
+	// that passed: same file, same shape, no marker. The old no-code combo had
 	// three such segments and nothing anywhere recorded it — I could only tell by
 	// re-deriving the budget from the template's defaults and comparing.
 	//
 	// On the plan rather than in a sidecar file because the plan is the thing
-	// being described, and both write paths (snippet-plan.json, reel-plan.json)
+	// being described, and both write paths (snippet-plan.json, combo-plan.json)
 	// already persist it — so the record travels with the artifact for free
 	// rather than needing a second file that can go missing or go stale.
 	Compromises []string `json:"compromises,omitempty"`
@@ -1414,15 +1414,15 @@ func snippetStubTitle(prompt string) string {
 // snippet-plan.json, and from it the script.json and lesson.md the rest of the
 // pipeline expects.
 func runPlanStage(ctx context.Context, e *Env, course *project.Course, l *project.Lesson, cfg config.Config) error {
-	// A no-code piece and a reel are both several segments on one timeline; a
+	// A no-code piece and a combo are both several segments on one timeline; a
 	// snippet is one. The no-code branch comes first because a piece carries
 	// both files only if somebody hand-made that, and its rule is the stricter
 	// of the two. Everything after this branch is shared.
 	if IsNoCode(l) {
 		return runNoCodePlan(ctx, e, course, l, cfg)
 	}
-	if IsReel(l) {
-		return runReelPlan(ctx, e, course, l, cfg)
+	if IsCombo(l) {
+		return runComboPlan(ctx, e, course, l, cfg)
 	}
 	spec, err := LoadSnippetSpec(l.Dir)
 	if err != nil {
@@ -1468,7 +1468,7 @@ func runPlanStage(ctx context.Context, e *Env, course *project.Course, l *projec
 		return err
 	}
 	plan.Template = spec.Template
-	// The same gate the reel's segments go through. A snippet is one segment, so
+	// The same gate the combo's segments go through. A snippet is one segment, so
 	// there is nothing to scope the critique to.
 	plan = e.gateSegmentPlan(ctx, l, cfg, enriched, plan)
 	if spec.Title != "" {

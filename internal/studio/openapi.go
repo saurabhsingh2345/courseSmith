@@ -131,22 +131,22 @@ const openAPISpec = `{
         "responses": {"200": {"description": "Token/cost/quota data", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Ledger"}}}}}
       }
     },
-    "/api/reels": {
-      "get": {"summary": "List reels", "responses": {"200": {"description": "reels", "content": {"application/json": {"schema": {"type": "array", "items": {"$ref": "#/components/schemas/ReelSummary"}}}}}}},
-      "post": {"summary": "Create and run a reel", "responses": {"201": {"description": "created", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ReelSummary"}}}}}}
+    "/api/combos": {
+      "get": {"summary": "List combos", "responses": {"200": {"description": "combos", "content": {"application/json": {"schema": {"type": "array", "items": {"$ref": "#/components/schemas/ComboSummary"}}}}}}},
+      "post": {"summary": "Create and run a combo", "responses": {"201": {"description": "created", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ComboSummary"}}}}}}
     },
-    "/api/reels/cast": {
-      "post": {"summary": "Propose segments from a brief (writes nothing)", "responses": {"200": {"description": "proposal", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/CastReelResponse"}}}}}}
+    "/api/combos/direct": {
+      "post": {"summary": "Direct a whole piece from a subject: outline it, cast the looks, propose the segments (writes nothing)", "responses": {"200": {"description": "proposal", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/DirectComboResponse"}}}}}}
     },
-    "/api/reels/{id}": {
-      "get": {"summary": "One reel with its segments", "responses": {"200": {"description": "reel", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ReelDetail"}}}}}},
-      "delete": {"summary": "Delete a reel", "responses": {"204": {"description": "deleted"}}}
+    "/api/combos/{id}": {
+      "get": {"summary": "One combo with its segments", "responses": {"200": {"description": "combo", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ComboDetail"}}}}}},
+      "delete": {"summary": "Delete a combo", "responses": {"204": {"description": "deleted"}}}
     },
-    "/api/reels/{id}/run": {
-      "post": {"summary": "Re-run a reel", "responses": {"202": {"description": "queued"}}}
+    "/api/combos/{id}/run": {
+      "post": {"summary": "Re-run a combo", "responses": {"202": {"description": "queued"}}}
     },
-    "/api/reels/{id}/segments/{segment}": {
-      "patch": {"summary": "Edit one segment", "responses": {"200": {"description": "segments", "content": {"application/json": {"schema": {"type": "array", "items": {"$ref": "#/components/schemas/ReelSegmentInfo"}}}}}}}
+    "/api/combos/{id}/segments/{segment}": {
+      "patch": {"summary": "Edit one segment", "responses": {"200": {"description": "segments", "content": {"application/json": {"schema": {"type": "array", "items": {"$ref": "#/components/schemas/ComboSegmentInfo"}}}}}}}
     },
     "/api/snippet-templates": {
       "get": {
@@ -214,25 +214,31 @@ const openAPISpec = `{
         },
         "required": ["name", "size", "url", "download_name"]
       },
-      "CastReelResponse": {
+      "DirectComboResponse": {
         "type": "object",
         "properties": {
           "title": {"type": "string"},
-          "segments": {"type": "array", "items": {"type": "object", "properties": {"template": {"type": "string"}, "prompt": {"type": "string"}, "material": {"type": "string", "description": "The concrete facts this template will be filled with. POST it back with the proposal — a segment created without it is planned from the one-line prompt alone, and its writer invents the specifics."}, "target_sec": {"type": "integer"}}, "required": ["template", "prompt"]}}
+          "angle": {"type": "string", "description": "What the piece argues. POST it back with the proposal — it is what the critic scores every finished segment against, and a combo created without one gets a critic that can only ask whether a segment is good."},
+          "pool": {"type": "string", "description": "Which catalog the chosen theme narrowed the casting to, in words."},
+          "runtime": {"type": "string", "description": "How the requested runtime was spread over segments, and whether it could be met."},
+          "segments": {"type": "array", "items": {"type": "object", "properties": {"template": {"type": "string"}, "prompt": {"type": "string", "description": "What this segment establishes — the increment, not the topic."}, "heading": {"type": "string"}, "role": {"type": "string", "enum": ["hook", "develop", "payoff"]}, "why": {"type": "string", "description": "The director's reason for this look."}, "material": {"type": "string", "description": "The concrete facts this template will be filled with. POST it back with the proposal — a segment created without it is planned from the one-line prompt alone, and its writer invents the specifics."}, "target_sec": {"type": "integer"}}, "required": ["template", "prompt"]}}
         },
-        "required": ["title", "segments"]
+        "required": ["title", "angle", "segments"]
       },
-      "ReelSegmentInfo": {
+      "ComboSegmentInfo": {
         "type": "object",
         "properties": {
           "id": {"type": "string"}, "template": {"type": "string"}, "prompt": {"type": "string"},
           "material": {"type": "string", "description": "The concrete facts this segment is planned from. The field most worth correcting by hand: a wrong figure here becomes a wrong figure in the finished video."},
+          "heading": {"type": "string", "description": "Which part of the argument this segment is. Empty on a hand-authored combo."},
+          "role": {"type": "string", "enum": ["hook", "develop", "payoff"], "description": "This segment's job in the arc. Read-only: it tells you whether to rewrite a segment, where the material tells you what to correct."},
+          "why": {"type": "string", "description": "The director's reason for this look."},
           "target_sec": {"type": "integer"}, "skip": {"type": "boolean"},
           "template_title": {"type": "string"}, "template_category": {"type": "string"}
         },
         "required": ["id", "template", "prompt", "template_title", "template_category"]
       },
-      "ReelSummary": {
+      "ComboSummary": {
         "type": "object",
         "properties": {
           "id": {"type": "string"}, "title": {"type": "string"}, "brief": {"type": "string"},
@@ -242,10 +248,10 @@ const openAPISpec = `{
         },
         "required": ["id", "title", "segments", "skipped", "ready"]
       },
-      "ReelDetail": {
+      "ComboDetail": {
         "allOf": [
-          {"$ref": "#/components/schemas/ReelSummary"},
-          {"type": "object", "properties": {"segment_list": {"type": "array", "items": {"$ref": "#/components/schemas/ReelSegmentInfo"}}, "plan": {}}, "required": ["segment_list"]}
+          {"$ref": "#/components/schemas/ComboSummary"},
+          {"type": "object", "properties": {"segment_list": {"type": "array", "items": {"$ref": "#/components/schemas/ComboSegmentInfo"}}, "plan": {}}, "required": ["segment_list"]}
         ]
       },
       "SnippetTemplateInfo": {

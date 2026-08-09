@@ -47,8 +47,8 @@ func TestTheTwentyFiveMinuteAskIsBudgeted(t *testing.T) {
 	if b.Segments <= 5 {
 		t.Errorf("budgeted %d segments for %ds; five segments cannot carry it", b.Segments, requested)
 	}
-	if b.Segments > maxReelSegments {
-		t.Errorf("budgeted %d segments, over the %d cap", b.Segments, maxReelSegments)
+	if b.Segments > maxComboSegments {
+		t.Errorf("budgeted %d segments, over the %d cap", b.Segments, maxComboSegments)
 	}
 	if b.PerSegmentSec > maxSnippetTargetSec {
 		t.Errorf("per-segment %ds exceeds the %ds template ceiling", b.PerSegmentSec, maxSnippetTargetSec)
@@ -63,13 +63,13 @@ func TestTheTwentyFiveMinuteAskIsBudgeted(t *testing.T) {
 // fraction is the original bug, and a budget that quietly clamps is the same bug
 // wearing a helper function.
 func TestAnImpossibleAskReportsItsShortfall(t *testing.T) {
-	// Two hours: far past maxReelSegments x maxSnippetTargetSec.
+	// Two hours: far past maxComboSegments x maxSnippetTargetSec.
 	b := BudgetRuntime(2*3600, 5)
 	if b.Shortfall <= 0 {
 		t.Fatal("a two-hour ask reported no shortfall")
 	}
-	if b.Segments != maxReelSegments {
-		t.Errorf("an impossible ask used %d segments, not the %d available", b.Segments, maxReelSegments)
+	if b.Segments != maxComboSegments {
+		t.Errorf("an impossible ask used %d segments, not the %d available", b.Segments, maxComboSegments)
 	}
 	if b.PerSegmentSec != maxSnippetTargetSec {
 		t.Errorf("an impossible ask used %ds segments, not the %ds ceiling", b.PerSegmentSec, maxSnippetTargetSec)
@@ -114,9 +114,9 @@ func TestBudgetedTargetsAlwaysValidate(t *testing.T) {
 		b := BudgetRuntime(requested, 5)
 		for _, name := range SnippetTemplateNames() {
 			target := segmentTargetFor(name, b.PerSegmentSec)
-			spec := ReelSpec{
+			spec := ComboSpec{
 				ID: "budgeted",
-				Segments: []ReelSegment{
+				Segments: []ComboSegment{
 					{ID: "a", Template: name, Prompt: "the first part", TargetSec: target},
 					{ID: "b", Template: "myth", Prompt: "the belief this corrects", TargetSec: segmentTargetFor("myth", b.PerSegmentSec)},
 				},
@@ -134,8 +134,8 @@ func TestAVeryShortAskClampsToTheFloor(t *testing.T) {
 	if b.PerSegmentSec < minSnippetTargetSec {
 		t.Errorf("per-segment %ds is below the %ds floor", b.PerSegmentSec, minSnippetTargetSec)
 	}
-	if b.Segments < minReelSegments {
-		t.Errorf("budgeted %d segments, below the %d minimum", b.Segments, minReelSegments)
+	if b.Segments < minComboSegments {
+		t.Errorf("budgeted %d segments, below the %d minimum", b.Segments, minComboSegments)
 	}
 }
 

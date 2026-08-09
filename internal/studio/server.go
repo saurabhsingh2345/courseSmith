@@ -71,13 +71,13 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("GET /api/nocode/takes", s.handleNoCodeTakes)
 	mux.HandleFunc("GET /api/nocode/{id}", s.handleNoCodeDetail)
 	mux.HandleFunc("POST /api/nocode/{id}/run", s.handleNoCodeRun)
-	mux.HandleFunc("GET /api/reels", s.handleReelsList)
-	mux.HandleFunc("POST /api/reels", s.handleReelCreate)
-	mux.HandleFunc("POST /api/reels/cast", s.handleReelCast)
-	mux.HandleFunc("GET /api/reels/{id}", s.handleReelDetail)
-	mux.HandleFunc("DELETE /api/reels/{id}", s.handleReelDelete)
-	mux.HandleFunc("POST /api/reels/{id}/run", s.handleReelRun)
-	mux.HandleFunc("PATCH /api/reels/{id}/segments/{segment}", s.handleReelSegmentPatch)
+	mux.HandleFunc("GET /api/combos", s.handleCombosList)
+	mux.HandleFunc("POST /api/combos", s.handleComboCreate)
+	mux.HandleFunc("POST /api/combos/direct", s.handleComboDirect)
+	mux.HandleFunc("GET /api/combos/{id}", s.handleComboDetail)
+	mux.HandleFunc("DELETE /api/combos/{id}", s.handleComboDelete)
+	mux.HandleFunc("POST /api/combos/{id}/run", s.handleComboRun)
+	mux.HandleFunc("PATCH /api/combos/{id}/segments/{segment}", s.handleComboSegmentPatch)
 	mux.HandleFunc("GET /api/archetypes", s.handleArchetypes)
 	mux.HandleFunc("GET /api/library/diagrams", s.handleLibraryDiagramsList)
 	mux.HandleFunc("POST /api/library/diagrams", s.handleLibraryDiagramCreate)
@@ -145,13 +145,13 @@ func (s *Server) resolveCourse(slug string) (*project.Course, error) {
 	dir := filepath.Join(s.coursesDir, filepath.Base(slug))
 	if _, err := os.Stat(filepath.Join(dir, project.CourseFileName)); err != nil {
 		// The synthetic courses do not live under coursesDir, so they are
-		// resolved by name. Missing the reels case meant every reel artifact
+		// resolved by name. Missing the combos case meant every combo artifact
 		// 404'd while the API cheerfully advertised its URL.
 		switch filepath.Base(slug) {
 		case pipeline.SnippetsCourseSlug:
 			return pipeline.EnsureSnippetsCourse(s.projectRoot())
-		case pipeline.ReelsCourseSlug:
-			return pipeline.EnsureReelsCourse(s.projectRoot())
+		case pipeline.CombosCourseSlug:
+			return pipeline.EnsureCombosCourse(s.projectRoot())
 		case pipeline.NoCodeCourseSlug:
 			return pipeline.EnsureNoCodeCourse(s.projectRoot())
 		}
