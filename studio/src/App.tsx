@@ -9,7 +9,7 @@ import { ComposePage } from "./pages/ComposePage";
 import { SnippetsPage } from "./pages/SnippetsPage";
 import { ReplicaPage } from "./pages/ReplicaPage";
 import { FoundationsPage } from "./pages/FoundationsPage";
-import { ReelsPage } from "./pages/ReelsPage";
+import { CombosPage } from "./pages/CombosPage";
 import { NoCodePage } from "./pages/NoCodePage";
 import { CoursesPage } from "./pages/CoursesPage";
 import { CoursePage } from "./pages/CoursePage";
@@ -52,7 +52,7 @@ export function App() {
         <Route path="/snippets" element={<SnippetsPage />} />
         <Route path="/replica" element={<ReplicaPage />} />
         <Route path="/foundations" element={<FoundationsPage />} />
-        <Route path="/reels" element={<ReelsPage />} />
+        <Route path="/combos" element={<CombosPage />} />
         <Route path="/nocode" element={<NoCodePage />} />
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/generation" element={<GenerationPage />} />

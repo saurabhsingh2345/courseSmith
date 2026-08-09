@@ -165,14 +165,14 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/reels": {
+    "/api/combos": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** List reels */
+        /** List combos */
         get: {
             parameters: {
                 query?: never;
@@ -182,19 +182,19 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description reels */
+                /** @description combos */
                 200: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ReelSummary"][];
+                        "application/json": components["schemas"]["ComboSummary"][];
                     };
                 };
             };
         };
         put?: never;
-        /** Create and run a reel */
+        /** Create and run a combo */
         post: {
             parameters: {
                 query?: never;
@@ -210,7 +210,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ReelSummary"];
+                        "application/json": components["schemas"]["ComboSummary"];
                     };
                 };
             };
@@ -221,7 +221,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/reels/cast": {
+    "/api/combos/direct": {
         parameters: {
             query?: never;
             header?: never;
@@ -230,7 +230,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Propose segments from a brief (writes nothing) */
+        /** Direct a whole piece from a subject: outline it, cast the looks, propose the segments (writes nothing) */
         post: {
             parameters: {
                 query?: never;
@@ -246,7 +246,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["CastReelResponse"];
+                        "application/json": components["schemas"]["DirectComboResponse"];
                     };
                 };
             };
@@ -257,14 +257,14 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/reels/{id}": {
+    "/api/combos/{id}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        /** One reel with its segments */
+        /** One combo with its segments */
         get: {
             parameters: {
                 query?: never;
@@ -274,20 +274,20 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description reel */
+                /** @description combo */
                 200: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ReelDetail"];
+                        "application/json": components["schemas"]["ComboDetail"];
                     };
                 };
             };
         };
         put?: never;
         post?: never;
-        /** Delete a reel */
+        /** Delete a combo */
         delete: {
             parameters: {
                 query?: never;
@@ -311,7 +311,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/reels/{id}/run": {
+    "/api/combos/{id}/run": {
         parameters: {
             query?: never;
             header?: never;
@@ -320,7 +320,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Re-run a reel */
+        /** Re-run a combo */
         post: {
             parameters: {
                 query?: never;
@@ -345,7 +345,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/reels/{id}/segments/{segment}": {
+    "/api/combos/{id}/segments/{segment}": {
         parameters: {
             query?: never;
             header?: never;
@@ -374,7 +374,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ReelSegmentInfo"][];
+                        "application/json": components["schemas"]["ComboSegmentInfo"][];
                     };
                 };
             };
@@ -457,28 +457,49 @@ export interface components {
             /** @description What this file should be saved as: <course>-<lesson>[-<part>].<ext>, so a folder of downloads sorts by course and lesson instead of being six copies of final.mp4. */
             download_name: string;
         };
-        CastReelResponse: {
+        DirectComboResponse: {
             title: string;
+            /** @description What the piece argues. POST it back with the proposal — it is what the critic scores every finished segment against, and a combo created without one gets a critic that can only ask whether a segment is good. */
+            angle: string;
+            /** @description Which catalog the chosen theme narrowed the casting to, in words. */
+            pool?: string;
+            /** @description How the requested runtime was spread over segments, and whether it could be met. */
+            runtime?: string;
             segments: {
                 template: string;
+                /** @description What this segment establishes — the increment, not the topic. */
                 prompt: string;
+                heading?: string;
+                /** @enum {string} */
+                role?: "hook" | "develop" | "payoff";
+                /** @description The director's reason for this look. */
+                why?: string;
                 /** @description The concrete facts this template will be filled with. POST it back with the proposal — a segment created without it is planned from the one-line prompt alone, and its writer invents the specifics. */
                 material?: string;
                 target_sec?: number;
             }[];
         };
-        ReelSegmentInfo: {
+        ComboSegmentInfo: {
             id: string;
             template: string;
             prompt: string;
             /** @description The concrete facts this segment is planned from. The field most worth correcting by hand: a wrong figure here becomes a wrong figure in the finished video. */
             material?: string;
+            /** @description Which part of the argument this segment is. Empty on a hand-authored combo. */
+            heading?: string;
+            /**
+             * @description This segment's job in the arc. Read-only: it tells you whether to rewrite a segment, where the material tells you what to correct.
+             * @enum {string}
+             */
+            role?: "hook" | "develop" | "payoff";
+            /** @description The director's reason for this look. */
+            why?: string;
             target_sec?: number;
             skip?: boolean;
             template_title: string;
             template_category: string;
         };
-        ReelSummary: {
+        ComboSummary: {
             id: string;
             title: string;
             brief?: string;
@@ -489,8 +510,8 @@ export interface components {
             created_at?: string;
             run_id?: string;
         };
-        ReelDetail: components["schemas"]["ReelSummary"] & {
-            segment_list: components["schemas"]["ReelSegmentInfo"][];
+        ComboDetail: components["schemas"]["ComboSummary"] & {
+            segment_list: components["schemas"]["ComboSegmentInfo"][];
             plan?: unknown;
         };
         SnippetTemplateInfo: {

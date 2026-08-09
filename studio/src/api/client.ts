@@ -124,15 +124,24 @@ export type DraftDetail = DraftMeta & { source: string };
 
 /** One card in the snippet template gallery. */
 export type SnippetTemplateInfo = components["schemas"]["SnippetTemplateInfo"];
-export type ReelSummary = components["schemas"]["ReelSummary"];
-export type ReelDetail = components["schemas"]["ReelDetail"];
-export type ReelSegmentInfo = components["schemas"]["ReelSegmentInfo"];
+export type ComboSummary = components["schemas"]["ComboSummary"];
+export type ComboDetail = components["schemas"]["ComboDetail"];
+export type ComboSegmentInfo = components["schemas"]["ComboSegmentInfo"];
 
-/** One requested segment when creating a reel. */
-export interface CreateReelSegment {
+/** One requested segment when creating a combo. */
+export interface CreateComboSegment {
   template: string;
+  /** What this segment establishes — the increment the viewer gains, not a
+   *  topic. That difference is what stops two segments arriving at the same
+   *  content from different directions. */
   prompt: string;
-  /** The concrete facts this template gets filled with. The caster returns it
+  /** The director's reasoning, carried through so the page can show WHY the
+   *  piece is shaped this way rather than only what it chose. All optional: a
+   *  hand-built combo supplies none of them. */
+  heading?: string;
+  role?: string;
+  why?: string;
+  /** The concrete facts this template gets filled with. The director returns it
    *  with each proposed segment and it must be POSTed back: a segment created
    *  without it is planned from `prompt` alone, and its writer invents the
    *  specifics rather than using the ones already chosen. */
@@ -140,11 +149,16 @@ export interface CreateReelSegment {
   target_sec?: number;
 }
 
-/** The whole reel request: a brief, and the ordered segments. */
-export interface CreateReelRequest {
+/** The whole combo request: the subject, the argument, and the ordered segments. */
+export interface CreateComboRequest {
   title?: string;
   brief?: string;
-  segments: CreateReelSegment[];
+  /** What the piece argues. Must be POSTed back with a directed proposal — it
+   *  is what the critic scores every finished segment against, and a combo
+   *  created without one gets a critic that can only ask whether a segment is
+   *  good, which returns opinions about prose. */
+  angle?: string;
+  segments: CreateComboSegment[];
   voice?: string;
   captions?: string;
   mode?: string;
@@ -152,9 +166,33 @@ export interface CreateReelRequest {
   plan_only?: boolean;
 }
 
+/** The four choices a creator makes. Everything else the director decides. */
+export interface DirectComboRequest {
+  subject: string;
+  title?: string;
+  /** How long the piece should run. 0 reads a length out of the subject if one
+   *  is stated there, and otherwise takes the default. */
+  minutes?: number;
+  /** The theme, which also decides which templates may be cast. */
+  skin?: string;
+  captions?: string;
+  mode?: string;
+}
+
+/** The proposed piece. Nothing has been written yet. */
+export interface DirectComboResponse {
+  title: string;
+  angle: string;
+  /** Which catalog the theme narrowed the casting to, in words. */
+  pool: string;
+  /** How the runtime was spread over segments, and whether the ask could be met. */
+  runtime?: string;
+  segments: CreateComboSegment[];
+}
+
 /** A segment edit. Every field is optional: omitting one leaves it alone,
  *  which is what almost every edit means. */
-export interface PatchReelSegmentRequest {
+export interface PatchComboSegmentRequest {
   template?: string;
   prompt?: string;
   material?: string;
@@ -284,27 +322,27 @@ export const api = {
   ledger: () => request<Ledger>("/api/ledger"),
 
   snippetTemplates: () => request<SnippetTemplateInfo[]>("/api/snippet-templates"),
-  reels: () => request<ReelSummary[]>("/api/reels"),
-  castReel: (req: { brief: string; title?: string; segments?: number }) =>
-    request<{ title: string; segments: CreateReelSegment[] }>("/api/reels/cast", {
+  combos: () => request<ComboSummary[]>("/api/combos"),
+  directCombo: (req: DirectComboRequest) =>
+    request<DirectComboResponse>("/api/combos/direct", {
       method: "POST",
       body: JSON.stringify(req),
     }),
-  reel: (id: string) => request<ReelDetail>(`/api/reels/${encodeURIComponent(id)}`),
-  createReel: (req: CreateReelRequest) =>
-    request<ReelSummary & { run_id?: string }>("/api/reels", {
+  combo: (id: string) => request<ComboDetail>(`/api/combos/${encodeURIComponent(id)}`),
+  createCombo: (req: CreateComboRequest) =>
+    request<ComboSummary & { run_id?: string }>("/api/combos", {
       method: "POST",
       body: JSON.stringify(req),
     }),
-  runReel: (id: string) =>
-    request<{ run_id: string }>(`/api/reels/${encodeURIComponent(id)}/run`, { method: "POST" }),
-  patchReelSegment: (id: string, segment: string, req: PatchReelSegmentRequest) =>
-    request<ReelSegmentInfo[]>(
-      `/api/reels/${encodeURIComponent(id)}/segments/${encodeURIComponent(segment)}`,
+  runCombo: (id: string) =>
+    request<{ run_id: string }>(`/api/combos/${encodeURIComponent(id)}/run`, { method: "POST" }),
+  patchComboSegment: (id: string, segment: string, req: PatchComboSegmentRequest) =>
+    request<ComboSegmentInfo[]>(
+      `/api/combos/${encodeURIComponent(id)}/segments/${encodeURIComponent(segment)}`,
       { method: "PATCH", body: JSON.stringify(req) },
     ),
-  deleteReel: (id: string) =>
-    request<void>(`/api/reels/${encodeURIComponent(id)}`, { method: "DELETE" }),
+  deleteCombo: (id: string) =>
+    request<void>(`/api/combos/${encodeURIComponent(id)}`, { method: "DELETE" }),
   // No-code pieces. Every segment stands on a recording or on stated facts,
   // so the catalog is the no-code subset and the recordables list is served
   // rather than hard-coded — the page must not carry its own copy of either.

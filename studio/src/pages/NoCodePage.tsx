@@ -57,7 +57,7 @@ import type {
 //     a download, and the path on disk.
 //
 // The template picker is a grouped select rather than the snippets gallery for
-// the same reason the reels page uses one: you are choosing for the third
+// the same reason the combos page uses one: you are choosing for the third
 // segment of five, and the choice has to sit inline beside its prompt.
 
 /** The synthetic course pieces live in; run events are tagged with this slug. */
@@ -448,7 +448,7 @@ export function NoCodePage() {
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Every segment stands on something real — a recording of the tool actually
           running, or facts you can point at. Nothing here is drawn in place of
-          evidence, which is what separates a piece from a reel about the same
+          evidence, which is what separates a piece from a combo about the same
           subject.
         </p>
         {/* What actually happens, before anybody spends ten minutes finding out. */}

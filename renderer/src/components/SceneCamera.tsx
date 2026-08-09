@@ -76,7 +76,7 @@ export const SceneCamera: React.FC<{
   // across the scene.
   //
   // Pacing it across the scene was the first implementation and it produced no
-  // motion at all on the scenes that needed it most. A reel segment runs sixty to
+  // motion at all on the scenes that needed it most. A combo segment runs sixty to
   // a hundred seconds, so spreading 3% over one gives 0.03% a second: measured on
   // a rendered frame, content moved twenty-eight pixels in seventy seconds. That
   // is not a camera, it is a rounding error. The rate is what the eye reads, not

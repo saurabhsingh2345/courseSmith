@@ -1,5 +1,5 @@
 
-// No-code pieces. The one thing that separates this surface from a reel is
+// No-code pieces. The one thing that separates this surface from a combo is
 // that a segment carries evidence, so that is the field the page is built
 // around.
 export interface NoCodeEvidenceInfo {

@@ -1,38 +1,38 @@
 import { useMemo, useState } from "react";
 import {
   api,
-  type CreateReelSegment,
-  type ReelSegmentInfo,
-  type ReelSummary,
+  type CreateComboSegment,
+  type ComboSegmentInfo,
+  type ComboSummary,
   type SnippetTemplateInfo,
 } from "../api/client";
+import { ComboPools, ComboSkins, type Skin } from "../lib/families";
 import { useFetch } from "../lib/useFetch";
 import { ErrorNote } from "../components/ErrorNote";
 
-// ReelsPage: a longer video built from several templates on one timeline.
+// CombosPage: a longer video, directed from one line.
 //
-// The page is two halves and the split matters. Building a reel is choosing an
-// ORDER — which look carries which part of the argument — so the builder is a
-// list you add to and reorder, not a grid you pick one thing from. That is the
-// difference from the snippets page, where the gallery is the primary control
-// because a snippet is one decision.
+// The page is one control and one review, and that split is the whole design.
+// You say what the video is about, how long it runs, what theme it is cut in and
+// whether it carries captions — four decisions — and the director makes the rest:
+// what the piece argues, how it divides into parts, which look carries each part
+// and how long each one gets.
 //
-// Editing an existing reel is the other half, and it is the reason the page
-// exists rather than a CLI being enough. After watching a cut, what you want is
-// to change one part — and every edit here costs the same as a rebuild, so the
-// page batches: change several segments, then run once. A page that re-ran on
-// every keystroke would spend an hour of render time on a minute of editing.
+// What comes back is a PROPOSAL, not a video. Nothing is written until you press
+// build, and everything in it is editable in place. That matters because the
+// structure is the decision worth disagreeing with and it is cheapest to
+// disagree with here — before a planning call has been spent on any part. A page
+// that went straight from a prompt to a render would make "ask" and "commit" the
+// same irreversible action, and the cost of being wrong is minutes of render.
+//
+// Editing an existing combo is the other half, and it is why this is a page
+// rather than a CLI command. After watching a cut, what you want is to change
+// one part — and every edit costs a rebuild, so the page batches: change several
+// segments, then run once.
 
-const REEL_COURSE = "reels";
+const COMBO_COURSE = "combos";
 
-/**
- * A segmented control, matching the snippets page.
- *
- * The runtime picker was the only one of these, written inline. Three of them
- * inline is three places to get the dark-shell colours wrong — and the base
- * Button's "secondary" variant resolves to the light-mode surface token, so it
- * renders as a white pill here and cannot be used.
- */
+/** A segmented control. */
 function Segmented<T extends string | number>({
   value,
   options,
@@ -43,7 +43,7 @@ function Segmented<T extends string | number>({
   onChange: (v: T) => void;
 }) {
   return (
-    <div className="flex rounded-lg border border-ink-800 p-0.5">
+    <div className="flex flex-wrap rounded-lg border border-ink-800 p-0.5">
       {options.map((o) => (
         <button
           key={String(o.value)}
@@ -62,10 +62,14 @@ function Segmented<T extends string | number>({
   );
 }
 
-/** Small monospace chip, matching the snippets page. */
-function Chip({ children, tone }: { children: React.ReactNode; tone?: "muted" | "warn" }) {
+/** Small monospace chip. */
+function Chip({ children, tone }: { children: React.ReactNode; tone?: "muted" | "warn" | "role" }) {
   const color =
-    tone === "warn" ? "bg-amber-500/15 text-amber-300" : "bg-ink-800 text-ink-400";
+    tone === "warn"
+      ? "bg-amber-500/15 text-amber-300"
+      : tone === "role"
+        ? "bg-sky-500/15 text-sky-300"
+        : "bg-ink-800 text-ink-400";
   return (
     <span className={`rounded px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wide ${color}`}>
       {children}
@@ -74,35 +78,41 @@ function Chip({ children, tone }: { children: React.ReactNode; tone?: "muted" | 
 }
 
 /**
- * The template picker, grouped the way the catalog is.
+ * The template picker, grouped the way the catalog is and narrowed to the theme.
  *
  * A native select rather than the snippets page's card gallery: here you are
- * choosing a template for the *fourth segment of nine*, so the choice has to sit
+ * choosing a template for the fourth segment of nine, so the choice has to sit
  * inline next to its prompt. A grid would push the thing you are editing off the
  * screen every time you opened it.
+ *
+ * Narrowed to the theme's pool because the server enforces the same rule. A
+ * picker offering a look the server will reject teaches people that the picker
+ * lies, and the error arrives after the click rather than before it.
  */
 function TemplateSelect({
   templates,
+  skin,
   value,
   onChange,
   id,
 }: {
   templates: SnippetTemplateInfo[];
+  skin: Skin;
   value: string;
   onChange: (v: string) => void;
   id?: string;
 }) {
-  // Grouped by first-seen category, which is the order Go sent them in — the
-  // same contract the snippets gallery relies on.
   const groups = useMemo(() => {
+    const allowed = new Set(ComboPools[skin] ?? []);
     const byCat = new Map<string, { title: string; items: SnippetTemplateInfo[] }>();
     for (const t of templates) {
+      if (!allowed.has(t.family ?? "")) continue;
       const key = t.category ?? "";
       if (!byCat.has(key)) byCat.set(key, { title: t.category_title || key, items: [] });
       byCat.get(key)!.items.push(t);
     }
     return [...byCat.values()];
-  }, [templates]);
+  }, [templates, skin]);
 
   return (
     <select
@@ -111,6 +121,12 @@ function TemplateSelect({
       value={value}
       onChange={(e) => onChange(e.target.value)}
     >
+      {/* A template from another theme is still shown when it is the current
+          value, or swapping the theme on an existing piece would silently blank
+          every picker rather than showing what is there. */}
+      {!groups.some((g) => g.items.some((t) => t.name === value)) && value && (
+        <option value={value}>{value} (not in this theme)</option>
+      )}
       {groups.map((g) => (
         <optgroup key={g.title} label={g.title}>
           {g.items.map((t) => (
@@ -124,11 +140,19 @@ function TemplateSelect({
   );
 }
 
-/** One row of the builder: a template and what it should cover. */
-function SegmentRow({
+/**
+ * One proposed segment, as the review shows it.
+ *
+ * Everything the director decided is visible and editable: the look, what the
+ * part establishes, the facts it will be built from, and the reason the look was
+ * chosen. The reason is read-only — it is the machine's account of itself, and
+ * editing it would only produce a note nobody wrote.
+ */
+function ProposedSegment({
   index,
   segment,
   templates,
+  skin,
   onChange,
   onRemove,
   onMove,
@@ -136,9 +160,10 @@ function SegmentRow({
   canMoveDown,
 }: {
   index: number;
-  segment: CreateReelSegment;
+  segment: CreateComboSegment;
   templates: SnippetTemplateInfo[];
-  onChange: (next: CreateReelSegment) => void;
+  skin: Skin;
+  onChange: (next: CreateComboSegment) => void;
   onRemove: () => void;
   onMove: (dir: -1 | 1) => void;
   canMoveUp: boolean;
@@ -150,19 +175,27 @@ function SegmentRow({
         {index + 1}
       </span>
       <div className="flex min-w-0 flex-1 flex-col gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          {segment.role && <Chip tone="role">{segment.role}</Chip>}
+          {segment.heading && (
+            <span className="truncate text-[13px] font-medium text-ink-200">{segment.heading}</span>
+          )}
+        </div>
         <TemplateSelect
           templates={templates}
+          skin={skin}
           value={segment.template}
           onChange={(template) => onChange({ ...segment, template })}
         />
         <textarea
           className="min-h-[52px] w-full resize-y rounded-md border border-ink-800 bg-ink-950 p-2 text-[13px] text-ink-100 placeholder:text-ink-500 focus:border-brand focus:outline-none"
-          placeholder="What should this part cover?"
+          placeholder="What should the viewer know after this part that they did not before?"
           value={segment.prompt}
           onChange={(e) => onChange({ ...segment, prompt: e.target.value })}
+          aria-label={`What segment ${index + 1} establishes`}
         />
         {/* The material is shown because it is the field that decides whether
-            this segment is true. The writer plans from it, so a figure that is
+            this segment is TRUE. The writer plans from it, so a figure that is
             wrong here is wrong in the finished video — and left invisible, a
             fact nobody can check is a fact nobody will. Smaller and quieter
             than the prompt: read it, correct it, do not have to write it. */}
@@ -173,6 +206,9 @@ function SegmentRow({
           onChange={(e) => onChange({ ...segment, material: e.target.value })}
           aria-label={`Material for segment ${index + 1}`}
         />
+        {segment.why && (
+          <p className="text-[11.5px] leading-snug text-ink-500">Why this look: {segment.why}</p>
+        )}
       </div>
       {/* Order is the argument, so reordering is a first-class control rather
           than something you do by deleting and re-adding. */}
@@ -209,7 +245,7 @@ function SegmentRow({
 }
 
 /**
- * The editor for an existing reel.
+ * The editor for an existing combo.
  *
  * Edits are staged locally and applied together. Every change here moves the
  * narration — swapping a template re-plans the segment, skipping one takes its
@@ -217,10 +253,10 @@ function SegmentRow({
  * four edits into one run instead of four, and the banner says so plainly
  * rather than letting the cost be discovered.
  */
-function ReelEditor({ id, onClose }: { id: string; onClose: () => void }) {
-  const detail = useFetch(() => api.reel(id), [id]);
+function ComboEditor({ id, onClose }: { id: string; onClose: () => void }) {
+  const detail = useFetch(() => api.combo(id), [id]);
   const templates = useFetch(() => api.snippetTemplates(), []);
-  const [pending, setPending] = useState<Record<string, Partial<ReelSegmentInfo>>>({});
+  const [pending, setPending] = useState<Record<string, Partial<ComboSegmentInfo>>>({});
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -231,7 +267,7 @@ function ReelEditor({ id, onClose }: { id: string; onClose: () => void }) {
   // The plan stage ships the closest draft when the correction rounds run out —
   // correct, since the clip still renders — but that used to leave no trace
   // anywhere a creator looks. A segment that came in under its word budget was
-  // indistinguishable from one that passed, so the reels with three loose
+  // indistinguishable from one that passed, so the combos with three loose
   // segments read as finished.
   const compromises = useMemo(() => {
     const out = new Map<string, string[]>();
@@ -253,24 +289,25 @@ function ReelEditor({ id, onClose }: { id: string; onClose: () => void }) {
   }, [detail.data?.plan]);
   const dirty = Object.keys(pending).length > 0;
 
-  const stage = (segId: string, patch: Partial<ReelSegmentInfo>) =>
+  const stage = (segId: string, patch: Partial<ComboSegmentInfo>) =>
     setPending((p) => ({ ...p, [segId]: { ...p[segId], ...patch } }));
 
-  const valueOf = (seg: ReelSegmentInfo) => ({ ...seg, ...pending[seg.id] });
+  const valueOf = (seg: ComboSegmentInfo) => ({ ...seg, ...pending[seg.id] });
 
   const applyAndRun = async () => {
     setBusy(true);
     setError(null);
     try {
       for (const [segId, patch] of Object.entries(pending)) {
-        await api.patchReelSegment(id, segId, {
+        await api.patchComboSegment(id, segId, {
           template: patch.template,
           prompt: patch.prompt,
+          material: patch.material,
           skip: patch.skip,
         });
       }
       setPending({});
-      await api.runReel(id);
+      await api.runCombo(id);
       detail.reload();
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
@@ -315,9 +352,17 @@ function ReelEditor({ id, onClose }: { id: string; onClose: () => void }) {
                 changed ? "ring-1 ring-brand/50" : "",
               ].join(" ")}
             >
-              <div className="mb-2 flex items-center gap-2">
+              <div className="mb-2 flex flex-wrap items-center gap-2">
                 <span className="font-mono text-[12px] text-ink-500">{i + 1}</span>
                 <span className="font-mono text-[11px] text-ink-500">{seg.id}</span>
+                {/* The role and the heading tell you WHETHER to rewrite this
+                    segment, where the material below tells you what to correct.
+                    A segment reads very differently once you can see it is the
+                    piece's only hook. */}
+                {seg.role && <Chip tone="role">{seg.role}</Chip>}
+                {seg.heading && (
+                  <span className="truncate text-[12px] text-ink-300">{seg.heading}</span>
+                )}
                 {v.skip && <Chip tone="warn">not in the cut</Chip>}
                 {changed && <Chip tone="warn">edited</Chip>}
                 <div className="ml-auto flex gap-2">
@@ -333,6 +378,10 @@ function ReelEditor({ id, onClose }: { id: string; onClose: () => void }) {
               {templates.data && (
                 <TemplateSelect
                   templates={templates.data}
+                  // The editor works on a piece already cut in a theme, and the
+                  // page does not know which. Offering everything is right here:
+                  // narrowing would hide the template that is actually in use.
+                  skin="editorial"
                   value={v.template}
                   onChange={(template) => stage(seg.id, { template })}
                 />
@@ -346,7 +395,7 @@ function ReelEditor({ id, onClose }: { id: string; onClose: () => void }) {
                   field that decides whether the segment is TRUE — the writer
                   builds from it, so a wrong figure here becomes a wrong figure in
                   the finished video, and correcting it is one edit rather than a
-                  re-cast. */}
+                  re-direct. */}
               <textarea
                 className="mt-2 min-h-[38px] w-full resize-y rounded-md border border-ink-800/60 bg-ink-900 p-2 font-mono text-[11.5px] leading-snug text-ink-300 placeholder:text-ink-600 focus:border-brand focus:outline-none"
                 placeholder="Facts this part is built from — figures, names, thresholds"
@@ -354,6 +403,11 @@ function ReelEditor({ id, onClose }: { id: string; onClose: () => void }) {
                 onChange={(e) => stage(seg.id, { material: e.target.value })}
                 aria-label={`Material for segment ${i + 1}`}
               />
+              {seg.why && (
+                <p className="mt-2 text-[11.5px] leading-snug text-ink-500">
+                  Why this look: {seg.why}
+                </p>
+              )}
               {compromises.get(seg.id)?.map((line, j) => (
                 <p key={j} className="mt-2 text-[11.5px] leading-snug text-amber-400/90">
                   Shipped looser than asked: {line}
@@ -377,7 +431,7 @@ function ReelEditor({ id, onClose }: { id: string; onClose: () => void }) {
         {dirty && (
           <p className="text-[12px] text-ink-500">
             Every change here moves the narration, so this re-plans, re-voices and re-renders the
-            whole reel. Make all your changes first.
+            whole combo. Make all your changes first.
           </p>
         )}
       </div>
@@ -385,26 +439,29 @@ function ReelEditor({ id, onClose }: { id: string; onClose: () => void }) {
   );
 }
 
-export function ReelsPage() {
-  const reels = useFetch(() => api.reels(), []);
+export function CombosPage() {
+  const combos = useFetch(() => api.combos(), []);
   const templates = useFetch(() => api.snippetTemplates(), []);
 
-  const [title, setTitle] = useState("");
-  const [brief, setBrief] = useState("");
-  const [segments, setSegments] = useState<CreateReelSegment[]>([]);
-  const [planOnly, setPlanOnly] = useState(true);
-  const [mode, setMode] = useState<"dark" | "light">("dark");
+  // The four decisions.
+  const [subject, setSubject] = useState("");
+  const [minutes, setMinutes] = useState(5);
+  const [skin, setSkin] = useState<Skin>("default");
   const [captions, setCaptions] = useState<"off" | "on">("off");
-  const [skin, setSkin] = useState<"default" | "broadcast" | "minimal">("default");
+  const [mode, setMode] = useState<"dark" | "light">("dark");
+
+  // The proposal, once it exists.
+  const [title, setTitle] = useState("");
+  const [angle, setAngle] = useState("");
+  const [pool, setPool] = useState("");
+  const [runtime, setRuntime] = useState("");
+  const [segments, setSegments] = useState<CreateComboSegment[]>([]);
+
+  const [planOnly, setPlanOnly] = useState(true);
   const [busy, setBusy] = useState(false);
-  const [casting, setCasting] = useState(false);
+  const [directing, setDirecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [open, setOpen] = useState<string | null>(null);
-
-  const firstTemplate = templates.data?.[0]?.name ?? "metric";
-
-  const addSegment = () =>
-    setSegments((s) => [...s, { template: firstTemplate, prompt: "" }]);
 
   const move = (i: number, dir: -1 | 1) =>
     setSegments((s) => {
@@ -416,42 +473,51 @@ export function ReelsPage() {
     });
 
   /**
-   * Ask the model for a structure.
+   * Ask the director for a piece.
    *
-   * The proposal fills the builder rather than creating a reel, which is the
-   * whole point: casting is a suggestion you read and change, not a commitment.
-   * Everything it returns is editable in place before anything is spent, and
-   * that is also why the endpoint writes nothing.
+   * Fills the review below rather than creating anything, which is the whole
+   * point: what comes back is a proposal you read and change, not a commitment.
+   * That is also why the endpoint writes nothing.
    */
-  const cast = async () => {
-    const text = brief.trim();
+  const direct = async () => {
+    const text = subject.trim();
     if (!text) return;
-    setCasting(true);
+    setDirecting(true);
     setError(null);
     try {
-      const proposal = await api.castReel({
-        brief: text,
+      const proposal = await api.directCombo({
+        subject: text,
         title: title.trim() || undefined,
-        segments: 5,
+        minutes,
+        skin,
+        captions,
+        mode,
       });
       setSegments(proposal.segments);
+      setAngle(proposal.angle);
+      setPool(proposal.pool);
+      setRuntime(proposal.runtime ?? "");
       if (!title.trim()) setTitle(proposal.title);
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
     } finally {
-      setCasting(false);
+      setDirecting(false);
     }
   };
 
-  const canCreate = segments.length >= 2 && segments.every((s) => s.prompt.trim() !== "");
+  const canBuild = segments.length >= 2 && segments.every((s) => s.prompt.trim() !== "");
 
-  const create = async () => {
+  const build = async () => {
     setBusy(true);
     setError(null);
     try {
-      const created = await api.createReel({
+      const created = await api.createCombo({
         title: title.trim() || undefined,
-        brief: brief.trim() || undefined,
+        brief: subject.trim() || undefined,
+        // The angle has to make the round trip: it is what the critic scores
+        // every finished segment against, and without it that pass can only ask
+        // whether a segment is good, which returns opinions about prose.
+        angle: angle.trim() || undefined,
         segments,
         mode,
         captions,
@@ -459,10 +525,11 @@ export function ReelsPage() {
         plan_only: planOnly,
       });
       setSegments([]);
+      setAngle("");
       setTitle("");
-      setBrief("");
+      setSubject("");
       setOpen(created.id);
-      reels.reload();
+      combos.reload();
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
     } finally {
@@ -472,101 +539,42 @@ export function ReelsPage() {
 
   return (
     <div className="mx-auto max-w-4xl p-6">
-      <h1 className="text-lg font-semibold text-ink-100">Make a reel</h1>
+      <h1 className="text-lg font-semibold text-ink-100">Direct a combo</h1>
       <p className="mt-1 text-ink-400">
-        One video cut from several templates, narrated as one continuous read. Use a snippet for one
-        idea in one look; use a reel when the piece is long enough that one look would not hold it.
+        Say what the video is about and how long it should run. The director decides what the piece
+        argues, how it divides into parts, which look carries each part and how long each one gets —
+        then writes them, reads the whole thing back, and repairs anything that does not belong.
       </p>
 
       <section className="mt-5">
-        <label className="mb-2 block text-[11px] uppercase tracking-wide text-ink-500" htmlFor="reel-title">
-          Title
-        </label>
-        <input
-          id="reel-title"
-          className="w-full rounded-lg border border-ink-800 bg-ink-950 p-3 text-[14px] text-ink-100 placeholder:text-ink-500 focus:border-brand focus:outline-none"
-          placeholder="What decides whether a model runs on your machine"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-
-        <label className="mb-2 mt-4 block text-[11px] uppercase tracking-wide text-ink-500" htmlFor="reel-brief">
-          What is the whole piece about?{" "}
-          <span className="normal-case tracking-normal text-ink-500">
-            — optional today; it is what the caster will read
-          </span>
+        <label className="mb-2 block text-[11px] uppercase tracking-wide text-ink-500" htmlFor="combo-subject">
+          What is the video about?
         </label>
         <textarea
-          id="reel-brief"
-          className="min-h-[64px] w-full resize-y rounded-lg border border-ink-800 bg-ink-950 p-3 text-[14px] text-ink-100 placeholder:text-ink-500 focus:border-brand focus:outline-none"
-          value={brief}
-          onChange={(e) => setBrief(e.target.value)}
+          id="combo-subject"
+          className="min-h-[76px] w-full resize-y rounded-lg border border-ink-800 bg-ink-950 p-3 text-[14px] text-ink-100 placeholder:text-ink-500 focus:border-brand focus:outline-none"
+          placeholder="What Is Artificial Intelligence?"
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
         />
-        <div className="mt-2 flex items-center gap-3">
-          <button
-            type="button"
-            className="rounded border border-ink-700 px-3 py-1.5 text-ink-200 hover:bg-ink-800 disabled:opacity-40"
-            onClick={cast}
-            disabled={!brief.trim() || casting}
-          >
-            {casting ? "Casting…" : "Cast it for me"}
-          </button>
-          <span className="text-[12px] text-ink-500">
-            Proposes the segments below. Nothing is created — change anything before you build.
-          </span>
-        </div>
-      </section>
 
-      <section className="mt-6">
-        <div className="mb-2 flex items-center justify-between">
-          <h2 className="text-[11px] uppercase tracking-wide text-ink-500">
-            The segments, in order
-          </h2>
-          <span className="text-[12px] text-ink-500">{segments.length} · at least 2</span>
-        </div>
-        {templates.error && <ErrorNote error={templates.error} onRetry={templates.reload} />}
-        <div className="flex flex-col gap-2">
-          {segments.map((seg, i) => (
-            <SegmentRow
-              key={i}
-              index={i}
-              segment={seg}
-              templates={templates.data ?? []}
-              onChange={(next) => setSegments((s) => s.map((v, j) => (j === i ? next : v)))}
-              onRemove={() => setSegments((s) => s.filter((_, j) => j !== i))}
-              onMove={(dir) => move(i, dir)}
-              canMoveUp={i > 0}
-              canMoveDown={i < segments.length - 1}
+        <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <label className="flex items-center gap-2 text-[13px] text-ink-400">
+            <span className="text-[11px] uppercase tracking-wide text-ink-500">Minutes</span>
+            <input
+              type="number"
+              min={1}
+              max={15}
+              className="w-16 rounded-md border border-ink-800 bg-ink-950 px-2 py-1.5 text-[13px] text-ink-100 focus:border-brand focus:outline-none"
+              value={minutes}
+              onChange={(e) => setMinutes(Math.max(1, Number(e.target.value) || 1))}
             />
-          ))}
-        </div>
-        <button
-          type="button"
-          className="mt-2 rounded border border-ink-700 px-3 py-1.5 text-ink-300 hover:bg-ink-800"
-          onClick={addSegment}
-          disabled={!templates.data}
-        >
-          + Add a segment
-        </button>
-      </section>
-
-      {error && <div className="mt-4 rounded-lg border border-danger/40 bg-danger/10 p-3 text-danger">{error}</div>}
-
-      {/* The look. Identical to the snippets page, and applied to the whole
-          reel: a piece that changed polarity or caption style between segments
-          would read as several videos stitched together, which is the one thing
-          a reel is built not to be. */}
-      <section className="mt-6">
-        <h2 className="mb-2 text-[11px] uppercase tracking-wide text-ink-500">How should it look?</h2>
-        <div className="flex flex-wrap items-center gap-3">
-          <Segmented
-            value={mode}
-            onChange={setMode}
-            options={[
-              { value: "dark", label: "Dark", hint: "The default editorial look" },
-              { value: "light", label: "Light", hint: "A paper-white video, same branding" },
-            ]}
-          />
+          </label>
+          {/* The theme is not only a look: it decides which templates can be
+              cast at all, because a piece is cut in one house style throughout
+              and a template from another family reads as a different production
+              however good it is. */}
+          <Segmented value={skin} onChange={setSkin} options={ComboSkins} />
           <Segmented
             value={captions}
             onChange={setCaptions}
@@ -576,43 +584,120 @@ export function ReelsPage() {
             ]}
           />
           <Segmented
-            value={skin}
-            onChange={setSkin}
+            value={mode}
+            onChange={setMode}
             options={[
-              { value: "default", label: "Default", hint: "The catalog's own look" },
-              { value: "broadcast", label: "Broadcast", hint: "Near-black stage, large type, standing chrome" },
-              { value: "minimal", label: "Minimal", hint: "Flat, one accent, no furniture" },
+              { value: "dark", label: "Dark", hint: "The default editorial look" },
+              { value: "light", label: "Light", hint: "A paper-white video, same branding" },
             ]}
           />
         </div>
+
+        <div className="mt-4 flex items-center gap-3">
+          <button
+            type="button"
+            className="rounded bg-sky-600 px-4 py-1.5 font-medium text-white hover:bg-sky-500 disabled:opacity-40"
+            onClick={direct}
+            disabled={!subject.trim() || directing}
+          >
+            {directing ? "Directing…" : "Direct it"}
+          </button>
+          <span className="text-[12px] text-ink-500">
+            Proposes the whole piece below. Nothing is created — change anything before you build.
+          </span>
+        </div>
       </section>
 
-      <section className="mt-6 flex items-center gap-3">
-        <button
-          type="button"
-          className="rounded bg-sky-600 px-4 py-1.5 font-medium text-white hover:bg-sky-500 disabled:opacity-40"
-          onClick={create}
-          disabled={!canCreate || busy}
-        >
-          {busy ? "Starting…" : planOnly ? "Plan it" : "Make the reel"}
-        </button>
-        {/* Plan-only defaults ON here and OFF for snippets, deliberately:
-            planning a reel is one call per segment and rendering is minutes, so
-            seeing the plan before paying for it is the sane default. */}
-        <label className="flex items-center gap-2 text-[13px] text-ink-400">
-          <input type="checkbox" checked={planOnly} onChange={(e) => setPlanOnly(e.target.checked)} />
-          Plan only — stop before the voice and the render
-        </label>
-      </section>
+      {error && <div className="mt-4 rounded-lg border border-danger/40 bg-danger/10 p-3 text-danger">{error}</div>}
 
-      {open && <ReelEditor id={open} onClose={() => setOpen(null)} />}
+      {segments.length > 0 && (
+        <>
+          {/* The argument, first and editable.
+              It is the decision everything else serves, and the one most worth
+              disagreeing with: a piece can be about the right subject and be
+              making the wrong point, and this is the only place that is visible
+              before the render. */}
+          <section className="mt-6 rounded-xl border border-ink-800 bg-ink-900 p-4">
+            <label className="mb-2 block text-[11px] uppercase tracking-wide text-ink-500" htmlFor="combo-title">
+              Title
+            </label>
+            <input
+              id="combo-title"
+              className="w-full rounded-lg border border-ink-800 bg-ink-950 p-2.5 text-[14px] text-ink-100 focus:border-brand focus:outline-none"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <label className="mb-2 mt-4 block text-[11px] uppercase tracking-wide text-ink-500" htmlFor="combo-angle">
+              What it argues{" "}
+              <span className="normal-case tracking-normal text-ink-500">
+                — every segment is written toward this, and judged against it afterwards
+              </span>
+            </label>
+            <textarea
+              id="combo-angle"
+              className="min-h-[52px] w-full resize-y rounded-lg border border-ink-800 bg-ink-950 p-2.5 text-[13px] text-ink-100 focus:border-brand focus:outline-none"
+              value={angle}
+              onChange={(e) => setAngle(e.target.value)}
+            />
+            <div className="mt-3 flex flex-col gap-1 text-[11.5px] text-ink-500">
+              {pool && <span>{pool}</span>}
+              {runtime && <span>{runtime}</span>}
+            </div>
+          </section>
+
+          <section className="mt-4">
+            <div className="mb-2 flex items-center justify-between">
+              <h2 className="text-[11px] uppercase tracking-wide text-ink-500">The parts, in order</h2>
+              <span className="text-[12px] text-ink-500">{segments.length} · at least 2</span>
+            </div>
+            {templates.error && <ErrorNote error={templates.error} onRetry={templates.reload} />}
+            <div className="flex flex-col gap-2">
+              {segments.map((seg, i) => (
+                <ProposedSegment
+                  key={i}
+                  index={i}
+                  segment={seg}
+                  templates={templates.data ?? []}
+                  skin={skin}
+                  onChange={(next) => setSegments((s) => s.map((v, j) => (j === i ? next : v)))}
+                  onRemove={() => setSegments((s) => s.filter((_, j) => j !== i))}
+                  onMove={(dir) => move(i, dir)}
+                  canMoveUp={i > 0}
+                  canMoveDown={i < segments.length - 1}
+                />
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-5 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              className="rounded bg-sky-600 px-4 py-1.5 font-medium text-white hover:bg-sky-500 disabled:opacity-40"
+              onClick={build}
+              disabled={!canBuild || busy}
+            >
+              {busy ? "Starting…" : planOnly ? "Write it" : "Make the video"}
+            </button>
+            {/* Plan-only defaults ON here and OFF for snippets, deliberately:
+                writing a combo is one call per segment plus the critic, and
+                rendering is minutes, so reading what it wrote before paying for
+                the voice and the render is the sane default. */}
+            <label className="flex items-center gap-2 text-[13px] text-ink-400">
+              <input type="checkbox" checked={planOnly} onChange={(e) => setPlanOnly(e.target.checked)} />
+              Write only — stop before the voice and the render
+            </label>
+          </section>
+        </>
+      )}
+
+      {open && <ComboEditor id={open} onClose={() => setOpen(null)} />}
 
       <section className="mt-8">
-        <h2 className="mb-2 text-[11px] uppercase tracking-wide text-ink-500">Your reels</h2>
-        {reels.error && <ErrorNote error={reels.error} onRetry={reels.reload} />}
-        {reels.data?.length === 0 && <p className="text-ink-500">No reels yet.</p>}
+        <h2 className="mb-2 text-[11px] uppercase tracking-wide text-ink-500">Your combos</h2>
+        {combos.error && <ErrorNote error={combos.error} onRetry={combos.reload} />}
+        {combos.data?.length === 0 && <p className="text-ink-500">No combos yet.</p>}
         <div className="flex flex-col gap-2">
-          {(reels.data ?? []).map((r: ReelSummary) => (
+          {(combos.data ?? []).map((r: ComboSummary) => (
             <div key={r.id} className="flex items-center gap-3 rounded-lg border border-ink-800 bg-ink-900 p-3">
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
@@ -644,9 +729,9 @@ export function ReelsPage() {
                 className="rounded px-2 py-1 text-ink-500 hover:bg-ink-800 hover:text-ink-200"
                 aria-label={`Delete ${r.title || r.id}`}
                 onClick={async () => {
-                  await api.deleteReel(r.id);
+                  await api.deleteCombo(r.id);
                   if (open === r.id) setOpen(null);
-                  reels.reload();
+                  combos.reload();
                 }}
               >
                 ✕
@@ -659,4 +744,4 @@ export function ReelsPage() {
   );
 }
 
-export { REEL_COURSE };
+export { COMBO_COURSE };

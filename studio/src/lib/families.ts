@@ -36,3 +36,32 @@ export const FoundationsSkin = "editorial" as const;
 
 /** The house styles a clip can be cut in. Mirrors videoskin.go. */
 export type Skin = "default" | "broadcast" | "minimal" | "editorial";
+
+/**
+ * Which families a theme may cast from. Mirrors comboPools in combo_pool.go.
+ *
+ * The whole piece is cut in one house style, so a combo's template picker has to
+ * offer the same set the server will accept — otherwise the page shows a choice
+ * that comes back as a validation error, which teaches people the picker lies.
+ * The core family is in every pool: those templates predate the split and are
+ * drawn skin-neutral, so they inherit whichever style they are rendered in.
+ *
+ * Duplicated from Go rather than fetched, and that is a real trade. It is four
+ * lines that go stale silently if a family is added; the alternative is an
+ * endpoint and a loading state on a control that must render instantly. If this
+ * grows a third entry, fetch it.
+ */
+export const ComboPools: Record<Skin, string[]> = {
+  default: [FamilyCore],
+  minimal: [FamilyCore],
+  broadcast: [FamilyCore, FamilyReplica],
+  editorial: [FamilyCore, FamilyFoundations],
+};
+
+/** The themes a combo can be cut in, in picker order. */
+export const ComboSkins: { value: Skin; label: string; hint: string }[] = [
+  { value: "default", label: "Default", hint: "The catalog's own look — the core templates" },
+  { value: "broadcast", label: "Broadcast", hint: "Near-black stage, large type, standing chrome — adds the replica batch" },
+  { value: "minimal", label: "Minimal", hint: "Flat, one accent, no furniture — the core templates" },
+  { value: "editorial", label: "Editorial", hint: "Hard left axis for diagram-dense teaching — adds the foundations batch" },
+];
