@@ -3,7 +3,7 @@
 _A living snapshot of the project: what it is, everything that's built, what's
 left, and where it's going. Last updated 2026-07-31 — the snippet catalog is
 **32 templates** in six browsable categories (§9–§11, §14), there is a house-style
-axis (**skins**) independent of branding and mode (§10), **reels** cut one
+axis (**skins**) independent of branding and mode (§10), **combos** cut one
 video from several templates on a single timeline (§12), and the studio has a
 nav rail and a working light mode (§13). Content generation is **OpenAI-only**
 by default._
@@ -25,7 +25,7 @@ site, and a React studio UI.
 
 **Two shorter shapes sit on the same spine.** A **snippet** (§9–§11) is a
 prompt plus one of 32 visual templates, planned into a standalone clip; a
-**reel** (§12) is an ordered run of segments, each with its own template, cut
+**combo** (§12) is an ordered run of segments, each with its own template, cut
 onto one timeline. Both reuse the whole pipeline below the plan stage, so they
 inherit the same quality moat with no second engine.
 
@@ -174,7 +174,7 @@ templates — change.
 
 ### Studio UI (`studio/`, React + Vite + Tailwind)
 - Served by `coursesmith serve` (Go JSON API in `internal/studio/`).
-- Pages: Compose, Snippets, Reels, Courses, Course/Lesson detail and editors,
+- Pages: Compose, Snippets, Combos, Courses, Course/Lesson detail and editors,
   Quiz editor + strategy, Templates, Library, Results gallery, Adaptive
   config, Showcase, Generation, Ledger — behind a grouped, collapsible nav
   rail (§13).
@@ -248,12 +248,13 @@ coursesmith snippet new <prompt>     plan + render a clip
     --template (required) | --seconds | --mode | --captions | --skin | --plan-only
 coursesmith snippet run <id>         re-run one (up-to-date stages skipped)
 coursesmith snippet list             every snippet and its state
-coursesmith reel cast <brief>        brief → segment structure + template picks
-    --run goes straight through; otherwise writes reel.yaml and stops
-coursesmith reel new <title>         --segment template:prompt (repeatable)
-coursesmith reel run <id>            plan every segment, one timeline, one render
-coursesmith reel list | show <id>    inspect a reel and its segments
-coursesmith reel segment <reel> <seg>  edit one segment (template/prompt/skip)
+coursesmith combo direct <subject>    subject → argument, parts, looks, runtimes
+    --minutes | --skin | --captions | --mode
+    --run goes straight through; otherwise writes combo.yaml and stops
+coursesmith combo new <title>         --segment template:prompt (repeatable)
+coursesmith combo run <id>            plan every segment, one timeline, one render
+coursesmith combo list | show <id>    inspect a combo and its segments
+coursesmith combo segment <combo> <seg>  edit one segment (template/prompt/skip)
 ```
 
 ---
@@ -267,14 +268,14 @@ coursesmith reel segment <reel> <seg>  edit one segment (template/prompt/skip)
   OpenAI-compatible backend, but the default and every shipped course manifest
   now pin `openai/gpt-4o-mini` — Groq is no longer wired in anywhere by
   default, and nothing else has been validated end to end at this scale.
-- **A reel is planned per segment, so a long one is a lot of calls.** Nine
+- **A combo is planned per segment, so a long one is a lot of calls.** Nine
   segments is nine planning calls plus enrichment; plan-only is the studio's
   default at that size for exactly that reason, but there is no cost estimate
   in the UI before the button is pressed.
 - **The recast fallback hides a bad cast.** A segment whose template cannot be
   planned is recast as `illustration` and the run continues — which is right,
-  but it means a reel can finish with a segment nobody chose. It is logged and
-  `reel.yaml` keeps the original pick; it is not surfaced in the studio.
+  but it means a combo can finish with a segment nobody chose. It is logged and
+  `combo.yaml` keeps the original pick; it is not surfaced in the studio.
 - **No release tagging.** It is a git repo now, with history, PR merges, and
   five GitHub Actions workflows (`quality-gates`, `visual-regression`,
   `accessibility`, `learning-science`, `deploy-site`) — but nothing is versioned
@@ -291,7 +292,7 @@ coursesmith reel segment <reel> <seg>  edit one segment (template/prompt/skip)
 
 Natural next moves, roughly in priority order:
 
-1. **Reels past phase 4** — a cheap edit path that patches a rendered segment's
+1. **Combos past phase 4** — a cheap edit path that patches a rendered segment's
    props without re-planning its narration (the shape `video-plan.yaml` already
    has for lessons), and surfacing recast segments in the studio.
 2. **Full-course authoring at scale** — write out the rest of `python-basics`,
@@ -317,14 +318,14 @@ Natural next moves, roughly in priority order:
 ## 7. Repo map
 
 ```
-cmd/coursesmith/     CLI commands (run, status, doctor, serve, snippet, reel, …)
+cmd/coursesmith/     CLI commands (run, status, doctor, serve, snippet, combo, …)
 internal/
   pipeline/          the 15 stages + render/audio/align/quiz/ebook/bundle
                      snippet*.go — the 32 templates, their prompts + validators
-                     reel*.go    — casting, per-segment planning, assembly
+                     combo*.go    — casting, per-segment planning, assembly
                      videotheme.go, typing.go — theme/skins, keystroke rhythm
   llm/               providers, router, rate limiter, cache, transcribe
-  project/           course/lesson/state parsing, Stage/Snippet/Reel orders
+  project/           course/lesson/state parsing, Stage/Snippet/Combo orders
   config/            layered config
   studio/            Go JSON API + SSE + ledger + artifacts
 prompts/             *.tmpl generation prompts + diagram_style exemplars
@@ -1258,11 +1259,11 @@ if a registered template has no preview.
 
 ---
 
-## 12. Reels — one video cut from several templates (2026-07-29)
+## 12. Combos — one video cut from several templates (2026-07-29)
 
 A snippet is one template start to finish, which is right for thirty seconds and
 wrong for ten minutes: nothing holds attention through ten minutes of the same
-picture. **A reel is an ordered run of segments, each with its own template,
+picture. **A combo is an ordered run of segments, each with its own template,
 rendered onto one timeline.**
 
 **It is not several clips stitched together**, and that is the decision that
@@ -1274,20 +1275,20 @@ What makes that cheap is that alignment spans are already absolute
 milliseconds. A template is handed the slice of spans covering its own beats —
 already timed against the finished audio — and lays out scenes exactly as it
 would in a snippet. **Assembly is slicing, not arithmetic, and no template knows
-it is in a reel.** The renderer needed no change at all: `LessonVideo` has
+it is in a combo.** The renderer needed no change at all: `LessonVideo` has
 always dispatched per scene on type.
 
 Segments are planned separately, each through its own template's prompt. One
-call for the whole reel would have been fewer round trips and worse in every
+call for the whole combo would have been fewer round trips and worse in every
 other way — each prompt carries its own vocabulary, bounds and enforced shape,
 and merging them would either drop those or produce a document no model follows
 to the end. Per-segment planning also means a segment that fails its validator
-fails alone. `IsReel` branches ahead of `IsSnippet` in the two stages that
+fails alone. `IsCombo` branches ahead of `IsSnippet` in the two stages that
 differ — plan and scenegraph — and everything between them (verify, audio,
 align, captions, chapters, render) is the shared path. Verify is kept whenever
 *any* segment shows code.
 
-**`reel.yaml` is the edit surface**, built for the editing that comes after the
+**`combo.yaml` is the edit surface**, built for the editing that comes after the
 first watch rather than retrofitted for it: segments carry stable ids generated
 once and never renumbered, so an edit stays addressed to the same segment when a
 neighbour moves; `skip: true` drops a segment from the cut without deleting the
@@ -1299,25 +1300,64 @@ have them, since a course manifest legitimately records an explicit zero, and a
 file people are told to edit should be readable when they get there. Empty lists
 survive: `segments: []` is a useful thing to see.
 
-**Casting is the only genuinely new thinking; planning, assembly and rendering
-were all reuse.** `coursesmith reel cast "<brief>"` reads the brief and decides
-how the piece breaks into parts and which template carries each. The difficulty
-was never picking looks — it is that every template has a validator that rejects
-material it cannot express, so casting `gauge` on a part with no threshold burns
-correction rounds discovering it after the caster has gone.
+**Directing is the only genuinely new thinking; planning, assembly and rendering
+were all reuse.** `coursesmith combo direct "<subject>" --minutes 5` is the whole
+surface in one command. A creator makes four decisions — subject, length, theme,
+captions — and four stages in a fixed order make the rest:
 
-So the caster does the awkward part up front, the same move every template's own
-validator makes: **each segment must name the material it will be filled with**,
-and a segment that cannot name any is one whose template was wrong. *"24GB
-ceiling; 7B/13B at 14/26GB"* is material; *"information about memory"* is not.
-That moves failure from late and expensive to one call, before anything is
-spent. Rhythm is enforced rather than requested: a template may not follow
-itself, and none may appear more than three times — a prompt can ask for variety
-and a model will still return five identical looks when the subject leans that
-way. The catalog the caster reads is **rendered from the live registry**, not
-written into the prompt file, so a template added today is castable today.
+```
+substance  what is actually known about this subject, and what is not
+outline    what the piece ARGUES, divided into parts. Cannot see the catalog.
+cast       which template holds each part. Cannot change the parts.
+write      each part planned through its template's own writer, then the whole
+           thing read back by the critic and the misfits re-planned
+```
 
-`cast` writes `reel.yaml` and stops by default, because the cast is a structural
+**The order is the design.** Casting used to do the first two jobs at once, and
+that is why finished pieces contained segments that did not belong: asked to
+divide a topic *and* pick looks in one breath, a model does not weigh them
+equally — the catalog is concrete and eighty-one items long, the argument is
+abstract and has to be invented, so the looks win and the division of the topic
+comes out as a by-product of which templates sounded appealing. Now the outline
+call cannot see the catalog at all, and the caster receives fixed parts and may
+only choose how each is shown. Two calls that can each override the other are one
+call with extra steps.
+
+**Templates have bios** (`snippet_bio.go`). The gallery copy answers "is this the
+look I want?", which is a person's question; a bio answers "can I fill this?",
+which is the director's. Each declares the material it must be filled with, the
+subject it is wrongly reached for, which arc roles it can carry, and whether it
+needs real figures. That last flag replaced a hardcoded paragraph in the cast
+prompt that named four templates by hand and was silent about the other
+seventy-seven. Three rules are now checked rather than requested: a template
+outside the theme's pool, a template that cannot carry its part's role, and a
+data-hungry template cast over material containing no digit.
+
+**The theme decides the pool** (`combo_pool.go`). The replica batch assumes the
+broadcast stage and the foundations batch assumes the editorial left axis, so a
+piece that mixes families freely changes production partway through — which is
+what "that clip did not belong" usually turns out to mean. `default` and
+`minimal` cast from the core catalog, `broadcast` adds replica, `editorial` adds
+foundations. Narrowing beats asking a model to hold a consistency rule it cannot
+see.
+
+**The critic is the only pass that sees the whole piece** (`combo_critic.go`).
+Template validators check a plan against its own rules and the review gate scores
+it against a rubric; both look at one clip with the others out of frame, so
+neither can see a segment that repeats what segment three established,
+contradicts it, or is true and does not advance the argument. One call reads
+every segment's narration in order with the piece's angle in hand and returns
+only what is wrong; those are re-planned through their own template with the
+criticism attached. It never fails the run — a plan the critic dislikes still
+renders — and it caps repairs at four, saying so out loud, because past that the
+defect is the outline rather than the segments.
+
+Rhythm is still enforced rather than requested: a template may not follow itself,
+and none may appear more than three times. The catalog the caster reads is
+**rendered from the live registry**, not written into the prompt file, so a
+template added today is castable today.
+
+`cast` writes `combo.yaml` and stops by default, because the cast is a structural
 decision worth reading before nine planning calls are spent on it — and because
 it writes exactly the file a person would have written, changing a pick is
 editing one line. From the brief *"why two users buying the last item at the
@@ -1325,19 +1365,19 @@ same time oversells your stock"* it returned **myth → trace → breakdown →
 decision → verdict** — open on the belief the viewer arrives with, show the race,
 close on a ruling — and all five planned cleanly into 28 beats and 955 words.
 
-**A miscast segment no longer kills the reel.** "Non-empty" is the only thing a
+**A miscast segment no longer kills the combo.** "Non-empty" is the only thing a
 validator can check about the material field, so a look chosen because the name
 fits, for a part with nothing to put in it, still gets through — `gauge` cast on
 "how vibe coding lets users build by communicating ideas with AI" failed an
-entire eight-segment reel. Seven good segments and one that cannot be planned is
+entire eight-segment combo. Seven good segments and one that cannot be planned is
 a video with a hole, not a failed video, so a segment whose template cannot be
 planned is **recast as `illustration`** — the one look with no data requirement
-at all — and the run continues. The log says which and why, and `reel.yaml`
+at all — and the run continues. The log says which and why, and `combo.yaml`
 keeps the original choice. The caster prompt also now names the four templates
 that cannot be planned from a subject alone (`gauge`, `metric`, `costing`,
 `trace`): prevention and recovery, since neither is sufficient alone.
 
-**The studio page is two halves.** Building a reel is choosing an *order* —
+**The studio page is two halves.** Building a combo is choosing an *order* —
 which look carries which part of the argument — so the builder is a list you add
 to and reorder rather than a grid you pick one thing from; that is the real
 difference from the snippets page, where the gallery is primary because a
@@ -1352,16 +1392,16 @@ words out of the read — so each costs a full rebuild. Batching turns four edit
 into one run, and the banner says so before the button is pressed. Edited
 segments are ringed and dropped ones dimmed. PATCH takes **pointers** for every
 field, since a plain string cannot distinguish "set the prompt to empty" from
-"leave the prompt alone", and it writes `reel.yaml` and stops — running is a
+"leave the prompt alone", and it writes `combo.yaml` and stops — running is a
 separate call, because only the user knows when they have finished editing.
-Plan-only defaults **on** here and off for snippets: planning a reel is one call
+Plan-only defaults **on** here and off for snippets: planning a combo is one call
 per segment and rendering is minutes.
 
 Look controls — dark/light, captions, skin — are lifted verbatim from the
 snippets page so the two screens cannot drift, and they apply to the **whole
-reel** rather than per segment: a piece that changed polarity or caption style
+combo** rather than per segment: a piece that changed polarity or caption style
 partway through would read as several videos stitched together, which is the one
-thing a reel is built not to be.
+thing a combo is built not to be.
 
 Not yet built: a cheap props-only edit path (the `video-plan.yaml` shape).
 
@@ -1411,10 +1451,10 @@ the archetype itself and there should not be — `/api/archetypes` is a GET of a
 Go registry and the motion values are drift-guarded against `motion.go`, so a
 slider here would be a control with nothing behind it.
 
-**No more Groq.** The default `llm_content` is `openai/gpt-4o-mini`, the reels
+**No more Groq.** The default `llm_content` is `openai/gpt-4o-mini`, the combos
 course pins it explicitly the way the snippets course already did, and the
 new-course scaffold no longer hands people Groq. That missing pin is why the
-first real reel ran on Groq at all: snippets named a model, reels inherited
+first real combo ran on Groq at all: snippets named a model, combos inherited
 whatever the global default happened to be. A side benefit — gpt-4o-mini *is* in
 the ledger's price table, so runs now cost what the ledger says instead of being
 silently recorded at zero. Four router tests broke, and each was a coupling
@@ -1434,7 +1474,7 @@ servers had been decoding into `map[string]string`, so the numeric `speed` field
 failed the whole body decode and nothing had ever asserted that 0.9 reaches the
 server.
 
-**Studio pages** now: Compose, Snippets, Reels, Courses (+ course/lesson
+**Studio pages** now: Compose, Snippets, Combos, Courses (+ course/lesson
 editors), Quiz editor and strategy, Templates, Library, Results gallery,
 Adaptive config, Showcase, Generation, Ledger.
 

@@ -77,7 +77,7 @@ Generation must stay fast and idempotent. So they do not live in the same run.
     footage.json     # marks, origin, capturedAt, tool version, provenance
 ```
 
-A clip is captured **once**, described once, catalogued, and any lesson, reel or
+A clip is captured **once**, described once, catalogued, and any lesson, combo or
 snippet can then cast it. `coursesmith footage capture <id>` re-runs one take;
 `footage refresh --stale` re-runs everything older than N days.
 
@@ -294,7 +294,7 @@ overwritten); and the empty manifest is written anyway, because absence and
 emptiness mean different things to staleness and a missing file would make every
 run look like the captures had just changed.
 
-**Still open for snippets and reels.** The `captured`
+**Still open for snippets and combos.** The `captured`
 provenance class exists, validates and renders, but nothing *writes* a captured
 fact — and reading the stage lists says why. `StageSubstance` appears only in
 `SnippetStageOrder`; a course has no substance stage at all. `StageDemos`
@@ -306,7 +306,7 @@ So there are two different pieces of work behind the one open item, and they are
 worth separating before either is started:
 
 There is no capture stage in `SnippetStageOrder` to produce a fact from, so a
-reel still cannot cite footage. That is a feature to build rather than a wire to
+combo still cannot cite footage. That is a feature to build rather than a wire to
 connect, and it is the last piece of §4.3.
 
 ### Phase 2a — web stills — **shipped 2026-07-31**
@@ -582,14 +582,14 @@ has *surfaces*, and no-code needed to be one of them:
 ```
 courses   a document first, a video second — chapters, quizzes, a site
 snippets  one prompt, one template, one clip
-reels     several templates cut onto one timeline
+combos    several templates cut onto one timeline
 nocode    several segments, every one of them backed by something real
 ```
 
-**The rule that earns it.** A reel about no-code tools is not this. A reel will
+**The rule that earns it.** A combo about no-code tools is not this. A combo will
 happily draw a person gesturing at a chart of numbers nobody measured, because
 its contract is "each segment names material it can be filled with" and prose
-counts as material. That is right for a reel and wrong here.
+counts as material. That is right for a combo and wrong here.
 
 Every segment of a no-code piece must be backed by **evidence that exists on
 disk** — a real capture, or a fact carrying provenance from the substance sheet:
@@ -607,7 +607,7 @@ segments:
 ```
 
 A segment that can name neither is refused **before a single planning call is
-spent**. A reel discovers a hollow segment after the caster has gone and a
+spent**. A combo discovers a hollow segment after the caster has gone and a
 template's validator refuses the material; here it is a parse error.
 
 That one rule produces everything else about the surface:
@@ -646,7 +646,7 @@ card, so it cannot drift from the component.
 
 ## 7. The course
 
-Shape: **a `courses/no-code/` course** — the reels path is right for a five-part
+Shape: **a `courses/no-code/` course** — the combos path is right for a five-part
 argument, and wrong for a thirteen-lesson curriculum that needs chapters,
 quizzes, exercises and a site. Verify is skipped when a lesson has no code
 blocks, so the course path already runs without Python.
