@@ -324,6 +324,14 @@ func validateVersusPlan(p *SnippetPlan) error {
 		if d.At < 0 || d.At >= len(v.Rows) {
 			return fmt.Errorf("beat %q lands row %d, which does not exist — the comparison has rows 0-%d", b.ID, d.At, len(v.Rows)-1)
 		}
+		// Every row has landed and here is another row beat. Checked before the
+		// ordering rule, which names "the next row due" and would read past the
+		// end of the comparison to do it — a panic rather than a rejection, and
+		// one that takes the studio's whole process with it.
+		if next >= len(v.Rows) {
+			return fmt.Errorf("beat %q lands row %d (%q) when all %d rows have already landed. Rows land once each — a second pass over one says the first landing did not take. Drop this beat, or give the comparison another dimension for it",
+				b.ID, d.At, v.Rows[d.At].Dim, len(v.Rows))
+		}
 		if d.At != next {
 			return fmt.Errorf("beat %q lands row %d (%q) when row %d (%q) is the next one due. Rows land once each, in order — a comparison that revisits a dimension is arguing rather than comparing",
 				b.ID, d.At, v.Rows[d.At].Dim, next, v.Rows[next].Dim)

@@ -239,3 +239,26 @@ func TestVersusScenesTallyTheRows(t *testing.T) {
 		t.Fatalf("the verdict lands over %v, want every row sorted", up)
 	}
 }
+
+// A comparison with more row beats than rows. The ordering rule below names
+// "the next row due", and once every row has landed there is no next one — so
+// reading it panicked the process instead of rejecting the plan.
+func TestVersusRejectsMoreRowBeatsThanRows(t *testing.T) {
+	p := versusPlan()
+	p.Versus.Rows = p.Versus.Rows[:3]
+	p.Beats = []SnippetBeat{
+		{ID: "face-off", Heading: "The contenders", Narration: duelNarration, Versus: &VersusBeat{Show: "face"}},
+		{ID: "delivery", Heading: "Does it arrive", Narration: duelNarration, Versus: &VersusBeat{Show: "row", At: 0}},
+		{ID: "setup", Heading: "What it costs", Narration: duelNarration, Versus: &VersusBeat{Show: "row", At: 1}},
+		{ID: "overhead", Heading: "Bytes on the wire", Narration: duelNarration, Versus: &VersusBeat{Show: "row", At: 2}},
+		{ID: "again", Heading: "Once more", Narration: duelNarration, Versus: &VersusBeat{Show: "row", At: 2}},
+		{ID: "the-call", Heading: "Which one", Narration: duelNarration, Versus: &VersusBeat{Show: "verdict"}},
+	}
+	err := validateVersusPlan(p)
+	if err == nil {
+		t.Fatal("a comparison with more row beats than rows was accepted")
+	}
+	if !strings.Contains(err.Error(), "all 3 rows") {
+		t.Fatalf("the error does not say the comparison was already finished: %v", err)
+	}
+}

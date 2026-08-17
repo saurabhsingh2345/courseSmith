@@ -245,6 +245,14 @@ func validateErasPlan(p *SnippetPlan) error {
 			if d.At < 0 || d.At >= len(e.Eras) {
 				return fmt.Errorf("beat %q lights era %d, which does not exist — the band has eras 0-%d", b.ID, d.At, len(e.Eras)-1)
 			}
+			// Every era has been lit and here is another era beat. Checked before
+			// the ordering rule, which names "the next era due" and would read
+			// past the end of the band to do it — a panic rather than a
+			// rejection, and one that takes the studio's whole process with it.
+			if next >= len(e.Eras) {
+				return fmt.Errorf("beat %q lights era %d (%q, %s) when all %d eras have already been lit. History is walked forward once through — a second pass over an age says the first one did not land. Drop this beat, or give the band another era for it",
+					b.ID, d.At, e.Eras[d.At].Label, e.Eras[d.At].When, len(e.Eras))
+			}
 			if d.At != next {
 				return fmt.Errorf("beat %q lights era %d (%q, %s) when era %d (%q, %s) is the next one due. History is walked forward, once through — jumping back for a nice sentence gives up the causation the band exists to show",
 					b.ID, d.At, e.Eras[d.At].Label, e.Eras[d.At].When, next, e.Eras[next].Label, e.Eras[next].When)
