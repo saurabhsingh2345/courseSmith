@@ -49,3 +49,7 @@ site/content/courses/*/*/final.mp4
 
 # OS noise
 .DS_Store
+
+# Finished snippet videos copied out of the .coursesmith cache — generated output,
+# and large.
+videos/

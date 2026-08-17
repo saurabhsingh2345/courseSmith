@@ -68,6 +68,15 @@ export const CardTile: React.FC<{
   const art = cardArtTreatment(subject.tint, theme.surface);
   const colour = art.usable ?? roleColour(theme, subject.role);
   const Icon = iconFor(subject.icon);
+  // A favicon brings its own background, and it is almost always opaque white.
+  //
+  // Found in the first real render rather than in a fixture, because the fixtures
+  // all use vector marks: ChatGPT falls back to the favicon service (Simple Icons
+  // dropped OpenAI's marks), and the white bitmap landed on the pale tint every
+  // other tile gets — a white square inside a coloured square, which reads as a
+  // loading state. A bitmap gets the card's own surface behind it instead, so
+  // whatever background it carries merges with the tile rather than sitting on it.
+  const bitmap = !subject.mark && !!subject.image;
   return (
     <div
       style={{
@@ -81,8 +90,11 @@ export const CardTile: React.FC<{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: art.plate ?? withAlpha(colour, lit ? 0.12 : 0.07),
-        border: `1px solid ${withAlpha(art.plate ? theme.text : colour, lit ? 0.16 : 0.1)}`,
+        // Clipped, so a bitmap drawn to the tile's edge takes the tile's corners
+        // instead of squaring them off.
+        overflow: 'hidden',
+        background: bitmap ? theme.surface : (art.plate ?? withAlpha(colour, lit ? 0.12 : 0.07)),
+        border: `1px solid ${withAlpha(bitmap || art.plate ? theme.text : colour, lit ? 0.16 : 0.1)}`,
       }}
     >
       {subject.mark ? (
@@ -99,8 +111,13 @@ export const CardTile: React.FC<{
           src={subject.image}
           alt=""
           style={{
-            width: size * 0.58,
-            height: size * 0.58,
+            // Larger than a vector mark's 0.54. A favicon is padded by whoever
+            // drew it — usually generously, for a 16-pixel tab — so the visible
+            // glyph inside a 0.58 box is smaller than the vector next to it, and a
+            // row that mixes the two reads as one logo that failed to load at
+            // full size.
+            width: size * 0.74,
+            height: size * 0.74,
             objectFit: 'contain',
             // A bitmap made for a 16-pixel browser tab is going up eight times
             // its size. Crisp edges beat the browser's smeared interpolation.

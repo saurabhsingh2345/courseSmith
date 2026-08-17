@@ -70,29 +70,46 @@ const Bar: React.FC<{
   score: number;
   fill: number;
   lit: boolean;
-}> = ({theme, colour, score, fill, lit}) => (
-  <div
-    style={{
-      width: '100%',
-      height: BAR_H,
-      borderRadius: 999,
-      // The empty track is a recessed well in the card, the same well the cards
-      // template's unanswered slot uses. One idea for "there is a place here and
-      // nothing in it yet" across the family.
-      background: withAlpha(theme.text, 0.07),
-      overflow: 'hidden',
-    }}
-  >
+}> = ({theme, colour, score, fill, lit}) => {
+  const pct = Math.max(0, Math.min(100, score)) * fill;
+  // A measured zero has to look different from an unmeasured track, and it did
+  // not. Found in the first real clip: the model picked "monthly cost" as the
+  // axis, which puts a free tier at 0, and a 0% fill is an empty well — the exact
+  // frame the same card showed thirty seconds earlier, before anything had been
+  // measured. The viewer cannot tell "this costs nothing" from "the bar has not
+  // filled yet", and one of those is the whole point of the beat.
+  //
+  // So a fill that has happened is never narrower than the bar is tall: at its
+  // minimum it is the round end-cap of a bar and nothing more. That is honest —
+  // it adds no length the eye would read as quantity, it just says the bar starts
+  // here and goes nowhere. A zero that is genuinely zero should look like zero,
+  // not like missing data.
+  const measured = fill > 0.02;
+  return (
     <div
       style={{
-        width: `${Math.max(0, Math.min(100, score)) * fill}%`,
-        height: '100%',
+        width: '100%',
+        height: BAR_H,
         borderRadius: 999,
-        background: lit ? colour : withAlpha(colour, 0.45),
+        // The empty track is a recessed well in the card, the same well the cards
+        // template's unanswered slot uses. One idea for "there is a place here and
+        // nothing in it yet" across the family.
+        background: withAlpha(theme.text, 0.07),
+        overflow: 'hidden',
       }}
-    />
-  </div>
-);
+    >
+      <div
+        style={{
+          width: `${pct}%`,
+          minWidth: measured ? BAR_H : 0,
+          height: '100%',
+          borderRadius: 999,
+          background: lit ? colour : withAlpha(colour, 0.45),
+        }}
+      />
+    </div>
+  );
+};
 
 export const DuelScene: React.FC<{
   theme: ResolvedTheme;

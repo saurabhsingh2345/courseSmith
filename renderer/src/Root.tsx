@@ -4334,9 +4334,36 @@ const duelVizProps: LessonVideoProps = {
             title: 'ChatGPT',
             tag: 'Free',
             note: 'The most mature chatbot, on its older model',
-            score: 42,
+            // Zero, not 42, and the change is the point of the fixture rather
+            // than a tweak to it. A measured zero used to render as an empty
+            // track — identical to the frame before anything had been measured —
+            // and the first real clip hit it immediately, because "monthly cost"
+            // is an obvious axis and it puts a free tier at 0. The baseline now
+            // holds the end-cap that says "measured, and it is nothing".
+            score: 0,
             role: 'neutral',
             icon: 'message',
+            // The favicon path, which no fixture covered until a real render
+            // found the bug in it: a fetched favicon brings its own background
+            // and it is almost always opaque white, so on the pale tint every
+            // other tile gets it drew a white square inside a coloured square.
+            // OpenAI is exactly the case that hits this — Simple Icons dropped
+            // their marks, so the fetch falls through to the favicon service.
+            //
+            // Stood in for rather than embedded: what this has to exercise is
+            // "an image with its own opaque background", and committing a real
+            // brand's bitmap to the repo to prove that would be carrying a
+            // trademark around for no extra coverage. The white field and the
+            // dark ring are the two things that matter.
+            markFrom: 'favicon:example.com',
+            image:
+              'data:image/svg+xml;base64,' +
+              btoa(
+                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">' +
+                  '<rect width="64" height="64" fill="#ffffff"/>' +
+                  '<circle cx="32" cy="32" r="16" fill="none" stroke="#1b1b1b" stroke-width="7"/>' +
+                  '</svg>',
+              ),
           },
           {
             title: 'Gemini',
