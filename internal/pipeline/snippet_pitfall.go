@@ -38,13 +38,13 @@ import (
 
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
-		Name:        "pitfall",
-		Category:    CatDecisions,
-		Since:       SinceV5,
-		Title:       "How this goes wrong",
-		Description: "The mistake people actually make at one step, the symptom that shows it happened, and the single move that fixes it. Reach for it right after teaching a step people get wrong.",
-		Example:     "The mistake everyone makes the first time they add retries to an API client",
-		PromptFile:  snippetPitfallTemplateName,
+		Name:             "pitfall",
+		Category:         CatDecisions,
+		Since:            SinceV5,
+		Title:            "How this goes wrong",
+		Description:      "The mistake people actually make at one step, the symptom that shows it happened, and the single move that fixes it. Reach for it right after teaching a step people get wrong.",
+		Example:          "The mistake everyone makes the first time they add retries to an API client",
+		PromptFile:       snippetPitfallTemplateName,
 		MinTargetSec:     25,
 		DefaultTargetSec: 45,
 		MaxBeats:         8,

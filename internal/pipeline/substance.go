@@ -398,8 +398,8 @@ func substanceBrief(l *project.Lesson) (string, error) {
 // grounded call is exactly the one where a parse failure is most expensive,
 // because it has already paid for the search. So:
 //
-//	1. search: prose about the subject, with the provider's own citations.
-//	2. structure: an ordinary JSON call that turns that prose into the fact sheet.
+//  1. search: prose about the subject, with the provider's own citations.
+//  2. structure: an ordinary JSON call that turns that prose into the fact sheet.
 //
 // The second call is told to treat the first's prose as its source material,
 // which is why it can label things `sourced` at all. With grounding off, step 1

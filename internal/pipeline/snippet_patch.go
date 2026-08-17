@@ -61,7 +61,13 @@ func init() {
 		// The file up, a beat per hunk, the tally. Two hunks is four beats.
 		MinTargetSec:     30,
 		DefaultTargetSec: 50,
-		MaxBeats:         8,
+		// Six: the file, at most four hunks, the tally. 2 + maxPatchHunks, and the
+		// arithmetic has to hold — see duel's MaxBeats for what happens when it
+		// does not.
+		// 144s: 6 beats x 60 words a beat, at 2.5 words a second. Past this the
+		// shape cannot hold the narration — see MaxTargetSec.
+		MaxTargetSec: 144,
+		MaxBeats:     6,
 		// A beat is one hunk landing and being explained, and it wants to be slow:
 		// the viewer has to read two lines of code before the sentence about them
 		// makes sense.

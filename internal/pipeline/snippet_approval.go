@@ -56,9 +56,15 @@ func init() {
 		PromptFile: snippetApprovalTemplateName,
 		NeedsCode:  false,
 		// The ask, a beat per answer, the pick. Two answers is four beats.
-		MinTargetSec:      28,
-		DefaultTargetSec:  45,
-		MaxBeats:          7,
+		MinTargetSec:     28,
+		DefaultTargetSec: 45,
+		// Five: the ask, at most three answers, the pick. Same reasoning as duel —
+		// this has to be the count the validator can accept, or long runtimes
+		// demand a sixth beat that gets rejected forever.
+		// 120s: 5 beats x 60 words a beat, at 2.5 words a second. Past this the
+		// shape cannot hold the narration — see MaxTargetSec.
+		MaxTargetSec:      120,
+		MaxBeats:          5,
 		IdealWordsPerBeat: 24,
 		Owns:              beatFields{Approval: true},
 		OwnsPlan:          planFields{Approval: true},

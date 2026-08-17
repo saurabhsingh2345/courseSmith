@@ -31,13 +31,13 @@ import (
 
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
-		Name:        "prereq",
-		Category:    CatPresenting,
-		Since:       SinceV5,
-		Title:       "What this one stands on",
-		Description: "The floor a lesson assumes: each thing it takes for granted, whether the course already taught it or you bring it, and which of them you can skip anyway. Reach for it when a lesson is about to get steep.",
-		Example:     "Set up a lesson on backpressure for people who have seen streams but never a slow consumer",
-		PromptFile:  snippetPrereqTemplateName,
+		Name:             "prereq",
+		Category:         CatPresenting,
+		Since:            SinceV5,
+		Title:            "What this one stands on",
+		Description:      "The floor a lesson assumes: each thing it takes for granted, whether the course already taught it or you bring it, and which of them you can skip anyway. Reach for it when a lesson is about to get steep.",
+		Example:          "Set up a lesson on backpressure for people who have seen streams but never a slow consumer",
+		PromptFile:       snippetPrereqTemplateName,
 		MinTargetSec:     20,
 		DefaultTargetSec: 40,
 		MaxBeats:         7,

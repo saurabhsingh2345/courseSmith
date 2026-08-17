@@ -249,6 +249,15 @@ func (s SnippetSpec) Validate() error {
 		return fmt.Errorf("the %s template needs at least %d seconds (asked for %d) — it is built from %d or more beats and a shorter clip cannot fund them",
 			s.Template, tpl.MinTargetSec, s.TargetSec, minStoryBeats)
 	}
+	// And the ceiling. Same arithmetic, other end: a template with a fixed shape
+	// can only hold so many words before a beat has to carry more than a beat may
+	// carry. Refusing here costs nothing; discovering it in the correction loop
+	// costs a run's worth of escalated reasoning. See MaxTargetSec.
+	if tpl, ok := SnippetTemplates[s.Template]; ok && s.TargetSec != 0 &&
+		tpl.MaxTargetSec > 0 && s.TargetSec > tpl.MaxTargetSec {
+		return fmt.Errorf("the %s template tops out at %d seconds (asked for %d) — its shape is a fixed number of beats, so a longer clip would need each one to carry more narration than a beat may hold. Ask for %d or less, or use a template built to be walked at length",
+			s.Template, tpl.MaxTargetSec, s.TargetSec, tpl.MaxTargetSec)
+	}
 	return nil
 }
 

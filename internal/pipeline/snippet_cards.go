@@ -70,6 +70,16 @@ func init() {
 		// four beats funds it; five cards needs seven, which needs a minute.
 		MinTargetSec:     25,
 		DefaultTargetSec: 45,
+		// Seven: the row, at most five cards, the closer. 2 + maxCards.
+		//
+		// It was unset, which means the shared ceiling — and the shared ceiling is
+		// higher than this template's shape, so a long enough cards clip was told
+		// to write more beats than the row could ever fund. Every template whose
+		// beat count follows from its content has to say so here.
+		// 168s: 7 beats x 60 words a beat, at 2.5 words a second. Past this the
+		// shape cannot hold the narration — see MaxTargetSec.
+		MaxTargetSec: 168,
+		MaxBeats:     7,
 		// A beat here is a SHOT — one card lit with its note under it — not a step
 		// in an argument. Forty words is thirteen seconds on one static card, which
 		// is how a row of five becomes a slideshow. Twenty-six cuts the same

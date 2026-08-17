@@ -88,8 +88,8 @@ func init() {
 func planFootage(ctx context.Context, e *Env, spec SnippetSpec, cfg config.Config) (*SnippetPlan, error) {
 	if len(spec.FootageMarks) == 0 && spec.FootageTool == "" && spec.FootageMs == 0 {
 		return nil, fmt.Errorf(
-			"the `footage` template narrates a recording, and this request has none attached.\n"+
-				"It is not a template you can pick from a prompt: record something first with a [CAPTURE] marker, then reference that clip from a no-code piece (`evidence: {kind: capture, capture: capture-1}`).\n"+
+			"the `footage` template narrates a recording, and this request has none attached.\n" +
+				"It is not a template you can pick from a prompt: record something first with a [CAPTURE] marker, then reference that clip from a no-code piece (`evidence: {kind: capture, capture: capture-1}`).\n" +
 				"For a drawn frame of a tool's UI, `mockup` or `showcase` is what you want.")
 	}
 	return planSnippetDefault(ctx, e, spec, cfg)

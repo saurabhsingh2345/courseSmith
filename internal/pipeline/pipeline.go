@@ -143,7 +143,7 @@ var stageUpstream = map[string][]string{
 var stageLessonFiles = map[string][]string{
 	// A snippet's whole input is its request file; editing the prompt or
 	// swapping the template re-plans (and so re-renders) the clip.
-	project.StagePlan:       {SnippetFileName, ComboFileName},
+	project.StagePlan: {SnippetFileName, ComboFileName},
 	// The same input as plan: substance is established from the request, so
 	// editing the prompt or the brief re-establishes the facts — and therefore
 	// re-plans, since plan consumes substance.json.

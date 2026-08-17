@@ -34,13 +34,13 @@ import (
 
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
-		Name:        "recap",
-		Category:    CatPresenting,
-		Since:       SinceV5,
-		Title:       "Where we got to",
-		Description: "What the lessons before this one established, each tagged with where it came from, and the one thread they were all building. Reach for it opening a lesson that depends on several earlier ones.",
-		Example:     "Pick up a course after four lessons on queues, before the one about dropping messages",
-		PromptFile:  snippetRecapTemplateName,
+		Name:             "recap",
+		Category:         CatPresenting,
+		Since:            SinceV5,
+		Title:            "Where we got to",
+		Description:      "What the lessons before this one established, each tagged with where it came from, and the one thread they were all building. Reach for it opening a lesson that depends on several earlier ones.",
+		Example:          "Pick up a course after four lessons on queues, before the one about dropping messages",
+		PromptFile:       snippetRecapTemplateName,
 		MinTargetSec:     20,
 		DefaultTargetSec: 40,
 		MaxBeats:         7,

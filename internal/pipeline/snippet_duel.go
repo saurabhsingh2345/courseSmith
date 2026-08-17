@@ -67,7 +67,26 @@ func init() {
 		// and there is no shorter honest version of this picture.
 		MinTargetSec:     35,
 		DefaultTargetSec: 50,
-		MaxBeats:         7,
+		// FIVE, and it must equal the number of beats the validator can actually
+		// accept, which is exactly five: one `pair`, one per side, one `bars`, one
+		// `call`, and a second of any of those is rejected below.
+		//
+		// It was 7, and that was not a harmless over-estimate — it made the
+		// template unsatisfiable above about seventy seconds. beatBounds sizes the
+		// beat range from the word budget and clamps it to this ceiling, so a
+		// 90-second duel was told to write at least six beats while the validator
+		// refused the sixth. Every correction round failed on arithmetic that could
+		// not be satisfied, and because a rejection is what escalates reasoning
+		// effort (see llmjson.go), each of those rounds was an expensive one. The
+		// visible symptom was a run sitting in `plan` for minutes.
+		//
+		// This is the contradiction beatBounds' own comment warns about, at the far
+		// end of the range. A template whose beat count is a property of its shape
+		// must declare that shape here.
+		// 120s: 5 beats x 60 words a beat, at 2.5 words a second. Past this the
+		// shape cannot hold the narration — see MaxTargetSec.
+		MaxTargetSec: 120,
+		MaxBeats:     5,
 		// A beat is a shot here as it is in cards, and the shots are longer: the
 		// bar-filling beat has an animation to cover and the verdict beat has to
 		// land a recommendation.

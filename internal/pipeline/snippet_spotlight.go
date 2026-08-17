@@ -59,7 +59,12 @@ func init() {
 		// short, and it is the reason this template exists next to showcase.
 		MinTargetSec:     20,
 		DefaultTargetSec: 35,
-		MaxBeats:         7,
+		// Six: the card, at most four claims, the finished frame. 2 +
+		// maxSpotlightPoints.
+		// 144s: 6 beats x 60 words a beat, at 2.5 words a second. Past this the
+		// shape cannot hold the narration — see MaxTargetSec.
+		MaxTargetSec: 144,
+		MaxBeats:     6,
 		// A beat is a shot. Twenty-two words is about seven seconds, which is what
 		// one row landing wants — long enough to say the claim and short enough
 		// that four of them do not add up to a minute.

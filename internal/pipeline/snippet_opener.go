@@ -60,7 +60,12 @@ func init() {
 		// that list something.
 		MinTargetSec:     12,
 		DefaultTargetSec: 20,
-		MaxBeats:         4,
+		// Three: the ground, the promise, the mark. There is no fourth thing on a
+		// title page, so a fourth beat has nothing to show.
+		// 72s: 3 beats x 60 words a beat, at 2.5 words a second. Past this the
+		// shape cannot hold the narration — see MaxTargetSec.
+		MaxTargetSec: 72,
+		MaxBeats:     3,
 		// Deliberately low. A beat here is a held frame with one line landing on
 		// it, and the temptation the prompt has to fight is writing a paragraph
 		// over a title card.

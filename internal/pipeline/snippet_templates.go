@@ -121,6 +121,23 @@ type SnippetTemplate struct {
 	// cannot come out at all, and the correction loop burns three rounds and a
 	// token budget discovering that.
 	MinTargetSec int
+	// MaxTargetSec is the LONGEST runtime this template can satisfy (0 = no
+	// ceiling). The mirror of MinTargetSec, and it exists for the same reason
+	// pointed the other way.
+	//
+	// A template whose beat count is a property of its shape can only hold so many
+	// words. `duel` is always five beats — pair, two sides, bars, call — and a beat
+	// may hold at most maxWordsPerBeat; so past about two minutes the word budget
+	// divided over five beats exceeds what a beat is allowed to contain, and the
+	// instructions contradict each other again. The model is told to write ninety
+	// words in a beat that may hold sixty, every correction round fails, and
+	// because a rejection escalates reasoning effort each of those rounds is an
+	// expensive one.
+	//
+	// Enforced in SnippetSpec.Validate, before a single token is spent. That is
+	// the whole point: this class of request must fail at the door for nothing
+	// rather than in the correction loop for real money.
+	MaxTargetSec int
 
 	// Plan produces the clip's design. Nil uses planSnippetDefault, which
 	// renders PromptFile and decodes a SnippetPlan — enough for every

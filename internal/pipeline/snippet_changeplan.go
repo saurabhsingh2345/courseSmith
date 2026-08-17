@@ -55,7 +55,11 @@ func init() {
 		// beats; six files is eight and needs a longer clip.
 		MinTargetSec:     30,
 		DefaultTargetSec: 50,
-		MaxBeats:         9,
+		// Eight: the rail, at most six files, the summing-up. 2 + maxChangeFiles.
+		// 192s: 8 beats x 60 words a beat, at 2.5 words a second. Past this the
+		// shape cannot hold the narration — see MaxTargetSec.
+		MaxTargetSec: 192,
+		MaxBeats:     8,
 		// A beat is one file being opened and explained. Twenty-four words is
 		// about eight seconds, which is what two or three bullets want.
 		IdealWordsPerBeat: 24,

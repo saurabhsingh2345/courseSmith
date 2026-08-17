@@ -377,5 +377,3 @@ func FindNoCodePiece(root, id string) (*project.Course, *project.Lesson, error) 
 	}
 	return course, l, nil
 }
-
-

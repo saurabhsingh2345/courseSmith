@@ -408,7 +408,7 @@ func TestFootageSceneSpansOnlyItsOwnBeats(t *testing.T) {
 			FootageSrc:        "demos/footage-1.mp4",
 			FootageMs:         161_000,
 			FootageIsTerminal: true,
-			Beats: []SnippetBeat{{ID: "b1"}, {ID: "b2"}, {ID: "b3"}},
+			Beats:             []SnippetBeat{{ID: "b1"}, {ID: "b2"}, {ID: "b3"}},
 		},
 		Spans: []SectionSpan{
 			{StartMs: 4_000}, {StartMs: 22_000}, {StartMs: 40_000},

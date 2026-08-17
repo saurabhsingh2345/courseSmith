@@ -391,7 +391,7 @@ func pruneEmpty(m map[string]any) {
 // template. The templates' validators also only make sense against their own
 // plan.
 type ComboPlan struct {
-	Title    string            `json:"title"`
+	Title    string             `json:"title"`
 	Segments []ComboPlanSegment `json:"segments"`
 }
 

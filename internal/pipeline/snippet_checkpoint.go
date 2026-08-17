@@ -31,13 +31,13 @@ import (
 
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
-		Name:        "checkpoint",
-		Category:    CatPresenting,
-		Since:       SinceV5,
-		Title:       "Prove you can do it",
-		Description: "The task that closes a lesson: a few steps the viewer does now, and the condition that tells them it worked without anyone marking it. Reach for it as the last clip of a lesson.",
-		Example:     "Close a lesson on retries by having them make a flaky call succeed and then give up",
-		PromptFile:  snippetCheckpointTemplateName,
+		Name:             "checkpoint",
+		Category:         CatPresenting,
+		Since:            SinceV5,
+		Title:            "Prove you can do it",
+		Description:      "The task that closes a lesson: a few steps the viewer does now, and the condition that tells them it worked without anyone marking it. Reach for it as the last clip of a lesson.",
+		Example:          "Close a lesson on retries by having them make a flaky call succeed and then give up",
+		PromptFile:       snippetCheckpointTemplateName,
 		MinTargetSec:     25,
 		DefaultTargetSec: 45,
 		MaxBeats:         8,

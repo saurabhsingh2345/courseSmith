@@ -35,13 +35,13 @@ import (
 
 func init() {
 	registerSnippetTemplate(&SnippetTemplate{
-		Name:        "objective",
-		Category:    CatPresenting,
-		Since:       SinceV5,
-		Title:       "What you'll be able to do",
-		Description: "The outcome contract a lesson opens on: two to four things the viewer will be able to do afterwards, each with the evidence that would show it. Reach for it as the first clip of a lesson, or of a course.",
-		Example:     "Open a lesson on retries and backoff for people who have shipped an API client",
-		PromptFile:  snippetObjectiveTemplateName,
+		Name:             "objective",
+		Category:         CatPresenting,
+		Since:            SinceV5,
+		Title:            "What you'll be able to do",
+		Description:      "The outcome contract a lesson opens on: two to four things the viewer will be able to do afterwards, each with the evidence that would show it. Reach for it as the first clip of a lesson, or of a course.",
+		Example:          "Open a lesson on retries and backoff for people who have shipped an API client",
+		PromptFile:       snippetObjectiveTemplateName,
 		MinTargetSec:     20,
 		DefaultTargetSec: 40,
 		MaxBeats:         7,
