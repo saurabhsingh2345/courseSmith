@@ -555,7 +555,7 @@ export interface components {
             /** @enum {string} */
             mode?: "dark" | "light";
             /** @enum {string} */
-            skin?: "default" | "broadcast" | "minimal" | "editorial";
+            skin?: "default" | "broadcast" | "minimal" | "editorial" | "showroom";
         };
         CreateSnippetResponse: components["schemas"]["SnippetSummary"] & {
             run_id?: string;

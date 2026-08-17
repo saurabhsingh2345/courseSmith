@@ -45,17 +45,39 @@ const Headline: React.FC<{
   title: string;
   emphasis?: string;
   emphasisRole?: string;
+  /**
+   * How the emphasised phrase is marked.
+   *
+   * `colour` repaints it, which is what a dark stage wants: a bright span on
+   * near-black is the loudest thing available and costs nothing. On paper it is
+   * the wrong instrument — a coloured phrase inside a near-black headline drops
+   * in contrast against the page, so the emphasis reads as the phrase being
+   * *quieter*. `rule` keeps the ink and draws the accent underneath instead,
+   * which is louder and darker at the same time.
+   */
+  mark?: 'colour' | 'rule';
   style: React.CSSProperties;
-}> = ({theme, title, emphasis, emphasisRole, style}) => {
+}> = ({theme, title, emphasis, emphasisRole, mark = 'colour', style}) => {
   const segments = splitHeadline(title, emphasis ?? '');
   if (segments.length < 2) {
     return <div style={style}>{title}</div>;
   }
   const colour = emphasisColour(theme, emphasisRole);
+  const marked: React.CSSProperties =
+    mark === 'rule'
+      ? {
+          // Drawn as a box-shadow rather than a border or text-decoration: both
+          // of those sit on the text baseline and clip the descenders of a `y`
+          // or a `p`, which is exactly the word the emphasis lands on half the
+          // time. An offset shadow clears them.
+          boxShadow: `inset 0 -0.1em 0 0 ${colour}`,
+          paddingBottom: '0.04em',
+        }
+      : {color: colour};
   return (
     <div style={style}>
       {segments.map((seg, i) => (
-        <span key={i} style={seg.mark ? {color: colour} : undefined}>
+        <span key={i} style={seg.mark ? marked : undefined}>
           {seg.text}
         </span>
       ))}
@@ -165,6 +187,53 @@ export const SceneHeader: React.FC<{
             color: theme.text,
             textAlign: 'center',
             maxWidth: 1400,
+          }}
+        />
+      </div>
+    );
+  }
+
+  // The showroom skin sets the headline as a product page sets one: heavy,
+  // tight, sentence case, and with no furniture under it at all.
+  //
+  // The rule is dropped rather than restyled, and that is the whole treatment.
+  // On a dark stage the gradient rule under a headline is doing real work — it
+  // separates the type from a busy backdrop and gives the accent somewhere to
+  // appear. On paper there is nothing to separate from, so the rule stops being
+  // a divider and becomes a small decoration under every single frame. What
+  // replaces it is the emphasis: the accent moves from a rule nobody asked about
+  // to a mark under the two words the sentence turns on.
+  if (theme.skin === 'showroom') {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          flexShrink: 0,
+          marginBottom: marginBottom ?? (display ? 60 : 44),
+          opacity: enter,
+          transform: `translateY(${(1 - enter) * 12}px)`,
+        }}
+      >
+        <Headline
+          theme={theme}
+          title={title}
+          emphasis={emphasis}
+          emphasisRole={emphasisRole}
+          mark="rule"
+          style={{
+            fontFamily: theme.fontDisplay,
+            fontSize: display ? 72 : 50,
+            // Heavier and tighter than the default treatment. Ink on paper at
+            // 700 reads lighter than the same weight in white on black — the
+            // page eats it — so the weight goes up to hold the same presence.
+            fontWeight: 800,
+            letterSpacing: display ? -2 : -1.3,
+            lineHeight: 1.08,
+            color: theme.text,
+            textAlign: 'center',
+            maxWidth: 1440,
           }}
         />
       </div>

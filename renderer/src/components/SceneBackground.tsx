@@ -21,7 +21,7 @@ import {ResolvedTheme} from '../theme/theme';
 
 const GRAIN_SEED = 7;
 
-export type Surface = 'default' | 'paper' | 'blueprint' | 'spotlight' | 'clean' | 'void';
+export type Surface = 'default' | 'paper' | 'blueprint' | 'spotlight' | 'clean' | 'void' | 'sheet';
 
 /**
  * The knobs each surface turns. Kept as data rather than as five components
@@ -61,6 +61,15 @@ const SURFACES: Record<
   // only surface where the *absence* of the glows is the design rather than a
   // reduction of it — a 0.05 glow here would read as a smudge on black.
   void: {glow: 0, field: 'none', vignette: 0.5, grain: 1},
+  // A flat sheet, and the paper counterpart of `void` rather than of `clean`.
+  //
+  // `clean` was tried for the showroom skin first and the glows are what ruled it
+  // out. At 0.55 they are barely visible on a dark stage and they are the
+  // brightest thing in the frame on paper — two soft blue-and-gold smudges in
+  // opposite corners of a near-white page, which read as a gradient somebody
+  // forgot to remove rather than as light. Objects on this surface are lit by
+  // their own cast shadows, so the background has nothing left to do.
+  sheet: {glow: 0, field: 'none', vignette: 0.35, grain: 0.6},
 };
 
 const Field: React.FC<{theme: ResolvedTheme; kind: Surface}> = ({theme, kind}) => {

@@ -98,6 +98,8 @@ import {HistoryScene} from './components/HistoryScene';
 import {VersusScene} from './components/VersusScene';
 import {ErasScene} from './components/ErasScene';
 import {CardsScene} from './components/CardsScene';
+import {DuelScene} from './components/DuelScene';
+import {SpotlightScene} from './components/SpotlightScene';
 import {SceneChrome, Watermark} from './components/SceneChrome';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
@@ -343,6 +345,10 @@ const sceneContent = (
       return <ErasScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'cards':
       return <CardsScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'duel':
+      return <DuelScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'spotlight':
+      return <SpotlightScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       // THROW, do not return null.
       //
@@ -389,6 +395,13 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
   // colours and then undoing the composition it exists for.
   if (skin === 'broadcast') return 'void';
   if (skin === 'minimal') return 'clean';
+  // The showroom look is a flat sheet with objects sitting on it. Every backdrop
+  // this function can return other than 'clean' adds something behind the
+  // subject — a grid, a pool of light, a drifting field — and all of them were
+  // designed for a dark stage, where a backdrop is what stops the frame being a
+  // void. On paper there is no void to fill, and anything drifting behind a card
+  // shows THROUGH the shadow that is seating it, which takes the depth back out.
+  if (skin === 'showroom') return 'sheet';
   // The title card is the same card whatever follows it, so it does not get a
   // vote — otherwise every snippet would be "mixed" and land on the default.
   const kinds = new Set(scenes.map((s) => s.type).filter((t) => t !== 'title'));

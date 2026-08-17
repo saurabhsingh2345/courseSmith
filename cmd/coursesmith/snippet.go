@@ -163,7 +163,7 @@ func newSnippetNewCmd() *cobra.Command {
 	cmd.Flags().StringVar(&model, "model", "", "planning model as provider/model, e.g. openai/gpt-5-mini (default: the course's llm_content)")
 	cmd.Flags().StringVar(&captions, "captions", "", "burn the caption track into the video: on | off (default: the snippets course setting)")
 	cmd.Flags().StringVar(&mode, "mode", "", "light or dark video (default dark)")
-	cmd.Flags().StringVar(&skin, "skin", "", "house style: default | broadcast | minimal | editorial (foundations templates are drawn for editorial)")
+	cmd.Flags().StringVar(&skin, "skin", "", "house style: default | broadcast | minimal | editorial | showroom (foundations templates are drawn for editorial; showroom is the light one, and the cards templates only work in it)")
 	cmd.Flags().BoolVar(&planOnly, "plan-only", false, "stop after planning; do not synthesize or render")
 	cmd.Flags().IntVar(&concurrency, "concurrency", 0, "parallel browser tabs for the Remotion render (0 = auto)")
 	_ = cmd.MarkFlagRequired("template")

@@ -208,6 +208,10 @@ const (
 	// SceneCards is a row of named things wearing their own fetched marks, with
 	// vs, an arrow, or nothing at all in the gaps between them.
 	SceneCards = "cards"
+	// SceneDuel is two named things on two cards with one measured bar each.
+	SceneDuel = "duel"
+	// SceneSpotlight is one card on the left and its claims stacked on the right.
+	SceneSpotlight = "spotlight"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file
@@ -323,6 +327,16 @@ type SceneTheme struct {
 	// these is a figure that vanishes in one of the two modes.
 	Mass string `json:"mass,omitempty"`
 	Ink  string `json:"ink,omitempty"`
+	// Elevation: how an object is seated on this background. Shadow is the colour
+	// a cast shadow is drawn in and ShadowStrength how opaque it is; Rim is the
+	// hairline highlight along a lit object's top edge. They exist because
+	// "lift this off the surface" is two opposite effects — on the near-black
+	// stage the rim does the seating and the shadow is nearly invisible, on paper
+	// it is the other way round — and a scene that hardcodes either one is a
+	// scene that looks pasted on in the other polarity. See deriveElevation.
+	Shadow         string  `json:"shadow,omitempty"`
+	ShadowStrength float64 `json:"shadowStrength,omitempty"`
+	Rim            string  `json:"rim,omitempty"`
 	// AccentText is the accent adjusted to be legible as text on this mode's
 	// background. Accent itself stays the brand colour and is what fills and
 	// strokes use; only type takes this one. See readableOn.

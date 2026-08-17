@@ -161,6 +161,23 @@ const (
 	// the real marks is identified before it is read, and that difference is not
 	// something a drawing system can supply.
 	SinceV8 = "v8"
+	// SinceV9 is the showroom batch: `duel` and `spotlight`, and the light skin
+	// they are cut in.
+	//
+	// v8 shipped one template that fetched a real logo and then painted it in the
+	// course accent, on a near-black stage, because that was the only stage there
+	// was. It looked like the catalog and it did not look like the thing it was
+	// copying, and the reason was one decision made in the wrong direction: the
+	// mark was made to obey the theme, when the whole point of fetching a mark is
+	// that the viewer recognises it — and half of what they recognise is its
+	// colour.
+	//
+	// So this release is a stage the mark can be itself on. Paper, white cards,
+	// shadow instead of rim light, brand colours kept as they arrived. Two more
+	// templates come with it because one card is not a family: `duel` for the two
+	// products a choice is actually between, `spotlight` for the one product held
+	// up with its claims beside it.
+	SinceV9 = "v9"
 )
 
 // Template families. A family is which surface offers a template, and it exists
@@ -188,6 +205,17 @@ const (
 	// assumes the editorial skin's hard left axis, and thirty more cards on the
 	// snippets scroll would tax everyone who came for the ones already there.
 	FamilyFoundations = "foundations"
+	// FamilyShowroom is the batch whose subjects are named products wearing their
+	// own logos, cut on paper in the showroom skin.
+	//
+	// It is a family rather than a category for the usual reason — the front door
+	// differs, the purpose does not — but the split here is sharper than the other
+	// two, because these templates are the only ones in the catalog that cannot be
+	// drawn in a dark house style at all. Their whole claim is that the mark on the
+	// card is the real one, and a real mark on a near-black stage has to be
+	// recoloured to be seen. Recolour it and the viewer is no longer recognising
+	// anything, which is the claim gone.
+	FamilyShowroom = "showroom"
 )
 
 // templateFamilies is the closed set a registration may declare. A family is
@@ -197,6 +225,7 @@ var templateFamilies = map[string]bool{
 	FamilyCore:        true,
 	FamilyReplica:     true,
 	FamilyFoundations: true,
+	FamilyShowroom:    true,
 }
 
 // checkTemplateFamily is the guard registerSnippetTemplate runs beside the

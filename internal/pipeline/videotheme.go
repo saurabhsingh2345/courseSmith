@@ -217,6 +217,11 @@ func deriveBaseVideoTheme(colors config.Colors, fonts config.Fonts, courseName, 
 	// the dark stage a bright accent already clears it and comes back
 	// unchanged; on paper it is walked down until it does.
 	t.AccentText = readableOn(t.Accent, t.BgTop, 4.5)
+	// How an object is seated on this background. Derived in the base rather than
+	// per skin so a scene can reach for a shadow without first asking which house
+	// style it is in — the same reason the semantic accents are derived for every
+	// skin. See deriveElevation.
+	deriveElevation(&t, h, normalizeThemeMode(mode))
 	if fonts.Display != "" {
 		t.FontDisplay = fonts.Display
 	}

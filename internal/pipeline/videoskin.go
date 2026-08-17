@@ -62,6 +62,27 @@ const (
 	// the new composition without being touched, because the placement lives in
 	// the shared header and the stage rather than in any scene.
 	SkinEditorial = "editorial"
+	// SkinShowroom is the light one, and it is the only skin that overrides the
+	// mode axis rather than deriving in both polarities.
+	//
+	// That looks like breaking the rule this file opens with, so here is why it
+	// is the rule being applied rather than bent. The other three skins are
+	// *treatments* — how much light is on the backdrop, how loud the type is,
+	// whether there is chrome — and a treatment is orthogonal to polarity, so
+	// each one owes a dark version and a paper version. This skin is not a
+	// treatment. It is a specific published look: a neutral near-white ground
+	// with pure-white cards sitting on it, seated by cast shadow, the way a
+	// product page seats a tile. Every part of that IS the paper. A dark
+	// "showroom" would be a stage with white cards on it, which is not a darker
+	// version of this look, it is one of the three above.
+	//
+	// What the look buys, and the reason it exists at all: a card here can wear a
+	// real brand mark in the brand's own colour. On the dark stage a fetched logo
+	// has to be recoloured to be visible, and a recoloured logo is no longer the
+	// thing the viewer recognises — which is the entire premise of the templates
+	// that fetch one. The cards batch is cut in this skin because on paper the
+	// mark can simply be itself.
+	SkinShowroom = "showroom"
 )
 
 // normalizeSkin maps config input onto a known skin. Anything unrecognised —
@@ -75,6 +96,8 @@ func normalizeSkin(skin string) string {
 		return SkinMinimal
 	case SkinEditorial:
 		return SkinEditorial
+	case SkinShowroom:
+		return SkinShowroom
 	default:
 		return SkinDefault
 	}
@@ -82,8 +105,13 @@ func normalizeSkin(skin string) string {
 
 // SkinNames returns the selectable skins, for the CLI and the studio picker.
 func SkinNames() []string {
-	return []string{SkinDefault, SkinBroadcast, SkinMinimal, SkinEditorial}
+	return []string{SkinDefault, SkinBroadcast, SkinMinimal, SkinEditorial, SkinShowroom}
 }
+
+// SkinIsLight reports whether a skin fixes its own polarity to paper regardless
+// of the course's mode. Read by the places that have to describe the look before
+// a theme exists — the CLI's help, the studio's picker.
+func SkinIsLight(skin string) bool { return normalizeSkin(skin) == SkinShowroom }
 
 // ResolvedSkin is the house style this theme is in. The field is empty on an
 // unskinned theme (see applySkin), so read it through here rather than
@@ -146,6 +174,46 @@ func deriveSemanticAccents(t *SceneTheme, mode string) {
 	t.AccentRival = readableOn(t.AccentRival, t.BgTop, 4.5)
 }
 
+// deriveElevation fills the three tokens that say how an object is seated on
+// this background — and they are the tokens that stop a scene from having to ask
+// which mode it is in to draw a card.
+//
+// The problem they solve is that "lift this off the surface" is not one effect,
+// it is two opposite ones, and until now every scene picked the dark answer with
+// a literal. On the near-black stage a cast shadow does almost nothing: black on
+// near-black is black. What seats a card there is the RIM — the one-pixel
+// highlight along its top edge that a real object catches from a light above it —
+// plus the surface being a shade lighter than the ground. On paper the rim does
+// nothing instead (white on white) and the cast shadow does all of it, which is
+// why the same card drawn with dark-stage seating on a light skin looks pasted
+// on rather than placed.
+//
+// So the tokens are: what colour a shadow is cast in, how strongly, and what
+// colour a rim light is. A scene composes its own shadow from the first two and
+// its own hairline from the third, and gets the right physics in either polarity
+// without a branch.
+func deriveElevation(t *SceneTheme, h float64, mode string) {
+	t.Rim = "#ffffff"
+	if mode == ThemeModeLight {
+		// Not black. A shadow on paper takes the colour of the light it is the
+		// absence of, and a neutral-black one under a warm white card is the grey
+		// smudge that makes a light design look cheap. The hue is the course's,
+		// deep and desaturated enough that nobody would call it coloured.
+		t.Shadow = hslToHex(h, 0.30, 0.20)
+		// A tenth. On paper this is a real, visible shadow — it is the only thing
+		// holding the card off the page — and every value past about 0.14 stops
+		// reading as depth and starts reading as a blur filter.
+		t.ShadowStrength = 0.10
+		return
+	}
+	t.Shadow = "#000000"
+	// Five times the light-mode number, for a shadow that shows five times less.
+	// It is not there to be seen: it darkens the ground immediately under the
+	// object, and that gradient is what stops a row of five cards reading as one
+	// long panel.
+	t.ShadowStrength = 0.50
+}
+
 // applySkin overrides the tokens a skin disagrees with, on top of an
 // already-derived theme. h is the branding hue the base theme was derived from.
 //
@@ -166,7 +234,61 @@ func applySkin(t *SceneTheme, h float64, skin, mode string) {
 	case SkinEditorial:
 		t.Skin = SkinEditorial
 		applyEditorialSkin(t, h, mode)
+	case SkinShowroom:
+		t.Skin = SkinShowroom
+		applyShowroomSkin(t, h)
 	}
+}
+
+// applyShowroomSkin puts everything on paper and lets shadow do the seating.
+//
+// Three numbers carry this look and each one is the opposite of what the dark
+// stage wants.
+//
+// The ground is NEUTRAL. Every other skin keeps some of the brand hue in the
+// backdrop — 8% is invisible as colour and visible as warmth, and on a dark
+// stage that is free. On paper it is not free: a tint at 96% lightness is a
+// visible cast, and a cast under a row of cards each wearing its own brand
+// colour is a fourth colour arguing with three. So saturation drops to almost
+// nothing and the ground is grey-white. The hue is still in the type and in the
+// shadow, where it warms the look without colouring it.
+//
+// The card is PURE WHITE and the ground is not. Light mode learned this the hard
+// way (see deriveBaseVideoTheme): a card can only be the bright thing if there
+// is somewhere brighter to go, so the page steps down rather than the card
+// stepping in. Here the page goes further down than light mode's 0.955, because
+// this skin's cards have no drawn edge worth speaking of.
+//
+// And the border is a WHISPER — right at the floor the contrast test allows.
+// That is the actual difference between this look and light mode, and it is not
+// a colour at all: on paper a real object is located by the shadow it casts, not
+// by an outline drawn around it. Give the card a visible hairline as well and it
+// reads as a UI element pasted onto a photograph. The hairline stays only
+// because a shadow alone disappears on a hard cut to a bright frame.
+func applyShowroomSkin(t *SceneTheme, h float64) {
+	// The mode field is overwritten rather than respected. Every renderer branch
+	// that asks about polarity has to get "light" here or it will draw dark-stage
+	// seating on paper.
+	t.Mode = ThemeModeLight
+
+	t.BgTop = hslToHex(h, 0.05, 0.968)
+	// Barely a gradient. The reference ground is one flat tone; a few points of
+	// fall-off keeps the frame from looking like a screenshot of a document
+	// without ever reading as a lit surface.
+	t.BgBottom = hslToHex(h, 0.04, 0.951)
+	t.Surface = "#ffffff"
+	t.SurfaceBorder = hslToHex(h, 0.10, 0.90)
+	t.Text = hslToHex(h, 0.22, 0.10)
+	t.TextMuted = hslToHex(h, 0.10, 0.40)
+	t.Mass = hslToHex(h, 0.16, 0.56)
+	t.Ink = hslToHex(h, 0.26, 0.18)
+	// Grain is banding insurance for a dark gradient and there is no dark
+	// gradient. At anything visible it reads as dirt on the paper.
+	t.Grain = defaultGrain / 8
+
+	t.AccentText = readableOn(t.Accent, t.BgTop, 4.5)
+	deriveSemanticAccents(t, ThemeModeLight)
+	deriveElevation(t, h, ThemeModeLight)
 }
 
 // applyBroadcastSkin drops the stage to near-black and takes the light off it.
@@ -211,6 +333,7 @@ func applyBroadcastSkin(t *SceneTheme, h float64, mode string) {
 	// something much darker or much lighter now.
 	t.AccentText = readableOn(t.Accent, t.BgTop, 4.5)
 	deriveSemanticAccents(t, mode)
+	deriveElevation(t, h, mode)
 }
 
 // applyEditorialSkin keeps the brand hue visible and gives the card an edge.
@@ -254,6 +377,7 @@ func applyEditorialSkin(t *SceneTheme, h float64, mode string) {
 	}
 	t.AccentText = readableOn(t.Accent, t.BgTop, 4.5)
 	deriveSemanticAccents(t, mode)
+	deriveElevation(t, h, mode)
 }
 
 // applyMinimalSkin flattens the stage to a single tone and keeps one accent.
@@ -290,6 +414,7 @@ func applyMinimalSkin(t *SceneTheme, h float64, mode string) {
 	}
 	t.AccentText = readableOn(t.Accent, t.BgTop, 4.5)
 	deriveSemanticAccents(t, mode)
+	deriveElevation(t, h, mode)
 }
 
 // skinAir is how much a skin pulls its content in from the stage edges, as a
@@ -328,6 +453,16 @@ func skinAir(skin string) float64 {
 		// at module scope — and fixing it properly means giving those scenes a
 		// runtime height, which is its own piece of work.
 		return 0
+	case SkinShowroom:
+		// A little, and 0.07 was tried first and was wrong. Air here is not the
+		// same trade as on the broadcast stage: there, insetting a small diagram
+		// buys composition, because the surrounding near-black is doing nothing
+		// either way. On paper the surrounding area is a bright sheet, and pulling
+		// a row of cards back from it does not make them look chosen, it makes
+		// them look small on a large empty page — the objects are meant to be the
+		// frame's subject at close to full size, the way a product page fills the
+		// viewport rather than floating in it.
+		return 0.03
 	default:
 		return 0
 	}

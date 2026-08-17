@@ -13,7 +13,7 @@ export type Theme = {
   mode?: 'dark' | 'light';
   /** House style. Absent (the default) is the look the catalog has always had;
    *  see internal/pipeline/videoskin.go. */
-  skin?: 'default' | 'broadcast' | 'minimal' | 'editorial';
+  skin?: 'default' | 'broadcast' | 'minimal' | 'editorial' | 'showroom';
   /** How far a skin pulls content in from the stage edges, as a fraction of
    *  the drawing box. Absent/0 fills the stage. */
   air?: number;
@@ -33,6 +33,15 @@ export type Theme = {
   textMuted?: string;
   mass?: string;
   ink?: string;
+  /** Elevation: how an object is seated on this background. `shadow` is the
+   *  colour a cast shadow is drawn in, `shadowStrength` how opaque, `rim` the
+   *  hairline highlight along a lit object's top edge. Two opposite effects —
+   *  on the dark stage the rim seats a card and the shadow barely shows, on
+   *  paper it is the reverse — so a scene composes from these rather than
+   *  hardcoding either. See deriveElevation in videoskin.go. */
+  shadow?: string;
+  shadowStrength?: number;
+  rim?: string;
   accentText?: string;
   fontDisplay?: string;
   fontBody?: string;
@@ -178,7 +187,9 @@ export type SceneType =
   | 'history'
   | 'versus'
   | 'eras'
-  | 'cards';
+  | 'cards'
+  | 'duel'
+  | 'spotlight';
 
 export type Scene = {
   type: SceneType;

@@ -57,6 +57,13 @@ var comboPools = map[string][]string{
 	// which is also why a CS subject should be directed in this theme rather than
 	// in default: the pool is where its pictures live.
 	SkinEditorial: {FamilyCore, FamilyFoundations},
+	// Paper, white cards, real logos. The showroom batch is the only one that
+	// cannot be cast anywhere else — a card wearing a brand mark needs a light
+	// ground for the mark to be its own colour on — so this is both the only pool
+	// it appears in and the only pool that is *about* a light stage. Core comes
+	// along because those templates are drawn skin-neutral and a piece cut here
+	// still needs an opener and a closer.
+	SkinShowroom: {FamilyCore, FamilyShowroom},
 }
 
 // ComboSkins returns the themes a combo can be cut in, in display order.

@@ -34,8 +34,22 @@ export const FamilyFoundations = "foundations";
  */
 export const FoundationsSkin = "editorial" as const;
 
+/** The batch whose subjects are named products wearing their own logos. */
+export const FamilyShowroom = "showroom";
+
+/**
+ * The house style the showroom batch assumes, and the only light one.
+ *
+ * The split here is harder than replica's or foundations'. Those batches read as
+ * a different production in the wrong skin; these templates do not work in it at
+ * all. Their whole claim is that the logo on the card is the real one, and a real
+ * logo on a near-black stage has to be recoloured to be visible — at which point
+ * the viewer is no longer recognising anything.
+ */
+export const ShowroomSkin = "showroom" as const;
+
 /** The house styles a clip can be cut in. Mirrors videoskin.go. */
-export type Skin = "default" | "broadcast" | "minimal" | "editorial";
+export type Skin = "default" | "broadcast" | "minimal" | "editorial" | "showroom";
 
 /**
  * Which families a theme may cast from. Mirrors comboPools in combo_pool.go.
@@ -56,6 +70,7 @@ export const ComboPools: Record<Skin, string[]> = {
   minimal: [FamilyCore],
   broadcast: [FamilyCore, FamilyReplica],
   editorial: [FamilyCore, FamilyFoundations],
+  showroom: [FamilyCore, FamilyShowroom],
 };
 
 /** The themes a combo can be cut in, in picker order. */
@@ -64,4 +79,5 @@ export const ComboSkins: { value: Skin; label: string; hint: string }[] = [
   { value: "broadcast", label: "Broadcast", hint: "Near-black stage, large type, standing chrome — adds the replica batch" },
   { value: "minimal", label: "Minimal", hint: "Flat, one accent, no furniture — the core templates" },
   { value: "editorial", label: "Editorial", hint: "Hard left axis for diagram-dense teaching — adds the foundations batch" },
+  { value: "showroom", label: "Showroom", hint: "Light: paper, white cards, real product logos — adds the showroom batch" },
 ];
