@@ -168,6 +168,8 @@ type planFields struct {
 	Versus        bool
 	Eras          bool
 	Cards         bool
+	Duel          bool
+	Spotlight     bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -468,6 +470,12 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Cards {
 		p.Cards = nil
+	}
+	if !owns.Duel {
+		p.Duel = nil
+	}
+	if !owns.Spotlight {
+		p.Spotlight = nil
 	}
 }
 

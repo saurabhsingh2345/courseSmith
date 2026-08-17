@@ -998,7 +998,8 @@ eleventh reference template would need, are in
 **Skins.** `style.skin` picks `default` (unchanged), `broadcast` (near-black
 stage, standing chrome, large uppercase headlines, content set back in air) or
 `minimal` (flat charcoal, one accent, no furniture). Every skin derives in both
-polarities and right round the hue circle.
+polarities and right round the hue circle. `editorial` (§14) and `showroom` (§15)
+came later; `showroom` is the one exception to the polarity rule and §15 says why.
 
 They are **additive by construction**: `deriveVideoTheme` runs exactly as it
 always did and a skin overrides only the tokens it disagrees with. A course that
@@ -1338,7 +1339,7 @@ broadcast stage and the foundations batch assumes the editorial left axis, so a
 piece that mixes families freely changes production partway through — which is
 what "that clip did not belong" usually turns out to mean. `default` and
 `minimal` cast from the core catalog, `broadcast` adds replica, `editorial` adds
-foundations. Narrowing beats asking a model to hold a consistency rule it cannot
+foundations, `showroom` adds showroom. Narrowing beats asking a model to hold a consistency rule it cannot
 see.
 
 **The critic is the only pass that sees the whole piece** (`combo_critic.go`).
@@ -1591,3 +1592,87 @@ watching it fail. One trap worth recording — input props must go to
 `selectComposition` **and** `renderStill`; passed to the latter alone they are
 silently dropped, and the parked frames come back byte-identical to the live
 ones, which reads as a dead camera rather than as a dropped override.
+
+## 15. The showroom — a light skin, and cards that wear real logos (2026-08-17)
+
+`cards` shipped in v8 as the only stage in the pipeline that fetches something off
+the open web: a brand mark from Simple Icons, so a row of products could be
+identified rather than read. It came out looking like the catalog and not like the
+thing it was copying, and the reason was one decision made in the wrong direction.
+`svgPathData` took the geometry out of the fetched document and **threw the brand
+colour away** — the CDN serves `fill="#D97757"` right there in the file — so the
+mark could be repainted in the course accent and obey the theme like everything
+else on the frame. Tidy, and it discarded the only thing the fetch was for. Half
+of what a viewer recognises about a logo is its colour. Gemini's mark in gold is a
+four-pointed star; in `#8E75B2` it is Gemini.
+
+Keeping the colour is only possible on a light ground, which is why this is a skin
+before it is three templates.
+
+**`showroom` is the fourth skin and the only one that overrides the mode axis.**
+The other three are *treatments* — how much light is on the backdrop, how loud the
+type is, whether there is standing chrome — and a treatment is orthogonal to
+polarity, so each owes a dark version and a paper version. This one is a specific
+published look: a neutral near-white ground with pure-white cards seated by cast
+shadow. Every part of that *is* the paper; a dark "showroom" would be one of the
+three that already exist. Neutral rather than hue-tinted, because a tint at 96%
+lightness is a visible cast and a cast under three cards each wearing its own
+brand colour is a fourth colour arguing with three.
+
+**Elevation became three tokens, and that is the load-bearing part.** "Lift this
+off the surface" is not one effect, it is two opposite ones, and every scene in
+the catalog had been picking the dark answer with a literal. On near-black a cast
+shadow does almost nothing — black on near-black is black — and what seats a card
+is the *rim*, the one-pixel highlight along its top edge. On paper the rim does
+nothing instead (white on white) and the shadow does all of it. So `shadow`,
+`shadowStrength` and `rim` derive per mode (`deriveElevation`) and `seat()` in
+`theme/theme.ts` emits all three layers every time, letting the tokens turn off
+the ones that do not apply. **No polarity check anywhere in a scene.**
+
+Three things the light frame taught that the dark stage never could:
+
+- **A dim card must keep its full opacity.** On the stage, fading a card recedes
+  it, because what fades is a surface lighter than the ground. On paper the card is
+  the brightest thing in the frame, so fading it fades it *into the page* — at 0.62
+  a row of three read as three cards that had failed to load. What recedes a card
+  here is its contents going quiet and its rim light going out.
+- **The glow has to be a hard ring, not a blur.** A soft outer halo on white is a
+  grubby edge; `0 0 0 5px` at 0.18 alpha reads as selection.
+- **Less air than the dark skins, not more.** 0.07 was tried first. Insetting a
+  small diagram on the broadcast stage buys composition because the surrounding
+  near-black is doing nothing either way; on paper the surround is a bright sheet,
+  and pulling the cards back from it makes them look small on a large empty page.
+  0.03, and `sheet` — a new surface with the accent glows at zero, because at 0.55
+  they are invisible on a dark stage and the brightest thing in the frame on paper.
+
+**`cards` was rewritten around one rule: everything in a card is in the card.** It
+used to draw a logo and a name and float the note under the whole row in a shared
+box, which made a card two things, and two things is a sticker — the exact failure
+its own file header forbids. Measured against the reference, no card there ever has
+fewer than three: a mark, a name, and something carrying information. The new third
+element is the note, and `ask` is what makes it worth waiting for — one optional
+label on the *spec* rather than per card, set small-caps on every card above a slot
+reading `? ? ?` until that card's beat. It costs no layout, because the slot is the
+card's shape from frame one. The slot's height is computed from the longest note in
+the row so the tallest state is the only state; sized to its contents it would make
+the row's height a function of which card is lit.
+
+**Two new templates, because one card is not a family.** `duel` is the two-up the
+reference frame actually is: two products, a pill each, and one bar each against a
+*shared* track — normalise them independently and both run full width and say
+nothing. Its hard rule is that the two scores must differ by at least 12, and the
+error says what to do instead: if they are genuinely level on this axis, that is
+not the axis the choice turns on, and `versus` compares across five dimensions.
+The pick is **allowed to be the shorter bar** and that is deliberately unvalidated,
+because "the free tier is worse and is still right for most people" is the most
+useful thing the template can say. `spotlight` is the asymmetric one — a hero card
+left, claims landing one at a time right — and it is the fifteen-second counterpart
+to `showcase`'s seventy. Its rows *land* rather than ghost-then-brighten, which is
+the one place the family departs from the row's "no reflow" discipline: a count is
+worth showing in advance, a claim is not.
+
+Catalog 45 templates. `combo_pool.go` gains `showroom: {core, showroom}`, the
+studio gains a fifth gallery, and one correction landed with them — the hero card
+was `selected` in the first draft, and a brand-coloured rim around the only card on
+screen has nothing to compare against, so in peach it read as a warning. It gets
+the deeper seating instead: elevation rather than colour.

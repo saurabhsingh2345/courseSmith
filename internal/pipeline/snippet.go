@@ -510,6 +510,10 @@ type SnippetPlan struct {
 	Eras *ErasSpec `json:"eras,omitempty"`
 	// Cards is the row of named things and what sits in the gaps between them.
 	Cards *CardsSpec `json:"cards,omitempty"`
+	// Duel is the two-up: two named things measured against each other.
+	Duel *DuelSpec `json:"duel,omitempty"`
+	// Spotlight is one named thing and the claims stacked beside it.
+	Spotlight *SpotlightSpec `json:"spotlight,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -901,6 +905,8 @@ type SnippetBeat struct {
 	Versus    *VersusBeat    `json:"versus,omitempty"`
 	Eras      *ErasBeat      `json:"eras,omitempty"`
 	Cards     *CardsBeat     `json:"cards,omitempty"`
+	Duel      *DuelBeat      `json:"duel,omitempty"`
+	Spotlight *SpotlightBeat `json:"spotlight,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

@@ -169,6 +169,14 @@ const SOURCES = {
   // A card lit rather than the even row: the opening frame is three equal cards
   // and reads as a logo wall, which is the one thing this template is not.
   cards: "CardsViz-570",
+  // The bars filled. Before them the frame is two product cards, which is what
+  // `cards` shows with two items — the measurement is the whole difference
+  // between the two templates, so the card has to show it.
+  duel: "DuelViz-640",
+  // Mid-stack: one claim settled, one arriving, the third's space still empty.
+  // The finished frame would show three equal rows and hide the fact that they
+  // arrive one at a time, which is the template's whole movement.
+  spotlight: "SpotlightViz-400",
 };
 
 // 480x270 is 2x a card at its widest, so it stays crisp on a retina display

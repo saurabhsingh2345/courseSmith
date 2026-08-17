@@ -357,6 +357,16 @@ const TARGETS = [
   // row. Every one of the three art paths, and both brightness states, in one
   // frame — which no other moment of this template holds.
   { id: "CardsViz", frame: 570 },
+  // The duel just after the bars have finished filling: both marks up, both pills
+  // up, one bar short and one long against the same track. The gap between the two
+  // fills is the only thing this template exists to draw. Settled rather than
+  // mid-fill on purpose — a frame captured during the animation would diff on
+  // sub-frame timing rather than on the layout.
+  { id: "DuelViz", frame: 640 },
+  // The spotlight with the second of three rows landing: one row settled, one
+  // arriving, and the empty space the third has not reached. Every state the row
+  // stack has, in one frame.
+  { id: "SpotlightViz", frame: 400 },
   { id: "LessonVideo", frame: 15 },
 ];
 

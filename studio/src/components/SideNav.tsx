@@ -25,6 +25,7 @@ import {
   Receipt,
   Scissors,
   Sparkles,
+  Store,
   Wand2,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -53,6 +54,7 @@ export const NAV_GROUPS: NavGroup[] = [
       { to: "/snippets", label: "Snippets", icon: Scissors },
       { to: "/replica", label: "Replica", icon: Wand2 },
       { to: "/foundations", label: "Foundations", icon: GraduationCap },
+      { to: "/showroom", label: "Showroom", icon: Store },
       { to: "/combos", label: "Combos", icon: Film },
       { to: "/nocode", label: "No-code", icon: Camera },
       {

@@ -9,6 +9,7 @@ import { ComposePage } from "./pages/ComposePage";
 import { SnippetsPage } from "./pages/SnippetsPage";
 import { ReplicaPage } from "./pages/ReplicaPage";
 import { FoundationsPage } from "./pages/FoundationsPage";
+import { ShowroomPage } from "./pages/ShowroomPage";
 import { CombosPage } from "./pages/CombosPage";
 import { NoCodePage } from "./pages/NoCodePage";
 import { CoursesPage } from "./pages/CoursesPage";
@@ -52,6 +53,7 @@ export function App() {
         <Route path="/snippets" element={<SnippetsPage />} />
         <Route path="/replica" element={<ReplicaPage />} />
         <Route path="/foundations" element={<FoundationsPage />} />
+        <Route path="/showroom" element={<ShowroomPage />} />
         <Route path="/combos" element={<CombosPage />} />
         <Route path="/nocode" element={<NoCodePage />} />
         <Route path="/courses" element={<CoursesPage />} />

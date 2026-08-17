@@ -939,6 +939,8 @@ type beatFields struct {
 	Versus        bool
 	Eras          bool
 	Cards         bool
+	Duel          bool
+	Spotlight     bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -1095,6 +1097,10 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "eras"
 		case !owned.Cards && b.Cards != nil:
 			set = "cards"
+		case !owned.Duel && b.Duel != nil:
+			set = "duel"
+		case !owned.Spotlight && b.Spotlight != nil:
+			set = "spotlight"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

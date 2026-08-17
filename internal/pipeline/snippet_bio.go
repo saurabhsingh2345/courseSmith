@@ -451,6 +451,16 @@ var templateBios = map[string]TemplateBio{
 		Avoid: "abstractions. The cards wear the real logos, so a concept with no brand behind it draws a row of generic glyphs — that is what constellation and rundown are for",
 		Roles: []string{RoleHook, RoleDevelop, RolePayoff},
 	},
+	"duel": {
+		Needs: "two named products, the ONE axis the choice between them turns on, a number for each of them on it, and which one you would tell somebody to use",
+		Avoid: "a choice that turns on several things at once. Two bars can only say one thing, and two bars of the same length say nothing — if they are level on the axis, use versus and compare them across five dimensions instead",
+		Roles: []string{RoleDevelop, RolePayoff},
+	},
+	"spotlight": {
+		Needs: "one named product and two to four things it is actually good FOR, each said in nine words or less",
+		Avoid: "a feature list. \"Ten gigabyte context window\" is a spec and belongs on a showcase; this template wants what the spec is for. Also avoid it for a tool the course has not met yet if there is runtime for the long introduction — that is showcase",
+		Roles: []string{RoleHook, RoleDevelop},
+	},
 	"compare": {
 		Needs: "two named options and the dimensions they genuinely differ on",
 		Avoid: "two things that are not alternatives. A comparison implies a choice; without one it is two definitions in one frame",
