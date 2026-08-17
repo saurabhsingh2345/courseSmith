@@ -351,6 +351,12 @@ const TARGETS = [
   { id: "HistoryViz", frame: 1053 },
   { id: "VersusViz", frame: 873 },
   { id: "ErasViz", frame: 1008 },
+  // The cards row mid-clip, with the middle card lit: a fetched brand mark in
+  // its accent, its neighbours receded, a third card falling back to a drawn
+  // glyph because OpenAI's marks are not in any icon set, and the line under the
+  // row. Every one of the three art paths, and both brightness states, in one
+  // frame — which no other moment of this template holds.
+  { id: "CardsViz", frame: 570 },
   { id: "LessonVideo", frame: 15 },
 ];
 

@@ -167,6 +167,7 @@ type planFields struct {
 	History       bool
 	Versus        bool
 	Eras          bool
+	Cards         bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -464,6 +465,9 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Eras {
 		p.Eras = nil
+	}
+	if !owns.Cards {
+		p.Cards = nil
 	}
 }
 

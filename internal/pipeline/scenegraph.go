@@ -205,6 +205,9 @@ const (
 	SceneHistory   = "history"
 	SceneVersus    = "versus"
 	SceneEras      = "eras"
+	// SceneCards is a row of named things wearing their own fetched marks, with
+	// vs, an arrow, or nothing at all in the gaps between them.
+	SceneCards = "cards"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file

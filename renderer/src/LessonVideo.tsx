@@ -97,6 +97,7 @@ import {CallStackScene} from './components/CallStackScene';
 import {HistoryScene} from './components/HistoryScene';
 import {VersusScene} from './components/VersusScene';
 import {ErasScene} from './components/ErasScene';
+import {CardsScene} from './components/CardsScene';
 import {SceneChrome, Watermark} from './components/SceneChrome';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
@@ -340,6 +341,8 @@ const sceneContent = (
       return <VersusScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'eras':
       return <ErasScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'cards':
+      return <CardsScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       // THROW, do not return null.
       //
@@ -517,6 +520,10 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     case 'history':
     case 'versus':
     case 'eras':
+    // A row of shadowed cards is already several objects sitting off the stage,
+    // and the shadow is what seats them. A drifting field behind them shows
+    // through those shadows and takes the depth back out.
+    case 'cards':
       return 'clean';
     default:
       return 'default';

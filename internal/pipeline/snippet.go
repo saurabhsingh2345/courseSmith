@@ -508,6 +508,8 @@ type SnippetPlan struct {
 	Versus *VersusSpec `json:"versus,omitempty"`
 	// Eras is the era band: how the subject got to now, one age at a time.
 	Eras *ErasSpec `json:"eras,omitempty"`
+	// Cards is the row of named things and what sits in the gaps between them.
+	Cards *CardsSpec `json:"cards,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -898,6 +900,7 @@ type SnippetBeat struct {
 	History   *HistoryBeat   `json:"history,omitempty"`
 	Versus    *VersusBeat    `json:"versus,omitempty"`
 	Eras      *ErasBeat      `json:"eras,omitempty"`
+	Cards     *CardsBeat     `json:"cards,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

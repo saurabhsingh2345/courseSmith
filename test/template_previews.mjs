@@ -166,6 +166,9 @@ const SOURCES = {
   history: "HistoryViz-1053",
   versus: "VersusViz-873",
   eras: "ErasViz-1008",
+  // A card lit rather than the even row: the opening frame is three equal cards
+  // and reads as a logo wall, which is the one thing this template is not.
+  cards: "CardsViz-570",
 };
 
 // 480x270 is 2x a card at its widest, so it stays crisp on a retina display

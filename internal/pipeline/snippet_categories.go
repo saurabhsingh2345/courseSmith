@@ -150,6 +150,17 @@ const (
 	// the decimal claimed, the truth table must match the gate — because a
 	// diagram of computing that is wrong is worse than no diagram at all.
 	SinceV7 = "v7"
+	// SinceV8 is `cards`: one template rather than a batch, and the first whose
+	// art comes from outside this process.
+	//
+	// Everything the catalog draws, it draws — type, geometry, a closed
+	// vocabulary of glyphs — and that is why eighty-one templates can all be
+	// themed, timed and validated the same way. It is also the reason none of
+	// them can put a subject on screen that a viewer RECOGNISES. A row of
+	// products named in the house font is a row of words; the same row wearing
+	// the real marks is identified before it is read, and that difference is not
+	// something a drawing system can supply.
+	SinceV8 = "v8"
 )
 
 // Template families. A family is which surface offers a template, and it exists

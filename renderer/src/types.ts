@@ -177,7 +177,8 @@ export type SceneType =
   | 'callstack'
   | 'history'
   | 'versus'
-  | 'eras';
+  | 'eras'
+  | 'cards';
 
 export type Scene = {
   type: SceneType;

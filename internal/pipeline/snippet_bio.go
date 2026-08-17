@@ -446,6 +446,11 @@ var templateBios = map[string]TemplateBio{
 	// This group holds most of the catalog's payoff capacity, which is why a
 	// director short of a closer should look here first.
 
+	"cards": {
+		Needs: "2-5 things that have real names in the world, a line saying what each one is, and whether they are alternatives, a sequence, or just the players",
+		Avoid: "abstractions. The cards wear the real logos, so a concept with no brand behind it draws a row of generic glyphs — that is what constellation and rundown are for",
+		Roles: []string{RoleHook, RoleDevelop, RolePayoff},
+	},
 	"compare": {
 		Needs: "two named options and the dimensions they genuinely differ on",
 		Avoid: "two things that are not alternatives. A comparison implies a choice; without one it is two definitions in one frame",
