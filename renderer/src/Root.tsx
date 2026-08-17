@@ -4456,13 +4456,15 @@ const openerVizProps: LessonVideoProps = {
       endMs: 21000,
       props: {
         ground: 'Your first prompt in Claude Code',
-        kicker: 'Claude Code 101',
         promise: 'Write one prompt that gets a real change into your repo',
-        byline: 'Coursesmith',
+        // No kicker and no byline, which is the shape a real clip actually wants:
+        // the title and what will be done, and nothing else on the page. That also
+        // makes this the baseline for the accent rule that stands in for the
+        // kicker — without it the promise floats in the lower left with nothing
+        // establishing the corner.
         steps: [
-          {startMs: 0, endMs: 7000, show: 'ground', promise: false, mark: false},
-          {startMs: 7000, endMs: 14500, show: 'promise', promise: true, mark: false},
-          {startMs: 14500, endMs: 21000, show: 'mark', promise: true, mark: true},
+          {startMs: 0, endMs: 9000, show: 'ground', promise: false, mark: false},
+          {startMs: 9000, endMs: 21000, show: 'promise', promise: true, mark: false},
         ],
       },
     },
