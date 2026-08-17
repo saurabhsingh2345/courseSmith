@@ -149,6 +149,20 @@ func cardArtFromBrand(ctx context.Context, it *Card) bool {
 		return false
 	}
 	it.Mark = d
+	// The brand's own hex, which the CDN puts in the fill attribute of the
+	// document the geometry was just taken out of.
+	//
+	// This was thrown away for a whole release, and it was the single worst thing
+	// about this template. The argument for dropping it was sound as far as it
+	// went — a mark that takes the theme's colour sits on the stage like
+	// everything else, a mark that arrives pre-coloured is a sticker somebody put
+	// on the frame — but it was answering the wrong question. The premise of a
+	// fetched logo is that the viewer identifies the product BEFORE reading its
+	// name, and a large part of what they identify it by is the colour. Gemini's
+	// mark painted in the course accent is a four-pointed star; painted in
+	// Gemini's blue-violet it is Gemini. Repainting it kept the frame tidy by
+	// discarding the only thing the fetch was for.
+	it.Tint = svgFillHex(body)
 	it.MarkFrom = "simpleicons:" + slug
 	return true
 }
@@ -210,7 +224,29 @@ func cardsHost(s string) string {
 var (
 	svgViewBoxRe = regexp.MustCompile(`viewBox\s*=\s*"([^"]*)"`)
 	svgPathRe    = regexp.MustCompile(`<path[^>]*\sd\s*=\s*"([^"]*)"`)
+	svgFillRe    = regexp.MustCompile(`fill\s*=\s*"#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})"`)
 )
+
+// svgFillHex pulls the brand colour out of the fetched document, normalised to
+// #rrggbb, and "" when there is not exactly one plain hex fill to take.
+//
+// Held to a literal hex on purpose. `currentColor`, a url() reference to a
+// gradient and a CSS class are all legal SVG fills and none of them is a colour
+// this pipeline can carry as a token — the renderer paints one path in one
+// colour. Anything it cannot read comes back empty, and an empty tint is the
+// documented case the card already handles: the mark is painted in the card's
+// role colour, exactly as it was before this existed.
+func svgFillHex(body []byte) string {
+	m := svgFillRe.FindStringSubmatch(string(body))
+	if m == nil {
+		return ""
+	}
+	h := strings.ToLower(m[1])
+	if len(h) == 3 {
+		h = string([]byte{h[0], h[0], h[1], h[1], h[2], h[2]})
+	}
+	return "#" + h
+}
 
 // svgPathData pulls the drawable geometry out of a Simple Icons SVG.
 //

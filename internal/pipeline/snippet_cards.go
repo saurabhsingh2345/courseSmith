@@ -50,8 +50,14 @@ func init() {
 		Name:     "cards",
 		Category: CatDecisions,
 		Since:    SinceV8,
-		Family:   FamilyReplica,
-		Title:    "Things side by side",
+		// Moved off `replica` when the showroom skin arrived, and it was a
+		// correction rather than a reshuffle: this template was always cut for a
+		// light stage and was in the broadcast batch because that batch was the
+		// only non-default one that existed. A brand mark on near-black has to be
+		// recoloured to be seen, and recolouring it throws away the recognition
+		// that is the entire reason to fetch it.
+		Family: FamilyShowroom,
+		Title:  "Things side by side",
 		Description: "Two to five cards in a row, each with the real thing's logo, its name and a line saying what it is — with vs, an arrow, or nothing at all in the gaps between them. " +
 			"Reach for it when the subject is named products, tools or services a viewer should be able to tell apart at a glance.",
 		Example:    "Claude against Gemini: which one to reach for",
@@ -86,6 +92,7 @@ func init() {
 				"MaxTitleWords":  maxCardTitleWords,
 				"MaxNoteWords":   maxCardNoteWords,
 				"MaxCloserWords": maxCardsCloserWords,
+				"MaxAskWords":    maxCardsAskWords,
 			}
 		},
 	})
@@ -108,6 +115,9 @@ const (
 	maxCardNoteWords = 18
 	// The closer runs across the foot of the frame under the finished row.
 	maxCardsCloserWords = 14
+	// The row's shared question, set small-caps on every card. Three words is
+	// already a long label at that size; the answer is the note, not this.
+	maxCardsAskWords = 3
 )
 
 // cardRelations is the closed vocabulary of what sits in the gaps.
@@ -161,6 +171,24 @@ type CardsSpec struct {
 	// Closer is the line under the finished row. Required for a versus row —
 	// see validateCardsPlan.
 	Closer string `json:"closer,omitempty"`
+
+	// Ask turns the row into a question the clip answers one card at a time.
+	//
+	// It is a short small-caps label — "strongest at", "costs", "best for" — set
+	// on EVERY card, above a slot where that card's note will land. Until the
+	// card has its beat the slot reads `? ? ?`, and the note arrives when the
+	// voice gets there.
+	//
+	// One field on the spec rather than a per-card label, because the row only
+	// works if all the cards are answering the SAME question. Three cards each
+	// labelled with a different heading is three unrelated cards that happen to
+	// be adjacent, which is the failure the relation vocabulary already guards
+	// against in the gaps and this guards against inside the cards.
+	//
+	// Optional. Empty means the notes simply sit under the names from the first
+	// frame, which is the right shape for a row that is orientation rather than a
+	// question.
+	Ask string `json:"ask,omitempty"`
 }
 
 // ResolvedRelation returns what goes in the gaps, defaulting the unknown to
@@ -206,9 +234,15 @@ type Card struct {
 
 	// == Resolved by the pipeline, not written by the model. ==
 
-	// Mark is SVG path data on a 0 0 24 24 viewBox, painted in the card's
-	// colour. This is the good case: a vector mark that takes the theme.
+	// Mark is SVG path data on a 0 0 24 24 viewBox. This is the good case: a
+	// vector mark that stays sharp at any size.
 	Mark string `json:"mark,omitempty"`
+	// Tint is the brand's own hex, taken off the fetched mark. The colour the
+	// mark is painted in, and the tile behind it tinted from — because the whole
+	// reason to fetch a logo is that the viewer knows it on sight, and its colour
+	// is half of how. Empty when the source served no plain hex fill, in which
+	// case the card falls back to its role colour.
+	Tint string `json:"tint,omitempty"`
 	// Image is a data: URI for a mark that has to keep its own colours — a
 	// favicon, a photo. Drawn as-is in the card's tile.
 	Image string `json:"image,omitempty"`
@@ -319,6 +353,7 @@ func normalizeCardsPlan(p *SnippetPlan) {
 	}
 	c.Relation = c.ResolvedRelation()
 	c.Closer = clampWords(collapseSpaces(c.Closer), maxCardsCloserWords)
+	c.Ask = clampWords(collapseSpaces(c.Ask), maxCardsAskWords)
 
 	items := make([]Card, 0, len(c.Items))
 	for _, it := range c.Items {
@@ -473,6 +508,12 @@ func cardsScenes(in SnippetSceneInput) ([]Scene, error) {
 			"role":  it.ResolvedRole(),
 			"icon":  it.ResolvedIcon(),
 		}
+		// Omitted when empty for the same reason the art keys are: the component
+		// reads a present tint as "this mark has a real brand colour, paint it in
+		// that", and an empty string would paint the mark in nothing.
+		if it.Tint != "" {
+			items[i]["tint"] = it.Tint
+		}
 		// Omitted rather than sent empty: the component treats a present key as
 		// art it must draw, and an empty string would draw a blank tile where
 		// the fallback glyph belongs.
@@ -527,6 +568,7 @@ func cardsScenes(in SnippetSceneInput) ([]Scene, error) {
 			"relation": c.ResolvedRelation(),
 			"items":    items,
 			"closer":   c.Closer,
+			"ask":      c.Ask,
 			"steps":    steps,
 		}),
 	}}, nil
