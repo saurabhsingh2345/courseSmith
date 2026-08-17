@@ -22,6 +22,8 @@ const (
 	DefaultFontDisplay = "Space Grotesk"
 	DefaultFontBody    = "Inter"
 	DefaultFontMono    = "JetBrains Mono"
+	// The display serif. See config.Fonts.Serif on why a fourth family.
+	DefaultFontSerif = "Instrument Serif"
 )
 
 // defaultGrain is the film-grain overlay opacity (masks H.264 banding in
@@ -150,6 +152,7 @@ func deriveBaseVideoTheme(colors config.Colors, fonts config.Fonts, courseName, 
 		FontDisplay: DefaultFontDisplay,
 		FontBody:    DefaultFontBody,
 		FontMono:    DefaultFontMono,
+		FontSerif:   DefaultFontSerif,
 	}
 	if normalizeThemeMode(mode) == ThemeModeLight {
 		t.Mode = ThemeModeLight
@@ -230,6 +233,9 @@ func deriveBaseVideoTheme(colors config.Colors, fonts config.Fonts, courseName, 
 	}
 	if fonts.Mono != "" {
 		t.FontMono = fonts.Mono
+	}
+	if fonts.Serif != "" {
+		t.FontSerif = fonts.Serif
 	}
 	return t
 }

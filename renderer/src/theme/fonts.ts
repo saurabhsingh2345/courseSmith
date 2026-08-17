@@ -9,6 +9,13 @@ import {loadFont as loadInter} from '@remotion/google-fonts/Inter';
 import {loadFont as loadJetBrainsMono} from '@remotion/google-fonts/JetBrainsMono';
 import {loadFont as loadSora} from '@remotion/google-fonts/Sora';
 import {loadFont as loadIBMPlexSans} from '@remotion/google-fonts/IBMPlexSans';
+// The one serif in the stack, and the reason it is here: a display serif is a
+// different VOICE, not a different taste. Every other family bundled above is a
+// sans, so a title set in any of them reads as the same title at a different
+// size — which is why the catalog's intro cards have always looked like its
+// diagram labels. Instrument Serif is a high-contrast transitional face, and it
+// carries an intro the way a book's title page does.
+import {loadFont as loadInstrumentSerif} from '@remotion/google-fonts/InstrumentSerif';
 
 const spaceGrotesk = loadSpaceGrotesk('normal', {
   weights: ['400', '500', '600', '700'],
@@ -27,6 +34,10 @@ const ibmPlexSans = loadIBMPlexSans('normal', {
   weights: ['400', '500', '600', '700'],
   subsets: ['latin'],
 });
+// One weight, because the face ships one. A display serif at 400 set very large
+// is already heavier on the page than a sans at 700 set small — the contrast in
+// the strokes does the work that weight does elsewhere.
+const instrumentSerif = loadInstrumentSerif('normal', {weights: ['400'], subsets: ['latin']});
 
 /** Bundled family name → the fontFamily string the loader registered. */
 const BUNDLED: Record<string, string> = {
@@ -35,10 +46,12 @@ const BUNDLED: Record<string, string> = {
   'JetBrains Mono': jetBrainsMono.fontFamily,
   Sora: sora.fontFamily,
   'IBM Plex Sans': ibmPlexSans.fontFamily,
+  'Instrument Serif': instrumentSerif.fontFamily,
 };
 
 const FALLBACK_SANS = 'Helvetica, Arial, sans-serif';
 const FALLBACK_MONO = 'Menlo, Consolas, monospace';
+const FALLBACK_SERIF = 'Georgia, "Times New Roman", serif';
 
 export const displayFamily = (name?: string): string =>
   `"${BUNDLED[name ?? ''] ?? BUNDLED['Space Grotesk']}", ${FALLBACK_SANS}`;
@@ -48,3 +61,6 @@ export const bodyFamily = (name?: string): string =>
 
 export const monoFamily = (name?: string): string =>
   `"${BUNDLED[name ?? ''] ?? BUNDLED['JetBrains Mono']}", ${FALLBACK_MONO}`;
+
+export const serifFamily = (name?: string): string =>
+  `"${BUNDLED[name ?? ''] ?? BUNDLED['Instrument Serif']}", ${FALLBACK_SERIF}`;

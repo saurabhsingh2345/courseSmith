@@ -4437,6 +4437,200 @@ const spotlightVizProps: LessonVideoProps = {
   captions: [],
 };
 
+/**
+ * The opener, on the beat where the promise has landed but the byline has not.
+ *
+ * Chosen over the finished frame because it is the state that proves the layering
+ * works: the ground has to be visible enough to be texture and faint enough that
+ * the solid line wins, and a baseline of the complete card would pass even if the
+ * two were fighting.
+ */
+const openerVizProps: LessonVideoProps = {
+  theme: showroomTheme,
+  audioFile: '',
+  durationMs: 21000,
+  scenes: [
+    {
+      type: 'opener',
+      startMs: 0,
+      endMs: 21000,
+      props: {
+        ground: 'Your first prompt in Claude Code',
+        kicker: 'Claude Code 101',
+        promise: 'Write one prompt that gets a real change into your repo',
+        byline: 'Coursesmith',
+        steps: [
+          {startMs: 0, endMs: 7000, show: 'ground', promise: false, mark: false},
+          {startMs: 7000, endMs: 14500, show: 'promise', promise: true, mark: false},
+          {startMs: 14500, endMs: 21000, show: 'mark', promise: true, mark: true},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The patch, mid-apply: the removed line struck through and the added lines part
+ * way in. That is the only frame where the animation is visible at all, and the
+ * animation is the template — a settled frame would look identical whether the
+ * strikethrough worked or not.
+ */
+const patchVizProps: LessonVideoProps = {
+  theme: showroomTheme,
+  audioFile: '',
+  durationMs: 40000,
+  scenes: [
+    {
+      type: 'patch',
+      startMs: 0,
+      endMs: 40000,
+      props: {
+        title: 'Three lines made it async',
+        emphasis: 'made it async',
+        path: 'src/routes/auth.ts',
+        lang: 'ts',
+        closer: 'Two hunks, three lines added, two removed',
+        hunks: [
+          {
+            at: 58,
+            context: ["router.post('/avatar', upload, async (req, res) => {", '  try {'],
+            before: ['    const filePath = req.file.path;'],
+            after: [
+              '    const buf = await sharp(req.file.buffer)',
+              '      .webp({ quality: 80 }).toBuffer();',
+            ],
+            note: 'The file never touches disk now, so there is nothing to clean up',
+          },
+          {
+            at: 69,
+            context: ['    res.json(user);'],
+            before: ['  } catch {'],
+            after: ['  } catch (err) {'],
+            note: 'Naming the error is what lets the 422 say something useful',
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'file', at: -1, landed: 0, added: 0, removed: 0},
+          {startMs: 8000, endMs: 20000, show: 'hunk', at: 0, landed: 1, added: 2, removed: 1},
+          {startMs: 20000, endMs: 32000, show: 'hunk', at: 1, landed: 2, added: 3, removed: 2},
+          {startMs: 32000, endMs: 40000, show: 'tally', at: -1, landed: 2, added: 3, removed: 2},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The change plan with the third file open — the `unchanged` one, on purpose.
+ *
+ * That row is the template's own argument (a plan should say what it decided to
+ * leave alone) and it is the only row that renders differently: a hollow ring
+ * instead of a dot, and the panel's fallback line instead of bullets. A baseline on
+ * an ordinary `edit` row would not cover either.
+ */
+const changePlanVizProps: LessonVideoProps = {
+  theme: showroomTheme,
+  audioFile: '',
+  durationMs: 44000,
+  scenes: [
+    {
+      type: 'changeplan',
+      startMs: 0,
+      endMs: 44000,
+      props: {
+        title: 'What the agent will touch',
+        emphasis: 'will touch',
+        closer: 'Three files, one new dependency, nothing else moved',
+        files: [
+          {
+            path: 'package.json',
+            summary: 'add the sharp dependency',
+            verdict: 'add',
+            edits: ['Add sharp to dependencies', 'It ships prebuilt binaries, so no build step'],
+          },
+          {
+            path: 'src/middleware/upload.ts',
+            summary: 'switch to memory storage',
+            verdict: 'edit',
+            edits: [
+              'Replace diskStorage with memoryStorage',
+              'Keep the MIME check and the 5MB limit',
+              'req.file.buffer replaces req.file.path',
+            ],
+          },
+          {
+            path: 'src/index.ts',
+            summary: 'already serves webp, nothing to do',
+            verdict: 'unchanged',
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'rail', at: -1, done: 0},
+          {startMs: 8000, endMs: 18000, show: 'file', at: 0, done: 1},
+          {startMs: 18000, endMs: 28000, show: 'file', at: 1, done: 2},
+          {startMs: 28000, endMs: 37000, show: 'file', at: 2, done: 3},
+          {startMs: 37000, endMs: 44000, show: 'all', at: -1, done: 3},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The gate on its closing beat: every consequence inked, the risky row edged in
+ * red, and the pick checked — which here is NOT the risky one.
+ *
+ * The fixture deliberately does not exercise the case the validator allows and I
+ * expect to be common, where the recommendation IS the risky row. Worth a second
+ * composition if a real clip leans on it, because the frame then carries a red edge
+ * and a check on the same card and I have not seen how that reads.
+ */
+const approvalVizProps: LessonVideoProps = {
+  theme: showroomTheme,
+  audioFile: '',
+  durationMs: 42000,
+  scenes: [
+    {
+      type: 'approval',
+      startMs: 0,
+      endMs: 42000,
+      props: {
+        title: 'What auto-accept hands over',
+        emphasis: 'hands over',
+        emphasisRole: 'limit',
+        tool: 'Claude Code',
+        context: 'halfway through the avatar refactor',
+        ask: 'rm -rf uploads/avatars/',
+        pick: 0,
+        closer: 'Approve each edit until you trust it in this repo',
+        answers: [
+          {label: 'Yes', consequence: 'This one command runs; you are asked again next time'},
+          {
+            label: "Yes, and don't ask again",
+            consequence: 'Every later command runs unasked, for the whole session',
+            risk: true,
+          },
+          {
+            label: 'No, and tell it why',
+            consequence: 'It stops and re-plans with your reason in hand',
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 8000, show: 'ask', at: -1, read: 0},
+          {startMs: 8000, endMs: 17000, show: 'answer', at: 0, read: 1},
+          {startMs: 17000, endMs: 26000, show: 'answer', at: 1, read: 2},
+          {startMs: 26000, endMs: 35000, show: 'answer', at: 2, read: 3},
+          {startMs: 35000, endMs: 42000, show: 'pick', at: -1, read: 3},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
@@ -5312,6 +5506,42 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(spotlightVizProps.durationMs)}
       defaultProps={spotlightVizProps}
+    />
+    <Composition
+      id="OpenerViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(openerVizProps.durationMs)}
+      defaultProps={openerVizProps}
+    />
+    <Composition
+      id="PatchViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(patchVizProps.durationMs)}
+      defaultProps={patchVizProps}
+    />
+    <Composition
+      id="ChangePlanViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(changePlanVizProps.durationMs)}
+      defaultProps={changePlanVizProps}
+    />
+    <Composition
+      id="ApprovalViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(approvalVizProps.durationMs)}
+      defaultProps={approvalVizProps}
     />
     <Composition
       id="LessonVideo"

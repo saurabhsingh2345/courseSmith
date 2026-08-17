@@ -177,6 +177,17 @@ const SOURCES = {
   // The finished frame would show three equal rows and hide the fact that they
   // arrive one at a time, which is the template's whole movement.
   spotlight: "SpotlightViz-400",
+  // The promise landed, the byline still to come — the state that proves the big
+  // type is texture and the small line wins. A finished card hides that fight.
+  opener: "OpenerViz-330",
+  // Mid-apply: the struck line and the arriving one. The card has to show the
+  // template's one animation, because that animation IS the template.
+  patch: "PatchViz-258",
+  // The `unchanged` row open: a hollow ring and the "nothing to do" line, which is
+  // the argument this template makes that a wall of monospace cannot.
+  changeplan: "ChangePlanViz-900",
+  // The gate closed: risky row edged red, pick checked, every consequence inked.
+  approval: "ApprovalViz-1140",
 };
 
 // 480x270 is 2x a card at its widest, so it stays crisp on a retina display

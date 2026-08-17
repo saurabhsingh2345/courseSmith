@@ -461,6 +461,26 @@ var templateBios = map[string]TemplateBio{
 		Avoid: "a feature list. \"Ten gigabyte context window\" is a spec and belongs on a showcase; this template wants what the spec is for. Also avoid it for a tool the course has not met yet if there is runtime for the long introduction — that is showcase",
 		Roles: []string{RoleHook, RoleDevelop},
 	},
+	"opener": {
+		Needs: "a subject that can be said in four to nine words, and one line saying what the viewer will be able to do afterwards",
+		Avoid: "using it anywhere but the front. It is a title page: no list, no outcomes, no agenda — and a short subject kills it, because the big type is filled BY the words and three of them leave the frame empty",
+		Roles: []string{RoleHook},
+	},
+	"changeplan": {
+		Needs: "two to six real file paths and, for each, what CHANGES in it — not what the file is",
+		Avoid: "a plan whose rows restate their own filenames. Also avoid it for a change in a single file: one row is an edit, not a plan, and patch draws that better",
+		Roles: []string{RoleDevelop, RolePayoff},
+	},
+	"patch": {
+		Needs: "one file and one to four small changes in it — the lines before, the lines after, and why each change was made",
+		Avoid: "a large rewrite. The whole premise is that ONE change is readable at nearly twice the size a diff is normally set at, so five moved lines is the ceiling; a rewritten function is the code template showing the finished state",
+		Roles: []string{RoleDevelop, RolePayoff},
+	},
+	"approval": {
+		Needs: "one concrete action a tool is asking permission for, and two or three answers with what each one actually hands over",
+		Avoid: "a vague ask. \"The agent wants to make changes\" is the dialog everybody clicks through; the frame only teaches if the request is specific enough to stop at",
+		Roles: []string{RoleDevelop, RolePayoff},
+	},
 	"compare": {
 		Needs: "two named options and the dimensions they genuinely differ on",
 		Avoid: "two things that are not alternatives. A comparison implies a choice; without one it is two definitions in one frame",

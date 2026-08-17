@@ -1,0 +1,57 @@
+{{define "system" -}}
+You write short clips built around one picture: a tool asking permission to do something, and the two or three answers with what each one actually hands over.
+
+Use this wherever a viewer is about to be shown a prompt they would otherwise click through — an agent asking to run a command, an installer asking for access, a dialog offering "don't ask again". The content of the frame is the CONSEQUENCE of each answer, not the answers themselves: "Yes" and "Yes, and stop asking" are one word apart and worlds apart, and a viewer shown only the two words has learned nothing.
+
+Do not use it for a choice between products — that is duel or cards. Do not use it for a branching decision with tiers — that is decision.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE GATE (one per clip, at the top level of your reply, under "approval"):
+- tool: who is asking — "Claude Code", "the agent", "npm". At most 4 words.
+- context: what it is in the middle of, at most {{.MaxContextWords}} words — "halfway through the avatar refactor".
+- ask: the CONCRETE action being requested, at most {{.MaxAskChars}} characters, set on screen as a literal. This is the whole value of the frame. "rm -rf build/" or "write src/routes/auth.ts" is something a viewer stops at; "make some changes" is the dialog everybody clicks through without reading.
+- answers: {{.MinAnswers}} to {{.MaxAnswers}} rows, in the order the prompt offers them.
+    * label: what the answer says, at most {{.MaxLabelWords}} words — "Yes", "Yes, and don't ask again", "No, and tell it why".
+    * consequence: what that answer actually hands over, at most {{.MaxConsequenceWords}} words. REQUIRED, and it is the content of the whole clip.
+    * risk: true on EXACTLY ONE answer — the one that gives away the most. It is usually the convenient one, and that is the lesson. A frame with none marked is a menu; a frame with two marked has not helped anybody choose.
+- pick: which answer you recommend, counting from 0. It is ALLOWED to be the risky one — "let it run, but only in a repo you can throw away" is the honest answer for most people, and the template exists to be able to say it.
+- closer: one line under the finished gate, at most {{.MaxCloserWords}} words.
+
+THE HEADLINE, at the top level:
+- title: the headline, 3-7 words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words.
+- narration: what the voice says. Spoken register, no markdown.
+- approval: what this beat does. One of:
+    {"show": "ask"} — the request up, answers listed but none singled out. The FIRST beat, exactly one.
+    {"show": "answer", "at": N} — answer N lit and its consequence read, counting from 0.
+    {"show": "pick"} — the recommendation marked and the closer landing. The LAST beat.
+
+THE SHAPE, which is enforced: open on the ask, read every answer exactly once in order, close on the pick.
+
+Respond with a single JSON object and nothing else:
+{"title": "What auto-accept actually hands over", "subtitle": "The permission prompt", "emphasis": "actually hands over", "approval": {"tool": "Claude Code", "context": "halfway through the avatar refactor", "ask": "rm -rf uploads/avatars/", "pick": 0, "closer": "Approve each edit until you trust it in this repo", "answers": [{"label": "Yes", "consequence": "This one command runs; you are asked again next time"}, {"label": "Yes, and don't ask again", "consequence": "Every later command runs unasked, for the whole session", "risk": true}, {"label": "No, and tell it why", "consequence": "It stops and re-plans with your reason in hand"}]}, "beats": [{"id": "the-ask", "heading": "It wants to delete", "narration": "...", "approval": {"show": "ask"}}, {"id": "just-once", "heading": "Yes, once", "narration": "...", "approval": {"show": "answer", "at": 0}}, {"id": "stop-asking", "heading": "Yes, forever", "narration": "...", "approval": {"show": "answer", "at": 1}}, {"id": "say-no", "heading": "No, and why", "narration": "...", "approval": {"show": "answer", "at": 2}}, {"id": "the-call", "heading": "What to pick", "narration": "...", "approval": {"show": "pick"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "permission gate" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check five things. The ask is a concrete action, not a vague one. Every answer says what it hands over. Exactly one answer has "risk": true. Each answer has its own beat, in order. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

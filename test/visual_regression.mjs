@@ -367,6 +367,21 @@ const TARGETS = [
   // arriving, and the empty space the third has not reached. Every state the row
   // stack has, in one frame.
   { id: "SpotlightViz", frame: 400 },
+  // The opener with the promise landed and the byline still to come. The state
+  // that proves the layering: the ground has to be texture and the solid line has
+  // to win, and a finished card would pass even if the two were fighting.
+  { id: "OpenerViz", frame: 330 },
+  // The patch mid-apply — the removed line struck and the added lines part way in.
+  // The one frame where the animation is visible, and the animation is the
+  // template.
+  { id: "PatchViz", frame: 258 },
+  // The change plan with the `unchanged` row open: a hollow ring instead of a dot
+  // and the panel's fallback line instead of bullets, neither of which any
+  // ordinary row covers.
+  { id: "ChangePlanViz", frame: 900 },
+  // The gate closed: every consequence inked, the risky row edged red, the pick
+  // checked.
+  { id: "ApprovalViz", frame: 1140 },
   { id: "LessonVideo", frame: 15 },
 ];
 

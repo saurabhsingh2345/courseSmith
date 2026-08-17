@@ -46,6 +46,8 @@ export type Theme = {
   fontDisplay?: string;
   fontBody?: string;
   fontMono?: string;
+  /** The display serif an intro card is set in. */
+  fontSerif?: string;
   grain?: number;
 };
 
@@ -189,7 +191,11 @@ export type SceneType =
   | 'eras'
   | 'cards'
   | 'duel'
-  | 'spotlight';
+  | 'spotlight'
+  | 'opener'
+  | 'changeplan'
+  | 'patch'
+  | 'approval';
 
 export type Scene = {
   type: SceneType;

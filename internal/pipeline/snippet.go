@@ -514,6 +514,14 @@ type SnippetPlan struct {
 	Duel *DuelSpec `json:"duel,omitempty"`
 	// Spotlight is one named thing and the claims stacked beside it.
 	Spotlight *SpotlightSpec `json:"spotlight,omitempty"`
+	// Opener is the title page: the subject set enormous as the ground.
+	Opener *OpenerSpec `json:"opener,omitempty"`
+	// ChangePlan is the rail of files a change touches.
+	ChangePlan *ChangePlanSpec `json:"changeplan,omitempty"`
+	// Patch is one file's change, hunk by hunk.
+	Patch *PatchSpec `json:"patch,omitempty"`
+	// Approval is the permission gate and its answers.
+	Approval *ApprovalSpec `json:"approval,omitempty"`
 
 	// targetWords is the narration budget this plan was asked for. Not part of
 	// the model's reply — the planner stashes it after decoding so the shared
@@ -874,39 +882,43 @@ type SnippetBeat struct {
 
 	// --- the v7 foundations batch ---
 	// One direction each: what this moment of the clip does to the picture.
-	Syllabus  *SyllabusBeat  `json:"syllabus,omitempty"`
-	Outcome   *OutcomeBeat   `json:"outcome,omitempty"`
-	Bridge    *BridgeBeat    `json:"bridge,omitempty"`
-	Drill     *DrillBeat     `json:"drill,omitempty"`
-	LabCard   *LabCardBeat   `json:"labcard,omitempty"`
-	Mission   *MissionBeat   `json:"mission,omitempty"`
-	Machine   *MachineBeat   `json:"machine,omitempty"`
-	Blueprint *BlueprintBeat `json:"blueprint,omitempty"`
-	Relay     *RelayBeat     `json:"relay,omitempty"`
-	Layers    *LayersBeat    `json:"layers,omitempty"`
-	Pipeline  *PipelineBeat  `json:"pipeline,omitempty"`
-	Radix     *RadixBeat     `json:"radix,omitempty"`
-	Carry     *CarryBeat     `json:"carry,omitempty"`
-	Bitfield  *BitfieldBeat  `json:"bitfield,omitempty"`
-	Encode    *EncodeBeat    `json:"encode,omitempty"`
-	Gates     *GatesBeat     `json:"gates,omitempty"`
-	Ladder    *LadderBeat    `json:"ladder,omitempty"`
-	Regions   *RegionsBeat   `json:"regions,omitempty"`
-	Lookup    *LookupBeat    `json:"lookup,omitempty"`
-	States    *StatesBeat    `json:"states,omitempty"`
-	Scheduler *SchedulerBeat `json:"scheduler,omitempty"`
-	Shell     *ShellBeat     `json:"shell,omitempty"`
-	Journey   *JourneyBeat   `json:"journey,omitempty"`
-	Handshake *HandshakeBeat `json:"handshake,omitempty"`
-	Stepper   *StepperBeat   `json:"stepper,omitempty"`
-	Growth    *GrowthBeat    `json:"growth,omitempty"`
-	CallStack *CallStackBeat `json:"callstack,omitempty"`
-	History   *HistoryBeat   `json:"history,omitempty"`
-	Versus    *VersusBeat    `json:"versus,omitempty"`
-	Eras      *ErasBeat      `json:"eras,omitempty"`
-	Cards     *CardsBeat     `json:"cards,omitempty"`
-	Duel      *DuelBeat      `json:"duel,omitempty"`
-	Spotlight *SpotlightBeat `json:"spotlight,omitempty"`
+	Syllabus   *SyllabusBeat   `json:"syllabus,omitempty"`
+	Outcome    *OutcomeBeat    `json:"outcome,omitempty"`
+	Bridge     *BridgeBeat     `json:"bridge,omitempty"`
+	Drill      *DrillBeat      `json:"drill,omitempty"`
+	LabCard    *LabCardBeat    `json:"labcard,omitempty"`
+	Mission    *MissionBeat    `json:"mission,omitempty"`
+	Machine    *MachineBeat    `json:"machine,omitempty"`
+	Blueprint  *BlueprintBeat  `json:"blueprint,omitempty"`
+	Relay      *RelayBeat      `json:"relay,omitempty"`
+	Layers     *LayersBeat     `json:"layers,omitempty"`
+	Pipeline   *PipelineBeat   `json:"pipeline,omitempty"`
+	Radix      *RadixBeat      `json:"radix,omitempty"`
+	Carry      *CarryBeat      `json:"carry,omitempty"`
+	Bitfield   *BitfieldBeat   `json:"bitfield,omitempty"`
+	Encode     *EncodeBeat     `json:"encode,omitempty"`
+	Gates      *GatesBeat      `json:"gates,omitempty"`
+	Ladder     *LadderBeat     `json:"ladder,omitempty"`
+	Regions    *RegionsBeat    `json:"regions,omitempty"`
+	Lookup     *LookupBeat     `json:"lookup,omitempty"`
+	States     *StatesBeat     `json:"states,omitempty"`
+	Scheduler  *SchedulerBeat  `json:"scheduler,omitempty"`
+	Shell      *ShellBeat      `json:"shell,omitempty"`
+	Journey    *JourneyBeat    `json:"journey,omitempty"`
+	Handshake  *HandshakeBeat  `json:"handshake,omitempty"`
+	Stepper    *StepperBeat    `json:"stepper,omitempty"`
+	Growth     *GrowthBeat     `json:"growth,omitempty"`
+	CallStack  *CallStackBeat  `json:"callstack,omitempty"`
+	History    *HistoryBeat    `json:"history,omitempty"`
+	Versus     *VersusBeat     `json:"versus,omitempty"`
+	Eras       *ErasBeat       `json:"eras,omitempty"`
+	Cards      *CardsBeat      `json:"cards,omitempty"`
+	Duel       *DuelBeat       `json:"duel,omitempty"`
+	Spotlight  *SpotlightBeat  `json:"spotlight,omitempty"`
+	Opener     *OpenerBeat     `json:"opener,omitempty"`
+	ChangePlan *ChangePlanBeat `json:"changeplan,omitempty"`
+	Patch      *PatchBeat      `json:"patch,omitempty"`
+	Approval   *ApprovalBeat   `json:"approval,omitempty"`
 }
 
 // QuizSpec is the clip's one question.

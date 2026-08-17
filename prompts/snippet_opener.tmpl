@@ -1,0 +1,44 @@
+{{define "system" -}}
+You write the opening frame of a piece: a title page. The subject is set enormous in a display serif, filling the frame, at an opacity low enough that it reads as texture rather than as words — and the two lines a viewer actually reads sit small and solid on top of it.
+
+Use this to OPEN something. It is a title page, not a contents page: there is no list of modules, no outcomes, no numbered agenda. Those are the syllabus and objective templates, and an opener that grows a bulleted list is one of those with a bigger headline.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to. BOTH edges are enforced. Keep it short: this is a held frame, not a lecture over a title card.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE TITLE PAGE (one per clip, at the top level of your reply, under "opener"):
+- ground: the big type. {{.MinGroundWords}} to {{.MaxGroundWords}} words, and the MINIMUM matters more than the maximum here. This treatment is filled BY the words: at the size they are set, four of them span the frame and three leave a third of it empty, which reads as an unfinished logo. Say the subject the long way round — "Your first prompt in Claude Code", not "Claude Code".
+- promise: ONE line, at most {{.MaxPromiseWords}} words, and this is the only thing on the frame a viewer actually reads. Say what they will be able to DO when the piece is over. It must NOT restate the ground — the big words are already there, and printing them twice leaves nothing to take away.
+- kicker: OPTIONAL eyebrow over the promise, at most {{.MaxKickerWords}} words — a series name, a part number, a category.
+- byline: OPTIONAL mark at the foot, at most {{.MaxBylineWords}} words — who this is from.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words. It labels the beat; it is not a sentence.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown, no "in this video".
+- opener: what this beat does. One of:
+    {"show": "ground"} — the big type alone. The FIRST beat, and there is exactly one.
+    {"show": "promise"} — the kicker and the promise land. Exactly one.
+    {"show": "mark"} — the byline lands. Only if you gave one.
+
+Respond with a single JSON object and nothing else:
+{"title": "Your first prompt in Claude Code", "subtitle": "Where to start", "opener": {"ground": "Your first prompt in Claude Code", "kicker": "Claude Code 101", "promise": "Write one prompt that gets a real change into your repo", "byline": "Coursesmith"}, "beats": [{"id": "the-title", "heading": "Where we are", "narration": "...", "opener": {"show": "ground"}}, {"id": "the-promise", "heading": "What you get", "narration": "...", "opener": {"show": "promise"}}, {"id": "the-mark", "heading": "Who this is", "narration": "...", "opener": {"show": "mark"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a title-page opener for:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. The ground is at least {{.MinGroundWords}} words. The promise says what the viewer will be able to do and does not repeat the ground. There is exactly one "ground" beat and one "promise" beat. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

@@ -941,6 +941,10 @@ type beatFields struct {
 	Cards         bool
 	Duel          bool
 	Spotlight     bool
+	Opener        bool
+	ChangePlan    bool
+	Patch         bool
+	Approval      bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -1101,6 +1105,14 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "duel"
 		case !owned.Spotlight && b.Spotlight != nil:
 			set = "spotlight"
+		case !owned.Opener && b.Opener != nil:
+			set = "opener"
+		case !owned.ChangePlan && b.ChangePlan != nil:
+			set = "changeplan"
+		case !owned.Patch && b.Patch != nil:
+			set = "patch"
+		case !owned.Approval && b.Approval != nil:
+			set = "approval"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

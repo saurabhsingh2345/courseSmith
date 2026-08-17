@@ -5,7 +5,7 @@
 // graphs render in the new look too.
 
 import {Theme} from '../types';
-import {bodyFamily, displayFamily, monoFamily} from './fonts';
+import {bodyFamily, displayFamily, monoFamily, serifFamily} from './fonts';
 
 /** The house styles a video can be cut in. Mirrors videoskin.go. */
 export type Skin = 'default' | 'broadcast' | 'minimal' | 'editorial' | 'showroom';
@@ -58,6 +58,9 @@ export type ResolvedTheme = {
   fontDisplay: string;
   fontBody: string;
   fontMono: string;
+  /** The display serif. A different voice from the three sans faces, not a
+   *  different taste — see fonts.ts. */
+  fontSerif: string;
   grain: number;
 };
 
@@ -194,5 +197,6 @@ export const resolveTheme = (t: Theme): ResolvedTheme => ({
   fontDisplay: displayFamily(t.fontDisplay),
   fontBody: bodyFamily(t.fontBody),
   fontMono: monoFamily(t.fontMono),
+  fontSerif: serifFamily(t.fontSerif),
   grain: t.grain ?? DEFAULTS.grain,
 });

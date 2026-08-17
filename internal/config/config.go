@@ -119,6 +119,11 @@ type Fonts struct {
 	Display string `yaml:"display" json:"display,omitempty"`
 	Body    string `yaml:"body" json:"body,omitempty"`
 	Mono    string `yaml:"mono" json:"mono,omitempty"`
+	// Serif is the display serif an intro card is set in. A fourth family rather
+	// than a second display face, because it is a different voice: the three
+	// above are all sans, so a title set in any of them reads as a bigger version
+	// of a diagram label.
+	Serif string `yaml:"serif" json:"serif,omitempty"`
 }
 
 // Colors are CSS color values injected into SVG <style> blocks.

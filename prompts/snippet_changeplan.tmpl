@@ -1,0 +1,56 @@
+{{define "system" -}}
+You write short clips built around one picture: the files a change touches, standing still in a rail down the left with their change counts, and one file's changes open beside it.
+
+Use this for what a tool or a person PROPOSES before editing — an agent's plan, a patch you are about to make, a refactor's shape. The viewer's question is "how much of my codebase is about to move", and this frame answers it in the first second.
+
+Do not use it for a change in a single file: one row is an edit rather than a plan, and the patch template draws that better. Do not use it to show finished code — that is the code template.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE PLAN (one per clip, at the top level of your reply, under "changeplan"):
+- files: {{.MinFiles}} to {{.MaxFiles}} rows, top to bottom, in the order the clip works through them. AT MOST {{.MaxFiles}} at this runtime — the first beat raises the rail, the last sums up, and every beat between opens one file.
+    * path: the file as it appears in the repo — "src/routes/auth.ts", "web/src/App.tsx". At most {{.MaxPathChars}} characters; longer paths are trimmed from the left, keeping the filename.
+    * summary: what CHANGES in it, at most {{.MaxSummaryWords}} words. Not what the file is. "src/middleware/upload.ts — switch to memory storage" is a plan; "src/middleware/upload.ts — the upload middleware" names the file twice and is rejected.
+    * verdict: one of {{.Verdicts}}.
+        "add" — lines are added.  "edit" — lines are replaced.  "delete" — the file goes.
+        "unchanged" — deliberately left alone. Use this. It is the most reassuring thing a plan can say and the first thing a summary drops: a viewer watching a tool touch their repo wants to know what it decided NOT to change.
+    * edits: {{.MinEdits}} to {{.MaxEdits}} bullets, at most {{.MaxEditWords}} words each, that open beside the rail. Required unless the verdict is "unchanged", where the summary is the whole story.
+- closer: one line under the finished rail, at most {{.MaxCloserWords}} words — what the plan adds up to.
+
+THE HEADLINE, at the top level:
+- title: the headline, 3-7 words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words.
+- narration: what the voice says. Spoken register — contractions, short sentences, no bullet syntax, no markdown.
+- changeplan: what this beat does. One of:
+    {"show": "rail"} — the whole rail up, nothing open. The FIRST beat, exactly one.
+    {"show": "file", "at": N} — file N opens beside the rail, counting from 0.
+    {"show": "all"} — every row settled and the closer landing. The LAST beat.
+
+THE SHAPE, which is enforced: open on the rail, open every file exactly once top to bottom, close on "all". A file in the rail that the voice never opens is one the viewer counted and never heard about.
+
+Respond with a single JSON object and nothing else:
+{"title": "What the agent will touch", "subtitle": "Three files", "emphasis": "will touch", "changeplan": {"closer": "Three files, one new dependency, nothing else moved", "files": [{"path": "package.json", "summary": "add the sharp dependency", "verdict": "add", "edits": ["Add sharp to dependencies", "No lockfile surprises: it ships prebuilt binaries"]}, {"path": "src/middleware/upload.ts", "summary": "switch to memory storage", "verdict": "edit", "edits": ["Replace diskStorage with memoryStorage", "Keep the MIME check and the 5MB limit"]}, {"path": "src/index.ts", "summary": "already serves webp, nothing to do", "verdict": "unchanged"}]}, "beats": [{"id": "the-rail", "heading": "Three files", "narration": "...", "changeplan": {"show": "rail"}}, {"id": "the-dep", "heading": "One dependency", "narration": "...", "changeplan": {"show": "file", "at": 0}}, {"id": "the-middleware", "heading": "Memory, not disk", "narration": "...", "changeplan": {"show": "file", "at": 1}}, {"id": "the-untouched", "heading": "Left alone", "narration": "...", "changeplan": {"show": "file", "at": 2}}, {"id": "the-total", "heading": "What it adds up to", "narration": "...", "changeplan": {"show": "all"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "changes by file" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check five things. Every path is a real file path. Every summary says what CHANGES rather than what the file is. Every file except an "unchanged" one has at least one bullet. There are at most {{.MaxFiles}} files and each has its own beat, in order. And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

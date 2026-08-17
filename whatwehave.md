@@ -1676,3 +1676,65 @@ studio gains a fifth gallery, and one correction landed with them — the hero c
 was `selected` in the first draft, and a brand-coloured rim around the only card on
 screen has nothing to compare against, so in peach it read as a warning. It gets
 the deeper seating instead: elevation rather than colour.
+
+## 16. Four more showroom templates, and the catalog's first serif (2026-08-17)
+
+A second reference clip — Anthropic's own "Your first Claude Code prompt" — went
+through frame by frame. Most of it is a presenter to camera and a live app in a
+browser, both of which are camera work rather than templates. What was left was
+four ideas, and taking each one *further* than the source rather than copying it is
+where the work went.
+
+**`opener` — the title page, and the catalog's first serif.** The source sets its
+title enormous behind the speaker at very low ink, with a solid name plate bottom
+left. It is unreadable there, because a person is standing in front of it. On paper
+with no footage the same idea actually works, and it exposed something worth fixing
+anyway: every intro card the catalog has ever drawn sets its headline at 64pt in the
+house sans — the size a *label* is set at — which is why a course's first frame looks
+like its fortieth. This sets the subject at 250pt in **Instrument Serif** at 12% ink,
+so it is texture rather than language, and puts the two lines you actually read small
+and solid on top. `fontSerif` is a fourth theme token, Go-derived like the other
+three, because the three existing families are all sans and a title in any of them is
+the same voice at a different volume.
+
+The number is the design: at 30% the big words compete with the promise and the frame
+has two headlines; at 4% they vanish; at 12% they are a page. And the validator
+enforces a **minimum** length on a headline, which reads like a mistake and is the
+point — texture needs area, so three words at that size is a logo with a caption.
+
+**`patch` — a diff, taken apart.** The catalog could type code out, walk a file and
+show a whole workspace, and none of it could show a CHANGE. The source prints a
+unified diff at ~14px and forty lines scroll past; nobody reads it. This shows one
+hunk at 30px — a little over twice the size — with the removed line struck through in
+place and the added line arriving under it, plus a standing `1 file · +A −D` tally
+that answers "how big is this" without scrolling to the end. Everything else follows
+from affording the size: lines are clamped at 62 characters **in Go**, with an
+ellipsis, because wrapping destroys the column alignment that makes a diff readable
+at all, and a hunk may move at most five lines total. The window's height is measured
+once from the tallest hunk — fixed at 560 first, and 200px of empty black under a
+three-line hunk reads as output that has been cut off.
+
+**`changeplan` — "Changes by File" with the scroll removed.** Files stand still in a
+rail with per-verdict dots; one file's bullets open beside it. The viewer always knows
+how many files remain, which is exactly what the scrolling original cannot tell them.
+`verdict: "unchanged"` is a first-class row with a hollow ring instead of a dot,
+because what a plan decided to leave alone is the most reassuring thing it contains
+and the first thing a summary drops. The rail sets the frame's height and the panel
+matches it; a constant for both left one column filling half its space.
+
+**`approval` — the permission gate.** The source's stated subject is approve-each-edit
+versus let-it-run, and it makes the point with a presenter talking, because there is
+no picture for it. Now there is: the ask as a literal inside a terminal window, the
+answers as paper rows below, each with **what it hands over**. Exactly one answer is
+marked as the risk — none is a menu, two has not helped anybody choose — and the
+recommendation is *allowed to be* the risky one, because "turn it loose, but only in a
+repo you can throw away" is the honest answer and a template that could not say it
+would be a safety poster.
+
+`AppWindow` is extracted for these: nine components draw traffic lights from their own
+literals, and the new ones share one object. The nine are deliberately not refactored
+onto it — pixel-exact baselines, and the win would be tidiness bought with a day of
+re-recording.
+
+Catalog 49. Seventeen new tests, each covering the one rule per template that a
+reader would otherwise assume was a bug. All 168 baselines pass at 0px.

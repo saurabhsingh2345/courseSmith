@@ -212,6 +212,15 @@ const (
 	SceneDuel = "duel"
 	// SceneSpotlight is one card on the left and its claims stacked on the right.
 	SceneSpotlight = "spotlight"
+	// SceneOpener is the title page: the subject set enormous in a serif as the
+	// ground of the frame, with the promise and the byline solid on top.
+	SceneOpener = "opener"
+	// SceneChangePlan is the rail of files a change touches, one open beside it.
+	SceneChangePlan = "changeplan"
+	// ScenePatch is one hunk of a diff at a size it can be read at.
+	ScenePatch = "patch"
+	// SceneApproval is a permission prompt and what each answer hands over.
+	SceneApproval = "approval"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file
@@ -344,6 +353,7 @@ type SceneTheme struct {
 	FontDisplay string  `json:"fontDisplay,omitempty"` // headings
 	FontBody    string  `json:"fontBody,omitempty"`    // body/captions
 	FontMono    string  `json:"fontMono,omitempty"`    // code
+	FontSerif   string  `json:"fontSerif,omitempty"`   // intro cards
 	Grain       float64 `json:"grain,omitempty"`       // film-grain opacity 0..1
 }
 

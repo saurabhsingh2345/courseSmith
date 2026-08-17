@@ -100,6 +100,10 @@ import {ErasScene} from './components/ErasScene';
 import {CardsScene} from './components/CardsScene';
 import {DuelScene} from './components/DuelScene';
 import {SpotlightScene} from './components/SpotlightScene';
+import {OpenerScene} from './components/OpenerScene';
+import {ChangePlanScene} from './components/ChangePlanScene';
+import {PatchScene} from './components/PatchScene';
+import {ApprovalScene} from './components/ApprovalScene';
 import {SceneChrome, Watermark} from './components/SceneChrome';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
@@ -349,6 +353,14 @@ const sceneContent = (
       return <DuelScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'spotlight':
       return <SpotlightScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'opener':
+      return <OpenerScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'changeplan':
+      return <ChangePlanScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'patch':
+      return <PatchScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'approval':
+      return <ApprovalScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       // THROW, do not return null.
       //
