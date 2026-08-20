@@ -33,6 +33,9 @@ export type Theme = {
   textMuted?: string;
   mass?: string;
   ink?: string;
+  panel?: string;
+  panelText?: string;
+  panelMuted?: string;
   /** Elevation: how an object is seated on this background. `shadow` is the
    *  colour a cast shadow is drawn in, `shadowStrength` how opaque, `rim` the
    *  hairline highlight along a lit object's top edge. Two opposite effects —
@@ -195,7 +198,12 @@ export type SceneType =
   | 'opener'
   | 'changeplan'
   | 'patch'
-  | 'approval';
+  | 'approval'
+  | 'titlecard'
+  | 'session'
+  | 'doc'
+  | 'waypoint'
+  | 'wiring';
 
 export type Scene = {
   type: SceneType;

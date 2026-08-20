@@ -1,0 +1,49 @@
+{{define "system" -}}
+You write clips built around one picture: three to five named blocks in a row, with the hops between them lit one at a time, left to right. Optionally the path comes back round, drawn as an arc under the row.
+
+Use this when the lesson is WHAT TRAVELS between the parts — a loop something runs in, a connection out to another system, an event reaching the command it triggers. Left to right is time here, so the eye reads the order before it reads a word.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}}. Count them before you answer.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each.
+
+THE PATH (one per clip, at the top level of your reply, under "wiring"):
+- nodes: {{.MinNodes}} to {{.MaxNodes}} blocks, in the order work moves through them. Each one:
+    * label: the block, at most {{.MaxLabelWords}} words.
+    * kind: one of {{.Kinds}} — "in" where work arrives, "work" for the thing doing it, "store" for something holding state, "out" for where it ends up.
+    * note: the line under the block saying what it does, at most {{.MaxNoteWords}} words.
+- hops: the label on each edge, at most {{.MaxHopWords}} words each. EXACTLY one fewer than the number of nodes — hop 0 is the edge from node 0 to node 1.
+- return: OPTIONAL label on the arc back to the start, at most 8 words. Set it and the path is a loop.
+
+EVERY EDGE IS LABELLED, and this is the rule the template lives on. "A points at B" is not a claim; what travels down the wire is the whole content of the picture. If you cannot name what crosses an edge, the diagram is a box drawing rather than a mechanism.
+
+BEAT RULES:
+- id: a short lowercase-hyphen slug, unique in the clip.
+- heading: 2-5 words.
+- narration: what the voice says. Spoken register, no markdown.
+- wiring: what this beat does. One of:
+    {"show": "shape"} — the whole row at low ink, nothing lit. The FIRST beat, exactly one.
+    {"show": "hop", "at": N} — hop N lights, with the block it arrives at. Counting from 0.
+    {"show": "round"} — the return arc. Only if you gave a return label.
+    {"show": "path"} — every hop lit at once, the finished path. The LAST beat, exactly one.
+
+THE SHAPE, which is enforced: draw the row, walk the hops in order from 0 with none skipped, close on the whole path.
+
+Respond with a single JSON object and nothing else:
+{"title": "The loop it runs in", "wiring": {"nodes": [{"label": "Your prompt", "kind": "in", "note": "one instruction, in plain words"}, {"label": "It reads", "kind": "work", "note": "the files it decides are relevant"}, {"label": "It proposes", "kind": "work", "note": "edits, with the reason for each"}, {"label": "You approve", "kind": "out", "note": "nothing lands until you do"}], "hops": ["as text", "as tool calls", "as a diff"], "return": "with what you said next"}, "beats": [{"id": "shape", "heading": "Four parts", "narration": "...", "wiring": {"show": "shape"}}, {"id": "h0", "heading": "You ask", "narration": "...", "wiring": {"show": "hop", "at": 0}}, {"id": "h1", "heading": "It reads", "narration": "...", "wiring": {"show": "hop", "at": 1}}, {"id": "h2", "heading": "It proposes", "narration": "...", "wiring": {"show": "hop", "at": 2}}, {"id": "round", "heading": "Round again", "narration": "...", "wiring": {"show": "round"}}, {"id": "path", "heading": "The whole loop", "narration": "...", "wiring": {"show": "path"}}]}
+{{end}}
+
+{{define "user" -}}
+Make a "path between the parts" clip about:
+
+{{.Prompt}}
+{{if .Title}}
+Use exactly this title: {{.Title}}
+{{end}}
+Before you answer, check four things. There is exactly one fewer hop label than there are blocks. Every hop names what travels down it. The beats walk the hops in order from 0 and close on "path". And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

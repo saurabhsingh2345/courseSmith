@@ -174,6 +174,11 @@ type planFields struct {
 	ChangePlan    bool
 	Patch         bool
 	Approval      bool
+	TitleCard     bool
+	Session       bool
+	Doc           bool
+	Waypoint      bool
+	Wiring        bool
 }
 
 // migrateBeatFields moves a payload the model put under the wrong name onto the
@@ -492,6 +497,21 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Approval {
 		p.Approval = nil
+	}
+	if !owns.TitleCard {
+		p.TitleCard = nil
+	}
+	if !owns.Session {
+		p.Session = nil
+	}
+	if !owns.Doc {
+		p.Doc = nil
+	}
+	if !owns.Waypoint {
+		p.Waypoint = nil
+	}
+	if !owns.Wiring {
+		p.Wiring = nil
 	}
 }
 

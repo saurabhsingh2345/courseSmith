@@ -104,6 +104,11 @@ import {OpenerScene} from './components/OpenerScene';
 import {ChangePlanScene} from './components/ChangePlanScene';
 import {PatchScene} from './components/PatchScene';
 import {ApprovalScene} from './components/ApprovalScene';
+import {TitleCardScene} from './components/TitleCardScene';
+import {SessionScene} from './components/SessionScene';
+import {DocScene} from './components/DocScene';
+import {WaypointScene} from './components/WaypointScene';
+import {WiringScene} from './components/WiringScene';
 import {SceneChrome, Watermark} from './components/SceneChrome';
 import {FPS, LessonVideoProps, Scene, msToFrame} from './types';
 import {ResolvedTheme, resolveTheme} from './theme/theme';
@@ -361,6 +366,16 @@ const sceneContent = (
       return <PatchScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'approval':
       return <ApprovalScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'titlecard':
+      return <TitleCardScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'session':
+      return <SessionScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'doc':
+      return <DocScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'waypoint':
+      return <WaypointScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'wiring':
+      return <WiringScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     default:
       // THROW, do not return null.
       //
