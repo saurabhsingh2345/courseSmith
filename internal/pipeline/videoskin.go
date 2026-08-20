@@ -83,6 +83,32 @@ const (
 	// that fetch one. The cards batch is cut in this skin because on paper the
 	// mark can simply be itself.
 	SkinShowroom = "showroom"
+	// SkinAtelier is the warm one: a coloured ground with bone cards and dark
+	// session windows standing on it.
+	//
+	// It is the second skin to pin its own polarity, and the first to pin its own
+	// HUE, so both departures are worth defending.
+	//
+	// The ground is a mid-tone warm colour rather than paper or stage. That is the
+	// whole look: at 0.63 lightness the backdrop is a PRESENCE — it has a
+	// temperature, and everything standing on it reads as an object on a surface
+	// rather than as ink on a page or a glow in a void. Neither existing polarity
+	// can express that, because both are built on the premise that the ground
+	// recedes. Here it does not, and the composition is arranged around a ground
+	// that pushes back.
+	//
+	// And the hue is fixed instead of derived from branding, which every other
+	// skin refuses to do. The reason is the same one showroom gives for pinning
+	// its mode: this is a specific look rather than a treatment. Run a mid-tone
+	// ground through an arbitrary brand hue and a course branded blue gets a
+	// saturated blue field filling every frame — not a warm design in blue, a
+	// different and much worse design. The brand still shows: it owns the accent,
+	// the type colour and the shadow, which is where a warm design carries it.
+	//
+	// What it needs from the token set is the panel trio. A bone card and a
+	// near-black terminal have to coexist on one coloured ground, and that is
+	// exactly the pair the old Surface/Text axis could not describe.
+	SkinAtelier = "atelier"
 )
 
 // normalizeSkin maps config input onto a known skin. Anything unrecognised —
@@ -98,6 +124,8 @@ func normalizeSkin(skin string) string {
 		return SkinEditorial
 	case SkinShowroom:
 		return SkinShowroom
+	case SkinAtelier:
+		return SkinAtelier
 	default:
 		return SkinDefault
 	}
@@ -105,13 +133,19 @@ func normalizeSkin(skin string) string {
 
 // SkinNames returns the selectable skins, for the CLI and the studio picker.
 func SkinNames() []string {
-	return []string{SkinDefault, SkinBroadcast, SkinMinimal, SkinEditorial, SkinShowroom}
+	return []string{SkinDefault, SkinBroadcast, SkinMinimal, SkinEditorial, SkinShowroom, SkinAtelier}
 }
 
 // SkinIsLight reports whether a skin fixes its own polarity to paper regardless
 // of the course's mode. Read by the places that have to describe the look before
 // a theme exists — the CLI's help, the studio's picker.
-func SkinIsLight(skin string) bool { return normalizeSkin(skin) == SkinShowroom }
+func SkinIsLight(skin string) bool {
+	switch normalizeSkin(skin) {
+	case SkinShowroom, SkinAtelier:
+		return true
+	}
+	return false
+}
 
 // ResolvedSkin is the house style this theme is in. The field is empty on an
 // unskinned theme (see applySkin), so read it through here rather than
@@ -130,6 +164,10 @@ func (t SceneTheme) ResolvedSkin() string { return normalizeSkin(t.Skin) }
 // stay legible against a near-black stage and against paper, proven by
 // TestSemanticAccentContrast rather than eyeballed.
 const (
+	// hueAtelier is the atelier skin's ground. Fixed, not derived — see
+	// SkinAtelier. A warm terracotta: far enough off red to be a surface rather
+	// than an alarm, far enough off yellow to stay a colour rather than a tint.
+	hueAtelier = 14
 	// hueLimit is the ceiling, the overrun, the thing that does not fit.
 	hueLimit = 4
 	// hueQuantity is the measured number — the value being counted up to.
@@ -237,7 +275,75 @@ func applySkin(t *SceneTheme, h float64, skin, mode string) {
 	case SkinShowroom:
 		t.Skin = SkinShowroom
 		applyShowroomSkin(t, h)
+	case SkinAtelier:
+		t.Skin = SkinAtelier
+		applyAtelierSkin(t, h)
 	}
+}
+
+// applyAtelierSkin puts a warm mid-tone field behind everything and stands bone
+// cards and dark windows on it.
+//
+// hueAtelier is the ground and it does not move. See SkinAtelier for why a skin
+// is allowed to pin a hue; what follows is what the pinning buys.
+//
+// The ground is SATURATED and MID-TONE, which is the opposite of both other
+// polarities. Paper and stage both want the backdrop to disappear so the content
+// is the only thing with colour in it; this one wants the backdrop to be the
+// warmest thing in the frame. That inverts the usual seating problem: a card no
+// longer has to be found against a near-neutral field, it has to be *cooled and
+// lightened* out of a coloured one, which is why Surface is bone rather than
+// white. Pure white on this ground is a hole punched in the frame.
+//
+// The type on that ground is near-black rather than white. At 0.63 lightness the
+// field is light enough that white type on it fails AA and dark type clears it
+// comfortably — so the ground behaves like paper for text purposes even though it
+// is nothing like paper to look at.
+//
+// Shadow strength is higher than showroom's. A card floating on a coloured field
+// has no hairline worth speaking of and no luminance step to sit in; the shadow
+// is the only thing locating it, and at showroom's 0.10 the cards looked printed
+// on rather than laid on.
+func applyAtelierSkin(t *SceneTheme, h float64) {
+	// Fixed polarity. Every renderer branch that asks about mode has to hear
+	// "light" here, or it will draw dark-stage seating — a rim highlight and no
+	// cast shadow — onto objects standing on a bright field.
+	t.Mode = ThemeModeLight
+
+	const g = hueAtelier
+	t.BgTop = hslToHex(g, 0.62, 0.655)
+	// A real gradient, unlike showroom's whisper. A coloured field with no
+	// fall-off reads as a solid fill behind a slide; five points of it reads as
+	// a lit surface receding, which is what lets a window feel like it is
+	// standing in a space rather than pasted on a rectangle.
+	t.BgBottom = hslToHex(g - 3, 0.58, 0.60)
+	// Bone, not white: warm, and a couple of points down from the top of the
+	// range so the brightest thing in the frame can still be a highlight.
+	t.Surface = hslToHex(34, 0.44, 0.947)
+	t.SurfaceBorder = hslToHex(26, 0.28, 0.86)
+	// The brand hue comes back here. Type, artwork and shading are where a warm
+	// design carries its branding, now that the ground cannot.
+	t.Text = hslToHex(h, 0.30, 0.13)
+	t.TextMuted = hslToHex(h, 0.16, 0.35)
+	t.Mass = hslToHex(h, 0.24, 0.52)
+	t.Ink = hslToHex(h, 0.42, 0.18)
+	t.Grain = defaultGrain / 8
+
+	// The window is warm near-black rather than the derived panel, so it belongs
+	// to this ground instead of looking like a terminal screenshot dropped onto
+	// it. Overriding rather than deriving: the base trio is placed against an
+	// arbitrary hue, and here the panel and the field have to agree.
+	t.Panel = hslToHex(20, 0.20, 0.085)
+	t.PanelText = hslToHex(32, 0.16, 0.945)
+	t.PanelMuted = hslToHex(28, 0.13, 0.665)
+
+	t.AccentText = readableOn(t.Accent, t.BgTop, 4.5)
+	deriveSemanticAccents(t, ThemeModeLight)
+	deriveElevation(t, g, ThemeModeLight)
+	// Half again on top of the light-mode default. See the note above: on a
+	// coloured field the shadow is doing the whole job of holding an object off
+	// the ground.
+	t.ShadowStrength = 0.16
 }
 
 // applyShowroomSkin puts everything on paper and lets shadow do the seating.

@@ -178,6 +178,18 @@ const (
 	// products a choice is actually between, `spotlight` for the one product held
 	// up with its claims beside it.
 	SinceV9 = "v9"
+	// SinceV10 is the batch built for a piece that is mostly ONE PICTURE: an
+	// agent session, held on screen for minutes at a time while the narration
+	// walks what is happening inside it.
+	//
+	// Every terminal in the catalog before this was a card — a small window in the
+	// middle of a composition, showing a command and its output. That is right for
+	// "here is what `du -sh` prints" and wrong for a tutorial about working with an
+	// agent, where the session IS the subject: it fills the frame, it scrolls, it
+	// asks questions, and the thing being taught is how to read it and what to
+	// answer. So `session` is a window that behaves like a window, and `titlecard`
+	// is the card that cuts between stretches of it.
+	SinceV10 = "v10"
 )
 
 // Template families. A family is which surface offers a template, and it exists
@@ -216,12 +228,23 @@ const (
 	// recoloured to be seen. Recolour it and the viewer is no longer recognising
 	// anything, which is the claim gone.
 	FamilyShowroom = "showroom"
+	// FamilyAtelier is the batch cut on a warm coloured ground with a dark session
+	// window standing on it — see SkinAtelier.
+	//
+	// Its own family for the sharpest reason yet: these templates assume a ground
+	// that does not recede. Every other family composes against a backdrop built to
+	// disappear, so a card can be found by its own luminance; here the frame has a
+	// temperature and the composition is arranged around that. Dropped into a
+	// default-skin course they would not merely look foreign, they would lose the
+	// one relationship they are built on.
+	FamilyAtelier = "atelier"
 )
 
 // templateFamilies is the closed set a registration may declare. A family is
 // unchecked nowhere else — an unknown string would put a template on no page
 // at all, which is a silent disappearance rather than an error.
 var templateFamilies = map[string]bool{
+	FamilyAtelier:     true,
 	FamilyCore:        true,
 	FamilyReplica:     true,
 	FamilyFoundations: true,
