@@ -180,9 +180,9 @@ const TARGETS = [
   // under it, the truth not yet up. It is the one frame that proves the
   // gesture travels rather than being toggled on, and it exists for about
   // half a second.
-  // The rundown on its second card: one lit, two dimmed but still legible,
-  // and the detail line under the row. It is the only state that proves the
-  // row is fixed furniture and only brightness moves.
+  // The rundown on its second card: one lit, two quiet but still fully legible
+  // with their own detail lines, and no band held empty under the row. It is the
+  // state that proves the row is fixed furniture and only ink moves.
   { id: "RundownViz", frame: 600 },
   // The analogy on its second correspondence: both columns complete, one row
   // lit end to end with its connector drawn, the others dimmed, and the note
