@@ -33,8 +33,36 @@ type Step = {
   mark?: boolean;
 };
 
-/** The ink the big type is set at. See the file header — this is the whole design. */
-const GROUND_INK = 0.12;
+/**
+ * The ink the big type is set at.
+ *
+ * 0.32, and it started at 0.12 on the reasoning in the file header — that at 30%
+ * the words compete with the promise. On the reference frame that was true because
+ * a PERSON stood in front of the type, breaking it up and adding contrast of their
+ * own. On an empty page it is not: 12% ink across a near-white sheet does not read
+ * as texture, it reads as a title that failed to load, and the frame looks washed
+ * out rather than composed.
+ *
+ * At 0.32 the words are unmistakably there and still clearly the ground — the
+ * promise below them is at full ink, which is a three-fold difference, and that gap
+ * is what keeps the hierarchy rather than the absolute value.
+ */
+const GROUND_INK = 0.32;
+
+/**
+ * Optical weight for a single-weight face.
+ *
+ * Instrument Serif ships one weight, 400, so `fontWeight: 800` on it does nothing
+ * at all — the browser has no bolder cut to reach for and (in a headless render)
+ * will not synthesise one. The two levers that DO work on a display serif are ink,
+ * above, and stroke: painting a hairline of the same colour around each glyph
+ * thickens the stems without touching the letterforms.
+ *
+ * Kept proportional to the size rather than fixed. 0.9% of the cap height is about
+ * two pixels at 250pt, which reads as a heavier cut; past about 2% the counters in
+ * `e` and `a` start closing up and it reads as a smudge.
+ */
+const GROUND_STROKE = 0.009;
 
 export const OpenerScene: React.FC<{
   theme: ResolvedTheme;
@@ -73,7 +101,7 @@ export const OpenerScene: React.FC<{
   // that the type FILLS the frame: nine words at the size four words want would run
   // off the page, and four words at the size nine want would leave a band of empty
   // paper across the middle. Measured against a 1700px measure at these weights.
-  const groundSize = words.length <= 5 ? 250 : words.length <= 7 ? 205 : 170;
+  const groundSize = words.length <= 5 ? 250 : words.length <= 7 ? 205 : 178;
 
   return (
     <Stage justify="center" align="stretch">
@@ -94,14 +122,26 @@ export const OpenerScene: React.FC<{
             style={{
               fontFamily: theme.fontSerif,
               fontSize: groundSize,
+              // 400 because that is the only cut this face has. The weight comes
+              // from the stroke below; see GROUND_STROKE.
               fontWeight: 400,
+              WebkitTextStroke: `${(groundSize * GROUND_STROKE).toFixed(2)}px ${withAlpha(theme.text, GROUND_INK)}`,
               // Tight. A serif at this size with normal leading breaks into
               // separate lines of unrelated words; at 0.92 the lines lock into one
               // block, which is what makes it read as a mass rather than as text.
               lineHeight: 0.92,
               letterSpacing: -4,
               color: withAlpha(theme.text, GROUND_INK),
-              width: '100%',
+              // 88% of the box, not 100%.
+              //
+              // Full-bleed is what read as "stretched": a nine-word title set edge
+              // to edge puts seven words on a line that spans the whole frame and
+              // two on the next, so the block is a wide band with a short tail and
+              // the eye reads the first line as horizontally pulled. Pulling the
+              // measure in breaks the lines nearer the middle, which makes the
+              // block a mass rather than a banner — and a mass is what a title page
+              // wants.
+              width: '88%',
             }}
           >
             {ground}
@@ -136,7 +176,25 @@ export const OpenerScene: React.FC<{
             >
               {kicker}
             </div>
-          ) : null}
+          ) : (
+            // No kicker: a short accent rule takes its place.
+            //
+            // Not decoration filling a hole. The kicker was doing structural work —
+            // it marked where the read-this zone began, so the promise had something
+            // to hang from. Strip it and the promise floats in the lower left with
+            // nothing establishing that corner, which on a page that is otherwise
+            // one huge pale word reads as a stray caption. A 90-pixel rule in the
+            // accent says "the frame starts here" in one mark instead of three words.
+            <div
+              style={{
+                width: 90,
+                height: 4,
+                borderRadius: 2,
+                background: theme.accentText,
+                opacity: inkFor(step.show === 'promise', Boolean(step.promise)),
+              }}
+            />
+          )}
 
           <div
             style={{

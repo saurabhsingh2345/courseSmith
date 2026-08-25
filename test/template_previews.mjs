@@ -31,6 +31,9 @@ const SOURCES = {
   recap: "RecapViz-700",
   pitfall: "PitfallViz-840",
   checkpoint: "CheckpointViz-800",
+  roster: "RosterViz-330",
+  choices: "ChoicesViz-360",
+  progress: "ProgressViz-330",
 
   // The one preview that cannot show real content, and that is a property of
   // the template rather than a shortcut: what `footage` produces is *your*

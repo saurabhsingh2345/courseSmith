@@ -901,6 +901,9 @@ type beatFields struct {
 	Decision      bool
 	Myth          bool
 	Rundown       bool
+	Roster        bool
+	Choices       bool
+	Progress      bool
 	Analogy       bool
 	Trace         bool
 	Costing       bool
@@ -962,6 +965,11 @@ type beatFields struct {
 	ChangePlan    bool
 	Patch         bool
 	Approval      bool
+	TitleCard     bool
+	Session       bool
+	Doc           bool
+	Waypoint      bool
+	Wiring        bool
 }
 
 // rejectForeignBeatFields fails when a beat sets a field its template does not
@@ -1008,6 +1016,12 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "myth"
 		case !owned.Rundown && b.Rundown != nil:
 			set = "rundown"
+		case !owned.Roster && b.Roster != nil:
+			set = "roster"
+		case !owned.Choices && b.Choices != nil:
+			set = "choices"
+		case !owned.Progress && b.Progress != nil:
+			set = "progress"
 		case !owned.Analogy && b.Analogy != nil:
 			set = "analogy"
 		case !owned.Trace && b.Trace != nil:
@@ -1130,6 +1144,16 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "patch"
 		case !owned.Approval && b.Approval != nil:
 			set = "approval"
+		case !owned.TitleCard && b.TitleCard != nil:
+			set = "titlecard"
+		case !owned.Session && b.Session != nil:
+			set = "session"
+		case !owned.Doc && b.Doc != nil:
+			set = "doc"
+		case !owned.Waypoint && b.Waypoint != nil:
+			set = "waypoint"
+		case !owned.Wiring && b.Wiring != nil:
+			set = "wiring"
 		case !owned.Sketch && len(b.Sketch) > 0:
 			set = "sketch"
 		case !owned.Nodes && len(b.Nodes) > 0:

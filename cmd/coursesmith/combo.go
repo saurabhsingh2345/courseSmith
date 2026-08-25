@@ -59,6 +59,7 @@ func newComboCmd() *cobra.Command {
 	}
 	cmd.AddCommand(newComboDirectCmd())
 	cmd.AddCommand(newComboNewCmd())
+	cmd.AddCommand(newComboImportCmd())
 	cmd.AddCommand(newComboRunCmd())
 	cmd.AddCommand(newComboListCmd())
 	cmd.AddCommand(newComboShowCmd())
@@ -179,6 +180,116 @@ func newComboNewCmd() *cobra.Command {
 	cmd.Flags().BoolVar(&planOnly, "plan-only", false, "stop after planning; do not synthesize or render")
 	cmd.Flags().IntVar(&concurrency, "concurrency", 0, "parallel browser tabs for the Remotion render (0 = auto)")
 	_ = cmd.MarkFlagRequired("segment")
+	return cmd
+}
+
+// newComboImportCmd is the door for a piece that has already been written.
+//
+// `new` and `direct` both plan: you say what a segment should cover and a model
+// decides what it says. This one takes the finished plan — every segment's
+// narration and every value on screen — and renders it. Nothing here calls a
+// provider, which makes it the whole pipeline minus its only cloud dependency:
+// the voice, the aligner and the renderer all run on this machine.
+//
+// It exists for the two cases where planning is the wrong step. A remake, where
+// the shot list came from watching something rather than from a prompt. And no
+// key, where refusing to start would be a hard dependency on a model to type a
+// JSON file somebody already knows the contents of.
+func newComboImportCmd() *cobra.Command {
+	var (
+		planPath    string
+		id          string
+		title       string
+		voice       string
+		captions    string
+		mode        string
+		skin        string
+		planOnly    bool
+		concurrency int
+	)
+	cmd := &cobra.Command{
+		Use:   "import",
+		Short: "Render a combo from a plan you wrote yourself (no LLM)",
+		Long: "Takes one JSON document holding the request and every segment's finished\n" +
+			"plan, checks each segment against its own template exactly as a planned\n" +
+			"one is checked, and renders it. No planning call is made, so this is the\n" +
+			"one path that runs start to finish with no API key.\n\n" +
+			"  coursesmith combo import --plan remake.json\n\n" +
+			"The document is {id, title, brief, segments: [{template, prompt,\n" +
+			"target_sec, plan}]}, where each `plan` is what the plan stage would have\n" +
+			"written for that segment — see generated/combo-plan.json of any combo for\n" +
+			"a worked example, and `coursesmith snippet templates` for the catalog.",
+		Args: cobra.NoArgs,
+		RunE: func(cmd *cobra.Command, _ []string) error {
+			ctx, cancel := signal.NotifyContext(cmd.Context(), os.Interrupt, syscall.SIGTERM)
+			defer cancel()
+
+			doc, err := pipeline.LoadComboImport(planPath)
+			if err != nil {
+				return err
+			}
+			spec := doc.Spec()
+			if id != "" {
+				spec.ID = id
+			}
+			if title != "" {
+				spec.Title = title
+			}
+			if voice != "" {
+				spec.Config.Style.Voice = voice
+			}
+			if captions != "" {
+				spec.Config.Style.Captions = captions
+			}
+			if mode != "" {
+				spec.Config.Style.Mode = mode
+			}
+			if skin != "" {
+				spec.Config.Style.Skin = skin
+			}
+			spec.CreatedAt = time.Now().UTC()
+
+			course, lesson, err := pipeline.CreateCombo(".", spec)
+			if err != nil {
+				return err
+			}
+			fmt.Fprintf(cmd.OutOrStdout(), "created %s\n", relOrAbs(lesson.Dir))
+
+			// Re-read what CreateCombo actually wrote: it fills in the segment
+			// ids and the combo id, and the plan is matched against that file
+			// rather than against the struct this command happened to build.
+			saved, err := pipeline.LoadComboSpec(lesson.Dir)
+			if err != nil {
+				return err
+			}
+			env := newEnv(cmd)
+			if r, ok := env.Renderer.(*pipeline.RemotionRenderer); ok {
+				r.Concurrency = concurrency
+			}
+			if err := env.ImportComboPlan(course, lesson, saved, doc.Plan()); err != nil {
+				return err
+			}
+			if planOnly {
+				return nil
+			}
+			if err := env.RunCombo(ctx, course, lesson, pipeline.RunOptions{}); err != nil {
+				return err
+			}
+			fmt.Fprintf(cmd.OutOrStdout(), "\n%s\n",
+				relOrAbs(filepath.Join(lesson.GeneratedDir(), pipeline.FinalVideoName)))
+			return nil
+		},
+	}
+	cmd.Flags().StringVar(&planPath, "plan", "", "the JSON document holding the request and every segment's plan")
+	cmd.Flags().StringVar(&id, "id", "", "combo id (default: the document's, or derived from the title)")
+	cmd.Flags().StringVar(&title, "title", "", "override the document's title")
+	cmd.Flags().StringVar(&voice, "voice", "", "TTS voice id (default: the combos course voice)")
+	cmd.Flags().StringVar(&captions, "captions", "", "burn the caption track in: on | off")
+	cmd.Flags().StringVar(&mode, "mode", "", "light or dark video (default dark)")
+	cmd.Flags().StringVar(&skin, "skin", "", "house style: default | broadcast | minimal | editorial | showroom")
+	cmd.Flags().BoolVar(&planOnly, "plan-only", false, "write and check the plan; do not synthesize or render")
+	cmd.Flags().IntVar(&concurrency, "concurrency", 0, "parallel browser tabs for the Remotion render (0 = auto)")
+	_ = cmd.MarkFlagRequired("plan")
 	return cmd
 }
 

@@ -140,6 +140,31 @@ func (r *RemotionRenderer) Render(ctx context.Context, l *project.Lesson, graph 
 		"--props=" + absProps,
 		"--overwrite",
 		"--timeout=" + strconv.Itoa(timeout),
+		// Lossless intermediate frames, and a quality floor on the encode.
+		//
+		// Both defaults are wrong for this content and the reason is the same.
+		// Remotion hands each frame to the encoder as JPEG (quality 80) and lets
+		// x264 pick its own rate; that is a sensible default for footage, where
+		// grain and motion hide everything. These frames are the opposite of
+		// footage: enormous flat fields of one bone colour with hairline-thin
+		// serif edges on top. JPEG spends its bits on the flat area and rings
+		// around the edges, and x264 at an unpinned rate does the same, so type
+		// that is standing perfectly still acquires a shimmer that moves frame to
+		// frame. It is most visible on exactly the frames meant to be calm — a
+		// held title card — which is where a viewer is most likely to notice.
+		//
+		// So: jpeg at quality 100 rather than the default 80, and a pinned crf.
+		//
+		// NOT lossless png, which is what this used to say and which does not
+		// scale. Remotion writes every frame to disk as an image before encoding,
+		// so the intermediate cost is per-frame times the frame count — fine for a
+		// 5,600-frame clip and fatal for a 46,000-frame lesson, where png ran the
+		// disk out of space mid-render. Quality 100 jpeg is visually
+		// indistinguishable here and roughly a tenth of the size, which keeps the
+		// fix and drops the failure mode.
+		"--image-format=jpeg",
+		"--jpeg-quality=100",
+		"--crf=16",
 	}
 	if r.Concurrency > 0 {
 		args = append(args, "--concurrency="+strconv.Itoa(r.Concurrency))

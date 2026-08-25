@@ -1,0 +1,335 @@
+{
+  "id": "no-code-intro-visuals",
+  "title": "Welcome to No-Code Development",
+  "brief": "The opening lesson of a no-code development course, cut as a SILENT ANIMATION rather than a lesson: kinetic-type shots with flat-vector figures assembling beside them, one row of icon cards for the four things the course builds, one logo card for the tool, and one arrow row for the install. Light showroom skin. Almost nothing on screen but a four-word line, a figure and a card — no prose, no lists, no labelled rows.",
+  "angle": "The code stops being the hard part. Saying exactly what you want becomes the hard part, and that is the skill this course teaches.",
+  "segments": [
+    {
+      "id": "open",
+      "template": "opener",
+      "prompt": "Title page for a no-code development course: building real software without writing the code",
+      "target_sec": 12,
+      "plan": {
+        "title": "Build without writing code",
+        "opener": {
+          "ground": "Build software without writing code",
+          "kicker": "No-code development",
+          "promise": "Ship a real app from a plain-English brief"
+        },
+        "beats": [
+          {
+            "id": "the-title",
+            "heading": "Where we start",
+            "narration": "This is a course about building real software, and about doing it without writing the code yourself.",
+            "opener": {"show": "ground"}
+          },
+          {
+            "id": "the-promise",
+            "heading": "What you get",
+            "narration": "By the end you describe what you want and hand back something that actually runs.",
+            "opener": {"show": "promise"}
+          }
+        ]
+      }
+    },
+    {
+      "id": "what-we-build",
+      "template": "cards",
+      "prompt": "The four kinds of project this course builds: web apps, mobile apps, server apps, and small automated services",
+      "target_sec": 40,
+      "plan": {
+        "title": "What you will build",
+        "emphasis": "will build",
+        "emphasisRole": "quantity",
+        "cards": {
+          "relation": "none",
+          "items": [
+            {"title": "Web apps", "note": "opens in a browser", "icon": "globe", "role": "quantity"},
+            {"title": "Mobile apps", "note": "lives in a pocket", "icon": "monitor", "role": "neutral"},
+            {"title": "Server apps", "note": "the engine room", "icon": "server", "role": "neutral"},
+            {"title": "Automations", "note": "runs while you sleep", "icon": "refresh", "role": "neutral"}
+          ]
+        },
+        "beats": [
+          {
+            "id": "the-row",
+            "heading": "Four kinds",
+            "narration": "Four kinds of thing get built in this course, and you keep every one of them.",
+            "cards": {"show": "row"}
+          },
+          {
+            "id": "web",
+            "heading": "In a browser",
+            "narration": "The web app first. A real address, a real page, anybody you send the link to can open it.",
+            "cards": {"show": "card", "at": 0}
+          },
+          {
+            "id": "mobile",
+            "heading": "In a pocket",
+            "narration": "Then the same product on a phone, built from the same brief, on iOS and on Android.",
+            "cards": {"show": "card", "at": 1}
+          },
+          {
+            "id": "server",
+            "heading": "The engine room",
+            "narration": "Behind both of them sits the server. It holds the data and it does the actual work.",
+            "cards": {"show": "card", "at": 2}
+          },
+          {
+            "id": "services",
+            "heading": "While you sleep",
+            "narration": "And the quiet one. A small service that runs on a schedule while you are asleep.",
+            "cards": {"show": "card", "at": 3}
+          },
+          {
+            "id": "all-four",
+            "heading": "All four",
+            "narration": "Four projects, and every one of them is something real you can show to somebody.",
+            "cards": {"show": "all"}
+          }
+        ]
+      }
+    },
+    {
+      "id": "either-way",
+      "template": "illustration",
+      "prompt": "Two shots: nobody needs prior coding experience, and prior experience only makes it faster",
+      "target_sec": 16,
+      "plan": {
+        "title": "Either way, you are in",
+        "beats": [
+          {
+            "id": "no-code",
+            "heading": "Never written code? Perfect",
+            "narration": "If you have never written a single line of code, that is the perfect place to be starting from.",
+            "art": {"figure": "seed", "emphasis": "Perfect"}
+          },
+          {
+            "id": "already",
+            "heading": "Already write code? Even better",
+            "narration": "And if you already write code every day, none of this is beneath you. It only lands faster.",
+            "art": {"figure": "terminal", "emphasis": "better"}
+          }
+        ]
+      }
+    },
+    {
+      "id": "the-swap",
+      "template": "illustration",
+      "prompt": "Two shots: the AI writes the code, and the human writes the requirement",
+      "target_sec": 16,
+      "plan": {
+        "title": "Who writes what",
+        "beats": [
+          {
+            "id": "it-writes",
+            "heading": "The AI writes the code",
+            "narration": "The tools really do write the code now. That part is real, and it gets better every single month.",
+            "art": {"figure": "robot", "emphasis": "writes"}
+          },
+          {
+            "id": "you-write",
+            "heading": "You write the words",
+            "narration": "What no tool will ever do is decide what you actually wanted, so writing that stays your job.",
+            "art": {"figure": "prompt", "emphasis": "words"}
+          }
+        ]
+      }
+    },
+    {
+      "id": "words-in",
+      "template": "illustration",
+      "prompt": "Two shots: words go in, a working app comes out, and saying it precisely is the skill",
+      "target_sec": 12,
+      "plan": {
+        "title": "Words in, app out",
+        "beats": [
+          {
+            "id": "in-out",
+            "heading": "Words in, app out",
+            "narration": "Words go in at one end and a working app comes out of the other end.",
+            "art": {"figure": "funnel", "emphasis": "app out"}
+          },
+          {
+            "id": "the-skill",
+            "heading": "That is the whole skill",
+            "narration": "Learning to write those words precisely is the whole skill this course teaches you.",
+            "art": {"figure": "lightbulb", "emphasis": "whole skill"}
+          }
+        ]
+      }
+    },
+    {
+      "id": "by-the-end",
+      "template": "illustration",
+      "prompt": "Two shots: you work like a professional developer, and the next project can be much bigger",
+      "target_sec": 16,
+      "plan": {
+        "title": "Where this lands",
+        "beats": [
+          {
+            "id": "like-a-dev",
+            "heading": "Work like a developer",
+            "narration": "By the end of this you are working the way a professional developer works, from a blank folder to something running.",
+            "art": {"figure": "rocket", "emphasis": "developer"}
+          },
+          {
+            "id": "bigger",
+            "heading": "Then build something bigger",
+            "narration": "And once you have shipped one thing on your own, the next project can be a great deal bigger.",
+            "art": {"figure": "mountain", "emphasis": "bigger"}
+          }
+        ]
+      }
+    },
+    {
+      "id": "which-tool",
+      "template": "illustration",
+      "prompt": "Two shots: which tool do we use, and the list of tools changes every month",
+      "target_sec": 12,
+      "plan": {
+        "title": "Which tool first",
+        "beats": [
+          {
+            "id": "the-question",
+            "heading": "So which tool first?",
+            "narration": "Before anything else there is one question to settle. Which of these tools do we actually use?",
+            "art": {"figure": "question", "emphasis": "which tool"}
+          },
+          {
+            "id": "it-changes",
+            "heading": "The list changes monthly",
+            "narration": "The list changes every month, so we take the strongest one available and learn how it works.",
+            "art": {"figure": "switch", "emphasis": "changes"}
+          }
+        ]
+      }
+    },
+    {
+      "id": "the-tool",
+      "template": "spotlight",
+      "prompt": "The tool this course starts on, and the two things it is for",
+      "target_sec": 24,
+      "plan": {
+        "title": "We start with Claude",
+        "emphasis": "Claude",
+        "emphasisRole": "quantity",
+        "spotlight": {
+          "title": "Claude",
+          "note": "An AI that writes real code",
+          "brand": "claude",
+          "site": "claude.com",
+          "icon": "sparkles",
+          "role": "quantity",
+          "tint": "#d97757",
+          "markFrom": "simpleicons:claude",
+          "mark": "m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z",
+          "points": [
+            {"text": "Turns your words into working code", "icon": "code"},
+            {"text": "Fixes it when it breaks", "icon": "wrench"}
+          ]
+        },
+        "beats": [
+          {
+            "id": "the-card",
+            "heading": "The tool",
+            "narration": "We start on Claude. An assistant that writes code which actually runs on your machine.",
+            "spotlight": {"show": "card"}
+          },
+          {
+            "id": "builds",
+            "heading": "Brief to build",
+            "narration": "You hand it the brief you wrote and it hands back the working files.",
+            "spotlight": {"show": "point", "at": 0}
+          },
+          {
+            "id": "fixes",
+            "heading": "It fixes",
+            "narration": "And when something breaks, you point at the broken part and it goes back in.",
+            "spotlight": {"show": "point", "at": 1}
+          },
+          {
+            "id": "both",
+            "heading": "What it is for",
+            "narration": "Write, run, repair. That is the loop we lean on for the whole course.",
+            "spotlight": {"show": "all"}
+          }
+        ]
+      }
+    },
+    {
+      "id": "install",
+      "template": "cards",
+      "prompt": "Three steps before the next section: the resources section, the install, and opening it once",
+      "target_sec": 30,
+      "plan": {
+        "title": "Install it before we start",
+        "emphasis": "Install it",
+        "emphasisRole": "quantity",
+        "cards": {
+          "relation": "then",
+          "items": [
+            {"title": "Resources", "note": "the guide is there", "icon": "folder", "role": "neutral"},
+            {"title": "Install", "note": "a few minutes", "icon": "zap", "role": "neutral"},
+            {"title": "Open it", "note": "say hello once", "icon": "sparkles", "role": "quantity"}
+          ]
+        },
+        "beats": [
+          {
+            "id": "three-steps",
+            "heading": "Three steps",
+            "narration": "Three steps before the next section, and none of them takes very long at all.",
+            "cards": {"show": "row"}
+          },
+          {
+            "id": "resources",
+            "heading": "The resources",
+            "narration": "Start in the resources section under this lesson. The guide and the link are both there.",
+            "cards": {"show": "card", "at": 0}
+          },
+          {
+            "id": "the-install",
+            "heading": "Run it",
+            "narration": "Run the installer. It is a few minutes on a clean machine, and the guide covers it.",
+            "cards": {"show": "card", "at": 1}
+          },
+          {
+            "id": "open-it",
+            "heading": "Open it once",
+            "narration": "Then open it once and say hello, so a bad install shows up now instead of later.",
+            "cards": {"show": "card", "at": 2}
+          },
+          {
+            "id": "ready",
+            "heading": "Ready",
+            "narration": "Resources, install, open. Do those three and you are ready for the next section.",
+            "cards": {"show": "all"}
+          }
+        ]
+      }
+    },
+    {
+      "id": "close",
+      "template": "illustration",
+      "prompt": "Two closing shots: pause and install, then the first real project",
+      "target_sec": 12,
+      "plan": {
+        "title": "See you in the next one",
+        "beats": [
+          {
+            "id": "pause",
+            "heading": "Pause here. Install it.",
+            "narration": "Pause here and get it installed. I will wait for you on the other side.",
+            "art": {"figure": "hourglass", "emphasis": "Install it"}
+          },
+          {
+            "id": "next",
+            "heading": "Then your first project",
+            "narration": "When you come back, we start on a real project instead of more talking.",
+            "art": {"figure": "door", "emphasis": "first project"}
+          }
+        ]
+      }
+    }
+  ]
+}

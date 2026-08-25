@@ -69,7 +69,16 @@ var CombosRoot = filepath.Join(".coursesmith", "combos")
 // planning call.
 const (
 	minComboSegments = 2
-	maxComboSegments = 12
+	// 12 was the ceiling while every segment cost a planning call; a
+	// hand-authored plan costs none, and a thirty-minute lesson is forty
+	// segments. The cap stays as a runaway guard rather than a budget.
+	//
+	// Raised rather than worked around, because the alternative is rendering nine
+	// chapter files and concatenating them — which reintroduces exactly the seams
+	// a combo exists to avoid. One combo means one continuous voice track and one
+	// alignment across the whole piece, which is the difference between a lesson
+	// and a supercut.
+	maxComboSegments = 64
 	// defaultComboSegments is what the director aims for when nothing decides
 	// otherwise. Five is a piece with an opening, three moves and a close — the
 	// smallest shape that is an argument rather than a statement with a title.

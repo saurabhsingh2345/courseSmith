@@ -1,0 +1,146 @@
+{
+  "id": "claude-prompt-basics",
+  "title": "What a Prompt Is",
+  "brief": "A silent animation for the section that names the word 'prompt': Claude Desktop runs code on your own machine from instructions, an instruction is called a prompt, anything you type is one — then the window itself, with 'How can you help?' typed at the composer and the model starting to work. Kinetic-type shots with flat-vector figures, one full-frame session window, light showroom skin, nothing on screen longer than five words.",
+  "angle": "The word is the whole lesson. Everything you will ever do with this tool is typing one of these and pressing Enter.",
+  "segments": [
+    {
+      "id": "on-your-machine",
+      "template": "illustration",
+      "prompt": "Two shots: Claude Desktop runs code on your own machine, and you only ever give it instructions",
+      "target_sec": 12,
+      "plan": {
+        "title": "It runs on your machine",
+        "beats": [
+          {
+            "id": "your-machine",
+            "heading": "Code runs on your machine",
+            "narration": "Claude Desktop can run code on the machine in front of you, not somewhere far away.",
+            "art": {"figure": "laptop", "emphasis": "your machine"}
+          },
+          {
+            "id": "instructions",
+            "heading": "You just give instructions",
+            "narration": "You never touch the code yourself. You give it an instruction and it does the work.",
+            "art": {"figure": "signpost", "emphasis": "instructions"}
+          }
+        ]
+      }
+    },
+    {
+      "id": "the-word",
+      "template": "illustration",
+      "prompt": "Three shots naming the word: what is an instruction, it is called a prompt, anything you type is one",
+      "target_sec": 16,
+      "plan": {
+        "title": "The word is prompt",
+        "beats": [
+          {
+            "id": "what-is-it",
+            "heading": "So what is an instruction?",
+            "narration": "So what is an instruction, exactly? The word matters, because everything else builds on it.",
+            "art": {"figure": "question", "emphasis": "an instruction"}
+          },
+          {
+            "id": "its-a-prompt",
+            "heading": "It is called a prompt",
+            "narration": "In technical terms an instruction is called a prompt. That is the word to keep.",
+            "art": {"figure": "prompt", "emphasis": "a prompt"}
+          },
+          {
+            "id": "anything",
+            "heading": "Anything you type is one",
+            "narration": "Whatever you type into Claude is a prompt. A question, a command, a whole plan.",
+            "art": {"figure": "cursor", "emphasis": "Anything you type"}
+          }
+        ]
+      }
+    },
+    {
+      "id": "the-window",
+      "template": "session",
+      "prompt": "The window itself: type How can you help at the composer, hit Enter, and watch it start working",
+      "target_sec": 32,
+      "plan": {
+        "title": "Type it and hit Enter",
+        "session": {
+          "app": "Claude Desktop",
+          "header": ["Sonnet 5", "connected to this machine"],
+          "hint": "type a prompt and press Enter",
+          "events": [
+            {
+              "kind": "ask",
+              "text": "How can you help?",
+              "note": "this is a prompt"
+            },
+            {
+              "kind": "spin",
+              "text": "Thinking",
+              "mark": "4s · 1.2k tokens"
+            },
+            {
+              "kind": "say",
+              "text": "I can read the files on this machine, write code and run it.",
+              "lines": ["Ask for something and I will do it step by step."]
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "The window",
+            "narration": "This is the window. One box at the bottom, waiting for whatever you want to say.",
+            "session": {"show": "open"}
+          },
+          {
+            "id": "the-ask",
+            "heading": "Type it",
+            "narration": "Type something simple, like how can you help, then hit Enter and hand it over.",
+            "session": {"show": "event", "at": 0}
+          },
+          {
+            "id": "working",
+            "heading": "It starts working",
+            "narration": "The moment you hit Enter it starts working. The line underneath says it is running.",
+            "session": {"show": "event", "at": 1}
+          },
+          {
+            "id": "the-answer",
+            "heading": "It answers",
+            "narration": "And it answers in plain words, telling you what it can actually do for you here.",
+            "session": {"show": "event", "at": 2}
+          },
+          {
+            "id": "the-loop",
+            "heading": "The whole loop",
+            "narration": "One prompt in, one answer back. That is the whole loop you will use all day.",
+            "session": {"show": "whole"}
+          }
+        ]
+      }
+    },
+    {
+      "id": "inside",
+      "template": "illustration",
+      "prompt": "Two closing shots: the model reads what you meant, then it starts doing the work",
+      "target_sec": 12,
+      "plan": {
+        "title": "What happens inside",
+        "beats": [
+          {
+            "id": "reads",
+            "heading": "It reads what you meant",
+            "narration": "Underneath, the model is reading your words and working out what you actually meant.",
+            "art": {"figure": "brain", "emphasis": "what you meant"}
+          },
+          {
+            "id": "works",
+            "heading": "Then it gets to work",
+            "narration": "Then it plans, and it starts doing the thing you asked for on your machine.",
+            "art": {"figure": "gears", "emphasis": "to work"}
+          }
+        ]
+      }
+    }
+  ]
+}

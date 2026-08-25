@@ -420,6 +420,31 @@ var templateBios = map[string]TemplateBio{
 		Avoid: "a single prompt and its answer. One round is a screenshot; the loop is the lesson",
 		Roles: []string{RoleDevelop},
 	},
+	"doc": {
+		Needs: "a real file worth reading — two to five sections of it as they would actually be written, and a reason each section is in there",
+		Avoid: "a file of headings with nothing under them. The lesson is what belongs in the sections, so an outline with no content is the clip refusing to teach the only thing it is for",
+		Roles: []string{RoleDevelop, RolePayoff},
+	},
+	"waypoint": {
+		Needs: "the chapter starting now, what the viewer will have at the end of it, and the full list of chapters in the piece so the spine can show where this one sits",
+		Avoid: "a piece with only two or three parts. The spine is the whole card, and an arc that short is a divider — titlecard does that better",
+		Roles: []string{RoleHook, RoleDevelop},
+	},
+	"wiring": {
+		Needs: "three to five named parts in the order the work moves through them, and the word for what travels down each edge",
+		Avoid: "an architecture you cannot label the arrows on. If you cannot say what goes from A to B, the diagram is a box drawing rather than a mechanism",
+		Roles: []string{RoleDevelop},
+	},
+	"session": {
+		Needs: "a run of things that happen in one agent session, in order — a prompt typed, tool work landing, and at least one numbered question the agent stops to ask",
+		Avoid: "a session you are guessing at. The transcript is authored rather than captured here, so an invented tool output ships looking like a recording of one",
+		Roles: []string{RoleDevelop, RolePayoff},
+	},
+	"titlecard": {
+		Needs: "one short line worth holding a frame for — the section starting, the turn the argument takes, or the literal command about to be taught",
+		Avoid: "a card at the front of a piece. This is the cut BETWEEN sections; the title page is opener, and a titlecard used for one wastes the only frame that gets read twice",
+		Roles: []string{RoleHook, RoleDevelop},
+	},
 	"shell": {
 		Needs: "a command with its flags, the output it prints, and the one flag worth a caption",
 		Avoid: "a command whose output you are guessing at. The terminal is authored rather than executed here, so a wrong output ships as if it were real",
@@ -573,6 +598,11 @@ var templateBios = map[string]TemplateBio{
 		Avoid: "a lesson that assumes nothing. An empty floor is a slide saying you are ready",
 		Roles: []string{RoleHook},
 	},
+	"progress": {
+		Needs: "two to four things that have actually been finished, and two to four that are coming next — accomplishments and topics, not section titles",
+		Avoid: "a syllabus. `chapter` and `waypoint` place the viewer in a course's table of contents and `recap` brings back sourced claims; this frame is work done against work coming",
+		Roles: []string{RoleDevelop, RolePayoff},
+	},
 	"quiz": {
 		Needs: "a question, its answer, and why each wrong option tempted",
 		Avoid: "a question with one plausible answer. Without tempting distractors there is nothing to think about in the pause",
@@ -587,6 +617,16 @@ var templateBios = map[string]TemplateBio{
 		Needs: "exactly N things that genuinely form a set, N between 3 and 5, each worth its own beat",
 		Avoid: "a set you have to pad to reach N. The clip promises a count in its first second and delivers precisely that, so a weak fifth item is visible",
 		Roles: []string{RoleHook, RoleDevelop},
+	},
+	"choices": {
+		Needs: "a question the viewer has already been taught the answer to, and three to five answers to offer — the real one among plausible wrong ones",
+		Avoid: "anything that hands the answer over. There is no line under an option and no card is tinted, so a plan that needs to explain its options wants `cards`, and one that needs to reveal the right one wants `quiz`",
+		Roles: []string{RoleDevelop, RolePayoff},
+	},
+	"roster": {
+		Needs: "two or three kinds of viewer this piece was built for, and for each one what they arrive with and what changes for them",
+		Avoid: "a list of prerequisites. This frame tells several people they belong; `prereq` tells one person what they are missing, and swapping them turns a welcome into an entry exam",
+		Roles: []string{RoleHook},
 	},
 	"spine": {
 		Needs: "the narration itself, or a subject to write it from. Every line becomes its own shot, so it carries connective material no other template has a home for",

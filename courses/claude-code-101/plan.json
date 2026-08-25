@@ -1,0 +1,2677 @@
+{
+  "id": "claude-code-101",
+  "title": "Claude Code 101",
+  "brief": "A single-session course on Claude Code, built on one project. Nine chapters in an order where each one fixes the problem the last one created: what it is, installing, the loop it runs, a first prompt that goes wrong, the memory file that fixes it, the explore-plan-code-commit workflow, long sessions, MCP, and hooks. Cut as bone chapter cards with a running spine against full-frame session windows, an editor and wiring diagrams.",
+  "angle": "Almost every bad session comes from the same thing: it did not know where it was, and nobody had told it.",
+  "segments": [
+    {
+      "id": "cold-open",
+      "template": "session",
+      "prompt": "Cold open on the end state: a long session that shipped a feature, then pull back",
+      "role": "hook",
+      "target_sec": 90,
+      "plan": {
+        "title": "Where this ends up",
+        "session": {
+          "app": "Claude Code",
+          "hint": "accept edits on (shift+tab to cycle)",
+          "status": "\u25d0 high \u00b7 /effort",
+          "branch": "avatar-upload",
+          "pr": "PR #7",
+          "header": [
+            "taskflow-api \u00b7 turn 61 \u00b7 compacted twice",
+            "context 34k / 200k \u00b7 11m 04s elapsed"
+          ],
+          "events": [
+            {
+              "kind": "ask",
+              "text": "ship avatar upload end to end. tests and a commit.",
+              "note": "one instruction, eleven minutes ago"
+            },
+            {
+              "kind": "agents",
+              "text": "Running 3 Explore agents\u2026 (ctrl+o to expand)",
+              "lines": [
+                "Explore upload paths \u00b7 6 tool uses \u00b7 61.2k tokens",
+                "Explore image handling \u00b7 4 tool uses",
+                "Explore the test setup \u00b7 3 tool uses"
+              ]
+            },
+            {
+              "kind": "say",
+              "text": "Verification",
+              "lines": [
+                "1. npm install succeeds with sharp",
+                "2. A JPEG upload is saved as .webp",
+                "3. A 6MB upload returns 413, no orphan file",
+                "4. Replacing an avatar deletes the old one"
+              ]
+            },
+            {
+              "kind": "menu",
+              "text": "Plan ready. Proceed?",
+              "options": [
+                "Yes, auto-accept edits",
+                "Yes, manually approve edits",
+                "No, keep planning"
+              ],
+              "pick": 1,
+              "mark": "4 files   +63  -9"
+            },
+            {
+              "kind": "tool",
+              "text": "Bash(npm test 2>&1)",
+              "lines": [
+                "\u2713 src/routes/profile.test.ts (9)",
+                "4 of 4 checks green"
+              ],
+              "more": "+26 lines (ctrl+o to expand)"
+            },
+            {
+              "kind": "tool",
+              "text": "Bash(git commit -m 'Add avatar upload with webp conversion')",
+              "lines": [
+                "[avatar-upload 4f2a1c9] Add avatar upload with webp",
+                "4 files changed, 63 insertions(+)"
+              ]
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "the-end",
+            "heading": "Start at the end",
+            "narration": "Before anything else, look at where this ends up. One session, sixty-one turns deep, eleven minutes old, and still doing exactly what it was asked to do.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "one-ask",
+            "heading": "One instruction",
+            "narration": "It got one instruction. Ship a feature, write the tests, commit it. Not a conversation, not forty corrections. One sentence, and then it went to work.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "it-read",
+            "heading": "It read first",
+            "narration": "It read before it wrote. Three agents, sixty thousand tokens of your codebase, working out how uploads already happen here. That reading is why the rest of this worked.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "it-planned",
+            "heading": "It wrote a contract",
+            "narration": "Then it wrote down how you would know it had succeeded. Four checks, each one something you can actually run. That list is the difference between a plan and a wish.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "it-asked",
+            "heading": "It asked",
+            "narration": "And it asked before touching anything. Four files, sixty-three lines. You get to see the size of the change before you agree to it.",
+            "session": {
+              "show": "event",
+              "at": 3
+            }
+          },
+          {
+            "id": "it-tested",
+            "heading": "It checked itself",
+            "narration": "It ran the tests itself and reported them against the list it wrote earlier. Four of four green, and it did not need to be asked twice.",
+            "session": {
+              "show": "event",
+              "at": 4
+            }
+          },
+          {
+            "id": "it-committed",
+            "heading": "It committed",
+            "narration": "Then a commit with a message that says what it did. That is the whole loop, and none of it was luck.",
+            "session": {
+              "show": "event",
+              "at": 5
+            }
+          },
+          {
+            "id": "the-catch",
+            "heading": "The catch",
+            "narration": "Here is the catch. Type that same sentence into a fresh install today and it goes badly. Everything that made this work happened before it. That is what the next half hour is.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "title",
+      "template": "titlecard",
+      "prompt": "The video title",
+      "role": "hook",
+      "target_sec": 16,
+      "plan": {
+        "title": "Claude Code 101",
+        "titlecard": {
+          "line": "Claude Code 101",
+          "note": "Nine things, in the order they stop hurting"
+        },
+        "beats": [
+          {
+            "id": "the-line",
+            "heading": "The whole course",
+            "narration": "This is the whole thing in one sitting. Nine parts, one project, and each part fixes the problem the one before it created.",
+            "titlecard": {
+              "show": "line"
+            }
+          },
+          {
+            "id": "the-note",
+            "heading": "How to watch",
+            "narration": "You do not need to take notes. You need to watch the order.",
+            "titlecard": {
+              "show": "note"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "wp1",
+      "template": "waypoint",
+      "prompt": "Chapter one card: what Claude Code actually is",
+      "role": "develop",
+      "target_sec": 16,
+      "plan": {
+        "title": "What it is",
+        "waypoint": {
+          "ordinal": "01",
+          "line": "What it is",
+          "promise": "You will know why this is not autocomplete",
+          "stops": [
+            "What it is",
+            "Installing",
+            "How it works",
+            "First prompt",
+            "The memory file",
+            "The workflow",
+            "Long sessions",
+            "MCP",
+            "Hooks",
+            "What next"
+          ],
+          "at": 0
+        },
+        "beats": [
+          {
+            "id": "arrive",
+            "heading": "Chapter one",
+            "narration": "Start with what the thing actually is, because almost everyone arrives with the wrong picture of it in their head.",
+            "waypoint": {
+              "show": "arrive"
+            }
+          },
+          {
+            "id": "promise",
+            "heading": "The wrong picture",
+            "narration": "The wrong picture is a smarter autocomplete. Get that wrong and every habit you build on top of it is wrong too.",
+            "waypoint": {
+              "show": "promise"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch1a",
+      "template": "session",
+      "prompt": "What it is: an agent with tools that reads and edits your actual repo",
+      "role": "develop",
+      "target_sec": 90,
+      "plan": {
+        "title": "An agent with tools",
+        "session": {
+          "app": "Claude Code",
+          "hint": "accept edits on (shift+tab to cycle)",
+          "status": "\u25d0 medium",
+          "header": [
+            "taskflow-api \u00b7 turn 3",
+            "~/work/taskflow-api"
+          ],
+          "events": [
+            {
+              "kind": "ask",
+              "text": "why does the login route return 500 on a bad password?"
+            },
+            {
+              "kind": "tool",
+              "text": "Grep(pattern: 'login', path: 'src')",
+              "lines": [
+                "3 files matched",
+                "src/routes/auth.ts",
+                "src/services/userService.ts"
+              ],
+              "note": "it goes looking, not guessing"
+            },
+            {
+              "kind": "tool",
+              "text": "Read(src/routes/auth.ts)",
+              "lines": [
+                "124 lines",
+                "line 61: throw new Error('bad password')"
+              ],
+              "more": "+18 lines (ctrl+o to expand)"
+            },
+            {
+              "kind": "say",
+              "text": "A thrown Error becomes a 500. This wants a 401.",
+              "lines": [
+                "The handler has no catch, so Express falls through to the default.",
+                "Two lines fix it."
+              ]
+            },
+            {
+              "kind": "tool",
+              "text": "Update(src/routes/auth.ts)",
+              "lines": [
+                "- throw new Error('bad password')",
+                "+ return res.status(401).json({ error: 'bad password' })"
+              ],
+              "note": "it edits the file on your disk"
+            },
+            {
+              "kind": "tool",
+              "text": "Bash(npm test -- auth 2>&1)",
+              "lines": [
+                "\u2713 returns 401 on a bad password (2)"
+              ],
+              "more": "+9 lines (ctrl+o to expand)"
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "A real question",
+            "narration": "Here is the same tool three turns into a real project, being asked a question you would actually ask a colleague on your team.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "asked",
+            "heading": "Not a code request",
+            "narration": "Notice what the question is not. It is not write me a function. It is a why question about behaviour, and answering it means going and looking.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "grep",
+            "heading": "It searches",
+            "narration": "So it searches. This is the first thing that separates it from autocomplete, which has only ever seen the file you have open and the lines just above your cursor.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "read",
+            "heading": "It reads",
+            "narration": "Then it opens the file it found and reads it. A hundred and twenty four lines, and it comes back pointing at line sixty one.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "explains",
+            "heading": "It reasons",
+            "narration": "And it explains the mechanism rather than the symptom. A thrown error with no catch becomes a five hundred, and this case wants a four oh one.",
+            "session": {
+              "show": "event",
+              "at": 3
+            }
+          },
+          {
+            "id": "edits",
+            "heading": "It edits",
+            "narration": "Then it edits the file. Not a suggestion in a side panel you copy out. The file on your disk, in your repo, that your tests run against.",
+            "session": {
+              "show": "event",
+              "at": 4
+            }
+          },
+          {
+            "id": "runs",
+            "heading": "It runs it",
+            "narration": "And it runs your test suite to check its own work. Search, read, reason, edit, run. Those five verbs are what the word agent means here.",
+            "session": {
+              "show": "event",
+              "at": 5
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "The shape of it",
+            "narration": "One question, five tools, a real fix. That is the shape of every session you will ever have with it.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch1b",
+      "template": "titlecard",
+      "prompt": "Breath: it has tools, and that changes what you should ask for",
+      "role": "develop",
+      "target_sec": 14,
+      "plan": {
+        "title": "It has tools",
+        "titlecard": {
+          "line": "It has tools",
+          "note": "So ask for outcomes, not lines of code"
+        },
+        "beats": [
+          {
+            "id": "the-line",
+            "heading": "The real difference",
+            "narration": "The difference is not that the model is cleverer. It is that this one can act. It reads, edits, and runs things.",
+            "titlecard": {
+              "show": "line"
+            }
+          },
+          {
+            "id": "the-note",
+            "heading": "What to ask for",
+            "narration": "Which means you stop asking for code and start asking for outcomes.",
+            "titlecard": {
+              "show": "note"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "wp2",
+      "template": "waypoint",
+      "prompt": "Chapter two card: installing it",
+      "role": "develop",
+      "target_sec": 16,
+      "plan": {
+        "title": "Installing",
+        "waypoint": {
+          "ordinal": "02",
+          "line": "Installing",
+          "promise": "Running, signed in, and pointed at a real project",
+          "stops": [
+            "What it is",
+            "Installing",
+            "How it works",
+            "First prompt",
+            "The memory file",
+            "The workflow",
+            "Long sessions",
+            "MCP",
+            "Hooks",
+            "What next"
+          ],
+          "at": 1
+        },
+        "beats": [
+          {
+            "id": "arrive",
+            "heading": "Chapter two",
+            "narration": "Getting it running takes about two minutes, and there is exactly one decision in it worth thinking about.",
+            "waypoint": {
+              "show": "arrive"
+            }
+          },
+          {
+            "id": "promise",
+            "heading": "The one decision",
+            "narration": "That decision is which directory you start it in, and it matters more than anything else on this screen.",
+            "waypoint": {
+              "show": "promise"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch2",
+      "template": "session",
+      "prompt": "Install: npm install, launch, auth, the welcome box, and where you started it",
+      "role": "develop",
+      "target_sec": 85,
+      "plan": {
+        "title": "Two minutes to running",
+        "session": {
+          "app": "Claude Code",
+          "hint": "plan mode on (shift+tab to cycle)",
+          "status": "\u25d0 medium",
+          "events": [
+            {
+              "kind": "ask",
+              "text": "npm install -g @anthropic-ai/claude-code",
+              "note": "node 18 or newer"
+            },
+            {
+              "kind": "tool",
+              "text": "added 1 package in 4s",
+              "lines": [
+                "claude-code@2.1.4"
+              ]
+            },
+            {
+              "kind": "welcome",
+              "text": "Welcome to Claude Code!",
+              "lines": [
+                "Opus 4.6 \u00b7 Claude Max",
+                "~/work/taskflow-api"
+              ],
+              "aside": [
+                "Tips for getting started",
+                "Run /init to create a CLAUDE.md file",
+                "Recent activity",
+                "No recent activity"
+              ],
+              "note": "the directory is the working set"
+            },
+            {
+              "kind": "ask",
+              "text": "/help"
+            },
+            {
+              "kind": "say",
+              "text": "Slash commands",
+              "lines": [
+                "/init      write a CLAUDE.md for this project",
+                "/compact   summarise the conversation so far",
+                "/rewind    restore code or conversation",
+                "/mcp       manage connected servers"
+              ]
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "One install line",
+            "narration": "It is one global npm install and a terminal. There is no project setup, no config file to write first, and nothing you add to your repository. It is a tool on your machine, not a dependency of your code.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "install",
+            "heading": "The install",
+            "narration": "One package, four seconds. You need Node eighteen or newer, and that is the entire dependency list. There is a native installer as well if you would rather not go through npm at all.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "installed",
+            "heading": "Then log in",
+            "narration": "Then you run claude, and the first launch walks you through signing in. That happens in the browser once and is remembered afterwards, so every launch after this one drops you straight at the prompt.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "welcome",
+            "heading": "The one decision",
+            "narration": "And here is that one decision. The directory you launched from is the directory it can see. Start it in your home folder and it is looking at everything and understanding nothing. Launch it from the root of one repository, the one you actually want help with.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "help",
+            "heading": "Slash help",
+            "narration": "Slash help is the map. Everything in this video that starts with a slash is on that list, the list is short enough to read in a minute, and it is worth doing once on your first day.",
+            "session": {
+              "show": "event",
+              "at": 3
+            }
+          },
+          {
+            "id": "commands",
+            "heading": "Four of them",
+            "narration": "Four of these matter today, and three of them are for problems you have not hit yet. Init writes the memory file. Compact buys back room. Rewind undoes work rather than words. We will hit all three.",
+            "session": {
+              "show": "event",
+              "at": 4
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "Ready",
+            "narration": "Installed, signed in, pointed at one project. Now the part worth understanding.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "wp3",
+      "template": "waypoint",
+      "prompt": "Chapter three card: how it works",
+      "role": "develop",
+      "target_sec": 16,
+      "plan": {
+        "title": "How it works",
+        "waypoint": {
+          "ordinal": "03",
+          "line": "How it works",
+          "promise": "The loop it runs, and the one budget that governs everything",
+          "stops": [
+            "What it is",
+            "Installing",
+            "How it works",
+            "First prompt",
+            "The memory file",
+            "The workflow",
+            "Long sessions",
+            "MCP",
+            "Hooks",
+            "What next"
+          ],
+          "at": 2
+        },
+        "beats": [
+          {
+            "id": "arrive",
+            "heading": "Chapter three",
+            "narration": "This is the chapter that makes the other six make sense, so it is worth three minutes of your attention.",
+            "waypoint": {
+              "show": "arrive"
+            }
+          },
+          {
+            "id": "promise",
+            "heading": "Two things",
+            "narration": "Two things to take from it. The loop it runs in, and the single budget that every problem later in this video comes back to.",
+            "waypoint": {
+              "show": "promise"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch3a",
+      "template": "wiring",
+      "prompt": "The loop: your prompt, it reads, it proposes, you approve, round again",
+      "role": "develop",
+      "target_sec": 110,
+      "plan": {
+        "title": "The loop it runs in",
+        "wiring": {
+          "nodes": [
+            {
+              "label": "Your prompt",
+              "kind": "in",
+              "note": "one instruction, in plain words"
+            },
+            {
+              "label": "It reads",
+              "kind": "work",
+              "note": "the files it decides are relevant"
+            },
+            {
+              "label": "It proposes",
+              "kind": "work",
+              "note": "edits, with a reason for each"
+            },
+            {
+              "label": "You approve",
+              "kind": "out",
+              "note": "nothing touches disk until you do"
+            },
+            {
+              "label": "Your repo",
+              "kind": "store",
+              "note": "real files, real tests"
+            }
+          ],
+          "hops": [
+            "as text",
+            "as searches and reads",
+            "as a diff",
+            "as a write"
+          ],
+          "return": "and what you say next"
+        },
+        "beats": [
+          {
+            "id": "shape",
+            "heading": "Five parts",
+            "narration": "Every session is this loop, over and over. Five parts, four hops between them, and one arc that takes you back to the beginning. Learn this and the rest of the video is detail.",
+            "wiring": {
+              "show": "shape"
+            }
+          },
+          {
+            "id": "h0",
+            "heading": "You ask",
+            "narration": "It starts with your instruction as plain text. No syntax, no template, no special vocabulary to learn. The quality of everything downstream is set right here, which is why chapter four is entirely about this one step and nothing else.",
+            "wiring": {
+              "show": "hop",
+              "at": 0
+            }
+          },
+          {
+            "id": "h1",
+            "heading": "It reads",
+            "narration": "Then it decides what to look at and goes and looks. Searches, file reads, sometimes running a command just to see what it prints. It is building a picture of your project from scratch, every session, and it is spending real budget to do it.",
+            "wiring": {
+              "show": "hop",
+              "at": 1
+            }
+          },
+          {
+            "id": "h2",
+            "heading": "It proposes",
+            "narration": "Out of that reading comes a proposal, and it arrives as a diff. Lines out, lines in, with a reason attached to each change. At this point it is a suggestion and nothing more, which is worth remembering when it proposes something alarming.",
+            "wiring": {
+              "show": "hop",
+              "at": 2
+            }
+          },
+          {
+            "id": "h3",
+            "heading": "You approve",
+            "narration": "Nothing reaches your disk until you agree to it. That gate is the single most important control you have in this whole tool, and in chapter six you will see exactly what each of the answers to it hands over.",
+            "wiring": {
+              "show": "hop",
+              "at": 3
+            }
+          },
+          {
+            "id": "round",
+            "heading": "Round again",
+            "narration": "Then it comes back round with whatever you say next, carrying everything from the lap before it. That accumulation is the entire reason this tool is good at hour two, and also the entire reason it starts to struggle at hour three.",
+            "wiring": {
+              "show": "round"
+            }
+          },
+          {
+            "id": "path",
+            "heading": "The whole loop",
+            "narration": "Ask, read, propose, approve, round again. Nine times out of ten, when a session goes wrong, one of those five is being skipped.",
+            "wiring": {
+              "show": "path"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch3b",
+      "template": "session",
+      "prompt": "The context window: the budget that governs everything, and what fills it",
+      "role": "develop",
+      "target_sec": 70,
+      "plan": {
+        "title": "The budget behind everything",
+        "session": {
+          "app": "Claude Code",
+          "hint": "accept edits on (shift+tab to cycle)",
+          "status": "\u25d0 medium",
+          "chip": "context 168k / 200k",
+          "header": [
+            "taskflow-api \u00b7 turn 34",
+            "context 168k / 200k"
+          ],
+          "events": [
+            {
+              "kind": "spin",
+              "text": "Schlepping\u2026",
+              "mark": "(41s \u00b7 \u2193 12.4k tokens)"
+            },
+            {
+              "kind": "tool",
+              "text": "Read(src/services/reportBuilder.ts)",
+              "lines": [
+                "1,412 lines read"
+              ],
+              "more": "+40 lines (ctrl+o to expand)",
+              "note": "every read costs budget"
+            },
+            {
+              "kind": "say",
+              "text": "Context is filling. Older turns will be summarised soon.",
+              "lines": [
+                "34 turns \u00b7 168k of 200k used"
+              ]
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "One number",
+            "narration": "There is one number that governs almost everything about working with this tool, and it has been sitting quietly in the corner of the screen this whole time.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "spin",
+            "heading": "It costs to read",
+            "narration": "Everything it knows about your project, it knows because it read it during this session. And every read costs a piece of a fixed budget called the context window.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "read",
+            "heading": "A big file",
+            "narration": "One fourteen hundred line file is a meaningful slice of that budget. Read six of them and most of your session has gone on looking rather than doing, which is how an afternoon disappears.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "filling",
+            "heading": "What happens at the top",
+            "narration": "When it fills up, the oldest part of the conversation gets summarised away to make room. Which means a long session quietly forgets its own beginning, including the instructions you gave it at the start.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "chip",
+            "heading": "Watch it",
+            "narration": "So watch that number. It is the difference between a session that gets better for an hour and one that gets steadily worse while sounding just as confident.",
+            "session": {
+              "show": "chip"
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "Remember this",
+            "narration": "Hold on to that. Chapters five and seven are both answers to this one problem.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "wp4",
+      "template": "waypoint",
+      "prompt": "Chapter four card: your first prompt, and how it goes wrong",
+      "role": "develop",
+      "target_sec": 16,
+      "plan": {
+        "title": "First prompt",
+        "waypoint": {
+          "ordinal": "04",
+          "line": "First prompt",
+          "promise": "You will see exactly how a reasonable request goes wrong",
+          "stops": [
+            "What it is",
+            "Installing",
+            "How it works",
+            "First prompt",
+            "The memory file",
+            "The workflow",
+            "Long sessions",
+            "MCP",
+            "Hooks",
+            "What next"
+          ],
+          "at": 3
+        },
+        "beats": [
+          {
+            "id": "arrive",
+            "heading": "Chapter four",
+            "narration": "Now we give it something real to do, on a project it has never seen, with no preparation at all.",
+            "waypoint": {
+              "show": "arrive"
+            }
+          },
+          {
+            "id": "promise",
+            "heading": "It goes wrong",
+            "narration": "It goes wrong. Watch it carefully, because the next five chapters exist to fix precisely what happens here.",
+            "waypoint": {
+              "show": "promise"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch4a",
+      "template": "session",
+      "prompt": "A reasonable first prompt on a fresh project, and the four wrong guesses it makes",
+      "role": "develop",
+      "target_sec": 110,
+      "plan": {
+        "title": "Four reasonable guesses",
+        "session": {
+          "app": "Claude Code",
+          "hint": "accept edits on (shift+tab to cycle)",
+          "status": "\u25d0 medium",
+          "header": [
+            "taskflow-api \u00b7 turn 1 \u00b7 no CLAUDE.md",
+            "~/work/taskflow-api"
+          ],
+          "events": [
+            {
+              "kind": "ask",
+              "text": "add a rate limiter to the login route",
+              "note": "a fair request, badly under-specified"
+            },
+            {
+              "kind": "tool",
+              "text": "Bash(npm install express-rate-limit)",
+              "lines": [
+                "added 4 packages in 6s",
+                "created package-lock.json"
+              ],
+              "note": "this project uses pnpm"
+            },
+            {
+              "kind": "tool",
+              "text": "Write(src/middleware/rateLimiter.ts)",
+              "lines": [
+                "+ 34 lines"
+              ],
+              "note": "middleware lives in src/http/ here"
+            },
+            {
+              "kind": "tool",
+              "text": "Update(src/routes/auth.ts)",
+              "lines": [
+                "+ import rateLimiter from '../middleware/rateLimiter'",
+                "+ router.post('/login', rateLimiter, handler)"
+              ]
+            },
+            {
+              "kind": "tool",
+              "text": "Bash(npm test 2>&1)",
+              "lines": [
+                "\u2717 3 failing",
+                "Cannot find module 'express-rate-limit'"
+              ],
+              "note": "two lockfiles now disagree"
+            },
+            {
+              "kind": "say",
+              "text": "Login is now limited to five attempts a minute.",
+              "lines": [
+                "The failing tests look like an environment issue."
+              ]
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "Turn one",
+            "narration": "Fresh project, turn one, nothing configured. This is the state almost everybody is in the first time they try this, and it is worth watching what that costs.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "ask",
+            "heading": "A fair request",
+            "narration": "The request is completely reasonable. Add a rate limiter to the login route. If you said that to a new engineer on your team, they would know what to do.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "npm",
+            "heading": "Wrong package manager",
+            "narration": "First guess. It reaches for npm, because npm is what most projects use. This project uses pnpm, and it has just written a second lockfile into your repository.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "where",
+            "heading": "Wrong directory",
+            "narration": "Second guess. It creates a middleware folder, because that is where most projects keep middleware. In this project middleware lives under source, http. Now the repository has two conventions for the same thing.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "wires",
+            "heading": "The code is fine",
+            "narration": "And notice the code itself is fine. That is the uncomfortable part of this chapter. Every one of these guesses is defensible in isolation, and the result is still something you would send back in review.",
+            "session": {
+              "show": "event",
+              "at": 3
+            }
+          },
+          {
+            "id": "tests",
+            "heading": "The tests fail",
+            "narration": "Third guess. It runs the test suite with npm, on a project installed with pnpm, and three tests fail because the module it installed is not where this project looks for modules.",
+            "session": {
+              "show": "event",
+              "at": 4
+            }
+          },
+          {
+            "id": "confident",
+            "heading": "Confidently done",
+            "narration": "Fourth and worst. It reports success and waves the failures away as an environment problem. It is not lying to you. It genuinely has no way to know what this project's environment is.",
+            "session": {
+              "show": "event",
+              "at": 5
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "Whose fault",
+            "narration": "This is the moment most people decide the tool is not ready. It is the wrong conclusion. Nothing here was a reasoning failure. It was four missing facts.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch4b",
+      "template": "titlecard",
+      "prompt": "Breath: it guessed, and every guess was reasonable",
+      "role": "develop",
+      "target_sec": 14,
+      "plan": {
+        "title": "It guessed",
+        "titlecard": {
+          "line": "It guessed",
+          "note": "Four times, and every guess was reasonable"
+        },
+        "beats": [
+          {
+            "id": "the-line",
+            "heading": "Not stupidity",
+            "narration": "Every wrong answer there came from a missing fact, not from bad reasoning. It guessed because nobody had told it.",
+            "titlecard": {
+              "show": "line"
+            }
+          },
+          {
+            "id": "the-note",
+            "heading": "So tell it",
+            "narration": "Which means the fix is not a cleverer prompt. The fix is writing the facts down once.",
+            "titlecard": {
+              "show": "note"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "wp5",
+      "template": "waypoint",
+      "prompt": "Chapter five card: the memory file",
+      "role": "develop",
+      "target_sec": 16,
+      "plan": {
+        "title": "The memory file",
+        "waypoint": {
+          "ordinal": "05",
+          "line": "The memory file",
+          "promise": "The four facts it guessed at, written down once",
+          "stops": [
+            "What it is",
+            "Installing",
+            "How it works",
+            "First prompt",
+            "The memory file",
+            "The workflow",
+            "Long sessions",
+            "MCP",
+            "Hooks",
+            "What next"
+          ],
+          "at": 4
+        },
+        "beats": [
+          {
+            "id": "arrive",
+            "heading": "Chapter five",
+            "narration": "So we write the facts down. One file, committed to the repository, loaded into every session automatically.",
+            "waypoint": {
+              "show": "arrive"
+            }
+          },
+          {
+            "id": "promise",
+            "heading": "Four facts",
+            "narration": "Specifically the four it just got wrong. This chapter is the direct answer to the last one.",
+            "waypoint": {
+              "show": "promise"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch5a",
+      "template": "session",
+      "prompt": "Slash init writes the first draft by reading the project",
+      "role": "develop",
+      "target_sec": 60,
+      "plan": {
+        "title": "Let it write the draft",
+        "session": {
+          "app": "Claude Code",
+          "hint": "plan mode on (shift+tab to cycle)",
+          "status": "\u25d0 medium",
+          "header": [
+            "taskflow-api \u00b7 turn 1",
+            "no CLAUDE.md found"
+          ],
+          "events": [
+            {
+              "kind": "ask",
+              "text": "/init"
+            },
+            {
+              "kind": "tool",
+              "text": "Explore(Analyze codebase structure)",
+              "lines": [
+                "Read package.json, pnpm-lock.yaml, tsconfig.json",
+                "Read 18 files across src/",
+                "Found: Express, pnpm, vitest, src/http/ middleware"
+              ],
+              "more": "+34 lines (ctrl+o to expand)",
+              "note": "it can find these facts itself"
+            },
+            {
+              "kind": "tool",
+              "text": "Write(CLAUDE.md)",
+              "lines": [
+                "+ # Project",
+                "+ ## Commands",
+                "+ ## Code Style",
+                "26 lines written"
+              ]
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "Not by hand",
+            "narration": "You do not write this file by hand on a blank page. There is a command whose entire job is to write the first draft of it for you.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "init",
+            "heading": "Slash init",
+            "narration": "Slash init. You run it once, in the root of the project, on the day you start working there. It is the only setup step this tool has.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "explore",
+            "heading": "It finds them",
+            "narration": "And look at what it finds. The lockfile tells it pnpm. The test config tells it vitest. Eighteen files tell it where middleware lives. Every fact it guessed at in the last chapter was discoverable.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "write",
+            "heading": "A draft",
+            "narration": "Twenty-six lines, written in about a minute. Treat it as a draft, because the version that earns its place is the one you cut down afterwards.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "Now edit it",
+            "narration": "So let us look at what a good one actually contains, because the draft it just wrote is longer than it needs to be.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch5b",
+      "template": "doc",
+      "prompt": "The file itself: what belongs in it, section by section",
+      "role": "develop",
+      "target_sec": 110,
+      "plan": {
+        "title": "What belongs in it",
+        "doc": {
+          "file": "CLAUDE.md",
+          "crumb": "## Commands",
+          "tree": [
+            {
+              "name": "src",
+              "kind": "dir"
+            },
+            {
+              "name": "tests",
+              "kind": "dir"
+            },
+            {
+              "name": "CLAUDE.md",
+              "kind": "mark"
+            },
+            {
+              "name": "package.json",
+              "kind": "file"
+            },
+            {
+              "name": "pnpm-lock.yaml",
+              "kind": "file"
+            }
+          ],
+          "blocks": [
+            {
+              "text": "# Project",
+              "lines": [
+                "An Express API for task management. TypeScript, pnpm, vitest.",
+                "SQLite in development, Postgres in production."
+              ],
+              "note": "one or two sentences, no more"
+            },
+            {
+              "text": "## Commands",
+              "lines": [
+                "- Install: `pnpm install`",
+                "- Dev: `pnpm dev`",
+                "- Test: `pnpm test`",
+                "- One test file: `pnpm test -- auth`"
+              ],
+              "note": "this is the pnpm guess, fixed"
+            },
+            {
+              "text": "## Layout",
+              "lines": [
+                "- Routes in `src/routes/`, one file per resource",
+                "- Middleware in `src/http/`, not `src/middleware/`",
+                "- Services hold the logic, routes stay thin"
+              ],
+              "note": "and this is the directory guess, fixed"
+            },
+            {
+              "text": "## Code Style",
+              "lines": [
+                "- Named exports, no default exports",
+                "- Errors return a status, never throw to the handler"
+              ],
+              "note": "the 500 from chapter one"
+            },
+            {
+              "text": "**IMPORTANT**",
+              "lines": [
+                "Run `pnpm test` before saying a task is done.",
+                "Never add a second lockfile."
+              ],
+              "note": "the rules that keep getting broken"
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "The whole file",
+            "narration": "This is a good one, and the first thing to notice is how short it is. Five sections, about twenty lines. Every line of it is loaded into every session, so every line has to earn the space.",
+            "doc": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "tree",
+            "heading": "At the root",
+            "narration": "It sits at the root of the repository and it gets committed. That is what makes it a team artifact rather than a personal setting. Your whole team gets the same memory.",
+            "doc": {
+              "show": "tree"
+            }
+          },
+          {
+            "id": "project",
+            "heading": "What this is",
+            "narration": "First, what the project is, in two sentences. Stack, database, nothing more. This is the part it cannot reliably work out in one pass, and getting it wrong colours everything else.",
+            "doc": {
+              "show": "block",
+              "at": 0
+            }
+          },
+          {
+            "id": "commands",
+            "heading": "The commands",
+            "narration": "Then the commands, and here is the first guess from chapter four being paid off. Install with pnpm. Test with pnpm. It will never reach for npm in this project again.",
+            "doc": {
+              "show": "block",
+              "at": 1
+            }
+          },
+          {
+            "id": "layout",
+            "heading": "The layout",
+            "narration": "Then the layout, which pays off the second guess. Middleware goes in http, not middleware. One line, and the wrong directory stops happening forever.",
+            "doc": {
+              "show": "block",
+              "at": 2
+            }
+          },
+          {
+            "id": "style",
+            "heading": "House rules",
+            "narration": "Then your house rules. Named exports. Errors return a status rather than throwing. That second one is the bug we fixed in chapter one, turned into a rule so it stops being written in the first place.",
+            "doc": {
+              "show": "block",
+              "at": 3
+            }
+          },
+          {
+            "id": "important",
+            "heading": "The two rules",
+            "narration": "And the two rules that get broken most, marked important. Run the tests before claiming done. Never add a second lockfile. Both of those are things you just watched go wrong.",
+            "doc": {
+              "show": "block",
+              "at": 4
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "Twenty lines",
+            "narration": "Twenty lines to close four gaps. That is the best return on effort available anywhere in this tool.",
+            "doc": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch5c",
+      "template": "session",
+      "prompt": "The same request as chapter four, now with the file in place",
+      "role": "develop",
+      "target_sec": 55,
+      "plan": {
+        "title": "The same request, again",
+        "session": {
+          "app": "Claude Code",
+          "hint": "accept edits on (shift+tab to cycle)",
+          "status": "\u25d0 medium",
+          "chip": "\u2713 tests green",
+          "header": [
+            "taskflow-api \u00b7 turn 1",
+            "CLAUDE.md loaded (20 lines)"
+          ],
+          "events": [
+            {
+              "kind": "ask",
+              "text": "add a rate limiter to the login route"
+            },
+            {
+              "kind": "tool",
+              "text": "Bash(pnpm add express-rate-limit)",
+              "lines": [
+                "+ express-rate-limit 7.1.5",
+                "pnpm-lock.yaml updated"
+              ],
+              "note": "right manager, one lockfile"
+            },
+            {
+              "kind": "tool",
+              "text": "Write(src/http/rateLimiter.ts)",
+              "lines": [
+                "+ 31 lines",
+                "export const rateLimiter = ..."
+              ],
+              "note": "right directory, named export"
+            },
+            {
+              "kind": "tool",
+              "text": "Bash(pnpm test 2>&1)",
+              "lines": [
+                "\u2713 41 passed"
+              ],
+              "more": "+12 lines (ctrl+o to expand)"
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "Same words",
+            "narration": "Same project, same request, word for word. The only thing that changed is that twenty-line file is now sitting in the repository.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "ask",
+            "heading": "Byte for byte",
+            "narration": "Add a rate limiter to the login route. Identical prompt to the one that went wrong four minutes ago.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "pnpm",
+            "heading": "Right manager",
+            "narration": "pnpm this time, and one lockfile instead of two. It did not get smarter. It got told.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "place",
+            "heading": "Right place",
+            "narration": "Right directory, named export, matching the file next to it. All three of those came from lines you can read in under a minute.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "green",
+            "heading": "Green",
+            "narration": "And it ran the tests with the right command, unprompted, because the file told it to before saying a task was done. Forty-one passing.",
+            "session": {
+              "show": "event",
+              "at": 3
+            }
+          },
+          {
+            "id": "chip",
+            "heading": "The same prompt",
+            "narration": "The prompt did not get better. The context it runs inside did.",
+            "session": {
+              "show": "chip"
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "What is left",
+            "narration": "Now it knows the project. What it still does not have is a method.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "wp6",
+      "template": "waypoint",
+      "prompt": "Chapter six card: the workflow",
+      "role": "develop",
+      "target_sec": 16,
+      "plan": {
+        "title": "The workflow",
+        "waypoint": {
+          "ordinal": "06",
+          "line": "The workflow",
+          "promise": "Explore, plan, code, commit \u2014 and why that order",
+          "stops": [
+            "What it is",
+            "Installing",
+            "How it works",
+            "First prompt",
+            "The memory file",
+            "The workflow",
+            "Long sessions",
+            "MCP",
+            "Hooks",
+            "What next"
+          ],
+          "at": 5
+        },
+        "beats": [
+          {
+            "id": "arrive",
+            "heading": "Chapter six",
+            "narration": "It knows your project now. This chapter gives it a method, and the method is four words in a fixed order.",
+            "waypoint": {
+              "show": "arrive"
+            }
+          },
+          {
+            "id": "promise",
+            "heading": "The order",
+            "narration": "Explore, plan, code, commit. Almost everyone starts at the third one, and that is the single most expensive habit in this whole video.",
+            "waypoint": {
+              "show": "promise"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch6a",
+      "template": "session",
+      "prompt": "Explore and plan: reading first, then a written plan with verification, then the approval gate",
+      "role": "develop",
+      "target_sec": 120,
+      "plan": {
+        "title": "Explore, then plan",
+        "session": {
+          "app": "Claude Code",
+          "hint": "plan mode on (shift+tab to cycle)",
+          "status": "\u25d0 high \u00b7 /effort",
+          "header": [
+            "taskflow-api \u00b7 turn 4 \u00b7 CLAUDE.md loaded",
+            "plan mode \u2014 nothing is edited until you approve"
+          ],
+          "events": [
+            {
+              "kind": "ask",
+              "text": "add avatar upload to the profile endpoint. don't write code yet.",
+              "note": "the last four words do the work"
+            },
+            {
+              "kind": "agents",
+              "text": "Running 2 Explore agents\u2026 (ctrl+o to expand)",
+              "lines": [
+                "Explore upload paths \u00b7 5 tool uses \u00b7 48.1k tokens",
+                "Explore image handling \u00b7 3 tool uses",
+                "Reading src/routes/profile.ts, src/http/upload.ts"
+              ]
+            },
+            {
+              "kind": "spin",
+              "text": "Unravelling\u2026",
+              "mark": "(52s \u00b7 \u2193 18.2k tokens)"
+            },
+            {
+              "kind": "say",
+              "text": "Changes by File",
+              "lines": [
+                "1. package.json \u2014 add sharp",
+                "   pnpm add sharp",
+                "2. src/http/upload.ts \u2014 switch to memory storage",
+                "   Replace diskStorage with memoryStorage",
+                "   Keep the 5MB limit and the MIME check",
+                "3. src/routes/profile.ts \u2014 convert and write",
+                "   sharp(req.file.buffer).webp({ quality: 80 })",
+                "4. src/services/userService.ts \u2014 no change needed",
+                "   avatar_url is a string, extension-agnostic"
+              ]
+            },
+            {
+              "kind": "say",
+              "text": "Verification",
+              "lines": [
+                "1. pnpm install succeeds with sharp",
+                "2. A JPEG upload is saved as .webp",
+                "3. avatar_url in the response ends with .webp",
+                "4. A 6MB upload returns 413 and leaves no file",
+                "5. Replacing an avatar deletes the old one"
+              ],
+              "note": "read this list, not the file list"
+            },
+            {
+              "kind": "menu",
+              "text": "Claude has written up a plan and is ready to execute. Proceed?",
+              "options": [
+                "Yes, clear context (14% used) and auto-accept edits",
+                "Yes, auto-accept edits",
+                "Yes, manually approve edits",
+                "Type here to tell Claude what to change"
+              ],
+              "pick": 2,
+              "foot": "ctrl-g to edit in VS Code \u00b7 ~/.claude/plans/avatar-upload.md"
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "Plan mode",
+            "narration": "Plan mode. The important property is in the header. Nothing is edited until you approve, so everything that happens in the next ninety seconds is reversible by doing nothing.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "ask",
+            "heading": "Four words",
+            "narration": "The instruction has four words at the end doing all the work. Do not write code yet. Without them it starts editing, and you lose the chance to disagree cheaply.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "explore",
+            "heading": "Explore",
+            "narration": "So it explores instead. Two agents, forty-eight thousand tokens, reading how uploads already work here. This is the step people skip, and skipping it is what produces code that works but does not belong.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "working",
+            "heading": "It is not free",
+            "narration": "That reading takes fifty-two seconds and eighteen thousand tokens, and it is the best money you will spend in the whole session. A plan built on a guess costs you an afternoon.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "byfile",
+            "heading": "Changes by file",
+            "narration": "Then the plan, as a document you can argue with. Four files, and one of them marked no change needed. That line is the most reassuring thing in the list, because it means it considered the file and decided against touching it.",
+            "session": {
+              "show": "event",
+              "at": 3
+            }
+          },
+          {
+            "id": "verify",
+            "heading": "Verification",
+            "narration": "And this is the part that matters most, and the part a rushed session never writes. Five checks, each one something you could actually run. That list is what turns a plan into a contract you can hold it to.",
+            "session": {
+              "show": "event",
+              "at": 4
+            }
+          },
+          {
+            "id": "menu",
+            "heading": "The gate",
+            "narration": "Then the gate. Four answers, and they are not the same size. The first one hands over every edit for the rest of the session. The third keeps you in the loop on each one.",
+            "session": {
+              "show": "event",
+              "at": 5
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "What to read",
+            "narration": "One habit to take from this chapter, and it is the most useful sentence in this video. Read the verification list before the file list. If those five checks are the wrong five, everything after this is wasted work, however good the code turns out to be.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch6b",
+      "template": "session",
+      "prompt": "Code and commit: it works against the plan, a reviewer subagent checks it, then the commit",
+      "role": "develop",
+      "target_sec": 80,
+      "plan": {
+        "title": "Code, review, commit",
+        "session": {
+          "app": "Claude Code",
+          "hint": "accept edits on (shift+tab to cycle)",
+          "status": "\u25d0 high",
+          "branch": "avatar-upload",
+          "pr": "PR #7",
+          "chip": "\u2713 5/5 checks green",
+          "events": [
+            {
+              "kind": "tool",
+              "text": "Bash(pnpm test 2>&1)",
+              "lines": [
+                "\u2713 src/routes/profile.test.ts (9)",
+                "5 of 5 plan checks green"
+              ],
+              "more": "+26 lines (ctrl+o to expand)"
+            },
+            {
+              "kind": "ask",
+              "text": "spawn the code reviewer subagent on what you just wrote"
+            },
+            {
+              "kind": "agents",
+              "text": "Task(Review recent code changes)",
+              "lines": [
+                "Read(src/http/upload.ts)",
+                "Read(src/routes/profile.ts)",
+                "2 findings \u00b7 1 blocking"
+              ],
+              "note": "fresh context sees what the author cannot"
+            },
+            {
+              "kind": "say",
+              "text": "Blocking: the old avatar is deleted before the new write succeeds.",
+              "lines": [
+                "If sharp throws, the user loses their existing avatar.",
+                "Moving the delete after the write fixes it."
+              ]
+            },
+            {
+              "kind": "tool",
+              "text": "Bash(git commit -m 'Add avatar upload with webp conversion')",
+              "lines": [
+                "[avatar-upload 4f2a1c9] Add avatar upload with webp",
+                "4 files changed, 63 insertions(+)"
+              ]
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "The short step",
+            "narration": "Code is the step everyone thinks is the job. In a good session it is the shortest and least interesting part of the whole thing.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "tests",
+            "heading": "Against the contract",
+            "narration": "It works against the plan and then runs the tests itself, reporting them against the five checks it wrote earlier. Twenty-six lines folded away, because you do not need them unless something failed.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "reviewer",
+            "heading": "One more line",
+            "narration": "Then the move that costs one line and saves a bad merge. Ask a second agent to review what the first one wrote.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "findings",
+            "heading": "Fresh eyes",
+            "narration": "A reviewer with clean context is not attached to the plan. Two findings, one of them blocking, on code that passed every test.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "blocking",
+            "heading": "The real bug",
+            "narration": "And it is a real one. The old avatar gets deleted before the new file is written, so if the conversion throws, the user loses the picture they already had. No test would have caught that.",
+            "session": {
+              "show": "event",
+              "at": 3
+            }
+          },
+          {
+            "id": "commit",
+            "heading": "Only then",
+            "narration": "Fixed, and only then committed. Four files, sixty-three lines, with a message that says what it did.",
+            "session": {
+              "show": "event",
+              "at": 4
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "The order",
+            "narration": "Explore, plan, code, commit. The order is the technique, and the reviewer at the end is what makes the whole thing safe to run at speed.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "wp7",
+      "template": "waypoint",
+      "prompt": "Chapter seven card: long sessions",
+      "role": "develop",
+      "target_sec": 16,
+      "plan": {
+        "title": "Long sessions",
+        "waypoint": {
+          "ordinal": "07",
+          "line": "Long sessions",
+          "promise": "Three controls for the budget from chapter three",
+          "stops": [
+            "What it is",
+            "Installing",
+            "How it works",
+            "First prompt",
+            "The memory file",
+            "The workflow",
+            "Long sessions",
+            "MCP",
+            "Hooks",
+            "What next"
+          ],
+          "at": 6
+        },
+        "beats": [
+          {
+            "id": "arrive",
+            "heading": "Chapter seven",
+            "narration": "Remember that number in the corner from chapter three. This is the chapter where it runs out, and what to do when it does.",
+            "waypoint": {
+              "show": "arrive"
+            }
+          },
+          {
+            "id": "promise",
+            "heading": "Three controls",
+            "narration": "Three controls. One buys back room, one undoes work rather than words, and one gives the session something to measure itself against.",
+            "waypoint": {
+              "show": "promise"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch7a",
+      "template": "session",
+      "prompt": "Compact and rewind: the context fills, and the last twenty minutes went the wrong way",
+      "role": "develop",
+      "target_sec": 110,
+      "plan": {
+        "title": "Compact, and rewind",
+        "session": {
+          "app": "Claude Code",
+          "hint": "accept edits on (shift+tab to cycle)",
+          "status": "\u25d0 high",
+          "branch": "avatar-upload",
+          "header": [
+            "taskflow-api \u00b7 turn 47 \u00b7 2h 11m",
+            "context 171k / 200k"
+          ],
+          "events": [
+            {
+              "kind": "spin",
+              "text": "Schlepping\u2026",
+              "mark": "(2m 14s \u00b7 \u2193 22.1k tokens)"
+            },
+            {
+              "kind": "say",
+              "text": "Context is nearly full. Older turns will be summarised shortly.",
+              "lines": [
+                "47 turns \u00b7 171k of 200k used"
+              ],
+              "note": "this is the chapter three problem arriving"
+            },
+            {
+              "kind": "ask",
+              "text": "/compact"
+            },
+            {
+              "kind": "tool",
+              "text": "Compacting conversation",
+              "lines": [
+                "47 turns kept as 14 bullets",
+                "context: 171k tokens \u2192 11k",
+                "picking up where you left off"
+              ],
+              "note": "the thread survives, the transcript does not"
+            },
+            {
+              "kind": "ask",
+              "text": "/rewind"
+            },
+            {
+              "kind": "menu",
+              "text": "Restore to: rename the limiter everywhere   (18m ago)",
+              "options": [
+                "Restore code and conversation",
+                "Restore conversation only",
+                "Restore code only"
+              ],
+              "pick": 0,
+              "mark": "6 files   +34  -34",
+              "track": true,
+              "foot": "Enter to select \u00b7 \u2191/\u2193 to navigate \u00b7 Esc to cancel"
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "Two hours in",
+            "narration": "Two hours in, forty-seven turns, and the number in the corner has been climbing the whole time. This is the state where most people quietly start getting worse results without noticing why.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "spin",
+            "heading": "Still working",
+            "narration": "It is still working, and it is still competent. Twenty-two thousand tokens read in that one step, which two hours ago would have been fine and right now is expensive.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "warned",
+            "heading": "Nearly full",
+            "narration": "Then the warning. Older turns are about to be summarised away, which means the instructions you gave it at the start are the first thing to go.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "compact",
+            "heading": "Buy back room",
+            "narration": "Compact is the first control. You type it on purpose, before you hit the wall, not after. It is not a restart and it does not end your session.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "compacted",
+            "heading": "What survives",
+            "narration": "Forty-seven turns become fourteen bullets, and the context drops by an order of magnitude. What you were doing survives. The exact words you used getting there do not, and that is the trade.",
+            "session": {
+              "show": "event",
+              "at": 3
+            }
+          },
+          {
+            "id": "rewind",
+            "heading": "The other one",
+            "narration": "Rewind is the second control, and it is the one almost nobody knows exists. Compact fixes running out of room. Rewind fixes going in the wrong direction.",
+            "session": {
+              "show": "event",
+              "at": 4
+            }
+          },
+          {
+            "id": "restore",
+            "heading": "How far back",
+            "narration": "It asks how far back, and what to bring with you. Code and conversation together, or one without the other. Restoring code only keeps everything you discussed and throws away what it wrote, which is stranger and more useful than it sounds.",
+            "session": {
+              "show": "event",
+              "at": 5
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "Both on purpose",
+            "narration": "Use both of them deliberately. Compact before you hit the wall rather than after, and rewind instead of arguing with a session that has already drifted somewhere you did not want it to go.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch7b",
+      "template": "session",
+      "prompt": "A standing goal the session measures itself against",
+      "role": "develop",
+      "target_sec": 70,
+      "plan": {
+        "title": "Give it a finish line",
+        "session": {
+          "app": "Claude Code",
+          "hint": "accept edits on (shift+tab to cycle)",
+          "status": "\u25d0 medium",
+          "chip": "/goal active",
+          "header": [
+            "taskflow-api \u00b7 turn 12 \u00b7 compacted once",
+            "context 24k / 200k"
+          ],
+          "events": [
+            {
+              "kind": "ask",
+              "text": "/goal every route in src/routes has a test for its error case"
+            },
+            {
+              "kind": "tool",
+              "text": "Checking against the goal",
+              "lines": [
+                "9 of 14 routes have error-case tests",
+                "writing the missing five",
+                "goal achieved \u00b7 3 turns"
+              ],
+              "note": "it grades its own work now"
+            },
+            {
+              "kind": "spin",
+              "text": "Proofing\u2026",
+              "mark": "(46s \u00b7 \u2191 2.1k tokens)"
+            },
+            {
+              "kind": "say",
+              "text": "All 14 routes now have an error-case test.",
+              "lines": [
+                "pnpm test: 55 passed"
+              ]
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "The third control",
+            "narration": "The third control is the one that changes how a long session behaves, rather than repairing it after the fact.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "goal",
+            "heading": "One sentence",
+            "narration": "You give it a standing goal. One sentence describing done, written before any code moves, and it stays pinned while everything else scrolls past.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "checks",
+            "heading": "It grades itself",
+            "narration": "Now it measures its own work against that sentence instead of against the last thing you happened to say. Nine of fourteen done, so it keeps going without being nudged.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "works",
+            "heading": "Unattended",
+            "narration": "That is the difference in practice. You can look away for two minutes and come back to progress rather than to a question.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "done",
+            "heading": "Finished",
+            "narration": "Fourteen of fourteen, fifty-five tests passing, and it stopped when the sentence was satisfied rather than when it ran out of ideas.",
+            "session": {
+              "show": "event",
+              "at": 3
+            }
+          },
+          {
+            "id": "chip",
+            "heading": "Still pinned",
+            "narration": "The marker in the corner is the point. The goal is still active, so the session always has something to be judged against.",
+            "session": {
+              "show": "chip"
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "Inside the repo",
+            "narration": "Everything so far has happened inside your repository. Now we let it out.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "wp8",
+      "template": "waypoint",
+      "prompt": "Chapter eight card: MCP",
+      "role": "develop",
+      "target_sec": 16,
+      "plan": {
+        "title": "MCP",
+        "waypoint": {
+          "ordinal": "08",
+          "line": "MCP",
+          "promise": "Letting it read the systems your repository does not contain",
+          "stops": [
+            "What it is",
+            "Installing",
+            "How it works",
+            "First prompt",
+            "The memory file",
+            "The workflow",
+            "Long sessions",
+            "MCP",
+            "Hooks",
+            "What next"
+          ],
+          "at": 7
+        },
+        "beats": [
+          {
+            "id": "arrive",
+            "heading": "Chapter eight",
+            "narration": "Half of what you need to answer a question at work is not in the repository. It is in the tracker, or the database, or the logs.",
+            "waypoint": {
+              "show": "arrive"
+            }
+          },
+          {
+            "id": "promise",
+            "heading": "The gap",
+            "narration": "MCP is how it reaches those, and the name is the least interesting thing about it.",
+            "waypoint": {
+              "show": "promise"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch8a",
+      "template": "wiring",
+      "prompt": "How MCP works: your session, the client, a server, your systems, and back",
+      "role": "develop",
+      "target_sec": 85,
+      "plan": {
+        "title": "How it reaches out",
+        "wiring": {
+          "nodes": [
+            {
+              "label": "You ask",
+              "kind": "in",
+              "note": "a question about work, not code"
+            },
+            {
+              "label": "Claude Code",
+              "kind": "work",
+              "note": "decides a tool is needed"
+            },
+            {
+              "label": "An MCP server",
+              "kind": "work",
+              "note": "one per system, running locally"
+            },
+            {
+              "label": "Your systems",
+              "kind": "store",
+              "note": "the tracker, the database, the logs"
+            },
+            {
+              "label": "The answer",
+              "kind": "out",
+              "note": "with the rows it actually read"
+            }
+          ],
+          "hops": [
+            "in plain words",
+            "as a tool call",
+            "as a normal API request",
+            "as rows and issues"
+          ],
+          "return": "and it stays in context"
+        },
+        "beats": [
+          {
+            "id": "shape",
+            "heading": "Five parts",
+            "narration": "MCP is a protocol, and protocols always sound harder than they turn out to be. Five parts here, and the only piece that is new to you is the box in the middle of the row.",
+            "wiring": {
+              "show": "shape"
+            }
+          },
+          {
+            "id": "h0",
+            "heading": "A work question",
+            "narration": "It starts with a question your repository cannot answer on its own. What is blocking this ticket. Which customers hit that error yesterday. Neither of those lives in your source code.",
+            "wiring": {
+              "show": "hop",
+              "at": 0
+            }
+          },
+          {
+            "id": "h1",
+            "heading": "It picks a tool",
+            "narration": "It works out that answering means going outside the repo, and calls a tool instead of guessing. This is the same tool-calling you watched in chapter three, pointed somewhere new.",
+            "wiring": {
+              "show": "hop",
+              "at": 1
+            }
+          },
+          {
+            "id": "h2",
+            "heading": "The server",
+            "narration": "The server is the only piece you install. One per system you want reachable, running on your machine, holding the credentials so the model never sees them.",
+            "wiring": {
+              "show": "hop",
+              "at": 2
+            }
+          },
+          {
+            "id": "h3",
+            "heading": "A normal request",
+            "narration": "From there it is an ordinary API call to your tracker or a query against your database. Nothing exotic, and nothing the system on the other end treats differently.",
+            "wiring": {
+              "show": "hop",
+              "at": 3
+            }
+          },
+          {
+            "id": "round",
+            "heading": "It stays",
+            "narration": "The answer comes back and stays in context, so the next question builds on it rather than fetching it again.",
+            "wiring": {
+              "show": "round"
+            }
+          },
+          {
+            "id": "path",
+            "heading": "The whole path",
+            "narration": "Ask, tool call, server, system, answer, and back into context. That is the whole of MCP, and the rest is which servers you choose to run.",
+            "wiring": {
+              "show": "path"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch8b",
+      "template": "session",
+      "prompt": "MCP in use: a question that needs the tracker and the database at once",
+      "role": "develop",
+      "target_sec": 70,
+      "plan": {
+        "title": "A question the repo cannot answer",
+        "session": {
+          "app": "Claude Code",
+          "hint": "accept edits on (shift+tab to cycle)",
+          "status": "\u25d0 medium",
+          "header": [
+            "taskflow-api \u00b7 turn 6",
+            "mcp: linear, postgres \u00b7 2 servers"
+          ],
+          "events": [
+            {
+              "kind": "ask",
+              "text": "why is the avatar upload ticket blocked? check the tracker and the db."
+            },
+            {
+              "kind": "tool",
+              "text": "linear__get_issue(TAS-214)",
+              "lines": [
+                "TAS-214 \u00b7 Avatar upload \u00b7 Blocked",
+                "blocked by: TAS-209 (storage migration)"
+              ],
+              "note": "a real read, not a recollection"
+            },
+            {
+              "kind": "tool",
+              "text": "postgres__query(select count(*) from avatars where url like '%.png')",
+              "lines": [
+                "count: 41,882"
+              ],
+              "more": "+3 lines (ctrl+o to expand)"
+            },
+            {
+              "kind": "say",
+              "text": "It is blocked on the storage migration, and here is why that ordering is right.",
+              "lines": [
+                "41,882 existing avatars are still .png.",
+                "Converting on upload without migrating them leaves two formats live."
+              ]
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "Two servers",
+            "narration": "Two servers connected in this session, the tracker and the database. The header tells you which ones, and it is worth a glance before you trust anything that follows.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "ask",
+            "heading": "A real question",
+            "narration": "The question is one you would actually ask a colleague, and no amount of reading the source code would answer it.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "tracker",
+            "heading": "It reads the ticket",
+            "narration": "So it reads the actual ticket. Blocked, and blocked by a specific other ticket. That is a fact it fetched, not a plausible sentence it produced.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "db",
+            "heading": "Then the database",
+            "narration": "Then it goes and counts. Forty-one thousand existing avatars still in the old format, which is the number that makes the blocking relationship make sense.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "answer",
+            "heading": "The real reason",
+            "narration": "And the answer explains the ordering rather than restating the ticket. Convert on upload without migrating the existing ones and you have two live formats in production.",
+            "session": {
+              "show": "event",
+              "at": 3
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "Grounded",
+            "narration": "That is the real value. Not that it knows more, but that its answers are grounded in your systems rather than in something that sounds right.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "wp9",
+      "template": "waypoint",
+      "prompt": "Chapter nine card: hooks",
+      "role": "develop",
+      "target_sec": 16,
+      "plan": {
+        "title": "Hooks",
+        "waypoint": {
+          "ordinal": "09",
+          "line": "Hooks",
+          "promise": "Turning a rule you asked for into one that is enforced",
+          "stops": [
+            "What it is",
+            "Installing",
+            "How it works",
+            "First prompt",
+            "The memory file",
+            "The workflow",
+            "Long sessions",
+            "MCP",
+            "Hooks",
+            "What next"
+          ],
+          "at": 8
+        },
+        "beats": [
+          {
+            "id": "arrive",
+            "heading": "Chapter nine",
+            "narration": "Back in chapter five we wrote a rule. Run the tests before saying a task is done. It is a request, and requests get forgotten.",
+            "waypoint": {
+              "show": "arrive"
+            }
+          },
+          {
+            "id": "promise",
+            "heading": "Enforced",
+            "narration": "Hooks turn that request into something the tool cannot skip.",
+            "waypoint": {
+              "show": "promise"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch9a",
+      "template": "wiring",
+      "prompt": "How a hook works: an event, a matcher, your command, and the exit code that decides",
+      "role": "develop",
+      "target_sec": 80,
+      "plan": {
+        "title": "How a hook works",
+        "wiring": {
+          "nodes": [
+            {
+              "label": "It edits a file",
+              "kind": "in",
+              "note": "any write, any session"
+            },
+            {
+              "label": "An event fires",
+              "kind": "work",
+              "note": "PostToolUse, before you see it"
+            },
+            {
+              "label": "Your matcher",
+              "kind": "work",
+              "note": "which files you care about"
+            },
+            {
+              "label": "Your command",
+              "kind": "work",
+              "note": "any shell command you like"
+            },
+            {
+              "label": "Allowed or blocked",
+              "kind": "out",
+              "note": "the exit code decides"
+            }
+          ],
+          "hops": [
+            "writes to disk",
+            "as a JSON event",
+            "on the file pattern",
+            "as an exit code"
+          ],
+          "return": "and the session is told why"
+        },
+        "beats": [
+          {
+            "id": "shape",
+            "heading": "A rule with teeth",
+            "narration": "A hook is a shell command that runs when something happens, and whose exit code gets to veto what just happened. Five parts in the row, and you own three of them.",
+            "wiring": {
+              "show": "shape"
+            }
+          },
+          {
+            "id": "h0",
+            "heading": "It edits",
+            "narration": "It starts the moment the tool writes a file. Any write, in any session, whether you happened to be watching the screen at the time or not.",
+            "wiring": {
+              "show": "hop",
+              "at": 0
+            }
+          },
+          {
+            "id": "h1",
+            "heading": "The event",
+            "narration": "That write fires an event before the result gets back to you, carrying which tool ran and which file it touched.",
+            "wiring": {
+              "show": "hop",
+              "at": 1
+            }
+          },
+          {
+            "id": "h2",
+            "heading": "Your matcher",
+            "narration": "Your matcher decides whether you care. A pattern over the file path, so a hook on your source tree stays quiet when it edits a readme.",
+            "wiring": {
+              "show": "hop",
+              "at": 2
+            }
+          },
+          {
+            "id": "h3",
+            "heading": "Your command",
+            "narration": "Then your command runs. A test suite, a linter, a formatter, a check that nobody has added a second lockfile to the repository. Anything your shell can do, you can enforce here.",
+            "wiring": {
+              "show": "hop",
+              "at": 3
+            }
+          },
+          {
+            "id": "round",
+            "heading": "And it hears why",
+            "narration": "A non-zero exit blocks the edit and the reason goes back into the session, so it knows what to fix rather than that something went wrong.",
+            "wiring": {
+              "show": "round"
+            }
+          },
+          {
+            "id": "path",
+            "heading": "The whole hook",
+            "narration": "Edit, event, matcher, command, verdict. Deterministic every single time, whether the model remembered your rule or not.",
+            "wiring": {
+              "show": "path"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch9b",
+      "template": "session",
+      "prompt": "The hook fires and blocks an edit, enforcing the rule written in chapter five",
+      "role": "payoff",
+      "target_sec": 75,
+      "plan": {
+        "title": "The rule, enforced",
+        "session": {
+          "app": "Claude Code",
+          "hint": "accept edits on (shift+tab to cycle)",
+          "status": "\u25d0 medium",
+          "chip": "hook: pnpm test",
+          "header": [
+            "taskflow-api \u00b7 turn 9",
+            ".claude/settings.json \u00b7 1 hook"
+          ],
+          "events": [
+            {
+              "kind": "tool",
+              "text": "Read(.claude/settings.json)",
+              "lines": [
+                "PostToolUse:",
+                "  matcher: src/**/*.ts",
+                "  command: pnpm test --silent"
+              ],
+              "note": "three lines is a whole hook"
+            },
+            {
+              "kind": "ask",
+              "text": "add a burst allowance to the rate limiter"
+            },
+            {
+              "kind": "tool",
+              "text": "Update(src/http/rateLimiter.ts)",
+              "lines": [
+                "+ 8 lines",
+                "burst: 3 requests"
+              ]
+            },
+            {
+              "kind": "tool",
+              "text": "Hook PostToolUse \u2192 pnpm test --silent",
+              "lines": [
+                "\u2717 1 failing: rejects the 6th request in a minute",
+                "exit 2 \u2014 edit blocked"
+              ],
+              "note": "chapter five's rule, now enforced"
+            },
+            {
+              "kind": "say",
+              "text": "The hook blocked that edit. The burst allowance broke the existing limit test.",
+              "lines": [
+                "Fixing the test expectation first, then re-applying."
+              ]
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "open",
+            "heading": "Three lines",
+            "narration": "Here is the whole hook. An event to listen for, a pattern to match, and a command to run. Three lines in a settings file that you commit with everything else.",
+            "session": {
+              "show": "open"
+            }
+          },
+          {
+            "id": "config",
+            "heading": "What it says",
+            "narration": "After any write to a TypeScript file under source, run the test suite. That is the rule we wrote in prose in chapter five, now written where it cannot be skipped.",
+            "session": {
+              "show": "event",
+              "at": 0
+            }
+          },
+          {
+            "id": "ask",
+            "heading": "An ordinary ask",
+            "narration": "Then an ordinary request. Add a burst allowance to the rate limiter, which is exactly the sort of small change that slips through review.",
+            "session": {
+              "show": "event",
+              "at": 1
+            }
+          },
+          {
+            "id": "edit",
+            "heading": "It edits",
+            "narration": "Eight lines, and they look fine. This is the point where a session without a hook would tell you it was done.",
+            "session": {
+              "show": "event",
+              "at": 2
+            }
+          },
+          {
+            "id": "blocked",
+            "heading": "Blocked",
+            "narration": "Instead the hook fires, the tests run, one fails, and the edit is rejected on a non-zero exit. Nobody asked it to check. It had no choice.",
+            "session": {
+              "show": "event",
+              "at": 3
+            }
+          },
+          {
+            "id": "recovers",
+            "heading": "It hears why",
+            "narration": "And it gets told which test broke, so it fixes the cause rather than retrying blindly. That feedback is what makes a hook useful instead of merely strict.",
+            "session": {
+              "show": "event",
+              "at": 4
+            }
+          },
+          {
+            "id": "whole",
+            "heading": "Asked, then enforced",
+            "narration": "Chapter five asked for that rule. This chapter enforces it. That is the difference between a convention and a guarantee.",
+            "session": {
+              "show": "whole"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "close-a",
+      "template": "waypoint",
+      "prompt": "Closing card: the arc complete, and what to do tomorrow",
+      "role": "payoff",
+      "target_sec": 22,
+      "plan": {
+        "title": "What next",
+        "waypoint": {
+          "ordinal": "\u2014",
+          "line": "What next",
+          "promise": "One thing to do before you write another prompt",
+          "stops": [
+            "What it is",
+            "Installing",
+            "How it works",
+            "First prompt",
+            "The memory file",
+            "The workflow",
+            "Long sessions",
+            "MCP",
+            "Hooks",
+            "What next"
+          ],
+          "at": 9
+        },
+        "beats": [
+          {
+            "id": "arrive",
+            "heading": "All of it",
+            "narration": "That is the whole arc. One project, nine parts, and every part of it fixing something the part before it broke.",
+            "waypoint": {
+              "show": "arrive"
+            }
+          },
+          {
+            "id": "promise",
+            "heading": "Tomorrow",
+            "narration": "If you do one thing tomorrow, do the fifth chapter. Run slash init in a real repository and cut what it writes down to twenty lines.",
+            "waypoint": {
+              "show": "promise"
+            }
+          },
+          {
+            "id": "spine",
+            "heading": "The order",
+            "narration": "Everything else on that list is easier once it knows where it is.",
+            "waypoint": {
+              "show": "spine"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "close-b",
+      "template": "titlecard",
+      "prompt": "Final card: write the file, then use the workflow",
+      "role": "payoff",
+      "target_sec": 18,
+      "plan": {
+        "title": "Write the file first",
+        "titlecard": {
+          "line": "Write the file first",
+          "note": "Then explore, plan, code, commit"
+        },
+        "beats": [
+          {
+            "id": "the-line",
+            "heading": "The one move",
+            "narration": "Almost every bad session in this video came from the same thing. It did not know where it was, and nobody had told it.",
+            "titlecard": {
+              "show": "line"
+            }
+          },
+          {
+            "id": "the-note",
+            "heading": "Then the method",
+            "narration": "So tell it once, in a file you commit. Then explore before planning, plan before coding, and let something else review before you push.",
+            "titlecard": {
+              "show": "note"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

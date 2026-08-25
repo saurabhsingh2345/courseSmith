@@ -8,7 +8,7 @@ import {Theme} from '../types';
 import {bodyFamily, displayFamily, monoFamily, serifFamily} from './fonts';
 
 /** The house styles a video can be cut in. Mirrors videoskin.go. */
-export type Skin = 'default' | 'broadcast' | 'minimal' | 'editorial' | 'showroom';
+export type Skin = 'default' | 'broadcast' | 'minimal' | 'editorial' | 'showroom' | 'atelier';
 
 export type ResolvedTheme = {
   primary: string;
@@ -41,6 +41,12 @@ export type ResolvedTheme = {
   mass: string;
   /** Shading laid over a mass. Always darker than `mass`, in both modes. */
   ink: string;
+  /** A surface that is dark in BOTH polarities — a terminal, a session window —
+   *  with its own foreground pair. A terminal is dark on paper too, so its text
+   *  cannot come from `text`/`textMuted`, which are placed against the page. */
+  panel: string;
+  panelText: string;
+  panelMuted: string;
   /** The colour a cast shadow is drawn in on this background. */
   shadow: string;
   /** How opaque that shadow is. High on paper, where a shadow is the only thing
@@ -180,6 +186,12 @@ export const resolveTheme = (t: Theme): ResolvedTheme => ({
   textMuted: t.textMuted ?? DEFAULTS.textMuted,
   mass: t.mass ?? DEFAULTS.mass,
   ink: t.ink ?? DEFAULTS.ink,
+  // Falling back to the dark-mode defaults rather than to ink/text: a scene
+  // graph recorded before these existed is dark, where a panel and the stage
+  // were the same thing and its text was simply `text`.
+  panel: t.panel ?? t.ink ?? DEFAULTS.ink,
+  panelText: t.panelText ?? DEFAULTS.text,
+  panelMuted: t.panelMuted ?? DEFAULTS.textMuted,
   // Every scene graph written before these existed is dark, where the defaults
   // are exactly what those scenes had hardcoded — so an old graph keeps the
   // seating it already drew rather than degrading to none.

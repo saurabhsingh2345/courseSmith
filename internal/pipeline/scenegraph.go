@@ -108,6 +108,16 @@ const (
 	// SceneRundown is a numbered row that promises how many things there are
 	// and then lights them one at a time.
 	SceneRundown = "rundown"
+	// SceneRoster is a row of two or three cards, one per kind of viewer, each
+	// carrying what that person arrives with and what changes for them.
+	SceneRoster = "roster"
+	// SceneChoices is a question with a row of bare answer cards under it: no
+	// line under any of them and no reveal, because the answer is the viewer's
+	// to supply. See snippet_choices.go.
+	SceneChoices = "choices"
+	// SceneProgress is one axis with NOW on it: finished things ticked on the
+	// left, coming things still faint on the right. See snippet_progress.go.
+	SceneProgress = "progress"
 	// SceneAnalogy is a familiar picture in one column and what each of its
 	// parts really is in the other, walked pair by pair.
 	SceneAnalogy = "analogy"
@@ -221,6 +231,19 @@ const (
 	ScenePatch = "patch"
 	// SceneApproval is a permission prompt and what each answer hands over.
 	SceneApproval = "approval"
+	// SceneTitleCard is the held section card: one line in display type.
+	SceneTitleCard = "titlecard"
+	// SceneSession is a full-frame agent session window that grows as the
+	// narration walks it — the one scene in the catalog whose subject is a
+	// running tool rather than a picture of an idea.
+	SceneSession = "session"
+	// SceneDoc is a markdown file held open in an editor, one section lit.
+	SceneDoc = "doc"
+	// SceneWaypoint is the chapter card: this stop, and the whole arc beside it.
+	SceneWaypoint = "waypoint"
+	// SceneWiring is named blocks in a row with the hops between them lit one
+	// at a time.
+	SceneWiring = "wiring"
 )
 
 // maxFileNameWords caps how many slug words reach the editor tab and file
@@ -336,6 +359,23 @@ type SceneTheme struct {
 	// these is a figure that vanishes in one of the two modes.
 	Mass string `json:"mass,omitempty"`
 	Ink  string `json:"ink,omitempty"`
+	// Panel is a surface that is dark in BOTH polarities, and PanelText and
+	// PanelMuted are its foreground pair.
+	//
+	// A terminal is the case that forces this. Every other surface in the system
+	// flips — a card is white on paper and near-black on the stage — but a
+	// session window is dark on paper too, because that is what a terminal IS.
+	// Painting its text with Text/TextMuted is then exactly wrong: those are
+	// derived against the *page*, so on a light skin a terminal's output came out
+	// mid-grey on near-black and could barely be read. That was a real defect in
+	// the shell template before these existed, not a hypothetical.
+	//
+	// So the panel carries its own three tokens, derived once and mode-independent
+	// by design. A scene drawing a dark surface on a light ground asks for these
+	// and stops having to know which skin it is in.
+	Panel      string `json:"panel,omitempty"`
+	PanelText  string `json:"panelText,omitempty"`
+	PanelMuted string `json:"panelMuted,omitempty"`
 	// Elevation: how an object is seated on this background. Shadow is the colour
 	// a cast shadow is drawn in and ShadowStrength how opaque it is; Rim is the
 	// hairline highlight along a lit object's top edge. They exist because

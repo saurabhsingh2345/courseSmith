@@ -1,0 +1,93 @@
+{
+  "id": "summary-so-far",
+  "title": "Where We Got To",
+  "brief": "The end-of-section summary. One road with NOW standing on it: Claude Desktop installed and the first Python project running ticked off behind, customizing, authorization and getting data still faint ahead. Then two kinetic-type shots \u2014 practice on the platform, and an invitation to build alongside. Light showroom skin, Kokoro af_heart narration kept on the file.",
+  "angle": "You are further along than you think, and here is what the rest of the road looks like.",
+  "segments": [
+    {
+      "id": "the-road",
+      "template": "progress",
+      "prompt": "What has been finished \u2014 Claude Desktop installed, the first Python project running as a shopping web app \u2014 against what is coming: customizing, authorization and getting data",
+      "target_sec": 23,
+      "plan": {
+        "title": "Where we got to",
+        "emphasis": "got to",
+        "emphasisRole": "quantity",
+        "progress": {
+          "now": "you are here",
+          "done": [
+            {
+              "label": "Claude Desktop installed",
+              "icon": "check"
+            },
+            {
+              "label": "First project running",
+              "icon": "rocket"
+            }
+          ],
+          "next": [
+            {
+              "label": "Customizing the app",
+              "icon": "gear"
+            },
+            {
+              "label": "Authorization",
+              "icon": "lock"
+            },
+            {
+              "label": "Getting data",
+              "icon": "database"
+            }
+          ]
+        },
+        "beats": [
+          {
+            "id": "sofar",
+            "heading": "What we have built",
+            "narration": "Okay, let's summarize what we've learned so far. We have installed Claude Desktop on our machines, and we have successfully set up our first Python project, which is a web application for an online shopping application.",
+            "progress": {
+              "show": "sofar"
+            }
+          },
+          {
+            "id": "ahead",
+            "heading": "What comes next",
+            "narration": "Moving forward, we'll go a little deeper into how we can customize our application. We'll also look at authorization, getting data, and other important aspects of building a complete application.",
+            "progress": {
+              "show": "ahead"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "your-turn",
+      "template": "illustration",
+      "prompt": "Two closing shots: practice with the exercises on the platform, and build alongside me so we learn by doing",
+      "target_sec": 18,
+      "plan": {
+        "title": "Now it is your turn",
+        "beats": [
+          {
+            "id": "practice",
+            "heading": "Practice the exercises",
+            "narration": "For now, just keep these concepts in mind and make sure you practice using the exercises available on our platform. Hopefully, everything makes sense so far.",
+            "art": {
+              "figure": "study",
+              "emphasis": "Practice"
+            }
+          },
+          {
+            "id": "alongside",
+            "heading": "Build alongside me",
+            "narration": "Moving forward, I recommend that you try building alongside me, if possible, so that we can streamline our no-code development process and learn by doing.",
+            "art": {
+              "figure": "handshake",
+              "emphasis": "alongside me"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

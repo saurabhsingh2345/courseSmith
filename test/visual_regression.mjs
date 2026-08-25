@@ -180,10 +180,24 @@ const TARGETS = [
   // under it, the truth not yet up. It is the one frame that proves the
   // gesture travels rather than being toggled on, and it exists for about
   // half a second.
-  // The rundown on its second card: one lit, two dimmed but still legible,
-  // and the detail line under the row. It is the only state that proves the
-  // row is fixed furniture and only brightness moves.
+  // The rundown on its second card: one lit, two quiet but still fully legible
+  // with their own detail lines, and no band held empty under the row. It is the
+  // state that proves the row is fixed furniture and only ink moves.
   { id: "RundownViz", frame: 600 },
+  // The roster with one card raised and one quiet — the state where the light
+  // rule is actually under test, because the quiet card has to keep its surface
+  // and lose only its ink. The closing frame, with everything lit, would pass
+  // even if the dim state were wrong.
+  { id: "RosterViz", frame: 330 },
+  // The choices row after it has landed and while it is held: the question up
+  // top and four answer cards under it. The frame worth guarding is that all
+  // four render IDENTICALLY — a diff here is the renderer or a theme having
+  // found a way to single one out, which is the answer given away.
+  { id: "ChoicesViz", frame: 360 },
+  // The progress axis at the end of its first beat: the done side ticked, the
+  // coming side still quiet, the rail drawn only as far as the pin. The one
+  // frame that holds the inked and not-yet states at once.
+  { id: "ProgressViz", frame: 330 },
   // The analogy on its second correspondence: both columns complete, one row
   // lit end to end with its connector drawn, the others dimmed, and the note
   // under it. The only state that holds the mapping and the walk at once.

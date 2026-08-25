@@ -99,10 +99,14 @@ func TestNoCategoryIsOversized(t *testing.T) {
 func TestSinceIsAKnownRelease(t *testing.T) {
 	for _, tpl := range SnippetTemplateList() {
 		switch tpl.Since {
-		case SinceCore, SinceV1, SinceV2, SinceV3, SinceV4, SinceV5, SinceV6, SinceV7, SinceV8, SinceV9:
+		// v10 and v11 were missing here, and the omission is the reason this test
+		// was failing on six templates that are correctly tagged: the list is
+		// written out by hand, so a batch that adds a release has to add it in
+		// two places and the second one is invisible until something breaks.
+		case SinceCore, SinceV1, SinceV2, SinceV3, SinceV4, SinceV5, SinceV6, SinceV7, SinceV8, SinceV9, SinceV10, SinceV11:
 		default:
-			t.Errorf("template %q has release tag %q, want one of %q, %q, %q, %q, %q, %q, %q, %q, %q, %q",
-				tpl.Name, tpl.Since, SinceCore, SinceV1, SinceV2, SinceV3, SinceV4, SinceV5, SinceV6, SinceV7, SinceV8, SinceV9)
+			t.Errorf("template %q has release tag %q, want one of %q, %q, %q, %q, %q, %q, %q, %q, %q, %q, %q, %q",
+				tpl.Name, tpl.Since, SinceCore, SinceV1, SinceV2, SinceV3, SinceV4, SinceV5, SinceV6, SinceV7, SinceV8, SinceV9, SinceV10, SinceV11)
 		}
 	}
 }

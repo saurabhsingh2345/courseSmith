@@ -81,6 +81,23 @@ func contrast(a, b string) float64 {
 //
 // The accent is still used unmodified for fills and strokes, where it sits on
 // its own shape rather than on the background. Only text takes this.
+// derivePanel fills the dark-surface trio: the fill, its text, its muted text.
+//
+// Mode-independent on purpose. Every other surface token answers "what colour is
+// a card here"; these answer "what colour is a terminal", and the answer does not
+// change when the page turns white. The hue is the course's so the panel belongs
+// to the palette rather than being a neutral black rectangle dropped on it, but
+// the lightnesses are fixed: 0.09 is a terminal, and its foregrounds are placed
+// against 0.09 rather than against the page.
+func derivePanel(t *SceneTheme, h float64) {
+	t.Panel = hslToHex(h, 0.30, 0.09)
+	t.PanelText = hslToHex(h, 0.14, 0.93)
+	// Muted ON THE PANEL. The number that matters is its ratio against Panel,
+	// not against the background — 0.68 clears AA on 0.09 in both polarities,
+	// which is the whole point of deriving it here instead of reusing TextMuted.
+	t.PanelMuted = hslToHex(h, 0.10, 0.68)
+}
+
 func readableOn(hex, bg string, want float64) string {
 	h, s, l := hexToHSL(hex)
 	out := hex
@@ -216,6 +233,9 @@ func deriveBaseVideoTheme(colors config.Colors, fonts config.Fonts, courseName, 
 		t.Ink = hslToHex(h, 0.55, 0.06)
 		t.Grain = defaultGrain
 	}
+	// The dark panel and its foregrounds. Derived once, outside the polarity
+	// branch, because a terminal is dark on paper too — see SceneTheme.Panel.
+	derivePanel(&t, h)
 	// The accent as *text*, guaranteed readable on this mode's background. On
 	// the dark stage a bright accent already clears it and comes back
 	// unchanged; on paper it is walked down until it does.
