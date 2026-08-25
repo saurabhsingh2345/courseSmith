@@ -1,0 +1,1175 @@
+[
+  {
+    "id": "hook",
+    "chapter": "",
+    "scene": {
+      "k": "run",
+      "from": 1204,
+      "to": 1230
+    },
+    "cues": [
+      {
+        "at": 0.8,
+        "say": "This is an online shop. A navigation bar, a hero, six categories, product cards with prices, a checkout badge. It is running on a real web server."
+      },
+      {
+        "at": 13.4,
+        "say": "Nobody wrote a line of its code. Every part of it was made by typing ordinary English sentences into an app."
+      }
+    ]
+  },
+  {
+    "id": "title",
+    "chapter": "",
+    "say": "",
+    "min": 3.6,
+    "scene": {
+      "k": "title",
+      "kicker": "no-code development · 01",
+      "title": "Build software without writing code",
+      "sub": "From an empty folder to a running web app — in plain English."
+    }
+  },
+  {
+    "id": "ch1",
+    "chapter": "what it is",
+    "say": "",
+    "min": 2.4,
+    "scene": {
+      "k": "chapter",
+      "n": "01",
+      "title": "What no-code actually means"
+    }
+  },
+  {
+    "id": "swap",
+    "chapter": "what it is",
+    "say": "Here is the whole idea, and it really is this small. You describe what you want in ordinary language. The model turns that description into working code, runs it, and fixes it when it breaks.",
+    "pad": 0.6,
+    "scene": {
+      "k": "swap",
+      "panels": [
+        {
+          "icon": "keys",
+          "who": "you",
+          "what": "Describe what you want"
+        },
+        {
+          "icon": "braces",
+          "who": "the model",
+          "what": "Writes and runs the code"
+        },
+        {
+          "icon": "star",
+          "who": "you",
+          "what": "Judge what came back"
+        }
+      ]
+    }
+  },
+  {
+    "id": "swap-2",
+    "chapter": "what it is",
+    "say": "Notice where you sit in that loop. At the start, saying what you want, and at the end, deciding whether what came back is any good. Those two jobs are the actual skill, and they are what this course teaches.",
+    "pad": 0.7,
+    "scene": {
+      "k": "swap",
+      "panels": [
+        {
+          "icon": "keys",
+          "who": "you",
+          "what": "Describe what you want"
+        },
+        {
+          "icon": "braces",
+          "who": "the model",
+          "what": "Writes and runs the code"
+        },
+        {
+          "icon": "star",
+          "who": "you",
+          "what": "Judge what came back"
+        }
+      ]
+    }
+  },
+  {
+    "id": "who",
+    "chapter": "what it is",
+    "say": "If you have never written a line of code, nothing here assumes you have. If you already write code, none of this is beneath you either — you will just move faster and ask sharper questions.",
+    "pad": 0.6,
+    "scene": {
+      "k": "cards",
+      "title": "Who this is for",
+      "accent": [
+        "for"
+      ],
+      "sweepAt": [
+        "never written a line",
+        "already write code"
+      ],
+      "items": [
+        {
+          "name": "Never written code",
+          "note": "Perfect. Start here.",
+          "icon": "sprout"
+        },
+        {
+          "name": "Already write code",
+          "note": "Even better. You will move faster.",
+          "icon": "keys"
+        }
+      ]
+    }
+  },
+  {
+    "id": "build",
+    "chapter": "what it is",
+    "say": "Across the course we will build web applications, mobile applications, server applications, and small automations that run on their own.",
+    "pad": 0.5,
+    "scene": {
+      "k": "cards",
+      "title": "What you will build",
+      "accent": [
+        "build"
+      ],
+      "sweepAt": [
+        "web applications",
+        "mobile applications",
+        "server applications",
+        "automations"
+      ],
+      "items": [
+        {
+          "name": "Web apps",
+          "note": "open in a browser",
+          "icon": "web"
+        },
+        {
+          "name": "Mobile apps",
+          "note": "live in a pocket",
+          "icon": "mobile"
+        },
+        {
+          "name": "Server apps",
+          "note": "the engine room",
+          "icon": "server"
+        },
+        {
+          "name": "Automations",
+          "note": "run while you sleep",
+          "icon": "loop"
+        }
+      ]
+    }
+  },
+  {
+    "id": "today",
+    "chapter": "what it is",
+    "say": "Today is the first one. A web app, running on your machine, that you can open in a browser by the end of this video.",
+    "pad": 0.7,
+    "scene": {
+      "k": "cards",
+      "title": "What you will build",
+      "accent": [
+        "build"
+      ],
+      "items": [
+        {
+          "name": "Web apps",
+          "note": "open in a browser",
+          "icon": "web"
+        },
+        {
+          "name": "Mobile apps",
+          "note": "live in a pocket",
+          "icon": "mobile"
+        },
+        {
+          "name": "Server apps",
+          "note": "the engine room",
+          "icon": "server"
+        },
+        {
+          "name": "Automations",
+          "note": "run while you sleep",
+          "icon": "loop"
+        }
+      ],
+      "active": 0,
+      "footer": "We start here."
+    }
+  },
+  {
+    "id": "ch2",
+    "chapter": "the tool",
+    "say": "",
+    "min": 2.4,
+    "scene": {
+      "k": "chapter",
+      "n": "02",
+      "title": "Picking a tool, and installing it"
+    }
+  },
+  {
+    "id": "churn",
+    "chapter": "the tool",
+    "say": "One warning before we pick anything. This list changes every few months, so I am not going to teach you a favourite tool and ask you to defend it. We use whatever is strongest right now, and we learn the ideas underneath, because those move very slowly.",
+    "pad": 0.6,
+    "scene": {
+      "k": "statement",
+      "kicker": "the honest caveat",
+      "text": "The tools change monthly. The ideas underneath barely move.",
+      "accent": [
+        "monthly.",
+        "barely",
+        "move."
+      ],
+      "size": 82,
+      "body": "Learn the loop, not the buttons. The loop survives every release."
+    }
+  },
+  {
+    "id": "claude",
+    "chapter": "the tool",
+    "say": "Right now, that is Claude Desktop. Three things matter about it. It runs on your own machine rather than in a browser tab. It turns plain sentences into working code. And it can run that code and repair it without you.",
+    "pad": 0.6,
+    "scene": {
+      "k": "spotlight",
+      "title": "We start with Claude Desktop",
+      "accent": [
+        "Claude",
+        "Desktop"
+      ],
+      "name": "Claude",
+      "tagline": "An AI that writes real code",
+      "icon": "star",
+      "facts": [
+        "Runs on your machine, not a browser tab",
+        "Turns plain sentences into working code",
+        "Runs the code, and fixes it when it breaks"
+      ]
+    }
+  },
+  {
+    "id": "install-steps",
+    "chapter": "the tool",
+    "say": "Getting it takes about three minutes. Download, install, sign in. Here is the whole thing, start to finish.",
+    "pad": 0.6,
+    "scene": {
+      "k": "steps",
+      "title": "Three minutes, three steps",
+      "sweepAt": [
+        "Download",
+        "install",
+        "sign in"
+      ],
+      "steps": [
+        {
+          "name": "Download",
+          "note": "claude.com/download"
+        },
+        {
+          "name": "Install",
+          "note": "like any other app"
+        },
+        {
+          "name": "Sign in",
+          "note": "your Claude account"
+        }
+      ]
+    }
+  },
+  {
+    "id": "run-install",
+    "chapter": "the tool",
+    "scene": {
+      "k": "run",
+      "from": 199,
+      "to": 337,
+      "spots": [
+        {
+          "rect": {
+            "x": 548,
+            "y": 106,
+            "w": 832,
+            "h": 50
+          },
+          "label": "search here",
+          "side": "bottom",
+          "at": 7,
+          "until": 12.5
+        },
+        {
+          "rect": {
+            "x": 756,
+            "y": 392,
+            "w": 396,
+            "h": 600
+          },
+          "label": "pick your system",
+          "side": "right",
+          "at": 26,
+          "until": 36
+        },
+        {
+          "rect": {
+            "x": 606,
+            "y": 886,
+            "w": 710,
+            "h": 66
+          },
+          "label": "click",
+          "side": "top",
+          "at": 41,
+          "until": 49
+        },
+        {
+          "rect": {
+            "x": 662,
+            "y": 418,
+            "w": 596,
+            "h": 396
+          },
+          "label": "sign in",
+          "side": "right",
+          "at": 56,
+          "until": 66
+        },
+        {
+          "rect": {
+            "x": 726,
+            "y": 462,
+            "w": 810,
+            "h": 156
+          },
+          "label": "the one box",
+          "side": "bottom",
+          "at": 82,
+          "until": 90
+        },
+        {
+          "rect": {
+            "x": 682,
+            "y": 204,
+            "w": 584,
+            "h": 372
+          },
+          "label": "your usage",
+          "side": "bottom",
+          "at": 122,
+          "until": 133
+        }
+      ]
+    },
+    "cues": [
+      {
+        "at": 1,
+        "say": "So let us get it installed. Open whatever browser you already use."
+      },
+      {
+        "at": 7,
+        "say": "And search for Claude Desktop."
+      },
+      {
+        "at": 14,
+        "say": "The page you want is claude dot com slash download."
+      },
+      {
+        "at": 25,
+        "say": "There is a build for macOS, one for Windows, and one for Linux. Take the one that matches your machine, and install it exactly the way you would install any other app."
+      },
+      {
+        "at": 40,
+        "say": "Open it up and you get this welcome screen. Click Get started."
+      },
+      {
+        "at": 54,
+        "say": "Now sign in, with the same account you use on the Claude website. If you do not have one yet, go and make one — creating the account itself is free."
+      },
+      {
+        "at": 81,
+        "say": "And that is the app. One box in the middle, and honestly, everything around it is a detail you can pick up later."
+      },
+      {
+        "at": 95,
+        "say": "Before we go any further, one thing that will save you a confusing ten minutes. The coding side of Claude Desktop needs an active subscription. The basic paid plan covers everything we do in this course."
+      },
+      {
+        "at": 120,
+        "say": "This is the Code tab, and this panel is your own usage — sessions, messages, tokens spent, which model you lean on. Without a plan, it stays locked."
+      }
+    ]
+  },
+  {
+    "id": "ch3",
+    "chapter": "the interface",
+    "say": "",
+    "min": 2.4,
+    "scene": {
+      "k": "chapter",
+      "n": "03",
+      "title": "The window you will live in"
+    }
+  },
+  {
+    "id": "define",
+    "chapter": "the interface",
+    "say": "One piece of vocabulary first, because it turns up in every video from here. Everything you type into that box is an instruction, and the technical word for an instruction given to an AI is a prompt.",
+    "pad": 0.9,
+    "scene": {
+      "k": "define",
+      "word": "prompt",
+      "pos": "noun",
+      "meaning": "The instruction you give an AI — written the same way you would ask a colleague.",
+      "also": "you will hear: “write a prompt”, “prompting”, “a good prompt”"
+    }
+  },
+  {
+    "id": "run-interface",
+    "chapter": "the interface",
+    "scene": {
+      "k": "run",
+      "from": 376,
+      "to": 470,
+      "spots": [
+        {
+          "rect": {
+            "x": 844,
+            "y": 514,
+            "w": 108,
+            "h": 34
+          },
+          "label": "chat · cowork",
+          "side": "bottom",
+          "at": 11,
+          "until": 24
+        },
+        {
+          "rect": {
+            "x": 1162,
+            "y": 514,
+            "w": 108,
+            "h": 36
+          },
+          "label": "model",
+          "side": "left",
+          "at": 31,
+          "until": 38
+        },
+        {
+          "rect": {
+            "x": 1053,
+            "y": 630,
+            "w": 216,
+            "h": 42
+          },
+          "label": "we use this one",
+          "side": "right",
+          "at": 43,
+          "until": 50
+        },
+        {
+          "rect": {
+            "x": 1260,
+            "y": 518,
+            "w": 270,
+            "h": 232
+          },
+          "label": "effort",
+          "side": "left",
+          "at": 57,
+          "until": 71
+        }
+      ]
+    },
+    "cues": [
+      {
+        "at": 1,
+        "say": "Here is the home screen properly. Two modes sit underneath the box."
+      },
+      {
+        "at": 10,
+        "say": "Chat is for asking and thinking out loud. Cowork runs automated jobs on your machine — genuinely useful, and not something we need today."
+      },
+      {
+        "at": 30,
+        "say": "Over on the right is the model picker."
+      },
+      {
+        "at": 40,
+        "say": "Fable, Opus, Sonnet, Haiku — the same idea at four different sizes and prices. Sonnet 5 is the one already ticked, and that is the one we stay on."
+      },
+      {
+        "at": 56,
+        "say": "Underneath it is effort. Higher effort means the model thinks for longer, which usually means a better answer, a slower one, and a more expensive one."
+      },
+      {
+        "at": 74,
+        "say": "There are five settings, and Medium is the default. It is the right answer for almost everything in this course."
+      }
+    ]
+  },
+  {
+    "id": "effort-scale",
+    "chapter": "the interface",
+    "say": "So leave it on Medium, and reach for something higher only when a job is genuinely hard — not as a habit.",
+    "pad": 0.9,
+    "scene": {
+      "k": "scale",
+      "title": "How hard should it think?",
+      "rungs": [
+        "Low",
+        "Medium",
+        "High",
+        "Extra",
+        "Max"
+      ],
+      "pick": 1,
+      "left": "faster, cheaper",
+      "right": "slower, more thorough",
+      "note": "Leave it on Medium until something is actually hard."
+    }
+  },
+  {
+    "id": "run-prompt",
+    "chapter": "the interface",
+    "scene": {
+      "k": "run",
+      "from": 473,
+      "to": 562,
+      "spots": [
+        {
+          "rect": {
+            "x": 804,
+            "y": 460,
+            "w": 546,
+            "h": 102
+          },
+          "label": "a prompt",
+          "side": "bottom",
+          "at": 3,
+          "until": 12
+        },
+        {
+          "rect": {
+            "x": 760,
+            "y": 818,
+            "w": 180,
+            "h": 40
+          },
+          "label": "where files land",
+          "side": "top",
+          "at": 40,
+          "until": 54
+        }
+      ]
+    },
+    "cues": [
+      {
+        "at": 1,
+        "say": "So let us send one and watch what happens. Can we build a project without coding knowledge?"
+      },
+      {
+        "at": 17,
+        "say": "And there it is, laid out in steps."
+      },
+      {
+        "at": 24,
+        "say": "This is what chat mode is for — asking, planning, arguing with an idea, before you commit a single file to disk."
+      },
+      {
+        "at": 38,
+        "say": "Now switch over to the Code tab. This is the half of the app that actually writes files, so before anything else it needs to know where to put them."
+      },
+      {
+        "at": 55,
+        "say": "Pick any folder you like. I made one on my desktop called No-Code, and everything we build in this course lands in there."
+      },
+      {
+        "at": 70,
+        "say": "Which also means that when you want to move the whole lot to another machine, it is one folder to copy. One decision, made once."
+      }
+    ]
+  },
+  {
+    "id": "ch4",
+    "chapter": "first project",
+    "say": "",
+    "min": 2.4,
+    "scene": {
+      "k": "chapter",
+      "n": "04",
+      "title": "Your first project"
+    }
+  },
+  {
+    "id": "lang-cards",
+    "chapter": "first project",
+    "say": "One more decision before we build: which language it should write in. For the web, three are worth knowing about. Python reads almost like English. Go is fast when the work is heavy. And JavaScript already runs inside every browser on earth.",
+    "pad": 0.6,
+    "scene": {
+      "k": "cards",
+      "title": "Which language for the web",
+      "accent": [
+        "Which",
+        "language"
+      ],
+      "sweepAt": [
+        "Python reads",
+        "Go is fast",
+        "JavaScript already"
+      ],
+      "items": [
+        {
+          "name": "Python",
+          "note": "reads like English",
+          "icon": "python"
+        },
+        {
+          "name": "Go",
+          "note": "fast on the CPU",
+          "icon": "bolt"
+        },
+        {
+          "name": "JavaScript",
+          "note": "already in the browser",
+          "icon": "braces"
+        }
+      ]
+    }
+  },
+  {
+    "id": "lang-pick",
+    "chapter": "first project",
+    "say": "We stay on Python, for one reason: when you open a file to check what the model just did, Python is the easiest of the three to read.",
+    "pad": 0.6,
+    "scene": {
+      "k": "cards",
+      "title": "Which language for the web",
+      "accent": [
+        "Which",
+        "language"
+      ],
+      "items": [
+        {
+          "name": "Python",
+          "note": "reads like English",
+          "icon": "python"
+        },
+        {
+          "name": "Go",
+          "note": "fast on the CPU",
+          "icon": "bolt"
+        },
+        {
+          "name": "JavaScript",
+          "note": "already in the browser",
+          "icon": "braces"
+        }
+      ],
+      "active": 0,
+      "footer": "We stay on Python for everything that follows."
+    }
+  },
+  {
+    "id": "name-it",
+    "chapter": "first project",
+    "say": "And say so in the prompt. Leave the language out and the model either picks one for you, or stops to ask — and either way you have spent a turn on something you already knew.",
+    "pad": 0.9,
+    "scene": {
+      "k": "promptbuild",
+      "title": "Say the language out loud",
+      "chunks": [
+        {
+          "text": "set up a",
+          "tag": ""
+        },
+        {
+          "text": "Python",
+          "tag": "the language"
+        },
+        {
+          "text": "web project",
+          "tag": "the kind of thing"
+        }
+      ]
+    }
+  },
+  {
+    "id": "run-build",
+    "chapter": "first project",
+    "scene": {
+      "k": "run",
+      "from": 660,
+      "to": 806,
+      "spots": [
+        {
+          "rect": {
+            "x": 714,
+            "y": 932,
+            "w": 786,
+            "h": 54
+          },
+          "label": "the whole prompt",
+          "side": "top",
+          "at": 12,
+          "until": 24
+        },
+        {
+          "rect": {
+            "x": 714,
+            "y": 550,
+            "w": 494,
+            "h": 204
+          },
+          "label": "it checked itself",
+          "side": "right",
+          "at": 70,
+          "until": 78
+        },
+        {
+          "rect": {
+            "x": 716,
+            "y": 624,
+            "w": 220,
+            "h": 38
+          },
+          "label": "the address",
+          "side": "right",
+          "at": 90,
+          "until": 99
+        }
+      ]
+    },
+    "cues": [
+      {
+        "at": 1.5,
+        "say": "Right. Set up a Python web project. Six words — that is the entire prompt."
+      },
+      {
+        "at": 26,
+        "say": "The first run takes a minute. It is building a folder structure, installing what it needs, and starting a small web server — none of which you will ever have to do by hand."
+      },
+      {
+        "at": 48,
+        "say": "And it narrates the whole thing while it works. Flask installed. Five files created. A config written. A port collision spotted and quietly worked around."
+      },
+      {
+        "at": 63,
+        "say": "You are not meant to memorise any of that. You are meant to notice that it is being said out loud, rather than done in the dark."
+      },
+      {
+        "at": 76,
+        "say": "At the end it takes its own screenshot to check its own work. And there is the result: a page that says, it works."
+      },
+      {
+        "at": 90,
+        "say": "Look at the address underneath it, because it tells you something worth knowing."
+      },
+      {
+        "at": 104,
+        "say": "Paste that into any browser, and there it is. Your first running web application."
+      },
+      {
+        "at": 122,
+        "say": "You can also keep it inside Claude, in a pane right next to the instructions."
+      }
+    ]
+  },
+  {
+    "id": "address",
+    "chapter": "first project",
+    "say": "That address is worth two sentences. Localhost means this machine — not the internet. Eight thousand is the door the server is listening on. Nobody else on earth can reach that page yet, and for now, that is exactly right.",
+    "pad": 1,
+    "scene": {
+      "k": "address"
+    }
+  },
+  {
+    "id": "ch5",
+    "chapter": "make it real",
+    "say": "",
+    "min": 2.4,
+    "scene": {
+      "k": "chapter",
+      "n": "05",
+      "title": "Turning it into something real"
+    }
+  },
+  {
+    "id": "context",
+    "chapter": "make it real",
+    "say": "Right now the app is a blank page that says it works, and that is entirely our fault: we never told it what the app is for. The missing ingredient has a name, and it is the single biggest lever you have. Context.",
+    "pad": 0.8,
+    "scene": {
+      "k": "statement",
+      "kicker": "the biggest lever you have",
+      "text": "It built nothing, because we described nothing",
+      "accent": [
+        "described",
+        "nothing"
+      ],
+      "size": 76,
+      "body": "“Set up a web project” has no subject. Give it one and the same model produces something completely different."
+    }
+  },
+  {
+    "id": "run-shop",
+    "chapter": "make it real",
+    "scene": {
+      "k": "run",
+      "from": 806,
+      "to": 990,
+      "spots": [
+        {
+          "rect": {
+            "x": 640,
+            "y": 938,
+            "w": 700,
+            "h": 62
+          },
+          "label": "plain english",
+          "side": "top",
+          "at": 66,
+          "until": 88
+        }
+      ]
+    },
+    "cues": [
+      {
+        "at": 1,
+        "say": "This split — instructions on the left, the live page on the right — is how you will work for the rest of the course. It removes the slowest part of building anything: the walk between making a change and seeing it."
+      },
+      {
+        "at": 24,
+        "say": "So let us give the model some context. What we are building, and what it should look like."
+      },
+      {
+        "at": 40,
+        "say": "Watch how ordinary the sentence is. Build a nice looking home page for our shop application. And then, because it costs nothing to say: keep the theme colour blue."
+      },
+      {
+        "at": 70,
+        "say": "No syntax. No settings panel. No menu to hunt through. A description, in the words you would use with a colleague."
+      },
+      {
+        "at": 102,
+        "say": "And this is what comes back. A navigation bar, a hero with a real headline, two buttons, trust badges, a category grid — and the blue we asked for, used consistently."
+      },
+      {
+        "at": 128,
+        "say": "Scroll down and there is more than we asked for. Product cards with prices, a sale badge, a promotion, a newsletter block."
+      },
+      {
+        "at": 148,
+        "say": "It filled in what a shop normally has. Which is useful — and also worth watching, because everything it invents is something you now have to check."
+      },
+      {
+        "at": 170,
+        "say": "So far, so good."
+      }
+    ]
+  },
+  {
+    "id": "ch6",
+    "chapter": "quick check",
+    "say": "",
+    "min": 2.1,
+    "scene": {
+      "k": "chapter",
+      "n": "06",
+      "title": "Quick check"
+    }
+  },
+  {
+    "id": "quiz1-q",
+    "chapter": "quick check",
+    "say": "Two questions, and do try to answer before I do. Which tool did we use to build this?",
+    "pad": 2,
+    "scene": {
+      "k": "quiz",
+      "n": "question 1",
+      "question": "Which tool did we use?",
+      "options": [
+        "Cursor",
+        "Claude Desktop",
+        "OpenAI",
+        "Google Gemini"
+      ],
+      "answer": 1,
+      "revealAt": 99999
+    }
+  },
+  {
+    "id": "quiz1-a",
+    "chapter": "quick check",
+    "say": "Claude Desktop. Downloaded, installed, signed in, and running on your own machine.",
+    "pad": 0.7,
+    "scene": {
+      "k": "quiz",
+      "n": "question 1",
+      "question": "Which tool did we use?",
+      "options": [
+        "Cursor",
+        "Claude Desktop",
+        "OpenAI",
+        "Google Gemini"
+      ],
+      "answer": 1,
+      "revealAt": 4
+    }
+  },
+  {
+    "id": "quiz2-q",
+    "chapter": "quick check",
+    "say": "Second one. What do we call an instruction you give to an AI?",
+    "pad": 2,
+    "scene": {
+      "k": "quiz",
+      "n": "question 2",
+      "question": "What do we call an instruction given to an AI?",
+      "options": [
+        "A prompt",
+        "A message",
+        "Something else"
+      ],
+      "answer": 0,
+      "revealAt": 99999
+    }
+  },
+  {
+    "id": "quiz2-a",
+    "chapter": "quick check",
+    "say": "A prompt. That word turns up in every single video from here on.",
+    "pad": 0.8,
+    "scene": {
+      "k": "quiz",
+      "n": "question 2",
+      "question": "What do we call an instruction given to an AI?",
+      "options": [
+        "A prompt",
+        "A message",
+        "Something else"
+      ],
+      "answer": 0,
+      "revealAt": 4
+    }
+  },
+  {
+    "id": "ch7",
+    "chapter": "changing it live",
+    "say": "",
+    "min": 2.4,
+    "scene": {
+      "k": "chapter",
+      "n": "07",
+      "title": "Changing it while it runs"
+    }
+  },
+  {
+    "id": "devices",
+    "chapter": "changing it live",
+    "say": "One idea before we carry on. People will open your shop on a phone as often as on a laptop. A responsive page rearranges itself to fit whatever screen it lands on, instead of shrinking everything until nobody can read it.",
+    "pad": 0.9,
+    "scene": {
+      "k": "devices",
+      "title": "One page, three shapes"
+    }
+  },
+  {
+    "id": "run-edit",
+    "chapter": "changing it live",
+    "scene": {
+      "k": "run",
+      "from": 1008,
+      "to": 1240,
+      "spots": [
+        {
+          "rect": {
+            "x": 1634,
+            "y": 116,
+            "w": 158,
+            "h": 80
+          },
+          "label": "viewport",
+          "side": "left",
+          "at": 11,
+          "until": 21
+        },
+        {
+          "rect": {
+            "x": 1042,
+            "y": 130,
+            "w": 62,
+            "h": 40
+          },
+          "label": "this one",
+          "side": "bottom",
+          "at": 80,
+          "until": 92
+        }
+      ]
+    },
+    "cues": [
+      {
+        "at": 2,
+        "say": "The preview has a viewport control tucked into the corner."
+      },
+      {
+        "at": 11,
+        "say": "Responsive, mobile, or tablet — the same page at three different widths."
+      },
+      {
+        "at": 30,
+        "say": "Drag the divider and the page reflows live, so you can check both without ever leaving the app."
+      },
+      {
+        "at": 48,
+        "say": "This is worth keeping in mind as we add features. Every one of them has to work at both ends."
+      },
+      {
+        "at": 78,
+        "say": "Now let us change something. There is an About item in the top bar that this shop does not need."
+      },
+      {
+        "at": 96,
+        "say": "On the top bar, remove the About menu. Seven words — and it is gone. And notice it tells you it went back and confirmed the page afterwards."
+      },
+      {
+        "at": 121,
+        "say": "The same sentence works in the other direction. Add a menu item called Customer Service — and there it is, sitting in the nav."
+      },
+      {
+        "at": 140,
+        "say": "One more, and this one is bigger than it sounds. Blue was my first guess and it feels wrong for a shop. So: change the application theme to orange."
+      },
+      {
+        "at": 168,
+        "say": "To do that it has to find every blue in the stylesheet, work out the matching warm tone for each one, and deliberately leave the red sale badge alone so it still reads as a discount rather than as part of the theme."
+      },
+      {
+        "at": 198,
+        "say": "And it does exactly that. Hero, buttons, category tiles, footer — all warm. Sale badge still red."
+      },
+      {
+        "at": 216,
+        "say": "Four sentences, and the shop is a different shop."
+      }
+    ]
+  },
+  {
+    "id": "ch8",
+    "chapter": "where we got to",
+    "say": "",
+    "min": 2.3,
+    "scene": {
+      "k": "chapter",
+      "n": "08",
+      "title": "Where we got to"
+    }
+  },
+  {
+    "id": "expect",
+    "chapter": "where we got to",
+    "say": "One honest warning before we finish. Run these same prompts on your machine and you will not get my page back. These models are not deterministic, and they never will be. The skill is not reproducing my output — it is steering whatever you get toward what you actually wanted.",
+    "pad": 0.9,
+    "scene": {
+      "k": "statement",
+      "kicker": "expectations",
+      "text": "You will not get my page back. That is fine.",
+      "accent": [
+        "not",
+        "fine."
+      ],
+      "size": 78,
+      "body": "Same prompt, different result, every time. The job is steering — not matching."
+    }
+  },
+  {
+    "id": "roadmap",
+    "chapter": "where we got to",
+    "say": "So: Claude Desktop installed and signed in. A Python web project running on your own machine. And a shop homepage you changed four times without once opening a code file.",
+    "pad": 0.8,
+    "scene": {
+      "k": "roadmap",
+      "title": "Where we got to",
+      "nodes": [
+        {
+          "name": "Claude Desktop installed",
+          "state": "done"
+        },
+        {
+          "name": "First project running",
+          "state": "done"
+        },
+        {
+          "name": "Editing it live",
+          "state": "here"
+        },
+        {
+          "name": "Accounts & sign-in",
+          "state": "next"
+        },
+        {
+          "name": "Storing data",
+          "state": "next"
+        },
+        {
+          "name": "On the internet",
+          "state": "next"
+        }
+      ]
+    }
+  },
+  {
+    "id": "next",
+    "chapter": "where we got to",
+    "say": "Next we go deeper. Real pages instead of one. Sign-in and accounts. Storing data so it survives a restart. And finally getting it onto the internet, so somebody other than you can open it.",
+    "pad": 0.9,
+    "scene": {
+      "k": "roadmap",
+      "title": "What comes next",
+      "nodes": [
+        {
+          "name": "Claude Desktop installed",
+          "state": "done"
+        },
+        {
+          "name": "First project running",
+          "state": "done"
+        },
+        {
+          "name": "Editing it live",
+          "state": "done"
+        },
+        {
+          "name": "Accounts & sign-in",
+          "state": "here"
+        },
+        {
+          "name": "Storing data",
+          "state": "next"
+        },
+        {
+          "name": "On the internet",
+          "state": "next"
+        }
+      ]
+    }
+  },
+  {
+    "id": "outro",
+    "chapter": "",
+    "say": "Before that, do the exercises on the platform. And if you can, build alongside me rather than watching me — that is the whole difference between having seen this and being able to do it. See you in the next one.",
+    "pad": 1.4,
+    "scene": {
+      "k": "outro",
+      "lines": [
+        "Do the exercises.",
+        "Then build alongside me."
+      ],
+      "sign": "no-code development · 02 next"
+    }
+  }
+]

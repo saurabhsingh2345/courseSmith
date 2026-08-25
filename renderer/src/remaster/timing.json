@@ -1,0 +1,226 @@
+{
+  "total": 37294,
+  "audio": "remaster/narration.wav",
+  "beats": [
+    {
+      "id": "hook",
+      "frames": 780,
+      "start": 0
+    },
+    {
+      "id": "title",
+      "frames": 108,
+      "start": 780
+    },
+    {
+      "id": "ch1",
+      "frames": 72,
+      "start": 888
+    },
+    {
+      "id": "swap",
+      "frames": 420,
+      "start": 960
+    },
+    {
+      "id": "swap-2",
+      "frames": 431,
+      "start": 1380
+    },
+    {
+      "id": "who",
+      "frames": 377,
+      "start": 1811,
+      "sweep": [
+        35,
+        159
+      ]
+    },
+    {
+      "id": "build",
+      "frames": 304,
+      "start": 2188,
+      "sweep": [
+        78,
+        114,
+        157,
+        220
+      ]
+    },
+    {
+      "id": "today",
+      "frames": 260,
+      "start": 2492
+    },
+    {
+      "id": "ch2",
+      "frames": 72,
+      "start": 2752
+    },
+    {
+      "id": "churn",
+      "frames": 530,
+      "start": 2824
+    },
+    {
+      "id": "claude",
+      "frames": 482,
+      "start": 3354
+    },
+    {
+      "id": "install-steps",
+      "frames": 235,
+      "start": 3836,
+      "sweep": [
+        85,
+        104,
+        121
+      ]
+    },
+    {
+      "id": "run-install",
+      "frames": 4140,
+      "start": 4071
+    },
+    {
+      "id": "ch3",
+      "frames": 72,
+      "start": 8211
+    },
+    {
+      "id": "define",
+      "frames": 463,
+      "start": 8283
+    },
+    {
+      "id": "run-interface",
+      "frames": 2820,
+      "start": 8746
+    },
+    {
+      "id": "effort-scale",
+      "frames": 426,
+      "start": 11566
+    },
+    {
+      "id": "run-prompt",
+      "frames": 2670,
+      "start": 11992
+    },
+    {
+      "id": "ch4",
+      "frames": 72,
+      "start": 14662
+    },
+    {
+      "id": "lang-cards",
+      "frames": 489,
+      "start": 14734,
+      "sweep": [
+        230,
+        294,
+        369
+      ]
+    },
+    {
+      "id": "lang-pick",
+      "frames": 298,
+      "start": 15223
+    },
+    {
+      "id": "name-it",
+      "frames": 365,
+      "start": 15521
+    },
+    {
+      "id": "run-build",
+      "frames": 4380,
+      "start": 15886
+    },
+    {
+      "id": "address",
+      "frames": 558,
+      "start": 20266
+    },
+    {
+      "id": "ch5",
+      "frames": 72,
+      "start": 20824
+    },
+    {
+      "id": "context",
+      "frames": 471,
+      "start": 20896
+    },
+    {
+      "id": "run-shop",
+      "frames": 5520,
+      "start": 21367
+    },
+    {
+      "id": "ch6",
+      "frames": 63,
+      "start": 26887
+    },
+    {
+      "id": "quiz1-q",
+      "frames": 233,
+      "start": 26950
+    },
+    {
+      "id": "quiz1-a",
+      "frames": 189,
+      "start": 27183
+    },
+    {
+      "id": "quiz2-q",
+      "frames": 183,
+      "start": 27372
+    },
+    {
+      "id": "quiz2-a",
+      "frames": 164,
+      "start": 27555
+    },
+    {
+      "id": "ch7",
+      "frames": 72,
+      "start": 27719
+    },
+    {
+      "id": "devices",
+      "frames": 504,
+      "start": 27791
+    },
+    {
+      "id": "run-edit",
+      "frames": 6960,
+      "start": 28295
+    },
+    {
+      "id": "ch8",
+      "frames": 69,
+      "start": 35255
+    },
+    {
+      "id": "expect",
+      "frames": 592,
+      "start": 35324
+    },
+    {
+      "id": "roadmap",
+      "frames": 461,
+      "start": 35916
+    },
+    {
+      "id": "next",
+      "frames": 447,
+      "start": 36377
+    },
+    {
+      "id": "outro",
+      "frames": 470,
+      "start": 36824
+    }
+  ]
+}
