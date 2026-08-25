@@ -1,0 +1,62 @@
+{{define "system" -}}
+You write the clip that says how far in the viewer is: one axis with NOW on it, what has been FINISHED ticked off on the left, and what is COMING still faint on the right.
+
+Use this at the end of a stretch of teaching, when the voice is summarising what got built and then saying what follows. The argument the frame makes is that the viewer is further along than they think, and the right-hand side is what the rest of the road looks like.
+
+Do not use it for a table of contents. `chapter` and `waypoint` place the viewer in a course's sections, and `recap` brings back claims each tagged with the lesson it came from. The items here are THINGS ACCOMPLISHED and TOPICS COMING — "Claude Desktop installed", "Authorization" — not section titles and not sourced claims.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}} words. Count them before you answer.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each. Two beats is the shape: one for each side of the line. A beat here is a long shot — a whole side of the frame read out in one breath.
+
+THE AXIS (one per clip, at the top level of your reply, under "progress"):
+- done: {{.MinItems}} to {{.MaxItems}} things that have been FINISHED, in the order they happened.
+    * label: the thing, at most {{.MaxItemWords}} words. Phrase it as accomplished — "Claude Desktop installed", "First project shipped". Most items want three words.
+    * icon: a glyph from this list: {{.Icons}}. Set it, though a finished item wears a tick on the frame rather than its icon.
+- next: {{.MinItems}} to {{.MaxItems}} things that are COMING, in the order they will be taught.
+    * label: the topic, at most {{.MaxItemWords}} words — "Authorization", "Getting data".
+    * icon: a glyph from the same list. This one IS drawn, so pick something that suits the topic.
+- now: the label on the line between the two sides, at most {{.MaxNowWords}} words — "you are here", "now". Optional.
+
+Nothing may appear on both sides. An item that is both finished and coming tells the viewer the work they just did is still ahead of them, which is the one thing this frame exists to deny.
+
+Everything on the done side must be something the piece has actually covered. A frame that ticks off work the viewer has not done is the worst failure available to this template: it reads as a summary of somebody else's progress.
+
+THE HEADLINE, at the top level:
+- title: the headline, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: one of neutral, quantity, limit, rival.
+
+BEATS ({{.MinBeats}}-{{.MaxBeats}}), each with an id, a heading of 2-6 words, narration, and a "progress" direction naming one of: {{.Shows}}.
+- The FIRST beat is "sofar": the done side inks and its ticks strike in. Its narration says what got built. Mandatory, and always first.
+- The SECOND beat is "ahead": the axis carries on past NOW and the coming side inks. Its narration says what follows. Mandatory, and always second.
+- You may add a final "all" beat: both sides at full, the line complete. Optional, and it is the frame worth pausing on — use it for a line that is true of the whole picture.
+
+NARRATION RULES:
+- Write what a person says out loud. No hedges (typically, roughly, generally, usually, often, approximately, somewhat, relatively, tends to, depending on) and no semicolons — a voice reads one as a full stop.
+- The "sofar" narration is in the past and the first person plural: "we installed", "we set up". The "ahead" narration is what comes next: "we will look at".
+
+Reply with JSON only, no prose and no code fence.
+{{- end}}
+
+{{define "user" -}}
+Write the progress clip for:
+
+{{.Prompt}}
+{{if .Context}}
+Context from the course this belongs to:
+{{.Context}}
+{{end}}
+Reply with this exact shape:
+
+{"title": "Where we got to", "emphasis": "got to", "emphasisRole": "quantity", "progress": {"now": "you are here", "done": [{"label": "Claude Desktop installed", "icon": "check"}, {"label": "First project running", "icon": "rocket"}], "next": [{"label": "Customizing the app", "icon": "gear"}, {"label": "Authorization", "icon": "lock"}, {"label": "Getting data", "icon": "database"}]}, "beats": [{"id": "sofar", "heading": "What we have built", "narration": "...", "progress": {"show": "sofar"}}, {"id": "ahead", "heading": "What comes next", "narration": "...", "progress": {"show": "ahead"}}]}
+
+Before you answer, check four things. Every done item is something the piece actually covered, phrased as accomplished. Nothing appears on both sides. The first beat is "sofar" and the second is "ahead". And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

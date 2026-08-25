@@ -901,6 +901,9 @@ type beatFields struct {
 	Decision      bool
 	Myth          bool
 	Rundown       bool
+	Roster        bool
+	Choices       bool
+	Progress      bool
 	Analogy       bool
 	Trace         bool
 	Costing       bool
@@ -1013,6 +1016,12 @@ func rejectForeignBeatFields(p *SnippetPlan, owned beatFields) error {
 			set = "myth"
 		case !owned.Rundown && b.Rundown != nil:
 			set = "rundown"
+		case !owned.Roster && b.Roster != nil:
+			set = "roster"
+		case !owned.Choices && b.Choices != nil:
+			set = "choices"
+		case !owned.Progress && b.Progress != nil:
+			set = "progress"
 		case !owned.Analogy && b.Analogy != nil:
 			set = "analogy"
 		case !owned.Trace && b.Trace != nil:

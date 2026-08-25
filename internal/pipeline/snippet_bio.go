@@ -598,6 +598,11 @@ var templateBios = map[string]TemplateBio{
 		Avoid: "a lesson that assumes nothing. An empty floor is a slide saying you are ready",
 		Roles: []string{RoleHook},
 	},
+	"progress": {
+		Needs: "two to four things that have actually been finished, and two to four that are coming next — accomplishments and topics, not section titles",
+		Avoid: "a syllabus. `chapter` and `waypoint` place the viewer in a course's table of contents and `recap` brings back sourced claims; this frame is work done against work coming",
+		Roles: []string{RoleDevelop, RolePayoff},
+	},
 	"quiz": {
 		Needs: "a question, its answer, and why each wrong option tempted",
 		Avoid: "a question with one plausible answer. Without tempting distractors there is nothing to think about in the pause",
@@ -612,6 +617,16 @@ var templateBios = map[string]TemplateBio{
 		Needs: "exactly N things that genuinely form a set, N between 3 and 5, each worth its own beat",
 		Avoid: "a set you have to pad to reach N. The clip promises a count in its first second and delivers precisely that, so a weak fifth item is visible",
 		Roles: []string{RoleHook, RoleDevelop},
+	},
+	"choices": {
+		Needs: "a question the viewer has already been taught the answer to, and three to five answers to offer — the real one among plausible wrong ones",
+		Avoid: "anything that hands the answer over. There is no line under an option and no card is tinted, so a plan that needs to explain its options wants `cards`, and one that needs to reveal the right one wants `quiz`",
+		Roles: []string{RoleDevelop, RolePayoff},
+	},
+	"roster": {
+		Needs: "two or three kinds of viewer this piece was built for, and for each one what they arrive with and what changes for them",
+		Avoid: "a list of prerequisites. This frame tells several people they belong; `prereq` tells one person what they are missing, and swapping them turns a welcome into an entry exam",
+		Roles: []string{RoleHook},
 	},
 	"spine": {
 		Needs: "the narration itself, or a subject to write it from. Every line becomes its own shot, so it carries connective material no other template has a home for",

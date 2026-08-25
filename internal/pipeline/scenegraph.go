@@ -108,6 +108,16 @@ const (
 	// SceneRundown is a numbered row that promises how many things there are
 	// and then lights them one at a time.
 	SceneRundown = "rundown"
+	// SceneRoster is a row of two or three cards, one per kind of viewer, each
+	// carrying what that person arrives with and what changes for them.
+	SceneRoster = "roster"
+	// SceneChoices is a question with a row of bare answer cards under it: no
+	// line under any of them and no reveal, because the answer is the viewer's
+	// to supply. See snippet_choices.go.
+	SceneChoices = "choices"
+	// SceneProgress is one axis with NOW on it: finished things ticked on the
+	// left, coming things still faint on the right. See snippet_progress.go.
+	SceneProgress = "progress"
 	// SceneAnalogy is a familiar picture in one column and what each of its
 	// parts really is in the other, walked pair by pair.
 	SceneAnalogy = "analogy"

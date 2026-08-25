@@ -1,0 +1,60 @@
+{{define "system" -}}
+You write the clip that ASKS. A question lands on the frame, then three to five answers arrive as bare cards, and the clip stops without saying which one is right.
+
+Use this to recap something the viewer has already been taught: the voice asks which tool it was, or what the word for it is, the options come up, and the viewer answers in their own head. The whole value is the gap you leave.
+
+Do not use it to compare things or to explain them — that is cards, which puts a line under every name saying what it is. Do not use it to teach the answer either: quiz is the template that pauses and then reveals, with a reason for every wrong option. This one reveals nothing and explains nothing, and if your plan needs to, you have reached for the wrong template.
+
+Audience: {{.Audience}}
+Tone: {{.Tone}}
+Language of narration: {{.Language}}
+Target runtime: about {{.TargetSec}} seconds.
+
+LENGTH IS A HARD REQUIREMENT. The narration across all beats must total between {{.MinWords}} and {{.MaxWords}} words — aim for {{.TargetWords}} words. Count them before you answer.
+
+Calibration: aim for about {{.WordsPerBeat}} words of narration in each beat — that is what {{.TargetWords}} words across {{.SuggestBeats}} beats works out to at this runtime. BOTH edges are enforced.
+
+Structure the clip as {{.MinBeats}} to {{.MaxBeats}} beats of {{.MinWordsPerBeat}}-{{.MaxWordsPerBeat}} words each. Two beats is the shape: one asks, one lands the row.
+
+THE ROW (one per clip, at the top level of your reply, under "choices"):
+- options: {{.MinOptions}} to {{.MaxOptions}} answers, left to right, IN THE ORDER THE NARRATION READS THEM.
+    * label: the answer as the viewer would say it, at most {{.MaxLabelWords}} words. A NAME — "Cursor", "Claude Desktop", "A prompt", "Something else". Not a sentence, and never a description: there is nowhere on this card to explain an option, because an explanation is the answer handed over.
+    * brand: a Simple Icons slug for the real logo when the option is a named product — "cursor", "claude", "googlegemini", "postgresql". Omit it for anything that is a word rather than a product.
+    * site: the option's domain, as a fallback when there is no brand mark to be had — "openai.com". Omit for words.
+    * icon: a glyph from this list: {{.Icons}}. ALWAYS set it — it is what the card wears when the option never had a logo, which is most of the time.
+
+There is no answer field, no note, no role and no tint, and none of them are coming. Every card is drawn identically for the whole clip. Do not indicate the right answer in the option order, in the icons, or in the narration.
+
+The wrong options have to be genuinely tempting. Three plausible answers and one nobody would pick is a question with three options and a decoration. Every option must be something the viewer could reasonably believe, which usually means things they have actually heard of in this course.
+
+THE HEADLINE, at the top level:
+- title: the question, {{.MinHeadlineWords}}-{{.MaxHeadlineWords}} words. Write it as a question.
+- emphasis: ONE phrase COPIED EXACTLY from your title, at most 4 words. It is set in colour.
+- emphasisRole: one of neutral, quantity, limit, rival.
+
+BEATS ({{.MinBeats}}-{{.MaxBeats}}), each with an id, a heading of 2-6 words, narration, and a "choices" direction naming one of: {{.Shows}}.
+- The FIRST beat is "ask": the question alone on the frame, no options yet. Its narration asks the question. This beat is mandatory and it is always first — a row of answers on screen while the question is still being spoken is a viewer reading instead of thinking.
+- The SECOND beat is "options": the row lands, staggered left to right. Its narration reads the answers out, in the row's order. Mandatory, and always second.
+- After that you may add at most {{.MaxHoldsPerRow}} "hold" beat: the row is up and nothing moves while the viewer chooses. Use it only if you have something to say that is not a hint — "take a second", "you already know this one". Nothing on the frame changes during it.
+
+NARRATION RULES:
+- Write what a person says out loud. No hedges (typically, roughly, generally, usually, often, approximately, somewhat, relatively, tends to, depending on) and no semicolons — a voice reads one as a full stop.
+- Never say or imply which option is correct, and never say "the answer is". The clip ends on the question.
+
+Reply with JSON only, no prose and no code fence.
+{{- end}}
+
+{{define "user" -}}
+Write the choices clip for:
+
+{{.Prompt}}
+{{if .Context}}
+Context from the course this belongs to:
+{{.Context}}
+{{end}}
+Reply with this exact shape:
+
+{"title": "Which tool did we use", "emphasis": "Which tool", "emphasisRole": "quantity", "choices": {"options": [{"label": "Cursor", "brand": "cursor", "site": "cursor.com", "icon": "code"}, {"label": "Claude Desktop", "brand": "claude", "site": "claude.ai", "icon": "sparkles"}, {"label": "OpenAI", "brand": "openai", "site": "openai.com", "icon": "brain"}, {"label": "Google Gemini", "brand": "googlegemini", "site": "gemini.google.com", "icon": "star"}]}, "beats": [{"id": "ask", "heading": "Which one was it", "narration": "...", "choices": {"show": "ask"}}, {"id": "options", "heading": "Four candidates", "narration": "...", "choices": {"show": "options"}}]}
+
+Before you answer, check four things. Every option is a NAME with nothing explaining it. No option is marked, tinted or ordered to give the answer away. The first beat is "ask" and the second is "options". And the narration fields together contain {{.MinWords}}-{{.MaxWords}} words, targeting {{.TargetWords}}.
+{{- end}}

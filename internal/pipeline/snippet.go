@@ -373,6 +373,16 @@ type SnippetPlan struct {
 	// Rundown is the rundown template's promise and its numbered cards. On the
 	// plan because every card is on screen from the first frame.
 	Rundown *RundownSpec `json:"rundown,omitempty"`
+	// Roster is the roster template's row of people. On the plan for the same
+	// reason as Rundown: the row is the subject of the clip and the beats only
+	// raise one card of it at a time.
+	Roster *RosterSpec `json:"roster,omitempty"`
+	// Choices is the choices template's row of answers. On the plan because the
+	// row belongs to the question rather than to a moment in the clip.
+	Choices *ChoicesSpec `json:"choices,omitempty"`
+	// Progress is the progress template's axis: what is done, what is next, and
+	// the label on the line between them.
+	Progress *ProgressSpec `json:"progress,omitempty"`
 	// Analogy is the analogy template's picture and its mapping. On the plan
 	// because both columns are on screen for the whole clip.
 	Analogy *AnalogySpec `json:"analogy,omitempty"`
@@ -802,6 +812,15 @@ type SnippetBeat struct {
 	// Rundown says whether this beat makes the promise, covers one card, or
 	// brings the whole row back.
 	Rundown *RundownBeat `json:"rundown,omitempty"`
+	// Roster says whether this beat raises the row, one card of it, or levels
+	// them all again.
+	Roster *RosterBeat `json:"roster,omitempty"`
+	// Choices says whether this beat asks the question, lands the row of
+	// answers, or holds it while the viewer chooses.
+	Choices *ChoicesBeat `json:"choices,omitempty"`
+	// Progress says whether this beat inks what is done, inks what is coming, or
+	// holds the finished axis.
+	Progress *ProgressBeat `json:"progress,omitempty"`
 
 	// --- analogy template ---
 	// Analogy says whether this beat sets the picture up, walks one

@@ -55,6 +55,9 @@ import {VerdictScene} from './components/VerdictScene';
 import {DecisionScene} from './components/DecisionScene';
 import {MythScene} from './components/MythScene';
 import {RundownScene} from './components/RundownScene';
+import {RosterScene} from './components/RosterScene';
+import {ChoicesScene} from './components/ChoicesScene';
+import {ProgressScene} from './components/ProgressScene';
 import {AnalogyScene} from './components/AnalogyScene';
 import {TraceScene} from './components/TraceScene';
 import {CostingScene} from './components/CostingScene';
@@ -267,6 +270,12 @@ const sceneContent = (
       return <MythScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'rundown':
       return <RundownScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'roster':
+      return <RosterScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'choices':
+      return <ChoicesScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
+    case 'progress':
+      return <ProgressScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'analogy':
       return <AnalogyScene theme={theme} sceneStartMs={scene.startMs} props={scene.props} />;
     case 'trace':
@@ -514,6 +523,10 @@ const surfaceFor = (scenes: Scene[], skin: ResolvedTheme['skin']): Surface => {
     // A row of cards with ghosted numerals behind them. A dot field would
     // read through the card fills as texture on the numbers.
     case 'rundown':
+    // Cards with two labelled lines each, held legible for the whole clip. A
+    // field behind them reads through the untinted card fills as noise on the
+    // type that is the entire content.
+    case 'roster':
     // Two columns of plates joined by hairlines. A field behind them reads
     // through the untinted rows as noise on the connectors.
     case 'analogy':

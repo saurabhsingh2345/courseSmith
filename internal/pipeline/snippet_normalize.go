@@ -113,6 +113,9 @@ type planFields struct {
 	Decision      bool
 	Myth          bool
 	Rundown       bool
+	Roster        bool
+	Choices       bool
+	Progress      bool
 	Analogy       bool
 	Trace         bool
 	Costing       bool
@@ -314,6 +317,15 @@ func stripPlanFields(p *SnippetPlan, owns planFields) {
 	}
 	if !owns.Rundown {
 		p.Rundown = nil
+	}
+	if !owns.Roster {
+		p.Roster = nil
+	}
+	if !owns.Choices {
+		p.Choices = nil
+	}
+	if !owns.Progress {
+		p.Progress = nil
 	}
 	if !owns.Analogy {
 		p.Analogy = nil

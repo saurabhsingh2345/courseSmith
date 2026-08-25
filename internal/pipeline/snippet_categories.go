@@ -190,6 +190,16 @@ const (
 	// answer. So `session` is a window that behaves like a window, and `titlecard`
 	// is the card that cuts between stretches of it.
 	SinceV10 = "v10"
+	// SinceV11 is the batch for a piece with NO VOICE: cards a viewer reads
+	// rather than shots a narrator walks.
+	//
+	// Every template before this assumed a voice was doing the work of
+	// introducing things, which is why they all reveal — a card already read is a
+	// card whose line has been spent. Take the voice away and the same reveal
+	// becomes a frame with nothing on it, and the dimming that reads as "not yet"
+	// over a narration reads as "not important" in silence. So `roster` keeps
+	// every card legible from the first frame and moves ink rather than opacity.
+	SinceV11 = "v11"
 )
 
 // Template families. A family is which surface offers a template, and it exists

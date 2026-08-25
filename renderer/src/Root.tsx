@@ -4438,6 +4438,132 @@ const spotlightVizProps: LessonVideoProps = {
 };
 
 /**
+ * A progress axis mid-clip: the done side ticked and inked, the coming side
+ * still quiet. The baseline is taken between the two beats on purpose — the
+ * finished frame would pass even if the not-yet state were drawn wrong, and the
+ * not-yet state is the whole light-mode rule this family keeps re-learning.
+ */
+const progressVizProps: LessonVideoProps = {
+  theme: showroomTheme,
+  audioFile: '',
+  durationMs: 24000,
+  scenes: [
+    {
+      type: 'progress',
+      startMs: 0,
+      endMs: 24000,
+      props: {
+        title: 'Where we got to',
+        emphasis: 'got to',
+        emphasisRole: 'quantity',
+        now: 'you are here',
+        done: [
+          {label: 'Claude Desktop installed', icon: 'check'},
+          {label: 'First project running', icon: 'rocket'},
+        ],
+        next: [
+          {label: 'Customizing the app', icon: 'gear'},
+          {label: 'Authorization', icon: 'lock'},
+          {label: 'Getting data', icon: 'database'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 12000, show: 'sofar'},
+          {startMs: 12000, endMs: 24000, show: 'ahead'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * A choices row: a question, four answers, and no lighting anywhere. The
+ * baseline is taken after the row has landed, because the thing worth guarding
+ * is that all four cards render identically — a diff here means a plan or a
+ * theme found a way to single one out.
+ */
+const choicesVizProps: LessonVideoProps = {
+  theme: showroomTheme,
+  audioFile: '',
+  durationMs: 16000,
+  scenes: [
+    {
+      type: 'choices',
+      startMs: 0,
+      endMs: 16000,
+      props: {
+        title: 'Which tool did we use',
+        emphasis: 'Which tool',
+        emphasisRole: 'quantity',
+        options: [
+          {label: 'Cursor', icon: 'code'},
+          {label: 'Claude Desktop', icon: 'sparkles'},
+          {label: 'OpenAI', icon: 'brain'},
+          {label: 'Google Gemini', icon: 'star'},
+        ],
+        steps: [
+          {startMs: 0, endMs: 5000, show: 'ask'},
+          {startMs: 5000, endMs: 11000, show: 'options'},
+          {startMs: 11000, endMs: 16000, show: 'hold'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
+ * The roster template on the frame it exists for: two kinds of viewer, both cards
+ * finished, one of them raised.
+ *
+ * Captured mid-clip rather than on the closing beat, because the closing beat is
+ * the easy state — everything lit. The state worth a baseline is one card raised
+ * and one quiet, which is where the family's light-mode rule is actually being
+ * tested: the quiet card has to keep its surface and lose only its ink.
+ */
+const rosterVizProps: LessonVideoProps = {
+  theme: showroomTheme,
+  audioFile: '',
+  durationMs: 28000,
+  scenes: [
+    {
+      type: 'roster',
+      startMs: 0,
+      endMs: 28000,
+      props: {
+        title: 'Who this is for',
+        emphasis: 'Who this',
+        emphasisRole: 'quantity',
+        closer: 'Same course, two different first weeks',
+        people: [
+          {
+            who: 'New to code',
+            brings: 'an idea and a laptop',
+            gets: 'a working app before you learn a language',
+            icon: 'sprout',
+            role: 'quantity',
+          },
+          {
+            who: 'Already write code',
+            brings: 'years of shipping software',
+            gets: 'the same build in an afternoon, not a week',
+            icon: 'terminal',
+            role: 'neutral',
+          },
+        ],
+        steps: [
+          {startMs: 0, endMs: 7000, show: 'row'},
+          {startMs: 7000, endMs: 14000, show: 'person', at: 0},
+          {startMs: 14000, endMs: 21000, show: 'person', at: 1},
+          {startMs: 21000, endMs: 28000, show: 'all'},
+        ],
+      },
+    },
+  ],
+  captions: [],
+};
+
+/**
  * The opener, on the beat where the promise has landed but the byline has not.
  *
  * Chosen over the finished frame because it is the state that proves the layering
@@ -4860,6 +4986,33 @@ export const RemotionRoot: React.FC = () => {
       height={1080}
       durationInFrames={msToFrame(rundownVizProps.durationMs)}
       defaultProps={rundownVizProps}
+    />
+    <Composition
+      id="ProgressViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(progressVizProps.durationMs)}
+      defaultProps={progressVizProps}
+    />
+    <Composition
+      id="ChoicesViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(choicesVizProps.durationMs)}
+      defaultProps={choicesVizProps}
+    />
+    <Composition
+      id="RosterViz"
+      component={LessonVideo}
+      fps={FPS}
+      width={1920}
+      height={1080}
+      durationInFrames={msToFrame(rosterVizProps.durationMs)}
+      defaultProps={rosterVizProps}
     />
     <Composition
       id="MythViz"
