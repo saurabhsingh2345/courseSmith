@@ -1,0 +1,401 @@
+{
+  "total": 46000,
+  "audio": "social/narration.wav",
+  "beats": [
+    {
+      "id": "hook",
+      "frames": 669,
+      "start": 0
+    },
+    {
+      "id": "title",
+      "frames": 147,
+      "start": 669
+    },
+    {
+      "id": "ch1",
+      "frames": 74,
+      "start": 816
+    },
+    {
+      "id": "who",
+      "frames": 822,
+      "start": 890,
+      "sweep": [
+        121,
+        275,
+        444
+      ]
+    },
+    {
+      "id": "whatchanged",
+      "frames": 888,
+      "start": 1712
+    },
+    {
+      "id": "notmagic",
+      "frames": 878,
+      "start": 2600
+    },
+    {
+      "id": "loop",
+      "frames": 612,
+      "start": 3478
+    },
+    {
+      "id": "honest",
+      "frames": 814,
+      "start": 4090
+    },
+    {
+      "id": "numbers",
+      "frames": 843,
+      "start": 4904
+    },
+    {
+      "id": "ch2",
+      "frames": 65,
+      "start": 5747
+    },
+    {
+      "id": "needs",
+      "frames": 833,
+      "start": 5812,
+      "sweep": [
+        126,
+        216,
+        323,
+        404
+      ]
+    },
+    {
+      "id": "install",
+      "frames": 723,
+      "start": 6645,
+      "sweep": [
+        120,
+        376,
+        401
+      ]
+    },
+    {
+      "id": "chat-hello",
+      "frames": 677,
+      "start": 7368
+    },
+    {
+      "id": "nothing-else",
+      "frames": 760,
+      "start": 8045
+    },
+    {
+      "id": "ch3",
+      "frames": 64,
+      "start": 8805
+    },
+    {
+      "id": "define",
+      "frames": 777,
+      "start": 8869
+    },
+    {
+      "id": "anatomy",
+      "frames": 759,
+      "start": 9646,
+      "sweep": [
+        175,
+        212,
+        241,
+        278
+      ]
+    },
+    {
+      "id": "compare",
+      "frames": 777,
+      "start": 10405
+    },
+    {
+      "id": "context",
+      "frames": 729,
+      "start": 11182
+    },
+    {
+      "id": "oneatatime",
+      "frames": 634,
+      "start": 11911
+    },
+    {
+      "id": "chat-vague",
+      "frames": 772,
+      "start": 12545
+    },
+    {
+      "id": "chat-ask",
+      "frames": 823,
+      "start": 13317
+    },
+    {
+      "id": "patience",
+      "frames": 736,
+      "start": 14140
+    },
+    {
+      "id": "ch4",
+      "frames": 94,
+      "start": 14876
+    },
+    {
+      "id": "ladder",
+      "frames": 801,
+      "start": 14970
+    },
+    {
+      "id": "tiles",
+      "frames": 871,
+      "start": 15771,
+      "sweep": [
+        180,
+        219,
+        281,
+        346,
+        406,
+        488
+      ]
+    },
+    {
+      "id": "name",
+      "frames": 611,
+      "start": 16642
+    },
+    {
+      "id": "ch5",
+      "frames": 78,
+      "start": 17253
+    },
+    {
+      "id": "screen-open",
+      "frames": 800,
+      "start": 17331
+    },
+    {
+      "id": "screen-parts",
+      "frames": 745,
+      "start": 18131
+    },
+    {
+      "id": "screen-nav",
+      "frames": 754,
+      "start": 18876
+    },
+    {
+      "id": "screen-rail",
+      "frames": 757,
+      "start": 19630
+    },
+    {
+      "id": "screen-stories",
+      "frames": 861,
+      "start": 20387
+    },
+    {
+      "id": "screen-scroll",
+      "frames": 738,
+      "start": 21248
+    },
+    {
+      "id": "screen-post",
+      "frames": 805,
+      "start": 21986
+    },
+    {
+      "id": "screen-like",
+      "frames": 817,
+      "start": 22791
+    },
+    {
+      "id": "screen-comment",
+      "frames": 779,
+      "start": 23608
+    },
+    {
+      "id": "screen-lightbox",
+      "frames": 694,
+      "start": 24387
+    },
+    {
+      "id": "readit",
+      "frames": 740,
+      "start": 25081
+    },
+    {
+      "id": "ch6",
+      "frames": 74,
+      "start": 25821
+    },
+    {
+      "id": "quiz1-q",
+      "frames": 453,
+      "start": 25895
+    },
+    {
+      "id": "quiz1-a",
+      "frames": 557,
+      "start": 26348
+    },
+    {
+      "id": "quiz2-q",
+      "frames": 414,
+      "start": 26905
+    },
+    {
+      "id": "quiz2-a",
+      "frames": 607,
+      "start": 27319
+    },
+    {
+      "id": "ch7",
+      "frames": 61,
+      "start": 27926
+    },
+    {
+      "id": "chat-refine",
+      "frames": 775,
+      "start": 27987
+    },
+    {
+      "id": "chat-explore",
+      "frames": 683,
+      "start": 28762
+    },
+    {
+      "id": "screen-explore",
+      "frames": 807,
+      "start": 29445
+    },
+    {
+      "id": "screen-chips",
+      "frames": 792,
+      "start": 30252
+    },
+    {
+      "id": "chat-more",
+      "frames": 759,
+      "start": 31044
+    },
+    {
+      "id": "screen-profile",
+      "frames": 788,
+      "start": 31803
+    },
+    {
+      "id": "screen-create",
+      "frames": 801,
+      "start": 32591
+    },
+    {
+      "id": "screen-shared",
+      "frames": 646,
+      "start": 33392
+    },
+    {
+      "id": "screen-messages",
+      "frames": 737,
+      "start": 34038
+    },
+    {
+      "id": "screen-follow",
+      "frames": 721,
+      "start": 34775
+    },
+    {
+      "id": "taste",
+      "frames": 751,
+      "start": 35496
+    },
+    {
+      "id": "ch8",
+      "frames": 74,
+      "start": 36247
+    },
+    {
+      "id": "breaks",
+      "frames": 687,
+      "start": 36321
+    },
+    {
+      "id": "chat-bug",
+      "frames": 740,
+      "start": 37008
+    },
+    {
+      "id": "screen-fixed",
+      "frames": 792,
+      "start": 37748
+    },
+    {
+      "id": "compare-bug",
+      "frames": 774,
+      "start": 38540
+    },
+    {
+      "id": "nonsense",
+      "frames": 920,
+      "start": 39314
+    },
+    {
+      "id": "stuck",
+      "frames": 729,
+      "start": 40234
+    },
+    {
+      "id": "ch9",
+      "frames": 52,
+      "start": 40963
+    },
+    {
+      "id": "timeline",
+      "frames": 897,
+      "start": 41015
+    },
+    {
+      "id": "real",
+      "frames": 696,
+      "start": 41912
+    },
+    {
+      "id": "cost",
+      "frames": 769,
+      "start": 42608
+    },
+    {
+      "id": "share",
+      "frames": 723,
+      "start": 43377
+    },
+    {
+      "id": "beyond",
+      "frames": 825,
+      "start": 44100,
+      "sweep": [
+        284,
+        371,
+        466
+      ]
+    },
+    {
+      "id": "homework",
+      "frames": 684,
+      "start": 44925,
+      "sweep": [
+        118,
+        267,
+        301
+      ]
+    },
+    {
+      "id": "outro",
+      "frames": 391,
+      "start": 45609
+    }
+  ]
+}
