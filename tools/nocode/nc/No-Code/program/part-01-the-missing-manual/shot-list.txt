@@ -1,0 +1,27 @@
+PART 01 — THE MISSING MANUAL
+10:13 video.
+
+SLIDE ANIMATION     lines 1–55
+  Welcome through “Let's go do it.”
+  Last slide line: generate code right away, then the program.
+  Includes Cursor banner / icon slides.
+
+SCREEN RECORDING    from line 57
+  FIRST LINE: "So the first thing to do is to bring up a browser."
+  After this cut, do not go back to slides.
+  Chrome → cursor.com → download, install, sign in,
+  Instant, three panes, agent, prompt, index.html.
+
+  YOU CLICK
+  Download for Mac
+  Drag Cursor into Applications
+  Sign in or sign up
+  New Folder → Instant → Open
+  Paste prompt, Send, Yes if asked
+
+  I CAN OPEN
+  cursor.com
+  Cursor after it is installed
+
+PROMPT
+Please build a website for a 3D first-person shooter game in an arena against one computer opponent controlled by arrow keys and space bar to shoot.

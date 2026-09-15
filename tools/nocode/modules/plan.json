@@ -1,0 +1,870 @@
+[
+ {
+  "n": 1,
+  "week": 1,
+  "block": "w1d1",
+  "blocktitle": "Day 1",
+  "lectures": [
+   {
+    "stem": "nocode01",
+    "title": "Welcome: a 3D game in an hour",
+    "secs": 612.117
+   },
+   {
+    "stem": "nocode02",
+    "title": "The agent builds a shooter",
+    "secs": 414.016
+   },
+   {
+    "stem": "nocode03",
+    "title": "The missing manual for agentic coding",
+    "secs": 414.3
+   }
+  ],
+  "secs": 1454.733
+ },
+ {
+  "n": 2,
+  "week": 1,
+  "block": "w1d1",
+  "blocktitle": "Day 1",
+  "lectures": [
+   {
+    "stem": "nocode04",
+    "title": "Your instructor, and the three-week map",
+    "secs": 263.5
+   },
+   {
+    "stem": "nocode06",
+    "title": "Vibe coding, agents, and coding agents",
+    "secs": 537.3
+   },
+   {
+    "stem": "nocode07",
+    "title": "The eight stages of AI coding",
+    "secs": 631.0
+   },
+   {
+    "stem": "nocode08",
+    "title": "Wrapping up day one",
+    "secs": 180.5
+   }
+  ],
+  "secs": 1628.2
+ },
+ {
+  "n": 3,
+  "week": 1,
+  "block": "w1d2",
+  "blocktitle": "Day 2",
+  "lectures": [
+   {
+    "stem": "nocode09",
+    "title": "How an LLM actually works",
+    "secs": 662.2
+   },
+   {
+    "stem": "nocode10",
+    "title": "Tools, loops, and what an agent is",
+    "secs": 508.0
+   }
+  ],
+  "secs": 1182.9
+ },
+ {
+  "n": 4,
+  "week": 1,
+  "block": "w1d2",
+  "blocktitle": "Day 2",
+  "lectures": [
+   {
+    "stem": "nocode11",
+    "title": "Context engineering and the system prompt",
+    "secs": 780.3
+   },
+   {
+    "stem": "nocode12",
+    "title": "Writing agents.md",
+    "secs": 721.2
+   }
+  ],
+  "secs": 1514.2
+ },
+ {
+  "n": 5,
+  "week": 1,
+  "block": "w1d2",
+  "blocktitle": "Day 2",
+  "lectures": [
+   {
+    "stem": "nocode13",
+    "title": "From YOLO mode to Ralph loops",
+    "secs": 784.0
+   },
+   {
+    "stem": "nocode14",
+    "title": "Comparing the models on the numbers",
+    "secs": 433.3
+   }
+  ],
+  "secs": 1230.0
+ },
+ {
+  "n": 6,
+  "week": 1,
+  "block": "w1d3",
+  "blocktitle": "Day 3",
+  "lectures": [
+   {
+    "stem": "nocode15",
+    "title": "Four IDEs, one build, hands on keys",
+    "secs": 507.1
+   },
+   {
+    "stem": "nocode16",
+    "title": "agents.md and the settings that matter",
+    "secs": 597.6
+   },
+   {
+    "stem": "nocode17",
+    "title": "A Kanban app in Cursor, YOLO mode",
+    "secs": 581.1
+   }
+  ],
+  "secs": 1700.1000000000001
+ },
+ {
+  "n": 7,
+  "week": 1,
+  "block": "w1d3",
+  "blocktitle": "Day 3",
+  "lectures": [
+   {
+    "stem": "nocode18",
+    "title": "The same app in Copilot and VS Code",
+    "secs": 1247.6
+   }
+  ],
+  "secs": 1258.6999999999998
+ },
+ {
+  "n": 8,
+  "week": 1,
+  "block": "w1d3",
+  "blocktitle": "Day 3",
+  "lectures": [
+   {
+    "stem": "nocode19",
+    "title": "Codex takes it zero-shot",
+    "secs": 854.4
+   }
+  ],
+  "secs": 865.5
+ },
+ {
+  "n": 9,
+  "week": 1,
+  "block": "w1d3",
+  "blocktitle": "Day 3",
+  "lectures": [
+   {
+    "stem": "nocode20",
+    "title": "Antigravity, and Gemini 3 Pro",
+    "secs": 742.2
+   },
+   {
+    "stem": "nocode21",
+    "title": "The verdict on the four",
+    "secs": 394.1
+   }
+  ],
+  "secs": 1149.0000000000002
+ },
+ {
+  "n": 10,
+  "week": 1,
+  "block": "w1d4",
+  "blocktitle": "Day 4",
+  "lectures": [
+   {
+    "stem": "nocode22",
+    "title": "Picking the model for the job",
+    "secs": 546.0
+   },
+   {
+    "stem": "nocode23",
+    "title": "Five principles: be the boss",
+    "secs": 635.2
+   }
+  ],
+  "secs": 1193.9
+ },
+ {
+  "n": 11,
+  "week": 1,
+  "block": "w1d4",
+  "blocktitle": "Day 4",
+  "lectures": [
+   {
+    "stem": "nocode24",
+    "title": "Responsible YOLO: setting up OpenRouter",
+    "secs": 816.0
+   },
+   {
+    "stem": "nocode25",
+    "title": "A Next.js site with Codex in Cursor",
+    "secs": 634.1
+   }
+  ],
+  "secs": 1462.8
+ },
+ {
+  "n": 12,
+  "week": 1,
+  "block": "w1d4",
+  "blocktitle": "Day 4",
+  "lectures": [
+   {
+    "stem": "nocode26",
+    "title": "A digital twin, wired to OpenRouter",
+    "secs": 469.2
+   },
+   {
+    "stem": "nocode27",
+    "title": "Code review across two models",
+    "secs": 500.2
+   }
+  ],
+  "secs": 982.1
+ },
+ {
+  "n": 13,
+  "week": 1,
+  "block": "w1d5",
+  "blocktitle": "Day 5",
+  "lectures": [
+   {
+    "stem": "nocode28",
+    "title": "Karpathy's rules, and a real MVP",
+    "secs": 635.1
+   },
+   {
+    "stem": "nocode29",
+    "title": "Web apps 101: front, back, and Docker",
+    "secs": 660.3
+   }
+  ],
+  "secs": 1308.1000000000001
+ },
+ {
+  "n": 14,
+  "week": 1,
+  "block": "w1d5",
+  "blocktitle": "Day 5",
+  "lectures": [
+   {
+    "stem": "nocode30",
+    "title": "Standing up a full-stack project",
+    "secs": 647.5
+   },
+   {
+    "stem": "nocode31",
+    "title": "Planning and scaffolding with Copilot",
+    "secs": 608.0
+   }
+  ],
+  "secs": 1268.2
+ },
+ {
+  "n": 15,
+  "week": 1,
+  "block": "w1d5",
+  "blocktitle": "Day 5",
+  "lectures": [
+   {
+    "stem": "nocode32",
+    "title": "The Kanban app: Docker and FastAPI",
+    "secs": 777.1
+   }
+  ],
+  "secs": 788.2
+ },
+ {
+  "n": 16,
+  "week": 1,
+  "block": "w1d5",
+  "blocktitle": "Day 5",
+  "lectures": [
+   {
+    "stem": "nocode33",
+    "title": "Debugging drag and drop",
+    "secs": 760.3
+   },
+   {
+    "stem": "nocode34",
+    "title": "The app is done: week one wrap",
+    "secs": 663.4
+   }
+  ],
+  "secs": 1436.3999999999999
+ },
+ {
+  "n": 17,
+  "week": 2,
+  "block": "w2d1",
+  "blocktitle": "Day 1",
+  "lectures": [
+   {
+    "stem": "nocode35",
+    "title": "From vibe coding to vibe engineering",
+    "secs": 533.7
+   },
+   {
+    "stem": "nocode36",
+    "title": "Installing Claude Code",
+    "secs": 709.1
+   }
+  ],
+  "secs": 1255.5000000000002
+ },
+ {
+  "n": 18,
+  "week": 2,
+  "block": "w2d1",
+  "blocktitle": "Day 1",
+  "lectures": [
+   {
+    "stem": "nocode37",
+    "title": "First run: init, context, a test",
+    "secs": 634.2
+   },
+   {
+    "stem": "nocode38",
+    "title": "Fixing a hallucination, then refactoring",
+    "secs": 915.8
+   }
+  ],
+  "secs": 1562.7
+ },
+ {
+  "n": 19,
+  "week": 2,
+  "block": "w2d1",
+  "blocktitle": "Day 1",
+  "lectures": [
+   {
+    "stem": "nocode39",
+    "title": "OpenCode, and the free models",
+    "secs": 661.3
+   },
+   {
+    "stem": "nocode40",
+    "title": "AMP, OpenRouter, and Ollama",
+    "secs": 865.2
+   }
+  ],
+  "secs": 1539.2
+ },
+ {
+  "n": 20,
+  "week": 2,
+  "block": "w2d2",
+  "blocktitle": "Day 2",
+  "lectures": [
+   {
+    "stem": "nocode41",
+    "title": "Commands, shortcuts, configuration",
+    "secs": 705.0
+   },
+   {
+    "stem": "nocode42",
+    "title": "Sessions, checkpoints, and git",
+    "secs": 574.1
+   }
+  ],
+  "secs": 1291.8
+ },
+ {
+  "n": 21,
+  "week": 2,
+  "block": "w2d2",
+  "blocktitle": "Day 2",
+  "lectures": [
+   {
+    "stem": "nocode43",
+    "title": "Rewind: undoing what the agent did",
+    "secs": 392.1
+   },
+   {
+    "stem": "nocode44",
+    "title": "Bypassing permissions on purpose",
+    "secs": 408.2
+   },
+   {
+    "stem": "nocode45",
+    "title": "Ralph loops in Claude Code",
+    "secs": 733.0
+   }
+  ],
+  "secs": 1547.6
+ },
+ {
+  "n": 22,
+  "week": 2,
+  "block": "w2d3",
+  "blocktitle": "Day 3",
+  "lectures": [
+   {
+    "stem": "nocode46",
+    "title": "MCP, skills, plugins: the big three",
+    "secs": 603.2
+   },
+   {
+    "stem": "nocode47",
+    "title": "What an MCP server really is",
+    "secs": 807.3
+   }
+  ],
+  "secs": 1423.2
+ },
+ {
+  "n": 23,
+  "week": 2,
+  "block": "w2d3",
+  "blocktitle": "Day 3",
+  "lectures": [
+   {
+    "stem": "nocode48",
+    "title": "Adding MCP servers: Context7, Polygon",
+    "secs": 718.2
+   },
+   {
+    "stem": "nocode49",
+    "title": "Skills: the simpler way to add ability",
+    "secs": 793.3
+   }
+  ],
+  "secs": 1524.2
+ },
+ {
+  "n": 24,
+  "week": 2,
+  "block": "w2d3",
+  "blocktitle": "Day 3",
+  "lectures": [
+   {
+    "stem": "nocode50",
+    "title": "Skill marketplaces, and agent browser",
+    "secs": 759.0
+   }
+  ],
+  "secs": 770.1
+ },
+ {
+  "n": 25,
+  "week": 2,
+  "block": "w2d3",
+  "blocktitle": "Day 3",
+  "lectures": [
+   {
+    "stem": "nocode51",
+    "title": "Plugins: the marketplace and the rules",
+    "secs": 568.1
+   },
+   {
+    "stem": "nocode52",
+    "title": "MCP vs skills vs plugins: choosing",
+    "secs": 559.2
+   }
+  ],
+  "secs": 1140.0000000000002
+ },
+ {
+  "n": 26,
+  "week": 2,
+  "block": "w2d4",
+  "blocktitle": "Day 4",
+  "lectures": [
+   {
+    "stem": "nocode53",
+    "title": "The workflow: Claude Code, Jira, MCP",
+    "secs": 636.1
+   },
+   {
+    "stem": "nocode54",
+    "title": "Wiring Claude Code to Jira",
+    "secs": 604.0
+   }
+  ],
+  "secs": 1252.8
+ },
+ {
+  "n": 27,
+  "week": 2,
+  "block": "w2d4",
+  "blocktitle": "Day 4",
+  "lectures": [
+   {
+    "stem": "nocode55",
+    "title": "The GitHub MCP server",
+    "secs": 738.0
+   },
+   {
+    "stem": "nocode56",
+    "title": "From a Jira issue to a pull request",
+    "secs": 673.2
+   }
+  ],
+  "secs": 1423.9
+ },
+ {
+  "n": 28,
+  "week": 2,
+  "block": "w2d4",
+  "blocktitle": "Day 4",
+  "lectures": [
+   {
+    "stem": "nocode57",
+    "title": "A whole Next.js app from one ticket",
+    "secs": 639.2
+   },
+   {
+    "stem": "nocode58",
+    "title": "A disciplined way to debug",
+    "secs": 732.9
+   }
+  ],
+  "secs": 1384.8
+ },
+ {
+  "n": 29,
+  "week": 2,
+  "block": "w2d5",
+  "blocktitle": "Day 5",
+  "lectures": [
+   {
+    "stem": "nocode59",
+    "title": "A SaaS build: skills and claude.md",
+    "secs": 636.1
+   },
+   {
+    "stem": "nocode60",
+    "title": "Writing claude.md, building a skill",
+    "secs": 632.1
+   }
+  ],
+  "secs": 1280.9
+ },
+ {
+  "n": 30,
+  "week": 2,
+  "block": "w2d5",
+  "blocktitle": "Day 5",
+  "lectures": [
+   {
+    "stem": "nocode61",
+    "title": "Filing the tickets for V1",
+    "secs": 476.1
+   },
+   {
+    "stem": "nocode62",
+    "title": "Building the features",
+    "secs": 785.1
+   }
+  ],
+  "secs": 1273.9
+ },
+ {
+  "n": 31,
+  "week": 2,
+  "block": "w2d5",
+  "blocktitle": "Day 5",
+  "lectures": [
+   {
+    "stem": "nocode63",
+    "title": "Testing the legal doc generator",
+    "secs": 657.1
+   },
+   {
+    "stem": "nocode64",
+    "title": "Final merge, full demo, week two",
+    "secs": 873.1
+   }
+  ],
+  "secs": 1542.9
+ },
+ {
+  "n": 32,
+  "week": 3,
+  "block": "w3a",
+  "blocktitle": "Configuring the agent",
+  "lectures": [
+   {
+    "stem": "w3-01",
+    "title": "What changes when you stop typing",
+    "secs": 195.966667
+   },
+   {
+    "stem": "w3-02",
+    "title": "The brief: Control Tower",
+    "secs": 222.015
+   },
+   {
+    "stem": "w3-03",
+    "title": "Slash commands: a routine in one word",
+    "secs": 164.85
+   },
+   {
+    "stem": "w3-04",
+    "title": "Sub-agents: specialists inside an agent",
+    "secs": 432.0
+   },
+   {
+    "stem": "w3-05",
+    "title": "Hooks: rules that fire by themselves",
+    "secs": 471.3
+   }
+  ],
+  "secs": 1503.631667
+ },
+ {
+  "n": 33,
+  "week": 3,
+  "block": "w3b",
+  "blocktitle": "Packaging and sandboxing",
+  "lectures": [
+   {
+    "stem": "w3-06",
+    "title": "Plugins: packaging your whole setup",
+    "secs": 313.566667
+   },
+   {
+    "stem": "w3-07",
+    "title": "Why sandboxing is the unlock",
+    "secs": 452.833333
+   },
+   {
+    "stem": "w3-08",
+    "title": "YOLO without the fear: the container",
+    "secs": 591.466667
+   }
+  ],
+  "secs": 1372.166667
+ },
+ {
+  "n": 34,
+  "week": 3,
+  "block": "w3c",
+  "blocktitle": "Scale, and the SDK",
+  "lectures": [
+   {
+    "stem": "w3-12",
+    "title": "A big codebase: the seven rules",
+    "secs": 688.576
+   },
+   {
+    "stem": "w3-13",
+    "title": "Driving Claude from code: the SDK",
+    "secs": 581.033333
+   }
+  ],
+  "secs": 1282.309333
+ },
+ {
+  "n": 35,
+  "week": 3,
+  "block": "w3d",
+  "blocktitle": "No screen at all",
+  "lectures": [
+   {
+    "stem": "w3-36",
+    "title": "No screen at all: the print flag",
+    "secs": 192.1
+   },
+   {
+    "stem": "w3-37",
+    "title": "Agents in a pipeline",
+    "secs": 340.766667
+   },
+   {
+    "stem": "w3-38",
+    "title": "A stack of documents, not a codebase",
+    "secs": 426.266667
+   }
+  ],
+  "secs": 973.433334
+ },
+ {
+  "n": 36,
+  "week": 3,
+  "block": "w3e",
+  "blocktitle": "Agent teams",
+  "lectures": [
+   {
+    "stem": "w3-15",
+    "title": "Sub-agents vs agent teams",
+    "secs": 390.233333
+   },
+   {
+    "stem": "w3-16",
+    "title": "Clean house, and pick the roster",
+    "secs": 387.766667
+   },
+   {
+    "stem": "w3-17",
+    "title": "Launch: seven agents, one task list",
+    "secs": 790.9
+   }
+  ],
+  "secs": 1583.2
+ },
+ {
+  "n": 37,
+  "week": 3,
+  "block": "w3f",
+  "blocktitle": "What the team did",
+  "lectures": [
+   {
+    "stem": "w3-18",
+    "title": "What the swarm actually did",
+    "secs": 265.166667
+   },
+   {
+    "stem": "w3-19",
+    "title": "Are these tests worth anything?",
+    "secs": 362.166667
+   },
+   {
+    "stem": "w3-20",
+    "title": "First run: Control Tower is alive",
+    "secs": 150.333333
+   },
+   {
+    "stem": "w3-23",
+    "title": "Roll your own orchestrator",
+    "secs": 505.1
+   },
+   {
+    "stem": "w3-24",
+    "title": "The verdict on running a team",
+    "secs": 285.233333
+   }
+  ],
+  "secs": 1585.5
+ },
+ {
+  "n": 38,
+  "week": 3,
+  "block": "w3g",
+  "blocktitle": "Nobody in the chair",
+  "lectures": [
+   {
+    "stem": "w3-27",
+    "title": "A second brief, nobody in the chair",
+    "secs": 405.9
+   },
+   {
+    "stem": "w3-28",
+    "title": "Turning it into a real pipeline",
+    "secs": 729.366667
+   }
+  ],
+  "secs": 1147.966667
+ },
+ {
+  "n": 39,
+  "week": 3,
+  "block": "w3h",
+  "blocktitle": "The unattended run",
+  "lectures": [
+   {
+    "stem": "w3-29",
+    "title": "The run: no terminal to watch",
+    "secs": 1473.8
+   }
+  ],
+  "secs": 1484.8999999999999
+ },
+ {
+  "n": 40,
+  "week": 3,
+  "block": "w3i",
+  "blocktitle": "What a program built",
+  "lectures": [
+   {
+    "stem": "w3-30",
+    "title": "What a program built",
+    "secs": 359.433333
+   },
+   {
+    "stem": "w3-31",
+    "title": "First run, and what is wrong",
+    "secs": 207.133333
+   },
+   {
+    "stem": "w3-32",
+    "title": "The fix pass",
+    "secs": 786.666667
+   }
+  ],
+  "secs": 1367.5333329999999
+ },
+ {
+  "n": 41,
+  "week": 3,
+  "block": "w3j",
+  "blocktitle": "Off your laptop",
+  "lectures": [
+   {
+    "stem": "w3-33",
+    "title": "The repo, and its CI",
+    "secs": 318.358
+   },
+   {
+    "stem": "w3-34",
+    "title": "An issue is a brief with an address",
+    "secs": 476.166667
+   },
+   {
+    "stem": "w3-35",
+    "title": "The pull request",
+    "secs": 156.233333
+   },
+   {
+    "stem": "w3-39",
+    "title": "Diagnosing from the evidence",
+    "secs": 305.5
+   }
+  ],
+  "secs": 1272.1580000000001
+ },
+ {
+  "n": 42,
+  "week": 3,
+  "block": "w3k",
+  "blocktitle": "Two products, and a wrap",
+  "lectures": [
+   {
+    "stem": "w3-40",
+    "title": "The history the pipeline lost",
+    "secs": 589.333333
+   },
+   {
+    "stem": "w3-41",
+    "title": "Two products, honestly compared",
+    "secs": 559.7
+   },
+   {
+    "stem": "w3-25",
+    "title": "Into a container, with none of you",
+    "secs": 211.366667
+   },
+   {
+    "stem": "w3-26",
+    "title": "Wrap: from no-code to director",
+    "secs": 262.933333
+   }
+  ],
+  "secs": 1639.2333330000001
+ }
+]

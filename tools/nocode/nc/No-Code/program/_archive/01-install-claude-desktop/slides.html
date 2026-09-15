@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 01 — Install Claude Desktop</title>
+  <style>
+    :root {
+      --bg: #f3eee4;
+      --ink: #1b1813;
+      --muted: #5f584e;
+      --line: #d5ccbe;
+      --card: #fffdf8;
+      --accent: #c24b2a;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      background: #11100e;
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    }
+    #deck {
+      width: min(100vw, calc(100vh * 16 / 9));
+      height: min(100vh, calc(100vw * 9 / 16));
+      margin: auto;
+      position: relative;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .slide {
+      display: none;
+      position: absolute;
+      inset: 0;
+      padding: 7% 8%;
+    }
+    .slide.active { display: flex; flex-direction: column; }
+    .kicker {
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: clamp(12px, 1.4vw, 16px);
+      color: var(--accent);
+      margin: 0 0 18px;
+    }
+    h1 {
+      font-size: clamp(42px, 6.2vw, 84px);
+      line-height: 0.95;
+      margin: 0 0 20px;
+      font-weight: 600;
+      max-width: 14ch;
+    }
+    h2 {
+      font-size: clamp(34px, 4.6vw, 62px);
+      line-height: 1.02;
+      margin: 0 0 22px;
+      font-weight: 600;
+      max-width: 16ch;
+    }
+    p, li { font-size: clamp(20px, 2.3vw, 30px); line-height: 1.35; color: var(--ink); }
+    .sub { color: var(--muted); max-width: 28ch; margin: 0; }
+    ul { margin: 0; padding-left: 1.1em; }
+    li + li { margin-top: 10px; }
+    .grow { flex: 1; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 4%; align-items: start; }
+    .step {
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      font-size: clamp(13px, 1.5vw, 18px);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 10px;
+    }
+    .url {
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 14px 18px;
+      display: inline-block;
+      margin-top: 18px;
+    }
+    .checklist li { list-style: none; }
+    .checklist { padding: 0; }
+    .checklist li::before { content: "☐  "; color: var(--accent); }
+    .demo {
+      background: #1c1914;
+      color: #f6f0e6;
+    }
+    .demo .kicker { color: #f0a184; }
+    .demo h2, .demo p { color: #f6f0e6; }
+    .demo .sub { color: #c9c0b3; }
+    .bar {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 4%;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .demo + .bar, .slide.demo ~ .bar { color: #b7aea2; }
+    #notes {
+      display: none;
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      width: min(420px, 40vw);
+      background: #1c1914;
+      color: #f3eee4;
+      padding: 16px 18px;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+      z-index: 5;
+    }
+    #notes.on { display: block; }
+    #notes strong { display: block; margin-bottom: 6px; color: #f0a184; }
+    button.link {
+      appearance: none;
+      border: 0;
+      background: var(--accent);
+      color: #fff8f4;
+      font: inherit;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      font-size: clamp(16px, 1.8vw, 22px);
+      padding: 14px 20px;
+      margin-top: 28px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="deck">
+    <section class="slide active" data-notes="Welcome students. Say this is Lesson 1 of No-Code Lab. We will look at 6 short slides, then do the install live on this Mac.">
+      <p class="kicker">No-Code Lab · Lesson 01</p>
+      <h1>Install Claude Desktop</h1>
+      <p class="sub">A live walkthrough. We open the official page, download the app, and sign in together.</p>
+    </section>
+
+    <section class="slide" data-notes="Keep this short. Claude Desktop is the tool we will use for the rest of the program: chat, files, and later Cowork.">
+      <p class="kicker">Why this lesson</p>
+      <h2>This is the tool we will build with.</h2>
+      <p class="sub">Claude Desktop lives on your computer. It can use your files, stay in the dock, and later connect to the tools in this program.</p>
+    </section>
+
+    <section class="slide" data-notes="Set expectations. Free plan is enough for chat. Paid plans unlock Code and Cowork — we can mention that without selling it.">
+      <p class="kicker">You will leave with</p>
+      <ul>
+        <li>Claude Desktop installed on this Mac</li>
+        <li>The app opened from Applications</li>
+        <li>Your Claude account signed in</li>
+        <li>A first chat, so you know it works</li>
+      </ul>
+    </section>
+
+    <section class="slide" data-notes="Point at the screen. Confirm they have a Mac and a browser. Account can be created during the demo if needed.">
+      <p class="kicker">What you need</p>
+      <div class="row">
+        <div>
+          <p class="step">Computer</p>
+          <p>A Mac on macOS 11 or later. This recording uses this machine.</p>
+        </div>
+        <div>
+          <p class="step">Account</p>
+          <p>A Claude account. Free works for chat. Same email as claude.ai.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-notes="Read the five steps once. Then say: now we stop the slides and do this for real.">
+      <p class="kicker">The five steps</p>
+      <ol>
+        <li>Open the official download page</li>
+        <li>Download Claude for macOS</li>
+        <li>Drag Claude into Applications</li>
+        <li>Open the app (click Open if macOS asks)</li>
+        <li>Sign in and send a first message</li>
+      </ol>
+    </section>
+
+    <section class="slide demo" data-notes="PAUSE. Ask the recorder to keep capturing. Click the button or say 'start the demo' in chat so the official page opens.">
+      <p class="kicker">Live demo</p>
+      <h2>We do this on the real website now.</h2>
+      <p class="sub">Official page only: claude.com/download. No third-party installers.</p>
+      <button class="link" type="button" id="open-demo">Open the download page</button>
+    </section>
+
+    <section class="slide" data-notes="Use this as a voiceover checklist after the install, or if you need to recut.">
+      <p class="kicker">After the demo</p>
+      <h2>Checklist</h2>
+      <ul class="checklist">
+        <li>Claude.dmg downloaded from Anthropic</li>
+        <li>Claude is in Applications</li>
+        <li>App opens without an error</li>
+        <li>You are signed in</li>
+        <li>A test message got a reply</li>
+      </ul>
+    </section>
+
+    <section class="slide" data-notes="Close the lesson. Next recording can be: create a Claude account if they do not have one, or first project setup.">
+      <p class="kicker">Next lesson</p>
+      <h2>Create your first workspace.</h2>
+      <p class="sub">Next we will open Claude Desktop, start a project, and set up the folder we will use for the rest of the program.</p>
+    </section>
+  </div>
+
+  <div class="bar">
+    <span>No-Code Lab</span>
+    <span id="pos">1 / 8</span>
+    <span>← → · F fullscreen · N notes</span>
+  </div>
+  <aside id="notes"></aside>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    const pos = document.getElementById("pos");
+    const notes = document.getElementById("notes");
+    let i = 0;
+
+    function show(n) {
+      i = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
+      pos.textContent = `${i + 1} / ${slides.length}`;
+      notes.innerHTML = `<strong>Speaker notes</strong>${slides[i].dataset.notes || ""}`;
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (["ArrowRight", "ArrowDown", "PageDown", " "].includes(e.key)) {
+        e.preventDefault();
+        show(i + 1);
+      }
+      if (["ArrowLeft", "ArrowUp", "PageUp"].includes(e.key)) {
+        e.preventDefault();
+        show(i - 1);
+      }
+      if (e.key === "f" || e.key === "F") {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+        else document.exitFullscreen();
+      }
+      if (e.key === "n" || e.key === "N") notes.classList.toggle("on");
+    });
+
+    document.getElementById("open-demo").addEventListener("click", () => {
+      window.open("https://claude.com/download", "_blank", "noopener");
+    });
+
+    const record = new URLSearchParams(location.search).has("record");
+    if (record) {
+      document.body.classList.add("recording");
+      const dwell = 4500;
+      const play = () => {
+        if (i < slides.length - 1) {
+          show(i + 1);
+          setTimeout(play, dwell);
+        }
+      };
+      setTimeout(play, dwell);
+    }
+
+    show(0);
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{
+ "film": "vscode-install",
+ "voice": "liam",
+ "segments": [
+  {
+   "beat": "address",
+   "in": 12.5,
+   "out": 25.4,
+   "say": "Let's install Visual Studio Code on a Mac. One address, typed straight in: code dot visualstudio dot com. Type it — don't search for it, because the top of a results page is ads."
+  },
+  {
+   "beat": "landing1",
+   "in": 25.4,
+   "out": 32.5,
+   "say": "This is the real site. Visual Studio Code is a free editor from Microsoft, and it's what we'll be working in."
+  },
+  {
+   "beat": "landing2",
+   "in": 58.0,
+   "out": 72.3,
+   "say": "The page is one button, and it already says Download for macOS, because the site can tell what I'm on. I'm going to the full download page instead — this Download button in the navigation bar."
+  },
+  {
+   "beat": "downloadpage",
+   "in": 76.0,
+   "out": 94.5,
+   "say": "Every version, side by side. Windows on the left, Linux in the middle, Mac on the right. On Windows you want the User Installer, x sixty-four, and you click through it. On Linux, the dot deb for Ubuntu or the dot rpm for Fedora."
+  },
+  {
+   "beat": "chip",
+   "in": 106.0,
+   "out": 140.0,
+   "say": "That's the Mac column, and the button gives you the requirement: macOS twelve or newer. Underneath, the d m g, and three links. Intel chip, Apple silicon, Universal. That's about the processor in your Mac. Anything recent has an Apple chip — an M one, M two, M three — and that's Apple silicon. Older Macs are Intel. Not sure? Take Universal: it has both, it just downloads bigger. Same editor either way. This is an M three, so: Apple silicon."
+  },
+  {
+   "beat": "download",
+   "in": 145.7,
+   "out": 163.0,
+   "say": "One click and it's coming. Chrome shows it in the toolbar: V S Code, darwin, arm sixty-four, dot d m g. Two hundred and seventy-one megabytes. It's in your Downloads folder, but you don't need to go and find it — this panel opens it."
+  },
+  {
+   "beat": "mount",
+   "in": 182.4,
+   "out": 196.5,
+   "say": "A d m g is a disk image. Opening it installs nothing. It mounts, like a memory stick, and shows you what's inside: the app on the left, your Applications folder on the right."
+  },
+  {
+   "beat": "drag",
+   "in": 213.0,
+   "out": 227.5,
+   "say": "And that's the install: drag the app onto Applications. No wizard, no Next button. On a Mac an app is one item, and installing it means putting it where apps live. That's nine hundred megabytes copying onto your drive."
+  },
+  {
+   "beat": "landed",
+   "in": 242.2,
+   "out": 259.0,
+   "say": "The Finder opens Applications to show you the result. There it is — a real copy, on your drive. One warning: don't skip the drag. The app opens happily from inside the disk image, which feels like you're done. But eject that image and your editor vanishes."
+  },
+  {
+   "beat": "eject",
+   "in": 271.2,
+   "out": 280.0,
+   "say": "Which it's ready for. Click its window, Command E, gone. Bin the d m g too — neither touches the copy you made."
+  },
+  {
+   "beat": "closing",
+   "in": 295.3,
+   "out": 315.0,
+   "say": "Installed. The first time you open it, macOS asks if you're sure, because it came from the internet. Normal, asked once, and the answer is Open. If it ever refuses outright, look in System Settings, under Privacy and Security. Straight from Microsoft, copied into Applications, ready."
+  }
+ ]
+}

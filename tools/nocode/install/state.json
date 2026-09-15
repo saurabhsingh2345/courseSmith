@@ -1,0 +1,15 @@
+{
+ "computer_name": "Singh's MacBook Pro",
+ "create_desktop": "1",
+ "dock_autohide": "1",
+ "app_renamed": true,
+ "portable_set": true,
+ "renamed_computer": false,
+ "apps_aside": [
+  [
+   "/Applications/TerminalEnf.app",
+   "/Applications/.terminalenf-aside.app"
+  ]
+ ],
+ "dock_plist": "/Users/enfecsolutions/Desktop/enfec_subs/courseSmith/tools/nocode/install/dock-backup.plist"
+}

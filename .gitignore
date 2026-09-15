@@ -151,3 +151,5 @@ tools/nocode/**/restore/
 # statusline script a shoot replaces, parked so teardown can restore them.
 tools/nocode/**/*.backup.json
 tools/nocode/**/*.ORIGINAL.*
+# The Dock a shoot rearranges, snapshotted for the same reason.
+tools/nocode/**/dock-backup.plist

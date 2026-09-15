@@ -1,0 +1,66 @@
+{
+ "film": "python-install",
+ "voice": "liam",
+ "segments": [
+  {
+   "beat": "address",
+   "in": 9.5,
+   "out": 21.3,
+   "say": "Now Python. One address, typed in: python dot org. Your Mac has an old Python already — leave that one alone. We're installing a current one alongside it."
+  },
+  {
+   "beat": "homepage",
+   "in": 21.3,
+   "out": 36.0,
+   "say": "The official home of the language, run by the Python Software Foundation. Everything is behind one word in the navigation bar: Downloads. Hover it and it's already spotted I'm on a Mac."
+  },
+  {
+   "beat": "downloadspage",
+   "in": 52.0,
+   "out": 85.0,
+   "say": "One big yellow button. Those numbers are the version. Three is modern Python, fourteen is the current release, and the last number is a maintenance update, so yours may be higher. That's fine — take whatever the button offers. Scroll down and you can see every version and how long it's supported. The only rule: nothing starting with a two. Python two was retired years ago. Not on a Mac? These links are your Windows and Linux versions. On Windows, tick Add Python to PATH on the first screen."
+  },
+  {
+   "beat": "download",
+   "in": 89.1,
+   "out": 102.0,
+   "say": "Click it, and down it comes. A dot p k g file: python, the version, macOS. That's a real installer, not a disk image, so it behaves the way you'd expect."
+  },
+  {
+   "beat": "intro",
+   "in": 159.5,
+   "out": 170.5,
+   "say": "And this is it. Down the left is every step it'll take you through, and it marks where you are. This pane just says what's coming. Continue."
+  },
+  {
+   "beat": "readme",
+   "in": 177.0,
+   "out": 195.0,
+   "say": "This one's worth a moment, because nobody reads it. It tells you what it's about to do: where Python goes, that it makes the python three command work in your terminal, and that it sets up the certificates Python needs for the internet. You don't have to do any of it. Continue."
+  },
+  {
+   "beat": "license",
+   "in": 196.8,
+   "out": 206.4,
+   "say": "Then the licence — open source, so you can use it for anything, including paid work. Continue, and a sheet asks you to actually agree. Agree."
+  },
+  {
+   "beat": "installtype",
+   "in": 206.9,
+   "out": 231.0,
+   "say": "Last screen before it works. It tells you the space needed, and offers a Customize button — leave that alone. The default includes pip, which is how you'll install other people's packages later. So: Install. Now macOS asks for your password, because this installs for everyone on the machine. That prompt is macOS, not Python. I've cut mine out."
+  },
+  {
+   "beat": "progress",
+   "in": 234.7,
+   "out": 243.8,
+   "say": "Then it just runs — unpacking Python into Frameworks, putting its applications into Applications, wiring up the commands."
+  },
+  {
+   "beat": "summary",
+   "in": 243.8,
+   "out": 269.0,
+   "say": "And there's the sentence you want: the installation was completed successfully. It opens a folder for you inside Applications, named Python and the version. IDLE is a simple editor and console that comes free with it, and it's the quickest way to check Python runs. Python Launcher runs a file when you double-click it. That's Python installed — from python dot org, through its own installer."
+  }
+ ]
+}
