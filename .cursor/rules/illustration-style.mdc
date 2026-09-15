@@ -1,0 +1,38 @@
+---
+description: Sticker-style illustrations for program slides. Draw new subjects in this look; do not reuse sample icons everywhere.
+alwaysApply: true
+---
+
+# Illustration style
+
+Reference frames (laptop, Mac, Studio, PC, GPU, folder, database) are a **look**, not a kit to stamp on every slide. Draw a new subject only when that slide’s line needs it.
+
+## Palette
+
+- Field: `#070707`
+- Body: `#f5c518`
+- Offset: `#e53935` (hard, down-right, no blur)
+- Ink / outline: `#111`
+- Accent: `#3b82f6`
+- Punch: `#fff`
+
+## How a subject is drawn
+
+1. Flat silhouette, 2–4 details that name the object (fans, ports, logo, keys).
+2. Thick black outline (`stroke-width` 6–8). White rim only if it must pop off black.
+3. Duplicate the silhouette, fill red, shift down-right ~12px. That is the shadow.
+4. Yellow fill on the main body. Black for screens, fans, vents, logos.
+5. Blue only as a small hub, light, or sticker edge.
+6. Optional tilted white spec card: small black kicker + large red number.
+
+## Do
+
+- Original SVG in the part’s `images/` folder
+- One hero mark per slide, or a pair for a vs
+- Same weights and offset as `images/hw-*.svg`
+
+## Do not
+
+- Put the hardware lineup on slides that are not about hardware
+- Soft drop-shadows, gradients, photos, thin line icons
+- Copy thumbnail headlines or watermarks from references

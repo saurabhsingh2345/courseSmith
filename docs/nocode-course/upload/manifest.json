@@ -1,0 +1,688 @@
+[
+ {
+  "pos": 1,
+  "week": 1,
+  "file": "nocode01_adam.mp4",
+  "title": "Day 1 - Welcome to the Course: Building a 3D Game with Cursor AI",
+  "secs": 612.12
+ },
+ {
+  "pos": 2,
+  "week": 1,
+  "file": "nocode02_adam.mp4",
+  "title": "Day 1 - Building a First-Person Shooter Game with Cursor AI Agent",
+  "secs": 414.02
+ },
+ {
+  "pos": 3,
+  "week": 1,
+  "file": "nocode03_adam.mp4",
+  "title": "Day 1 - The Missing Manual for Agentic AI Coding",
+  "secs": 414.3
+ },
+ {
+  "pos": 4,
+  "week": 1,
+  "file": "nocode04_adam.mp4",
+  "title": "Day 1 - Meet Your Instructor & the 3-Week AI Coder Course Roadmap",
+  "secs": 263.5
+ },
+ {
+  "pos": 5,
+  "week": 1,
+  "file": "nocode06_adam.mp4",
+  "title": "Day 1 - Vibe Coding, Agentic Coders & Coding Agents Like Claude Code",
+  "secs": 537.3
+ },
+ {
+  "pos": 6,
+  "week": 1,
+  "file": "nocode07_adam.mp4",
+  "title": "Day 1 - The 8 Stages of AI Coding: From ChatGPT to Agent Orchestration",
+  "secs": 631.0
+ },
+ {
+  "pos": 7,
+  "week": 1,
+  "file": "nocode08_adam.mp4",
+  "title": "Day 1 - Wrapping Up: Your Unique Agentic Coding Journey Ahead",
+  "secs": 180.5
+ },
+ {
+  "pos": 8,
+  "week": 1,
+  "file": "nocode09_adam.mp4",
+  "title": "Day 2 - How LLMs Work: Tokens, Memory, and Reasoning Explained",
+  "secs": 662.2
+ },
+ {
+  "pos": 9,
+  "week": 1,
+  "file": "nocode10_adam.mp4",
+  "title": "Day 2 - Tools, Loops, and the Definition of AI Agents",
+  "secs": 508.0
+ },
+ {
+  "pos": 10,
+  "week": 1,
+  "file": "nocode11_adam.mp4",
+  "title": "Day 2 - Context Engineering: System Prompts, Context Windows & agents.md",
+  "secs": 780.3
+ },
+ {
+  "pos": 11,
+  "week": 1,
+  "file": "nocode12_adam.mp4",
+  "title": "Day 2 - Mastering agents.md: Context Window Strategy for Coding Agents",
+  "secs": 721.2
+ },
+ {
+  "pos": 12,
+  "week": 1,
+  "file": "nocode13_adam.mp4",
+  "title": "Day 2 - The Evolution of AI Coding Workflows: From YOLO to Ralph Loops",
+  "secs": 784.0
+ },
+ {
+  "pos": 13,
+  "week": 1,
+  "file": "nocode14_adam.mp4",
+  "title": "Day 2 - Beyond the Hype: Comparing LLMs on Artificial Analysis",
+  "secs": 433.3
+ },
+ {
+  "pos": 14,
+  "week": 1,
+  "file": "nocode15_adam.mp4",
+  "title": "Day 3 - Hands-On with Cursor, Copilot, Codex & Agentic Vibe Coding",
+  "secs": 507.1
+ },
+ {
+  "pos": 15,
+  "week": 1,
+  "file": "nocode16_adam.mp4",
+  "title": "Day 3 - Exploring the agents.md File and Cursor Settings for Vibe Coding",
+  "secs": 597.6
+ },
+ {
+  "pos": 16,
+  "week": 1,
+  "file": "nocode17_adam.mp4",
+  "title": "Day 3 - Building a Kanban App with the Cursor AI Agent in YOLO Mode",
+  "secs": 581.1
+ },
+ {
+  "pos": 17,
+  "week": 1,
+  "file": "nocode18_adam.mp4",
+  "title": "Day 3 - Building a Kanban Board with GitHub Copilot in VS Code",
+  "secs": 1247.6
+ },
+ {
+  "pos": 18,
+  "week": 1,
+  "file": "nocode19_adam.mp4",
+  "title": "Day 3 - OpenAI Codex VS Code Extension: Zero-Shot Kanban App Build",
+  "secs": 854.4
+ },
+ {
+  "pos": 19,
+  "week": 1,
+  "file": "nocode20_adam.mp4",
+  "title": "Day 3 - Building a Kanban App with Antigravity IDE and Gemini 3 Pro",
+  "secs": 742.2
+ },
+ {
+  "pos": 20,
+  "week": 1,
+  "file": "nocode21_adam.mp4",
+  "title": "Day 3 - Cursor vs Copilot vs Codex vs Antigravity: Final Verdict",
+  "secs": 394.1
+ },
+ {
+  "pos": 21,
+  "week": 1,
+  "file": "nocode22_adam.mp4",
+  "title": "Day 4 - YOLO Mode: Choosing the Right LLM for Agentic Coding in IDEs",
+  "secs": 546.0
+ },
+ {
+  "pos": 22,
+  "week": 1,
+  "file": "nocode23_adam.mp4",
+  "title": "Day 4 - Five Principles for Successful Vibe Coding: Be the Boss",
+  "secs": 635.2
+ },
+ {
+  "pos": 23,
+  "week": 1,
+  "file": "nocode24_adam.mp4",
+  "title": "Day 4 - Responsible YOLO Coding: Setting Up OpenRouter for AI Projects",
+  "secs": 816.0
+ },
+ {
+  "pos": 24,
+  "week": 1,
+  "file": "nocode25_adam.mp4",
+  "title": "Day 4 - YOLO Mode: Building a Next.js Website with GPT Codex in Cursor",
+  "secs": 634.1
+ },
+ {
+  "pos": 25,
+  "week": 1,
+  "file": "nocode26_adam.mp4",
+  "title": "Day 4 - Adding an AI Digital Twin Chat with OpenRouter & Vibe Coding",
+  "secs": 469.2
+ },
+ {
+  "pos": 26,
+  "week": 1,
+  "file": "nocode27_adam.mp4",
+  "title": "Day 4 - Tutorials, Code Reviews with Opus, and Cross-Model Collaboration",
+  "secs": 500.2
+ },
+ {
+  "pos": 27,
+  "week": 1,
+  "file": "nocode28_adam.mp4",
+  "title": "Day 5 - Karpathy on Vibe Coding & Rules for Building a Commercial MVP",
+  "secs": 635.1
+ },
+ {
+  "pos": 28,
+  "week": 1,
+  "file": "nocode29_adam.mp4",
+  "title": "Day 5 - Web Apps 101: Front-End, Back-End, APIs & Docker Setup",
+  "secs": 660.3
+ },
+ {
+  "pos": 29,
+  "week": 1,
+  "file": "nocode30_adam.mp4",
+  "title": "Day 5 - Setting Up a Full-Stack Project with GitHub Copilot & FastAPI",
+  "secs": 647.5
+ },
+ {
+  "pos": 30,
+  "week": 1,
+  "file": "nocode31_adam.mp4",
+  "title": "Day 5 - Building Step-by-Step with AI Copilot: Planning & Scaffolding",
+  "secs": 608.0
+ },
+ {
+  "pos": 31,
+  "week": 1,
+  "file": "nocode32_adam.mp4",
+  "title": "Day 5 - Building a Kanban App with GitHub Copilot, Docker & FastAPI",
+  "secs": 777.1
+ },
+ {
+  "pos": 32,
+  "week": 1,
+  "file": "nocode33_adam.mp4",
+  "title": "Day 5 - Building a Kanban App with GitHub Copilot: Debugging Drag and Drop",
+  "secs": 760.3
+ },
+ {
+  "pos": 33,
+  "week": 1,
+  "file": "nocode34_adam.mp4",
+  "title": "Day 5 - AI Assistant Kanban App Complete: Copilot, OpenRouter & Week 1 Wrap",
+  "secs": 663.4
+ },
+ {
+  "pos": 34,
+  "week": 2,
+  "file": "nocode35_adam.mp4",
+  "title": "Day 1 - Welcome to Pro Week: From Vibe Coding to Vibe Engineering",
+  "secs": 533.7
+ },
+ {
+  "pos": 35,
+  "week": 2,
+  "file": "nocode36_adam.mp4",
+  "title": "Day 1 - The Rise of Claude Code: History, Setup & Installation in VS Code",
+  "secs": 709.1
+ },
+ {
+  "pos": 36,
+  "week": 2,
+  "file": "nocode37_adam.mp4",
+  "title": "Day 1 - Getting Started with Claude Code CLI: Init, Context & Testing",
+  "secs": 634.2
+ },
+ {
+  "pos": 37,
+  "week": 2,
+  "file": "nocode38_adam.mp4",
+  "title": "Day 1 - Claude Code Review: Fixing Hallucinations & Refactoring Code",
+  "secs": 915.8
+ },
+ {
+  "pos": 38,
+  "week": 2,
+  "file": "nocode39_adam.mp4",
+  "title": "Day 1 - OpenCode: Use Free Models Like GLM 4.7 as a Claude Code Alternative",
+  "secs": 661.3
+ },
+ {
+  "pos": 39,
+  "week": 2,
+  "file": "nocode40_adam.mp4",
+  "title": "Day 1 - AMP Code, OpenCode & Claude Code with OpenRouter and Ollama",
+  "secs": 865.2
+ },
+ {
+  "pos": 40,
+  "week": 2,
+  "file": "nocode41_adam.mp4",
+  "title": "Day 2 - Claude Code Commands, Shortcuts & Configuration Deep Dive",
+  "secs": 705.0
+ },
+ {
+  "pos": 41,
+  "week": 2,
+  "file": "nocode42_adam.mp4",
+  "title": "Day 2 - Sessions, Checkpoints & Git: Managing Your Claude Code Workflow",
+  "secs": 574.1
+ },
+ {
+  "pos": 42,
+  "week": 2,
+  "file": "nocode43_adam.mp4",
+  "title": "Day 2 - Claude Code Checkpoints, Rewind, and YOLO Mode Explained",
+  "secs": 392.1
+ },
+ {
+  "pos": 43,
+  "week": 2,
+  "file": "nocode44_adam.mp4",
+  "title": "Day 2 - Claude Code YOLO Mode: Bypass Permissions for Autonomous Coding",
+  "secs": 408.2
+ },
+ {
+  "pos": 44,
+  "week": 2,
+  "file": "nocode45_adam.mp4",
+  "title": "Day 2 - Ralph Loops in Claude Code: Autonomous Agent Coding on Autopilot",
+  "secs": 733.0
+ },
+ {
+  "pos": 45,
+  "week": 2,
+  "file": "nocode46_adam.mp4",
+  "title": "Day 3 - MCP, Skills & Plugins: The Big Three Building Blocks of Claude Code",
+  "secs": 603.2
+ },
+ {
+  "pos": 46,
+  "week": 2,
+  "file": "nocode47_adam.mp4",
+  "title": "Day 3 - MCP Servers Explained: Hosts, Clients, and Discovery for Claude Code",
+  "secs": 807.3
+ },
+ {
+  "pos": 47,
+  "week": 2,
+  "file": "nocode48_adam.mp4",
+  "title": "Day 3 - Adding MCP Servers to Claude Code: Context7 & Polygon IO",
+  "secs": 718.2
+ },
+ {
+  "pos": 48,
+  "week": 2,
+  "file": "nocode49_adam.mp4",
+  "title": "Day 3 - Skills vs MCP: Claude Code's Simpler Way to Add Abilities",
+  "secs": 793.3
+ },
+ {
+  "pos": 49,
+  "week": 2,
+  "file": "nocode50_adam.mp4",
+  "title": "Day 3 - Skills Marketplaces: Installing Agent Browser in Claude Code",
+  "secs": 759.0
+ },
+ {
+  "pos": 50,
+  "week": 2,
+  "file": "nocode51_adam.mp4",
+  "title": "Day 3 - Claude Code Plugins: Marketplace, Installation & Best Practices",
+  "secs": 568.1
+ },
+ {
+  "pos": 51,
+  "week": 2,
+  "file": "nocode52_adam.mp4",
+  "title": "Day 3 - MCP vs Skills vs Plugins: Choosing the Right Claude Code Setup",
+  "secs": 559.2
+ },
+ {
+  "pos": 52,
+  "week": 2,
+  "file": "nocode53_adam.mp4",
+  "title": "Day 4 - Building with Claude Code, Jira, MCP & Plugins Workflow",
+  "secs": 636.1
+ },
+ {
+  "pos": 53,
+  "week": 2,
+  "file": "nocode54_adam.mp4",
+  "title": "Day 4 - Connecting Claude Code to Jira MCP Server & GitHub Repository",
+  "secs": 604.0
+ },
+ {
+  "pos": 54,
+  "week": 2,
+  "file": "nocode55_adam.mp4",
+  "title": "Day 4 - Setting Up GitHub MCP Server & Featured Dev Plugin in Claude Code",
+  "secs": 738.0
+ },
+ {
+  "pos": 55,
+  "week": 2,
+  "file": "nocode56_adam.mp4",
+  "title": "Day 4 - Claude Code Autonomy: From Jira Issue to PR via MCP Server",
+  "secs": 673.2
+ },
+ {
+  "pos": 56,
+  "week": 2,
+  "file": "nocode57_adam.mp4",
+  "title": "Day 4 - Claude Code Builds a Full Next.js App from a Jira Ticket",
+  "secs": 639.2
+ },
+ {
+  "pos": 57,
+  "week": 2,
+  "file": "nocode58_adam.mp4",
+  "title": "Day 4 - Debugging Strategies for Claude Code: A Disciplined Approach",
+  "secs": 732.9
+ },
+ {
+  "pos": 58,
+  "week": 2,
+  "file": "nocode59_adam.mp4",
+  "title": "Day 5 - Building a SaaS Platform: Claude Code Skills & Claude.md Setup",
+  "secs": 636.1
+ },
+ {
+  "pos": 59,
+  "week": 2,
+  "file": "nocode60_adam.mp4",
+  "title": "Day 5 - Writing claude.md and Creating Custom Skills for Cerebras",
+  "secs": 632.1
+ },
+ {
+  "pos": 60,
+  "week": 2,
+  "file": "nocode61_adam.mp4",
+  "title": "Day 5 - Setting Up Jira Tickets for Claude Code to Build Our V1 Product",
+  "secs": 476.1
+ },
+ {
+  "pos": 61,
+  "week": 2,
+  "file": "nocode62_adam.mp4",
+  "title": "Day 5 - Building Features with Claude Code, Jira, and FastAPI",
+  "secs": 785.1
+ },
+ {
+  "pos": 62,
+  "week": 2,
+  "file": "nocode63_adam.mp4",
+  "title": "Day 5 - Testing the AI Legal Doc Generator with Cerebras and Claude Code",
+  "secs": 657.1
+ },
+ {
+  "pos": 63,
+  "week": 2,
+  "file": "nocode64_adam.mp4",
+  "title": "Day 5 - Final PR Merge, Full SaaS Demo & Week 2 Victory in Claude Code",
+  "secs": 873.1
+ },
+ {
+  "pos": 64,
+  "week": 3,
+  "file": "w3-01_adam.mp4",
+  "title": "Welcome to expert: what changes when you stop typing",
+  "secs": 195.97
+ },
+ {
+  "pos": 65,
+  "week": 3,
+  "file": "w3-02_adam.mp4",
+  "title": "The brief: setting up Control Tower",
+  "secs": 222.01
+ },
+ {
+  "pos": 66,
+  "week": 3,
+  "file": "w3-03_adam.mp4",
+  "title": "Slash commands: a routine in one word",
+  "secs": 164.85
+ },
+ {
+  "pos": 67,
+  "week": 3,
+  "file": "w3-04_adam.mp4",
+  "title": "Sub-agents: a team of specialists inside one agent",
+  "secs": 432.0
+ },
+ {
+  "pos": 68,
+  "week": 3,
+  "file": "w3-05_adam.mp4",
+  "title": "Hooks: making your rules fire by themselves",
+  "secs": 471.3
+ },
+ {
+  "pos": 69,
+  "week": 3,
+  "file": "w3-06_adam.mp4",
+  "title": "Plugins and marketplaces: packaging your setup",
+  "secs": 313.57
+ },
+ {
+  "pos": 70,
+  "week": 3,
+  "file": "w3-07_adam.mp4",
+  "title": "Why sandboxing is the unlock",
+  "secs": 452.83
+ },
+ {
+  "pos": 71,
+  "week": 3,
+  "file": "w3-08_adam.mp4",
+  "title": "YOLO without the fear: the container sandbox",
+  "secs": 591.47
+ },
+ {
+  "pos": 72,
+  "week": 3,
+  "file": "w3-12_adam.mp4",
+  "title": "Working in a big codebase: the seven rules",
+  "secs": 688.58
+ },
+ {
+  "pos": 73,
+  "week": 3,
+  "file": "w3-13_adam.mp4",
+  "title": "Driving Claude from code: the Agent SDK",
+  "secs": 581.03
+ },
+ {
+  "pos": 74,
+  "week": 3,
+  "file": "w3-36_adam.mp4",
+  "title": "No screen at all: the print flag",
+  "secs": 192.1
+ },
+ {
+  "pos": 75,
+  "week": 3,
+  "file": "w3-37_adam.mp4",
+  "title": "Agents in a pipeline",
+  "secs": 340.77
+ },
+ {
+  "pos": 76,
+  "week": 3,
+  "file": "w3-38_adam.mp4",
+  "title": "A stack of documents, not a codebase",
+  "secs": 426.27
+ },
+ {
+  "pos": 77,
+  "week": 3,
+  "file": "w3-15_adam.mp4",
+  "title": "Sub-agents vs agent teams: what actually changes",
+  "secs": 390.23
+ },
+ {
+  "pos": 78,
+  "week": 3,
+  "file": "w3-16_adam.mp4",
+  "title": "Setting up the team: clean house, pick the roster",
+  "secs": 387.77
+ },
+ {
+  "pos": 79,
+  "week": 3,
+  "file": "w3-17_adam.mp4",
+  "title": "Launch: seven agents, one shared task list",
+  "secs": 790.9
+ },
+ {
+  "pos": 80,
+  "week": 3,
+  "file": "w3-18_adam.mp4",
+  "title": "What the swarm actually did: the evidence in the repo",
+  "secs": 265.17
+ },
+ {
+  "pos": 81,
+  "week": 3,
+  "file": "w3-19_adam.mp4",
+  "title": "The integration pass: are these tests worth anything?",
+  "secs": 362.17
+ },
+ {
+  "pos": 82,
+  "week": 3,
+  "file": "w3-20_adam.mp4",
+  "title": "First run: Control Tower is alive",
+  "secs": 150.33
+ },
+ {
+  "pos": 83,
+  "week": 3,
+  "file": "w3-23_adam.mp4",
+  "title": "Roll your own orchestrator with the Agent SDK",
+  "secs": 505.1
+ },
+ {
+  "pos": 84,
+  "week": 3,
+  "file": "w3-24_adam.mp4",
+  "title": "The verdict on the two ways of running a team",
+  "secs": 285.23
+ },
+ {
+  "pos": 85,
+  "week": 3,
+  "file": "w3-27_adam.mp4",
+  "title": "A second brief, and nobody in the chair",
+  "secs": 405.9
+ },
+ {
+  "pos": 86,
+  "week": 3,
+  "file": "w3-28_adam.mp4",
+  "title": "Turning the orchestrator into a real pipeline",
+  "secs": 729.37
+ },
+ {
+  "pos": 87,
+  "week": 3,
+  "file": "w3-29_adam.mp4",
+  "title": "The run: agents building with no terminal to watch",
+  "secs": 1473.8
+ },
+ {
+  "pos": 88,
+  "week": 3,
+  "file": "w3-30_adam.mp4",
+  "title": "What a program built",
+  "secs": 359.43
+ },
+ {
+  "pos": 89,
+  "week": 3,
+  "file": "w3-31_adam.mp4",
+  "title": "First run, and what is wrong with it",
+  "secs": 207.13
+ },
+ {
+  "pos": 90,
+  "week": 3,
+  "file": "w3-32_adam.mp4",
+  "title": "The fix pass",
+  "secs": 786.67
+ },
+ {
+  "pos": 91,
+  "week": 3,
+  "file": "w3-33_adam.mp4",
+  "title": "Somewhere other than your laptop: the repo and its CI",
+  "secs": 318.36
+ },
+ {
+  "pos": 92,
+  "week": 3,
+  "file": "w3-34_adam.mp4",
+  "title": "An issue is a brief with an address",
+  "secs": 476.17
+ },
+ {
+  "pos": 93,
+  "week": 3,
+  "file": "w3-35_adam.mp4",
+  "title": "The pull request",
+  "secs": 156.23
+ },
+ {
+  "pos": 94,
+  "week": 3,
+  "file": "w3-39_adam.mp4",
+  "title": "When it is wrong: diagnosing from evidence",
+  "secs": 305.5
+ },
+ {
+  "pos": 95,
+  "week": 3,
+  "file": "w3-40_adam.mp4",
+  "title": "The history the pipeline did not keep",
+  "secs": 589.33
+ },
+ {
+  "pos": 96,
+  "week": 3,
+  "file": "w3-41_adam.mp4",
+  "title": "Two whole products, honestly compared",
+  "secs": 559.7
+ },
+ {
+  "pos": 97,
+  "week": 3,
+  "file": "w3-25_adam.mp4",
+  "title": "Ship it: into a container, with none of your machine in it",
+  "secs": 211.37
+ },
+ {
+  "pos": 98,
+  "week": 3,
+  "file": "w3-26_adam.mp4",
+  "title": "Wrap: from no-code to agentic director",
+  "secs": 262.93
+ }
+]
