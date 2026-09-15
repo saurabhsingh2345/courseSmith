@@ -1,0 +1,196 @@
+{
+  "total": 33173,
+  "audio": "tutorial3/narration.wav",
+  "beats": [
+    {
+      "id": "hook",
+      "frames": 1470,
+      "start": 0
+    },
+    {
+      "id": "title",
+      "frames": 306,
+      "start": 1470
+    },
+    {
+      "id": "ch1",
+      "frames": 97,
+      "start": 1776
+    },
+    {
+      "id": "lastweek",
+      "frames": 900,
+      "start": 1873
+    },
+    {
+      "id": "whyceiling",
+      "frames": 521,
+      "start": 2773,
+      "sweep": [
+        164,
+        303,
+        373
+      ]
+    },
+    {
+      "id": "thefix",
+      "frames": 480,
+      "start": 3294
+    },
+    {
+      "id": "ch2",
+      "frames": 81,
+      "start": 3774
+    },
+    {
+      "id": "ask",
+      "frames": 1620,
+      "start": 3855
+    },
+    {
+      "id": "namelimit",
+      "frames": 657,
+      "start": 5475
+    },
+    {
+      "id": "ch3",
+      "frames": 112,
+      "start": 6132
+    },
+    {
+      "id": "building",
+      "frames": 2995,
+      "start": 6244
+    },
+    {
+      "id": "security",
+      "frames": 560,
+      "start": 9239
+    },
+    {
+      "id": "dbmoment",
+      "frames": 1950,
+      "start": 9799
+    },
+    {
+      "id": "stuck",
+      "frames": 604,
+      "start": 11749,
+      "sweep": [
+        13,
+        15,
+        483
+      ]
+    },
+    {
+      "id": "provisioned",
+      "frames": 481,
+      "start": 12353,
+      "sweep": [
+        77,
+        116,
+        198
+      ]
+    },
+    {
+      "id": "ch4",
+      "frames": 90,
+      "start": 12834
+    },
+    {
+      "id": "longtail",
+      "frames": 3707,
+      "start": 12924
+    },
+    {
+      "id": "whatlive",
+      "frames": 2100,
+      "start": 16631
+    },
+    {
+      "id": "ch5",
+      "frames": 104,
+      "start": 18731
+    },
+    {
+      "id": "openlive",
+      "frames": 800,
+      "start": 18835
+    },
+    {
+      "id": "signup",
+      "frames": 3600,
+      "start": 19635
+    },
+    {
+      "id": "useit",
+      "frames": 2400,
+      "start": 23235
+    },
+    {
+      "id": "ch6",
+      "frames": 82,
+      "start": 25635
+    },
+    {
+      "id": "proof",
+      "frames": 4170,
+      "start": 25717
+    },
+    {
+      "id": "hashing",
+      "frames": 618,
+      "start": 29887
+    },
+    {
+      "id": "contrast",
+      "frames": 597,
+      "start": 30505,
+      "sweep": [
+        167,
+        243,
+        394
+      ]
+    },
+    {
+      "id": "ch7",
+      "frames": 64,
+      "start": 31102
+    },
+    {
+      "id": "youhave",
+      "frames": 546,
+      "start": 31166,
+      "sweep": [
+        83,
+        184,
+        382
+      ]
+    },
+    {
+      "id": "honest",
+      "frames": 512,
+      "start": 31712
+    },
+    {
+      "id": "skill",
+      "frames": 505,
+      "start": 32224,
+      "sweep": [
+        158,
+        235,
+        393
+      ]
+    },
+    {
+      "id": "road",
+      "frames": 129,
+      "start": 32729
+    },
+    {
+      "id": "outro",
+      "frames": 315,
+      "start": 32858
+    }
+  ]
+}

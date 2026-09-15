@@ -1,0 +1,431 @@
+{
+  "total": 47494,
+  "audio": "tutorial/narration.wav",
+  "beats": [
+    {
+      "id": "hook",
+      "frames": 1020,
+      "start": 0
+    },
+    {
+      "id": "title",
+      "frames": 166,
+      "start": 1020
+    },
+    {
+      "id": "promise",
+      "frames": 499,
+      "start": 1186
+    },
+    {
+      "id": "ch1",
+      "frames": 104,
+      "start": 1685
+    },
+    {
+      "id": "idea",
+      "frames": 540,
+      "start": 1789
+    },
+    {
+      "id": "loop",
+      "frames": 578,
+      "start": 2329,
+      "sweep": [
+        110,
+        167,
+        245
+      ]
+    },
+    {
+      "id": "whofor",
+      "frames": 749,
+      "start": 2907,
+      "sweep": [
+        149,
+        310,
+        500
+      ]
+    },
+    {
+      "id": "ch2",
+      "frames": 87,
+      "start": 3656
+    },
+    {
+      "id": "three",
+      "frames": 320,
+      "start": 3743
+    },
+    {
+      "id": "thedifference",
+      "frames": 564,
+      "start": 4063
+    },
+    {
+      "id": "whichone",
+      "frames": 491,
+      "start": 4627
+    },
+    {
+      "id": "setup",
+      "frames": 580,
+      "start": 5118,
+      "sweep": [
+        131,
+        166,
+        183,
+        323
+      ]
+    },
+    {
+      "id": "model",
+      "frames": 615,
+      "start": 5698
+    },
+    {
+      "id": "ch3",
+      "frames": 87,
+      "start": 6313
+    },
+    {
+      "id": "folderwhy",
+      "frames": 407,
+      "start": 6400
+    },
+    {
+      "id": "folderhow",
+      "frames": 1020,
+      "start": 6807
+    },
+    {
+      "id": "trust",
+      "frames": 648,
+      "start": 7827
+    },
+    {
+      "id": "ch4",
+      "frames": 73,
+      "start": 8475
+    },
+    {
+      "id": "vocab",
+      "frames": 556,
+      "start": 8548
+    },
+    {
+      "id": "fear",
+      "frames": 450,
+      "start": 9104
+    },
+    {
+      "id": "whatityped",
+      "frames": 602,
+      "start": 9554
+    },
+    {
+      "id": "thetyping",
+      "frames": 1140,
+      "start": 10156
+    },
+    {
+      "id": "twohalves",
+      "frames": 602,
+      "start": 11296,
+      "sweep": [
+        160,
+        229
+      ]
+    },
+    {
+      "id": "whysimple",
+      "frames": 604,
+      "start": 11898
+    },
+    {
+      "id": "nospec",
+      "frames": 623,
+      "start": 12502
+    },
+    {
+      "id": "nameit",
+      "frames": 663,
+      "start": 13125
+    },
+    {
+      "id": "examples",
+      "frames": 441,
+      "start": 13788
+    },
+    {
+      "id": "vague",
+      "frames": 566,
+      "start": 14229
+    },
+    {
+      "id": "ch5",
+      "frames": 95,
+      "start": 14795
+    },
+    {
+      "id": "waitwhy",
+      "frames": 2880,
+      "start": 14890
+    },
+    {
+      "id": "whatitdoes",
+      "frames": 533,
+      "start": 17770,
+      "sweep": [
+        119,
+        161,
+        218,
+        303
+      ]
+    },
+    {
+      "id": "howlong",
+      "frames": 557,
+      "start": 18303
+    },
+    {
+      "id": "dontpoke",
+      "frames": 579,
+      "start": 18860
+    },
+    {
+      "id": "permission",
+      "frames": 668,
+      "start": 19439
+    },
+    {
+      "id": "midbuild",
+      "frames": 3730,
+      "start": 20107
+    },
+    {
+      "id": "ch6",
+      "frames": 99,
+      "start": 23837
+    },
+    {
+      "id": "done",
+      "frames": 1980,
+      "start": 23936
+    },
+    {
+      "id": "thefiles",
+      "frames": 543,
+      "start": 25916,
+      "sweep": [
+        198,
+        233,
+        260,
+        291
+      ]
+    },
+    {
+      "id": "offline",
+      "frames": 536,
+      "start": 26459
+    },
+    {
+      "id": "readit",
+      "frames": 529,
+      "start": 26995,
+      "sweep": [
+        318,
+        425
+      ]
+    },
+    {
+      "id": "features",
+      "frames": 674,
+      "start": 27524,
+      "sweep": [
+        209,
+        368,
+        448,
+        477
+      ]
+    },
+    {
+      "id": "phone",
+      "frames": 561,
+      "start": 28198
+    },
+    {
+      "id": "openhow",
+      "frames": 553,
+      "start": 28759,
+      "sweep": [
+        131,
+        200
+      ]
+    },
+    {
+      "id": "ch7",
+      "frames": 77,
+      "start": 29312
+    },
+    {
+      "id": "secondprompt",
+      "frames": 1200,
+      "start": 29389
+    },
+    {
+      "id": "interpreted",
+      "frames": 519,
+      "start": 30589
+    },
+    {
+      "id": "blueread",
+      "frames": 600,
+      "start": 31108
+    },
+    {
+      "id": "blueanswer",
+      "frames": 1980,
+      "start": 31708
+    },
+    {
+      "id": "thirtyone",
+      "frames": 612,
+      "start": 33688
+    },
+    {
+      "id": "refused",
+      "frames": 639,
+      "start": 34300
+    },
+    {
+      "id": "chw",
+      "frames": 97,
+      "start": 34939
+    },
+    {
+      "id": "willgowrong",
+      "frames": 513,
+      "start": 35036
+    },
+    {
+      "id": "threewrongs",
+      "frames": 497,
+      "start": 35549,
+      "sweep": [
+        185,
+        234,
+        311
+      ]
+    },
+    {
+      "id": "describe",
+      "frames": 623,
+      "start": 36046
+    },
+    {
+      "id": "openbrowser",
+      "frames": 1050,
+      "start": 36669
+    },
+    {
+      "id": "ch8",
+      "frames": 79,
+      "start": 37719
+    },
+    {
+      "id": "openit",
+      "frames": 2310,
+      "start": 37798
+    },
+    {
+      "id": "yours",
+      "frames": 540,
+      "start": 40108
+    },
+    {
+      "id": "privacy",
+      "frames": 675,
+      "start": 40648
+    },
+    {
+      "id": "whatyouhave",
+      "frames": 579,
+      "start": 41323
+    },
+    {
+      "id": "moreasks",
+      "frames": 636,
+      "start": 41902
+    },
+    {
+      "id": "whattobuild",
+      "frames": 667,
+      "start": 42538
+    },
+    {
+      "id": "ch9",
+      "frames": 113,
+      "start": 43205
+    },
+    {
+      "id": "recap",
+      "frames": 687,
+      "start": 43318,
+      "sweep": [
+        162,
+        210,
+        300,
+        410,
+        481,
+        540
+      ]
+    },
+    {
+      "id": "checkpoint",
+      "frames": 236,
+      "start": 44005
+    },
+    {
+      "id": "answer",
+      "frames": 389,
+      "start": 44241
+    },
+    {
+      "id": "donext",
+      "frames": 631,
+      "start": 44630,
+      "sweep": [
+        143,
+        190,
+        235,
+        499
+      ]
+    },
+    {
+      "id": "habits",
+      "frames": 628,
+      "start": 45261,
+      "sweep": [
+        143,
+        231,
+        371
+      ]
+    },
+    {
+      "id": "road",
+      "frames": 507,
+      "start": 45889
+    },
+    {
+      "id": "lastword",
+      "frames": 678,
+      "start": 46396
+    },
+    {
+      "id": "outro",
+      "frames": 420,
+      "start": 47074
+    }
+  ]
+}

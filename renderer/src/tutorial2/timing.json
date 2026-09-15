@@ -1,0 +1,314 @@
+{
+  "total": 39696,
+  "audio": "tutorial2/narration.wav",
+  "beats": [
+    {
+      "id": "hook",
+      "frames": 1560,
+      "start": 0
+    },
+    {
+      "id": "title",
+      "frames": 224,
+      "start": 1560
+    },
+    {
+      "id": "ch1",
+      "frames": 96,
+      "start": 1784
+    },
+    {
+      "id": "lastlesson",
+      "frames": 1320,
+      "start": 1880
+    },
+    {
+      "id": "whatwehave",
+      "frames": 459,
+      "start": 3200
+    },
+    {
+      "id": "twothings",
+      "frames": 681,
+      "start": 3659,
+      "sweep": [
+        170,
+        280
+      ]
+    },
+    {
+      "id": "ch2",
+      "frames": 86,
+      "start": 4340
+    },
+    {
+      "id": "ask1",
+      "frames": 1200,
+      "start": 4426
+    },
+    {
+      "id": "thewhy",
+      "frames": 537,
+      "start": 5626
+    },
+    {
+      "id": "watchit",
+      "frames": 1800,
+      "start": 6163
+    },
+    {
+      "id": "live",
+      "frames": 1800,
+      "start": 7963
+    },
+    {
+      "id": "private",
+      "frames": 630,
+      "start": 9763
+    },
+    {
+      "id": "whatisaddress",
+      "frames": 546,
+      "start": 10393
+    },
+    {
+      "id": "whoseesit",
+      "frames": 568,
+      "start": 10939
+    },
+    {
+      "id": "ch3",
+      "frames": 69,
+      "start": 11507
+    },
+    {
+      "id": "thecatch",
+      "frames": 542,
+      "start": 11576
+    },
+    {
+      "id": "whythat",
+      "frames": 527,
+      "start": 12118,
+      "sweep": [
+        205,
+        334,
+        436
+      ]
+    },
+    {
+      "id": "testyourself",
+      "frames": 484,
+      "start": 12645
+    },
+    {
+      "id": "statekinds",
+      "frames": 686,
+      "start": 13129,
+      "sweep": [
+        242,
+        320,
+        408
+      ]
+    },
+    {
+      "id": "whennotshare",
+      "frames": 589,
+      "start": 13815
+    },
+    {
+      "id": "ch4",
+      "frames": 74,
+      "start": 14404
+    },
+    {
+      "id": "ask2",
+      "frames": 1200,
+      "start": 14478
+    },
+    {
+      "id": "nojargon",
+      "frames": 644,
+      "start": 15678
+    },
+    {
+      "id": "itasks",
+      "frames": 500,
+      "start": 16322
+    },
+    {
+      "id": "whyask",
+      "frames": 465,
+      "start": 16822
+    },
+    {
+      "id": "ch5",
+      "frames": 107,
+      "start": 17287
+    },
+    {
+      "id": "longbuild",
+      "frames": 2768,
+      "start": 17394
+    },
+    {
+      "id": "thebug",
+      "frames": 2400,
+      "start": 20162
+    },
+    {
+      "id": "checking",
+      "frames": 550,
+      "start": 22562,
+      "sweep": [
+        107,
+        188,
+        312
+      ]
+    },
+    {
+      "id": "ratio",
+      "frames": 687,
+      "start": 23112
+    },
+    {
+      "id": "ch6",
+      "frames": 109,
+      "start": 23799
+    },
+    {
+      "id": "finish",
+      "frames": 2100,
+      "start": 23908
+    },
+    {
+      "id": "sharedtable",
+      "frames": 592,
+      "start": 26008
+    },
+    {
+      "id": "details",
+      "frames": 679,
+      "start": 26600,
+      "sweep": [
+        117,
+        359,
+        452
+      ]
+    },
+    {
+      "id": "notasked",
+      "frames": 462,
+      "start": 27279
+    },
+    {
+      "id": "conflict",
+      "frames": 635,
+      "start": 27741
+    },
+    {
+      "id": "ch7",
+      "frames": 121,
+      "start": 28376
+    },
+    {
+      "id": "couldnot",
+      "frames": 605,
+      "start": 28497
+    },
+    {
+      "id": "whyhonest",
+      "frames": 545,
+      "start": 29102
+    },
+    {
+      "id": "thetest",
+      "frames": 2820,
+      "start": 29647
+    },
+    {
+      "id": "ch8",
+      "frames": 85,
+      "start": 32467
+    },
+    {
+      "id": "tellit",
+      "frames": 1290,
+      "start": 32552
+    },
+    {
+      "id": "loopvalue",
+      "frames": 489,
+      "start": 33842,
+      "sweep": [
+        13,
+        228,
+        293
+      ]
+    },
+    {
+      "id": "warning",
+      "frames": 652,
+      "start": 34331
+    },
+    {
+      "id": "whatthatmeans",
+      "frames": 563,
+      "start": 34983
+    },
+    {
+      "id": "safety",
+      "frames": 724,
+      "start": 35546
+    },
+    {
+      "id": "nextup",
+      "frames": 494,
+      "start": 36270
+    },
+    {
+      "id": "ch9",
+      "frames": 68,
+      "start": 36764
+    },
+    {
+      "id": "recap",
+      "frames": 594,
+      "start": 36832,
+      "sweep": [
+        131,
+        251
+      ]
+    },
+    {
+      "id": "check",
+      "frames": 230,
+      "start": 37426
+    },
+    {
+      "id": "answer",
+      "frames": 469,
+      "start": 37656
+    },
+    {
+      "id": "homework",
+      "frames": 661,
+      "start": 38125,
+      "sweep": [
+        157,
+        211,
+        391
+      ]
+    },
+    {
+      "id": "road",
+      "frames": 573,
+      "start": 38786
+    },
+    {
+      "id": "outro",
+      "frames": 337,
+      "start": 39359
+    }
+  ]
+}

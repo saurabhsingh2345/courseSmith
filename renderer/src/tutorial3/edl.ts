@@ -1,0 +1,414 @@
+// The cut for lesson three, the last in the course.
+//
+// House rules for this one, learned across the first two:
+//   footage carries the film, graphics are glue
+//   waiting is ramped hard, never shown at pace
+//   nothing on screen but the app: every take was shot fullscreen
+//
+// Source landmarks, in seconds (VS Code frame, fullscreen overlay and the
+// Chrome password dialog are all physically removed from this media):
+//     26  cursor on the live page from lesson two
+//     92  new session, folder chip
+//    137  the sentence sent
+//   1440  the database question
+//   1519  Postgres provisioned and seeded
+//   3300  build finished
+//   3400  the live login page
+//   3483  signing up for real
+//   3551  liking and commenting
+//   3597  asking it to read the row back
+//   3739  the rows, in Postgres
+
+export type IconName =
+  | 'web' | 'mobile' | 'server' | 'loop' | 'sprout' | 'keys'
+  | 'python' | 'bolt' | 'braces' | 'star' | 'folder';
+
+export type Rect = {x: number; y: number; w: number; h: number};
+export type Spot = {rect: Rect; label?: string; side?: 'top'|'bottom'|'left'|'right'; at: number; until?: number};
+export type Cue = {at: number; say: string};
+
+export type Scene =
+  | {k: 'run'; from: number; to: number; rate?: number; spots?: Spot[]}
+  | {k: 'title'; title: string; kicker: string; sub: string}
+  | {k: 'chapter'; n: string; title: string}
+  | {k: 'statement'; kicker?: string; text: string; accent?: string[]; body?: string; size?: number}
+  | {k: 'swap'; panels: {icon: IconName; who: string; what: string}[]}
+  | {k: 'cards'; title: string; accent?: string[]; items: {name: string; note: string; icon?: IconName}[]; active?: number; footer?: string; sweepAt?: string[]}
+  | {k: 'steps'; title: string; steps: {name: string; note: string}[]; sweepAt?: string[]}
+  | {k: 'spotlight'; title: string; accent?: string[]; name: string; tagline: string; icon: IconName; facts: string[]}
+  | {k: 'define'; word: string; pos: string; meaning: string; also: string}
+  | {k: 'scale'; title: string; rungs: string[]; pick: number; left: string; right: string; note: string}
+  | {k: 'address'}
+  | {k: 'promptbuild'; title: string; chunks: {text: string; tag: string}[]}
+  | {k: 'devices'; title: string}
+  | {k: 'quiz'; n: string; question: string; options: string[]; answer: number; revealAt: number}
+  | {k: 'roadmap'; title: string; nodes: {name: string; state: 'done'|'here'|'next'}[]}
+  | {k: 'outro'; lines: string[]; sign: string};
+
+export type Beat = {
+  id: string; chapter: string; say?: string; cues?: Cue[];
+  lead?: number; pad?: number; hold?: number; min?: number; scene: Scene;
+};
+
+export const BEATS: Beat[] = [
+  // ============================================================ COLD OPEN ===
+  {
+    id: 'hook',
+    chapter: '',
+    scene: {k: 'run', from: 3690, to: 3739},
+    cues: [
+      {at: 1.0, say: 'Those are rows in a Postgres database, on a server, somewhere else.'},
+      {at: 9.0, say: 'A username. A password stored as a hash that cannot be turned back into the password. A session token kept as a fingerprint rather than the token itself. And a comment, joined to a post by a key.'},
+      {at: 27.0, say: 'Twenty five minutes before this, none of it existed. One sentence built all of it.'},
+    ],
+  },
+  {
+    id: 'title',
+    chapter: 'Open',
+    say: 'This is lesson three, and it is the last one. We take the app from lesson two and give it the arrangement that real software actually runs on.',
+    scene: {
+      k: 'title',
+      kicker: 'Building with Claude · Lesson three',
+      title: 'A real website, a real database',
+      sub: 'One sentence turns a shared page into a hosted application with accounts, a database, image storage and a public address.',
+    },
+  },
+
+  // ============================================================ CHAPTER 1 ===
+  {id: 'ch1', chapter: 'The ceiling', pad: 0.3, say: 'Start with why lesson two was not the end.',
+   scene: {k: 'chapter', n: '01', title: 'The ceiling'}},
+  {
+    id: 'lastweek',
+    chapter: 'The ceiling',
+    scene: {k: 'run', from: 22, to: 52},
+    cues: [
+      {at: 1.0, say: 'This is where lesson two finished. A real address, one shared feed, everybody seeing the same posts.'},
+      {at: 12.0, say: 'It works. For six friends it is genuinely enough, and I would not talk you out of it.'},
+      {at: 21.0, say: 'But every post, every like and every comment is stored inside the page itself, and that is the ceiling.'},
+    ],
+  },
+  {
+    id: 'whyceiling',
+    chapter: 'The ceiling',
+    say: 'Three things break when you grow. The page carries all its own content, so it gets heavier with every post. Two people acting at the same moment can overwrite each other. And there are no real accounts, just a name you typed.',
+    hold: 1.8,
+    scene: {
+      k: 'cards',
+      title: 'Why one page stops working',
+      items: [
+        {name: 'It gets heavier', note: 'Every photo lives inside the page. Everybody downloads all of them.', icon: 'mobile'},
+        {name: 'People collide', note: 'Two at once, and the last one wins. The other is gone.', icon: 'loop'},
+        {name: 'No real accounts', note: 'A name you typed is not a login.', icon: 'keys'},
+      ],
+      sweepAt: ['gets heavier with every post', 'overwrite each other', 'no real accounts'],
+    },
+  },
+  {
+    id: 'thefix',
+    chapter: 'The ceiling',
+    say: 'The fix is the same one nearly every application you use is built on. Move the content out of the page and into a database, put the page on a server that talks to it, and give people real accounts.',
+    hold: 1.6,
+    scene: {
+      k: 'swap',
+      panels: [
+        {icon: 'web', who: 'Lesson two', what: 'One page holding everything. Simple, and it does not scale past a group chat.'},
+        {icon: 'server', who: 'Lesson three', what: 'A server, a database, real accounts, and photos stored separately.'},
+      ],
+    },
+  },
+
+  // ============================================================ CHAPTER 2 ===
+  {id: 'ch2', chapter: 'The sentence', pad: 0.3, say: 'One sentence asks for all of it.',
+   scene: {k: 'chapter', n: '02', title: 'One sentence'}},
+  {
+    id: 'ask',
+    chapter: 'The sentence',
+    scene: {k: 'run', from: 88, to: 142},
+    cues: [
+      {at: 2.0, say: 'Same window as the first two lessons, same folder, nothing new installed.'},
+      {at: 14.0, say: 'This only works for a few friends. I want it on a real website with a proper database.'},
+      {at: 28.0, say: 'Notice the first half. I named the limitation I had hit, in my own words, before asking for anything.'},
+      {at: 40.0, say: 'That is the sentence. No hosting company named. No database named. No mention of accounts, or storage, or any of what is about to appear.'},
+    ],
+  },
+  {
+    id: 'namelimit',
+    chapter: 'The sentence',
+    say: 'Naming the limitation is the trick worth taking from this whole course. It only works for a few friends is a fact about your situation, and it tells the tool what the finished thing has to survive. Ask for a database and you get a database. Say what is going wrong and you get an answer to that.',
+    hold: 1.8,
+    scene: {
+      k: 'promptbuild',
+      title: 'The sentence, in two halves',
+      chunks: [
+        {text: 'this only works for a few friends', tag: 'the limitation you hit'},
+        {text: 'i want it on a real website with a proper database', tag: 'where you want to get to'},
+      ],
+    },
+  },
+
+  // ============================================================ CHAPTER 3 ===
+  {id: 'ch3', chapter: 'What it chose', pad: 0.3, say: 'Then it goes to work, and the choices are the lesson.',
+   scene: {k: 'chapter', n: '03', title: 'What it chose'}},
+  {
+    id: 'building',
+    chapter: 'What it chose',
+    scene: {k: 'run', from: 142, to: 1340, rate: 12},
+    cues: [
+      {at: 1.0, say: 'Twelve times speed. In real time this is twenty minutes and almost none of it needs your eyes.'},
+      {at: 14.0, say: 'It rebuilds the whole application properly rather than bolting a database onto the old one. Real pages, real routing, a login screen, a signup screen.'},
+      {at: 35.0, say: 'And here is the thing worth stopping for. It builds the entire app and tests it before it has a database at all. The screens render, the login gate correctly turns visitors away. Only then does it go looking for somewhere to store things.'},
+      {at: 62.0, say: 'That ordering is not an accident. Prove the shape works, then wire in the thing that is slow to change.'},
+      {at: 82.0, say: 'It also quietly updated three libraries past security advisories, including one that allowed database injection. Nobody asked. It just read the warnings.'},
+    ],
+  },
+  {
+    id: 'security',
+    chapter: 'What it chose',
+    say: 'That last one deserves a sentence of its own. One of the versions it started with had a known hole that would let somebody send commands to your database through an ordinary form. It upgraded past it without being asked and mentioned it in passing.',
+    hold: 1.6,
+    scene: {
+      k: 'spotlight',
+      title: 'The thing nobody asked for',
+      name: 'It patched a security hole',
+      tagline: 'Found in a dependency, upgraded, mentioned in passing',
+      icon: 'keys',
+      facts: [
+        'A known database injection flaw.',
+        'In a library it had just installed.',
+        'Fixed before anybody could have noticed.',
+      ],
+    },
+  },
+  {
+    id: 'dbmoment',
+    chapter: 'What it chose',
+    scene: {k: 'run', from: 1430, to: 1560, rate: 2},
+    cues: [
+      {at: 1.5, say: 'Now the only moment in three lessons where it genuinely could not continue on its own. It needs a database, and a database needs an account somewhere.'},
+      {at: 16.0, say: 'So it stops and lays out four routes, with the trade off of each one. Sign in properly. Paste a key. Take a temporary one now and claim it later. Or something else.'},
+      {at: 36.0, say: 'It recommends one, and it says why, and it waits.'},
+      {at: 48.0, say: 'Then it works something out for itself. The account is managed through the hosting company, so the ordinary route will not work, and it switches to the other path. Its words. That is the cleaner production setup anyway.'},
+    ],
+  },
+  {
+    id: 'stuck',
+    chapter: 'What it chose',
+    say: 'This is the pattern to expect whenever real accounts and money are involved. It will get you to the edge of what it can do alone, explain the options in plain language, and stop. That is not a failure. That is the right behaviour, and answering takes ten seconds.',
+    hold: 1.6,
+    scene: {
+      k: 'steps',
+      title: 'When it stops and asks',
+      steps: [
+        {name: 'It will not sign you up for things', note: 'Accounts and money need you. Correctly.'},
+        {name: 'It lays out the routes', note: 'With the trade off of each, in plain words.'},
+        {name: 'You pick, in a few words', note: 'Then it carries on. Usually ten seconds of your time.'},
+      ],
+      sweepAt: ['could not continue on its own', 'lays out four routes', 'answering takes ten seconds'],
+    },
+  },
+  {
+    id: 'provisioned',
+    chapter: 'What it chose',
+    say: 'And then in about a minute it has a Postgres database, a set of tables designed for this app, and seven demo accounts with eight posts already in them, so the thing has something to show the first time you open it.',
+    hold: 1.6,
+    scene: {
+      k: 'cards',
+      title: 'What appeared in one minute',
+      items: [
+        {name: 'A Postgres database', note: 'Real, hosted, free to start.', icon: 'server'},
+        {name: 'Tables for this app', note: 'Users, posts, comments, likes, sessions.', icon: 'braces'},
+        {name: 'Seven accounts, eight posts', note: 'So it is not empty when you first look.', icon: 'sprout'},
+      ],
+      sweepAt: ['a Postgres database', 'a set of tables', 'seven demo accounts'],
+    },
+  },
+
+  // ============================================================ CHAPTER 4 ===
+  {id: 'ch4', chapter: 'Live', pad: 0.3, say: 'Then it puts it on the internet properly.',
+   scene: {k: 'chapter', n: '04', title: 'Live'}},
+  {
+    id: 'longtail',
+    chapter: 'Live',
+    scene: {k: 'run', from: 1560, to: 3290, rate: 14},
+    cues: [
+      {at: 1.0, say: 'Fourteen times speed through the rest, which is half an hour of testing and fixing.'},
+      {at: 15.0, say: 'It finds that double tapping to like was impossible, because a single tap navigated away first. It finds that pages crashed for signed out visitors. It finds that the icon buttons had no names a screen reader could announce.'},
+      {at: 40.0, say: 'None of those were reported by me. It found all three by using its own application.'},
+      {at: 60.0, say: 'It also handles photographs properly now. An upload is resized and stored separately from the page, so the feed stays light no matter how many people post.'},
+      {at: 90.0, say: 'And then it deploys, and the build takes sixteen seconds.'},
+    ],
+  },
+  {
+    id: 'whatlive',
+    chapter: 'Live',
+    scene: {k: 'run', from: 3290, to: 3360},
+    cues: [
+      {at: 1.5, say: 'Here is what it reports, and the interesting part is the shape of it.'},
+      {at: 11.0, say: 'A list of everything it verified on the live site rather than only on this laptop. Signing up, logging in, posting, liking, commenting, following, deleting, uploading a two megabyte photograph, search, notifications, dark mode, and the phone layout.'},
+      {at: 34.0, say: 'And then the one thing it could not verify, named exactly. A load more button that only appears past twelve posts, and there are ten.'},
+      {at: 52.0, say: 'Three lessons in, that habit is the single best signal you have that a tool is worth trusting.'},
+    ],
+  },
+
+  // ============================================================ CHAPTER 5 ===
+  {id: 'ch5', chapter: 'Proving it', pad: 0.3, say: 'So let us go and use it like a stranger would.',
+   scene: {k: 'chapter', n: '05', title: 'Proving it'}},
+  {
+    id: 'openlive',
+    chapter: 'Proving it',
+    scene: {k: 'run', from: 3360, to: 3400, rate: 1.5},
+    cues: [
+      {at: 1.0, say: 'A public web address. Not a file, not a shared document. A website.'},
+      {at: 14.0, say: 'And it does not let me straight in. It asks who I am, which is what a real account looks like.'},
+    ],
+  },
+  {
+    id: 'signup',
+    chapter: 'Proving it',
+    scene: {k: 'run', from: 3400, to: 3520},
+    cues: [
+      {at: 2.0, say: 'A real signup form. An email, a name, a username, and a password with a minimum length it will enforce.'},
+      {at: 18.0, say: 'And a line underneath that somebody thought about. Your username is yours, and nobody else can post under it.'},
+      {at: 34.0, say: 'I am filling this in as an obvious test account, because everything I type is about to become a permanent row in a real database.'},
+      {at: 58.0, say: 'And that is a real account, created against a real Postgres database, on a public website, by somebody who did not write any of it.'},
+      {at: 80.0, say: 'Straight into the feed. Those posts are not in the page. They came out of the database when the page loaded.'},
+    ],
+  },
+  {
+    id: 'useit',
+    chapter: 'Proving it',
+    scene: {k: 'run', from: 3520, to: 3600},
+    cues: [
+      {at: 2.0, say: 'A like. One becomes two.'},
+      {at: 12.0, say: 'And a comment. Hello from a real database.'},
+      {at: 26.0, say: 'In lesson two that comment would have rewritten and republished the entire page. Here it goes into a table and touches nothing else.'},
+      {at: 46.0, say: 'But you should not take my word for that, and neither should you take the app’s word for it. So let us go and look.'},
+    ],
+  },
+
+  // ============================================================ CHAPTER 6 ===
+  {id: 'ch6', chapter: 'Inside', pad: 0.3, say: 'Ask it to show you the actual data.',
+   scene: {k: 'chapter', n: '06', title: 'Inside the database'}},
+  {
+    id: 'proof',
+    chapter: 'Inside',
+    scene: {k: 'run', from: 3600, to: 3739},
+    cues: [
+      {at: 2.0, say: 'I just signed up as demoviewer on the live site and commented on a post. Show me that in the database.'},
+      {at: 18.0, say: 'And there it is. A row in a table called users, stamped with the second it was created.'},
+      {at: 33.0, say: 'Look at the password. It is not there. What is stored is a hash, which is a one way scramble. The app can check a password against it and can never turn it back into one. If somebody stole this entire table they still would not know what I typed.'},
+      {at: 62.0, say: 'The session is the same idea. What is kept is a fingerprint of the login token, not the token. The real one only exists in my browser.'},
+      {at: 82.0, say: 'And the comment, in its own table, joined to the post by a key. Four columns. That is the whole write.'},
+      {at: 102.0, say: 'It also notes, without being asked, that the email I invented is now a real row in a live database, and that if this app ever sends password reset mail, it will go there.'},
+    ],
+  },
+  {
+    id: 'hashing',
+    chapter: 'Inside',
+    say: 'That password detail is worth more than the rest of this video. A well built application does not know your password. It stores a scramble, checks new attempts against it, and cannot reverse it. Nobody asked for that. It is simply what building it properly means.',
+    hold: 1.8,
+    scene: {
+      k: 'swap',
+      panels: [
+        {icon: 'keys', who: 'What is stored', what: 'A one way scramble. Useless to a thief. Enough to check a login against.'},
+        {icon: 'bolt', who: 'What is not stored', what: 'Your password. The app never knew it and cannot find out.'},
+      ],
+    },
+  },
+  {
+    id: 'contrast',
+    chapter: 'Inside',
+    say: 'And there is the difference between the three lessons in one line. Lesson one wrote to your own browser. Lesson two rewrote the whole page every time anybody did anything. Lesson three writes four columns to a table and nothing else on the site notices.',
+    hold: 2.2,
+    scene: {
+      k: 'steps',
+      title: 'The same comment, three ways',
+      steps: [
+        {name: 'Lesson one', note: 'Saved in your browser. Gone if you open it anywhere else.'},
+        {name: 'Lesson two', note: 'The entire page rewritten and republished. Everyone shares it.'},
+        {name: 'Lesson three', note: 'Four columns into a table. Nothing else touched.'},
+      ],
+      sweepAt: ['wrote to your own browser', 'rewrote the whole page', 'four columns to a table'],
+    },
+  },
+
+  // ============================================================ CHAPTER 7 ===
+  {id: 'ch7', chapter: 'Where you are', pad: 0.3, say: 'So where does this leave you.',
+   scene: {k: 'chapter', n: '07', title: 'Where you are now'}},
+  {
+    id: 'youhave',
+    chapter: 'Where you are',
+    say: 'You have a hosted application with real accounts, a real database, image storage and a public address, and it cost nothing to start. Three sentences got you here, one per lesson, and not one of them contained a technical word.',
+    hold: 2.0,
+    scene: {
+      k: 'steps',
+      title: 'Three sentences, three lessons',
+      steps: [
+        {name: 'make a basic instagram clone', note: 'Files on your laptop.'},
+        {name: 'put this on the internet', note: 'An address, and one shared feed.'},
+        {name: 'i want it on a real website with a proper database', note: 'Accounts, a database, and photo storage.'},
+      ],
+      sweepAt: ['real accounts', 'a public address', 'not one of them contained a technical word'],
+    },
+  },
+  {
+    id: 'honest',
+    chapter: 'Where you are',
+    say: 'Be clear about what this is not. It is not finished, it has no paying customers, and nobody has tried to break it. But it is the same arrangement the applications on your phone are built on, and you can now change it by asking.',
+    hold: 1.6,
+    scene: {
+      k: 'swap',
+      panels: [
+        {icon: 'bolt', who: 'What you have', what: 'The real arrangement. Server, database, accounts, storage, an address.'},
+        {icon: 'sprout', who: 'What you do not', what: 'A tested product. Nobody has used it in anger or tried to break it yet.'},
+      ],
+    },
+  },
+  {
+    id: 'skill',
+    chapter: 'Where you are',
+    say: 'And the skill you actually learned has nothing to do with databases. You learned to say what you want in your own words, to say what is going wrong when it goes wrong, and to read the part at the end where it tells you what it could not check.',
+    hold: 1.8,
+    scene: {
+      k: 'cards',
+      title: 'The whole course, as three habits',
+      items: [
+        {name: 'Say what you want', note: 'Plainly. In your words. Name the limit you hit.', icon: 'star'},
+        {name: 'Say what you see', note: 'When it breaks, describe it. Do not diagnose it.', icon: 'loop'},
+        {name: 'Read the last paragraph', note: 'Especially the part about what it could not verify.', icon: 'bolt'},
+      ],
+      sweepAt: ['say what you want', 'what is going wrong', 'what it could not check'],
+    },
+  },
+  {
+    id: 'road',
+    chapter: 'Where you are',
+    say: 'That is the course. Built it, shared it, and made it real.',
+    scene: {
+      k: 'roadmap',
+      title: 'Where you got to',
+      nodes: [
+        {name: 'Build it locally', state: 'done'},
+        {name: 'Give it an address', state: 'done'},
+        {name: 'One shared feed', state: 'done'},
+        {name: 'A real host and database', state: 'done'},
+        {name: 'Whatever you build next', state: 'here'},
+      ],
+    },
+  },
+  {
+    id: 'outro',
+    chapter: 'Where you are',
+    say: 'Go and build the thing you have been meaning to build. You now know everything you need to start, and the rest you can ask for.',
+    hold: 2.6,
+    scene: {
+      k: 'outro',
+      lines: [
+        'Three sentences. One real application.',
+        'You never wrote a line of it.',
+        'Go and build yours.',
+      ],
+      sign: 'Building with Claude · Lesson three',
+    },
+  },
+];

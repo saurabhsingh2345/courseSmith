@@ -1,0 +1,148 @@
+{
+  "total": 20914,
+  "audio": "nocode1/narration.wav",
+  "beats": [
+    {
+      "id": "hook",
+      "frames": 420,
+      "start": 0
+    },
+    {
+      "id": "title",
+      "frames": 307,
+      "start": 420
+    },
+    {
+      "id": "plan",
+      "frames": 539,
+      "start": 727
+    },
+    {
+      "id": "ch1",
+      "frames": 151,
+      "start": 1266
+    },
+    {
+      "id": "dlpage",
+      "frames": 1170,
+      "start": 1417
+    },
+    {
+      "id": "dlclick",
+      "frames": 1080,
+      "start": 2587
+    },
+    {
+      "id": "install",
+      "frames": 1440,
+      "start": 3667
+    },
+    {
+      "id": "ch2",
+      "frames": 88,
+      "start": 5107
+    },
+    {
+      "id": "folderidea",
+      "frames": 916,
+      "start": 5195,
+      "sweep": [
+        13,
+        15,
+        17,
+        19
+      ]
+    },
+    {
+      "id": "welcome",
+      "frames": 840,
+      "start": 6111
+    },
+    {
+      "id": "openit",
+      "frames": 600,
+      "start": 6951
+    },
+    {
+      "id": "workspace",
+      "frames": 1080,
+      "start": 7551
+    },
+    {
+      "id": "ch3",
+      "frames": 93,
+      "start": 8631
+    },
+    {
+      "id": "modelidea",
+      "frames": 905,
+      "start": 8724
+    },
+    {
+      "id": "picker",
+      "frames": 780,
+      "start": 9629
+    },
+    {
+      "id": "modellist",
+      "frames": 960,
+      "start": 10409
+    },
+    {
+      "id": "ch4",
+      "frames": 77,
+      "start": 11369
+    },
+    {
+      "id": "prompt",
+      "frames": 510,
+      "start": 11446
+    },
+    {
+      "id": "agentidea",
+      "frames": 841,
+      "start": 11956,
+      "sweep": [
+        294,
+        296,
+        437,
+        518
+      ]
+    },
+    {
+      "id": "thinking",
+      "frames": 1470,
+      "start": 12797
+    },
+    {
+      "id": "building",
+      "frames": 788,
+      "start": 14267
+    },
+    {
+      "id": "result",
+      "frames": 1320,
+      "start": 15055
+    },
+    {
+      "id": "browser",
+      "frames": 1500,
+      "start": 16375
+    },
+    {
+      "id": "play",
+      "frames": 1320,
+      "start": 17875
+    },
+    {
+      "id": "honest",
+      "frames": 1004,
+      "start": 19195
+    },
+    {
+      "id": "outro",
+      "frames": 715,
+      "start": 20199
+    }
+  ]
+}
