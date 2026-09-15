@@ -1,0 +1,206 @@
+[
+ {
+  "file": "s00.mp3",
+  "text": "A big part of the reason this program exists comes down to a single post, written a few months ago by Andrej Karpathy."
+ },
+ {
+  "file": "s01.mp3",
+  "text": "If you only remember one thing from today, make it this one."
+ },
+ {
+  "file": "s02.mp3",
+  "text": "Karpathy is one of the founding members of OpenAI. He has worked at Tesla, at OpenAI, and at Stanford."
+ },
+ {
+  "file": "s03.mp3",
+  "text": "He is also the person who coined the term vibe coding, which we will come back to tomorrow. So when he says that he feels behind, that is worth paying attention to."
+ },
+ {
+  "file": "s04.mp3",
+  "text": "Here is the shape of what he said. He has never felt this far behind as a programmer."
+ },
+ {
+  "file": "s05.mp3",
+  "text": "The profession is being dramatically refactored, because the parts a human actually contributes are getting sparser and further apart."
+ },
+ {
+  "file": "s06.mp3",
+  "text": "He reckons he could be ten times more powerful, if he could just properly string together everything that has become available in about the last year."
+ },
+ {
+  "file": "s07.mp3",
+  "text": "And a failure to claim that boost, he says, feels like a skill issue."
+ },
+ {
+  "file": "s08.mp3",
+  "text": "Then he lists what you would have to string together."
+ },
+ {
+  "file": "s09.mp3",
+  "text": "Agents. Sub agents. Their prompts. Context. Memory. Modes. Permissions. Tools."
+ },
+ {
+  "file": "s10.mp3",
+  "text": "Plugins. Skills. Hooks. M C P. Slash commands. Workflows. Editor integrations."
+ },
+ {
+  "file": "s11.mp3",
+  "text": "And on top of all of that, a working mental model for the strengths and the failure modes of things that are fundamentally stochastic, fallible, and changing under your feet."
+ },
+ {
+  "file": "s12.mp3",
+  "text": "And that is the part that should reassure you, rather than frighten you. That list is not a list of things you are supposed to already know."
+ },
+ {
+  "file": "s13.mp3",
+  "text": "It is the syllabus. It is the set of things we work through, one at a time, over the next three weeks. Every single item on it."
+ },
+ {
+  "file": "s14.mp3",
+  "text": "But let me take the sting out of that list right now, because a lot of it sounds far more intimidating than it is. Here is a plain sentence for each of the words you just heard."
+ },
+ {
+  "file": "s15.mp3",
+  "text": "You do not need to memorise any of this. You just need it to stop being frightening."
+ },
+ {
+  "file": "s16.mp3",
+  "text": "An agent is a language model that runs tools in a loop, until a goal is met. That is the whole definition, and we will earn it properly tomorrow."
+ },
+ {
+  "file": "s17.mp3",
+  "text": "A sub agent is the same thing, spawned by another agent to go and do one narrower job and report back. That is how one instruction becomes a hundred small actions."
+ },
+ {
+  "file": "s18.mp3",
+  "text": "Context is everything the model can see at the moment it answers. Your instruction, the files it has read, what it said a minute ago, and the results of anything it ran."
+ },
+ {
+  "file": "s19.mp3",
+  "text": "Memory is the part of that you deliberately keep between sessions, so it does not start from nothing every morning."
+ },
+ {
+  "file": "s20.mp3",
+  "text": "Almost every failure you will hit in this program is really a context problem wearing a disguise."
+ },
+ {
+  "file": "s21.mp3",
+  "text": "Tools are the actions you allow it to take. Read a file, write a file, run a command, search the web."
+ },
+ {
+  "file": "s22.mp3",
+  "text": "Without tools a model can only talk. With tools it can work."
+ },
+ {
+  "file": "s23.mp3",
+  "text": "M C P is simply an agreed way to plug new tools in from outside, so that the same agent can reach your issue tracker, your database, or your design files without anyone writing custom glue for each one."
+ },
+ {
+  "file": "s24.mp3",
+  "text": "Skills are short written instructions that teach an agent how you want a particular job done, so you are not repeating yourself every time."
+ },
+ {
+  "file": "s25.mp3",
+  "text": "Plugins bundle those up so a team can share them."
+ },
+ {
+  "file": "s26.mp3",
+  "text": "Hooks are the opposite direction. They let you say, whenever this happens, automatically do that. Run the tests after every edit. Review the code before every commit."
+ },
+ {
+  "file": "s27.mp3",
+  "text": "Modes and permissions are about how much rope you hand over. At one end, the agent asks before it touches anything. At the other end, it does whatever it likes without stopping to ask, which people call yolo mode."
+ },
+ {
+  "file": "s28.mp3",
+  "text": "Neither is right or wrong. Choosing correctly for the job in front of you is one of the real skills here, and we will spend a lot of time on it."
+ },
+ {
+  "file": "s29.mp3",
+  "text": "And workflows are the shapes you put around all of that. Plan first, then build. Build, then review, then test. Or set a long loop running and let it grade its own work for an hour while you do something else. Same tools, very different results, depending entirely on the shape you choose."
+ },
+ {
+  "file": "s30.mp3",
+  "text": "He finishes with the line that gives this program its name."
+ },
+ {
+  "file": "s31.mp3",
+  "text": "Clearly some powerful alien tool was handed around, except it comes with no manual, and everyone has to figure out how to hold it and operate it while the resulting earthquake is rocking the profession."
+ },
+ {
+  "file": "s32.mp3",
+  "text": "Roll up your sleeves, he says, so that you do not fall behind."
+ },
+ {
+  "file": "s33.mp3",
+  "text": "So that is the gap. Extraordinarily powerful tools, handed out with no instructions."
+ },
+ {
+  "file": "s34.mp3",
+  "text": "This program is the manual. That is the whole idea."
+ },
+ {
+  "file": "s35.mp3",
+  "text": "By the end of it, you will be able to bring that post back up, read it through, and know exactly what every one of those words means, where each of those things works well, where it does not, and how they fit together."
+ },
+ {
+  "file": "s36.mp3",
+  "text": "So who is this actually for? There are two very different people it is built for, and you are probably one of them."
+ },
+ {
+  "file": "s37.mp3",
+  "text": "The first is the aspiring engineer. Maybe you are junior. Maybe you have never written a line of code in your life. Maybe you have written a bit, and you would not call yourself an expert."
+ },
+ {
+  "file": "s38.mp3",
+  "text": "You are going to be able to build complete products, at real scale, with coding agents doing the typing. You will own the code, even if you cannot yet write it yourself."
+ },
+ {
+  "file": "s39.mp3",
+  "text": "The second is the senior engineer. You have been doing this for years, but either you are new to agentic coding, or you look at that list of terms and feel exactly what Karpathy felt. Too much going on, too fast, and no clear way to fit it together."
+ },
+ {
+  "file": "s40.mp3",
+  "text": "You are going to learn how to accelerate what you already do, and just as importantly, how to keep enjoying it."
+ },
+ {
+  "file": "s41.mp3",
+  "text": "And honestly, it is not only those two. There will be moments that are too advanced, and moments that are too basic."
+ },
+ {
+  "file": "s42.mp3",
+  "text": "When something is obvious to you, put it on two times speed and move through it. When something goes over your head, take the gist and keep going. It comes back around."
+ },
+ {
+  "file": "s43.mp3",
+  "text": "So what do you walk away with? You will be able to build, debug, troubleshoot and extend software at any scale."
+ },
+ {
+  "file": "s44.mp3",
+  "text": "A small browser game, or a large team codebase spread across several repositories. Whatever the size, whatever the problem, you will be able to do it with agents working alongside you."
+ },
+ {
+  "file": "s45.mp3",
+  "text": "There is a job market reality here too. Increasingly, the job descriptions expect this."
+ },
+ {
+  "file": "s46.mp3",
+  "text": "They expect you to know what M C P is, what skills and hooks are, how to run long autonomous loops, and how to bring it all together to ship good software quickly. By the end of three weeks, you will be able to say yes to all of that, honestly."
+ },
+ {
+  "file": "s47.mp3",
+  "text": "One last thing, and it matters more than anything else so far. This is not hype."
+ },
+ {
+  "file": "s48.mp3",
+  "text": "These tools are genuinely powerful, and they are also genuinely limited. There are real benefits, and there are real drawbacks, and you are going to see both, on camera, without them being edited out."
+ },
+ {
+  "file": "s49.mp3",
+  "text": "Because being good at this is not about believing the tools are magic. It is about knowing precisely where the strengths are, knowing where the weaknesses are, and building a way of working that leans on the first and manages the second."
+ },
+ {
+  "file": "s50.mp3",
+  "text": "That is the skill. That is what we are here to build."
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "file": "X1.mp3",
+  "text": "Before the demo, one detail about how the model knows which tools exist, because people assume something mystical here and it is not. It is told. In text. At the start of the conversation."
+ },
+ {
+  "file": "X2.mp3",
+  "text": "The application writes a list \u2014 here are the tools you may ask for, here is what each one is called, here is what it does, here are the arguments it takes. That description goes into the input like everything else does. The model has no other way of knowing."
+ },
+ {
+  "file": "X3.mp3",
+  "text": "Which explains a failure you will absolutely meet. If a tool has a vague description, the model picks the wrong one, or invents arguments that sound right. It is not being careless. It is choosing from a menu you wrote, and a bad menu produces bad choices."
+ },
+ {
+  "file": "X4.mp3",
+  "text": "And it explains why the tools an agent has access to matter as much as the model does. Same engine, better menu, dramatically better behaviour."
+ },
+ {
+  "file": "X5.mp3",
+  "text": "Now, the loop has a question buried in it that nobody asks until it bites them. How does it know when it is finished?"
+ },
+ {
+  "file": "X6.mp3",
+  "text": "The answer is that it decides. On every pass it is effectively asked, is the goal met \u2014 and it answers with tokens like everything else. Which means the loop's judgement is exactly as good as the model's judgement, and no better."
+ },
+ {
+  "file": "X7.mp3",
+  "text": "So the two ways a loop goes wrong are both this. It stops too early, because it believes it is done when it is not. Or it will not stop, because it keeps finding one more thing, and it goes round burning time and money on work nobody asked for."
+ },
+ {
+  "file": "X8.mp3",
+  "text": "This is where you come in, and it is the honest reason a human is still in this picture. You are the check the loop does not have. Yesterday's approval prompts were exactly that \u2014 a stopping point somebody built in on purpose, because the loop cannot reliably judge itself."
+ },
+ {
+  "file": "X9.mp3",
+  "text": "There is a cost consequence too, and it is the one that surprises people's first bill. Every pass of the loop re-sends everything. The instructions, the tools, the files, and the entire history of what it has done so far."
+ },
+ {
+  "file": "X10.mp3",
+  "text": "So a loop that runs twenty times does not cost twenty short calls. It costs one short call, then a slightly longer one, then a longer one, and by the twentieth it is re-reading everything that happened in the previous nineteen. The cost of a long agent run climbs as it goes, and now you know precisely why."
+ },
+ {
+  "file": "X11.mp3",
+  "text": "And that is also, quietly, the ceiling on all of this. The loop cannot run forever, because the thing it re-sends keeps growing and the window it goes into does not. Every long-running agent is in a race between finishing the job and filling up."
+ },
+ {
+  "file": "X12.mp3",
+  "text": "Which is why the whole of tomorrow is about controlling what goes into that window. Not because context is an advanced topic, but because it is the resource the loop actually spends."
+ },
+ {
+  "file": "X13.mp3",
+  "text": "One last thing on the plumbing, so the acronyms do not intimidate you when you meet them. There are now standards for describing tools to a model and for connecting it to outside systems, and they are genuinely useful."
+ },
+ {
+  "file": "X14.mp3",
+  "text": "But every one of them is the thing you just watched \u2014 a description of what is available, and some code that reads the tokens and does the work. If you understand the version we did by hand with one line of Python, you understand all of them. The rest is convenience."
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "file": "X1.mp3",
+  "text": "Now, that is where most explanations of this stop. You get told the context degrades, you get told less is more, and then you are left to guess where you are on the curve. You do not have to guess. You can watch the number."
+ },
+ {
+  "file": "X2.mp3",
+  "text": "Claude Code prints it straight at you. Down near where you type, it tells you how much room is left before it compacts. And if you type slash context, it breaks the whole thing down by category, so you can see how much is system prompt, how much is tool descriptions, and how much is files you have read."
+ },
+ {
+  "file": "X3.mp3",
+  "text": "The first time you run that, expect a small shock. The system prompt and the tool descriptions are a fixed tax, and you pay it before you have typed a single character. On a well equipped agent that can be a serious slice of your window, gone, on turn zero."
+ },
+ {
+  "file": "X4.mp3",
+  "text": "Once you can see the number, the whole thing stops being mystical. When an agent starts behaving strangely, look at the number before you start rewriting your prompt. Nine times out of ten, the number is the answer."
+ },
+ {
+  "file": "X5.mp3",
+  "text": "So what is actually worth doing? Three habits. They are smaller and duller than the thing I just talked you out of, and none of them need a tool, a setting, or a subscription."
+ },
+ {
+  "file": "X6.mp3",
+  "text": "One. One task per conversation. Finish the thing, then start a new session for the next thing. It feels wasteful and it is not. You are trading a warm context for an accurate one, and accurate wins every time."
+ },
+ {
+  "file": "X7.mp3",
+  "text": "Two. The moment you catch yourself scrolling back to remind it of something, stop. That is not a reminder. That is a missing line in your agents file. Write it there once, instead of paying for it in every message for the rest of the day."
+ },
+ {
+  "file": "X8.mp3",
+  "text": "Three. When it gets the same thing wrong twice in a row, do not argue with it a third time. Those two failures are in the context now, and as far as the model is concerned they are examples of how this goes. Start fresh, and bring what you learned with you."
+ }
+]

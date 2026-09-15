@@ -1,0 +1,50 @@
+[
+ {
+  "file": "E1.mp3",
+  "text": "Something is going to keep happening for the rest of today, and I want to deal with it once rather than every time. It is going to ask permission to run commands, and you are going to have to decide."
+ },
+ {
+  "file": "E2.mp3",
+  "text": "If you can read the command, read it. Most of them are ordinary. Make a folder. Install a package. Start a server. You will get a feel for the normal ones within an hour."
+ },
+ {
+  "file": "E3.mp3",
+  "text": "If you cannot read it, you have three options and none of them are guessing. Ask it what the command does and why it needs to run it. Paste the command into a different AI and ask that one. Or say no, and ask it to explain itself before you allow it."
+ },
+ {
+  "file": "E4.mp3",
+  "text": "That third one is underrated. Refusing and asking for an explanation is not obstruction, it is the most normal thing a manager does, and you will learn more in that exchange than from any tutorial."
+ },
+ {
+  "file": "E5.mp3",
+  "text": "And I want to reframe the whole thing for the people who find this part stressful. You are not being asked to audit software. You are being shown, in advance, everything that is about to happen to your machine, by a thing that is asking rather than doing."
+ },
+ {
+  "file": "E6.mp3",
+  "text": "That is a better position than most professional developers were in ten years ago, running scripts off the internet with no idea what was in them. This is a learning opportunity wearing the costume of an interruption."
+ },
+ {
+  "file": "E7.mp3",
+  "text": "Now, checkpointing, and I am going to name the three commands because nobody ever does."
+ },
+ {
+  "file": "E8.mp3",
+  "text": "Git status shows you what has changed since the last save point. Git add dot says include all of it. Git commit, with a message, makes the save point."
+ },
+ {
+  "file": "E9.mp3",
+  "text": "Three commands, in that order, after every part. Look, include, save. And the message matters more than people think, because it is what you will read when you are trying to find the last version that worked."
+ },
+ {
+  "file": "E10.mp3",
+  "text": "This is saved on your own machine, by the way. It has not gone anywhere. That is a separate step and we do not need it today."
+ },
+ {
+  "file": "E11.mp3",
+  "text": "And if any of that is unfamiliar, ask the agent. Genuinely. Ask it what git is, ask it what a commit is, ask it to explain what it just did. It is sitting right there and it is better at explaining this than most documentation."
+ },
+ {
+  "file": "E12.mp3",
+  "text": "Which is a general point about this whole course. The thing you are learning to direct is also the best teacher you have ever had about the subject you are directing it in, and almost nobody uses it that way."
+ }
+]

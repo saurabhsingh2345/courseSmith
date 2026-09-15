@@ -1,0 +1,54 @@
+[
+ {
+  "file": "C1.mp3",
+  "text": "Build three of four. Same brief, same five checks, and this time the harness is Claude Code."
+ },
+ {
+  "file": "C2.mp3",
+  "text": "A note on why this one and not the tool the reference course reaches for here. Codex is excellent and it belongs in this comparison, and it also sits behind a paid subscription that I am not going to ask you to buy in week one. Claude Code has a free path in, more of you already have it, and it makes exactly the same point about a command line agent living inside your editor. If you do have Codex, run this same brief through it and you will recognise everything that follows."
+ },
+ {
+  "file": "C3.mp3",
+  "text": "The first thing to understand is that this tool is not really an editor extension. It is a command line agent, and the panel you are looking at is a window onto it. Which means the same thing you see here runs in a terminal with no editor at all, and next week that is exactly where we take it."
+ },
+ {
+  "file": "C4.mp3",
+  "text": "There is no plan mode button here, and there does not need to be one, because the brief already says to plan first. That is the third time today the file has done the work that a menu did somewhere else."
+ },
+ {
+  "file": "C5.mp3",
+  "text": "One control here is worth more than the rest, and it is the thinking budget. You can tell this thing to think harder. Which raises the obvious question, and the obvious answer is wrong."
+ },
+ {
+  "file": "C6.mp3",
+  "text": "More thinking is not simply better. Past a certain point a model will circle a decision it should have simply made, weigh a trade-off that does not matter for a five column Kanban board, and hand you a slower answer that is no more correct. The curve has a peak in it, not a slope."
+ },
+ {
+  "file": "C7.mp3",
+  "text": "Where that peak sits depends on the job. A gnarly bug in code you cannot read, turn it up. A small well specified build like this one, leave it alone and let it go. Knowing which is which is genuinely a skill, and you will develop it faster than you expect, because you will feel the difference in how long you sit waiting."
+ },
+ {
+  "file": "C8.mp3",
+  "text": "And the prompt is three words, because everything else has already been said in a file."
+ },
+ {
+  "file": "C9.mp3",
+  "text": "Now, I want to be straight with you about something, because it would be easy to sit here and imply that I am checking this code line by line and nodding approvingly."
+ },
+ {
+  "file": "C10.mp3",
+  "text": "I am not. I could not build this front end by hand. I do not write this kind of interface code, and if you handed me a blank file and asked me to produce what is on screen right now, I would be reaching for exactly the tool we are using."
+ },
+ {
+  "file": "C11.mp3",
+  "text": "That is not a confession of a gap in the course. It is the entire point of the course. You are not learning to review the code. You are learning to be the person who decides what gets built, states it precisely, checks whether the thing in front of you actually does it, and sends it back when it does not."
+ },
+ {
+  "file": "C12.mp3",
+  "text": "Every one of those four jobs is a judgement, and not one of them requires you to read a single line of what it wrote."
+ },
+ {
+  "file": "C13.mp3",
+  "text": "Which is also where the honest caveat lives. This is a small, clean, well described project, and all four of these tools are going to look impressive on it. A larger system, with real data, real users, and requirements that contradict each other, is a much harder problem, and none of what we have done today is a claim about that. It is day three of three weeks for a reason."
+ }
+]

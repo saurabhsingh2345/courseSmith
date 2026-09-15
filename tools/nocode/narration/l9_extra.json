@@ -1,0 +1,42 @@
+[
+ {
+  "file": "X1.mp3",
+  "text": "And that near-zero on bananas is worth pausing on, because it explains something you will meet constantly. There is no zero. Every token the model knows has some probability, always. So there is always a path, however unlikely, to a completely absurd answer."
+ },
+ {
+  "file": "X2.mp3",
+  "text": "Which gives you the honest definition of a hallucination. It is not a malfunction. It is the machine doing exactly its job \u2014 producing the most plausible continuation \u2014 in a situation where the most plausible continuation happens not to be true. Plausible and true are different targets, and it was only ever aiming at one of them."
+ },
+ {
+  "file": "X3.mp3",
+  "text": "So when an agent invents a function that does not exist, it is not lying and it is not broken. A function with that name, in that library, doing that job, is exactly what usually comes next in code that looks like yours. It is a very good guess. It is just wrong."
+ },
+ {
+  "file": "X4.mp3",
+  "text": "That also tells you where to be careful. Anything that sounds like the kind of thing that would exist \u2014 a plausible file path, a plausible flag, a plausible version number \u2014 is precisely where a text predictor is most likely to invent. Check those. It is far more reliable on the shape of code than on the details."
+ },
+ {
+  "file": "X5.mp3",
+  "text": "One more consequence of tokens, and this one is a party trick that teaches something real. Ask a model how many times a particular letter appears in a long word and it will often get it wrong. People screenshot this as proof it is stupid."
+ },
+ {
+  "file": "X6.mp3",
+  "text": "But look at what it was given. The word never arrived as letters. It arrived as two or three chunks, and the letters inside a chunk are not something it can see any more than you can see the individual pixels in a printed word. It is not failing at counting. It is answering a question about something it was never shown."
+ },
+ {
+  "file": "X7.mp3",
+  "text": "Now, what did training actually do? Not what most people picture. It did not store a copy of the internet in a lookup table. It adjusted an enormous number of internal weights until the thing got good at one task \u2014 predicting what comes next."
+ },
+ {
+  "file": "X8.mp3",
+  "text": "Which is why it knows things without having anything you could point at. There is no fact in there. There are patterns strong enough that the fact reliably falls out of them. Most of the time that distinction does not matter. When it does matter, it matters a lot."
+ },
+ {
+  "file": "X9.mp3",
+  "text": "And it is why there is a cutoff. Training happened at a moment, and everything after that moment is simply absent \u2014 not forgotten, never present. When a model confidently describes a library version released after its training, it is not out of date in the way a textbook is. It is guessing what a plausible future looked like."
+ },
+ {
+  "file": "X10.mp3",
+  "text": "So, three practical rules fall straight out of all this, and they are worth more than the theory. Give it the real thing rather than trusting its recall, because a pasted file beats a remembered one every time. Expect confident detail to be invented, and check it. And when a conversation gets long and strange, start a new one, because you now know exactly why that helps."
+ }
+]

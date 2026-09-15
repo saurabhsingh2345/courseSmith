@@ -1,0 +1,78 @@
+[
+ {
+  "file": "Z1.mp3",
+  "text": "One last thing before we stop, and it is the bridge into next week."
+ },
+ {
+  "file": "Z2.mp3",
+  "text": "This conversation has been running since the first prompt this morning. Every plan, every file, every error, every fix. All of it is in one long thread."
+ },
+ {
+  "file": "Z3.mp3",
+  "text": "And there is a limit to how much of that it can actually hold in mind at once. There always is. On day two we drew it as a stack of paper on a desk, and the desk has an edge."
+ },
+ {
+  "file": "Z4.mp3",
+  "text": "What happens when you reach the edge is not an error message. It quietly starts summarising the older parts, and then quietly starts dropping them."
+ },
+ {
+  "file": "Z5.mp3",
+  "text": "This particular tool does not show you a meter. It is handling it for us, which is comfortable and is also why you stop thinking about it."
+ },
+ {
+  "file": "Z6.mp3",
+  "text": "Next week, when we move to Claude Code, you will be able to see exactly how full it is. And we are going to obsess over it. I want you obsessing over it just as much now, when you cannot see it."
+ },
+ {
+  "file": "Z7.mp3",
+  "text": "Because the symptom is not a crash. The symptom is that it starts being slightly worse. It forgets a decision you made four hours ago. It re-solves something that was already settled."
+ },
+ {
+  "file": "Z8.mp3",
+  "text": "And you will read that as the model having a bad day, when what has actually happened is that the beginning of the conversation has quietly fallen off the desk."
+ },
+ {
+  "file": "Z9.mp3",
+  "text": "So here is the practice, and I will be honest that it feels wrong every time I do it. You stop the conversation and start a completely new one."
+ },
+ {
+  "file": "Z10.mp3",
+  "text": "It feels like throwing away everything it knows. It feels like starting from scratch with a stranger. And it is the right move."
+ },
+ {
+  "file": "Z11.mp3",
+  "text": "But not before you do the one thing that makes it safe, and this is the whole technique in a sentence."
+ },
+ {
+  "file": "Z12.mp3",
+  "text": "Update the plan with everything that has happened, including any design decisions you made along the way. And that second half is the load-bearing half."
+ },
+ {
+  "file": "Z13.mp3",
+  "text": "Because the checklist already says what got built. What is not written anywhere is why the columns are stored as rows rather than as a blob, and that we chose that on purpose, and that I nearly did it differently."
+ },
+ {
+  "file": "Z14.mp3",
+  "text": "If that only lives in the conversation, it dies with the conversation. And the next one will make a different choice, for perfectly good reasons, and quietly contradict the thing it did this morning."
+ },
+ {
+  "file": "Z15.mp3",
+  "text": "So the plan stops being a to-do list and becomes the project's memory. Written down, in a file, outside the thing that forgets."
+ },
+ {
+  "file": "Z16.mp3",
+  "text": "Then you save it, and you start a fresh conversation, and the first thing it does is read the plan. And it knows where things stand \u2014 not because it remembers, but because you left a note."
+ },
+ {
+  "file": "Z17.mp3",
+  "text": "And that is the actual skill this whole week has been teaching, hiding behind a Kanban board."
+ },
+ {
+  "file": "Z18.mp3",
+  "text": "Not how to prompt. How to leave things in a state where the next person can pick them up. It has always been the hardest part of working with other people, and it turns out to be the hardest part of working with these too."
+ },
+ {
+  "file": "Z19.mp3",
+  "text": "Next time, the last three parts, and the one where a language model gets to move your cards for you."
+ }
+]

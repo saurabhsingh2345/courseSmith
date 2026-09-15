@@ -1,0 +1,38 @@
+[
+ {
+  "file": "Z1.mp3",
+  "text": "One technical detail I will name because it shows up in the result and you can see it. The brief said prefer the obvious choice over the clever one, and for dragging things around a screen there is an obvious choice and there is a clever one."
+ },
+ {
+  "file": "Z2.mp3",
+  "text": "The clever choice is to install a library that specialises in dragging. The obvious choice is to use the dragging that is already built into every browser and has been for years. It took the obvious one, and the result is fewer moving parts and a build that is easier for the next person to change."
+ },
+ {
+  "file": "Z3.mp3",
+  "text": "That sentence in the brief is nine words long and it changed the shape of the code. This is what I mean when I say the brief is the product. You are not writing wishes, you are setting defaults for a hundred decisions you will never see."
+ },
+ {
+  "file": "Z4.mp3",
+  "text": "So let me put the two builds side by side, because two is enough to start seeing a pattern."
+ },
+ {
+  "file": "Z5.mp3",
+  "text": "Same brief. Same four word prompt. Same five checks. One ran a frontier model I chose by hand; the other ran whatever the free tier handed it. One never asked permission; the other asked eight times. One took eleven minutes of waiting; the other took eleven minutes of clicking yes."
+ },
+ {
+  "file": "Z6.mp3",
+  "text": "And both of them passed all five checks. Which is not the result I expected when I planned this lecture, and it is the most useful thing in it."
+ },
+ {
+  "file": "Z7.mp3",
+  "text": "Because the thing people ask before they start is always which one should I buy. And two builds in, the answer looks like it is going to be that on a job this size, with a brief this clear, it genuinely does not matter very much."
+ },
+ {
+  "file": "Z8.mp3",
+  "text": "Two more to go, and the next one changes shape. It is not really an extension at all, it is a command line tool wearing an editor as a coat, and it is the bridge into everything we do next week."
+ },
+ {
+  "file": "Z9.mp3",
+  "text": "Before that, though, write the four steps down. Reproduce. Prove. Fix. Demonstrate. Our build behaved today, and the day it does not, that instruction is the difference between an afternoon and a week."
+ }
+]

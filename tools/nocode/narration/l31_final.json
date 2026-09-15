@@ -1,0 +1,214 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Yesterday we gave an agent one instruction and let it run for twenty minutes. Today we are going to do the opposite, and I want to be honest that it will feel slower and slightly annoying, and that it is the right way to work."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "Here is the plan. Ten parts, written by me, in a file in the project. Not written by the AI. And I want to explain that choice, because there is a very common alternative."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "You can absolutely ask the agent to write the plan. Lots of people do, and it will produce something reasonable. But a plan is a set of decisions, and I have opinions about these ones, so I would rather spend ten minutes than inherit somebody else's judgement."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "If you have opinions, write your own. If you genuinely do not, ask it to draft one and then argue with the draft. What you must not do is have no plan and call that being agile."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "Part one is planning the plan, which sounds like a joke and is not. Take these ten headings and expand each one into detail, with sub-steps as a checklist to tick off, and tests and success criteria for each part."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "Part two, scaffolding. The container, the back end, the start and stop scripts. Nothing clever. It must serve a page and answer one API call, and that is all."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "Part three, serve the board we inherited. Part four, the sign-in. Part five, the database design, and stop for my approval before building it."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "Part six, the routes that read and change the board. Part seven, wire the two halves together so moving a card actually persists. Part eight, prove we can reach the AI at all. Part nine, send it the board and a question. Part ten, the assistant in the sidebar."
+ },
+ {
+  "file": "A9.mp3",
+  "text": "Now, the reason those particular ten, because the sizing is the transferable part and nobody explains it."
+ },
+ {
+  "file": "A10.mp3",
+  "text": "Every step is small enough that if it goes wrong, I know how to start figuring out why. That is the whole rule. Not small enough to be trivial, not big enough that failure leaves me staring at something I cannot even begin to investigate."
+ },
+ {
+  "file": "A11.mp3",
+  "text": "And that rule scales with you. If you know less, use smaller steps. If you know more, use bigger ones. The correct step size is a fact about you, not about the software, and nobody can pick it for you."
+ },
+ {
+  "file": "A12.mp3",
+  "text": "Which answers the objection you are about to raise. Why not just tell it to do all ten. We did exactly that yesterday and it worked."
+ },
+ {
+  "file": "A13.mp3",
+  "text": "Because yesterday was a toy and this has a database in it. Ten steps in one go, on something this size, and it will go off the rails somewhere in the middle, and you will not know where because you were not watching. You can always try. You can always go back. But I am not going to pretend that is the method."
+ },
+ {
+  "file": "B1.mp3",
+  "text": "Before the first prompt, one technique, and it is a single sentence that changes what you get back. I have started using it on everything."
+ },
+ {
+  "file": "B2.mp3",
+  "text": "Review the brief and the plan and proceed. And then. Let me know if you have any questions. Do not do any work yet."
+ },
+ {
+  "file": "B3.mp3",
+  "text": "Asking it to ask you questions, before it touches anything. Because an agent that is about to misunderstand you will usually reveal that in its questions, and the questions cost seconds, whereas the misunderstanding costs an hour."
+ },
+ {
+  "file": "B4.mp3",
+  "text": "And it is the cheapest possible moment to be wrong. Nothing has been written. Nothing has to be undone. You are still holding the steering wheel."
+ },
+ {
+  "file": "B5.mp3",
+  "text": "The other half of that technique comes later and I will flag it when we get there. Instead of asking is it done, you ask, let me know when you are confident. Those get different answers, and the second one is honest more often."
+ },
+ {
+  "file": "C1.mp3",
+  "text": "And it came back with nothing. No questions. It read both files, said the scope and the constraints are specific and consistent, said the order made sense, and said it would follow the plan exactly."
+ },
+ {
+  "file": "C2.mp3",
+  "text": "Which is not the answer I expected, and I want to be straight about that. When I planned this lecture I assumed it would ask me two or three things and that I would have something interesting to say about each one."
+ },
+ {
+  "file": "C3.mp3",
+  "text": "It asked nothing, and that is the technique working, not the technique failing. The point of asking for questions was never to collect questions. It was to find out whether the brief was clear before anything got built on top of a misunderstanding."
+ },
+ {
+  "file": "C4.mp3",
+  "text": "Silence is a result. It means the two documents we spent the last lecture on are doing their job. And it cost about fifteen seconds to find that out, which is the cheapest information you will buy all day."
+ },
+ {
+  "file": "C5.mp3",
+  "text": "It would have been just as useful the other way. Three confused questions here would have told me the brief was vague, and I would rather learn that now than after it has built the wrong thing twice."
+ },
+ {
+  "file": "C6.mp3",
+  "text": "So keep the habit even when it keeps returning nothing. You are not fishing for questions. You are testing whether you were clear, and a no is a pass."
+ },
+ {
+  "file": "C7.mp3",
+  "text": "One thing to notice before we go on, in the small grey text under its answer. It names the model that answered and what it charged. This tool picks a model per task rather than sticking to one, so that line will not always say the same thing. Read it rather than assuming."
+ },
+ {
+  "file": "D1.mp3",
+  "text": "So part one. Take my ten headings and turn each one into real detail. Sub-steps as a checklist it can tick off, and for every part, the tests and the success criteria that mean it is actually finished."
+ },
+ {
+  "file": "D2.mp3",
+  "text": "It comes back with a hundred and fifty two checkable items across the ten parts. And I read it, not to admire it, but looking for anything I do not like, which is a different activity."
+ },
+ {
+  "file": "D3.mp3",
+  "text": "This is the moment with the most leverage in the entire day. Right now the plan is words. Changing a word costs nothing. In an hour it will be code, and changing it costs an hour."
+ },
+ {
+  "file": "D4.mp3",
+  "text": "So read it properly. Not every sub-step. The shape. Are the parts in a sensible order. Does anything assume something that does not exist yet. Is there a success criterion you could not personally check."
+ },
+ {
+  "file": "D5.mp3",
+  "text": "That last one is the test I actually apply. If a success criterion is something I cannot verify with my own hands, it is not a success criterion, it is a wish, and I will be taking its word for it later."
+ },
+ {
+  "file": "B6.mp3",
+  "text": "One more thing before we start, and it is the most boring habit in software and the one that will save you. Everything is checked in to version control before we begin, and it gets checked in after each part."
+ },
+ {
+  "file": "E7.mp3",
+  "text": "Now, checkpointing, and I am going to name the three commands because nobody ever does."
+ },
+ {
+  "file": "E8.mp3",
+  "text": "Git status shows you what has changed since the last save point. Git add dot says include all of it. Git commit, with a message, makes the save point."
+ },
+ {
+  "file": "E9.mp3",
+  "text": "Three commands, in that order, after every part. Look, include, save. And the message matters more than people think, because it is what you will read when you are trying to find the last version that worked."
+ },
+ {
+  "file": "E10.mp3",
+  "text": "This is saved on your own machine, by the way. It has not gone anywhere. That is a separate step and we do not need it today."
+ },
+ {
+  "file": "E11.mp3",
+  "text": "And if any of that is unfamiliar, ask the agent. Genuinely. Ask it what git is, ask it what a commit is, ask it to explain what it just did. It is sitting right there and it is better at explaining this than most documentation."
+ },
+ {
+  "file": "E12.mp3",
+  "text": "Which is a general point about this whole course. The thing you are learning to direct is also the best teacher you have ever had about the subject you are directing it in, and almost nobody uses it that way."
+ },
+ {
+  "file": "D6.mp3",
+  "text": "Then part two. The container, the back end, the start and stop scripts. Its job is to serve one page and answer one call, and nothing else, which sounds insultingly small and is exactly right."
+ },
+ {
+  "file": "D7.mp3",
+  "text": "Because part two is where you find out whether the whole shape works. Whether the container builds, whether the scripts run on your machine, whether the thing you can reach in a browser is the thing that is running in the box. If any of that is wrong, you want to know now, with seven files in the project, not later with seventy."
+ },
+ {
+  "file": "D8.mp3",
+  "text": "And here is the prompt I want you to steal from this lecture. Not is it done. Tell me how I can test this myself, and let me know when you are confident."
+ },
+ {
+  "file": "D9.mp3",
+  "text": "Those two halves each do work. Tell me how to test it makes it hand you the verification rather than keeping it. And are you confident is a question it answers more honestly than are you finished, because finished is a claim about the work and confident is a claim about itself."
+ },
+ {
+  "file": "E1.mp3",
+  "text": "Something is going to keep happening for the rest of today, and I want to deal with it once rather than every time. It is going to ask permission to run commands, and you are going to have to decide."
+ },
+ {
+  "file": "E2.mp3",
+  "text": "If you can read the command, read it. Most of them are ordinary. Make a folder. Install a package. Start a server. You will get a feel for the normal ones within an hour."
+ },
+ {
+  "file": "E3.mp3",
+  "text": "If you cannot read it, you have three options and none of them are guessing. Ask it what the command does and why it needs to run it. Paste the command into a different AI and ask that one. Or say no, and ask it to explain itself before you allow it."
+ },
+ {
+  "file": "E4.mp3",
+  "text": "That third one is underrated. Refusing and asking for an explanation is not obstruction, it is the most normal thing a manager does, and you will learn more in that exchange than from any tutorial."
+ },
+ {
+  "file": "E5.mp3",
+  "text": "And I want to reframe the whole thing for the people who find this part stressful. You are not being asked to audit software. You are being shown, in advance, everything that is about to happen to your machine, by a thing that is asking rather than doing."
+ },
+ {
+  "file": "E6.mp3",
+  "text": "That is a better position than most professional developers were in ten years ago, running scripts off the internet with no idea what was in them. This is a learning opportunity wearing the costume of an interruption."
+ },
+ {
+  "file": "D10.mp3",
+  "text": "One thing to watch for that I have not had to use today, and I want to flag it anyway because you will hit it."
+ },
+ {
+  "file": "D11.mp3",
+  "text": "Our brief says use a specific Python package manager, and it used it. In the course I built this from, the agent quietly used a different one, and he only noticed because a file appeared that should not have been there."
+ },
+ {
+  "file": "D12.mp3",
+  "text": "So the general shape is worth carrying even though it did not happen to us. Instructions do not always get followed, and the way you find out is not that it tells you. It is that something appears in the project that you did not ask for. Look at what shows up, not just at what it says."
+ },
+ {
+  "file": "B7.mp3",
+  "text": "Which means at every point there is a version of this project that worked, that I can return to in one command. Working this way, with something that can rewrite twenty files while you make coffee, without checkpoints, is not brave. It is just unnecessary."
+ },
+ {
+  "file": "D13.mp3",
+  "text": "And check in after every part. Not because this part was risky, but because the habit has to be automatic before you reach the part that is."
+ },
+ {
+  "file": "B8.mp3",
+  "text": "Now watch what happens when we do it properly, because two things are going to go wrong in the next few minutes, and both of them are the exact behaviours this week has been warning you about, arriving on their own."
+ }
+]

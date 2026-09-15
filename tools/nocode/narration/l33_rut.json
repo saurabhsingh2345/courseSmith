@@ -1,0 +1,58 @@
+[
+ {
+  "file": "R1.mp3",
+  "text": "Now the part of today I could not have planned, and the part I would keep if I could only keep one thing from this whole week."
+ },
+ {
+  "file": "R2.mp3",
+  "text": "Something is broken, and I am going to describe it the way the last lecture taught you to. Not it is broken. Precisely what I did, precisely what I expected, and precisely what happened instead."
+ },
+ {
+  "file": "R3.mp3",
+  "text": "Then the instruction, phrased the way we have been phrasing it since day three. Test thoroughly and fix. Reproduce the problem, prove the cause, fix it, and confirm it is fixed."
+ },
+ {
+  "file": "R4.mp3",
+  "text": "And then it works for a long time. Long enough that I go and do something else, which is itself worth noticing, because that is what these stretches are actually like."
+ },
+ {
+  "file": "R5.mp3",
+  "text": "When I come back, it is still going. And reading what it has been doing, it has been circling. Trying a thing, deciding that was probably it, trying almost the same thing again."
+ },
+ {
+  "file": "R6.mp3",
+  "text": "Jumping to conclusions, over and over. Which is precisely the behaviour we named on day three and precisely the thing the instruction was supposed to prevent. So the instruction is not magic. It shapes the first attempt. It does not stop a loop."
+ },
+ {
+  "file": "R7.mp3",
+  "text": "So I stop it. Just press stop. And then I do the thing that no amount of prompting replaces. I open the application and try it myself."
+ },
+ {
+  "file": "R8.mp3",
+  "text": "And it works."
+ },
+ {
+  "file": "R9.mp3",
+  "text": "It had already fixed it. Somewhere in all that circling the bug had gone, and it did not know, because it was not looking at the application. It was looking at its own tests, and its own tests were wrong."
+ },
+ {
+  "file": "R10.mp3",
+  "text": "Sit with that, because it is the sharpest thing in the entire week. It had a broken measurement, it trusted the measurement over the world, and so it kept working on something that was already done."
+ },
+ {
+  "file": "R11.mp3",
+  "text": "A person does that too. We have all kept debugging something that started working ten minutes ago because we were watching the wrong window. The difference is that a person gets bored and looks."
+ },
+ {
+  "file": "R12.mp3",
+  "text": "It will not get bored. That tenacity is exactly what we praised on day one, and here it is as a cost rather than a benefit. It will pursue a wrong measurement relentlessly, and it has no instinct that says something feels off here, let me just go and look."
+ },
+ {
+  "file": "R13.mp3",
+  "text": "You are that instinct. Not because you can read the code. Because you can open the app and use it, and it fundamentally cannot want to."
+ },
+ {
+  "file": "R14.mp3",
+  "text": "So here is the rule I would take from today. When it has been going for a while, stop it and check the actual thing. Not the report. Not the tests. The application, with your own hands. It takes thirty seconds and it is the highest paid thirty seconds in this course."
+ }
+]

@@ -1,0 +1,50 @@
+[
+ {
+  "file": "B1.mp3",
+  "text": "Let me make that concrete, because a named pattern is easy and the first one you build is not. A Ralph Loop, stripped right down, is three files and a shell loop. There is nothing to buy and nothing to install."
+ },
+ {
+  "file": "B2.mp3",
+  "text": "File one. Objectives. What you actually want, written the way you would write an agents file. Crisp, specific, and testable. This is the only one of the three you write by hand, and it is where all the quality lives."
+ },
+ {
+  "file": "B3.mp3",
+  "text": "File two. Progress. The agent appends to this at the end of every pass. What it finished, what it could not finish, and why it stopped. This is the memory that survives between passes, because the context very much does not."
+ },
+ {
+  "file": "B4.mp3",
+  "text": "File three. Feedback. At the end of each pass a second call reads the objectives and the progress and writes down the honest gap between them. That gap goes straight to the top of the next pass's instructions."
+ },
+ {
+  "file": "B5.mp3",
+  "text": "And the loop itself is about four lines of shell. Run the agent with those three files. Run your stopping test. If it passes, stop. If it does not, go round again. That is the entire invention."
+ },
+ {
+  "file": "B6.mp3",
+  "text": "Which is worth saying plainly, because the name makes it sound like a product. A Ralph Loop is a for loop wrapped around an agent. All of the sophistication is in your objectives file and your stopping test, and nowhere else."
+ },
+ {
+  "file": "C1.mp3",
+  "text": "So how do you know when it is time to move up a rung? Not by reading about it. There is a signal, and it is a boring one. You move up when the gate below you stops catching anything."
+ },
+ {
+  "file": "C2.mp3",
+  "text": "If you have approved forty changes in a row and rejected none of them, you are not supervising any more. You are clicking. That is the moment micromanagement stopped being judgement and became a ritual, and you belong on rung two."
+ },
+ {
+  "file": "C3.mp3",
+  "text": "And the same test runs in the other direction. If you are sitting on rung four and you have thrown away the last three overnight runs, that is not bad luck. That is the work telling you it belongs further down the ladder."
+ },
+ {
+  "file": "D1.mp3",
+  "text": "One more way to feel the difference. The same task at two different rungs. Add a delete button to a page, with a confirmation dialogue, and a test to cover it."
+ },
+ {
+  "file": "D2.mp3",
+  "text": "On rung one you read every diff, you reject two of them, and you approve four. On rung three you write four sentences of specification, walk away, and read the finished work when it tells you it is done. Same feature, same model, and very often the same code at the end of it."
+ },
+ {
+  "file": "D3.mp3",
+  "text": "What differs is what you spent and what you risked. Rung one costs you forty minutes of your attention and almost no risk. Rung three costs you four minutes and a real chance of opening something you do not like. Neither of those is the right answer. The task decides."
+ }
+]

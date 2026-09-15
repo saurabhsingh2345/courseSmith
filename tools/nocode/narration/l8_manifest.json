@@ -1,0 +1,42 @@
+[
+ {
+  "file": "01.mp3",
+  "text": "That is day one. Before we close it out, four things worth carrying into tomorrow, and the first one is the most useful habit in this entire program."
+ },
+ {
+  "file": "02.mp3",
+  "text": "These are confusing times, and the pace is genuinely absurd. Something will be announced this week that sounds like it changes everything. Almost none of it will. Go back to the signal and noise idea from earlier today and use it deliberately. Watch the few sources that hold up, ignore the churn, and let the rest arrive already filtered."
+ },
+ {
+  "file": "03.mp3",
+  "text": "Second, and this one is in your favour. The models you are using right now are stronger than the ones these lessons were built against. New ones ship constantly. So you will get different results from ours, they will be inconsistent, and quite often they will simply be better. Take some joy in that rather than treating it as a mismatch."
+ },
+ {
+  "file": "04.mp3",
+  "text": "Third, and this is the honest caveat that makes this program different from most things you have taken. There is no single piece of code here that produces one matching result. You are not typing along with us. You are giving instructions to something creative, and it will build you something slightly different every single time. Every project in this program diverges the moment you start it."
+ },
+ {
+  "file": "05.mp3",
+  "text": "That is exciting, and it is also harder than the alternative, so let us be practical about what to do when yours does not match ours. Do not try to force your screen to look like ours. Check the behaviour instead. Does it run, does it do the thing that was asked, does it break where ours broke. If it does something ours did not, that is not a failure, that is your version. Read what it built, decide whether you like it, and tell it what to change."
+ },
+ {
+  "file": "06.mp3",
+  "text": "And when it genuinely goes wrong, which it will, the fix is almost never to start over. Tell the agent exactly what you saw, paste the error in full, and ask it to explain before it repairs. Learning to describe a problem precisely is most of the skill we are building over these three weeks."
+ },
+ {
+  "file": "07.mp3",
+  "text": "So here is where you are. Three weeks, five days each, and day one is behind you."
+ },
+ {
+  "file": "08.mp3",
+  "text": "And what it gave you is more than it felt like at the time. You built and shipped a working three dimensional game without writing a line of it yourself. You know what a vibe coder, a vibe engineer and an agentic coder actually are. You can name the three shapes every tool comes in and say which to reach for. You have the eight stages, you know which weeks cover which, and you know roughly what any of it costs."
+ },
+ {
+  "file": "09.mp3",
+  "text": "Tomorrow we go under the hood. What a large language model is really doing when it answers you. What actually makes something an agent rather than a chat window. And a file called agents dot md, which turns out to sit at the heart of nearly everything that follows."
+ },
+ {
+  "file": "10.mp3",
+  "text": "That puts you seven percent of the way through. It is a small number and it is meant to be. Fifteen days, one at a time, and the game you built today was day one of fifteen. See you tomorrow."
+ }
+]

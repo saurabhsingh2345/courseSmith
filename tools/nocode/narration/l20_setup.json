@@ -1,0 +1,66 @@
+[
+ {
+  "file": "Q1.mp3",
+  "text": "This one you download as an application, from a web address that is worth saying out loud because it is the best URL in the industry. Antigravity dot google."
+ },
+ {
+  "file": "Q2.mp3",
+  "text": "Take all the defaults. On a Mac you drag it into Applications, on Windows you click next a few times. There is nothing to configure and nothing to choose."
+ },
+ {
+  "file": "Q3.mp3",
+  "text": "And then it opens, and you will recognise it instantly, because it is Visual Studio Code again."
+ },
+ {
+  "file": "Q4.mp3",
+  "text": "That is the third time today. Cursor is a fork of it. Copilot is an extension inside it. This is a fork of it. Same file tree, same tabs, same keyboard shortcuts, same panel at the bottom. A different company, a different model, a different logo, and the same room."
+ },
+ {
+  "file": "Q5.mp3",
+  "text": "I want you to notice how much that is worth. The fear people have about this field is that every tool is a new thing to learn. Three of the four tools in today's comparison are literally the same editor with different agents bolted on, and the fourth is an extension living inside it."
+ },
+ {
+  "file": "Q6.mp3",
+  "text": "There is a sign in step, and I am not going to film mine, because a sign in screen is somebody's name and email on your screen and this course does not need either. Sign in with whatever account you have. It has a free tier."
+ },
+ {
+  "file": "Q7.mp3",
+  "text": "Open the folder, and the agent panel is on the right, exactly where the last two put it."
+ },
+ {
+  "file": "Q8.mp3",
+  "text": "The model list is worth a moment, because it says something about where this is going. This is Google's editor, and the model it starts you on is Google's own. And in the same dropdown, offered as equals, are two models from Anthropic and one open weights model anybody can run themselves."
+ },
+ {
+  "file": "Q9.mp3",
+  "text": "A year ago that would have been unthinkable. What it tells you is that the editor and the model have come apart. The tool is a harness, the model is a part you can swap, and the people building the harnesses have accepted that."
+ },
+ {
+  "file": "Q10.mp3",
+  "text": "Which is the single most useful thing to understand about this whole category, and it is why I keep insisting on naming the model. The harness is what you are choosing. The model is what is doing the work."
+ },
+ {
+  "file": "Q11.mp3",
+  "text": "Two settings before we start. The first turns on automatic fixing of what it calls lint errors."
+ },
+ {
+  "file": "Q12.mp3",
+  "text": "A lint error is not a bug. It is code that fails a basic structural check. An unused thing you imported and never used. A variable named in two different styles. Nothing that stops the app running, and all of it the kind of mess that makes the next change harder than it needed to be."
+ },
+ {
+  "file": "Q13.mp3",
+  "text": "Turn it on. It costs nothing, it happens without you, and every one of those it fixes is a small piece of tidiness you would otherwise have to ask for."
+ },
+ {
+  "file": "Q14.mp3",
+  "text": "And the second setting is the permission dial, for the fourth time today, with the fourth set of names for it. Except this one has only two positions. Request review, or always proceed. Ask me, or do not ask me."
+ },
+ {
+  "file": "Q15.mp3",
+  "text": "Which is worth pausing on, because the tool I built this lecture from had a third option in the middle, where the model itself decided when something was risky enough to interrupt you for. It is gone from this build. I do not know whether they removed it or moved it, and I am telling you that rather than guessing, because a course that pretends to know everything is worse than one that says where it stops."
+ },
+ {
+  "file": "Q16.mp3",
+  "text": "I am going to pick never ask, the same as I did in Cursor and in Claude Code, and for the same reason. This is a throwaway project in an empty folder on a machine I can rebuild. That is the only situation where never ask is a comfortable choice, and you should hear me say that every time I pick it."
+ }
+]

@@ -1,0 +1,74 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Today we build something real, and before we do I need to give you the vocabulary, because from here on I am going to use words like front end, back end, API and container as though you already know them."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "If you already do, put me on double speed and skip through this one. I mean that. Nothing in this lecture will be new to you, and I would rather you skipped ten minutes than sat through them out of politeness."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "Everything we have built this week, and everything we build from here, is a web application. Which means the way you reach it is by opening a browser and going to an address. That is the whole definition. No app store, no installer."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "And every web application is two halves that talk to each other. Once you can see those two halves, most of the confusing words stop being confusing."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "The first half is the front end, and it runs on your computer, inside your browser. It is the part you can see and click. Three things make it. The page itself, the appearance of the page, and the behaviour when you interact with it."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "Those three have names you will see constantly, so here they are once. HTML is the page. CSS is how it looks. JavaScript is what happens when you drag a card."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "The second half is the back end, and it does not run on your computer at all. It runs on a server somewhere else. It is the half that sent you the page in the first place, and it is the half you cannot see."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "And the back end is where the serious things happen. Reading and writing the database. Calling a language model. Talking to other companies' services. Anything that needs to be remembered, or that costs money, or that must not be tampered with."
+ },
+ {
+  "file": "A9.mp3",
+  "text": "Which brings me to the single most important sentence in this lecture. Your secrets live in the back end. Never in the front end."
+ },
+ {
+  "file": "A10.mp3",
+  "text": "Because the front end is running on somebody else's computer. Anyone can open it up and read it. If your key to a paid service is sitting in the front end, it is not a secret, it is a public notice, and you will find out when the bill arrives."
+ },
+ {
+  "file": "A11.mp3",
+  "text": "That is what the file called dot env is for, and it is why it sits on the back end and never gets checked into your code. You will see me be careful with that file today, and now you know why."
+ },
+ {
+  "file": "A12.mp3",
+  "text": "So the two halves are separate, and they are on different machines. Which leaves one question. How do they talk."
+ },
+ {
+  "file": "A13.mp3",
+  "text": "They talk through an API, and the word is less impressive than it sounds. It is a fixed list of messages the back end agrees to answer. The front end sends one of those messages, the back end does the work, and sends the answer back."
+ },
+ {
+  "file": "A14.mp3",
+  "text": "Drag a card to another column, and the front end sends a message saying this card moved to that column. The back end writes it into the database and says done. That round trip is the API call, and it is the whole reason your board is still right tomorrow."
+ },
+ {
+  "file": "A15.mp3",
+  "text": "Now put the week on that diagram, because this is where it gets concrete."
+ },
+ {
+  "file": "A16.mp3",
+  "text": "The board we built four times on day three was all front end. No back end at all. Which is exactly why it forgot everything the moment you reloaded the page. It was never storing anything anywhere, because there was nowhere to store it."
+ },
+ {
+  "file": "A17.mp3",
+  "text": "Yesterday's project did have a back end, and it was written in JavaScript, the same language as the front end. That is a completely normal way to build. Today we do it differently, and it is worth saying why rather than leaving it as a mystery."
+ },
+ {
+  "file": "A18.mp3",
+  "text": "Today the front end stays JavaScript, and the back end is Python. Not because Python is better. Because when the thing on the other end is a language model, Python is where most of that world lives, and the help you will find online assumes it."
+ }
+]

@@ -1,0 +1,34 @@
+[
+ {
+  "file": "B1.mp3",
+  "text": "Before the first prompt, one technique, and it is a single sentence that changes what you get back. I have started using it on everything."
+ },
+ {
+  "file": "B2.mp3",
+  "text": "Review the brief and the plan and proceed. And then. Let me know if you have any questions. Do not do any work yet."
+ },
+ {
+  "file": "B3.mp3",
+  "text": "Asking it to ask you questions, before it touches anything. Because an agent that is about to misunderstand you will usually reveal that in its questions, and the questions cost seconds, whereas the misunderstanding costs an hour."
+ },
+ {
+  "file": "B4.mp3",
+  "text": "And it is the cheapest possible moment to be wrong. Nothing has been written. Nothing has to be undone. You are still holding the steering wheel."
+ },
+ {
+  "file": "B5.mp3",
+  "text": "The other half of that technique comes later and I will flag it when we get there. Instead of asking is it done, you ask, let me know when you are confident. Those get different answers, and the second one is honest more often."
+ },
+ {
+  "file": "B6.mp3",
+  "text": "One more thing before we start, and it is the most boring habit in software and the one that will save you. Everything is checked in to version control before we begin, and it gets checked in after each part."
+ },
+ {
+  "file": "B7.mp3",
+  "text": "Which means at every point there is a version of this project that worked, that I can return to in one command. Working this way, with something that can rewrite twenty files while you make coffee, without checkpoints, is not brave. It is just unnecessary."
+ },
+ {
+  "file": "B8.mp3",
+  "text": "Now watch what happens when we do it properly, because two things are going to go wrong in the next few minutes, and both of them are the exact behaviours this week has been warning you about, arriving on their own."
+ }
+]

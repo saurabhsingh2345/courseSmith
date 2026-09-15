@@ -1,0 +1,98 @@
+[
+ {
+  "file": "01.mp3",
+  "text": "Right. Yesterday was me talking, and I said as much at the time. Today is the opposite. Today is a products day, and most of it happens on screen rather than on a slide."
+ },
+ {
+  "file": "02.mp3",
+  "text": "Before we open anything, four ground rules for the day, because this is the point in a program like this where people either get going or get stuck, and which one it is has almost nothing to do with ability."
+ },
+ {
+  "file": "03.mp3",
+  "text": "Rule one, and it is the one that matters most. Everything today is optional. There are four tools and you do not need to install all four. Watch all of it, pick one, and stick with that one for the rest of the week."
+ },
+ {
+  "file": "04.mp3",
+  "text": "And if you want the short version of which to pick. Cursor is the friendliest place to start. Copilot if you already live in Visual Studio Code. Claude Code if you are comfortable in a terminal and want the one that most professionals are actually using. Antigravity if you want to see where Google has got to."
+ },
+ {
+  "file": "05.mp3",
+  "text": "Rule two. Your results will vary, and I mean genuinely vary. Different model, different day, different plan tier. You may be on a cheaper model, or a free one, and the same prompt will not produce the same app. That is not you doing it wrong. That is the nature of the thing."
+ },
+ {
+  "file": "06.mp3",
+  "text": "Rule three, and this is the one to write down. Do not get frustrated. Be patient with it. Tell it what is wrong rather than starting again. And when you are properly stuck, the trick is three words long. Simplify, simplify, simplify."
+ },
+ {
+  "file": "07.mp3",
+  "text": "Cut the scope. Ask for less. Get something small working, look at it, and build out from there. A working ugly thing beats a broken beautiful thing every single time, and it is a much better place to give feedback from."
+ },
+ {
+  "file": "08.mp3",
+  "text": "And if it is still stuck after that, delete what it built and start the prompt again. If it is still stuck after that, skip that product and move to the next one. There is no prize for finishing all four."
+ },
+ {
+  "file": "09.mp3",
+  "text": "Rule four. Have some fun with it. You are about to watch four different pieces of software attempt the same job from the same brief, and they will each fail in their own particular way. That is genuinely interesting to watch."
+ },
+ {
+  "file": "10.mp3",
+  "text": "So let us get set up. And the setup is the same for all four builds, which is the point of doing it once, properly, now."
+ },
+ {
+  "file": "11.mp3",
+  "text": "The first thing you need is Node. Node is the thing that runs JavaScript outside a browser, and every one of these four tools is going to reach for it. Download the build for your machine from the Node website and run the installer. That is the whole job."
+ },
+ {
+  "file": "12.mp3",
+  "text": "And to check it worked, we go somewhere you may not have been before. The terminal. It is built into the editor, and in Cursor you open it with command J."
+ },
+ {
+  "file": "13.mp3",
+  "text": "Now, if you have never used a terminal, there is nothing to be afraid of here. It looks like something left over from the nineteen eighties because it is, and that is fine. It does exactly three things you need today."
+ },
+ {
+  "file": "14.mp3",
+  "text": "First command. Node, space, minus minus version. That asks Node what version it is, which also proves it is installed. Anything from twenty two upwards is fine."
+ },
+ {
+  "file": "15.mp3",
+  "text": "Second command, and it is three letters. P W D. It stands for print working directory, and it answers the question, where am I? Because a terminal is always sitting in one folder, and everything you type happens in that folder."
+ },
+ {
+  "file": "16.mp3",
+  "text": "Third. C D, which is change directory. C D dot dot goes up one level, to the folder above the one you are in. Run P W D again afterwards and you can see that you actually moved. That is the whole navigation model."
+ },
+ {
+  "file": "17.mp3",
+  "text": "One aside, because it catches people. On a Mac and on Linux the folder separator is a forward slash. On Windows it is a backslash, leaning the other way. If you are following along on a PC and a path looks wrong, that is usually why."
+ },
+ {
+  "file": "18.mp3",
+  "text": "Right. Now the thing we actually came for. There is a starter repository for today, and it holds the brief that all four tools are going to build from. The address is in the resources for this lecture."
+ },
+ {
+  "file": "19.mp3",
+  "text": "And we bring it down with git clone. Git is version control, the repository is on GitHub, and clone means make me a local copy. You will use this command for the rest of your life, so it is worth meeting it properly."
+ },
+ {
+  "file": "20.mp3",
+  "text": "There it goes. Enumerating objects, counting, compressing. Four objects, which tells you how small this thing is. And now there is a kanban folder sitting next to us that was not there ten seconds ago."
+ },
+ {
+  "file": "21.mp3",
+  "text": "C D kanban to go into it. P W D to confirm where we are. And L S, which lists what is in the current folder. Two files. A readme, and agents dot m d."
+ },
+ {
+  "file": "22.mp3",
+  "text": "That is it. That is the entire repository. One brief and a readme, and by the end of today four different agents will have turned that one file into four different working applications."
+ },
+ {
+  "file": "23.mp3",
+  "text": "Last step. Open that folder as a project, so the editor and the agent can both see it. And there it is. KANBAN, in the sidebar, with agents dot m d inside it."
+ },
+ {
+  "file": "24.mp3",
+  "text": "And in the next lecture we are going to read that file line by line, because it is the single most important thing you will write all week, and every one of the four builds is going to live or die by it."
+ }
+]

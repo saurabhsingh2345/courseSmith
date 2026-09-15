@@ -1,0 +1,34 @@
+[
+ {
+  "file": "01.mp3",
+  "text": "Second of four. Same brief, same five checks, different harness. And this one is the tool most of you already have access to without buying anything new, because your employer probably already pays for it."
+ },
+ {
+  "file": "02.mp3",
+  "text": "GitHub Copilot is not a separate application. It lives inside Visual Studio Code, which means if you already work there, the whole of today happens without you moving house."
+ },
+ {
+  "file": "03.mp3",
+  "text": "And I want to be exact about what we are changing between these four builds, because it is easy to lose track. The agents file is identical. The prompt is identical. The five checks are identical. What changes is the harness around the model, and nothing else."
+ },
+ {
+  "file": "04.mp3",
+  "text": "So. Fresh folder, fresh clone of the same repository, and the same single file sitting in it. Nothing from the Cursor build carries over."
+ },
+ {
+  "file": "05.mp3",
+  "text": "Copilot's agent lives in the chat panel on the right. Same shape as Cursor's, different furniture. There is a mode selector, and there is a model selector, and both of them matter."
+ },
+ {
+  "file": "06.mp3",
+  "text": "One difference worth naming immediately. Cursor gave me a Plan mode as a separate thing I had to switch into. Copilot folds planning into the agent rather than making it a mode, so the shape of what comes back is going to be a little different."
+ },
+ {
+  "file": "07.mp3",
+  "text": "And the prompt is the same four words. Go ahead and plan. Not one of them says what to build, because the file says what to build."
+ },
+ {
+  "file": "08.mp3",
+  "text": "This is the moment that tells you whether the last two lectures were worth it. If the file is doing its job, this tool has everything it needs from four words, exactly like the last one did."
+ }
+]

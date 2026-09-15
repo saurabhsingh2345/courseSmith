@@ -1,0 +1,38 @@
+[
+ {
+  "file": "V1.mp3",
+  "text": "That is four builds of the same brief, and before I give you a verdict I want to give you the caveat, because the caveat is more useful than the verdict."
+ },
+ {
+  "file": "V2.mp3",
+  "text": "These four runs did not use the same model. One had a frontier tier, one had whatever the free plan handed it, and the others sat somewhere in between. So some of what you just watched is a difference between harnesses, and some of it is simply a stronger model doing a better job. Those two things look identical from the outside, and the only defence against confusing them is to say out loud which model ran."
+ },
+ {
+  "file": "V3.mp3",
+  "text": "Which is why the honest headline of today is not that one of these tools won."
+ },
+ {
+  "file": "V4.mp3",
+  "text": "It is that they are all, structurally, the same thing. A sidebar you can drag wider. A place to type. Usually a planning step and an execution step, though not always as separate modes. And a plain text file in your repository that tells the agent how to behave, which almost all of them now agree to read."
+ },
+ {
+  "file": "V5.mp3",
+  "text": "Look back at what actually changed between the four. The brief did not change. The prompt did not change. The five checks did not change. What changed was the furniture, the permissions dialogue, and the model. That is the whole difference, and it is much smaller than the marketing on any of the four websites suggests."
+ },
+ {
+  "file": "V6.mp3",
+  "text": "So how do you choose. Honestly, mostly on things that have nothing to do with capability. Which one your team already uses. Which one your employer already pays for. Which one you can already log into. Which keyboard you already know. Pick on that, and know that the skill you build in one of them transfers to the others in about an afternoon."
+ },
+ {
+  "file": "V7.mp3",
+  "text": "And that is the real reason we did the same build four times. Not to crown a winner. To show you that the tool is the least interesting variable in the room."
+ },
+ {
+  "file": "V8.mp3",
+  "text": "Which is where the course turns. Three days in, you have seen the products. From here on it is technique. How to write a brief that does not need a follow up. How to make an agent prove a fix instead of claiming one. How to work in a loop instead of one long hopeful prompt. Those skills do not expire when the next IDE launches, and one will launch before you finish this course."
+ },
+ {
+  "file": "V9.mp3",
+  "text": "Tomorrow we stop comparing tools and build something with one. And you are twenty percent of the way through."
+ }
+]

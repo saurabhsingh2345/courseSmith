@@ -1,0 +1,14 @@
+[
+ {
+  "file": "Y1.mp3",
+  "text": "Let me make that concrete, because a token count means nothing until you can picture it. Rough rule. One token is about three quarters of a word. For code it is worse. Call it two to three tokens for every line you write."
+ },
+ {
+  "file": "Y2.mp3",
+  "text": "So a two hundred thousand token window holds somewhere around fifteen thousand lines of code. Which sounds enormous, until you look at your own project. A small real codebase is forty or fifty thousand lines. A serious one runs into the hundreds of thousands."
+ },
+ {
+  "file": "Y3.mp3",
+  "text": "Your window does not hold your project. It never did, and it never will. Which is exactly why the next lecture matters. If the agent cannot read everything, then what you put in that one file has to do the work that reading everything would have done."
+ }
+]

@@ -1,0 +1,90 @@
+[
+ {
+  "file": "B1.mp3",
+  "text": "Which brings us to the file this whole week has been about. And this time it is not a toy brief for a toy board. It is the specification for a piece of software with a database in it."
+ },
+ {
+  "file": "B2.mp3",
+  "text": "I am going to read it with you, because every section is a decision, and the decisions are the lecture. Not the typing."
+ },
+ {
+  "file": "B3.mp3",
+  "text": "Requirements first, and notice how ordinary the language is. A user signs in. They see their board. Five columns they can rename. Cards move. An assistant in the sidebar can answer questions and change things. There is not one technical word in it."
+ },
+ {
+  "file": "B4.mp3",
+  "text": "Then limitations, and this is the section people skip. One hard-coded user. One board. Runs on your own machine, not deployed. Written down so the agent does not helpfully build a login system, a billing page and a password reset you never asked for."
+ },
+ {
+  "file": "B5.mp3",
+  "text": "But look at the line underneath. Design the database for many users anyway. That is the one sentence in this file that a year from now will have saved somebody a rewrite, and it costs nine words today."
+ },
+ {
+  "file": "B6.mp3",
+  "text": "Then the technical decisions, and here is where I want to say something to the half of you who are worried about this section."
+ },
+ {
+  "file": "B7.mp3",
+  "text": "You do not need to know what goes here. You can genuinely ask the AI what it recommends and take that. That is a real answer and nobody will think less of you."
+ },
+ {
+  "file": "B8.mp3",
+  "text": "I have opinions, so I am going to use them. Python on the back end. A specific package manager, because the agents will reach for a different one if you let them. A local database file. Everything running inside a container. AI calls routed through one service, with the key in an environment file."
+ },
+ {
+  "file": "B9.mp3",
+  "text": "And each of those is a fence. Not because my choice is the correct one, but because a decision written down is a decision the agent does not get to make differently every twenty minutes."
+ },
+ {
+  "file": "B10.mp3",
+  "text": "Now the section I want you to actually copy, because I have never seen it in anyone else's file and it does more work than the rest of them combined."
+ },
+ {
+  "file": "B11.mp3",
+  "text": "Starting point. A short paragraph saying what already exists, that it was built by somebody else, and that it is a demo with nothing underneath it."
+ },
+ {
+  "file": "B12.mp3",
+  "text": "Without that, the agent finds a working Kanban board in the folder and has to guess whether it is finished, whether it is sacred, or whether it is a mistake. With it, there is no guessing at all."
+ },
+ {
+  "file": "B13.mp3",
+  "text": "And a tiny thing about the wording that is worth more than it looks. I first wrote that heading as current state, then changed it to starting point."
+ },
+ {
+  "file": "B14.mp3",
+  "text": "Because current state is a phrase that will still be sitting in the file in three hours, when the state is completely different, quietly telling the agent something false. Starting point can never go stale. It is the same information with an expiry date removed."
+ },
+ {
+  "file": "B15.mp3",
+  "text": "That is the level of care worth taking with this file. Not clever prompting. Just noticing which of your words will still be true tomorrow."
+ },
+ {
+  "file": "B16.mp3",
+  "text": "Then the palette, unchanged from day three, and a note about no emoji. Then coding standards, which are mostly familiar. Start simple, small steps, test after each one."
+ },
+ {
+  "file": "B17.mp3",
+  "text": "Except for this one, and you should recognise it, because two days ago you had to type it by hand in a panic. When you hit a problem, find the root cause. Do not guess. Reproduce it, prove the cause, fix that, and demonstrate the fix."
+ },
+ {
+  "file": "B18.mp3",
+  "text": "That is the four step instruction from the Copilot lecture, promoted. It is not something you say when things go wrong any more. It is written into the project, once, and it applies to every problem this agent ever hits here."
+ },
+ {
+  "file": "B19.mp3",
+  "text": "And one line I added that is not in anybody's template. If an instruction in this file turns out to be a bad idea, say so rather than following it into a corner."
+ },
+ {
+  "file": "B20.mp3",
+  "text": "Remember that line. It is going to matter more than anything else in the file, and not in the way I expected when I wrote it."
+ },
+ {
+  "file": "B21.mp3",
+  "text": "Last section. All planning lives in a docs folder, and the agent must read the plan before doing anything and keep it up to date as it goes, including decisions it makes along the way."
+ },
+ {
+  "file": "B22.mp3",
+  "text": "That last clause is the load-bearing one. The plan is the thing that survives when the conversation does not, and we are going to prove that later today by deliberately throwing the conversation away."
+ }
+]

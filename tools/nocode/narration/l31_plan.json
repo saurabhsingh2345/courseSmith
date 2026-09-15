@@ -1,0 +1,54 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Yesterday we gave an agent one instruction and let it run for twenty minutes. Today we are going to do the opposite, and I want to be honest that it will feel slower and slightly annoying, and that it is the right way to work."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "Here is the plan. Ten parts, written by me, in a file in the project. Not written by the AI. And I want to explain that choice, because there is a very common alternative."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "You can absolutely ask the agent to write the plan. Lots of people do, and it will produce something reasonable. But a plan is a set of decisions, and I have opinions about these ones, so I would rather spend ten minutes than inherit somebody else's judgement."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "If you have opinions, write your own. If you genuinely do not, ask it to draft one and then argue with the draft. What you must not do is have no plan and call that being agile."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "Part one is planning the plan, which sounds like a joke and is not. Take these ten headings and expand each one into detail, with sub-steps as a checklist to tick off, and tests and success criteria for each part."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "Part two, scaffolding. The container, the back end, the start and stop scripts. Nothing clever. It must serve a page and answer one API call, and that is all."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "Part three, serve the board we inherited. Part four, the sign-in. Part five, the database design, and stop for my approval before building it."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "Part six, the routes that read and change the board. Part seven, wire the two halves together so moving a card actually persists. Part eight, prove we can reach the AI at all. Part nine, send it the board and a question. Part ten, the assistant in the sidebar."
+ },
+ {
+  "file": "A9.mp3",
+  "text": "Now, the reason those particular ten, because the sizing is the transferable part and nobody explains it."
+ },
+ {
+  "file": "A10.mp3",
+  "text": "Every step is small enough that if it goes wrong, I know how to start figuring out why. That is the whole rule. Not small enough to be trivial, not big enough that failure leaves me staring at something I cannot even begin to investigate."
+ },
+ {
+  "file": "A11.mp3",
+  "text": "And that rule scales with you. If you know less, use smaller steps. If you know more, use bigger ones. The correct step size is a fact about you, not about the software, and nobody can pick it for you."
+ },
+ {
+  "file": "A12.mp3",
+  "text": "Which answers the objection you are about to raise. Why not just tell it to do all ten. We did exactly that yesterday and it worked."
+ },
+ {
+  "file": "A13.mp3",
+  "text": "Because yesterday was a toy and this has a database in it. Ten steps in one go, on something this size, and it will go off the rails somewhere in the middle, and you will not know where because you were not watching. You can always try. You can always go back. But I am not going to pretend that is the method."
+ }
+]

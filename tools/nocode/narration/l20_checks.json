@@ -1,0 +1,34 @@
+[
+ {
+  "file": "K1.mp3",
+  "text": "So, the fourth board, and the fourth time we do this by hand. Same five checks, same order, so that if one of these four apps is genuinely worse than the others we can point at exactly where."
+ },
+ {
+  "file": "K2.mp3",
+  "text": "Drag a card between columns. Reorder a card inside a column. Delete a card. Rename a column. And add a card with a description."
+ },
+ {
+  "file": "K3.mp3",
+  "text": "And that fifth one is the one I am watching hardest, because it is where the version of this lecture I built from found the weak spot. There, the fourth build produced a bare browser pop up asking for a name, with nowhere to put a description at all. Which is a real failure against the brief, because the brief says a card has a title and a description."
+ },
+ {
+  "file": "K4.mp3",
+  "text": "That is the kind of miss worth learning to spot. Not a crash. Not an error. Just a requirement quietly not met, in a place that still looks finished."
+ },
+ {
+  "file": "K5.mp3",
+  "text": "Four builds. One brief. Four harnesses. Not one line of code written by a person, not one bug debugged by a person, and four working boards."
+ },
+ {
+  "file": "K6.mp3",
+  "text": "And every one of them got there off the same plain text file, the same four word prompt, and a set of five checks you can run in ninety seconds without knowing what any of the code says."
+ },
+ {
+  "file": "K7.mp3",
+  "text": "Which is the whole argument of this course, demonstrated four times in one afternoon rather than asserted once."
+ },
+ {
+  "file": "K8.mp3",
+  "text": "Tomorrow we stop comparing and start building. But before that, a verdict, and an honest look at what four builds of the same thing actually taught us. That is the next lecture, and it is short."
+ }
+]

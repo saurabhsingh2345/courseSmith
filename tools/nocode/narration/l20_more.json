@@ -1,0 +1,70 @@
+[
+ {
+  "file": "P1.mp3",
+  "text": "Build four of four. And before a single thing happens on screen, the caveat, because if I leave it to the end it sounds like an excuse and up front it is just the truth."
+ },
+ {
+  "file": "P2.mp3",
+  "text": "These four builds did not run the same model. I chose a frontier model by hand in the first one. The second got whatever a free plan handed it. The third ran the same model as the first. And this one runs Google's default, which is a fast model rather than their strongest."
+ },
+ {
+  "file": "P3.mp3",
+  "text": "A stronger model means stronger results. That is the least surprising sentence in this course and it is also the one that invalidates most tool comparisons you will read online, including any version of this one that does not tell you which model ran."
+ },
+ {
+  "file": "P4.mp3",
+  "text": "So I will tell you, on screen, with the date on the frame. And you should ask that of anybody who shows you a comparison like this."
+ },
+ {
+  "file": "P5.mp3",
+  "text": "Now. I had a whole section planned for this lecture, and I am going to tell you what it was and then tell you why you are not getting it, because the reason is the most interesting thing in the day."
+ },
+ {
+  "file": "P6.mp3",
+  "text": "The course I built this from treats this tool as the holdout. The one that never agreed to read a file called agents dot md. So the lecture has you select the whole brief, copy it, make a special folder, make another folder inside that, make a markdown file inside that, paste it in, set a header telling it when to apply, save, and then delete the original so there are not two copies."
+ },
+ {
+  "file": "P7.mp3",
+  "text": "Nine steps of fiddly file management, to get the same words to the same model."
+ },
+ {
+  "file": "P8.mp3",
+  "text": "I typed the same four words I typed into the other three. Watch what it says back."
+ },
+ {
+  "file": "P9.mp3",
+  "text": "Based on the requirements in agents dot md. It went and found the file, on its own, with nobody telling it the file existed. The holdout is not a holdout any more."
+ },
+ {
+  "file": "P10.mp3",
+  "text": "I want to be careful here, because this is the sort of thing a course gets wrong by repeating what it was told. So I checked twice. It is not guessing from the folder. The application itself now has a setting page for this file by name, and it writes a line into its own log when it picks one up. It reads it deliberately."
+ },
+ {
+  "file": "P11.mp3",
+  "text": "Which means all four tools in today's comparison now read the same plain text file out of the root of your project without being asked. Four different companies. Two of them direct competitors. One convention."
+ },
+ {
+  "file": "P12.mp3",
+  "text": "That is a bigger deal than any feature any of them shipped this year, and it happened quietly, in about twelve months. The file you wrote two lectures ago is not an investment in one product. It is the thing that survives you changing your mind about all of them."
+ },
+ {
+  "file": "P13.mp3",
+  "text": "It still has its own folder for tool specific rules, and if you need something that applies only here, that is where it goes. But you no longer have to move the brief to make it work, and I would rather show you a convention winning than teach you a workaround for a problem that has been solved."
+ },
+ {
+  "file": "P14.mp3",
+  "text": "One more thing before it starts, and it is the third time today. It wrote the plan into a file in the project, next to the brief. Then it stopped and asked me to approve the plan before touching anything."
+ },
+ {
+  "file": "P15.mp3",
+  "text": "And remember what I set two minutes ago. I turned permissions all the way up. I told it never to ask. It asked anyway, because approving a plan is not the same kind of question as approving a command, and it treats the plan as the thing you actually want a say in."
+ },
+ {
+  "file": "P16.mp3",
+  "text": "Three of the four did that. Cursor was the only one that read plan first and simply carried on. Same nine words in the same file, four readings, and three of them decided that plan first meant plan, then check with the human."
+ },
+ {
+  "file": "P17.mp3",
+  "text": "Four builds, one brief, four harnesses. Which brings us to the verdict, and the verdict is going to be less exciting than you want it to be."
+ }
+]

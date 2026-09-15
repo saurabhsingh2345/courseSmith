@@ -1,0 +1,74 @@
+[
+ {
+  "file": "R1.mp3",
+  "text": "It planned in six phases, and every phase came with a line saying how it would know that phase was finished. Read those lines rather than the plan. A plan without a success check is a wish list, and the reason this one has them is that the brief asked for them."
+ },
+ {
+  "file": "R2.mp3",
+  "text": "Then it stopped. Not because anything went wrong, but because it wanted to run a command and it wanted me to say yes first."
+ },
+ {
+  "file": "R3.mp3",
+  "text": "And I want to be precise about this, because it is the one place today where the tools genuinely diverge, and it is not a small difference. I had already turned auto approve on. It still stopped. It stopped because this particular command installs a package from the internet, and this tool holds that category back no matter what the setting says."
+ },
+ {
+  "file": "R4.mp3",
+  "text": "That is a defensible design. Downloading and running somebody else's code is the single riskiest thing an agent does on your machine, and a tool that makes you look at that one is not being annoying, it is being careful. Cursor did not ask me."
+ },
+ {
+  "file": "R5.mp3",
+  "text": "It also asked again. And again. Eight times before the build was done, each time showing the exact command, and once showing the exact lines it wanted to change and what they were changing to. That is more interruption than Cursor, and it is also more visibility, and for a first build I would rather have the visibility."
+ },
+ {
+  "file": "R6.mp3",
+  "text": "Then it worked. Five columns, all of them renameable. Cards with a title and a description. Drag between columns and reorder inside one, using the browser's own drag handling rather than a library. Seeded data so the board looks alive. And it picked up the colour scheme out of the brief, which nothing forced it to do."
+ },
+ {
+  "file": "R7.mp3",
+  "text": "It also did something I did not ask for and would not have thought to ask for. It wrote itself a test suite for the board logic and ran it. Then it started a browser, drove the app the way a person would, and checked add, delete, rename, drag and drop, and what happens on a narrow phone screen. Then it fixed what those checks caught."
+ },
+ {
+  "file": "R8.mp3",
+  "text": "So it graded its own homework, and it says it passed."
+ },
+ {
+  "file": "R9.mp3",
+  "text": "Which is exactly why we are about to do it again by hand. Not because I think it is lying. Because a tool that tests itself and reports success is making a claim, and the whole discipline of this lecture is that a claim is not a demonstration until you have watched it happen."
+ },
+ {
+  "file": "R10.mp3",
+  "text": "Drag between columns. The card moves, and the counts on both columns change with it, which is the part a broken version usually gets wrong."
+ },
+ {
+  "file": "R11.mp3",
+  "text": "Reorder inside a column. That is a different mechanism from the last one and a very common place for these builds to fall down. It holds."
+ },
+ {
+  "file": "R12.mp3",
+  "text": "Delete. Gone, and the count follows it down. This is the one that was broken in the lecture I built this course from, twice, and it is the reason the four step instruction exists at all."
+ },
+ {
+  "file": "R13.mp3",
+  "text": "Rename a column. Straight into the heading, no dialogue box, no settings screen."
+ },
+ {
+  "file": "R14.mp3",
+  "text": "And add a card. Title, description, and a choice of which column it lands in. Note what this is not. It is not a browser pop up asking for a name with nowhere to put the detail. It is a form, which is what the brief asked for when it said a card has a title and a description."
+ },
+ {
+  "file": "R15.mp3",
+  "text": "Five for five, checked by a human, on the free tier, from a small model, off a prompt of four words and a file we wrote two lectures ago."
+ },
+ {
+  "file": "R16.mp3",
+  "text": "So I have to be honest about the shape of this lecture, because the course I built it from had a different afternoon. There, this build broke. Delete did not work, the agent guessed at a cause, patched it, announced victory, and had not fixed anything. Which is where the four step instruction came from."
+ },
+ {
+  "file": "R17.mp3",
+  "text": "Ours did not break, and I am not going to stage a fault to make the lesson land. But do not read our result as the normal one. Write the four steps down anyway, because the first time you are told a bug is fixed and it is not, you will want them already in your hand rather than having to invent them while you are annoyed."
+ },
+ {
+  "file": "R18.mp3",
+  "text": "Two builds down. Same brief, same prompt, same five checks, two different harnesses, and both of them cleared it. Which is starting to tell us something about where the difficulty actually lives, and it is not in the choice of tool."
+ }
+]

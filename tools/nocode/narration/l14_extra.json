@@ -1,0 +1,22 @@
+[
+ {
+  "file": "X1.mp3",
+  "text": "Two things about that site before we leave it, because a leaderboard is an easy thing to misread."
+ },
+ {
+  "file": "X2.mp3",
+  "text": "First. Read the price and the speed columns alongside the intelligence one, not after it. A model two points down the index at a third of the cost is very often the correct choice, and if you only ever look at the top row you will never once find it."
+ },
+ {
+  "file": "X3.mp3",
+  "text": "Second, and this is the one that catches people out. A benchmark measures the model. It does not measure the model plus your tools, plus your agents file, plus your workflow. And what you actually ship is the whole of that."
+ },
+ {
+  "file": "X4.mp3",
+  "text": "Which is why a middling model in a well set up environment routinely beats the top of the leaderboard in a badly set up one. The last three lectures were about the parts of that stack you control. This chart is the one part you do not."
+ },
+ {
+  "file": "X5.mp3",
+  "text": "So read it the way you would read a spec sheet for a component. It tells you what is possible. It does not tell you what you will build."
+ }
+]

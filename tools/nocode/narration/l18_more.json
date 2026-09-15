@@ -1,0 +1,194 @@
+[
+ {
+  "file": "M1.mp3",
+  "text": "Before anything else, a small ritual that repeats before every build in this section, and it is worth learning once rather than watching four times. The finished project gets renamed, so it survives as a record of what that tool produced. Then the same repository is cloned again, fresh, and we are back to one file and nothing else."
+ },
+ {
+  "file": "M2.mp3",
+  "text": "That is the only way the comparison means anything. If build two starts in a folder where build one left code lying around, then what you are measuring is not the second tool, it is the mess the first one left behind."
+ },
+ {
+  "file": "M3.mp3",
+  "text": "So four folders, four records, one brief. And by the end of the day you will be able to open any of them and see exactly what that tool did with the same instructions."
+ },
+ {
+  "file": "M4.mp3",
+  "text": "Now, where this one lives. And this is the part that surprises people, because Copilot is not an application you download and open. There is no Copilot on your dock. It is an extension, which means it lives inside an editor you already have."
+ },
+ {
+  "file": "M5.mp3",
+  "text": "The editor is Visual Studio Code, and it is free, and it is almost certainly the most widely used editor in the world. If you have ever had a developer look over your shoulder, this is probably what was on their screen."
+ },
+ {
+  "file": "M6.mp3",
+  "text": "And here is the detail that makes today much less frightening than it looks. Cursor, the tool we used yesterday and in the last lecture, is built on top of Visual Studio Code. Not inspired by it. Built from its actual source code, with their own features added on."
+ },
+ {
+  "file": "M7.mp3",
+  "text": "Which means the thing you are about to look at is going to feel familiar in a way that has nothing to do with you being clever. Same file tree on the left. Same tabs. Same panel at the bottom. Same keyboard shortcuts. You already know most of this room."
+ },
+ {
+  "file": "M8.mp3",
+  "text": "Hold on to that, because it is going to happen twice more today. Two of the four tools in this comparison are also built from this same editor. Once you can find your way around one of them, you can find your way around all of them, and that is a much bigger deal than any single feature any of them ships."
+ },
+ {
+  "file": "M9.mp3",
+  "text": "On the money. There is a free tier here, and it is a real one, not a seven day trial. You get an allowance of requests each month, and when it runs out you wait for the month to turn over or you pay. For what we are doing today, the free allowance is enough."
+ },
+ {
+  "file": "M10.mp3",
+  "text": "I want to flag that because it changes who this lecture is for. Everything else we compare today either costs money or has a much tighter limit. If you are following along and you only want to do one of these four builds yourself, do this one."
+ },
+ {
+  "file": "M11.mp3",
+  "text": "The panel opens on the right, and if you were with us in the last lecture you have seen this shape already. A box to type in at the bottom. A history of the conversation above it. And two small controls that decide almost everything about what happens next."
+ },
+ {
+  "file": "M12.mp3",
+  "text": "The first control is the mode. This one calls it Agent, which means it is allowed to read your files, write new ones, and run commands, rather than just talking to you about your code. That is the whole difference between a chatbot and an agent, and it is a single dropdown."
+ },
+ {
+  "file": "M13.mp3",
+  "text": "The second control is the model, and on the free tier there is exactly one option, called Auto. Auto means the tool picks for you, and it picks based on what is fast, what is cheap, and what it thinks the job needs. You do not get a vote."
+ },
+ {
+  "file": "M14.mp3",
+  "text": "In the last lecture I made a point of choosing the model by hand, so that a difference in the result would tell us something. Here I cannot. So the honest thing to do is the next best thing, which is to read what it actually used and say it out loud."
+ },
+ {
+  "file": "M15.mp3",
+  "text": "And it does tell you. Underneath every answer there is a line of small grey text with the time, the name of the model that answered, and what it cost. Most people never look at that line. Look at it. It is the only place the tool is completely straight with you about what you just spent."
+ },
+ {
+  "file": "M16.mp3",
+  "text": "That cost is measured in credits, and a credit is roughly one request. This whole build, six phases, dozens of file edits, a test suite and a browser run, came to under four credits. Which tells you the free allowance goes a lot further than you would guess from the pricing page."
+ },
+ {
+  "file": "M17.mp3",
+  "text": "And the prompt is four words. Go ahead and plan. Character for character what we typed into the other tool, because if the prompt changes then the comparison is worthless."
+ },
+ {
+  "file": "M18.mp3",
+  "text": "Watch what it reads before it answers. It does not go straight to the code. It looks for documentation, finds the brief, and reads that first. Nobody told it the file was there. It went looking, because looking for a brief is what these tools now do."
+ },
+ {
+  "file": "M19.mp3",
+  "text": "That is the payoff for the last two lectures, and it arrives in about four seconds. Everything we wrote into that file is now doing work inside a tool we had never opened when we wrote it."
+ },
+ {
+  "file": "M20.mp3",
+  "text": "Now the plan. Six phases, and I am not going to read you all of it, because the interesting part is not the phases."
+ },
+ {
+  "file": "M21.mp3",
+  "text": "The interesting part is the last line under each one. Success, colon, and then something you could actually check. The app starts and renders a page. Each required action works. The board feels complete on desktop and on mobile. Browser checks pass with nothing overlapping."
+ },
+ {
+  "file": "M22.mp3",
+  "text": "Those lines are the difference between a plan and a to-do list. A to-do list tells you what it intends to do. A success check tells you how it will know it worked, which means it has committed to something you can hold it to later."
+ },
+ {
+  "file": "M23.mp3",
+  "text": "And it wrote them because the brief told it to. That single instruction, write a plan with success criteria for each phase, is doing more work here than any amount of clever prompting would."
+ },
+ {
+  "file": "M24.mp3",
+  "text": "One more thing about the plan before we let it run. It made a list of six things to do and it is going to tick them off as it goes, on screen, where you can see it. That list is the single most useful thing on this panel while a build is running."
+ },
+ {
+  "file": "M25.mp3",
+  "text": "Because the honest experience of watching an agent work is long stretches where you have no idea whether it is making progress or going in circles. A ticking list is how you tell the difference without reading a line of code."
+ },
+ {
+  "file": "M26.mp3",
+  "text": "Let me explain what that command actually was, because the word untrusted is doing a lot of work in that sentence and it deserves unpacking."
+ },
+ {
+  "file": "M27.mp3",
+  "text": "Modern applications are not written from nothing. They are assembled from thousands of small packages that other people wrote and published, and the command it wanted to run goes off to the internet, downloads a pile of those, and then runs code from them on your machine."
+ },
+ {
+  "file": "M28.mp3",
+  "text": "That is completely normal. Every developer does it every day. It is also, genuinely, the largest hole in the side of the boat. If somebody hostile gets code into a popular package, everybody who installs it runs their code. It has happened, more than once, to packages with millions of users."
+ },
+ {
+  "file": "M29.mp3",
+  "text": "So a tool that will happily edit your files without asking, but stops and makes you look at the one command that downloads and runs strangers' code, has drawn the line in a defensible place. That is not caution theatre. That is the line I would draw."
+ },
+ {
+  "file": "M30.mp3",
+  "text": "And it is worth knowing that the setting you flip to say yes to everything does not override that category. Which is a small design decision that tells you something about the people who built it."
+ },
+ {
+  "file": "M31.mp3",
+  "text": "Here is the shape of the next few minutes, and it is the part nobody puts in a demo. It works. It stops and asks. I say yes. It works some more. It stops and asks again."
+ },
+ {
+  "file": "M32.mp3",
+  "text": "Eight times, on this build. And each time, the thing it shows you is specific. Here is the exact command I want to run. Here is the exact change I want to make to this file, with the old lines and the new lines side by side."
+ },
+ {
+  "file": "M33.mp3",
+  "text": "You do not have to be able to read those lines to get value out of seeing them. What you are checking is much simpler than the code. Is it touching the thing I asked about, or has it wandered somewhere else entirely."
+ },
+ {
+  "file": "M34.mp3",
+  "text": "And if you ever see it about to change a file you have never heard of, in a folder you did not know existed, that is your moment. Not later, when it tells you it is finished. Then."
+ },
+ {
+  "file": "M35.mp3",
+  "text": "Now let me tell you what it did while I was clicking yes, because two of the six phases are things I did not ask for and did not expect."
+ },
+ {
+  "file": "M36.mp3",
+  "text": "Phase four was tests. And I should say plainly what a test is, because the word gets used as though everybody already knows. A test is a small piece of code whose only job is to check that another piece of code does what it should. Move a card from here to there, then ask, is it there."
+ },
+ {
+  "file": "M37.mp3",
+  "text": "You write them once and you can run them a thousand times in a couple of seconds. Which means the question is it still working stops being a matter of opinion, or of you clicking around hoping to notice."
+ },
+ {
+  "file": "M38.mp3",
+  "text": "It wrote eleven of them for the board logic, and it ran them, and they passed. Nothing in the brief asked for a specific number, or for a specific testing tool. The brief said write tests that can be checked off, and it went and did the whole thing."
+ },
+ {
+  "file": "M39.mp3",
+  "text": "Phase five is the one that made me stop and rewind the recording. It started a real browser. Not a simulation of one. An actual browser, running on this machine, which it then drove itself."
+ },
+ {
+  "file": "M40.mp3",
+  "text": "It clicked the Add button. It typed into the fields. It picked a card up and dropped it in another column. It shrank the window down to the width of a phone to see whether anything fell off the edge. All of it without me watching, and all of it because the brief mentioned browser verification."
+ },
+ {
+  "file": "M41.mp3",
+  "text": "Think about what that is for a second. The thing that wrote the app also wrote the checks for the app, then ran the app, then ran the checks against it, then fixed the two things the checks caught, and then told me it was done."
+ },
+ {
+  "file": "M42.mp3",
+  "text": "That is a complete loop with no human in it. And it is the single biggest change in what these tools can do, compared to a year ago, when the same request would have got you a pile of code and a cheerful suggestion that you try running it."
+ },
+ {
+  "file": "M43.mp3",
+  "text": "It is also, and I want to put these two sentences next to each other on purpose, the exact reason you should trust its report less rather than more."
+ },
+ {
+  "file": "M44.mp3",
+  "text": "Because a tool that writes its own exam, sits its own exam, marks its own exam and then hands you the certificate has not shown you that the app works. It has shown you that it is internally consistent. Those are very different claims, and only one of them is worth anything to you."
+ },
+ {
+  "file": "M45.mp3",
+  "text": "So. Five checks, by hand, on the real thing, the way the person who is going to use it would touch it. Same five as the last build, in the same order, so you can compare like for like."
+ },
+ {
+  "file": "M46.mp3",
+  "text": "One last note on how it looks before we start clicking, because I did not expect this either. It named the thing. It picked a typeface, wrote a headline, and used the colours out of our brief rather than the grey that these builds usually default to."
+ },
+ {
+  "file": "M47.mp3",
+  "text": "Nothing in the requirements asked for a name or a headline. The brief said a slick, professional, genuinely good looking interface, and it treated that as a real instruction rather than a nice sentiment. Which is a small lesson about writing briefs, and we will come back to it."
+ },
+ {
+  "file": "M48.mp3",
+  "text": "The last thing to say about this build is what it cost, in the two currencies that matter. Under four credits, from a free allowance. And about eleven minutes, most of which I spent clicking yes rather than waiting."
+ }
+]

@@ -1,0 +1,22 @@
+[
+ {
+  "file": "D1.mp3",
+  "text": "One more thing from that same pass, and it is a distinction that will save you a lot of wasted afternoons."
+ },
+ {
+  "file": "D2.mp3",
+  "text": "While it was testing the keyboard it noticed that two of the arrow keys do the same thing. Right and down move the card the same way, which looks wrong. A reasonable person would file that as a bug."
+ },
+ {
+  "file": "D3.mp3",
+  "text": "It did not. It went and checked how the library it is using is meant to behave, found that the library walks through the cards in a single line rather than treating the board as a grid, and concluded that this is the documented design, not a fault."
+ },
+ {
+  "file": "D4.mp3",
+  "text": "So it wrote the finding down and moved on. Not everything that surprises you is broken. Some of it is a decision somebody else made on purpose, and the difference between those two is worth five minutes of checking before you ask for a fix."
+ },
+ {
+  "file": "D5.mp3",
+  "text": "This is the other half of the discipline. The four steps stop a tool claiming a fix it has not proved. This stops you demanding a fix for something that was never broken. Both failures cost the same afternoon."
+ }
+]

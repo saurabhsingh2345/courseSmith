@@ -1,0 +1,54 @@
+[
+ {
+  "file": "D1.mp3",
+  "text": "So part one. Take my ten headings and turn each one into real detail. Sub-steps as a checklist it can tick off, and for every part, the tests and the success criteria that mean it is actually finished."
+ },
+ {
+  "file": "D2.mp3",
+  "text": "It comes back with a hundred and fifty two checkable items across the ten parts. And I read it, not to admire it, but looking for anything I do not like, which is a different activity."
+ },
+ {
+  "file": "D3.mp3",
+  "text": "This is the moment with the most leverage in the entire day. Right now the plan is words. Changing a word costs nothing. In an hour it will be code, and changing it costs an hour."
+ },
+ {
+  "file": "D4.mp3",
+  "text": "So read it properly. Not every sub-step. The shape. Are the parts in a sensible order. Does anything assume something that does not exist yet. Is there a success criterion you could not personally check."
+ },
+ {
+  "file": "D5.mp3",
+  "text": "That last one is the test I actually apply. If a success criterion is something I cannot verify with my own hands, it is not a success criterion, it is a wish, and I will be taking its word for it later."
+ },
+ {
+  "file": "D6.mp3",
+  "text": "Then part two. The container, the back end, the start and stop scripts. Its job is to serve one page and answer one call, and nothing else, which sounds insultingly small and is exactly right."
+ },
+ {
+  "file": "D7.mp3",
+  "text": "Because part two is where you find out whether the whole shape works. Whether the container builds, whether the scripts run on your machine, whether the thing you can reach in a browser is the thing that is running in the box. If any of that is wrong, you want to know now, with seven files in the project, not later with seventy."
+ },
+ {
+  "file": "D8.mp3",
+  "text": "And here is the prompt I want you to steal from this lecture. Not is it done. Tell me how I can test this myself, and let me know when you are confident."
+ },
+ {
+  "file": "D9.mp3",
+  "text": "Those two halves each do work. Tell me how to test it makes it hand you the verification rather than keeping it. And are you confident is a question it answers more honestly than are you finished, because finished is a claim about the work and confident is a claim about itself."
+ },
+ {
+  "file": "D10.mp3",
+  "text": "One thing to watch for that I have not had to use today, and I want to flag it anyway because you will hit it."
+ },
+ {
+  "file": "D11.mp3",
+  "text": "Our brief says use a specific Python package manager, and it used it. In the course I built this from, the agent quietly used a different one, and he only noticed because a file appeared that should not have been there."
+ },
+ {
+  "file": "D12.mp3",
+  "text": "So the general shape is worth carrying even though it did not happen to us. Instructions do not always get followed, and the way you find out is not that it tells you. It is that something appears in the project that you did not ask for. Look at what shows up, not just at what it says."
+ },
+ {
+  "file": "D13.mp3",
+  "text": "And check in after every part. Not because this part was risky, but because the habit has to be automatic before you reach the part that is."
+ }
+]

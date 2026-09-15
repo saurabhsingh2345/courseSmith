@@ -1,0 +1,318 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Last three parts. And the reason they are three rather than one is the same reason everything today has been in pieces."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "Part eight does nothing you can see. It proves we can reach the AI at all. One call out to a model, one answer back, printed where I can read it."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "That is the whole part. No interface, no cleverness, no board involved."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "And it is the most valuable of the three, because it separates two questions that people spend hours confusing."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "Can we talk to the model at all \u2014 is the key right, is the name right, is the account funded, does the network allow it. And separately, is our feature any good."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "If you build the feature and the chat panel and the whole thing at once and it does not work, you are now debugging both questions simultaneously, and they look identical from the outside."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "Part eight answers the first one on its own, in two minutes, and then it is never in question again."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "Which is a habit worth stealing well beyond AI. Whenever something new and external is involved, prove you can reach it before you build anything on top of it."
+ },
+ {
+  "file": "B1.mp3",
+  "text": "Part nine gives the assistant the board."
+ },
+ {
+  "file": "B2.mp3",
+  "text": "Because a model on its own knows nothing about you. It has never seen your cards. If you ask it what is in progress, it will produce something plausible and completely invented, and it will sound confident."
+ },
+ {
+  "file": "B3.mp3",
+  "text": "So before every question we send it, we attach the current state of the board. Here are the columns. Here are the cards. Now, the user asks this."
+ },
+ {
+  "file": "B4.mp3",
+  "text": "And that is the entire trick behind every AI feature you have ever used that seemed to know things. Something assembled the relevant facts and put them in front of the model at the moment of asking."
+ },
+ {
+  "file": "B5.mp3",
+  "text": "There is no memory. There is no learning. There is a very good writer being handed a briefing note a fraction of a second before it answers."
+ },
+ {
+  "file": "B6.mp3",
+  "text": "Once you see it that way, a lot of AI products stop being mysterious, and a lot of AI failures start being predictable. It did not know because nobody told it."
+ },
+ {
+  "file": "C1.mp3",
+  "text": "And part ten is the one that turns talking into doing."
+ },
+ {
+  "file": "C2.mp3",
+  "text": "Up to part nine it can describe your board. After part ten it can change it."
+ },
+ {
+  "file": "C3.mp3",
+  "text": "Which is a genuinely different thing, and it is worth being slightly careful about, because this is the first moment today where something that makes things up gets to touch the data."
+ },
+ {
+  "file": "C4.mp3",
+  "text": "This is exactly the case I flagged when we talked about reading diffs. Accept the ordinary work in bulk, and slow down when it touches something you would not want wrong. This is that."
+ },
+ {
+  "file": "P1.mp3",
+  "text": "So. Sign in, and there is the board, and on the right there is a chat box. Let us find out whether any of this actually works."
+ },
+ {
+  "file": "P2.mp3",
+  "text": "Hello. And it says hello back, and asks what I would like to do with my board."
+ },
+ {
+  "file": "P3.mp3",
+  "text": "Except it does not. It returns an error, and the page just sits there, because part of what we built has no way of doing what it claims."
+ },
+ {
+  "file": "P4.mp3",
+  "text": "So I go and look at the log, and the reason is almost funny. The key that lets us talk to the model is on my machine, in a file. And the application does not run on my machine. It runs in the box."
+ },
+ {
+  "file": "P5.mp3",
+  "text": "Nobody handed the key to the box. So every question that needs the model fails, on the first one I asked."
+ },
+ {
+  "file": "P6.mp3",
+  "text": "Now. That is the small problem, and I want to show you the big one, because I nearly put something in front of you that was not true."
+ },
+ {
+  "file": "P7.mp3",
+  "text": "I went and read how it decides to move a card. And moving a card is not decided by the model at all. It is decided by a pattern."
+ },
+ {
+  "file": "P8.mp3",
+  "text": "Somewhere in there is a rule that says, if the sentence looks roughly like move something to somewhere, pull out those two things and move the card. The model is never asked."
+ },
+ {
+  "file": "P9.mp3",
+  "text": "And I want you to see how close I came to not noticing. Because with the key missing, every real question was failing \u2014 and moving a card would have worked perfectly, because moving a card never needed the model."
+ },
+ {
+  "file": "P10.mp3",
+  "text": "So the demo I was about to record was: type move a card, watch it move, tell you a language model just changed your data. And it would have been a regular expression from about nineteen ninety."
+ },
+ {
+  "file": "P11.mp3",
+  "text": "Nothing was hidden from me. It is all in the code, it was in a file I could open, and it did not occur to it to mention it, because it was not asked to."
+ },
+ {
+  "file": "P12.mp3",
+  "text": "This is the sharpest version of the thing I have been saying all week. It does what you asked. Whether what you asked is what you wanted is not a question it will raise."
+ },
+ {
+  "file": "P13.mp3",
+  "text": "And notice how it was caught. Not by reading the code, because I only read that part after the error made me suspicious. By using the thing and finding one bit broken, which made me look at the bit that worked."
+ },
+ {
+  "file": "P14.mp3",
+  "text": "So I sent it both. Give the box the key. And take out the pattern matching, and let the model actually decide, because I would rather it be slower and real than instant and fake."
+ },
+ {
+  "file": "P15.mp3",
+  "text": "And now, properly. Summarise my project."
+ },
+ {
+  "file": "P16.mp3",
+  "text": "And it does, accurately, naming the columns and what is in them, which means it is genuinely reading the board and not guessing."
+ },
+ {
+  "file": "P17.mp3",
+  "text": "And now the one I have been building towards all week. Move a card from one column to another. Not by dragging it. By asking."
+ },
+ {
+  "file": "P18.mp3",
+  "text": "And it moves. On screen, in front of you. And this time I can tell you honestly what happened, because I checked."
+ },
+ {
+  "file": "P19.mp3",
+  "text": "The board was described to a language model, along with my sentence. It decided which card and which column I meant. It said so, in a form our back end understands. And our back end changed the database."
+ },
+ {
+  "file": "P20.mp3",
+  "text": "And to prove it is real rather than a trick of the screen, a completely fresh tab, signed in from scratch. The card is still where the AI put it. It is in the database. It survived."
+ },
+ {
+  "file": "P21.mp3",
+  "text": "So look at what this is now. A board that persists, in a database, in a container, with a front end and a back end and an API between them, and an assistant that can reorganise your work by being asked."
+ },
+ {
+  "file": "P22.mp3",
+  "text": "That is not a demo. That is the shape of a product people pay for. Built in an afternoon, in ten steps, by somebody directing it rather than typing it."
+ },
+ {
+  "file": "P23.mp3",
+  "text": "And built, I want to say clearly, with one thing in it that was fake until forty minutes ago and a key that was never plugged in. Both of which I found by using it."
+ },
+ {
+  "file": "H1.mp3",
+  "text": "And now the part that matters more than the demo, because anybody can show you a thing working and stop there."
+ },
+ {
+  "file": "H2.mp3",
+  "text": "This is not finished. It is the beginning of something, and I want to list what is wrong with it while you are still impressed, because that is the only moment the list is useful."
+ },
+ {
+  "file": "H3.mp3",
+  "text": "There is one user, hard-coded. The chat gives you no sign it is thinking, so it looks frozen while it works. There is one board. And nothing is deployed, so it exists only on this machine."
+ },
+ {
+  "file": "H4.mp3",
+  "text": "And then the one I actually want you to sit with, because it is the kind of thing that ships."
+ },
+ {
+  "file": "H5.mp3",
+  "text": "The sign-in. Let me show you something about it."
+ },
+ {
+  "file": "H6.mp3",
+  "text": "When you load the page, your browser downloads a handful of files to make it work. That is normal, every website does it, and you can read any of them."
+ },
+ {
+  "file": "H7.mp3",
+  "text": "And in one of them is the password. Written out. Anybody who opens this page can find it in about thirty seconds without any skill at all."
+ },
+ {
+  "file": "H8.mp3",
+  "text": "Which means the sign-in is not a lock. It is a sign on a door that says please do not come in, and it has been that all afternoon while I have been calling it a sign-in."
+ },
+ {
+  "file": "H9.mp3",
+  "text": "Now I want to be fair, because nobody did anything wrong here. Our own brief said one hard-coded user, minimum viable, and that is exactly what it built. This is my shortcut, not its mistake."
+ },
+ {
+  "file": "H10.mp3",
+  "text": "But this is precisely how it happens outside a classroom. The shortcut goes in for perfectly good reasons. Then somebody shows the thing to somebody else. And nobody ever goes back and asks which of the shortcuts were load-bearing."
+ },
+ {
+  "file": "H11.mp3",
+  "text": "So the lesson is not go and learn about authentication. It is this. Know which of your simplifications mean we will do that properly later, and which mean this must never leave this laptop."
+ },
+ {
+  "file": "H12.mp3",
+  "text": "This one is the second kind. And the only reason I can tell you that is that I went and looked at what my own application was sending to the browser."
+ },
+ {
+  "file": "H13.mp3",
+  "text": "So what would I do about all of it. Not fix it by hand, obviously."
+ },
+ {
+  "file": "H14.mp3",
+  "text": "I would open a completely fresh conversation, and ask a different agent to review this project and tell me what is wrong with it. Without telling it what I already think."
+ },
+ {
+  "file": "H15.mp3",
+  "text": "It would find the password in about four seconds. A second opinion from something that has no stake in what the first one wrote is one of the most useful and least used moves available to you, and it costs one prompt."
+ },
+ {
+  "file": "H16.mp3",
+  "text": "And then I would have it fix them in small steps, testing after each one, exactly the way we worked all day. The method does not change just because the work is tidying rather than building."
+ },
+ {
+  "file": "W1.mp3",
+  "text": "So that is week one, and I want to spend the last few minutes on what actually happened to you rather than on what we built."
+ },
+ {
+  "file": "W2.mp3",
+  "text": "Because the app is not the point. The app is a Kanban board. There are two hundred of them and most are better than ours."
+ },
+ {
+  "file": "W3.mp3",
+  "text": "What you have is a method, and it is the same five moves whatever you point it at."
+ },
+ {
+  "file": "W4.mp3",
+  "text": "Write the plan yourself, in pieces sized so that if one fails you know where to start looking."
+ },
+ {
+  "file": "W5.mp3",
+  "text": "Ask for questions before any work happens, and treat silence as a pass rather than as agreement."
+ },
+ {
+  "file": "W6.mp3",
+  "text": "Check in after every part, with the three commands, before the risky thing rather than after it."
+ },
+ {
+  "file": "W7.mp3",
+  "text": "Describe faults precisely. What you did, what you expected, what happened instead."
+ },
+ {
+  "file": "W8.mp3",
+  "text": "And go and look with your own hands, because its check passing is not the same as it working."
+ },
+ {
+  "file": "W9.mp3",
+  "text": "None of those five required you to read a line of code. Every one of them required you to pay attention. That is the trade this whole course is built on."
+ },
+ {
+  "file": "W10.mp3",
+  "text": "Now, the honest accounting of the week, because I have been promising it all along."
+ },
+ {
+  "file": "W11.mp3",
+  "text": "On day one we watched it be tireless, and it was. On day three we watched it jump to conclusions, and it did. Today we watched it verify something with the one tool that could not see the fault, and report success."
+ },
+ {
+  "file": "W12.mp3",
+  "text": "And in the same afternoon it produced a database design better than the one I had in my head, and caught a fault in its own scheme when I asked one uncomfortable question."
+ },
+ {
+  "file": "W13.mp3",
+  "text": "If you have come out of this week thinking these things are magic, I have taught you badly. If you have come out thinking they are useless, I have taught you badly in the other direction."
+ },
+ {
+  "file": "W14.mp3",
+  "text": "They are extremely capable and they have no judgement about when to stop. You are the judgement. That is the job, and it is a real one."
+ },
+ {
+  "file": "W15.mp3",
+  "text": "Next week we change tools, and I want to set your expectations properly."
+ },
+ {
+  "file": "W16.mp3",
+  "text": "Everything you have learned transfers. All of it. The plan, the checkpoints, the way you describe a fault, the habit of looking."
+ },
+ {
+  "file": "W17.mp3",
+  "text": "What changes is that Claude Code shows you things this week's tool politely hid. You will see how full the context is. You will see what it is about to run before it runs it."
+ },
+ {
+  "file": "W18.mp3",
+  "text": "Which is less comfortable and much better, and it is why we did it in this order. You now know what those numbers mean, because you have felt what happens when nobody is watching them."
+ },
+ {
+  "file": "W19.mp3",
+  "text": "One more thing to take with you, and it is not mine. Karpathy's line about keeping the AI on a tight leash \u2014 that the temptation is always to give it a huge task and hope."
+ },
+ {
+  "file": "W20.mp3",
+  "text": "Everything we did today was that leash. Ten parts instead of one prompt. A stop before the database. A browser opened by hand when the tests said everything was fine."
+ },
+ {
+  "file": "W21.mp3",
+  "text": "It is not a lack of ambition. It is the only way anybody has found to get ambitious work out of these things and still be able to tell whether it worked."
+ },
+ {
+  "file": "W22.mp3",
+  "text": "Well done for getting through the first week. See you in the second one."
+ }
+]

@@ -1,0 +1,18 @@
+[
+ {
+  "file": "X1.mp3",
+  "text": "One thing that is genuinely different here and worth understanding, because it will shape what you see."
+ },
+ {
+  "file": "X2.mp3",
+  "text": "Copilot has a permissions model of its own, and by default it is more cautious than Cursor's. It will ask before it runs terminal commands, and it asks per command rather than per session."
+ },
+ {
+  "file": "X3.mp3",
+  "text": "That is more interruption, and it is also more visibility. You see every command before it runs, which for a first build is arguably the better trade. It is the same decision we drew as a ladder two lectures ago, with the dial set one notch tighter."
+ },
+ {
+  "file": "X4.mp3",
+  "text": "And the model selector matters more here than it did in Cursor. Copilot offers a range, some of it included in the base subscription and some of it metered, so what you get depends on what you picked and what your plan allows."
+ }
+]

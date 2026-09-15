@@ -1,0 +1,102 @@
+[
+ {
+  "file": "01.mp3",
+  "text": "This is a sobering one to finish the day on, and I want to be careful how I say it, because I am a genuine enthusiast for these tools and I do not want to undersell them. But some of the hype around them is not warranted, and you are better off hearing that from me than finding it out on a deadline."
+ },
+ {
+  "file": "02.mp3",
+  "text": "So let me give you the honest range, using work I have actually done. A boilerplate front end. The kind of thing with forms, a table, some routing, nothing clever. That is minutes for a coding agent. It is a solid day for a good front end engineer. And it is several weeks for me, because it is not my field."
+ },
+ {
+  "file": "03.mp3",
+  "text": "That is an order of magnitude, and it is real. It is the kind of result that makes people write breathless posts about the end of software engineering. But it is one end of a range, and the other end of that range does not get written about."
+ },
+ {
+  "file": "04.mp3",
+  "text": "There are tasks where an agent is only incrementally faster than doing it yourself. And there are tasks, fewer of them, where it has actively slowed me down. Where it produced something subtly wrong in a way I was not expecting, and I lost more time finding that than I would have spent writing the thing."
+ },
+ {
+  "file": "05.mp3",
+  "text": "And the variable that decides which of those you get is the project, not the model. Highly innovative work, on a large existing codebase, in an unusual domain? Incremental. Greenfield, from nothing, with a lot of boilerplate in it? Days genuinely turn into minutes."
+ },
+ {
+  "file": "06.mp3",
+  "text": "So in aggregate it is a multiplier. A real one, that shows up in what you can ship. But it is not a ten x, and anybody selling you a ten x across all of your work has not measured it across all of theirs."
+ },
+ {
+  "file": "07.mp3",
+  "text": "And there are two camps now, and both of them are wrong. There is the over-hyped camp, who will tell you engineering is finished. And there is a growing anti-A-I movement, largely made of people who got burnt by the first camp's promises and have decided the whole thing is a con."
+ },
+ {
+  "file": "08.mp3",
+  "text": "It is on those of us actually using these tools, every day, on real work, to set the record straight. On the strengths and on the limits. Which is a decent segue, because I want to show you where to go and check any of this for yourself."
+ },
+ {
+  "file": "09.mp3",
+  "text": "If you only ever bookmark one site out of this entire program, make it this one. Artificial Analysis. It is independent, it is updated constantly, and it benchmarks essentially every model that matters."
+ },
+ {
+  "file": "10.mp3",
+  "text": "And before I show you anything on it, the disclaimer, which matters more here than anywhere else in this program. What you see when you open it will not be what I am describing. This field moves in weeks. So take the method rather than the numbers."
+ },
+ {
+  "file": "11.mp3",
+  "text": "The headline is the Intelligence Index. A single encompassing score that folds a spread of benchmarks into one number, so you can rank models without holding eight leaderboards in your head at once."
+ },
+ {
+  "file": "12.mp3",
+  "text": "When I checked it while making this lecture, the top of the index looked like this. Claude Opus five at sixty three. Claude Fable five just behind at sixty two. Then G P T five point six Sol, and Grok four point six, both at sixty one."
+ },
+ {
+  "file": "13.mp3",
+  "text": "And that spread is the thing to notice, not the order. Two points separate the top four models. The front of this field is very much closer together than the marketing around it suggests. For most of what you will do, choosing between them is a choice about price, about speed, and about which environment you enjoy working in."
+ },
+ {
+  "file": "14.mp3",
+  "text": "And that last part matters more than the ranking. My own default is Claude, and I will be honest that the index is only part of the reason. The other part is that I use it inside Claude Code, and that environment is heavily geared towards productive coding. In practice the model and the harness around it are not separable."
+ },
+ {
+  "file": "15.mp3",
+  "text": "Then there is the history chart, which is where I would actually spend your time. It plots the frontier score over time, and it shows you something a leaderboard cannot, which is the shape of the change rather than today's snapshot."
+ },
+ {
+  "file": "16.mp3",
+  "text": "Look back along it and there is a visible step change around November twenty twenty five. That is roughly where trust in coding agents changed. Before it, they were an interesting toy that occasionally helped. After it, they became a normal part of the working day for an awful lot of people."
+ },
+ {
+  "file": "17.mp3",
+  "text": "Which is worth knowing, because if you have a colleague who tried these tools, had a bad time and wrote them off, ask them when. A lot of the strongest objections you will hear are scar tissue from before that step, and the thing they are objecting to does not really exist any more."
+ },
+ {
+  "file": "18.mp3",
+  "text": "Then there is the frontier intelligence over time chart, which is the slightly spooky one. A line going up and to the right, and steepening, for long enough that it stops looking like a trend and starts looking like a law."
+ },
+ {
+  "file": "19.mp3",
+  "text": "So here is a prediction, on the record, so that you can come back and check it. That curve will not keep steepening. The recent jump came substantially from reasoning techniques, and that is a one-time unlock rather than a permanent gradient. More improvement through twenty twenty six, yes. A continually sharpening slope, no."
+ },
+ {
+  "file": "20.mp3",
+  "text": "I could be wrong about that, and I would much rather be on the record and wrong than vague and unfalsifiable. Go and look at that chart in six months and see which of us it was."
+ },
+ {
+  "file": "21.mp3",
+  "text": "And if you scroll further down there are benchmarks specific to coding, and specific to tool use, which for our purposes are more useful than the headline number. A model can be excellent at reasoning and merely adequate at calling tools reliably, and in agentic coding that second thing is the one you feel all day."
+ },
+ {
+  "file": "22.mp3",
+  "text": "That is also where the surprises live. Models sit in noticeably different orders on the coding and tool-use boards than they do on the headline index, which is genuinely useful to know before you commit a project to one of them."
+ },
+ {
+  "file": "23.mp3",
+  "text": "So. That is day two, and you have put up with me talking more than at any other point in this program. I appreciate it, and none of it was optional."
+ },
+ {
+  "file": "24.mp3",
+  "text": "You now know what a model actually is, what an agent adds to it, what the context is and why it degrades before it fills, what belongs in your agents file, and the six workflows you get to choose between. That is the whole foundation. Everything from here stands on it."
+ },
+ {
+  "file": "25.mp3",
+  "text": "And tomorrow we stop talking. It is tools, tools, tools. Cursor, Copilot, Codex and Antigravity. The same job, built four times over, so you can see what actually differs between them rather than reading somebody's opinion about it."
+ }
+]

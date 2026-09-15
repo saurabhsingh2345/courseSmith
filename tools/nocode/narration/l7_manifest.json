@@ -1,0 +1,138 @@
+[
+ {
+  "file": "01.mp3",
+  "text": "Yesterday you installed a tool and watched it build something. Today we put that experience on a map. Because there is not one way to work with a coding agent. There are eight, they sit on a ladder, and where you stand on that ladder changes everything about your day."
+ },
+ {
+  "file": "02.mp3",
+  "text": "The ladder is not ours. It comes from a widely read post by Steve Yegge, a very well known engineer and writer, and the author of a tool called Gastown that we come back to later in this program. He drew a picture for each stage. We are going to build the ladder instead, one rung at a time."
+ },
+ {
+  "file": "03.mp3",
+  "text": "Before the rungs, the one thing they all measure. Every stage on this ladder is the same question asked louder. How much of the work are you willing to hand over without looking at it? That is the axis. Everything else is detail."
+ },
+ {
+  "file": "04.mp3",
+  "text": "Stage one. You have a chat window open in one place and your code in another. You paste a question in, you read the answer, you type the good bits back into your editor yourself. Autocomplete finishing your lines counts here too. Nothing writes to your files without going through your hands."
+ },
+ {
+  "file": "05.mp3",
+  "text": "Stage two. The agent moves inside your editor and lives in a sidebar. Now it can touch the files directly, but it asks first. Every single change comes to you as a proposal. You read it, you approve it, and only then does it land. Slow, and completely safe."
+ },
+ {
+  "file": "06.mp3",
+  "text": "Stage three. Same sidebar, same agent, one setting changed. You stop approving each edit and let it run. This is often called yolo mode, and the name is honest. You are trading the checkpoint for speed, and for the first time the agent is genuinely working rather than asking."
+ },
+ {
+  "file": "07.mp3",
+  "text": "Stage four. The agent takes the main window. The code moves to the side, or off screen entirely. Your attention is on the conversation now, not on the files. Differences scroll past and you do not read most of them. This is a bigger jump than it looks, and it is where a lot of people quietly stop reading their own codebase."
+ },
+ {
+  "file": "08.mp3",
+  "text": "Stage five. You leave the graphical application behind and move to the command line. A terminal, an agent running in it, no windows and no buttons. Still running without approvals, still scrolling past. The difference is that you can start it, walk away, make a coffee, and come back to finished work."
+ },
+ {
+  "file": "09.mp3",
+  "text": "Stage six. One terminal becomes several. Three to five agents running at the same time, each on its own piece of work, each in its own window. You are no longer writing code or even reading much of it. You are keeping a small team busy, and the skill has become deciding what to give to whom."
+ },
+ {
+  "file": "10.mp3",
+  "text": "Stage seven. Ten or more agents, all running concurrently, all coordinated by you personally. Every hand off, every merge, every conflict is yours to resolve. It works. It is also, and people who do this will tell you so, genuinely exhausting."
+ },
+ {
+  "file": "11.mp3",
+  "text": "Stage eight. You stop coordinating and hand that job over too. One agent orchestrates the others. Hierarchies appear. A manager agent, worker agents underneath it, a team that only writes tests, a team that only handles design. You describe the outcome. The structure underneath sorts itself out."
+ },
+ {
+  "file": "12.mp3",
+  "text": "So there it is, the whole ladder, one to eight. Chat window at the bottom, agents managing agents at the top. Take a moment on this picture, because we are going to come back to it at the start of every week."
+ },
+ {
+  "file": "13.mp3",
+  "text": "Now here is what the ladder is really tracking, and it is worth saying out loud because the original post leaves it implicit. Three things change as you climb. How much of the output you actually read. How many things are happening at once. And where your attention is pointed."
+ },
+ {
+  "file": "14.mp3",
+  "text": "And every rung trades the same currency. You give up review, and you get throughput. That is it. Higher is not better and lower is not safer in some absolute sense. Higher is faster with less certainty about what you have got. Anyone who tells you the top of the ladder is simply the correct place to be has skipped that trade."
+ },
+ {
+  "file": "15.mp3",
+  "text": "Which leads to the thing almost nobody says. You do not live on one rung. A good day moves up and down it constantly. Something delicate and load bearing, you drop to stage two and read every change. Something mechanical across forty files, you go to stage five and let it run. The stage is a choice you make per task, not an identity."
+ },
+ {
+  "file": "16.mp3",
+  "text": "And the classic mistake, since we are being honest about it. People read this ladder, decide the top is the goal, and try to run ten agents in their first week. It goes badly, and it goes badly in a specific way. You cannot supervise what you cannot evaluate. Every rung you climb needs the judgement you built on the one below it."
+ },
+ {
+  "file": "17.mp3",
+  "text": "So let us map this program onto the ladder, because that is the genuinely useful part. Stage one we are assuming. If you have ever asked a chat window a programming question, you have done stage one, and you do not need a week of it."
+ },
+ {
+  "file": "18.mp3",
+  "text": "Week one, which you are in now, is stages two, three and four. The agent in the sidebar asking permission. The agent in the sidebar not asking permission. And the agent taking over the main window. By Friday all three will feel ordinary."
+ },
+ {
+  "file": "19.mp3",
+  "text": "Week two is stage five, and we spend the entire week there. The command line. It gets a full week on its own because it is where most serious work with these tools actually happens, and because everything in week three is built on top of it."
+ },
+ {
+  "file": "20.mp3",
+  "text": "Week three is stages six, seven and eight. Several agents, then many agents, then agents running agents. That is where this program finishes, and by then it will feel like a reasonable next step rather than a stunt."
+ },
+ {
+  "file": "21.mp3",
+  "text": "One verdict before we move on. For real software, built by real teams, today, stages five and six are the sweet spot. One agent on the command line, or a handful of them. That is where the productivity is genuinely enormous and the work is still something you can stand behind."
+ },
+ {
+  "file": "22.mp3",
+  "text": "Seven and eight we show you because they exist, because they are moving quickly, and because you should have seen them with your own eyes rather than read about them. Whether you would run them against production code this year is an open question. Ask again in six months and the answer may well have changed."
+ },
+ {
+  "file": "23.mp3",
+  "text": "Right. Second half, and it is the practical one. What does all of this cost."
+ },
+ {
+  "file": "24.mp3",
+  "text": "Start with the reassuring part, because it is true. You can complete this entire program without spending a single penny on model usage. Every day has a free path through it. We will point that path out as we go."
+ },
+ {
+  "file": "25.mp3",
+  "text": "And now the other side, equally true. You can also spend a great deal. Twenty agents running for an hour against a large codebase will happily take your money, and they will do it quietly, because nothing on your screen looks expensive while it is happening."
+ },
+ {
+  "file": "26.mp3",
+  "text": "So let us make sure you understand what is actually being charged, because this is the bit that usually gets skipped. You pay for tokens. A token is roughly three quarters of a word. You pay for every token going in, and every token coming out. In goes your question, your files, and everything already said in that conversation. Out comes the answer."
+ },
+ {
+  "file": "27.mp3",
+  "text": "Which explains the thing that surprises everybody. The expensive part is usually not what the agent writes. It is what it reads. A long conversation resends its entire history every single turn, so a chat that has been running for two hours is paying for those two hours again on every message."
+ },
+ {
+  "file": "28.mp3",
+  "text": "So here are the three habits that keep the number small, and they cost you nothing to adopt. Start a fresh conversation when you change topic, rather than carrying an hour of unrelated history with you. Point the agent at the files that matter instead of the whole repository. And use the cheaper, faster model for mechanical work, saving the strongest one for the thinking."
+ },
+ {
+  "file": "29.mp3",
+  "text": "Now the recommended path through this program. Week one runs inside an editor, so the free trial on the tool we installed yesterday covers it. Weeks two and three live on the command line, and that is where an entry level monthly plan is genuinely worth it. Anything beyond that tier is optional, and it is for intensity, not for completion."
+ },
+ {
+  "file": "30.mp3",
+  "text": "If you would rather spend nothing at all, that path exists too. There are free models that are good enough for a large part of what we do, and the resources for each day name them. Some paid products get shown so you have seen them and know what they are for. Seeing is not buying. Pick and choose."
+ },
+ {
+  "file": "31.mp3",
+  "text": "One caution about numbers. Prices, plan names and free tiers change constantly, and they vary by region and by whatever offer happens to be running. So we will name the tier and not the price. If a figure in this program disagrees with the website in front of you, believe the website."
+ },
+ {
+  "file": "32.mp3",
+  "text": "And then the rule that matters most, stated plainly. Your spend is yours. Nobody else is watching that number for you. Set a limit where the provider lets you, look at your usage in the first week rather than at the end of the month, and treat an unexpected figure as information rather than a disaster."
+ },
+ {
+  "file": "33.mp3",
+  "text": "It is worth a moment of perspective too. A thousand pound laptop does not shock anybody. Twenty pounds a month somehow does, and the difference is that one of them is a single decision and the other keeps arriving. Underneath, hundreds of trillions of floating point operations are running on your behalf, and somebody is paying for the electricity."
+ },
+ {
+  "file": "34.mp3",
+  "text": "So. You are in charge of your charges. Know what you are paying for, choose the tier that fits how hard you intend to push, and change it the moment it stops fitting. Tomorrow we go under the hood, and start on the file that turns out to sit at the heart of all of this."
+ }
+]

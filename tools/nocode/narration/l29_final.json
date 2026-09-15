@@ -1,0 +1,222 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Today we build something real, and before we do I need to give you the vocabulary, because from here on I am going to use words like front end, back end, API and container as though you already know them."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "If you already do, put me on double speed and skip through this one. I mean that. Nothing in this lecture will be new to you, and I would rather you skipped ten minutes than sat through them out of politeness."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "Everything we have built this week, and everything we build from here, is a web application. Which means the way you reach it is by opening a browser and going to an address. That is the whole definition. No app store, no installer."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "And every web application is two halves that talk to each other. Once you can see those two halves, most of the confusing words stop being confusing."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "The first half is the front end, and it runs on your computer, inside your browser. It is the part you can see and click. Three things make it. The page itself, the appearance of the page, and the behaviour when you interact with it."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "Those three have names you will see constantly, so here they are once. HTML is the page. CSS is how it looks. JavaScript is what happens when you drag a card."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "The second half is the back end, and it does not run on your computer at all. It runs on a server somewhere else. It is the half that sent you the page in the first place, and it is the half you cannot see."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "And the back end is where the serious things happen. Reading and writing the database. Calling a language model. Talking to other companies' services. Anything that needs to be remembered, or that costs money, or that must not be tampered with."
+ },
+ {
+  "file": "A9.mp3",
+  "text": "Which brings me to the single most important sentence in this lecture. Your secrets live in the back end. Never in the front end."
+ },
+ {
+  "file": "A10.mp3",
+  "text": "Because the front end is running on somebody else's computer. Anyone can open it up and read it. If your key to a paid service is sitting in the front end, it is not a secret, it is a public notice, and you will find out when the bill arrives."
+ },
+ {
+  "file": "A11.mp3",
+  "text": "That is what the file called dot env is for, and it is why it sits on the back end and never gets checked into your code. You will see me be careful with that file today, and now you know why."
+ },
+ {
+  "file": "A12.mp3",
+  "text": "So the two halves are separate, and they are on different machines. Which leaves one question. How do they talk."
+ },
+ {
+  "file": "A13.mp3",
+  "text": "They talk through an API, and the word is less impressive than it sounds. It is a fixed list of messages the back end agrees to answer. The front end sends one of those messages, the back end does the work, and sends the answer back."
+ },
+ {
+  "file": "A14.mp3",
+  "text": "Drag a card to another column, and the front end sends a message saying this card moved to that column. The back end writes it into the database and says done. That round trip is the API call, and it is the whole reason your board is still right tomorrow."
+ },
+ {
+  "file": "D4.mp3",
+  "text": "One more thing about that round trip, because it explains something you have felt without naming. Every API call is a journey to another machine and back."
+ },
+ {
+  "file": "D5.mp3",
+  "text": "Usually that takes a few hundredths of a second and you never notice. But it is why a page can hesitate, why a spinner exists at all, and why a well built app tells you it is thinking rather than freezing. The two halves are genuinely apart, and the distance is real."
+ },
+ {
+  "file": "D6.mp3",
+  "text": "And it is why the back end can be slow without the front end locking up. The button can respond instantly, say saving, and let the journey happen behind it. That is a design decision somebody makes, and if nobody makes it, you get an app that feels broken while it works perfectly."
+ },
+ {
+  "file": "A15.mp3",
+  "text": "Now put the week on that diagram, because this is where it gets concrete."
+ },
+ {
+  "file": "D1.mp3",
+  "text": "Start with the very first thing we built, on day one. A game you played in the browser, running entirely on your own machine. No server, no account, nothing saved. That is all front end, and it is why nothing you did in it was ever remembered."
+ },
+ {
+  "file": "D2.mp3",
+  "text": "Which is not a criticism of it. An enormous amount of genuinely useful software is front end only. A calculator, a drawing tool, a game. If nothing needs to be remembered between visits and nothing needs to be kept secret, you do not need the other half at all."
+ },
+ {
+  "file": "D3.mp3",
+  "text": "The moment you need either of those things, you need a back end. Remembering, and keeping secrets. That is the line, and it is worth carrying around with you, because it tells you how big a job is before you start it."
+ },
+ {
+  "file": "A16.mp3",
+  "text": "The board we built four times on day three was all front end. No back end at all. Which is exactly why it forgot everything the moment you reloaded the page. It was never storing anything anywhere, because there was nowhere to store it."
+ },
+ {
+  "file": "A17.mp3",
+  "text": "Yesterday's project did have a back end, and it was written in JavaScript, the same language as the front end. That is a completely normal way to build. Today we do it differently, and it is worth saying why rather than leaving it as a mystery."
+ },
+ {
+  "file": "A18.mp3",
+  "text": "Today the front end stays JavaScript, and the back end is Python. Not because Python is better. Because when the thing on the other end is a language model, Python is where most of that world lives, and the help you will find online assumes it."
+ },
+ {
+  "file": "B1.mp3",
+  "text": "A short history of the front end, because the names come up constantly and nobody ever explains the order they arrived in."
+ },
+ {
+  "file": "B2.mp3",
+  "text": "It started as hand written pages. You wrote the page, you wrote how it looked, you wrote a bit of behaviour, and if you wanted something fancy you pulled in a small library to help. That is still how a lot of the web works and there is nothing wrong with it."
+ },
+ {
+  "file": "B3.mp3",
+  "text": "Then came frameworks built around a single idea. Instead of writing a page, you write components. A card is a component. A column is a component. And when the data changes, the component redraws itself without you telling it to."
+ },
+ {
+  "file": "B4.mp3",
+  "text": "You will hear four names for this and they do roughly the same job. React, Vue, Angular and Svelte. Ours uses React, because the front end we inherited uses React, and that is usually how you pick one."
+ },
+ {
+  "file": "B5.mp3",
+  "text": "Out of that came a pattern with an unhelpful name and a simple meaning. The single page application. The browser loads the application once, and after that the page never fully reloads. Pieces of it fetch what they need and update in place."
+ },
+ {
+  "file": "B6.mp3",
+  "text": "Which is why a good web app feels like a program rather than a document. Nothing flashes white between screens, because nothing is being reloaded."
+ },
+ {
+  "file": "B7.mp3",
+  "text": "And on top of all that sit the higher level frameworks, which bundle the decisions nobody wants to make twice. Routing between pages, fetching data, whether a page is built on the server or in the browser. The one we are using is called Next dot js."
+ },
+ {
+  "file": "B8.mp3",
+  "text": "Now the honest part, and I think it is the most useful thing in this lecture after the secrets warning."
+ },
+ {
+  "file": "B9.mp3",
+  "text": "I am not strong at this. Building front ends by hand, in these frameworks, is not something I am good at, and it is exactly the work that coding agents have made possible for me. I am not going to pretend otherwise while standing in front of an app I did not hand write."
+ },
+ {
+  "file": "B10.mp3",
+  "text": "But there is a catch, and you have already seen it without knowing what you were looking at. Ask a language model for a web page and you tend to get the same web page."
+ },
+ {
+  "file": "B11.mp3",
+  "text": "A dark background with a purple gradient sliding across it. Three feature cards in a row, each with a thin line icon from the same icon set. A headline in an enormous font, a slightly smaller subheading underneath, and a button with rounded corners that says get started."
+ },
+ {
+  "file": "B12.mp3",
+  "text": "You will start seeing it everywhere once I have said it, and you will not be able to stop. It is not that it is ugly. It is that it is anonymous. It looks like every other thing generated the same way, which means it looks like nobody decided anything."
+ },
+ {
+  "file": "B13.mp3",
+  "text": "And this is where you can actually add value, whether or not you can write code. Knowing what the person using this thing needs to see first, what they can safely be shown later, and what should not be on the screen at all. That is not a coding skill. It is a thinking skill, and the model does not have it."
+ },
+ {
+  "file": "B14.mp3",
+  "text": "So push back on the first draft. Not with make it better, which we established yesterday gets you nothing. With this is the same purple gradient every generated site has, our brief has a palette, use it. Name the fault and name the standard."
+ },
+ {
+  "file": "C1.mp3",
+  "text": "One more word before we build, and it is the one that frightens people off. Docker. If you already know it, this is where you skip ahead. If you do not, it is much simpler than its reputation."
+ },
+ {
+  "file": "C2.mp3",
+  "text": "Docker gives you a computer inside your computer. A small, sealed one, with its own copy of everything the application needs, that cannot see or touch the rest of your machine."
+ },
+ {
+  "file": "C3.mp3",
+  "text": "There are two reasons people use it, and both of them matter to you specifically."
+ },
+ {
+  "file": "C4.mp3",
+  "text": "The first is isolation. Whatever happens in that box stays in that box. It cannot install something odd on your laptop, it cannot overwrite your files, and it cannot fight with a different version of Python you installed two years ago and forgot about."
+ },
+ {
+  "file": "C5.mp3",
+  "text": "And I want you to notice how directly that speaks to what we have been doing all week. We have been handing agents permission to run commands on a real machine. A sealed box is the honest answer to the nervousness you should be feeling about that."
+ },
+ {
+  "file": "C6.mp3",
+  "text": "The second reason is portability. The box is described by a file, so the box can be rebuilt anywhere. On your machine, on a colleague's, on a server you rent for four pounds a month. Build it once and it usually just works, which is a sentence you rarely get to say about software."
+ },
+ {
+  "file": "C7.mp3",
+  "text": "Three words and then we are done. Dockerfile, image, container. They are three stages of the same thing and people muddle them constantly, so here they are in order."
+ },
+ {
+  "file": "C8.mp3",
+  "text": "A Dockerfile is a recipe. A plain text file that says start from Python, copy these files in, install these things, and run this command. You can read one without knowing anything. It is a list of instructions."
+ },
+ {
+  "file": "C9.mp3",
+  "text": "An image is what you get when you follow the recipe. The cake, baked, and now frozen. It is a finished snapshot, and it does not do anything on its own. It just sits there ready."
+ },
+ {
+  "file": "C10.mp3",
+  "text": "A container is the image actually running. And here is the bit worth holding on to. One image can start as many containers as you like, and they do not know about each other."
+ },
+ {
+  "file": "C11.mp3",
+  "text": "Which is how the same application runs on your laptop and on a server and in a test, identically, from one recipe. Recipe, cake, cake being eaten. That is Docker."
+ },
+ {
+  "file": "C12.mp3",
+  "text": "Installing it is the least interesting part of this lecture. Go to docker dot com, download Docker Desktop for your machine, and take every default it offers you. On Windows it will ask about something called WSL, and the answer is yes. It may want a restart. Give it one."
+ },
+ {
+  "file": "C13.mp3",
+  "text": "Once it is running, three things in the left rail are the whole tour. Containers, which is what is alive right now. Images, which is what is built and ready to start. And volumes, which are sealed pieces of storage that survive when a container is thrown away — because a container that is thrown away forgets everything inside it."
+ },
+ {
+  "file": "C14.mp3",
+  "text": "On a fresh install all three of those lists are empty, and that is correct. They will not stay empty. From the next lecture on, everything we build lives in there."
+ },
+ {
+  "file": "D7.mp3",
+  "text": "Two thirds of you know all of this already, which is why I said put me on double speed. For everyone else, that is genuinely the vocabulary. Front end, back end, API, and a sealed box to run it in."
+ },
+ {
+  "file": "D8.mp3",
+  "text": "None of it is difficult. It is just that nobody says it out loud, because the people who know it forgot they ever had to learn it."
+ },
+ {
+  "file": "C15.mp3",
+  "text": "So. Front end in the browser, back end on a server, an API between them, secrets on the back end only, and the whole back end sealed inside a box described by a recipe. That is the vocabulary. Next we start building, and by the rules this time."
+ }
+]

@@ -1,0 +1,94 @@
+[
+ {
+  "file": "P1.mp3",
+  "text": "So. Sign in, and there is the board, and on the right there is a chat box. Let us find out whether any of this actually works."
+ },
+ {
+  "file": "P2.mp3",
+  "text": "Hello. And it says hello back, and asks what I would like to do with my board."
+ },
+ {
+  "file": "P3.mp3",
+  "text": "Except it does not. It returns an error, and the page just sits there, because part of what we built has no way of doing what it claims."
+ },
+ {
+  "file": "P4.mp3",
+  "text": "So I go and look at the log, and the reason is almost funny. The key that lets us talk to the model is on my machine, in a file. And the application does not run on my machine. It runs in the box."
+ },
+ {
+  "file": "P5.mp3",
+  "text": "Nobody handed the key to the box. So every question that needs the model fails, on the first one I asked."
+ },
+ {
+  "file": "P6.mp3",
+  "text": "Now. That is the small problem, and I want to show you the big one, because I nearly put something in front of you that was not true."
+ },
+ {
+  "file": "P7.mp3",
+  "text": "I went and read how it decides to move a card. And moving a card is not decided by the model at all. It is decided by a pattern."
+ },
+ {
+  "file": "P8.mp3",
+  "text": "Somewhere in there is a rule that says, if the sentence looks roughly like move something to somewhere, pull out those two things and move the card. The model is never asked."
+ },
+ {
+  "file": "P9.mp3",
+  "text": "And I want you to see how close I came to not noticing. Because with the key missing, every real question was failing \u2014 and moving a card would have worked perfectly, because moving a card never needed the model."
+ },
+ {
+  "file": "P10.mp3",
+  "text": "So the demo I was about to record was: type move a card, watch it move, tell you a language model just changed your data. And it would have been a regular expression from about nineteen ninety."
+ },
+ {
+  "file": "P11.mp3",
+  "text": "Nothing was hidden from me. It is all in the code, it was in a file I could open, and it did not occur to it to mention it, because it was not asked to."
+ },
+ {
+  "file": "P12.mp3",
+  "text": "This is the sharpest version of the thing I have been saying all week. It does what you asked. Whether what you asked is what you wanted is not a question it will raise."
+ },
+ {
+  "file": "P13.mp3",
+  "text": "And notice how it was caught. Not by reading the code, because I only read that part after the error made me suspicious. By using the thing and finding one bit broken, which made me look at the bit that worked."
+ },
+ {
+  "file": "P14.mp3",
+  "text": "So I sent it both. Give the box the key. And take out the pattern matching, and let the model actually decide, because I would rather it be slower and real than instant and fake."
+ },
+ {
+  "file": "P15.mp3",
+  "text": "And now, properly. Summarise my project."
+ },
+ {
+  "file": "P16.mp3",
+  "text": "And it does, accurately, naming the columns and what is in them, which means it is genuinely reading the board and not guessing."
+ },
+ {
+  "file": "P17.mp3",
+  "text": "And now the one I have been building towards all week. Move a card from one column to another. Not by dragging it. By asking."
+ },
+ {
+  "file": "P18.mp3",
+  "text": "And it moves. On screen, in front of you. And this time I can tell you honestly what happened, because I checked."
+ },
+ {
+  "file": "P19.mp3",
+  "text": "The board was described to a language model, along with my sentence. It decided which card and which column I meant. It said so, in a form our back end understands. And our back end changed the database."
+ },
+ {
+  "file": "P20.mp3",
+  "text": "And to prove it is real rather than a trick of the screen, a completely fresh tab, signed in from scratch. The card is still where the AI put it. It is in the database. It survived."
+ },
+ {
+  "file": "P21.mp3",
+  "text": "So look at what this is now. A board that persists, in a database, in a container, with a front end and a back end and an API between them, and an assistant that can reorganise your work by being asked."
+ },
+ {
+  "file": "P22.mp3",
+  "text": "That is not a demo. That is the shape of a product people pay for. Built in an afternoon, in ten steps, by somebody directing it rather than typing it."
+ },
+ {
+  "file": "P23.mp3",
+  "text": "And built, I want to say clearly, with one thing in it that was fake until forty minutes ago and a key that was never plugged in. Both of which I found by using it."
+ }
+]

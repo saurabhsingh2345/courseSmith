@@ -1,0 +1,90 @@
+[
+ {
+  "file": "W1.mp3",
+  "text": "So that is week one, and I want to spend the last few minutes on what actually happened to you rather than on what we built."
+ },
+ {
+  "file": "W2.mp3",
+  "text": "Because the app is not the point. The app is a Kanban board. There are two hundred of them and most are better than ours."
+ },
+ {
+  "file": "W3.mp3",
+  "text": "What you have is a method, and it is the same five moves whatever you point it at."
+ },
+ {
+  "file": "W4.mp3",
+  "text": "Write the plan yourself, in pieces sized so that if one fails you know where to start looking."
+ },
+ {
+  "file": "W5.mp3",
+  "text": "Ask for questions before any work happens, and treat silence as a pass rather than as agreement."
+ },
+ {
+  "file": "W6.mp3",
+  "text": "Check in after every part, with the three commands, before the risky thing rather than after it."
+ },
+ {
+  "file": "W7.mp3",
+  "text": "Describe faults precisely. What you did, what you expected, what happened instead."
+ },
+ {
+  "file": "W8.mp3",
+  "text": "And go and look with your own hands, because its check passing is not the same as it working."
+ },
+ {
+  "file": "W9.mp3",
+  "text": "None of those five required you to read a line of code. Every one of them required you to pay attention. That is the trade this whole course is built on."
+ },
+ {
+  "file": "W10.mp3",
+  "text": "Now, the honest accounting of the week, because I have been promising it all along."
+ },
+ {
+  "file": "W11.mp3",
+  "text": "On day one we watched it be tireless, and it was. On day three we watched it jump to conclusions, and it did. Today we watched it verify something with the one tool that could not see the fault, and report success."
+ },
+ {
+  "file": "W12.mp3",
+  "text": "And in the same afternoon it produced a database design better than the one I had in my head, and caught a fault in its own scheme when I asked one uncomfortable question."
+ },
+ {
+  "file": "W13.mp3",
+  "text": "If you have come out of this week thinking these things are magic, I have taught you badly. If you have come out thinking they are useless, I have taught you badly in the other direction."
+ },
+ {
+  "file": "W14.mp3",
+  "text": "They are extremely capable and they have no judgement about when to stop. You are the judgement. That is the job, and it is a real one."
+ },
+ {
+  "file": "W15.mp3",
+  "text": "Next week we change tools, and I want to set your expectations properly."
+ },
+ {
+  "file": "W16.mp3",
+  "text": "Everything you have learned transfers. All of it. The plan, the checkpoints, the way you describe a fault, the habit of looking."
+ },
+ {
+  "file": "W17.mp3",
+  "text": "What changes is that Claude Code shows you things this week's tool politely hid. You will see how full the context is. You will see what it is about to run before it runs it."
+ },
+ {
+  "file": "W18.mp3",
+  "text": "Which is less comfortable and much better, and it is why we did it in this order. You now know what those numbers mean, because you have felt what happens when nobody is watching them."
+ },
+ {
+  "file": "W19.mp3",
+  "text": "One more thing to take with you, and it is not mine. Karpathy's line about keeping the AI on a tight leash \u2014 that the temptation is always to give it a huge task and hope."
+ },
+ {
+  "file": "W20.mp3",
+  "text": "Everything we did today was that leash. Ten parts instead of one prompt. A stop before the database. A browser opened by hand when the tests said everything was fine."
+ },
+ {
+  "file": "W21.mp3",
+  "text": "It is not a lack of ambition. It is the only way anybody has found to get ambitious work out of these things and still be able to tell whether it worked."
+ },
+ {
+  "file": "W22.mp3",
+  "text": "Well done for getting through the first week. See you in the second one."
+ }
+]

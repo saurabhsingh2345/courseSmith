@@ -1,0 +1,22 @@
+[
+ {
+  "file": "X1.mp3",
+  "text": "One thing worth saying before we go on, because it explains something you are about to see four times over."
+ },
+ {
+  "file": "X2.mp3",
+  "text": "These four tools are going to give you four noticeably different applications from the same brief. And the temptation is to conclude that one of them is better. That is not quite what is happening."
+ },
+ {
+  "file": "X3.mp3",
+  "text": "Remember where we finished yesterday. What you ship is the model, plus the tools it has, plus the file you wrote, plus how much you let it run. Only one of those four things changes between these builds, and it is not the file."
+ },
+ {
+  "file": "X4.mp3",
+  "text": "So watch for the differences that come from the harness rather than the model. How it plans. Whether it asks. What it does when a test fails. Those are the things you are actually choosing between."
+ },
+ {
+  "file": "X5.mp3",
+  "text": "And if you hit an install problem on the way in, do not spend an hour on it. Paste the exact error into whichever agent you got working and ask it to fix your setup. Using the tool to install the tool is entirely fair, and it is the fastest route through."
+ }
+]

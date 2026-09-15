@@ -1,0 +1,54 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Let me introduce the four properly, because you are going to spend the next four lectures with them and the differences matter more than the logos suggest."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "Cursor. A fork of Visual Studio Code with an agent built into the side of it. It is the most approachable of the four, the agent panel is right there, and it is where we built the game on day one."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "GitHub Copilot. Not a separate application — an extension that lives inside Visual Studio Code. If you already work in VS Code and do not want to move, this is your route in, and it is the one most companies have already paid for."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "Claude Code. This one is different in shape. It runs in the terminal rather than in an editor window, which sounds like a step backwards and is not. It is the one a lot of professional developers have settled on, and we will use it properly next week."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "And Antigravity, which is Google's entry, running Gemini. Newest of the four, most opinionated about how you should work, and worth seeing precisely because it does not copy the others."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "Now, why a Kanban board? It looks like a modest thing to ask for, and it is deliberately chosen. It is not a tutorial to-do list and it is not a real product either. It sits exactly in between."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "Because to build one properly you need layout, you need state that survives being moved around, and you need drag and drop, which is genuinely fiddly. That last one is the thing that separates the four builds, and you will see it separate them."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "And it is small enough that any of these tools can finish it in one sitting, which means we get four complete results to compare rather than four half-finished ones."
+ },
+ {
+  "file": "A9.mp3",
+  "text": "So here is what to check at the end of each build, and I would keep this list in front of you. Does the board appear with cards already in it? Can you drag a card from one column to another?"
+ },
+ {
+  "file": "A10.mp3",
+  "text": "Can you reorder cards inside a column, which is the harder half of drag and drop? Can you add a card, and delete a card? And does it look like something you would be willing to show someone?"
+ },
+ {
+  "file": "A11.mp3",
+  "text": "Five checks, same five every time. That is what makes this a comparison rather than four demonstrations."
+ },
+ {
+  "file": "A12.mp3",
+  "text": "One honest note on cost before we start. Four full builds is four agents thinking hard for several minutes each, and on a metered plan that is real money. If you are watching rather than building, that is a completely legitimate way to take this day."
+ },
+ {
+  "file": "A13.mp3",
+  "text": "Two last terminal things and then we go. If a folder name has a space in it, wrap the whole path in quotes or the terminal will read it as two separate things. And the up arrow brings back your last command, which saves you retyping the long ones."
+ }
+]

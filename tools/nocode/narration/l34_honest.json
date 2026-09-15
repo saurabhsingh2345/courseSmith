@@ -1,0 +1,66 @@
+[
+ {
+  "file": "H1.mp3",
+  "text": "And now the part that matters more than the demo, because anybody can show you a thing working and stop there."
+ },
+ {
+  "file": "H2.mp3",
+  "text": "This is not finished. It is the beginning of something, and I want to list what is wrong with it while you are still impressed, because that is the only moment the list is useful."
+ },
+ {
+  "file": "H3.mp3",
+  "text": "There is one user, hard-coded. The chat gives you no sign it is thinking, so it looks frozen while it works. There is one board. And nothing is deployed, so it exists only on this machine."
+ },
+ {
+  "file": "H4.mp3",
+  "text": "And then the one I actually want you to sit with, because it is the kind of thing that ships."
+ },
+ {
+  "file": "H5.mp3",
+  "text": "The sign-in. Let me show you something about it."
+ },
+ {
+  "file": "H6.mp3",
+  "text": "When you load the page, your browser downloads a handful of files to make it work. That is normal, every website does it, and you can read any of them."
+ },
+ {
+  "file": "H7.mp3",
+  "text": "And in one of them is the password. Written out. Anybody who opens this page can find it in about thirty seconds without any skill at all."
+ },
+ {
+  "file": "H8.mp3",
+  "text": "Which means the sign-in is not a lock. It is a sign on a door that says please do not come in, and it has been that all afternoon while I have been calling it a sign-in."
+ },
+ {
+  "file": "H9.mp3",
+  "text": "Now I want to be fair, because nobody did anything wrong here. Our own brief said one hard-coded user, minimum viable, and that is exactly what it built. This is my shortcut, not its mistake."
+ },
+ {
+  "file": "H10.mp3",
+  "text": "But this is precisely how it happens outside a classroom. The shortcut goes in for perfectly good reasons. Then somebody shows the thing to somebody else. And nobody ever goes back and asks which of the shortcuts were load-bearing."
+ },
+ {
+  "file": "H11.mp3",
+  "text": "So the lesson is not go and learn about authentication. It is this. Know which of your simplifications mean we will do that properly later, and which mean this must never leave this laptop."
+ },
+ {
+  "file": "H12.mp3",
+  "text": "This one is the second kind. And the only reason I can tell you that is that I went and looked at what my own application was sending to the browser."
+ },
+ {
+  "file": "H13.mp3",
+  "text": "So what would I do about all of it. Not fix it by hand, obviously."
+ },
+ {
+  "file": "H14.mp3",
+  "text": "I would open a completely fresh conversation, and ask a different agent to review this project and tell me what is wrong with it. Without telling it what I already think."
+ },
+ {
+  "file": "H15.mp3",
+  "text": "It would find the password in about four seconds. A second opinion from something that has no stake in what the first one wrote is one of the most useful and least used moves available to you, and it costs one prompt."
+ },
+ {
+  "file": "H16.mp3",
+  "text": "And then I would have it fix them in small steps, testing after each one, exactly the way we worked all day. The method does not change just because the work is tidying rather than building."
+ }
+]

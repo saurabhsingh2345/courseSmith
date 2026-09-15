@@ -1,0 +1,146 @@
+[
+ {
+  "file": "01.mp3",
+  "text": "Right. The file is written, the settings are set, and there is nothing left to talk about. Let us build the thing."
+ },
+ {
+  "file": "02.mp3",
+  "text": "First, give the agent some room. Drag the panel border across and make the agent area big, because we are going all in on the agent today and I want you to be able to read what it is doing."
+ },
+ {
+  "file": "03.mp3",
+  "text": "Second, the model. His version of this leaves it on Auto and lets the tool decide, which is a perfectly reasonable thing to do and is all some plans offer. I am going to name it instead, and I am picking Claude Opus five."
+ },
+ {
+  "file": "04.mp3",
+  "text": "Two reasons. One, it is the strongest thing available on this account, and if I am comparing four tools I want each of them running near its best rather than near its cheapest. Two, if I let each tool pick for itself, then when the four results differ I will not know whether that was the tool or the model."
+ },
+ {
+  "file": "05.mp3",
+  "text": "Third, and this is the one people skip. Switch it out of Agent mode and into Plan mode. The pill changes colour so you can see at a glance which mode you are in."
+ },
+ {
+  "file": "06.mp3",
+  "text": "Almost every one of these tools has a plan mode now, and almost nobody uses it. It is the difference between asking someone to build you a kitchen and asking them to show you the drawings first."
+ },
+ {
+  "file": "07.mp3",
+  "text": "And now the prompt. Watch how little I type. Go ahead and plan. That is it. Four words, and not one of them says what to build."
+ },
+ {
+  "file": "08.mp3",
+  "text": "Because it does not need me to. The agents file is loaded into its context automatically, and everything about the board, the columns, the drag and drop, the colour scheme and the standards is already in there. That is the payoff for the last lecture."
+ },
+ {
+  "file": "09.mp3",
+  "text": "If you ever want to check that, look for the active rules or context indicator in your tool. It will tell you the agents file is loaded. That is the whole mechanism, and it is doing all of the work here."
+ },
+ {
+  "file": "10.mp3",
+  "text": "And off it goes. It is reading the brief, it is thinking about structure, and in a moment it is going to hand back something that looks like a document rather than code."
+ },
+ {
+  "file": "11.mp3",
+  "text": "There it is. A Kanban implementation plan. Numbered phases, an architecture overview, a suggested file layout, a note on what is explicitly out of scope, and an execution order."
+ },
+ {
+  "file": "12.mp3",
+  "text": "Now, the honest thing to do at this point is to read that plan carefully, disagree with the parts you do not like, and send it back with feedback. That is genuinely the highest leverage thirty seconds in the whole process."
+ },
+ {
+  "file": "13.mp3",
+  "text": "I am going to be straight with you. I am not going to read it. You probably should. I want you to see what happens when somebody with a reasonable brief and no patience presses the button, because that is what most people actually do."
+ },
+ {
+  "file": "14.mp3",
+  "text": "So. Build."
+ },
+ {
+  "file": "15.mp3",
+  "text": "And now we watch. This is the part his version calls enjoying the sensation of having an agent work for you, and I think that undersells what is on screen. Watch what it is actually doing, because this is the clearest look at an agent you will get all week."
+ },
+ {
+  "file": "16.mp3",
+  "text": "A gitignore appears. Then a frontend directory. Then package files. It is scaffolding a Next.js application, and none of that required a decision from me."
+ },
+ {
+  "file": "17.mp3",
+  "text": "Keep an eye on the context indicator while this runs. It started at a few percent and it is climbing steadily, because every file it writes and every command it runs goes into the conversation. That is exactly the picture we drew two lectures ago, happening live."
+ },
+ {
+  "file": "18.mp3",
+  "text": "And here is the moment I actually wanted you to see. It has run the tests, the tests have failed, and it has gone back to fix them without being asked."
+ },
+ {
+  "file": "19.mp3",
+  "text": "That is the whole definition, on screen. A model, in a loop, with tools, working towards a goal. Think, act, look at the result, think again. Every part of the thing we spent yesterday defining is visible in that one sequence."
+ },
+ {
+  "file": "20.mp3",
+  "text": "And notice it is arguing with itself a little. It tries something, decides it was wrong, and takes a different route. That is not a malfunction, that is the loop doing its job."
+ },
+ {
+  "file": "21.mp3",
+  "text": "Right. It says it is finished. Six of six tasks complete. And as I said in the last lecture, an agent will tell you it is done and mean that the code exists. Let us be the judge of that."
+ },
+ {
+  "file": "22.mp3",
+  "text": "One detail before we look, because it is the kind of thing that trips people up and it is worth knowing. It did not start on port three thousand. Port three thousand was already busy on this machine, so it picked another one and told me which. Read that line rather than assuming the address."
+ },
+ {
+  "file": "23.mp3",
+  "text": "And there it is. Five columns. Backlog, Ready, In Progress, Review, Done. Cards already in them, so the board looks alive rather than empty. And it has taken the colour scheme seriously — that is the amber and near-black out of our file, not a default template."
+ },
+ {
+  "file": "24.mp3",
+  "text": "Now the five checks, the same five that every build today gets. Check one. Does the board appear with data already in it? It does, and look at what is written on the cards. It has seeded them with notes about building this board. That was not asked for and it is a nice touch."
+ },
+ {
+  "file": "25.mp3",
+  "text": "Check two. Drag a card from one column to another. Backlog has two cards. I am taking the top one across to Ready. And it moves, the counts update on both columns, and the card lands where I dropped it."
+ },
+ {
+  "file": "26.mp3",
+  "text": "Check three, the harder half. Reorder a card inside a column rather than between columns. This is the one I said would separate the four tools, and here it is working."
+ },
+ {
+  "file": "27.mp3",
+  "text": "Check four. Delete a card. And watch what happens when the column empties, because this is the bit that gets skipped. It does not leave a blank hole. It shows a drop-a-card-here target, which means somebody thought about the empty state."
+ },
+ {
+  "file": "28.mp3",
+  "text": "And check five, which is a judgement rather than a test. Would I be willing to show this to somebody? Yes, honestly. From one file and four words of prompt, without me making a single decision about how it was built."
+ },
+ {
+  "file": "29.mp3",
+  "text": "So now the honest part, and it is not the part I expected to be giving you. This first pass worked. There is no broken drag and drop to complain about and no error badge sitting in the corner. That is not what usually happens and I want to be clear about why it happened here."
+ },
+ {
+  "file": "30.mp3",
+  "text": "It told me it ran the tests itself. Eleven unit tests and five browser tests, and it says all of them pass. Now, should you believe that? Partly. It is real evidence, and it is much better than an agent simply asserting it is done. But it is evidence the agent chose and graded."
+ },
+ {
+  "file": "31.mp3",
+  "text": "Which is exactly why the five checks exist and why you write them down before the build rather than after. I just ran them by hand, on camera, and they agreed with the agent. That is the order to do it in — its tests, then your eyes, and yours are the ones that count."
+ },
+ {
+  "file": "32.mp3",
+  "text": "And the reason this went well is not that I got lucky with the model. It is that the brief was good. Every awkward decision was already made in that file before the agent started, so there was very little left for it to get wrong."
+ },
+ {
+  "file": "33.mp3",
+  "text": "That is the whole argument for the last two lectures, cashed out. The work you do in the file is work the agent does not have to guess at, and guessing is where these things go wrong."
+ },
+ {
+  "file": "34.mp3",
+  "text": "So. That is the first of four. Same brief, same five checks, three more tools to go, and I genuinely do not know which of them is going to struggle."
+ },
+ {
+  "file": "35.mp3",
+  "text": "To recap what happened, because it went past quickly. We wrote a good agents file. We picked a model deliberately rather than leaving it on automatic. We planned before we built and read what came back. We let it run, and we let the sandbox ask us when it needed to. Then we tested against a fixed list."
+ },
+ {
+  "file": "36.mp3",
+  "text": "That loop is the job now. Next time, the same brief, the same five checks, in GitHub Copilot."
+ }
+]

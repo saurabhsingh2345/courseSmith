@@ -1,0 +1,50 @@
+[
+ {
+  "file": "C1.mp3",
+  "text": "So let us get it onto the machine. And the way you do that is the way you will do it for every project you ever join, so it is worth watching once even if it looks like nothing is happening."
+ },
+ {
+  "file": "C2.mp3",
+  "text": "The code lives on GitHub, which is where almost all code lives. You copy the address of the repository, and you clone it, which means make a copy on my computer that still knows where it came from."
+ },
+ {
+  "file": "C3.mp3",
+  "text": "A terminal inside the editor, a command to move into the folder where I keep projects, and then the clone itself. One command, one address, and it is on the machine."
+ },
+ {
+  "file": "C4.mp3",
+  "text": "That is the whole thing. If you have never done it before it feels like it ought to be harder, and it is not."
+ },
+ {
+  "file": "C5.mp3",
+  "text": "Then open it as a folder in the editor, and there is the project. And this is the moment where I want you to look at the shape of it rather than the contents, because the shape is the plan."
+ },
+ {
+  "file": "C6.mp3",
+  "text": "A frontend folder, which has the inherited board in it, and is the only part that currently does anything."
+ },
+ {
+  "file": "C7.mp3",
+  "text": "A backend folder, which is empty. A scripts folder, which is empty. A docs folder, which is empty. Three empty rooms with the doors already labelled."
+ },
+ {
+  "file": "C8.mp3",
+  "text": "And that is deliberate. An empty folder with a name is an instruction. It says the back end goes here, not wherever you feel like putting it. It costs nothing and it prevents an argument later."
+ },
+ {
+  "file": "C9.mp3",
+  "text": "Then two files that are easy to miss and matter enormously. The first is dot env, which is where the secret goes. I will add ours in a moment, because it deliberately did not come with the download."
+ },
+ {
+  "file": "C10.mp3",
+  "text": "And the reason it did not is the second file. Dot gitignore, which is a list of things git should pretend it cannot see. And the first line of it is dot env."
+ },
+ {
+  "file": "C11.mp3",
+  "text": "So the secret exists on my machine and it will never be uploaded, because the project itself has been told to ignore it. That is not something you remember to do. It is something you set up once, at the start, and then cannot get wrong."
+ },
+ {
+  "file": "C12.mp3",
+  "text": "Which is why I am showing you an empty project rather than a finished one. Every one of these decisions is invisible in the finished thing, and every one of them is easier now than later."
+ }
+]

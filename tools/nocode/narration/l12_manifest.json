@@ -1,0 +1,170 @@
+[
+ {
+  "file": "01.mp3",
+  "text": "So this is the practical companion to the last lecture. That one was the theory of context. This one is the one file you actually write, and I am going to be specific rather than general, because vague advice about this file is worse than none."
+ },
+ {
+  "file": "02.mp3",
+  "text": "First, ten seconds on the format, because some of you have never written a markdown file and everybody is too polite to say so. The dot m d on the end stands for markdown."
+ },
+ {
+  "file": "03.mp3",
+  "text": "One hash at the start of a line makes a big heading. Two hashes makes a smaller one. Three makes a smaller one again. A hyphen at the start of a line makes a bullet. A number and a dot makes a numbered list. That is genuinely most of it."
+ },
+ {
+  "file": "04.mp3",
+  "text": "A single backtick either side of a word marks it as code, so it renders in a monospace font. Three backticks on their own line opens a block of code, and three more close it. That is the whole syntax you need for this."
+ },
+ {
+  "file": "05.mp3",
+  "text": "So markdown is a text file with a few useful extra characters. Which raises the obvious question. Why that, specifically? Why not plain text, or J S O N, or Y A M L?"
+ },
+ {
+  "file": "06.mp3",
+  "text": "Because of what these models were trained on. There is an enormous amount of markdown in the training data. Documentation, readmes, forum posts, wikis. Models read it comfortably and write it fluently, and the structure actually survives the trip."
+ },
+ {
+  "file": "07.mp3",
+  "text": "So write in natural language, and write it well. Concise. Crisp. Assertive. Low ambiguity. What you are aiming for is high signal per word, and that phrase is going to do a lot of work in the next ten minutes."
+ },
+ {
+  "file": "08.mp3",
+  "text": "Because remember where this file ends up. It is squashed into the context window, alongside the system prompt and the tools and everything else we looked at last time. This is expensive real estate. Every single word in it is costing you something."
+ },
+ {
+  "file": "09.mp3",
+  "text": "Now, the part I promised you last time. The bit where I said it is more complicated than one clean row on a diagram."
+ },
+ {
+  "file": "10.mp3",
+  "text": "You put one agents file in the root of your project. That is the one everybody knows about. But you can also put one in any subdirectory, at any depth of nesting, and this is where it gets genuinely useful."
+ },
+ {
+  "file": "11.mp3",
+  "text": "A nested one is only read when the agent is actually working on files in that folder. It is not paid for the rest of the time. So the deep, specific, detailed instructions about your database layer only cost you context on the day the agent touches the database layer."
+ },
+ {
+  "file": "12.mp3",
+  "text": "And when it does go in there, it does not just read that one. It walks backwards through the parent directories, collecting every agents file on the way up to the root, and it reads the lot."
+ },
+ {
+  "file": "13.mp3",
+  "text": "Which gives you the rule that matters. Inner overrides outer. A rule in a nested file beats a rule in the root file. That is how you write a general standard for the whole project and then one specific exception for the one folder where the general rule is wrong."
+ },
+ {
+  "file": "14.mp3",
+  "text": "That is a genuinely powerful thing and almost nobody uses it. Most projects have one enormous root file trying to cover every case, when what they wanted was a short root file and three small specific ones."
+ },
+ {
+  "file": "15.mp3",
+  "text": "On the filename. Cursor, Codex and Copilot look for agents dot m d. Claude Code looks for claude dot m d. Antigravity looks for gemini dot m d. Cursor additionally has its own rules system, which predates all of this."
+ },
+ {
+  "file": "16.mp3",
+  "text": "But the trend is real and it is worth knowing. Everybody is converging on agents dot m d as the de facto standard. If you are starting today, write agents dot m d, and add a one line file pointing at it for whichever tool wants a different name."
+ },
+ {
+  "file": "17.mp3",
+  "text": "Right. What actually goes in one? Let me walk you through a real file rather than describe one, because the difference between a good agents file and a useless one is entirely in the specifics."
+ },
+ {
+  "file": "18.mp3",
+  "text": "Top of the file. The project goals, and the success criteria. What are we building, and how do we know when a piece of it is done. If the agent does not know what finished looks like, it will decide for itself, and you will not like its answer."
+ },
+ {
+  "file": "19.mp3",
+  "text": "Then a checklist. An actual list of things it is required to tick off before it calls a task complete. Run the tests. Check the types. Do not leave a file half migrated. This is the single highest value block in the file."
+ },
+ {
+  "file": "20.mp3",
+  "text": "Then links to other documents it can load if it needs them. Not the contents. The links. A line saying the database schema is documented in docs slash schema dot m d is a few tokens. Pasting the schema in is a few thousand, every single turn."
+ },
+ {
+  "file": "21.mp3",
+  "text": "And then coding standards. Which is where the file earns its keep, because this is the section you write out of experience rather than out of theory."
+ },
+ {
+  "file": "22.mp3",
+  "text": "Here is the principle behind that section, and it is the most useful sentence in this lecture. Every line in your standards should be a correction for a problem you have actually hit with this agent before. Not best practices you read somewhere. Things it did to you."
+ },
+ {
+  "file": "23.mp3",
+  "text": "So let me give you mine, and you are welcome to steal all of them. First. Agents overcomplicate everything, every time, given the slightest opportunity. So the line in the file says simpler is better, and it says it near the top."
+ },
+ {
+  "file": "24.mp3",
+  "text": "Comments only where they are genuinely necessary. Left alone it will narrate every line of code back to you in a comment, which is noise, and noise costs context."
+ },
+ {
+  "file": "25.mp3",
+  "text": "Short readmes. Left alone, an agent will write you a readme with a features section, an installation section, a contributing section and three badges, for a project with four files. Machine generated readmes are among the worst artefacts in software."
+ },
+ {
+  "file": "26.mp3",
+  "text": "No emojis. It will put them in headings, in commit messages, in log output. Say so once, in the file, and it stops."
+ },
+ {
+  "file": "27.mp3",
+  "text": "Avoid over defensive programming. It loves wrapping everything in a try, catching an exception it has no plan for, and swallowing it. Handle exceptions where you actually have something to do about them, and let the rest fail loudly."
+ },
+ {
+  "file": "28.mp3",
+  "text": "Avoid type checking at runtime when the type system already tells you. It will scatter isinstance checks through code that did not need a single one."
+ },
+ {
+  "file": "29.mp3",
+  "text": "And be specific about your tooling. If your project runs through a particular command, say that command by name, and say it is the only one. Otherwise it will reach for whatever was most common in its training data, which will not be yours."
+ },
+ {
+  "file": "30.mp3",
+  "text": "One more, and it is a strange one. Writing IMPORTANT in block capitals actually works. It genuinely raises the weight the model puts on that line. It should not feel like it ought to work, and it does."
+ },
+ {
+  "file": "31.mp3",
+  "text": "Now the counterintuitive rule, and it is the one people get wrong most often. Focus on the positives. Write what it should do, not what it should not."
+ },
+ {
+  "file": "32.mp3",
+  "text": "Language models are oddly incoherent at remembering what to avoid. Tell it not to use a particular pattern and you have just put that pattern in the context, several times, in a file it reads on every single call."
+ },
+ {
+  "file": "33.mp3",
+  "text": "So use never sparingly, and when you do use it, mean it. For everything else, phrase the rule as the thing you want. Not, do not write long functions. Instead, keep functions under about thirty lines. Same rule. Far better behaviour."
+ },
+ {
+  "file": "34.mp3",
+  "text": "And in the spirit of honesty, my own file breaks this rule in three places, and I know it does, and I have not fixed it. Nobody writes a perfect one of these. You write a decent one and then you edit it for the rest of the project."
+ },
+ {
+  "file": "35.mp3",
+  "text": "Which brings us to the bigger picture, and to a genuine disagreement in this field right now. There are two schools of thought about how much of this you should be doing at all."
+ },
+ {
+  "file": "36.mp3",
+  "text": "The twenty twenty five school. Your success comes from sweating this file. One in the root, more in subdirectories. Supporting planning documents. Explicit success criteria. Continually pruned and rewritten as you go. The agent stopped and restarted with fresh context whenever it drifts."
+ },
+ {
+  "file": "37.mp3",
+  "text": "And that is hard work. It is a real, ongoing chunk of your day. But through twenty twenty five it was unambiguously the way to get good results out of these tools, and the people doing it were getting far more out of them than the people who were not."
+ },
+ {
+  "file": "38.mp3",
+  "text": "The twenty twenty six mindset is close to the opposite. Let it hang out. Give up the reins. Focus on the end goal rather than the route to it. Use skills, loops, sub-agents, swarms. Let the system notice its own mistakes and correct them, instead of you catching each one."
+ },
+ {
+  "file": "39.mp3",
+  "text": "And I will be straight with you about where I sit. I am still largely of the twenty twenty five school. For a toy project, like the game we built on day one, I let go completely and it is fine. For anything I actually care about, I am all over the file."
+ },
+ {
+  "file": "40.mp3",
+  "text": "I also think that is going to look old fashioned quite soon, and the field is moving the other way faster than I am. Which is a slightly uncomfortable thing to say out loud in a program that you paid for, so let me be clear about what to do with it."
+ },
+ {
+  "file": "41.mp3",
+  "text": "Learn to write a good one now. It costs you an afternoon and it makes everything in weeks two and three work better. Then, as the tools get better at self correcting, you will find yourself writing less of it, and you will know exactly which parts you can safely stop writing."
+ },
+ {
+  "file": "42.mp3",
+  "text": "Next time, we take a step back from the file and look at the workflows it sits inside. From micromanaging every change, all the way out to loops that run overnight without you."
+ }
+]

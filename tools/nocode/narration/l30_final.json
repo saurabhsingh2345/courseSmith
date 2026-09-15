@@ -1,0 +1,234 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Yesterday we broke every rule we had just finished writing, and got away with it. Today we follow them, and we build something that is meant to last longer than an afternoon."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "A quick word on cost before anything else, because it is the one thing that can quietly stop you halfway through a project. The tool we are using has a free tier with a monthly allowance, and a paid tier with a much bigger one."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "Wherever you are, find the usage page for your account and look at it now, before you start. Not because you will run out today. Because the moment you do run out, the tool gets quietly worse rather than stopping, and you will spend an hour blaming the model."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "That page also has a budget control on it. If you are on a paid plan, set a limit you are comfortable with. It is the difference between a tool and a subscription you forgot about."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "Now, the project. And the first thing to explain is why we are not starting from nothing."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "Every build this week began with an empty folder, and that is the situation these agents are best at. No existing decisions, no existing style, nothing to be careful around. They scaffold beautifully."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "Real work almost never looks like that. There is nearly always something already there. Somebody else's code, a half-finished thing from last year, a system nobody has touched since the person who wrote it left."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "And that is harder. Not impossible, but genuinely harder, because now the agent has to understand something before it can add to it. So this project deliberately mixes the two. We inherit a piece of working code, and we build a real application around it."
+ },
+ {
+  "file": "A9.mp3",
+  "text": "Here is what we inherit. It is one of the four Kanban boards we built on day three — the one from the Claude Code build. And from this moment on I want you to pretend you did not write it."
+ },
+ {
+  "file": "A9b.mp3",
+  "text": "And before anyone asks why that one: not because it won. We said at the end of day three that none of them won, and I meant it. Any of the four would have done this job. I picked the one whose layout I find easiest to read on camera, which is the sort of reason real decisions actually get made for."
+ },
+ {
+  "file": "A10.mp3",
+  "text": "Pretend another team built this a year ago, shipped it, and moved on. You have been handed it. You did not choose the framework, you did not choose the layout, and you do not get to start again. That is the normal condition of working on software."
+ },
+ {
+  "file": "A11.mp3",
+  "text": "And what it is, honestly, is a demo. It looks like an application, but it forgets everything the moment you reload the page. There is no back end, no database, and nothing is saved anywhere. It is a very convincing front end and nothing else."
+ },
+ {
+  "file": "A12.mp3",
+  "text": "So the mission. Turn that demo into something real. A proper front end and back end. A database, so it remembers. An API between them. A sign-in, so it belongs to somebody."
+ },
+ {
+  "file": "A13.mp3",
+  "text": "And one more thing, because everything has one of these now, and for once it is actually the right feature for the job. An AI assistant in the sidebar that can answer questions about your board, and change it. Move that card. Add three cards for the launch. That thing."
+ },
+ {
+  "file": "A14.mp3",
+  "text": "That is a real product. Small, but real. And we are going to build it in ten steps, in order, testing after each one, which is precisely what we did not do yesterday."
+ },
+ {
+  "file": "C1.mp3",
+  "text": "So let us get it onto the machine. And the way you do that is the way you will do it for every project you ever join, so it is worth watching once even if it looks like nothing is happening."
+ },
+ {
+  "file": "C2.mp3",
+  "text": "The code lives on GitHub, which is where almost all code lives. You copy the address of the repository, and you clone it, which means make a copy on my computer that still knows where it came from."
+ },
+ {
+  "file": "C3.mp3",
+  "text": "A terminal inside the editor, a command to move into the folder where I keep projects, and then the clone itself. One command, one address, and it is on the machine."
+ },
+ {
+  "file": "C4.mp3",
+  "text": "That is the whole thing. If you have never done it before it feels like it ought to be harder, and it is not."
+ },
+ {
+  "file": "C5.mp3",
+  "text": "Then open it as a folder in the editor, and there is the project. And this is the moment where I want you to look at the shape of it rather than the contents, because the shape is the plan."
+ },
+ {
+  "file": "C6.mp3",
+  "text": "A frontend folder, which has the inherited board in it, and is the only part that currently does anything."
+ },
+ {
+  "file": "C7.mp3",
+  "text": "A backend folder, which is empty. A scripts folder, which is empty. A docs folder, which is empty. Three empty rooms with the doors already labelled."
+ },
+ {
+  "file": "C8.mp3",
+  "text": "And that is deliberate. An empty folder with a name is an instruction. It says the back end goes here, not wherever you feel like putting it. It costs nothing and it prevents an argument later."
+ },
+ {
+  "file": "C9.mp3",
+  "text": "Then two files that are easy to miss and matter enormously. The first is dot env, which is where the secret goes. I will add ours in a moment, because it deliberately did not come with the download."
+ },
+ {
+  "file": "C10.mp3",
+  "text": "And the reason it did not is the second file. Dot gitignore, which is a list of things git should pretend it cannot see. And the first line of it is dot env."
+ },
+ {
+  "file": "C11.mp3",
+  "text": "So the secret exists on my machine and it will never be uploaded, because the project itself has been told to ignore it. That is not something you remember to do. It is something you set up once, at the start, and then cannot get wrong."
+ },
+ {
+  "file": "C12.mp3",
+  "text": "Which is why I am showing you an empty project rather than a finished one. Every one of these decisions is invisible in the finished thing, and every one of them is easier now than later."
+ },
+ {
+  "file": "B1.mp3",
+  "text": "Which brings us to the file this whole week has been about. And this time it is not a toy brief for a toy board. It is the specification for a piece of software with a database in it."
+ },
+ {
+  "file": "B2.mp3",
+  "text": "I am going to read it with you, because every section is a decision, and the decisions are the lecture. Not the typing."
+ },
+ {
+  "file": "B3.mp3",
+  "text": "Requirements first, and notice how ordinary the language is. A user signs in. They see their board. Five columns they can rename. Cards move. An assistant in the sidebar can answer questions and change things. There is not one technical word in it."
+ },
+ {
+  "file": "B4.mp3",
+  "text": "Then limitations, and this is the section people skip. One hard-coded user. One board. Runs on your own machine, not deployed. Written down so the agent does not helpfully build a login system, a billing page and a password reset you never asked for."
+ },
+ {
+  "file": "B5.mp3",
+  "text": "But look at the line underneath. Design the database for many users anyway. That is the one sentence in this file that a year from now will have saved somebody a rewrite, and it costs nine words today."
+ },
+ {
+  "file": "B6.mp3",
+  "text": "Then the technical decisions, and here is where I want to say something to the half of you who are worried about this section."
+ },
+ {
+  "file": "B7.mp3",
+  "text": "You do not need to know what goes here. You can genuinely ask the AI what it recommends and take that. That is a real answer and nobody will think less of you."
+ },
+ {
+  "file": "B8.mp3",
+  "text": "I have opinions, so I am going to use them. Python on the back end. A specific package manager, because the agents will reach for a different one if you let them. A local database file. Everything running inside a container. AI calls routed through one service, with the key in an environment file."
+ },
+ {
+  "file": "B9.mp3",
+  "text": "And each of those is a fence. Not because my choice is the correct one, but because a decision written down is a decision the agent does not get to make differently every twenty minutes."
+ },
+ {
+  "file": "B10.mp3",
+  "text": "Now the section I want you to actually copy, because I have never seen it in anyone else's file and it does more work than the rest of them combined."
+ },
+ {
+  "file": "B11.mp3",
+  "text": "Starting point. A short paragraph saying what already exists, that it was built by somebody else, and that it is a demo with nothing underneath it."
+ },
+ {
+  "file": "B12.mp3",
+  "text": "Without that, the agent finds a working Kanban board in the folder and has to guess whether it is finished, whether it is sacred, or whether it is a mistake. With it, there is no guessing at all."
+ },
+ {
+  "file": "B13.mp3",
+  "text": "And a tiny thing about the wording that is worth more than it looks. I first wrote that heading as current state, then changed it to starting point."
+ },
+ {
+  "file": "B14.mp3",
+  "text": "Because current state is a phrase that will still be sitting in the file in three hours, when the state is completely different, quietly telling the agent something false. Starting point can never go stale. It is the same information with an expiry date removed."
+ },
+ {
+  "file": "B15.mp3",
+  "text": "That is the level of care worth taking with this file. Not clever prompting. Just noticing which of your words will still be true tomorrow."
+ },
+ {
+  "file": "B16.mp3",
+  "text": "Then the palette, unchanged from day three, and a note about no emoji. Then coding standards, which are mostly familiar. Start simple, small steps, test after each one."
+ },
+ {
+  "file": "B17.mp3",
+  "text": "Except for this one, and you should recognise it, because two days ago you had to type it by hand in a panic. When you hit a problem, find the root cause. Do not guess. Reproduce it, prove the cause, fix that, and demonstrate the fix."
+ },
+ {
+  "file": "B18.mp3",
+  "text": "That is the four step instruction from the Copilot lecture, promoted. It is not something you say when things go wrong any more. It is written into the project, once, and it applies to every problem this agent ever hits here."
+ },
+ {
+  "file": "B19.mp3",
+  "text": "And one line I added that is not in anybody's template. If an instruction in this file turns out to be a bad idea, say so rather than following it into a corner."
+ },
+ {
+  "file": "B20.mp3",
+  "text": "Remember that line. It is going to matter more than anything else in the file, and not in the way I expected when I wrote it."
+ },
+ {
+  "file": "B21.mp3",
+  "text": "Last section. All planning lives in a docs folder, and the agent must read the plan before doing anything and keep it up to date as it goes, including decisions it makes along the way."
+ },
+ {
+  "file": "B22.mp3",
+  "text": "That last clause is the load-bearing one. The plan is the thing that survives when the conversation does not, and we are going to prove that later today by deliberately throwing the conversation away."
+ },
+ {
+  "file": "D1.mp3",
+  "text": "Two things in the assistant panel before we start, both of which you have seen but neither of which I have explained properly."
+ },
+ {
+  "file": "D2.mp3",
+  "text": "The first is the mode. There is a version of this tool that only talks to you, and a version that reads your files, writes new ones and runs commands. Those are wildly different levels of trust and they are one dropdown apart."
+ },
+ {
+  "file": "D3.mp3",
+  "text": "The second is the model selector, and next to it, something worth knowing exists even if you never use it. Manage models. That is where you can point this at a model running on your own machine, for nothing, with no account and no network."
+ },
+ {
+  "file": "D4.mp3",
+  "text": "It needs a strong computer and the results are behind the big paid models, so I am not doing it here. But it is the answer to the question I get most often, which is whether any of this works without a subscription. It does. It is just slower and it is on you to set up."
+ },
+ {
+  "file": "D5.mp3",
+  "text": "And the last thing on the panel is the one I want you to actually watch during this project, which is the indicator that tells you how full its memory is."
+ },
+ {
+  "file": "D6.mp3",
+  "text": "We drew that as a diagram on day two. A fixed amount of room, filled by everything it has read and everything you have said. Today you are going to watch it fill up over a real build, and later today we are going to do something about it deliberately."
+ },
+ {
+  "file": "D7.mp3",
+  "text": "One more thing and then we start. This is the last lecture of the week where I am setting things up. Everything after this is building, in ten steps, testing after each one."
+ },
+ {
+  "file": "D8.mp3",
+  "text": "And I want to say plainly what we are actually about to demonstrate, because it is easy to lose in the detail. Not that an AI can write code. You have watched that all week. What we are demonstrating is that somebody who cannot write this code can still direct it, check it, and end up with something real."
+ },
+ {
+  "file": "D9.mp3",
+  "text": "That is the whole promise of the course, and it either survives the next four lectures or it does not."
+ }
+]

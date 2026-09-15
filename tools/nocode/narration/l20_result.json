@@ -1,0 +1,66 @@
+[
+ {
+  "file": "R1.mp3",
+  "text": "It scaffolded, installed, built, tested, linted, and started a server, and it did all of it without asking me a single thing after the plan. Which is what always proceed means, and it is the first time today a tool has actually taken me at my word."
+ },
+ {
+  "file": "R2.mp3",
+  "text": "Then it did something none of the other three did. It handed me a review screen. Seventeen files with changes, listed by name, with how many lines went in and out of each one, and two buttons. Accept all, or reject all."
+ },
+ {
+  "file": "R3.mp3",
+  "text": "So the dial I turned up controls whether it stops to ask before it acts. A separate setting controls whether it shows you the result before it keeps it. Those are two different questions and I like that they are two different settings."
+ },
+ {
+  "file": "R4.mp3",
+  "text": "Read its summary rather than skimming it, because it is unusually specific. Five fixed columns. A card limited to a title and a description, and it says strictly limited, which is it telling me it noticed the brief said nothing else."
+ },
+ {
+  "file": "R5.mp3",
+  "text": "Column renaming by clicking the title. Drag and drop between and within columns. Delete on hover. And add a card through a dialog with a required title and an optional multiline description."
+ },
+ {
+  "file": "R6.mp3",
+  "text": "That last one deserves a flag, because it is exactly where the version of this lecture I built from found its weak spot. There, this build produced a bare browser pop up asking for a name, with nowhere to type a description at all. Ours produced a proper form, because the brief said a card has a title and a description, and it treated that as a requirement rather than a suggestion."
+ },
+ {
+  "file": "R7.mp3",
+  "text": "Then the palette. It lists the five colours out of our brief, by their hex codes, and adds that it used no emoji anywhere and drew the icons instead. Nothing asked for that. The brief mentioned a palette and said nothing about emoji, and it inferred the taste from the rest of the document."
+ },
+ {
+  "file": "R8.mp3",
+  "text": "Sixteen tests out of sixteen passing. No lint warnings at all. Production build compiled cleanly. And a server running, with the address."
+ },
+ {
+  "file": "R9.mp3",
+  "text": "And now the honest part, which is the most useful thing in this lecture, and I want to give it room."
+ },
+ {
+  "file": "R10.mp3",
+  "text": "This tool is the one that is supposed to drive a real browser and record itself doing it. That is its headline feature, and in the course I built this from it is the single most striking thing in the whole day. The agent tests the app by actually using it, and hands you a video of it working."
+ },
+ {
+  "file": "R11.mp3",
+  "text": "Ours could not. It tried, and the piece of software it needs to drive a browser failed to download. It says so, in a note, in plain language, with the reason. A four zero four fetching the driver."
+ },
+ {
+  "file": "R12.mp3",
+  "text": "So it told me what it did instead. It verified the application through its own component test suite, which runs in a simulated browser rather than a real one, and it told me the app is serving and where."
+ },
+ {
+  "file": "R13.mp3",
+  "text": "Look at the shape of that. A feature it was going to use did not work. It did not pretend otherwise, it did not quietly skip the step, and it did not report success and let me find out. It named the failure, named the cause, named the substitute, and named what the substitute does not cover."
+ },
+ {
+  "file": "R14.mp3",
+  "text": "That is a tool behaving well while something goes wrong, and you will see far more of that than you will see headline features working perfectly. How a thing fails is worth more to you than how it looks when it does not."
+ },
+ {
+  "file": "R15.mp3",
+  "text": "It also means I cannot show you the feature. So I am not going to describe it as though I had. If you install this and the driver downloads for you, you will see something I did not get to see, and that is the honest state of it."
+ },
+ {
+  "file": "R16.mp3",
+  "text": "One more thing on screen, and it is a small honest blemish. There is a badge in the corner reporting one issue at development time. It does not stop the app, none of the five checks touch it, and it is the kind of thing you would hand straight back with a screenshot. I am leaving it visible rather than reloading until it goes away."
+ }
+]

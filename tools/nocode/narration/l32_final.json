@@ -1,0 +1,338 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Last time ended on a promise, so let us keep it. Things went wrong when we tried to run part two, and none of them is a disaster. They are all completely ordinary, and that is exactly why they are worth your time."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "The first one. It tries to run the start script, and the machine refuses. Permission denied."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "If you have never seen that, it sounds alarming and it is not. A script is a file, and a file has a flag on it that says whether it is allowed to be run as a program. Ours was written a minute ago and nobody had set that flag."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "And watch what it does about it, because this is the pattern you want to internalise. It does not stop and ask me to fix my computer. It reads the error, recognises it, and runs the one command that sets the flag."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "Which is the general rule for this whole course. When something breaks, you do not need to know the fix. You need to hand over the error, exactly as it appeared, and let the thing that has read a million of these recognise it."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "Second thing. It starts the container, and the container cannot start, because something is already using port eight thousand."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "A port is just a numbered door on your machine. Only one program can stand in a given doorway at a time. Something I ran earlier today never properly shut down, and it is still standing in ours."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "So it stops the stale one and starts ours in its place. And I want to be honest that this is the single most common way a beginner loses an afternoon, because the error says address already in use and that sounds like a problem with the code, and it is not. It is a problem with the room."
+ },
+ {
+  "file": "A9.mp3",
+  "text": "Two errors, two recoveries, no help from me. That is what a good stretch actually looks like, and if I had cut them out you would have a false idea of the job. The third one is coming, and it is a different animal entirely."
+ },
+ {
+  "file": "B1.mp3",
+  "text": "Now, before I let it move on, the prompt I want you to steal from today."
+ },
+ {
+  "file": "B2.mp3",
+  "text": "Tell me how I can test this part myself."
+ },
+ {
+  "file": "B3.mp3",
+  "text": "Because look at what that sentence does. It is not asking whether the work is done. It is asking to be handed the means of checking, which means the verification stops living inside the thing being verified."
+ },
+ {
+  "file": "B4.mp3",
+  "text": "And for a no-code audience this matters more than it does for a developer. I cannot read its tests. I can absolutely open a browser and see whether a page loads. So I want its answer in the currency I can actually spend."
+ },
+ {
+  "file": "B5.mp3",
+  "text": "It gives me an address and two things to look at. Trust, but verify, at every step. That phrase gets used loosely. Here it is a literal instruction with a literal answer."
+ },
+ {
+  "file": "B6.mp3",
+  "text": "And then the check that almost nobody does. Are all of the success criteria for part two actually met?"
+ },
+ {
+  "file": "B7.mp3",
+  "text": "This is only possible because the plan wrote success criteria down in the first place. A vague plan cannot be audited. A plan with a checklist can be, and the audit costs one sentence."
+ },
+ {
+  "file": "B8.mp3",
+  "text": "And there is a second version of that question which is even better, and I use it constantly. Ask it to explain a decision it made."
+ },
+ {
+  "file": "B9.mp3",
+  "text": "Not to justify itself. To explain. There is a difference in tone and you will get a different answer."
+ },
+ {
+  "file": "B10.mp3",
+  "text": "Because these things make dozens of small choices you never see. Which library, which structure, which shortcut. Most of them are fine. Some of them are it doing the thing that works rather than the thing you asked for."
+ },
+ {
+  "file": "B11.mp3",
+  "text": "And the only way that ever comes to light is if somebody asks. It will answer honestly. It has no ego about it. It just does not volunteer."
+ },
+ {
+  "file": "B12.mp3",
+  "text": "So when a file appears that you did not expect, or something is arranged in a way that surprises you, ask why. Sometimes the answer teaches you something. Sometimes the answer is not good enough, and you say so, and it changes it."
+ },
+ {
+  "file": "B13.mp3",
+  "text": "And crucially, you can do that without being able to read a line of the code. You are not auditing the implementation. You are interrogating the reasoning."
+ },
+ {
+  "file": "C1.mp3",
+  "text": "Part three. Take the Kanban board we inherited on day three and serve it from the back end we just built."
+ },
+ {
+  "file": "C2.mp3",
+  "text": "And I want to name why that is a whole part on its own, because it looks like nothing. Right now we have two things that both work and do not know about each other. A front end that draws a board, and a back end that answers on a port."
+ },
+ {
+  "file": "C3.mp3",
+  "text": "Part three is the introduction. After this, one address serves the whole application, and everything after this point can assume that."
+ },
+ {
+  "file": "C4.mp3",
+  "text": "And it works. Same board, same columns, same cards. Except it is not being served by a development server any more, it is coming out of the box."
+ },
+ {
+  "file": "C5.mp3",
+  "text": "And that phrase, out of the box, is worth unpacking once because we will lean on it all week."
+ },
+ {
+  "file": "C6.mp3",
+  "text": "On day three we said a container is a box with the application and everything it needs to run, sealed together. The point of it is that the box behaves the same on my machine and on yours and on a server."
+ },
+ {
+  "file": "C7.mp3",
+  "text": "So when I say the board is now served from the box, I mean the thing you are looking at is the thing that would run in production. Not a rehearsal of it. The same object."
+ },
+ {
+  "file": "D1.mp3",
+  "text": "Now the diffs, because there are a lot of them on screen and this is the first time we have had enough changes for the question to be real."
+ },
+ {
+  "file": "D2.mp3",
+  "text": "Green is added. Red is removed. Every changed file is listed, and you can accept or reject each one individually, or press keep once and take the lot."
+ },
+ {
+  "file": "D3.mp3",
+  "text": "There is a school of thought that says you should read every single line before you accept it. I am not going to pretend to you that I do that, because I do not, and neither does anybody shipping at this pace."
+ },
+ {
+  "file": "D4.mp3",
+  "text": "What I actually do is this, and it is a rule you can hold in your head. Accept in bulk while the work is ordinary. Slow down and look properly when the change touches something you would not want to be wrong."
+ },
+ {
+  "file": "D5.mp3",
+  "text": "Money. Anything with a password in it. Anything that deletes. And the first time we plug in the AI, which is coming later today."
+ },
+ {
+  "file": "D6.mp3",
+  "text": "The reason that rule works is that risk is not spread evenly across a diff. Ninety percent of what is on this screen is plumbing that either works or obviously does not. The remaining ten percent is where the afternoons go."
+ },
+ {
+  "file": "D7.mp3",
+  "text": "And the phrase I keep coming back to, from Karpathy, is watch it like a hawk. Not read it like a lawyer. Watch it. Those are different jobs and only one of them is sustainable."
+ },
+ {
+  "file": "E1.mp3",
+  "text": "Part four. A sign-in screen, one user, and a way to log out."
+ },
+ {
+  "file": "E2.mp3",
+  "text": "And it writes a test for it, unprompted, which I want to point at for a second. It tests signing in with the wrong password and being refused, and signing in with the right one and getting the board."
+ },
+ {
+  "file": "E3.mp3",
+  "text": "That is a good test. It tests the two things that matter and nothing else. Hold on to that, because in a while today we are going to watch it write some very bad ones, and the contrast is the lesson."
+ },
+ {
+  "file": "E4.mp3",
+  "text": "And it tells me part four is complete, and that it checked."
+ },
+ {
+  "file": "X1.mp3",
+  "text": "So I open the browser. And this is what I get."
+ },
+ {
+  "file": "X2.mp3",
+  "text": "Nothing. A blank page. Not an error message, not a broken layout. Nothing at all."
+ },
+ {
+  "file": "X3.mp3",
+  "text": "And I want to slow this one right down, because how I found it matters more than what it turned out to be."
+ },
+ {
+  "file": "X4.mp3",
+  "text": "It ran its checks, and its checks passed. It asked for the page from the command line and got back the sign-in form, complete and correct. By its own measurement, part four worked."
+ },
+ {
+  "file": "X5.mp3",
+  "text": "It never opened a browser. It cannot open a browser. And a browser is the only place this fault appears."
+ },
+ {
+  "file": "X6.mp3",
+  "text": "That is the shape of almost every bad afternoon you are going to have with these tools. Not that it lied to you. That it measured the wrong thing, and the measurement passed."
+ },
+ {
+  "file": "X7.mp3",
+  "text": "So I describe it the way day three taught. Exactly what I did, exactly what I expected, exactly what happened instead. And then the two facts that make it strange."
+ },
+ {
+  "file": "X8.mp3",
+  "text": "Blank in the browser. Correct from the command line. And when I ask the command line to unpack the response the way a browser does, it fails."
+ },
+ {
+  "file": "X9.mp3",
+  "text": "That last sentence is the whole gift. I do not know what is wrong and I could not tell you. But I have handed it the exact point where the two views of the same thing disagree, and that is where the bug always is."
+ },
+ {
+  "file": "X10.mp3",
+  "text": "And two clauses in that prompt are there because of what just happened. Prove the cause, do not guess at it. And confirm the fix the way a browser would, not the way the command line does."
+ },
+ {
+  "file": "X11.mp3",
+  "text": "Here is what it was, and it is small, which they nearly always are."
+ },
+ {
+  "file": "X12.mp3",
+  "text": "Our back end asks the front end for the page and passes it on to you. The front end sends it compressed, to save space. The library in the middle unpacks it automatically on the way in. And then our code copies the original labels onto the parcel and hands it over."
+ },
+ {
+  "file": "X13.mp3",
+  "text": "So the parcel is unpacked, and the label still says compressed. The browser reads the label, tries to unpack something that is already unpacked, fails, and shows you nothing. Silently."
+ },
+ {
+  "file": "X14.mp3",
+  "text": "And the command line did not care, because it was never asked to unpack anything. Which is precisely why it passed."
+ },
+ {
+  "file": "X15.mp3",
+  "text": "One label. That is the entire bug. And it is the difference between an application and a blank rectangle."
+ },
+ {
+  "file": "X16.mp3",
+  "text": "Fixed, and confirmed the way it should have been confirmed in the first place."
+ },
+ {
+  "file": "X17.mp3",
+  "text": "And the rule I would carve into the desk after that one. Its check passing is not the same as it working. Those are two different claims and only one of them is yours to make."
+ },
+ {
+  "file": "E5.mp3",
+  "text": "So. Username, password, and there is the board."
+ },
+ {
+  "file": "E6.mp3",
+  "text": "Log out. Log back in, and I am back where I was."
+ },
+ {
+  "file": "E7.mp3",
+  "text": "And I want to be precise about what that proves, because it is less than it looks. It proves the sign-in works, and that it remembers me between visits."
+ },
+ {
+  "file": "E8.mp3",
+  "text": "It does not prove the board is saved. There is no database yet. The board you are looking at is still the one the front end draws for itself, and if I moved a card it would not survive a reload."
+ },
+ {
+  "file": "E9.mp3",
+  "text": "That is part five, and it is next. I point at it because a demo that works is the easiest place in the world to believe more than you have actually been shown."
+ },
+ {
+  "file": "F1.mp3",
+  "text": "Right. Now the checkpoints, and this is not the beat I expected to be recording."
+ },
+ {
+  "file": "F2.mp3",
+  "text": "Last time I told you the three commands and made a point of it. Look, include, save. After every part. And in the prompt for these two parts I wrote it again, in plain English. Commit to git after each part, with a clear message."
+ },
+ {
+  "file": "F3.mp3",
+  "text": "So let us see whether it did. And it did. Two commits, one for serving the front end, one for the sign-in flow. Which is a better result than I am used to."
+ },
+ {
+  "file": "F4.mp3",
+  "text": "But do not stop at the fact that commits exist. Look at what is inside them."
+ },
+ {
+  "file": "F5.mp3",
+  "text": "Open the second one. Serve the front end. And in it are the Dockerfile, the back end, and both of the scripts."
+ },
+ {
+  "file": "F6.mp3",
+  "text": "None of which is part three. That is part two. Part two never got a checkpoint of its own, so when it finally saved, it swept the previous part in alongside this one."
+ },
+ {
+  "file": "F7.mp3",
+  "text": "Does that break anything? No. Everything is safe and all of it is in the history. But I have lost the ability to go back to the end of part two, because there is no such point any more. Two parts are welded into one."
+ },
+ {
+  "file": "F8.mp3",
+  "text": "And there is one more thing, and this is the one I would have missed if I had only glanced. There is a file sitting in this project that is in no commit at all."
+ },
+ {
+  "file": "F9.mp3",
+  "text": "A small one, part of the back end. It was created, it works, everything runs, and it is outside the history entirely, which means a checkpoint I trusted is not actually complete."
+ },
+ {
+  "file": "F10.mp3",
+  "text": "So the lesson is not that it ignored me. It followed the instruction. The lesson is that following the instruction still produced a history with a gap in it, and the only way I know that is that I read it."
+ },
+ {
+  "file": "F10b.mp3",
+  "text": "Which is the same shape as the thing I flagged at the end of the last lecture, and I did not expect to be proving it one lecture later. You find out what is true from what is actually there."
+ },
+ {
+  "file": "F10c.mp3",
+  "text": "So let me fix it, on camera, with the three commands. Status, and there it is, the untracked file. Add, which includes everything, including the one that was missed. Commit, with a message I will understand in three weeks."
+ },
+ {
+  "file": "F10d.mp3",
+  "text": "And one clarification that tripped me up for years. All of that is on this machine and nowhere else. Nothing has been uploaded, there is no website involved. It is a local save point in a folder on this laptop."
+ },
+ {
+  "file": "F11.mp3",
+  "text": "Putting it somewhere else is a separate step and a separate decision, and we will get to it. For today, local is enough, because what I am protecting against is not fire. It is the next twenty minutes."
+ },
+ {
+  "file": "F12.mp3",
+  "text": "And the next twenty minutes is the database. Everything so far has been repeatable. If I lost all of it, I could regenerate it from the plan."
+ },
+ {
+  "file": "F13.mp3",
+  "text": "A database with real state in it is the first thing today that would genuinely hurt to lose. So the checkpoint goes in before the risk, not after you find out it was risky."
+ },
+ {
+  "file": "G1.mp3",
+  "text": "So where we are. The box builds, the back end answers, the board is served from it, and you have to sign in to see it, and it remembers you."
+ },
+ {
+  "file": "G2.mp3",
+  "text": "Four parts of ten, and nothing clever has happened yet. That is by design. The clever part is much easier to debug when everything under it is boring and known."
+ },
+ {
+  "file": "G3.mp3",
+  "text": "Next, the database. And that one stops and asks me before it builds anything, which is the only part of the plan that does."
+ },
+ {
+  "file": "G4.mp3",
+  "text": "And before we go there, one thing to carry with you. Everything in this lecture was recovery. A permission flag, a busy port, a missing checkpoint."
+ },
+ {
+  "file": "G5.mp3",
+  "text": "Not one of those required me to write code. Every single one required me to notice."
+ },
+ {
+  "file": "G6.mp3",
+  "text": "That is the job. It is not a smaller job than programming, and I would argue it is a harder one to fake."
+ }
+]

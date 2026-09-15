@@ -1,0 +1,94 @@
+[
+ {
+  "file": "N1.mp3",
+  "text": "Same ritual. The Copilot build gets renamed and kept, and the same repository is cloned again into an empty folder with one file in it. Third time today, and the last time I will narrate it."
+ },
+ {
+  "file": "N2.mp3",
+  "text": "And a small thing I noticed doing it. I keep coming back to the same terminal to do this, sitting in the editor I am not currently filming, because a terminal you already have open is worth more than the right terminal in the right window."
+ },
+ {
+  "file": "N3.mp3",
+  "text": "Now, this tool is different from the two before it in a way that matters for the rest of the course, and I want to set it up properly before we touch anything."
+ },
+ {
+  "file": "N4.mp3",
+  "text": "Cursor is an editor with an agent inside it. Copilot is an extension that puts an agent inside an editor. This one is neither. It is a command line program, and what you are looking at in the editor is a window onto that program."
+ },
+ {
+  "file": "N5.mp3",
+  "text": "Which sounds like a technicality and is not. It means the thing doing the work does not need the editor at all. Same tool, same brief, same everything, running in a plain terminal with no editor open anywhere. And that is exactly where we go next week."
+ },
+ {
+  "file": "N6.mp3",
+  "text": "So think of today as meeting it in the friendly place first. You get the file tree, you get the tabs, you get to see what it changed without knowing a single command. Then next week we take the training wheels off and it turns out to be the same bicycle."
+ },
+ {
+  "file": "N7.mp3",
+  "text": "Here it is, in the same panel as before, as another tab alongside the others. Which is a small honest difference from the course I built this from. There, this slot was a different tool whose sidebar opened on the opposite side, and he made a point of that. Ours does not move. It is a tab."
+ },
+ {
+  "file": "N8.mp3",
+  "text": "I would rather tell you that than pretend at a difference. Three tools in and the furniture is starting to look identical, which is itself the finding."
+ },
+ {
+  "file": "N9.mp3",
+  "text": "On accounts, briefly, because this is where the reference course tells you to skip a lecture. The tool it uses here needs a paid subscription. This one you can start with on a free plan, and if you already pay for it, you already have this."
+ },
+ {
+  "file": "N10.mp3",
+  "text": "One control here is the permission model, and by now you can predict the options, because all three tools have offered a version of the same ladder. Ask me every time. Ask me about the dangerous things. Or do not ask me at all."
+ },
+ {
+  "file": "N11.mp3",
+  "text": "I am going to turn it up, the way we did in Cursor, so you can watch a build run without me clicking. But notice that I am making that choice knowingly, on a throwaway project, in a folder with nothing in it. That is the only circumstance where it is a comfortable choice."
+ },
+ {
+  "file": "N12.mp3",
+  "text": "And the model. I am naming it, on screen, with the date, because in three months this sentence will be wrong and I would rather you catch me than trust me."
+ },
+ {
+  "file": "N13.mp3",
+  "text": "The prompt is the same words as the last two builds. Nothing about the brief, nothing about Kanban, nothing about columns."
+ },
+ {
+  "file": "N14.mp3",
+  "text": "Now the wait. And I am going to speed this up for you, because what happens next is about ten minutes of a machine thinking, and there is no version of that which is interesting at real speed."
+ },
+ {
+  "file": "N15.mp3",
+  "text": "But do not let the speed up hide what it means. On the clock, this is the point where you go and do something else. That is not a flaw in the tool, it is the actual shape of the work now. You write the brief carefully because the feedback loop is ten minutes long, not ten seconds."
+ },
+ {
+  "file": "N16.mp3",
+  "text": "While it runs, watch the number that tells you how full its memory is. Every file it reads and every command it runs goes into a working memory with a hard ceiling, and that number is how close it is to the ceiling."
+ },
+ {
+  "file": "N17.mp3",
+  "text": "Why you care, in one sentence. When it fills up, the tool has to throw away the earliest part of the conversation to keep going, and the earliest part of the conversation is usually your instructions. That is the real reason a long session starts making decisions you already ruled out."
+ },
+ {
+  "file": "N18.mp3",
+  "text": "And it is the strongest argument for the file. Instructions in a chat message can be forgotten. Instructions in a file get read again."
+ },
+ {
+  "file": "N19.mp3",
+  "text": "Let us look at what came back. And then let us not believe a word of it until we have clicked on it ourselves, same as last time."
+ },
+ {
+  "file": "N20.mp3",
+  "text": "Drag between columns. Reorder inside one. Delete. Rename a column. And add a card with a description. The same five, in the same order, so that if one of these builds is genuinely worse than another we will be able to point at where."
+ },
+ {
+  "file": "N21.mp3",
+  "text": "Three builds. Three harnesses. One brief that none of them were told about in the prompt, and three apps that all do the job."
+ },
+ {
+  "file": "N22.mp3",
+  "text": "And notice what nobody had to do. Nobody wrote a line of code. Nobody debugged anything. Nobody chose a library, or a folder structure, or how state should be stored. All of those decisions got made, correctly enough, by something reading a file we wrote on day three."
+ },
+ {
+  "file": "N23.mp3",
+  "text": "Which is the moment to say the uncomfortable half of that out loud, because a comparison this clean is slightly misleading and I would rather point at why than let you find out later."
+ }
+]

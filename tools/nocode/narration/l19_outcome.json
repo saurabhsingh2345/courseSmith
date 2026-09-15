@@ -1,0 +1,30 @@
+[
+ {
+  "file": "O1.mp3",
+  "text": "So here is build three, and the first thing to say is that it is a different looking app from the last one, from the same brief, and that is not a defect in either of them."
+ },
+ {
+  "file": "O2.mp3",
+  "text": "Five columns, named for a real workflow rather than the generic ones. Cards seeded with the kind of task a team would actually have on a board. And a header that names the project rather than announcing the app."
+ },
+ {
+  "file": "O3.mp3",
+  "text": "One design decision differs from the last build and I think it is the better one. Add a card lives inside each column, at the bottom, where the card is going to land. The last build had one Add button at the top of the page and then asked you which column you meant."
+ },
+ {
+  "file": "O4.mp3",
+  "text": "Nothing in the brief chose between those. The brief said add a card. Two tools read the same sentence and made a different interface decision, and only one of them put the button where your hand already is."
+ },
+ {
+  "file": "O5.mp3",
+  "text": "It also pinned itself to a different port, and told me why. Something unrelated was already using the usual one, and rather than killing somebody else's server it moved itself and said so. That is a small thing that tells you a lot about how carefully it is treating the machine it is running on."
+ },
+ {
+  "file": "O6.mp3",
+  "text": "And now the five checks, by hand, same five, same order, third time today."
+ },
+ {
+  "file": "O7.mp3",
+  "text": "Which is three builds, three harnesses, one brief, and three working apps. Not one line of code written by a person. Not one bug debugged by a person. And the only thing any of the three was told, beyond three or four words, is a file we wrote together two lectures ago."
+ }
+]

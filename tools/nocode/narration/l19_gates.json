@@ -1,0 +1,26 @@
+[
+ {
+  "file": "G1.mp3",
+  "text": "And it finishes with a table, which I want you to look at rather than skim. Seven phases complete. Thirty eight success criteria, each one ticked off against the file it wrote them into. The production build passes. The type check passes. The linter is clean. Twenty seven unit tests pass, and ten browser tests pass in a real Chromium."
+ },
+ {
+  "file": "G2.mp3",
+  "text": "Nine hundred and sixty two lines of code across four files, including the tests. That is the entire app."
+ },
+ {
+  "file": "G3.mp3",
+  "text": "And then, unprompted, a section headed three things worth flagging. It moved off the usual port and says why. It hit a rendering mismatch and fixed it. And the third one is the one I would frame."
+ },
+ {
+  "file": "G4.mp3",
+  "text": "One thing I tried to fix, and stopped. It had a theory about why two arrow keys behaved the same way, changed the code to test the theory, watched the behaviour stay exactly the same, and concluded that its theory was wrong."
+ },
+ {
+  "file": "G5.mp3",
+  "text": "So it put the change back, looked up how the library actually works, found that this is the documented design, and told me instead of quietly leaving a pointless edit in the code and calling it fixed."
+ },
+ {
+  "file": "G6.mp3",
+  "text": "That is step two doing its job. Prove you have reproduced the cause. It could not, so it stopped. Nine times out of ten the thing standing between you and a wasted week is a tool willing to say I was wrong about that."
+ }
+]

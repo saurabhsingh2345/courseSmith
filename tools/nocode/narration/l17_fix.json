@@ -1,0 +1,66 @@
+[
+ {
+  "file": "21.mp3",
+  "text": "Right. It says it is finished. Six of six tasks complete. And as I said in the last lecture, an agent will tell you it is done and mean that the code exists. Let us be the judge of that."
+ },
+ {
+  "file": "22.mp3",
+  "text": "One detail before we look, because it is the kind of thing that trips people up and it is worth knowing. It did not start on port three thousand. Port three thousand was already busy on this machine, so it picked another one and told me which. Read that line rather than assuming the address."
+ },
+ {
+  "file": "23.mp3",
+  "text": "And there it is. Five columns. Backlog, Ready, In Progress, Review, Done. Cards already in them, so the board looks alive rather than empty. And it has taken the colour scheme seriously — that is the amber and near-black out of our file, not a default template."
+ },
+ {
+  "file": "24.mp3",
+  "text": "Now the five checks, the same five that every build today gets. Check one. Does the board appear with data already in it? It does, and look at what is written on the cards. It has seeded them with notes about building this board. That was not asked for and it is a nice touch."
+ },
+ {
+  "file": "25.mp3",
+  "text": "Check two. Drag a card from one column to another. Backlog has two cards. I am taking the top one across to Ready. And it moves, the counts update on both columns, and the card lands where I dropped it."
+ },
+ {
+  "file": "26.mp3",
+  "text": "Check three, the harder half. Reorder a card inside a column rather than between columns. This is the one I said would separate the four tools, and here it is working."
+ },
+ {
+  "file": "27.mp3",
+  "text": "Check four. Delete a card. And watch what happens when the column empties, because this is the bit that gets skipped. It does not leave a blank hole. It shows a drop-a-card-here target, which means somebody thought about the empty state."
+ },
+ {
+  "file": "28.mp3",
+  "text": "And check five, which is a judgement rather than a test. Would I be willing to show this to somebody? Yes, honestly. From one file and four words of prompt, without me making a single decision about how it was built."
+ },
+ {
+  "file": "29.mp3",
+  "text": "So now the honest part, and it is not the part I expected to be giving you. This first pass worked. There is no broken drag and drop to complain about and no error badge sitting in the corner. That is not what usually happens and I want to be clear about why it happened here."
+ },
+ {
+  "file": "30.mp3",
+  "text": "It told me it ran the tests itself. Eleven unit tests and five browser tests, and it says all of them pass. Now, should you believe that? Partly. It is real evidence, and it is much better than an agent simply asserting it is done. But it is evidence the agent chose and graded."
+ },
+ {
+  "file": "31.mp3",
+  "text": "Which is exactly why the five checks exist and why you write them down before the build rather than after. I just ran them by hand, on camera, and they agreed with the agent. That is the order to do it in — its tests, then your eyes, and yours are the ones that count."
+ },
+ {
+  "file": "32.mp3",
+  "text": "And the reason this went well is not that I got lucky with the model. It is that the brief was good. Every awkward decision was already made in that file before the agent started, so there was very little left for it to get wrong."
+ },
+ {
+  "file": "33.mp3",
+  "text": "That is the whole argument for the last two lectures, cashed out. The work you do in the file is work the agent does not have to guess at, and guessing is where these things go wrong."
+ },
+ {
+  "file": "34.mp3",
+  "text": "So. That is the first of four. Same brief, same five checks, three more tools to go, and I genuinely do not know which of them is going to struggle."
+ },
+ {
+  "file": "35.mp3",
+  "text": "To recap what happened, because it went past quickly. We wrote a good agents file. We picked a model deliberately rather than leaving it on automatic. We planned before we built and read what came back. We let it run, and we let the sandbox ask us when it needed to. Then we tested against a fixed list."
+ },
+ {
+  "file": "36.mp3",
+  "text": "That loop is the job now. Next time, the same brief, the same five checks, in GitHub Copilot."
+ }
+]

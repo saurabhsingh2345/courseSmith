@@ -1,0 +1,114 @@
+[
+ {
+  "file": "01.mp3",
+  "text": "Two tricks down, two to go. Yesterday's agent built you a game. So far I have described something that can only produce text, one chunk at a time, remembering nothing. Those two things do not obviously connect. These next two tricks are the bridge."
+ },
+ {
+  "file": "02.mp3",
+  "text": "Trick three. Tools. And the idea is simpler than the name makes it sound."
+ },
+ {
+  "file": "03.mp3",
+  "text": "The tokens coming out of a model do not have to be an answer. They can instead say, in a format we agreed on beforehand, that the model would like something done. Search the web. Run this calculation. Read that file. Write this one."
+ },
+ {
+  "file": "04.mp3",
+  "text": "And now the sentence I want you to hold on to for the rest of this program, because it is the single most misunderstood idea in the whole field."
+ },
+ {
+  "file": "05.mp3",
+  "text": "The model does not search anything. The model does not run anything. The model does not read a single one of your files. It is a statistical engine that emits tokens. That is the only thing it does, and it is the only thing it can do."
+ },
+ {
+  "file": "06.mp3",
+  "text": "What actually happens is that our software reads those tokens, notices they are a request, and goes and does the thing itself. Ordinary code. A function call. Then it takes the result and hands it back to the model as more input."
+ },
+ {
+  "file": "07.mp3",
+  "text": "So the shape is this. The model emits tokens. Our code reads them. Our code runs the tool. The result goes back in as input. And around it goes."
+ },
+ {
+  "file": "08.mp3",
+  "text": "Let me show you it happening with nothing clever involved, because you can do this yourself in any chat window in about a minute."
+ },
+ {
+  "file": "09.mp3",
+  "text": "You start by telling it the rules. Something like \u2014 to use Python to answer the next question, reply with the word Python, a colon, and a single expression. That is it. That is the entire protocol, invented on the spot."
+ },
+ {
+  "file": "10.mp3",
+  "text": "Then you ask it something it genuinely cannot do in its head. What is the square root of pi."
+ },
+ {
+  "file": "11.mp3",
+  "text": "And it does not answer. It replies with one line of Python, imports included, and stops. It has told you that it wants a calculation run. It has not run one, because it cannot."
+ },
+ {
+  "file": "12.mp3",
+  "text": "Now you run that line yourself and paste the number back. And that is a tool call. All of it. A clever bit of input, and some code that interprets the output. Everything built on top \u2014 every framework, every protocol with an acronym \u2014 is that idea with better plumbing."
+ },
+ {
+  "file": "13.mp3",
+  "text": "Trick four. The loop. And this one is almost embarrassingly simple."
+ },
+ {
+  "file": "14.mp3",
+  "text": "What is better than calling a language model once? Calling it again. Take the output. Ask whether the goal has been met. If not, feed everything back in and go around again."
+ },
+ {
+  "file": "15.mp3",
+  "text": "That is the loop. Produce, check, repeat, until done. It is so simple it is elegant, and it is the difference between something that answers you and something that finishes a job."
+ },
+ {
+  "file": "16.mp3",
+  "text": "And now the four fit together. It predicts text. It is handed the whole conversation every time, so it appears to remember. It can ask for things to be done, and our code does them. And it goes round and round until the goal is met. That is the whole distance from a chat window in 2022 to the thing that built your game yesterday."
+ },
+ {
+  "file": "17.mp3",
+  "text": "Which brings us to a question that sounds like it should have an easy answer. What is an AI agent?"
+ },
+ {
+  "file": "18.mp3",
+  "text": "For about two years the honest answer was: whatever the person saying it wanted it to mean. It was a marketing word. But the definition has actually converged, and the path it took is worth two minutes because each step tells you something."
+ },
+ {
+  "file": "19.mp3",
+  "text": "First definition, the early one. A system that goes off and does work for you independently. You give it a task, it disappears, it comes back. Booking a restaurant while you watch it click around a website. Or, put more tightly \u2014 a language model that can act."
+ },
+ {
+  "file": "20.mp3",
+  "text": "Second definition, from early last year. Systems where the model controls the workflow. Not a fixed program that calls a model at step four, but a program whose next step the model decides. That is a real distinction, and one of the better write-ups on the subject leaned hard on it."
+ },
+ {
+  "file": "21.mp3",
+  "text": "Third definition, and this is the one that stuck. An agent is a model that runs tools in a loop to achieve a goal. That is it. Fourteen words."
+ },
+ {
+  "file": "22.mp3",
+  "text": "And look what it is made of. Tools \u2014 trick three. A loop \u2014 trick four. A goal, which is what you typed. The definition that won is just the two tricks we covered today, named."
+ },
+ {
+  "file": "23.mp3",
+  "text": "So let us test it against something you actually watched, rather than taking my word for it. Yesterday you gave an agent a goal \u2014 a first person shooter you could play in a browser. That is the goal, in one badly spelled sentence."
+ },
+ {
+  "file": "24.mp3",
+  "text": "Was it in a loop? You watched files appear one after another, each step depending on the last, for five minutes without you touching anything. That is a loop."
+ },
+ {
+  "file": "25.mp3",
+  "text": "Did it use tools? It wrote files to your disk. It read them back. It ran code. Not one of those is something a text predictor can do \u2014 every one of them was our software acting on tokens it emitted."
+ },
+ {
+  "file": "26.mp3",
+  "text": "So by the definition that the whole industry took two years to agree on, what you used yesterday was an AI agent. Goal, loop, tools. You had already used one before anybody explained what it was, which is the right order to learn it in."
+ },
+ {
+  "file": "27.mp3",
+  "text": "One honest caveat before we finish, because it will save you an argument. This definition will move again. It has moved three times in three years and there is no reason to think it has stopped."
+ },
+ {
+  "file": "28.mp3",
+  "text": "So hold the definition loosely and the mechanism tightly. Tools and a loop are not going to stop being what is happening under there, whatever the word ends up meaning. Tomorrow we open the thing that steers all of it \u2014 context, and a file called agents dot md."
+ }
+]

@@ -1,0 +1,30 @@
+[
+ {
+  "file": "H1.mp3",
+  "text": "Before the verdict, the part these comparisons normally leave out. Here is what this build did not show you, and it matters more than anything it did show you."
+ },
+ {
+  "file": "H2.mp3",
+  "text": "It did not show you a second opinion. Everything on that board is one tool's reading of one brief, on one afternoon. Run it again tomorrow and you will get a different app that also passes all five checks, because there was never one right answer to a brief this loose."
+ },
+ {
+  "file": "H3.mp3",
+  "text": "It did not show you what happens when the requirements fight each other. Ours do not. Every line in that brief agrees with every other line, which is not what a real request from a real person looks like. Real ones contain two things that cannot both be true, and nobody notices until something is built."
+ },
+ {
+  "file": "H4.mp3",
+  "text": "It did not show you a second day. Nothing here is saved. Close the tab and the board resets, because the brief said no persistence, and the moment you say yes to persistence you have signed up for a database, and accounts, and what happens when two people edit the same card. That is not a bigger version of today. It is a different job."
+ },
+ {
+  "file": "H5.mp3",
+  "text": "And it did not show you the thing that actually breaks these projects, which is not code at all. It is a person changing their mind after the thing is built, and nobody having written down what was agreed."
+ },
+ {
+  "file": "H6.mp3",
+  "text": "Which, if you have been paying attention, is exactly what the file we spent two lectures on is for. It is not a prompt. It is the written down version of what was agreed, and it is the only artefact from today that would still be useful a month from now."
+ },
+ {
+  "file": "H7.mp3",
+  "text": "One practical note on the free allowance, since some of you will hit it. When it runs out, the panel keeps working but the good model stops answering, and you will notice the quality drop before you notice the message explaining it. If a tool suddenly gets worse for no reason, check your usage before you blame the tool."
+ }
+]

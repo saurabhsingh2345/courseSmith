@@ -1,0 +1,62 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Yesterday we broke every rule we had just finished writing, and got away with it. Today we follow them, and we build something that is meant to last longer than an afternoon."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "A quick word on cost before anything else, because it is the one thing that can quietly stop you halfway through a project. The tool we are using has a free tier with a monthly allowance, and a paid tier with a much bigger one."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "Wherever you are, find the usage page for your account and look at it now, before you start. Not because you will run out today. Because the moment you do run out, the tool gets quietly worse rather than stopping, and you will spend an hour blaming the model."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "That page also has a budget control on it. If you are on a paid plan, set a limit you are comfortable with. It is the difference between a tool and a subscription you forgot about."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "Now, the project. And the first thing to explain is why we are not starting from nothing."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "Every build this week began with an empty folder, and that is the situation these agents are best at. No existing decisions, no existing style, nothing to be careful around. They scaffold beautifully."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "Real work almost never looks like that. There is nearly always something already there. Somebody else's code, a half-finished thing from last year, a system nobody has touched since the person who wrote it left."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "And that is harder. Not impossible, but genuinely harder, because now the agent has to understand something before it can add to it. So this project deliberately mixes the two. We inherit a piece of working code, and we build a real application around it."
+ },
+ {
+  "file": "A9.mp3",
+  "text": "Here is what we inherit. It is one of the four Kanban boards we built on day three — the one from the Claude Code build. And from this moment on I want you to pretend you did not write it."
+ },
+ {
+  "file": "A9b.mp3",
+  "text": "And before anyone asks why that one: not because it won. We said at the end of day three that none of them won, and I meant it. Any of the four would have done this job. I picked the one whose layout I find easiest to read on camera, which is the sort of reason real decisions actually get made for."
+ },
+ {
+  "file": "A10.mp3",
+  "text": "Pretend another team built this a year ago, shipped it, and moved on. You have been handed it. You did not choose the framework, you did not choose the layout, and you do not get to start again. That is the normal condition of working on software."
+ },
+ {
+  "file": "A11.mp3",
+  "text": "And what it is, honestly, is a demo. It looks like an application, but it forgets everything the moment you reload the page. There is no back end, no database, and nothing is saved anywhere. It is a very convincing front end and nothing else."
+ },
+ {
+  "file": "A12.mp3",
+  "text": "So the mission. Turn that demo into something real. A proper front end and back end. A database, so it remembers. An API between them. A sign-in, so it belongs to somebody."
+ },
+ {
+  "file": "A13.mp3",
+  "text": "And one more thing, because everything has one of these now, and for once it is actually the right feature for the job. An AI assistant in the sidebar that can answer questions about your board, and change it. Move that card. Add three cards for the launch. That thing."
+ },
+ {
+  "file": "A14.mp3",
+  "text": "That is a real product. Small, but real. And we are going to build it in ten steps, in order, testing after each one, which is precisely what we did not do yesterday."
+ }
+]

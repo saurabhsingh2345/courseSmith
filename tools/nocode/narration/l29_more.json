@@ -1,0 +1,34 @@
+[
+ {
+  "file": "D1.mp3",
+  "text": "Start with the very first thing we built, on day one. A game you played in the browser, running entirely on your own machine. No server, no account, nothing saved. That is all front end, and it is why nothing you did in it was ever remembered."
+ },
+ {
+  "file": "D2.mp3",
+  "text": "Which is not a criticism of it. An enormous amount of genuinely useful software is front end only. A calculator, a drawing tool, a game. If nothing needs to be remembered between visits and nothing needs to be kept secret, you do not need the other half at all."
+ },
+ {
+  "file": "D3.mp3",
+  "text": "The moment you need either of those things, you need a back end. Remembering, and keeping secrets. That is the line, and it is worth carrying around with you, because it tells you how big a job is before you start it."
+ },
+ {
+  "file": "D4.mp3",
+  "text": "One more thing about that round trip, because it explains something you have felt without naming. Every API call is a journey to another machine and back."
+ },
+ {
+  "file": "D5.mp3",
+  "text": "Usually that takes a few hundredths of a second and you never notice. But it is why a page can hesitate, why a spinner exists at all, and why a well built app tells you it is thinking rather than freezing. The two halves are genuinely apart, and the distance is real."
+ },
+ {
+  "file": "D6.mp3",
+  "text": "And it is why the back end can be slow without the front end locking up. The button can respond instantly, say saving, and let the journey happen behind it. That is a design decision somebody makes, and if nobody makes it, you get an app that feels broken while it works perfectly."
+ },
+ {
+  "file": "D7.mp3",
+  "text": "Two thirds of you know all of this already, which is why I said put me on double speed. For everyone else, that is genuinely the vocabulary. Front end, back end, API, and a sealed box to run it in."
+ },
+ {
+  "file": "D8.mp3",
+  "text": "None of it is difficult. It is just that nobody says it out loud, because the people who know it forgot they ever had to learn it."
+ }
+]

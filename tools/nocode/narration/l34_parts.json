@@ -1,0 +1,74 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Last three parts. And the reason they are three rather than one is the same reason everything today has been in pieces."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "Part eight does nothing you can see. It proves we can reach the AI at all. One call out to a model, one answer back, printed where I can read it."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "That is the whole part. No interface, no cleverness, no board involved."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "And it is the most valuable of the three, because it separates two questions that people spend hours confusing."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "Can we talk to the model at all \u2014 is the key right, is the name right, is the account funded, does the network allow it. And separately, is our feature any good."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "If you build the feature and the chat panel and the whole thing at once and it does not work, you are now debugging both questions simultaneously, and they look identical from the outside."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "Part eight answers the first one on its own, in two minutes, and then it is never in question again."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "Which is a habit worth stealing well beyond AI. Whenever something new and external is involved, prove you can reach it before you build anything on top of it."
+ },
+ {
+  "file": "B1.mp3",
+  "text": "Part nine gives the assistant the board."
+ },
+ {
+  "file": "B2.mp3",
+  "text": "Because a model on its own knows nothing about you. It has never seen your cards. If you ask it what is in progress, it will produce something plausible and completely invented, and it will sound confident."
+ },
+ {
+  "file": "B3.mp3",
+  "text": "So before every question we send it, we attach the current state of the board. Here are the columns. Here are the cards. Now, the user asks this."
+ },
+ {
+  "file": "B4.mp3",
+  "text": "And that is the entire trick behind every AI feature you have ever used that seemed to know things. Something assembled the relevant facts and put them in front of the model at the moment of asking."
+ },
+ {
+  "file": "B5.mp3",
+  "text": "There is no memory. There is no learning. There is a very good writer being handed a briefing note a fraction of a second before it answers."
+ },
+ {
+  "file": "B6.mp3",
+  "text": "Once you see it that way, a lot of AI products stop being mysterious, and a lot of AI failures start being predictable. It did not know because nobody told it."
+ },
+ {
+  "file": "C1.mp3",
+  "text": "And part ten is the one that turns talking into doing."
+ },
+ {
+  "file": "C2.mp3",
+  "text": "Up to part nine it can describe your board. After part ten it can change it."
+ },
+ {
+  "file": "C3.mp3",
+  "text": "Which is a genuinely different thing, and it is worth being slightly careful about, because this is the first moment today where something that makes things up gets to touch the data."
+ },
+ {
+  "file": "C4.mp3",
+  "text": "This is exactly the case I flagged when we talked about reading diffs. Accept the ordinary work in bulk, and slow down when it touches something you would not want wrong. This is that."
+ }
+]

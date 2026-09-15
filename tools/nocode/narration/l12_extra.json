@@ -1,0 +1,30 @@
+[
+ {
+  "file": "X1.mp3",
+  "text": "Before we leave the file, three things nobody tells you, and the first one solves a problem you are definitely going to have."
+ },
+ {
+  "file": "X2.mp3",
+  "text": "How do you know it actually read it? You ask. Start a fresh session and say, summarise the instructions you are working under, in your own words. It will tell you. And what comes back is frequently not what you thought you wrote."
+ },
+ {
+  "file": "X3.mp3",
+  "text": "Do that once after you write the file and once a month afterwards. It takes twenty seconds, and it catches the two failure modes at the same time. The file being ignored, and the file being read but understood differently to how you meant it."
+ },
+ {
+  "file": "X4.mp3",
+  "text": "Second. What to keep out. No secrets, ever. No API keys, no connection strings, no internal URLs. This file goes into a context window and it goes into your repository, and both of those are places secrets escape from."
+ },
+ {
+  "file": "X5.mp3",
+  "text": "Also keep out anything that changes daily. Current sprint, who is working on what, the bug you are fixing this afternoon. Those go in the conversation, not the file. A file that goes stale gets ignored by you, and obeyed by the agent, which is the worst of both."
+ },
+ {
+  "file": "X6.mp3",
+  "text": "Third, and this is the one that separates a file that helps from a file that hurts. Prune it. A stale line is worse than a missing one, because a missing line makes the agent guess, and a stale line makes it confidently do the wrong thing."
+ },
+ {
+  "file": "X7.mp3",
+  "text": "So when a rule stops being true, delete it that day. When you solve a problem properly in the code, delete the line that was working around it. The file should get shorter about as often as it gets longer, and if yours only ever grows, it is drifting."
+ }
+]

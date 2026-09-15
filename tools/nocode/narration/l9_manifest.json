@@ -1,0 +1,158 @@
+[
+ {
+  "file": "01.mp3",
+  "text": "Day two. You survived day one, and you finished it with a working three dimensional game that you did not write a line of. Today is different, and I am going to be straight with you about how before we start."
+ },
+ {
+  "file": "02.mp3",
+  "text": "Two warnings. The first is that today is mostly talking. There is very little to install and almost nothing to click. The second is that it is foundational, which is a word people use to mean boring, and sometimes they are right."
+ },
+ {
+  "file": "03.mp3",
+  "text": "So here is the deal. If you already know how a language model works, put this on double speed and skim it. Nothing here will be tested. But if you skip it entirely, then every single thing in weeks two and three is going to feel like magic that sometimes fails for no reason, and you will have no way to reason about why."
+ },
+ {
+  "file": "04.mp3",
+  "text": "Because that is the actual promise of today. By the end of it you will be able to look at a coding agent doing something strange and say, ah, that is because of how the context works. Rather than shrugging and trying again."
+ },
+ {
+  "file": "05.mp3",
+  "text": "Right. What is a large language model, actually? One sentence. It takes some text, and it predicts what text comes next."
+ },
+ {
+  "file": "06.mp3",
+  "text": "That is genuinely it. Autocomplete on steroids. An enormous statistical pattern matcher, trained on an amount of text that is difficult to hold in your head, doing one job \u2014 given this, what usually follows?"
+ },
+ {
+  "file": "07.mp3",
+  "text": "Now the first correction, and it matters more than it sounds. It does not work in words. It works in tokens."
+ },
+ {
+  "file": "08.mp3",
+  "text": "A token is a chunk of characters. Often a whole word. Often part of one. Sometimes just a space and a letter. The model has a fixed vocabulary of these chunks, and everything you type gets chopped into them before it sees any of it."
+ },
+ {
+  "file": "09.mp3",
+  "text": "And here is why that is worth thirty seconds of your life. The chunks do not respect words. A long or unusual word gets split into pieces that mean nothing on their own. So when a model miscounts the letters in a word, that is not stupidity. It genuinely never saw the letters."
+ },
+ {
+  "file": "10.mp3",
+  "text": "Second correction, and this is the one that changes how you think about all of it. The model does not output the next token. It outputs a probability for every single token it knows."
+ },
+ {
+  "file": "11.mp3",
+  "text": "Take a trivial example. Two plus two is. The model runs, and out comes a number for every possible next chunk. Four scores enormously high. Lots scores a little. The digit four scores a little. Bananas scores approximately nothing, but it is not zero, and that detail will matter later."
+ },
+ {
+  "file": "12.mp3",
+  "text": "Then something picks one. Usually the top one, sometimes a little randomly on purpose, which is why the same question can give you two different answers. That is not the model being unreliable. That is a dial, and somebody chose its setting."
+ },
+ {
+  "file": "13.mp3",
+  "text": "So now put those two facts together and you get the whole mechanism. One token at a time, and the entire input re-read on every single step."
+ },
+ {
+  "file": "14.mp3",
+  "text": "Watch it happen. You ask, what is the capital of France? The model reads all of it and produces one token \u2014 the. Now it reads your question plus the word the, and produces capital. Then all of that again, and produces of. Then France. Then is. Then Paris."
+ },
+ {
+  "file": "15.mp3",
+  "text": "Every one of those steps re-read everything before it. The question, and every token it has already written. Nothing was remembered between steps, because there was nothing to remember with. It just got handed the whole thing again."
+ },
+ {
+  "file": "16.mp3",
+  "text": "That process, the one you just watched, has a name. Inference. When somebody talks about inference cost or inference speed, this loop is what they are charging you for."
+ },
+ {
+  "file": "17.mp3",
+  "text": "Now a distinction that people get wrong constantly, and it will save you confusion for the rest of this program."
+ },
+ {
+  "file": "18.mp3",
+  "text": "GPT is a model. ChatGPT is an application that has a model inside it. They are not the same thing, and almost every argument online about what AI can or cannot do is really an argument about which of those two somebody means."
+ },
+ {
+  "file": "19.mp3",
+  "text": "The model does the one job we just described. Everything else \u2014 remembering your chat, searching the web, running code, showing you a nice interface, storing your files \u2014 is ordinary software wrapped around it. Written by engineers. Not magic."
+ },
+ {
+  "file": "20.mp3",
+  "text": "And that pattern is everywhere once you see it. The agent inside the editor you used yesterday is an application with a model in it. So is the chat-to-learn feature in a language app. So are the assistants appearing inside company software this year. Same engine, different chassis, which is a phrase you have heard from me before."
+ },
+ {
+  "file": "21.mp3",
+  "text": "So. Since the end of 2022 the whole world has been surprised that predictive text on steroids can look this much like thinking. And the surprise is fair, because on paper it should not work this well."
+ },
+ {
+  "file": "22.mp3",
+  "text": "There are four tricks that get you from what I just described to an agent that builds you a game while you make coffee. Four. That is the whole list. We do two of them now and two at the start of the next lecture."
+ },
+ {
+  "file": "23.mp3",
+  "text": "Trick one. The illusion of memory. And I want to be careful with the word illusion here, because it is precise, not cynical."
+ },
+ {
+  "file": "24.mp3",
+  "text": "A language model is completely stateless. It remembers nothing. Not your name, not what you asked a minute ago, not that you already told it you are using Python. Every call is the first call it has ever had."
+ },
+ {
+  "file": "25.mp3",
+  "text": "Prove it to yourself. Tell it your name in one call. Then, in a genuinely fresh call, ask it who you are. It has no idea. Not because it forgot \u2014 because there was never anything there to forget."
+ },
+ {
+  "file": "26.mp3",
+  "text": "So why does the chat window clearly remember? Because the application does the remembering. On every single turn, it quietly sends the entire conversation so far, and then your new message on the end."
+ },
+ {
+  "file": "27.mp3",
+  "text": "That is the whole trick. There is no memory. There is just re-sending. The model reads a transcript that gets longer every time you speak, and behaves as though it recalls a conversation it is actually reading fresh, every turn."
+ },
+ {
+  "file": "28.mp3",
+  "text": "And this is the single most useful thing in today's lecture, so let me tell you what it buys you. It explains why a long conversation gets slower and more expensive as it goes. It explains why an agent forgets an instruction from an hour ago. And it explains why starting a fresh chat sometimes fixes a problem that nothing else would."
+ },
+ {
+  "file": "29.mp3",
+  "text": "It also explains the limit. That transcript cannot be infinite. There is a maximum amount the model can be handed at once, and it has a name \u2014 the context window."
+ },
+ {
+  "file": "30.mp3",
+  "text": "Picture the window as a fixed set of places, all of it visible at once. Your instructions take some. Your files take some. Every turn of conversation takes a little more. And it only ever fills up as you talk."
+ },
+ {
+  "file": "31.mp3",
+  "text": "When it will not fit, something has to go. Older turns get dropped, or summarised, or the tool simply refuses. Every strange thing you will ever see an agent do near the end of a long session traces back to this picture. We spend most of tomorrow on it."
+ },
+ {
+  "file": "32.mp3",
+  "text": "Trick two. Reasoning. Or thinking, which is what the buttons usually say."
+ },
+ {
+  "file": "33.mp3",
+  "text": "It started as a trick people found by accident. Ask a model a hard question and it answers immediately, and badly. Add four words to the end \u2014 think step by step \u2014 and the answer gets better. Same model, same question, just told to work before answering."
+ },
+ {
+  "file": "34.mp3",
+  "text": "Which makes sense the moment you remember how this works. Every token it writes goes back into its own input. So if it writes out some working first, it is literally reading its own reasoning when it produces the answer. It gave itself better input."
+ },
+ {
+  "file": "35.mp3",
+  "text": "That worked well enough that models were then trained to do it without being asked. That is what a reasoning model is. It produces its working first, then the answer, and often the interface hides the working behind a little arrow."
+ },
+ {
+  "file": "36.mp3",
+  "text": "Here is the demonstration that convinced me. Toss two coins. You are told at least one of them came up heads. What is the chance the other one is tails?"
+ },
+ {
+  "file": "37.mp3",
+  "text": "The fast answer is a half, and it is wrong. There were four equally likely outcomes. Being told one is heads only removes tails-tails. Three remain, and in two of those three the other coin is tails. So the answer is two thirds."
+ },
+ {
+  "file": "38.mp3",
+  "text": "A model answering immediately says a half, confidently. A reasoning model writes out the four outcomes, crosses one off, counts, and gets two thirds \u2014 and it will often say something like, this is probably a trick question, before it starts. Same underlying engine. It just gave itself room to work."
+ },
+ {
+  "file": "39.mp3",
+  "text": "So that is two of the four. It remembers nothing and is handed everything. And it does better when it writes before it answers. Next lecture, the two tricks that turn all of this into an agent \u2014 tools, and the loop."
+ }
+]

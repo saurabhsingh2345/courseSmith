@@ -1,0 +1,206 @@
+[
+ {
+  "file": "01.mp3",
+  "text": "Yesterday we spent a lecture on one file. Today we go up a level, and look at the shape of your whole working day around these things. The word for that is workflow, and I know how soft that sounds."
+ },
+ {
+  "file": "02.mp3",
+  "text": "It is not soft. It is the single biggest lever you have. Two people, same tools, same model, the same agents file sitting in the same repository, and one of them gets roughly twice as much done. The difference is almost never the tooling. It is this."
+ },
+ {
+  "file": "03.mp3",
+  "text": "And it is what that Karpathy line was really about, when you read it properly. Not the model. Not the tool. The way a person chooses to work alongside the thing."
+ },
+ {
+  "file": "04.mp3",
+  "text": "There are six of them, and I want to give you all six by name, because once you can name them you start noticing which one you are in. Three came out of twenty twenty five, and three belong to twenty twenty six."
+ },
+ {
+  "file": "05.mp3",
+  "text": "And they are not six unrelated ideas. They are a ladder, and the thing that increases as you climb it is trust. How much you are willing to let it do before you look."
+ },
+ {
+  "file": "06.mp3",
+  "text": "So. The twenty twenty five mindset, which is three rungs of increasing trust, and I would guess most of you are standing on the first one."
+ },
+ {
+  "file": "07.mp3",
+  "text": "Rung one. Micromanagement. A very specific agents file. You approve every single change it proposes. You stop it frequently. You rewrite what it did, and you restart it with a clean context whenever it drifts."
+ },
+ {
+  "file": "08.mp3",
+  "text": "And I want to be careful not to say that sarcastically, because this was my own mode for most of last year, and it was the correct mode. It is slow, it is hands on, and through most of twenty twenty five it produced better code than trusting it did."
+ },
+ {
+  "file": "09.mp3",
+  "text": "Rung two. Plan, execute, review, test. And the important word there is the first one, because the plan is a separate step that happens before any code exists."
+ },
+ {
+  "file": "10.mp3",
+  "text": "Most agents now have a plan mode. You describe the goal, and instead of writing code it writes you the plan. A to-do document. The files it intends to touch, the order it intends to work in, what it will do in each step."
+ },
+ {
+  "file": "11.mp3",
+  "text": "And then you read it. And you argue with it, and you change it, and only when you actually agree with the plan do you switch it into execution. That is the whole trick, and it is worth more than any prompt you will ever write."
+ },
+ {
+  "file": "12.mp3",
+  "text": "Then you execute in phases rather than in one run. Build the phase. Code review it. Test it. Look at the results. Mark it complete. Move to the next phase. Six small gates instead of one big leap."
+ },
+ {
+  "file": "13.mp3",
+  "text": "And do not skip the code review gate, because that is where you catch it making a mountain out of a molehill. Which it will. Left unreviewed for four phases, a small feature becomes an architecture."
+ },
+ {
+  "file": "14.mp3",
+  "text": "Rung three. Spec-driven development, which people shorten to S D D. You specify precisely what you want, in detail, up front. And then you let it go and you do not interrupt."
+ },
+ {
+  "file": "15.mp3",
+  "text": "There are even languages for writing those specifications now, which tells you how seriously people are taking it. But the older name for this idea is the better one. Trust but verify."
+ },
+ {
+  "file": "16.mp3",
+  "text": "And the difference between this rung and the one below it is exactly where the verifying happens. On rung two you verify at every phase. On rung three you verify at the end. That is it. That is the entire step up in trust."
+ },
+ {
+  "file": "17.mp3",
+  "text": "Right. The twenty twenty six mindset. Three more rungs, and this is where it stops feeling like project management and starts feeling like something else."
+ },
+ {
+  "file": "18.mp3",
+  "text": "Rung four. YOLO. No permissions, no approvals, no confirmation dialogs. It reads what it wants, writes what it wants, runs commands, installs packages, all without stopping to ask you."
+ },
+ {
+  "file": "19.mp3",
+  "text": "And YOLO mode has existed since twenty twenty five, so why do I file it under this year? Because what changed is not the feature. What changed is that people started using it for work that matters, rather than for weekend projects."
+ },
+ {
+  "file": "20.mp3",
+  "text": "The shape of it is genuinely different from everything below. You set it going. You go and have dinner. You come back and see what happened. There is no supervising, because supervising is the thing you gave up."
+ },
+ {
+  "file": "21.mp3",
+  "text": "Rung five. And this one has the best name in the field. Ralph Loops. Invented by an Australian developer called Geoffrey Huntley, and named after Ralph Wiggum."
+ },
+ {
+  "file": "22.mp3",
+  "text": "Which is a better joke than it first appears, because the pattern really is naive and relentlessly optimistic. It does not get discouraged. It just goes round again."
+ },
+ {
+  "file": "23.mp3",
+  "text": "To understand it, hold on to something we established already. An agent is not one clever answer. An agent is a model, going round in a loop, with tools. Think, call a tool, read the result, think again."
+ },
+ {
+  "file": "24.mp3",
+  "text": "So that is the loop you already have. Now here is the idea. A Ralph Loop takes that entire loop, the whole agent, and wraps it inside a second, bigger loop."
+ },
+ {
+  "file": "25.mp3",
+  "text": "And the outer loop does four things. It runs the agent. It tests whether the agent has gone as far as it can. It generates feedback describing the gaps between where it got to and what you asked for. And it folds that feedback into the objectives for the next run."
+ },
+ {
+  "file": "26.mp3",
+  "text": "Then it does the whole thing again. And again. Perhaps ten times. Each outer pass starts fresh, but knowing more than the last one did, because the last one wrote down what it could not finish."
+ },
+ {
+  "file": "27.mp3",
+  "text": "And the difference in scale is the part to hold on to. A YOLO run goes for an hour while you have dinner. A Ralph Loop runs overnight."
+ },
+ {
+  "file": "28.mp3",
+  "text": "Rung six, the top of the ladder. Multi-agents. Instead of one agent going round, you run many, and you give them roles."
+ },
+ {
+  "file": "29.mp3",
+  "text": "A testing agent whose only job is to try and break what the others built. A feedback agent that reviews. A manager agent above them deciding what happens next, in an actual hierarchy."
+ },
+ {
+  "file": "30.mp3",
+  "text": "The words you will hear for this are swarms, and orchestration. And I will be honest that this is the rung where I am learning alongside you. It is what the people right at the front of the field are doing in twenty twenty six."
+ },
+ {
+  "file": "31.mp3",
+  "text": "Now let me connect this to something you have already seen, because I think it makes both of them land better."
+ },
+ {
+  "file": "32.mp3",
+  "text": "On day one we built a ladder of eight stages, from pasting code into a chat window all the way up to orchestrating agents. This is the same ladder, from the other side of the desk."
+ },
+ {
+  "file": "33.mp3",
+  "text": "The eight stages measure how much of the work the machine is doing. The six workflows measure how much you are willing to let it do before you look. Same axis. Two different labels on it."
+ },
+ {
+  "file": "34.mp3",
+  "text": "So this is not a second thing to memorise. If you know roughly where you sit on one of them, you already know where you sit on the other."
+ },
+ {
+  "file": "35.mp3",
+  "text": "Which brings me to the payoff, and to that game from day one. The polished version. The one with the bot that takes cover, the minimap, the heads up display, the sound."
+ },
+ {
+  "file": "36.mp3",
+  "text": "One agent produced that, going round its own loop, dozens of times, from a single ordinary sentence. No outer loop at all. That is rung four, and rung four alone."
+ },
+ {
+  "file": "37.mp3",
+  "text": "So take a second and imagine that entire thing, the whole run you watched, as one single pass of an outer loop. Then imagine nine more of them while you are asleep, each one starting from a written list of what the last one could not finish."
+ },
+ {
+  "file": "38.mp3",
+  "text": "That is not a thought experiment. That is Tuesday for a lot of people now. And the feedback that drives it is not written by a human being. The machine writes its own."
+ },
+ {
+  "file": "39.mp3",
+  "text": "So. Which of the six should you actually use? And I want to be careful here, because there is no single answer, and anybody who gives you one is selling you something."
+ },
+ {
+  "file": "40.mp3",
+  "text": "It depends on the work. Specifically, it depends on how expensive it would be for this thing to be quietly wrong, and how much of what you are building has been built ten thousand times before."
+ },
+ {
+  "file": "41.mp3",
+  "text": "Group one. Mission critical. Enterprise software. Commercial products people pay for. Large existing codebases where a change in one place breaks something in another. For all of that, stay on rungs one to three."
+ },
+ {
+  "file": "42.mp3",
+  "text": "And there is a second kind of work that belongs in that group, which people miss. Highly innovative code. Anything where the training data is thin, because the thing you are working with is too new."
+ },
+ {
+  "file": "43.mp3",
+  "text": "The example I would give you today is M C P servers. Current models handle them badly. Not because they are hard, but because there was not much of it around when the models were trained, so what comes out is not idiomatic. You will be reviewing every line."
+ },
+ {
+  "file": "44.mp3",
+  "text": "Group two. The other end. An M V P. A prototype. A pilot. Anything greenfield, starting from an empty directory, where nothing exists yet to break."
+ },
+ {
+  "file": "45.mp3",
+  "text": "Where you have some genuine appetite for risk, and where most of what you need is boilerplate that has been written a million times. React front ends. Plain H T M L. A CRUD back end. For that work, go straight to rungs four to six and enjoy yourself."
+ },
+ {
+  "file": "46.mp3",
+  "text": "Most of my own serious work sits in the first group. Day one's game sits squarely in the second, which is exactly why we started there."
+ },
+ {
+  "file": "47.mp3",
+  "text": "One last thing, and it matters more than anything else in this lecture. It is aimed particularly at anybody early in their career."
+ },
+ {
+  "file": "48.mp3",
+  "text": "Your job is to deliver code that is proven to work. That is the job. It was the job before any of this existed and it is still the job now."
+ },
+ {
+  "file": "49.mp3",
+  "text": "And the LLM wrote it is not an excuse. It has never been an excuse, it is not becoming one, and the day you use it as one in a serious room is a day you will remember."
+ },
+ {
+  "file": "50.mp3",
+  "text": "So use all six of these, as hard as you like, as fast as you like. Checking, validating, and choosing the right approach for the task in front of you is yours. That does not get delegated to anything."
+ },
+ {
+  "file": "51.mp3",
+  "text": "Next time, we stop talking. Four tools, one job, built four times over, and a straight answer at the end about which of them I would actually reach for."
+ }
+]

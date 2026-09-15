@@ -1,0 +1,34 @@
+[
+ {
+  "file": "T1.mp3",
+  "text": "Before we look at what came back, I want to name the model, because a comparison that hides it is not a comparison. Cursor ran this brief on its own frontier tier. Copilot, on the free plan, gives you one choice, and that choice is called Auto, which means the tool decides for you. Today, for this build, Auto picked GPT five point six Luna, and it told me so in small grey text under its own answer, along with what it charged me for it. Check that line yourself rather than trusting mine, because it will have moved by the time you watch this."
+ },
+ {
+  "file": "T2.mp3",
+  "text": "Which brings us to the thing this lecture is actually about. Not Copilot. Debugging."
+ },
+ {
+  "file": "T3.mp3",
+  "text": "Because when something is broken and you tell an agent it is broken, there is a move it makes almost every single time, and once you have seen it you will never unsee it. It guesses what the problem probably is. It writes a fix for the thing it guessed. And then it tells you the problem is solved."
+ },
+ {
+  "file": "T4.mp3",
+  "text": "Two separate things are wrong with that. It should not be guessing, it should be proving. And it should not be claiming a fix it has never once run."
+ },
+ {
+  "file": "T5.mp3",
+  "text": "So here is the instruction to give instead, and I would write this one down, because you will use it every week for the rest of your life with these tools. Reproduce the problem. Prove you have reproduced it. Find the root cause. Fix it. Then demonstrate that the fix works."
+ },
+ {
+  "file": "T6.mp3",
+  "text": "Four steps, and the order is the whole point. Notice that three of the four are about evidence and only one is about writing code."
+ },
+ {
+  "file": "T7.mp3",
+  "text": "And here is the part that matters if you do not write code yourself. You might think that not being a developer means you cannot run that process. It is the opposite. You do not need to read the fix to ask whether it was demonstrated. You are the one who decides that a claim without a demonstration is not finished, and you are allowed to push back even when the answer looks confident and detailed and completely reasonable."
+ },
+ {
+  "file": "T8.mp3",
+  "text": "Confident and detailed is what it always looks like. That is not evidence of anything."
+ }
+]

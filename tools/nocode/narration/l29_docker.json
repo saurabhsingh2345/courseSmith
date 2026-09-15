@@ -1,0 +1,62 @@
+[
+ {
+  "file": "C1.mp3",
+  "text": "One more word before we build, and it is the one that frightens people off. Docker. If you already know it, this is where you skip ahead. If you do not, it is much simpler than its reputation."
+ },
+ {
+  "file": "C2.mp3",
+  "text": "Docker gives you a computer inside your computer. A small, sealed one, with its own copy of everything the application needs, that cannot see or touch the rest of your machine."
+ },
+ {
+  "file": "C3.mp3",
+  "text": "There are two reasons people use it, and both of them matter to you specifically."
+ },
+ {
+  "file": "C4.mp3",
+  "text": "The first is isolation. Whatever happens in that box stays in that box. It cannot install something odd on your laptop, it cannot overwrite your files, and it cannot fight with a different version of Python you installed two years ago and forgot about."
+ },
+ {
+  "file": "C5.mp3",
+  "text": "And I want you to notice how directly that speaks to what we have been doing all week. We have been handing agents permission to run commands on a real machine. A sealed box is the honest answer to the nervousness you should be feeling about that."
+ },
+ {
+  "file": "C6.mp3",
+  "text": "The second reason is portability. The box is described by a file, so the box can be rebuilt anywhere. On your machine, on a colleague's, on a server you rent for four pounds a month. Build it once and it usually just works, which is a sentence you rarely get to say about software."
+ },
+ {
+  "file": "C7.mp3",
+  "text": "Three words and then we are done. Dockerfile, image, container. They are three stages of the same thing and people muddle them constantly, so here they are in order."
+ },
+ {
+  "file": "C8.mp3",
+  "text": "A Dockerfile is a recipe. A plain text file that says start from Python, copy these files in, install these things, and run this command. You can read one without knowing anything. It is a list of instructions."
+ },
+ {
+  "file": "C9.mp3",
+  "text": "An image is what you get when you follow the recipe. The cake, baked, and now frozen. It is a finished snapshot, and it does not do anything on its own. It just sits there ready."
+ },
+ {
+  "file": "C10.mp3",
+  "text": "A container is the image actually running. And here is the bit worth holding on to. One image can start as many containers as you like, and they do not know about each other."
+ },
+ {
+  "file": "C11.mp3",
+  "text": "Which is how the same application runs on your laptop and on a server and in a test, identically, from one recipe. Recipe, cake, cake being eaten. That is Docker."
+ },
+ {
+  "file": "C12.mp3",
+  "text": "Installing it is the least interesting part of this lecture. Go to docker dot com, download Docker Desktop for your machine, and take every default it offers you. On Windows it will ask about something called WSL, and the answer is yes. It may want a restart. Give it one."
+ },
+ {
+  "file": "C13.mp3",
+  "text": "Once it is running, three things in the left rail are the whole tour. Containers, which is what is alive right now. Images, which is what is built and ready to start. And volumes, which are sealed pieces of storage that survive when a container is thrown away — because a container that is thrown away forgets everything inside it."
+ },
+ {
+  "file": "C14.mp3",
+  "text": "On a fresh install all three of those lists are empty, and that is correct. They will not stay empty. From the next lecture on, everything we build lives in there."
+ },
+ {
+  "file": "C15.mp3",
+  "text": "So. Front end in the browser, back end on a server, an API between them, secrets on the back end only, and the whole back end sealed inside a box described by a recipe. That is the vocabulary. Next we start building, and by the rules this time."
+ }
+]

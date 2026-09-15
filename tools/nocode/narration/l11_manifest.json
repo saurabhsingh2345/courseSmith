@@ -1,0 +1,190 @@
+[
+ {
+  "file": "01.mp3",
+  "text": "Here is something that is going to happen to you, probably this week. You will be working with an agent and it will be sharp. It understands what you meant rather than what you typed. It makes good calls. It fixes things you did not even ask it to fix."
+ },
+ {
+  "file": "02.mp3",
+  "text": "Two hours later, the same agent, on the same project, with the same model, has gone stupid. It contradicts itself. It reintroduces a bug you watched it fix. It asks you something you answered forty minutes ago. Nothing changed about the model, and nothing changed about you."
+ },
+ {
+  "file": "03.mp3",
+  "text": "What changed is the subject of this lecture. And the word for it is context. Context engineering is probably the single most popular expression in our world over the last year. Usually when something gets that popular, the hype has run out ahead of the substance. This is one of the times where it has not."
+ },
+ {
+  "file": "04.mp3",
+  "text": "Start from where we finished last time. The model is stateless. It has no memory of you. No record of yesterday. Nothing at all carried over from the last thing it did. Every single call starts from nothing. That is not a limitation somebody forgot to fix. That is what the thing is."
+ },
+ {
+  "file": "05.mp3",
+  "text": "Which leads somewhere quite strict. The output is based entirely on the input. Not mostly. Entirely. There is no hidden state, no side channel, nothing it knows that is not written down in front of it at the moment you press enter."
+ },
+ {
+  "file": "06.mp3",
+  "text": "That input has a name, and the name is the context. And because it is all there is, getting it right is not one skill among several. It is the job. Almost everything else in this program is a technique for putting the right things in there."
+ },
+ {
+  "file": "07.mp3",
+  "text": "A couple of years ago we called this prompt engineering, and people wrote long articles about magic phrases. The name changed for a good reason. Your prompt turns out to be a surprisingly small part of what the model actually reads. So let me show you the rest of it."
+ },
+ {
+  "file": "08.mp3",
+  "text": "Picture the context as a stack. Everything the model sees on one call, in order, from the top down. We are going to build it a layer at a time, because almost nobody has been shown all of it."
+ },
+ {
+  "file": "09.mp3",
+  "text": "First layer, and it lands before anything you write. The system prompt. This is the most general framing there is. What role is this thing playing. What is its job. What tone should it take, what approach should it default to. In a coding agent you almost certainly did not write this. Your tool wrote it for you."
+ },
+ {
+  "file": "10.mp3",
+  "text": "Second layer. Tool descriptions. An agent can read files, run commands, search the web. It only knows those tools exist because every one of them is described to it, in words, right there in the context. Every tool you hand it costs you space before it has done anything at all."
+ },
+ {
+  "file": "11.mp3",
+  "text": "Some people count that as part of the system prompt rather than a layer of its own. It is a definitional thing and it does not matter. What matters is that it is there, it is made of words, and it is not free."
+ },
+ {
+  "file": "12.mp3",
+  "text": "Third layer. Memory. Information that persists across conversations instead of dying when you close the window. Long term or medium term, depending on the tool. This is the layer that makes the thing feel like it knows you."
+ },
+ {
+  "file": "13.mp3",
+  "text": "Fourth layer, and it is the big one. The conversation so far. I want to be precise about what everything means here, because that word is doing an enormous amount of work."
+ },
+ {
+  "file": "14.mp3",
+  "text": "Your first message and the reply to it. Every follow up after that, and every answer. So far so obvious. But also its reasoning tokens. The thinking it did on the way to an answer, which you may never have seen on your screen. It was generated, so it is in there."
+ },
+ {
+  "file": "15.mp3",
+  "text": "Every line of code it wrote is in there. Every tool call it made is in there. And the one that catches people out, the full output of every one of those calls. It listed a directory. It read a file. It ran your test suite and got two hundred lines of output back."
+ },
+ {
+  "file": "16.mp3",
+  "text": "All of that is now permanently part of the conversation, and all of it gets re-sent on every single turn from here on. One careless read of a large file can cost you more of your window than everything you have typed all day."
+ },
+ {
+  "file": "17.mp3",
+  "text": "So look at the finished stack. You typed perhaps forty words. The thing the model is reading might be sixty thousand tokens. Almost none of the context is yours. That is the accurate mental picture, and it is not the one most people are carrying."
+ },
+ {
+  "file": "18.mp3",
+  "text": "There is one more row to add, and it earns its own name, because it is the layer you actually control. It is called agents dot m d."
+ },
+ {
+  "file": "19.mp3",
+  "text": "It persists across conversations, so in one sense it is just memory. But it is a particular kind. It holds facts about this project. What you are building and why. Coding standards. Objectives. The things that are true on Tuesday and still true three weeks later."
+ },
+ {
+  "file": "20.mp3",
+  "text": "And it is not a feature you switch on. It is a plain text file, sitting in your repository, that you write and your team can read. You commit it like any other file. That is the entire mechanism, and that is why it is worth caring about."
+ },
+ {
+  "file": "21.mp3",
+  "text": "The filename depends on the tool. Cursor, Codex and Copilot read agents dot m d. Claude Code reads claude dot m d. Antigravity reads gemini dot m d. They are the same idea wearing different labels, and when I say an agents file from here on, I mean whichever one your tool is looking for."
+ },
+ {
+  "file": "22.mp3",
+  "text": "Now, some of you are already objecting, and you are right to. Is that file really pasted in on every single call, forever? Not exactly. It is more complicated than one tidy row on a diagram, and the honest answer takes a whole lecture. It is the next one."
+ },
+ {
+  "file": "23.mp3",
+  "text": "So the context is a stack, and the stack is a good deal bigger than most people think. Which raises the obvious question. How much of it actually fits?"
+ },
+ {
+  "file": "24.mp3",
+  "text": "There is a hard limit, and it is called the context window. It is measured in tokens, and it is a ceiling on how far back the model is able to look. Not a guideline. A number, set by the model, that you cannot go past."
+ },
+ {
+  "file": "25.mp3",
+  "text": "And when you do go past it, it does not gracefully drop the oldest bits and carry on. It fails. You get an error. The call does not go through. That is the part most people already know about, and it is by far the least interesting part."
+ },
+ {
+  "file": "26.mp3",
+  "text": "Because the limit is not really your problem. Here is the more important point, and if you take one single thing away from this lecture, please take this one."
+ },
+ {
+  "file": "27.mp3",
+  "text": "Quality starts falling long before you get anywhere near that limit. Not at ninety percent. Not up against the wall. Well before. And the thing that degrades is not the thing people assume."
+ },
+ {
+  "file": "28.mp3",
+  "text": "It is not speed. It is accuracy. As the context fills up, the model gets worse at using what is inside it. It loses the thread. It stops weighting the important parts properly."
+ },
+ {
+  "file": "29.mp3",
+  "text": "In practice that looks like this. It forgets an instruction you gave it early on. It contradicts a decision the two of you made an hour ago. It reintroduces a bug it already fixed, because the fix is buried somewhere back in a wall of text it is no longer reading carefully."
+ },
+ {
+  "file": "30.mp3",
+  "text": "Which has an uncomfortable consequence. Your best results come right at the beginning of a conversation, when the context is nearly empty. The longest, most invested, most productive feeling sessions are quite often the ones where it is performing at its worst."
+ },
+ {
+  "file": "31.mp3",
+  "text": "Less is more. Which is an annoying thing to be told when you are three hours deep and you really do not want to start again. It is also true."
+ },
+ {
+  "file": "32.mp3",
+  "text": "So what happens as you approach that ceiling? Some tools simply stop. The better ones do something rather cleverer, and it has a name. Compacting."
+ },
+ {
+  "file": "33.mp3",
+  "text": "It is built into Claude Code. As you get near the limit, it takes the history so far, summarises it, and replaces the whole lot with the summary. The detail goes. The gist stays. You get a large amount of room back and the conversation carries on."
+ },
+ {
+  "file": "34.mp3",
+  "text": "And a lot of people are frightened of it, for a reason that is easy to state. You are trusting the model to decide what mattered. Nobody stopped to ask you which parts were load bearing."
+ },
+ {
+  "file": "35.mp3",
+  "text": "So when it summarises away something you said, the effect from where you are sitting is that the agent has forgotten. Or worse, it repeats a mistake you already corrected, because your correction was in the part that got compressed."
+ },
+ {
+  "file": "36.mp3",
+  "text": "And usually you cannot tell that is what happened. There is no message telling you the thing you cared about has been dropped. The session just quietly gets worse, and you blame the model."
+ },
+ {
+  "file": "37.mp3",
+  "text": "So there is a whole school of practice built around never letting it happen at all. Watch the number. Stop the agent before it compacts. Write down by hand everything that mattered. Kill the session, start a fresh one, and paste your notes back in."
+ },
+ {
+  "file": "38.mp3",
+  "text": "And I am going to be honest with you about that. It is a habit from an older era, and it is close to superstition now. Compacting has got a great deal better. As of twenty twenty six there is far less reason to fear it than there used to be. Do not build your entire working day around avoiding it."
+ },
+ {
+  "file": "39.mp3",
+  "text": "Trust the compactor. Keep half an eye on it, by all means. But do not spend your afternoon defending against a problem that has largely been fixed."
+ },
+ {
+  "file": "40.mp3",
+  "text": "Last thing, and it is the numbers. I am going to put a date on them out loud, because these age faster than anything else in this program."
+ },
+ {
+  "file": "41.mp3",
+  "text": "As of August twenty twenty six. Claude Opus five gives you a million tokens. Gemini three pro, which is what Antigravity runs on, also gives you a million. And the smaller, cheaper models sit a long way below that. Claude Haiku four point five gives you two hundred thousand."
+ },
+ {
+  "file": "42.mp3",
+  "text": "Those will be wrong soon and that is completely fine. What is worth carrying is the shape rather than the digits. The frontier models have all converged on a million. The gap that matters now is not the one between vendors. It is the one between the big models and the cheap ones."
+ },
+ {
+  "file": "43.mp3",
+  "text": "But do not go shopping on that number, and this is where the last twenty minutes pays for itself. Because quality degrades with fill in all of them, a million token window does not hand you a million usable tokens. It hands you a bigger room that still gets muddy towards the back."
+ },
+ {
+  "file": "44.mp3",
+  "text": "The usable fraction is the thing that matters, and it is a broadly similar fraction everywhere. A larger window buys you more headroom before you have to start thinking about any of this. It does not buy you permission to stop thinking about it."
+ },
+ {
+  "file": "45.mp3",
+  "text": "So that is context engineering, and it is not a bag of tricks. It is one idea. The model sees exactly what is put in front of it, that thing is fuller and stranger than you imagined, and the quality of what comes out tracks the quality of what went in."
+ },
+ {
+  "file": "46.mp3",
+  "text": "Go back to that agent from the start of this lecture. Brilliant in the morning, useless by the afternoon, same model, same project, same person typing. You know exactly what happened to it now. The context filled up, and nobody told you."
+ },
+ {
+  "file": "47.mp3",
+  "text": "Next, we go and look at the one part of all this that you fully control. The agents file itself, up close. What actually belongs in a good one, what to keep out of it, and the real rule about when it gets read."
+ }
+]

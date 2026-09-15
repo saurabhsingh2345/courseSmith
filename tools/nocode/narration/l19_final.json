@@ -1,0 +1,278 @@
+[
+ {
+  "file": "C1.mp3",
+  "text": "Build three of four. Same brief, same five checks, and this time the harness is Claude Code."
+ },
+ {
+  "file": "N1.mp3",
+  "text": "Same ritual. The Copilot build gets renamed and kept, and the same repository is cloned again into an empty folder with one file in it. Third time today, and the last time I will narrate it."
+ },
+ {
+  "file": "N2.mp3",
+  "text": "And a small thing I noticed doing it. I keep coming back to the same terminal to do this, sitting in the editor I am not currently filming, because a terminal you already have open is worth more than the right terminal in the right window."
+ },
+ {
+  "file": "C2.mp3",
+  "text": "A note on why this one and not the tool the reference course reaches for here. Codex is excellent and it belongs in this comparison, and it also sits behind a paid subscription that I am not going to ask you to buy in week one. Claude Code has a free path in, more of you already have it, and it makes exactly the same point about a command line agent living inside your editor. If you do have Codex, run this same brief through it and you will recognise everything that follows."
+ },
+ {
+  "file": "N3.mp3",
+  "text": "Now, this tool is different from the two before it in a way that matters for the rest of the course, and I want to set it up properly before we touch anything."
+ },
+ {
+  "file": "N4.mp3",
+  "text": "Cursor is an editor with an agent inside it. Copilot is an extension that puts an agent inside an editor. This one is neither. It is a command line program, and what you are looking at in the editor is a window onto that program."
+ },
+ {
+  "file": "N5.mp3",
+  "text": "Which sounds like a technicality and is not. It means the thing doing the work does not need the editor at all. Same tool, same brief, same everything, running in a plain terminal with no editor open anywhere. And that is exactly where we go next week."
+ },
+ {
+  "file": "N6.mp3",
+  "text": "So think of today as meeting it in the friendly place first. You get the file tree, you get the tabs, you get to see what it changed without knowing a single command. Then next week we take the training wheels off and it turns out to be the same bicycle."
+ },
+ {
+  "file": "C3.mp3",
+  "text": "The first thing to understand is that this tool is not really an editor extension. It is a command line agent, and the panel you are looking at is a window onto it. Which means the same thing you see here runs in a terminal with no editor at all, and next week that is exactly where we take it."
+ },
+ {
+  "file": "N7.mp3",
+  "text": "Here it is, in the same panel as before, as another tab alongside the others. Which is a small honest difference from the course I built this from. There, this slot was a different tool whose sidebar opened on the opposite side, and he made a point of that. Ours does not move. It is a tab."
+ },
+ {
+  "file": "N8.mp3",
+  "text": "I would rather tell you that than pretend at a difference. Three tools in and the furniture is starting to look identical, which is itself the finding."
+ },
+ {
+  "file": "N9.mp3",
+  "text": "On accounts, briefly, because this is where the reference course tells you to skip a lecture. The tool it uses here needs a paid subscription. This one you can start with on a free plan, and if you already pay for it, you already have this."
+ },
+ {
+  "file": "N10.mp3",
+  "text": "One control here is the permission model, and by now you can predict the options, because all three tools have offered a version of the same ladder. Ask me every time. Ask me about the dangerous things. Or do not ask me at all."
+ },
+ {
+  "file": "N11.mp3",
+  "text": "I am going to turn it up, the way we did in Cursor, so you can watch a build run without me clicking. But notice that I am making that choice knowingly, on a throwaway project, in a folder with nothing in it. That is the only circumstance where it is a comfortable choice."
+ },
+ {
+  "file": "N12.mp3",
+  "text": "And the model. I am naming it, on screen, with the date, because in three months this sentence will be wrong and I would rather you catch me than trust me."
+ },
+ {
+  "file": "C4.mp3",
+  "text": "There is no plan mode button here, and there does not need to be one, because the brief already says to plan first. That is the third time today the file has done the work that a menu did somewhere else."
+ },
+ {
+  "file": "C5.mp3",
+  "text": "One control here is worth more than the rest, and it is the thinking budget. You can tell this thing to think harder. Which raises the obvious question, and the obvious answer is wrong."
+ },
+ {
+  "file": "C6.mp3",
+  "text": "More thinking is not simply better. Past a certain point a model will circle a decision it should have simply made, weigh a trade-off that does not matter for a five column Kanban board, and hand you a slower answer that is no more correct. The curve has a peak in it, not a slope."
+ },
+ {
+  "file": "C7.mp3",
+  "text": "Where that peak sits depends on the job. A gnarly bug in code you cannot read, turn it up. A small well specified build like this one, leave it alone and let it go. Knowing which is which is genuinely a skill, and you will develop it faster than you expect, because you will feel the difference in how long you sit waiting."
+ },
+ {
+  "file": "N13.mp3",
+  "text": "The prompt is the same words as the last two builds. Nothing about the brief, nothing about Kanban, nothing about columns."
+ },
+ {
+  "file": "C8.mp3",
+  "text": "And the prompt is three words, because everything else has already been said in a file."
+ },
+ {
+  "file": "S1.mp3",
+  "text": "First difference, and it arrives within seconds. It did not start building. It wrote the plan into a file, in the project, next to the brief. Which means the plan is now a thing you can read tomorrow, or send to somebody, or argue with, rather than a wall of text in a panel that scrolls away."
+ },
+ {
+  "file": "S2.mp3",
+  "text": "Eight phases this time, not six, and every one of them has what it calls a gate. A gate is a success check with teeth. Not I will add unit tests, but the pure card moving function covers reorder, across columns, and the empty column case, with nothing mutated."
+ },
+ {
+  "file": "S3.mp3",
+  "text": "And look at the line above the phases, because this is the single most reassuring sentence I have read from one of these tools. Versions verified live against the package registry today, not from memory."
+ },
+ {
+  "file": "S4.mp3",
+  "text": "That matters more than it sounds. A model's memory of which library version is current is frozen at whenever it was trained, and library advice ages badly. It went and checked. It is the same discipline this course applies to every version number we put on screen, and I did not ask it for that either."
+ },
+ {
+  "file": "S5.mp3",
+  "text": "It also made a judgement and then told me it had made one, which is rarer still. It picked the stable drag and drop library over the newer one, on the grounds that the newer one is pre release and the alternative is unmaintained. And it flagged that it had left our colour palette alone rather than inventing its own."
+ },
+ {
+  "file": "S6.mp3",
+  "text": "Then it stopped and asked. Do you want me to start at phase zero, or change anything first."
+ },
+ {
+  "file": "S7.mp3",
+  "text": "Which is worth sitting with, because the permission dial is turned all the way up. I gave this thing full access. It could have built the whole app without a word. It stopped anyway, because the brief said plan first, and it read plan first as plan, then check, rather than plan, then carry on."
+ },
+ {
+  "file": "S8.mp3",
+  "text": "Cursor did not do that. Copilot did not do that. Same file, same instruction, different reading of it. And of the three readings this is the one I would want, because the cheapest moment to change your mind about a build is before it starts."
+ },
+ {
+  "file": "S9.mp3",
+  "text": "So, two words back, and now it goes."
+ },
+ {
+  "file": "N14.mp3",
+  "text": "Now the wait. And I am going to speed this up for you, because what happens next is about ten minutes of a machine thinking, and there is no version of that which is interesting at real speed."
+ },
+ {
+  "file": "N15.mp3",
+  "text": "But do not let the speed up hide what it means. On the clock, this is the point where you go and do something else. That is not a flaw in the tool, it is the actual shape of the work now. You write the brief carefully because the feedback loop is ten minutes long, not ten seconds."
+ },
+ {
+  "file": "N16.mp3",
+  "text": "While it runs, watch the number that tells you how full its memory is. Every file it reads and every command it runs goes into a working memory with a hard ceiling, and that number is how close it is to the ceiling."
+ },
+ {
+  "file": "N17.mp3",
+  "text": "Why you care, in one sentence. When it fills up, the tool has to throw away the earliest part of the conversation to keep going, and the earliest part of the conversation is usually your instructions. That is the real reason a long session starts making decisions you already ruled out."
+ },
+ {
+  "file": "N18.mp3",
+  "text": "And it is the strongest argument for the file. Instructions in a chat message can be forgotten. Instructions in a file get read again."
+ },
+ {
+  "file": "F1.mp3",
+  "text": "Now stop, because something just happened that I could not have scripted, and it is the exact thing we spent the back half of the last lecture on."
+ },
+ {
+  "file": "F2.mp3",
+  "text": "It was driving its own browser, testing its own work, and it found a fault. Dragging a card between columns using the keyboard bounced the card back instead of dropping it."
+ },
+ {
+  "file": "F3.mp3",
+  "text": "Watch what it did next, and compare it against the four steps we wrote down. Step one, reproduce. It had already reproduced it, in a real browser, by doing the thing that fails."
+ },
+ {
+  "file": "F4.mp3",
+  "text": "Step two, prove the root cause. And here it is, in its own words. Committing the move part way through the drag causes the layout to re-render underneath the cursor, and the keyboard sensor then collides with the layout that just shifted, which bounces the card back."
+ },
+ {
+  "file": "F5.mp3",
+  "text": "That is not a guess. That is a causal chain, and each link in it is checkable. It says why the symptom happens, not merely where the symptom is."
+ },
+ {
+  "file": "F6.mp3",
+  "text": "Step three, fix it. Do not commit the move until the drag has actually finished. Step four, and this is the one they usually skip. Rework the handlers and retest the keyboard. It went back and ran the failing check again."
+ },
+ {
+  "file": "F7.mp3",
+  "text": "Reproduce, prove, fix, demonstrate. Four for four, with nobody asking it to, on a bug nobody knew existed, in a feature I would probably never have tested because I would have reached for the mouse."
+ },
+ {
+  "file": "F8.mp3",
+  "text": "So the instruction from last lecture is not a workaround for a broken tool. It is a description of what good looks like, and when a tool does it by itself, that is the strongest signal you will get about how much rope to give it."
+ },
+ {
+  "file": "F9.mp3",
+  "text": "And notice the one thing it did not do. It did not tell me it had fixed the problem and move on. I found out it had found a problem at all because it said so while working, not afterwards in a summary."
+ },
+ {
+  "file": "G1.mp3",
+  "text": "And it finishes with a table, which I want you to look at rather than skim. Seven phases complete. Thirty eight success criteria, each one ticked off against the file it wrote them into. The production build passes. The type check passes. The linter is clean. Twenty seven unit tests pass, and ten browser tests pass in a real Chromium."
+ },
+ {
+  "file": "G2.mp3",
+  "text": "Nine hundred and sixty two lines of code across four files, including the tests. That is the entire app."
+ },
+ {
+  "file": "G3.mp3",
+  "text": "And then, unprompted, a section headed three things worth flagging. It moved off the usual port and says why. It hit a rendering mismatch and fixed it. And the third one is the one I would frame."
+ },
+ {
+  "file": "G4.mp3",
+  "text": "One thing I tried to fix, and stopped. It had a theory about why two arrow keys behaved the same way, changed the code to test the theory, watched the behaviour stay exactly the same, and concluded that its theory was wrong."
+ },
+ {
+  "file": "G5.mp3",
+  "text": "So it put the change back, looked up how the library actually works, found that this is the documented design, and told me instead of quietly leaving a pointless edit in the code and calling it fixed."
+ },
+ {
+  "file": "D4.mp3",
+  "text": "So it wrote the finding down and moved on. Not everything that surprises you is broken. Some of it is a decision somebody else made on purpose, and the difference between those two is worth five minutes of checking before you ask for a fix."
+ },
+ {
+  "file": "G6.mp3",
+  "text": "That is step two doing its job. Prove you have reproduced the cause. It could not, so it stopped. Nine times out of ten the thing standing between you and a wasted week is a tool willing to say I was wrong about that."
+ },
+ {
+  "file": "D5.mp3",
+  "text": "This is the other half of the discipline. The four steps stop a tool claiming a fix it has not proved. This stops you demanding a fix for something that was never broken. Both failures cost the same afternoon."
+ },
+ {
+  "file": "O1.mp3",
+  "text": "So here is build three, and the first thing to say is that it is a different looking app from the last one, from the same brief, and that is not a defect in either of them."
+ },
+ {
+  "file": "O2.mp3",
+  "text": "Five columns, named for a real workflow rather than the generic ones. Cards seeded with the kind of task a team would actually have on a board. And a header that names the project rather than announcing the app."
+ },
+ {
+  "file": "O3.mp3",
+  "text": "One design decision differs from the last build and I think it is the better one. Add a card lives inside each column, at the bottom, where the card is going to land. The last build had one Add button at the top of the page and then asked you which column you meant."
+ },
+ {
+  "file": "O4.mp3",
+  "text": "Nothing in the brief chose between those. The brief said add a card. Two tools read the same sentence and made a different interface decision, and only one of them put the button where your hand already is."
+ },
+ {
+  "file": "O5.mp3",
+  "text": "It also pinned itself to a different port, and told me why. Something unrelated was already using the usual one, and rather than killing somebody else's server it moved itself and said so. That is a small thing that tells you a lot about how carefully it is treating the machine it is running on."
+ },
+ {
+  "file": "N19.mp3",
+  "text": "Let us look at what came back. And then let us not believe a word of it until we have clicked on it ourselves, same as last time."
+ },
+ {
+  "file": "O6.mp3",
+  "text": "And now the five checks, by hand, same five, same order, third time today."
+ },
+ {
+  "file": "N20.mp3",
+  "text": "Drag between columns. Reorder inside one. Delete. Rename a column. And add a card with a description. The same five, in the same order, so that if one of these builds is genuinely worse than another we will be able to point at where."
+ },
+ {
+  "file": "C9.mp3",
+  "text": "Now, I want to be straight with you about something, because it would be easy to sit here and imply that I am checking this code line by line and nodding approvingly."
+ },
+ {
+  "file": "C10.mp3",
+  "text": "I am not. I could not build this front end by hand. I do not write this kind of interface code, and if you handed me a blank file and asked me to produce what is on screen right now, I would be reaching for exactly the tool we are using."
+ },
+ {
+  "file": "C11.mp3",
+  "text": "That is not a confession of a gap in the course. It is the entire point of the course. You are not learning to review the code. You are learning to be the person who decides what gets built, states it precisely, checks whether the thing in front of you actually does it, and sends it back when it does not."
+ },
+ {
+  "file": "C12.mp3",
+  "text": "Every one of those four jobs is a judgement, and not one of them requires you to read a single line of what it wrote."
+ },
+ {
+  "file": "N21.mp3",
+  "text": "Three builds. Three harnesses. One brief that none of them were told about in the prompt, and three apps that all do the job."
+ },
+ {
+  "file": "N22.mp3",
+  "text": "And notice what nobody had to do. Nobody wrote a line of code. Nobody debugged anything. Nobody chose a library, or a folder structure, or how state should be stored. All of those decisions got made, correctly enough, by something reading a file we wrote on day three."
+ },
+ {
+  "file": "O7.mp3",
+  "text": "Which is three builds, three harnesses, one brief, and three working apps. Not one line of code written by a person. Not one bug debugged by a person. And the only thing any of the three was told, beyond three or four words, is a file we wrote together two lectures ago."
+ },
+ {
+  "file": "C13.mp3",
+  "text": "Which is also where the honest caveat lives. This is a small, clean, well described project, and all four of these tools are going to look impressive on it. A larger system, with real data, real users, and requirements that contradict each other, is a much harder problem, and none of what we have done today is a claim about that. It is day three of three weeks for a reason."
+ },
+ {
+  "file": "N23.mp3",
+  "text": "Which is the moment to say the uncomfortable half of that out loud, because a comparison this clean is slightly misleading and I would rather point at why than let you find out later."
+ }
+]

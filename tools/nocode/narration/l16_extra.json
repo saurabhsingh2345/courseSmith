@@ -1,0 +1,22 @@
+[
+ {
+  "file": "X1.mp3",
+  "text": "Two additions of my own, because there is something this file does not have and I want you to know that I left it out on purpose."
+ },
+ {
+  "file": "X2.mp3",
+  "text": "There is no mention of who is working on it, no sprint, no ticket number, and no description of the bug we are fixing this week. That is not an omission. Anything that changes daily does not belong in a file the agent reads on every single call."
+ },
+ {
+  "file": "X3.mp3",
+  "text": "And the second thing. This file will get worse over time if you only ever add to it. A line that used to be true and now is not is worse than no line at all, because a missing line makes the agent guess and a stale line makes it confidently wrong."
+ },
+ {
+  "file": "X4.mp3",
+  "text": "So prune it. When you solve a problem properly in the code, delete the line that was working around it. If your file only ever grows, it is drifting, and at some point it will start costing you more than it saves."
+ },
+ {
+  "file": "X5.mp3",
+  "text": "And a way to check any of this is actually landing. Start a fresh session and ask the agent to summarise, in its own words, the instructions it is working under. What comes back is frequently not what you thought you wrote. Twenty seconds, once a month."
+ }
+]

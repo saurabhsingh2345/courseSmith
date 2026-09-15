@@ -1,0 +1,38 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Every one of these four tools has a version of this setting, and it is the same question in each. When the agent wants to run a command on your machine, does it ask you first?"
+ },
+ {
+  "file": "A2.mp3",
+  "text": "In Cursor it is under Agents, and it is called Run Mode. There are four choices, and they are a straight line from cautious to reckless. It is worth knowing all four rather than just flipping the switch."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "One. Allowlist. Nothing runs automatically unless you have explicitly approved that command before. Safest, slowest, and genuinely tedious on a project like this where it will want to run dozens of things."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "Two. Allowlist with sandbox. Same rule, but anything that does run is confined to a sandbox, so it cannot reach the rest of your machine even if it goes wrong."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "Three. Auto-review with sandbox. Most commands run automatically inside the sandbox, and anything that cannot run in there gets checked before it goes ahead. This is the default, and for most people it is the right answer."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "Four. Run everything, unsandboxed. No approvals, no confinement. It reads, writes, installs and runs whatever it decides it needs, on your actual machine. This is what YOLO means in practice."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "And here is how I would actually decide, because framing it as a courage test is not helpful. The question is not how brave you are. It is how much you would mind if this went wrong."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "On a throwaway folder with nothing valuable in it, unsandboxed is fine and it is much faster. On a real repository with work in it, stay sandboxed. On anything with credentials in reach, stay on the allowlist and read every command."
+ },
+ {
+  "file": "A9.mp3",
+  "text": "My advice for today, if you are unsure. Leave it on the default, watch what it does for the first build, and move up a level once you have seen it behave. You lose very little time and you learn what it actually does with the permission."
+ }
+]

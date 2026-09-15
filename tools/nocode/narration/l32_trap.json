@@ -1,0 +1,54 @@
+[
+ {
+  "file": "T1.mp3",
+  "text": "Now something goes wrong, and it is my fault rather than the tool's, which makes it the most useful five minutes in this whole day."
+ },
+ {
+  "file": "T2.mp3",
+  "text": "When I wrote the plan, I put a line in it about test coverage. Roughly eighty percent on the code we add. That sounded like a responsible thing to write, and I wrote it without thinking about it for even a second."
+ },
+ {
+  "file": "T3.mp3",
+  "text": "Watch what that instruction actually bought me. It wrote the feature quickly, and then it spent most of ten minutes writing tests."
+ },
+ {
+  "file": "T4.mp3",
+  "text": "Not good tests. Not tests of the things that could plausibly break. Long, elaborate tests of trivial things, written for no reason other than to push a number from seventy something up to eighty."
+ },
+ {
+  "file": "T5.mp3",
+  "text": "And this is the trap, and it is worth naming properly because it will happen to you in a dozen other forms. These things follow the letter of an instruction with a completeness no human colleague would."
+ },
+ {
+  "file": "T6.mp3",
+  "text": "A person given that target would have come back and said, look, eighty percent is not sensible here, most of this code is glue and the interesting bits are already covered. It did not say that. It just kept writing tests until the number went green."
+ },
+ {
+  "file": "T7.mp3",
+  "text": "It was not being stupid. It was doing exactly what I asked, which is the point. The specification was followed perfectly and the outcome was waste."
+ },
+ {
+  "file": "T8.mp3",
+  "text": "So here is the fix, and notice that it is not a clever prompt. I changed the rule."
+ },
+ {
+  "file": "T9.mp3",
+  "text": "Going forward, only reach eighty percent if it is sensible to do so. Do not add tests just to hit a number. Focus on valuable tests. Not hitting eighty is fine."
+ },
+ {
+  "file": "T10.mp3",
+  "text": "That is a rule with judgement written into it, and that is the difference. The first version said hit this number. The second says hit this number when it is worth it, and I trust you to tell the difference."
+ },
+ {
+  "file": "T11.mp3",
+  "text": "And that is a real skill, writing rules that leave room for judgement. Too loose and you get nothing consistent. Too tight and you get exactly this, ten minutes of expensive, pointless obedience."
+ },
+ {
+  "file": "T12.mp3",
+  "text": "One more thing, and it is the reason I could catch it at all. I was watching. Not reading every line, just watching the shape of what it was doing. Ten minutes on tests after two minutes on the feature is a shape that is wrong, and you do not need to be able to read the tests to see it."
+ },
+ {
+  "file": "T13.mp3",
+  "text": "Which is the whole argument for staying in the loop, and it is not about code review. It is about noticing when the shape of the work stops making sense."
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Before we press anything, this plan is worth thirty seconds, because it is not the vague bullet list people expect from a planning mode."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "Look at the first heading. Scope, do this, nothing else. And underneath it, the fence from our file, restated in its own words. No auth, no persistence, no search, no filters, no labels, no dates, no archive, no comments."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "That is the list of nos from the last lecture, coming back to us as engineering scope. The paragraph I told you was the most valuable one in the file just did its entire job, before a single line of code existed."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "Then the stack. Next dot J S sixteen with the App Router, TypeScript, Tailwind. All current, all obvious, none of it exotic. That is the coding standard about current versions and obvious choices, showing up as decisions."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "And here is the one I want you to notice. For the drag and drop it has chosen a library rather than writing its own. That is exactly what prefer the obvious choice over the clever one bought us, and it is the difference between a thing that works and a thing that half works."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "Then Vitest for unit tests and Playwright for browser tests. Neither of those was in the requirements. They are in the file because our strategy section asked for tests, and the plan has picked specific tools to satisfy it."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "And phases, each with success criteria that can be checked off. Also ours. Every single structural decision in this document traces back to a line we wrote by hand."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "Which is the real lesson of the last two lectures in one screen. The brief is the leverage. Everything after it is the agent doing what a good brief made obvious."
+ },
+ {
+  "file": "A9.mp3",
+  "text": "Right. Build."
+ },
+ {
+  "file": "A10.mp3",
+  "text": "Now, while that runs, keep half an eye on two things. The first is the file tree on the left, because it is about to fill up with a project that did not exist a minute ago."
+ },
+ {
+  "file": "A11.mp3",
+  "text": "And the second is the context indicator. It started at a few percent. Every file it writes, every command it runs, and every test result it reads goes into that conversation, so it will climb steadily for the whole build."
+ },
+ {
+  "file": "A12.mp3",
+  "text": "That is the picture from two lectures ago, happening live, and it is why a long build eventually needs compacting. You are watching a context window fill up in real time."
+ },
+ {
+  "file": "A13.mp3",
+  "text": "One more thing you will see, and I want to explain it rather than edit it out. It has stopped and asked permission to do something."
+ },
+ {
+  "file": "A14.mp3",
+  "text": "That is the sandbox setting from the end of the last lecture, doing exactly what I said it would. I left it on the default rather than going full unsandboxed, so anything it cannot do inside the sandbox comes to me first. I am going to allow it, and the build carries on."
+ }
+]

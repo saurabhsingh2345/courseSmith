@@ -1,0 +1,138 @@
+[
+ {
+  "file": "01.mp3",
+  "text": "So we have the repository open, and it contains one file. That was a fair amount of ceremony for one file, and I could simply have pasted it on a slide. But you are going to write your own version of this file for every project you ever start, so it matters that you have it in front of you, in a real editor, in a real project."
+ },
+ {
+  "file": "02.mp3",
+  "text": "Two shortcuts first, because you will use them constantly and they are worth muscle memory. Command B hides and shows the file tree on the left. And option command E collapses the agent panel on the right, which gives the file the full width of the window."
+ },
+ {
+  "file": "03.mp3",
+  "text": "Toggle those two and you can go from a cluttered editor to just the file and back in about a second. On a PC it is control B, and control option E."
+ },
+ {
+  "file": "04.mp3",
+  "text": "And here is the file. Sixty-nine lines. Seven sections. And the most important thing I can tell you about it is this. I wrote it. I did not generate it. I sat down and typed it out by hand."
+ },
+ {
+  "file": "05.mp3",
+  "text": "Which may sound perverse in a program about getting machines to write things for you. But this file is the instruction, and if you ask a machine to write its own instructions you have simply moved the problem somewhere you cannot see it."
+ },
+ {
+  "file": "06.mp3",
+  "text": "One more thing before we read it. It is markdown, and markdown has a rendered form. If I open the preview beside it, the left side is what I typed and the right side is closer to how the model actually receives it. Headings become structure. Bullets become a list. That is why we use markdown and not a plain text file."
+ },
+ {
+  "file": "07.mp3",
+  "text": "Right. Section one. Business requirements. And the first line does most of the work. Build an M V P of a Kanban-style project management web app. Not an app. Not a platform. An M V P."
+ },
+ {
+  "file": "08.mp3",
+  "text": "Then, start simple and stay simple. One board. Not multiple boards, not a board switcher. Five columns, fixed in number, but the user can rename any of them."
+ },
+ {
+  "file": "09.mp3",
+  "text": "A card has a title and a description. Nothing else. And I want you to notice how blunt that is. Nothing else. Because if I do not say that, I will get due dates, and labels, and assignees, and a priority dropdown, none of which I asked for."
+ },
+ {
+  "file": "10.mp3",
+  "text": "Drag and drop a card between columns, and reorder cards within a column. That second half is the hard one, and I have put it in deliberately, because a brief that only asks for easy things does not tell you anything about the tool."
+ },
+ {
+  "file": "11.mp3",
+  "text": "Add a card. Delete a card. And then the fence. Nothing beyond that. No archive, no search, no filters, no labels, no due dates, no attachments, no comments."
+ },
+ {
+  "file": "12.mp3",
+  "text": "That list of nos is the most valuable paragraph in the file. Every one of those is a feature an agent would otherwise cheerfully build, and every one of them is a thing I would then have to read, test, and delete."
+ },
+ {
+  "file": "13.mp3",
+  "text": "The board opens with dummy data already in it, so it looks alive on first load. Small line, big effect. Without it you get an empty grey screen and no sense of whether the thing works."
+ },
+ {
+  "file": "14.mp3",
+  "text": "And then the priority, stated out loud so there is no ambiguity about the trade. A slick, professional, genuinely good-looking interface, over a small set of features. A viewer should want to use it."
+ },
+ {
+  "file": "15.mp3",
+  "text": "Notice the technique running through all of that. Be precise. Do not be ambiguous. Be assertive. Say what must be built rather than hinting at it. And where it matters, say what must not be built."
+ },
+ {
+  "file": "16.mp3",
+  "text": "Section two. Technical details. A Next dot J S app, in a subdirectory called frontend. No persistence, state lives in memory, a page reload may reset the board. No accounts, no login, no authentication."
+ },
+ {
+  "file": "17.mp3",
+  "text": "Use popular, well-maintained libraries, and prefer the obvious choice over the clever one. Then, keep the implementation as simple as the requirements allow. Which is the same instruction as in section one, said again in different words."
+ },
+ {
+  "file": "18.mp3",
+  "text": "And that repetition is deliberate. There is no harm in repeating yourself in one of these files, particularly on the points you actually care about. It is not an essay. Nobody is marking you down for it."
+ },
+ {
+  "file": "19.mp3",
+  "text": "Section three. A colour scheme, which is just five hex values from the palette this program uses. And this section is explicitly optional. Use mine, use your own, or delete it entirely and let the agent choose. I include it because I would rather decide than be surprised."
+ },
+ {
+  "file": "20.mp3",
+  "text": "Section four. Strategy. And this is where the file stops describing the product and starts describing how I want the work done."
+ },
+ {
+  "file": "21.mp3",
+  "text": "Write a plan first, broken into phases, with success criteria for each phase that can be checked off. Include project scaffolding and unit tests as part of the plan. Execute the plan phase by phase."
+ },
+ {
+  "file": "22.mp3",
+  "text": "Then integration testing in a real browser, Playwright or equivalent, and fix what it finds. And the last line is the one that saves you the most time. Treat the task as complete only when the M V P is built, tested, the dev server is running, and it is ready for a person to use."
+ },
+ {
+  "file": "23.mp3",
+  "text": "Without that final line, agents have a habit of stopping at what looks finished. It will tell you it is done, and it will mean that the code exists. Those are not the same claim."
+ },
+ {
+  "file": "24.mp3",
+  "text": "Section five. Coding standards. And I have got these down to three, from a list that used to be much longer, because most of what I used to write here the models now do by default."
+ },
+ {
+  "file": "25.mp3",
+  "text": "One. Use current library versions and write idiomatic code as of today. Note that I do not put a date in. It knows what today is, and hard-coding a date only makes the file go stale."
+ },
+ {
+  "file": "26.mp3",
+  "text": "Two, and this is the one I would keep if I could keep only one. Keep it simple. Never over-engineer. No speculative abstraction, no defensive code guarding against things that cannot happen, no features that were not asked for. If a simpler version works, ship the simpler version."
+ },
+ {
+  "file": "27.mp3",
+  "text": "I still see it over-complicating things frequently enough that I do not think you can stress this too much. It is the single most common failure mode in agent-written code."
+ },
+ {
+  "file": "28.mp3",
+  "text": "Three. Be concise. Keep the readme short. Comment only where the code is not self-evident. And in block capitals, because block capitals genuinely work. IMPORTANT, never use emojis, anywhere. Not in the interface, not in commit messages, not in log output."
+ },
+ {
+  "file": "29.mp3",
+  "text": "That last one is not fussiness. Emojis in log output break things on some Windows terminals, and an interface full of them looks like a toy rather than a product."
+ },
+ {
+  "file": "30.mp3",
+  "text": "Section six. A short working agreement. If you have tried the same fix twice and it still fails, stop and explain what you tried rather than attempting a third approach. Prefer adding to an existing file over creating a new one. And let errors fail loudly rather than being swallowed."
+ },
+ {
+  "file": "31.mp3",
+  "text": "And that is the whole file. Now, the obvious question. Do you have to learn to write these yourself? Honestly, yes, eventually. But you can start with this one. Clone it, change the requirements, and keep the shape."
+ },
+ {
+  "file": "32.mp3",
+  "text": "Because the shape is the transferable part. Be specific. Be simple. Say what done looks like. Say what not to build. Everything else is detail you will develop from your own experience of being annoyed by an agent."
+ },
+ {
+  "file": "33.mp3",
+  "text": "And the technique I rate most highly for developing that. Start with a minimal file. Run it. Look at what the agent built. Delete all of it. Then rewrite the file to account for exactly where it went wrong, and run it again. Two or three rounds of that and you have a genuinely good brief."
+ },
+ {
+  "file": "34.mp3",
+  "text": "One last thing before we build. There is a setting in every one of these tools that decides how much the agent is allowed to do without asking you, and it is the single most consequential setting in the product. It is worth thirty seconds."
+ }
+]

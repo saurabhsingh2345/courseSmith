@@ -1,0 +1,34 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Here is what that actually looks like. A root file that says what the project is and how you run the tests. Then one in the front end folder about which component library to use and how state is handled. Then one in the back end folder about how migrations work."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "And the front end one is allowed to say, in this folder, ignore the general rule about keeping files short, because our page components are naturally long. Inner beats outer, so that exception simply works, and it costs you nothing anywhere else in the project."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "Here is a question nobody seems to answer, so let me answer it. How long should the root file be? Under a hundred lines. If yours has grown to three hundred, it is not more thorough. It is diluted. The model is weighting your most important rule the same as your least."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "And a related one. When does something belong in the file rather than just being said in the chat? Simple test. If you would have to say it again tomorrow, it goes in the file. If it is only true for this one task, say it out loud and let it go."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "Two more from experience. Tell it not to create new files when an existing one will do. Left to itself it will scatter helpers across four new modules rather than adding one function to the module that already exists."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "And tell it what to do when it is stuck, explicitly. Something like, if you have tried twice and it still fails, stop and explain what you tried rather than attempting a third approach. Without that line it will keep going, and the third approach is usually the worst one."
+ },
+ {
+  "file": "A7.mp3",
+  "text": "One habit worth building. When the agent does something that irritates you, do not just correct it in the chat. Correct it, and then ask whether that correction belongs in the file. Most of the time it does, and that is how a good file actually gets written."
+ },
+ {
+  "file": "A8.mp3",
+  "text": "Because that is the real loop. Nobody sits down and writes a great agents file from nothing. You write a rough one in ten minutes, and then every time the agent annoys you, you spend thirty seconds turning that annoyance into a line. After a fortnight it is excellent."
+ }
+]

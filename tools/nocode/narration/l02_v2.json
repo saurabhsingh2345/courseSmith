@@ -1,0 +1,142 @@
+[
+ {
+  "file": "s00.mp3",
+  "text": "Okay, so it finished, and you can see it ended up creating a whole set of files. Now every time you run this, it does something a bit different."
+ },
+ {
+  "file": "s01.mp3",
+  "text": "That's one of the bizarre things about this. For you, it might have only created one file, index dot html. For me, it has made rather more than that, and I can click on them to look at them."
+ },
+ {
+  "file": "s02.mp3",
+  "text": "This is one file. This is another one, and this is presumably quite a long one. There it is."
+ },
+ {
+  "file": "s03.mp3",
+  "text": "And then this is the stylesheet. So a set of files have been created, they're sitting here in the directory, and you can see what it thought about, and what it did, all the way over here."
+ },
+ {
+  "file": "s04.mp3",
+  "text": "Okay, it's time to give it a try. So I can look in my file system at this directory called Instant, and we'll see that it has created all of those files."
+ },
+ {
+  "file": "s05.mp3",
+  "text": "Now this one needs a tiny web server to run, and it told me exactly how to start it, so that is what I'm going to do."
+ },
+ {
+  "file": "s06.mp3",
+  "text": "And up comes this. One arena. One machine. No second place."
+ },
+ {
+  "file": "s07.mp3",
+  "text": "Arrow keys to move and turn, space to shoot. There's even a difficulty setting. Let's give it a whirl. Drop into the arena."
+ },
+ {
+  "file": "s08.mp3",
+  "text": "Stop for a second and look at what is actually on that screen. Movement, turning, shooting, and an opponent that reacts to you. None of that was written by hand."
+ },
+ {
+  "file": "s09.mp3",
+  "text": "About thirty words of plain English produced a playable first person shooter. Ten minutes ago this folder was completely empty."
+ },
+ {
+  "file": "s10.mp3",
+  "text": "It is entirely possible that when you ran yours, something did not work. That is normal, and it is fixable - you go back to the agent, tell it what went wrong, and it repairs its own work. We are going to do exactly that in a moment."
+ },
+ {
+  "file": "s11.mp3",
+  "text": "And it is worth being honest about what this is. The arena is plain, the lighting is flat, there is no sound, and the opponent is not remotely clever. But it runs, it plays, and it came out of a single sentence."
+ },
+ {
+  "file": "s12.mp3",
+  "text": "So success. It's pretty cool that it just worked like that. It created these files, it coded this game from just that simple prompt."
+ },
+ {
+  "file": "s13.mp3",
+  "text": "But let's see if we can make it a little bit better. Maybe something didn't work. Maybe the shooting didn't work. Sometimes for me that didn't happen. Once the keys didn't work at all. I've tried this a bunch of times, and it's a bit different every time."
+ },
+ {
+  "file": "s14.mp3",
+  "text": "But let's suppose we want the opponent to look a bit more awesome. So let's prompt here. I'll say, that's great. Please add some detail to the opponent so that it looks more like an enemy. We'll let it be creative."
+ },
+ {
+  "file": "s15.mp3",
+  "text": "So that is the instruction that we will give, and we will see what comes of this."
+ },
+ {
+  "file": "s16.mp3",
+  "text": "So it's now going to add some details, and you'll see it editing and changing, and I'll come back in a second when it's ready for us to test it out again."
+ },
+ {
+  "file": "s17.mp3",
+  "text": "It says it has done it, so let us go and look. And there it is, the opponent has some detail on it now. It reads as an enemy rather than a shape."
+ },
+ {
+  "file": "s18.mp3",
+  "text": "That is the loop you will use for the rest of this program. Look at what came back, decide what you want changed, and say so in plain English."
+ },
+ {
+  "file": "s19.mp3",
+  "text": "Okay, well let's go and do some more edits to the game. All right, so back we go. We'll say, please add a heads up display, a HUD, and also make the difficulty harder."
+ },
+ {
+  "file": "s20.mp3",
+  "text": "Let's see what it makes of this. I'll let it do its planning, next moves, and its thinking. We will go through in more detail at some point about the planning, and then executing on these kinds of ideas. And I will see you in a second when it's finished its work."
+ },
+ {
+  "file": "s21.mp3",
+  "text": "It says it has done both of them. And there is the heads up display, with the difficulty raised behind it."
+ },
+ {
+  "file": "s22.mp3",
+  "text": "Two instructions, one round trip. Neither of them needed me to know where in the code any of that lives."
+ },
+ {
+  "file": "s23.mp3",
+  "text": "So there you have it. There you see a very unbusiness-like example of how quick and easy it is to have an LLM, a language model, be our agent, writing code with us in Cursor."
+ },
+ {
+  "file": "s24.mp3",
+  "text": "We had this conversation with the agent. It created these files that are now in Instant, and by iterating, by adding some more comments, we were able to sort of work hand in hand at building this out, without writing a single line of code. And it worked great."
+ },
+ {
+  "file": "s25.mp3",
+  "text": "And if this didn't work out for you, if it didn't work, then please do come back and iterate. And if you get stuck and you're not able to get through some point, then just delete the whole Instant directory and start again. Create a new Instant and give it a second shot."
+ },
+ {
+  "file": "s26.mp3",
+  "text": "Try different model options, and try different ways to prompt it. This is great experimenting. This is not an important project. This is just for you to get a first feel for it."
+ },
+ {
+  "file": "s27.mp3",
+  "text": "But now let me show you one more thing. Over the next three weeks, we're going to be using a number of different techniques to get more and more sophisticated at working hand in hand with AI agents to build complicated projects. And I decided to put some of those techniques to the test."
+ },
+ {
+  "file": "s28.mp3",
+  "text": "I ran this same project again, using a technique that we will cover later in the program, and I did what people sometimes call zero shot, which is, I just set it off. I didn't give it any feedback. One prompt only. And this is the result of it."
+ },
+ {
+  "file": "s29.mp3",
+  "text": "Here is what came back. Look at the difference against the one we built together."
+ },
+ {
+  "file": "s30.mp3",
+  "text": "There is an entry screen, there is lighting, and the arena has real structure to it. There is a heads up display carrying health and kills."
+ },
+ {
+  "file": "s31.mp3",
+  "text": "Same brief, same tool, one prompt, and no feedback from me at any point. The only thing that changed is the technique wrapped around the request. And that technique is what the next three weeks are for."
+ },
+ {
+  "file": "s32.mp3",
+  "text": "So, this, I will stop playing. That's not the point of this. This is just to give you that teaser, that example of what it's like to go pro with this tool set."
+ },
+ {
+  "file": "s33.mp3",
+  "text": "But again, the thing to bear in mind is that this is something where I just typed in a prompt and let it go. I didn't give it any feedback, and it came up with this, which I think is really cool. And this is something that you'll be able to do too, in just a matter of days."
+ },
+ {
+  "file": "s34.mp3",
+  "text": "All right. So that concludes the instant gratification. I hope that you feel gratified. That was a lot of fun. From this point on, it's all business."
+ }
+]

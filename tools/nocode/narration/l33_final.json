@@ -1,0 +1,362 @@
+[
+ {
+  "file": "A1.mp3",
+  "text": "Part five is the only part of the whole plan that stops and asks me before it builds anything. I want to explain why that is, because deciding where to put a checkpoint is a real skill and this is the clearest example of it all week."
+ },
+ {
+  "file": "A2.mp3",
+  "text": "Everything before this was reversible. If part three had come out wrong I would have thrown it away and asked again, and lost twenty minutes."
+ },
+ {
+  "file": "A3.mp3",
+  "text": "The database is different, and not because it is hard. Because everything after it is shaped by it."
+ },
+ {
+  "file": "A4.mp3",
+  "text": "Parts six, seven, eight, nine and ten all assume the shape we agree on right now. Get it wrong and you do not lose part five. You lose everything built on top of it."
+ },
+ {
+  "file": "A5.mp3",
+  "text": "So the rule for where the checkpoints go is not how difficult is this. It is how much of what comes next depends on it."
+ },
+ {
+  "file": "A6.mp3",
+  "text": "And that is a question you can answer without knowing anything about databases, which is rather the point."
+ },
+ {
+  "file": "B1.mp3",
+  "text": "Now, what it actually came back with, and I am going to translate the whole thing because none of it needs jargon."
+ },
+ {
+  "file": "B2.mp3",
+  "text": "A table is a spreadsheet. Rows are records, columns are fields. That is genuinely the whole idea, and everything else is bookkeeping about how the spreadsheets refer to each other."
+ },
+ {
+  "file": "B3.mp3",
+  "text": "It designed four of them. Users. Boards. Columns. Cards."
+ },
+ {
+  "file": "B4.mp3",
+  "text": "Users is one row per person. For us that is one row, because the whole app has one login. But the table is built as though there could be thousands, which is deliberate."
+ },
+ {
+  "file": "B5.mp3",
+  "text": "Boards is one row per board, and each row carries the identifier of the user it belongs to. That single number is the whole relationship. Board seven belongs to user three."
+ },
+ {
+  "file": "B6.mp3",
+  "text": "Columns is one row per column, each pointing at its board, each with a name and a position. Position is just a number saying which comes first."
+ },
+ {
+  "file": "B7.mp3",
+  "text": "And cards is one row per card, pointing at its board and its column, with a title, a description, and a position of its own."
+ },
+ {
+  "file": "B8.mp3",
+  "text": "And now the sentence that makes the whole design make sense. Moving a card between columns is changing one number in one row."
+ },
+ {
+  "file": "B9.mp3",
+  "text": "That is it. Change which column the card points at, tidy up the positions, done. All that dragging on screen, and underneath it is one field changing value."
+ },
+ {
+  "file": "C1.mp3",
+  "text": "Now the part I want to be honest about, because it is the counterweight to everything I have said this week about staying in the loop."
+ },
+ {
+  "file": "C2.mp3",
+  "text": "I had a design in my head before I asked. I was going to store the entire board as one blob of text against the user. One row. The whole thing in it."
+ },
+ {
+  "file": "C3.mp3",
+  "text": "And that would have worked, for this. It is also the hacky answer, and I know it is the hacky answer, and I would have done it anyway because it is quick."
+ },
+ {
+  "file": "C4.mp3",
+  "text": "Its version is better than mine. Not slightly. Properly better, and in a way I can explain to you, which is the test of whether I actually understand why."
+ },
+ {
+  "file": "C5.mp3",
+  "text": "With my blob, finding all the cards in one column means reading the whole board out and picking through it. With its version, that is a question you can just ask."
+ },
+ {
+  "file": "C6.mp3",
+  "text": "And with my blob, adding a second board or a second user later means unpicking the format and rewriting everything that touches it. With its version, it is another row."
+ },
+ {
+  "file": "C7.mp3",
+  "text": "So I approved its design over my own. And I want you to sit with the fact that this is the same lecture where I will spend five minutes telling you it got stuck in a loop for half an hour."
+ },
+ {
+  "file": "C8.mp3",
+  "text": "Both of those are true at once. It is better than me at some things and worse at others, and the whole skill is knowing which is which today."
+ },
+ {
+  "file": "D1.mp3",
+  "text": "I did not approve it silently, though, and this is the bit I would encourage you to copy even when you are not sure."
+ },
+ {
+  "file": "D2.mp3",
+  "text": "One thing in there looked awkward to me. It had put a rule on the columns saying no two of them may sit in the same position."
+ },
+ {
+  "file": "D3.mp3",
+  "text": "Which sounds obviously correct, and might not be. Because when you reorder a list, there is usually a moment in the middle where two things briefly occupy the same slot before everything settles."
+ },
+ {
+  "file": "D4.mp3",
+  "text": "I do not know whether that is a problem here. I genuinely do not. So I did not tell it to change it."
+ },
+ {
+  "file": "D5.mp3",
+  "text": "I described the concern, asked whether it causes the thing I am worried about, and said if it does, change it, and if it does not, leave it alone."
+ },
+ {
+  "file": "D6.mp3",
+  "text": "That shape is worth memorising. Here is what worries me, here is why, you decide. It gets you the benefit of the doubt without pretending to expertise you do not have."
+ },
+ {
+  "file": "D7.mp3",
+  "text": "And it costs nothing. If I am wrong, I have lost one sentence and learned something. If I am right, I have caught a design flaw before a single row existed."
+ },
+ {
+  "file": "D8.mp3",
+  "text": "And here is what came back, which is better than I expected and slightly better than I deserved."
+ },
+ {
+  "file": "D9.mp3",
+  "text": "Yes. The reorder would have collided. Two cards would have briefly claimed the same position during a move between columns, and the database would have refused the whole thing."
+ },
+ {
+  "file": "D10.mp3",
+  "text": "But it did not remove the rule, which is what I would have done. It kept the rule and changed how a move works, so the positions are tidied on the way through and the collision never occurs."
+ },
+ {
+  "file": "D11.mp3",
+  "text": "So the guarantee survives and the problem goes away. That is a genuinely better answer than either of the two I had in my head."
+ },
+ {
+  "file": "D12.mp3",
+  "text": "And look at what it cost me. I did not know whether there was a problem. I could not have told you what the fix would be. All I had was a feeling that one rule looked uncomfortable, and I said so out loud."
+ },
+ {
+  "file": "D13.mp3",
+  "text": "That is the entire skill. Not expertise. Noticing the thing that makes you uneasy and refusing to let it past without a sentence."
+ },
+ {
+  "file": "D14.mp3",
+  "text": "One more thing before we move on. It finished part five, and then it stopped, and asked whether I wanted it to carry on."
+ },
+ {
+  "file": "D15.mp3",
+  "text": "It did that because the plan told it to, four hours ago, in writing. And it remembered."
+ },
+ {
+  "file": "D16.mp3",
+  "text": "Which is the return on having written the plan at all. The stop is not something I have to remember to enforce in the moment. It is built into the thing being followed."
+ },
+ {
+  "file": "E1.mp3",
+  "text": "Part six is the back end routes, and it is the shortest explanation of the day."
+ },
+ {
+  "file": "E2.mp3",
+  "text": "A route is a question the back end knows how to answer. What is on my board. Move this card to that column. Rename this column."
+ },
+ {
+  "file": "E3.mp3",
+  "text": "Each one is an address plus a rule. Something asks at that address, the back end does the work, and answers."
+ },
+ {
+  "file": "E4.mp3",
+  "text": "And that is genuinely all a back end is. A list of questions it knows how to answer, and the code that answers them."
+ },
+ {
+  "file": "E5.mp3",
+  "text": "At the end of part six they all exist and nothing on screen has changed at all, because nobody is asking them yet."
+ },
+ {
+  "file": "E6.mp3",
+  "text": "Which is worth pausing on, because it is the first time today that finishing a part produced no visible difference whatsoever."
+ },
+ {
+  "file": "E7.mp3",
+  "text": "If you were judging progress by the screen you would think it had done nothing. The screen is not the measure. That is what the checklist in the plan is for."
+ },
+ {
+  "file": "F1.mp3",
+  "text": "Part seven is the one that joins the two halves, and it is the most significant change in the whole build."
+ },
+ {
+  "file": "F2.mp3",
+  "text": "Up to now the board has been drawing itself. The cards you have been looking at are written into the front end, the same five columns every time you reload, because nothing was ever saved."
+ },
+ {
+  "file": "F3.mp3",
+  "text": "After part seven, the board asks the back end what is on it, and tells the back end when anything moves."
+ },
+ {
+  "file": "F4.mp3",
+  "text": "Which is the difference between a picture of an application and an application."
+ },
+ {
+  "file": "F5.mp3",
+  "text": "And it is the biggest change so far by a wide margin, so I expect it to take a while and I expect it to be messy."
+ },
+ {
+  "file": "G1.mp3",
+  "text": "And it worked. First time, no drama, which I did not expect and am not going to pretend I did."
+ },
+ {
+  "file": "G2.mp3",
+  "text": "But there is something in how it worked that is worth more than the fact that it did, and you can see it on the board right now if you look at the backlog."
+ },
+ {
+  "file": "G3.mp3",
+  "text": "There is a card in there called browser test card. I did not make that. It did, while it was checking its own work, and then it did not tidy it up."
+ },
+ {
+  "file": "G4.mp3",
+  "text": "Which is the most useful piece of litter I have seen all week. Because it is evidence, sitting on screen, that it actually opened a browser this time."
+ },
+ {
+  "file": "G5.mp3",
+  "text": "Last lecture it did not. It checked the page the only way it could from where it was standing, that check passed, and the page was blank."
+ },
+ {
+  "file": "G6.mp3",
+  "text": "The only thing that changed between then and now is one sentence in the prompt. Confirm it in a real browser, not just in tests."
+ },
+ {
+  "file": "G7.mp3",
+  "text": "And I want to be careful about the lesson there, because there are two available and only one of them is true."
+ },
+ {
+  "file": "G8.mp3",
+  "text": "The false one is that it was being lazy and I told it off. It was not. It did exactly what it had been asked, both times."
+ },
+ {
+  "file": "G9.mp3",
+  "text": "The true one is that how you will check was missing from the instruction, so it chose, and it chose the cheapest check available. Once the instruction said which check, it ran that one."
+ },
+ {
+  "file": "G10.mp3",
+  "text": "So when something goes wrong in a way that feels like carelessness, look at your instruction before you look at the tool. Nine times out of ten the thing you are annoyed about was never actually specified."
+ },
+ {
+  "file": "G11.mp3",
+  "text": "Now. It says it works, and this time it has shown me evidence. And I am still going to go and look myself, and I want to be honest that this is not because I distrust the evidence."
+ },
+ {
+  "file": "G12.mp3",
+  "text": "It is because checking costs me thirty seconds, and being wrong about this costs me the next three parts built on top of a board that does not save."
+ },
+ {
+  "file": "G13.mp3",
+  "text": "So. Drag a card. Ready, to in progress. And watch the counts at the top of each column change as it lands, because that is the front end being told the move happened rather than just drawing it."
+ },
+ {
+  "file": "G14.mp3",
+  "text": "Then the part that actually proves it, and notice it is more than just reloading the page."
+ },
+ {
+  "file": "G15.mp3",
+  "text": "I log out. That ends the session entirely. Then a hard reload, so nothing is being served from the browser's memory."
+ },
+ {
+  "file": "G16.mp3",
+  "text": "Now I log out, which ends the session entirely. And then a hard reload, so that nothing at all is coming from the browser's own memory. Everything you see next has to come from the server."
+ },
+ {
+  "file": "G17.mp3",
+  "text": "And there it is. In progress. Exactly where I put it. Retrieved from a database, by a session that did not exist at the moment I moved it, in a browser that has just been told to forget everything it knew."
+ },
+ {
+  "file": "G18.mp3",
+  "text": "That is the whole of parts five, six and seven in one frame, and it is the moment this stopped being a picture of an application."
+ },
+ {
+  "file": "G19.mp3",
+  "text": "And the rule underneath it, which is the one I would keep from today. When it tells you something works, the check is not reading its report more carefully. The check is using the thing."
+ },
+ {
+  "file": "G20.mp3",
+  "text": "Thirty seconds, with your own hands, on the actual application. It is the highest paid thirty seconds in this course and it requires no expertise whatsoever."
+ },
+ {
+  "file": "Z1.mp3",
+  "text": "One last thing before we stop, and it is the bridge into next week."
+ },
+ {
+  "file": "Z2.mp3",
+  "text": "This conversation has been running since the first prompt this morning. Every plan, every file, every error, every fix. All of it is in one long thread."
+ },
+ {
+  "file": "Z3.mp3",
+  "text": "And there is a limit to how much of that it can actually hold in mind at once. There always is. On day two we drew it as a stack of paper on a desk, and the desk has an edge."
+ },
+ {
+  "file": "Z4.mp3",
+  "text": "What happens when you reach the edge is not an error message. It quietly starts summarising the older parts, and then quietly starts dropping them."
+ },
+ {
+  "file": "Z5.mp3",
+  "text": "This particular tool does not show you a meter. It is handling it for us, which is comfortable and is also why you stop thinking about it."
+ },
+ {
+  "file": "Z6.mp3",
+  "text": "Next week, when we move to Claude Code, you will be able to see exactly how full it is. And we are going to obsess over it. I want you obsessing over it just as much now, when you cannot see it."
+ },
+ {
+  "file": "Z7.mp3",
+  "text": "Because the symptom is not a crash. The symptom is that it starts being slightly worse. It forgets a decision you made four hours ago. It re-solves something that was already settled."
+ },
+ {
+  "file": "Z8.mp3",
+  "text": "And you will read that as the model having a bad day, when what has actually happened is that the beginning of the conversation has quietly fallen off the desk."
+ },
+ {
+  "file": "Z9.mp3",
+  "text": "So here is the practice, and I will be honest that it feels wrong every time I do it. You stop the conversation and start a completely new one."
+ },
+ {
+  "file": "Z10.mp3",
+  "text": "It feels like throwing away everything it knows. It feels like starting from scratch with a stranger. And it is the right move."
+ },
+ {
+  "file": "Z11.mp3",
+  "text": "But not before you do the one thing that makes it safe, and this is the whole technique in a sentence."
+ },
+ {
+  "file": "Z12.mp3",
+  "text": "Update the plan with everything that has happened, including any design decisions you made along the way. And that second half is the load-bearing half."
+ },
+ {
+  "file": "Z13.mp3",
+  "text": "Because the checklist already says what got built. What is not written anywhere is why the columns are stored as rows rather than as a blob, and that we chose that on purpose, and that I nearly did it differently."
+ },
+ {
+  "file": "Z14.mp3",
+  "text": "If that only lives in the conversation, it dies with the conversation. And the next one will make a different choice, for perfectly good reasons, and quietly contradict the thing it did this morning."
+ },
+ {
+  "file": "Z15.mp3",
+  "text": "So the plan stops being a to-do list and becomes the project's memory. Written down, in a file, outside the thing that forgets."
+ },
+ {
+  "file": "Z16.mp3",
+  "text": "Then you save it, and you start a fresh conversation, and the first thing it does is read the plan. And it knows where things stand \u2014 not because it remembers, but because you left a note."
+ },
+ {
+  "file": "Z17.mp3",
+  "text": "And that is the actual skill this whole week has been teaching, hiding behind a Kanban board."
+ },
+ {
+  "file": "Z18.mp3",
+  "text": "Not how to prompt. How to leave things in a state where the next person can pick them up. It has always been the hardest part of working with other people, and it turns out to be the hardest part of working with these too."
+ },
+ {
+  "file": "Z19.mp3",
+  "text": "Next time, the last three parts, and the one where a language model gets to move your cards for you."
+ }
+]

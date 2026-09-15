@@ -1,0 +1,58 @@
+[
+ {
+  "file": "B1.mp3",
+  "text": "A short history of the front end, because the names come up constantly and nobody ever explains the order they arrived in."
+ },
+ {
+  "file": "B2.mp3",
+  "text": "It started as hand written pages. You wrote the page, you wrote how it looked, you wrote a bit of behaviour, and if you wanted something fancy you pulled in a small library to help. That is still how a lot of the web works and there is nothing wrong with it."
+ },
+ {
+  "file": "B3.mp3",
+  "text": "Then came frameworks built around a single idea. Instead of writing a page, you write components. A card is a component. A column is a component. And when the data changes, the component redraws itself without you telling it to."
+ },
+ {
+  "file": "B4.mp3",
+  "text": "You will hear four names for this and they do roughly the same job. React, Vue, Angular and Svelte. Ours uses React, because the front end we inherited uses React, and that is usually how you pick one."
+ },
+ {
+  "file": "B5.mp3",
+  "text": "Out of that came a pattern with an unhelpful name and a simple meaning. The single page application. The browser loads the application once, and after that the page never fully reloads. Pieces of it fetch what they need and update in place."
+ },
+ {
+  "file": "B6.mp3",
+  "text": "Which is why a good web app feels like a program rather than a document. Nothing flashes white between screens, because nothing is being reloaded."
+ },
+ {
+  "file": "B7.mp3",
+  "text": "And on top of all that sit the higher level frameworks, which bundle the decisions nobody wants to make twice. Routing between pages, fetching data, whether a page is built on the server or in the browser. The one we are using is called Next dot js."
+ },
+ {
+  "file": "B8.mp3",
+  "text": "Now the honest part, and I think it is the most useful thing in this lecture after the secrets warning."
+ },
+ {
+  "file": "B9.mp3",
+  "text": "I am not strong at this. Building front ends by hand, in these frameworks, is not something I am good at, and it is exactly the work that coding agents have made possible for me. I am not going to pretend otherwise while standing in front of an app I did not hand write."
+ },
+ {
+  "file": "B10.mp3",
+  "text": "But there is a catch, and you have already seen it without knowing what you were looking at. Ask a language model for a web page and you tend to get the same web page."
+ },
+ {
+  "file": "B11.mp3",
+  "text": "A dark background with a purple gradient sliding across it. Three feature cards in a row, each with a thin line icon from the same icon set. A headline in an enormous font, a slightly smaller subheading underneath, and a button with rounded corners that says get started."
+ },
+ {
+  "file": "B12.mp3",
+  "text": "You will start seeing it everywhere once I have said it, and you will not be able to stop. It is not that it is ugly. It is that it is anonymous. It looks like every other thing generated the same way, which means it looks like nobody decided anything."
+ },
+ {
+  "file": "B13.mp3",
+  "text": "And this is where you can actually add value, whether or not you can write code. Knowing what the person using this thing needs to see first, what they can safely be shown later, and what should not be on the screen at all. That is not a coding skill. It is a thinking skill, and the model does not have it."
+ },
+ {
+  "file": "B14.mp3",
+  "text": "So push back on the first draft. Not with make it better, which we established yesterday gets you nothing. With this is the same purple gradient every generated site has, our brief has a palette, use it. Name the fault and name the standard."
+ }
+]

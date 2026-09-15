@@ -1,0 +1,50 @@
+[
+ {
+  "file": "E1.mp3",
+  "text": "Part six is the back end routes, and it is the shortest explanation of the day."
+ },
+ {
+  "file": "E2.mp3",
+  "text": "A route is a question the back end knows how to answer. What is on my board. Move this card to that column. Rename this column."
+ },
+ {
+  "file": "E3.mp3",
+  "text": "Each one is an address plus a rule. Something asks at that address, the back end does the work, and answers."
+ },
+ {
+  "file": "E4.mp3",
+  "text": "And that is genuinely all a back end is. A list of questions it knows how to answer, and the code that answers them."
+ },
+ {
+  "file": "E5.mp3",
+  "text": "At the end of part six they all exist and nothing on screen has changed at all, because nobody is asking them yet."
+ },
+ {
+  "file": "E6.mp3",
+  "text": "Which is worth pausing on, because it is the first time today that finishing a part produced no visible difference whatsoever."
+ },
+ {
+  "file": "E7.mp3",
+  "text": "If you were judging progress by the screen you would think it had done nothing. The screen is not the measure. That is what the checklist in the plan is for."
+ },
+ {
+  "file": "F1.mp3",
+  "text": "Part seven is the one that joins the two halves, and it is the most significant change in the whole build."
+ },
+ {
+  "file": "F2.mp3",
+  "text": "Up to now the board has been drawing itself. The cards you have been looking at are written into the front end, the same five columns every time you reload, because nothing was ever saved."
+ },
+ {
+  "file": "F3.mp3",
+  "text": "After part seven, the board asks the back end what is on it, and tells the back end when anything moves."
+ },
+ {
+  "file": "F4.mp3",
+  "text": "Which is the difference between a picture of an application and an application."
+ },
+ {
+  "file": "F5.mp3",
+  "text": "And it is the biggest change so far by a wide margin, so I expect it to take a while and I expect it to be messy."
+ }
+]

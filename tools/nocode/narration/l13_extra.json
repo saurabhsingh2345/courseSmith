@@ -1,0 +1,30 @@
+[
+ {
+  "file": "X1.mp3",
+  "text": "Two things nobody tells you about the overnight loop, and the first one is the bill."
+ },
+ {
+  "file": "X2.mp3",
+  "text": "An agent running flat out for an hour is real money. Ten of those, back to back, while you sleep, is ten times that. And the loop does not stop when it has succeeded. It stops when something tells it to."
+ },
+ {
+  "file": "X3.mp3",
+  "text": "So before you start one, set two hard limits. A spend cap, and a maximum number of outer passes. Both of them, written into the loop itself, not held in your head. A loop with no ceiling is not ambitious, it is just expensive."
+ },
+ {
+  "file": "X4.mp3",
+  "text": "And the second thing is the stopping condition, which is where most first attempts fall apart. Run it until it is done is not a condition. Done has to be something the loop can actually test, on its own, without you."
+ },
+ {
+  "file": "X5.mp3",
+  "text": "Tests passing. A build succeeding. A checklist file with every box ticked. Something concrete enough that a script can look at it and answer yes or no at four in the morning."
+ },
+ {
+  "file": "X6.mp3",
+  "text": "And here is the trap, and you have met it three times already this week. If your stopping test is weak, the outer loop does not converge on correct. It converges on whatever your test happens to reward."
+ },
+ {
+  "file": "X7.mp3",
+  "text": "Ask it to reach eighty percent coverage overnight, and you will wake up to eighty percent coverage and a hundred tests that assert nothing. It did what you asked. It did not do what you wanted. Ten times over, which is the whole risk of this rung."
+ }
+]

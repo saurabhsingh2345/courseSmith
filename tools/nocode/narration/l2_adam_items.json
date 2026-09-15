@@ -1,0 +1,77 @@
+[
+ {
+  "file": "N01_done.mp3",
+  "text": "Okay, so it finished, and you can see it ended up creating a whole set of files. Now every time you run this, it does something a bit different. That's one of the bizarre things about this. For you, it might have only created one file, index dot html. For me, it has made rather more than that, and I can click on them to look at them.",
+  "target": 20.0
+ },
+ {
+  "file": "N02_files.mp3",
+  "text": "This is one file. This is another one, and this is presumably quite a long one. There it is. And then this is the stylesheet. So a set of files have been created, they're sitting here in the directory, and you can see what it thought about, and what it did, all the way over here.",
+  "target": 18.0
+ },
+ {
+  "file": "N03_run.mp3",
+  "text": "Okay, it's time to give it a try. So I can look in my file system at this directory called Instant, and we'll see that it has created all of those files. Now this one needs a tiny web server to run, and it told me exactly how to start it, so that is what I'm going to do.",
+  "target": 17.0
+ },
+ {
+  "file": "N04_title.mp3",
+  "text": "And up comes this. One arena. One machine. No second place. Arrow keys to move and turn, space to shoot. There's even a difficulty setting. Let's give it a whirl. Drop into the arena.",
+  "target": 14.0
+ },
+ {
+  "file": "N05_play1.mp3",
+  "text": "Whoa. Okay, so I am now controlling this thing. And I can turn, and I can move, and I can shoot at it. And, oh, that is clearly, and I was killed. I'm not much good at this. But wow. We just have a first person shooter game that was created out of nothing, doing no work whatsoever.",
+  "target": 26.0
+ },
+ {
+  "file": "N06_play2.mp3",
+  "text": "Now look, it's entirely possible that when you ran yours, it didn't work, and something went wrong. And I'll show you, but then you can just go back and tell your agent that something went wrong, and it will fix it for you. But before we do that, I do think that I should redeem myself by at least trying to win this. There we go. So that I can show that I have some dexterity.",
+  "target": 30.0
+ },
+ {
+  "file": "N07_iter1.mp3",
+  "text": "So success. It's pretty cool that it just worked like that. It created these files, it coded this game from just that simple prompt. But let's see if we can make it a little bit better. Maybe something didn't work. Maybe the shooting didn't work. Sometimes for me that didn't happen. Once the keys didn't work at all. I've tried this a bunch of times, and it's a bit different every time. But let's suppose we want the opponent to look a bit more awesome. So let's prompt here. I'll say, that's great. Please add some detail to the opponent so that it looks more like an enemy. We'll let it be creative.",
+  "target": 36.0
+ },
+ {
+  "file": "N08_edit1.mp3",
+  "text": "So that is the instruction that we will give, and we will see what comes of this. So it's now going to add some details, and you'll see it editing and changing, and I'll come back in a second when it's ready for us to test it out again.",
+  "target": 22.0
+ },
+ {
+  "file": "N09_test1.mp3",
+  "text": "Okay, well it tells us that it's done that. So now let's go back, let's bring this up again. Here we have it. Oh, there indeed is a slightly more interesting enemy. And I won again. I'm good at this game. It's an easy game.",
+  "target": 22.0
+ },
+ {
+  "file": "N10_iter2.mp3",
+  "text": "Okay, well let's go and do some more edits to the game. All right, so back we go. Now it already gave us a heads up display, the score and the health and the ammo, which is more than I asked for. So let's ask for something it hasn't done. We'll say, please add a minimap in the corner so I can see where the bot is, and also make the difficulty harder. Let's see what it makes of this. I'll let it do its planning, and its thinking. We will go through in more detail at some point about planning, and then executing on these kinds of ideas. And I will see you in a second when it's finished its work.",
+  "target": 34.0
+ },
+ {
+  "file": "N11_test2.mp3",
+  "text": "Okay, it claims again that it has done our bidding. Let's see. Let's bring this up. Here we have it. Okay, it certainly seems more difficult. All right, it achieved that goal. Very nice.",
+  "target": 22.0
+ },
+ {
+  "file": "N12_wrap.mp3",
+  "text": "So there you have it. There you see a very unbusiness-like example of how quick and easy it is to have an LLM, a language model, be our agent, writing code with us in Cursor. We had this conversation with the agent. It created these files that are now in Instant, and by iterating, by adding some more comments, we were able to sort of work hand in hand at building this out, without writing a single line of code. And it worked great. And if this didn't work out for you, if it didn't work, then please do come back and iterate. And if you get stuck and you're not able to get through some point, then just delete the whole Instant directory and start again. Create a new Instant and give it a second shot. Try different model options, and try different ways to prompt it. This is great experimenting. This is not an important project. This is just for you to get a first feel for it.",
+  "target": 54.0
+ },
+ {
+  "file": "N13_close.mp3",
+  "text": "But now let me show you one more thing, because look at what actually happened here. I asked for one thing. An enemy that looked more like an enemy. And it went and rebuilt the model, and then it took its own screenshots of the game running, and it decided the arena was too dark, and that the weapon was clipping into the lens, and it fixed all of that without me asking for any of it. That is the thing to notice. Over the next three weeks, we are going to be using techniques that lean into exactly that. Letting an agent run for much longer, checking its own work, and coming back to you when it is actually done.",
+  "target": 40.0
+ },
+ {
+  "file": "N14_close.mp3",
+  "text": "And this is the result. A first person shooter, running in a browser, with a bot that takes cover and flanks you, a minimap, a heads up display, sound, all of it. Built from one badly written sentence, and two follow-ups. I did not write a single line of it. And this is something that you'll be able to do too, in just a matter of days.",
+  "target": 34.0
+ },
+ {
+  "file": "N15_close.mp3",
+  "text": "So that concludes the instant gratification. I hope that you feel gratified. From this point on, it's all business.",
+  "target": 25.0
+ }
+]

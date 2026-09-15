@@ -1,0 +1,10 @@
+[
+ {
+  "file": "X1.mp3",
+  "text": "One clarification before we map this onto the program, because it trips people up. A stage is not a product. It is how you are running one. The editor we installed yesterday can be run at stage two, at stage three, or at stage four, and nothing about the download changes. The same is true at the top of the ladder. So when somebody tells you which tool they use, they have not actually told you how they work."
+ },
+ {
+  "file": "X2.mp3",
+  "text": "Which raises the obvious question. If you are not reading every line any more, what are you doing instead? Because the answer is not nothing. At stage five and above you stop reading lines and start reading behaviour. Does it run. Do the tests pass, and are there tests at all. Does the change touch only the files it should have touched. That is a different skill from reading code, it is learnable, and building it is most of what week two is for."
+ }
+]

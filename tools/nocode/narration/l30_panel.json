@@ -1,0 +1,38 @@
+[
+ {
+  "file": "D1.mp3",
+  "text": "Two things in the assistant panel before we start, both of which you have seen but neither of which I have explained properly."
+ },
+ {
+  "file": "D2.mp3",
+  "text": "The first is the mode. There is a version of this tool that only talks to you, and a version that reads your files, writes new ones and runs commands. Those are wildly different levels of trust and they are one dropdown apart."
+ },
+ {
+  "file": "D3.mp3",
+  "text": "The second is the model selector, and next to it, something worth knowing exists even if you never use it. Manage models. That is where you can point this at a model running on your own machine, for nothing, with no account and no network."
+ },
+ {
+  "file": "D4.mp3",
+  "text": "It needs a strong computer and the results are behind the big paid models, so I am not doing it here. But it is the answer to the question I get most often, which is whether any of this works without a subscription. It does. It is just slower and it is on you to set up."
+ },
+ {
+  "file": "D5.mp3",
+  "text": "And the last thing on the panel is the one I want you to actually watch during this project, which is the indicator that tells you how full its memory is."
+ },
+ {
+  "file": "D6.mp3",
+  "text": "We drew that as a diagram on day two. A fixed amount of room, filled by everything it has read and everything you have said. Today you are going to watch it fill up over a real build, and later today we are going to do something about it deliberately."
+ },
+ {
+  "file": "D7.mp3",
+  "text": "One more thing and then we start. This is the last lecture of the week where I am setting things up. Everything after this is building, in ten steps, testing after each one."
+ },
+ {
+  "file": "D8.mp3",
+  "text": "And I want to say plainly what we are actually about to demonstrate, because it is easy to lose in the detail. Not that an AI can write code. You have watched that all week. What we are demonstrating is that somebody who cannot write this code can still direct it, check it, and end up with something real."
+ },
+ {
+  "file": "D9.mp3",
+  "text": "That is the whole promise of the course, and it either survives the next four lectures or it does not."
+ }
+]
