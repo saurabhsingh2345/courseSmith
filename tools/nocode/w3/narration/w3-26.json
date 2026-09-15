@@ -1,0 +1,156 @@
+{
+  "lecture": "w3-26",
+  "cut_seconds": 348.0,
+  "segments": [
+    {
+      "anchor": 0.0,
+      "beat": "subagents",
+      "say": "Everything you are about to see is from this week. No stock footage, no reconstruction. Monday, we wrote a sub-agent - and read what it says about itself: it owns the simulator, it does not touch the API."
+    },
+    {
+      "anchor": 12.0,
+      "beat": "hooks",
+      "say": "Then a hook. Not a request that the agent behave, an actual rule that fires after every file edit and fails loudly. The difference between asking and enforcing is the whole of Monday afternoon."
+    },
+    {
+      "anchor": 23.0,
+      "beat": "plugins",
+      "say": "Then we packaged all of it - the commands, the sub-agent, the hook - into a plugin, and installed it from a marketplace we made ourselves."
+    },
+    {
+      "anchor": 34.0,
+      "beat": "sandbox",
+      "say": "Tuesday was about fear. What an agent is actually allowed to reach, and how to find that out before you need to know rather than afterwards."
+    },
+    {
+      "anchor": 45.0,
+      "beat": "container",
+      "say": "And then the answer to it: a container. Let it run without asking, inside something that cannot hurt you. Every reckless-looking thing later in the week is standing on that."
+    },
+    {
+      "anchor": 57.0,
+      "beat": "bigcode",
+      "say": "Still Tuesday: a codebase far too large to read, and the skill of working in it anyway - asking what is loaded into context on every single turn, and what that costs you."
+    },
+    {
+      "anchor": 68.0,
+      "beat": "driving",
+      "say": "And driving the thing from outside its window, so that it is a program you can call rather than a chat you have to sit in front of."
+    },
+    {
+      "anchor": 79.0,
+      "beat": "headless",
+      "say": "Then the same agent with no window at all. One flag, a prompt, an answer on standard output - and suddenly it is something a script can call."
+    },
+    {
+      "anchor": 90.0,
+      "beat": "pipe",
+      "say": "Two of them chained, the first one's answer becoming the second one's brief. Nothing clever in the plumbing. A pipe. That is the whole trick."
+    },
+    {
+      "anchor": 101.0,
+      "beat": "documents",
+      "say": "And a stack of documents rather than a codebase - twelve receipts read, totalled and filed by the same command. None of this needs a person watching it."
+    },
+    {
+      "anchor": 112.0,
+      "beat": "team",
+      "say": "Wednesday, seven agents on one task list. A roster you chose, a memory file they all read, and one instruction. Then you stop typing entirely, which is the strangest part of this job."
+    },
+    {
+      "anchor": 125.0,
+      "beat": "forensics",
+      "say": "Then the part nobody films: proving what happened. Timestamps, imports, who touched what - and asking directly what looks wrong, which is the only question that gets you an honest answer."
+    },
+    {
+      "anchor": 137.0,
+      "beat": "tests",
+      "say": "And a hundred and nineteen green tests that were not, on inspection, worth very much - until we made two of them assert on a value instead of a shape. Green is a claim, not a proof."
+    },
+    {
+      "anchor": 149.0,
+      "beat": "alive",
+      "say": "And then it ran. Sixty vans, a live map, a heat grid, a dispatcher - out of a brief, in one working day, and not one line of it typed by a person."
+    },
+    {
+      "anchor": 162.0,
+      "beat": "orchestrator",
+      "say": "Thursday, we stopped using somebody else's orchestrator and wrote our own. Eighty two lines. And it amended the project's own rules to record the exception it had just made."
+    },
+    {
+      "anchor": 174.0,
+      "beat": "verdict",
+      "say": "Then the verdict, and it did not flatter us. Eighty two lines could not edit a file or run a test - so we spent the rest of the day fixing exactly those two things."
+    },
+    {
+      "anchor": 185.0,
+      "beat": "secondbrief",
+      "say": "And then a second brief, on a product it had never seen. Signal Desk. Nobody in the chair for any of it."
+    },
+    {
+      "anchor": 196.0,
+      "beat": "grow",
+      "say": "Those eighty two lines became a planner, a pool of workers and a reviewer - and picked up one dependency doing it. Remember that dependency."
+    },
+    {
+      "anchor": 207.0,
+      "beat": "pool",
+      "say": "Seven jobs, a dependency order it worked out for itself, and a long stretch where the only thing to watch was a log. This is what unattended actually looks like."
+    },
+    {
+      "anchor": 220.0,
+      "beat": "built",
+      "say": "A whole repository, out of a document, with no human turn in the middle. Read the test count before you get excited about it."
+    },
+    {
+      "anchor": 231.0,
+      "beat": "signalalive",
+      "say": "And it runs. Second product of the week, built by a program we wrote that morning. That is two."
+    },
+    {
+      "anchor": 242.0,
+      "beat": "fixpass",
+      "say": "Then the fix pass read our own rules, found the dependency that broke them, and deleted it - breaking the program that built the repo. The agent was right. The rule was wrong."
+    },
+    {
+      "anchor": 254.0,
+      "beat": "ci",
+      "say": "Friday, somewhere that is not your laptop. A repository, a workflow file, and a green tick that nothing on this machine produced."
+    },
+    {
+      "anchor": 265.0,
+      "beat": "issue",
+      "say": "An issue is just a brief with an address. Hand it over, and the branch comes back with the work already on it."
+    },
+    {
+      "anchor": 276.0,
+      "beat": "pr",
+      "say": "A pull request you read rather than write. The diff is the deliverable, and reading it is still your job."
+    },
+    {
+      "anchor": 287.0,
+      "beat": "diagnose",
+      "say": "When it is wrong - and it was - you do not argue with it. You show it the evidence and let it find its own mistake."
+    },
+    {
+      "anchor": 298.0,
+      "beat": "exception",
+      "say": "Then we put the dependency back, and this time wrote the exception down where the next agent will read it. A rule without its exceptions is a trap you set for yourself."
+    },
+    {
+      "anchor": 310.0,
+      "beat": "compared",
+      "say": "Two whole products, honestly compared. One built by a team you watched, one by a program you wrote. Neither wins outright, and that is the useful answer."
+    },
+    {
+      "anchor": 322.0,
+      "beat": "image",
+      "say": "And last, the least glamorous thing all week. Four layers, no install step, nothing fetched - because the zero-dependency rule we set on Monday held all the way through."
+    },
+    {
+      "anchor": 333.0,
+      "beat": "shipped",
+      "say": "And there it is again, running out of an image with none of this machine left in it. You did not type any of that. But you chose the roster, set the rules, read the evidence, and found the weak tests. That is the job now."
+    }
+  ]
+}

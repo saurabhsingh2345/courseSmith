@@ -1,0 +1,287 @@
+{
+ "lecture": "w3-25",
+ "title": "Ship it: into a container, with none of your machine in it",
+ "note": "55% dead picture on the sharp detector - much of this lecture is the running console, which is genuinely moving and is left alone. Six cutaways, 80s of 212s (38%). No sync leads at all.",
+ "inserts": [
+  {
+   "at": 6.0,
+   "role": "open",
+   "secs": [
+    6.0,
+    10.0
+   ],
+   "why": "Names the lecture and the argument in its first sentence, over a static editor.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 5  \u00b7  lecture 34",
+     "lines": [
+      "Ship it: into a *container*"
+     ],
+     "size": 66,
+     "stamp": "with none of your machine in it",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "running on your own machine is not shipping",
+     "lines": [
+      "*None* of that travels"
+     ],
+     "size": 66,
+     "wrong": "it works on my machine, so it works",
+     "right": "your Node is the right version and your folder is where it expects to be",
+     "note": "and stop the local server first, or the thing that answers is the old process",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 30.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    8.0
+   ],
+   "why": "The Dockerfile read line by line. On the frame it is small text in an editor pane.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "a Dockerfile a teammate wrote without being asked",
+     "lines": [
+      "Five *lines* that matter"
+     ],
+     "size": 58,
+     "rows": [
+      {
+       "t": "a published Node image, and a working directory"
+      },
+      {
+       "t": "the package file, then the source"
+      },
+      {
+       "t": "drops to an unprivileged user, exposes the port, runs the server",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and there is no install step anywhere in it",
+     "lines": [
+      "Nothing to *fetch*"
+     ],
+     "size": 76,
+     "wrong": "every Dockerfile needs an install step",
+     "right": "the project has no dependencies, so the build fetches nothing beyond the base image",
+     "note": "and it works with the network unplugged once that image is cached",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 50.0,
+   "role": "beat",
+   "secs": [
+    6.0,
+    6.0
+   ],
+   "why": "The moment the project changes category, and the layers it changes through.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "watch the layers go past, because this is the moment",
+     "lines": [
+      "It stops being a folder.",
+      "It becomes an *artefact*"
+     ],
+     "size": 54,
+     "trans": "fade"
+    },
+    {
+     "k": "tokens",
+     "kicker": "four steps, most of them already cached",
+     "lines": [
+      "The *layers*"
+     ],
+     "size": 92,
+     "chips": [
+      "base image",
+      "working dir",
+      "package file",
+      "source",
+      "export"
+     ],
+     "hot": [
+      4
+     ],
+     "caption": "no dependency resolution, and no lock file to reconcile",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 62.0,
+   "role": "beat",
+   "why": "The payoff of the zero-dependency rule, over a build log that has finished scrolling. Ends four seconds into the next sentence so the docker run command arrives with its own words rather than ahead of them.",
+   "secs": [
+    7.0,
+    7.5
+   ],
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and notice what is not happening in that build",
+     "lines": [
+      "No *install* step"
+     ],
+     "size": 78,
+     "wrong": "a Dockerfile needs an install step",
+     "right": "no dependency resolution, no lock file, nothing fetched beyond the base image",
+     "note": "it builds with the network unplugged once that image is cached",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "that zero-dependency rule looked like an aesthetic choice on day one",
+     "lines": [
+      "This is where",
+      "it *pays*"
+     ],
+     "size": 96,
+     "stamp": "a folder on this laptop is now an artefact",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 89.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "why": "The port mapping, which the narration says matters more than it looks and which the frame shows as one flag.",
+   "slides": [
+    {
+     "k": "flow",
+     "kicker": "eight zero nine zero outside, eight zero eight zero in",
+     "lines": [
+      "The *mapping*"
+     ],
+     "size": 92,
+     "nodes": [
+      {
+       "t": "8090",
+       "sub": "wherever I decide to put it"
+      },
+      {
+       "t": "8080",
+       "sub": "where the app still believes it is",
+       "tone": "#f5c518"
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and that is the whole promise of an image",
+     "lines": [
+      "The inside stops caring",
+      "about the *outside*"
+     ],
+     "size": 58,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 106.0,
+   "role": "beat",
+   "secs": [
+    5.0,
+    5.0
+   ],
+   "why": "The only check worth making, and what its answer proves.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "curl it, and ask for the status code",
+     "lines": [
+      "*200*"
+     ],
+     "size": 150,
+     "stamp": "the container answers",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "and nothing of my machine is in that reply",
+     "lines": [
+      "Not *mine*"
+     ],
+     "size": 96,
+     "rows": [
+      {
+       "t": "not my Node"
+      },
+      {
+       "t": "not my folder"
+      },
+      {
+       "t": "not my environment",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 196.5,
+   "role": "close",
+   "secs": [
+    7.0,
+    6.0
+   ],
+   "why": "The close of the week, over a committed repository that has stopped changing.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "and that is the week's work in one repository",
+     "lines": [
+      "*Four* commits"
+     ],
+     "size": 92,
+     "rows": [
+      {
+       "t": "an application nobody typed"
+      },
+      {
+       "t": "a test suite that was made to mean something"
+      },
+      {
+       "t": "a tool we wrote ourselves to run other agents"
+      },
+      {
+       "t": "and an image that carries all of it somewhere else",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and it took one working day",
+     "lines": [
+      "One week ago this",
+      "folder was *empty*"
+     ],
+     "size": 58,
+     "trans": "rise"
+    }
+   ]
+  }
+ ]
+}

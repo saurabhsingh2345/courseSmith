@@ -1,0 +1,248 @@
+{
+  "lecture": "w3-03",
+  "title": "Slash commands: a routine in one word",
+  "note": "Six cutaways, 68s of 165s (41%). Shape is open/beat/close so the lecture reads as a lesson rather than as clips with cards between them. #02 is the sync fix: 'Unknown command' prints at 73.0s but the sentence that makes it the lesson is anchored at 88.0, so the card covers the early reveal and cuts back at 87.5 - the picture arrives with the words. Every card is written from the narration audible underneath it (brief.py), never from the lecture's topic.",
+  "inserts": [
+    {
+      "at": 14.5,
+      "role": "open",
+      "secs": [
+        5.0,
+        6.0
+      ],
+      "why": "Orients the lecture. The narration here reads the context budget, then says 'now here is the thing we are actually here for' - so the budget card comes first and the title card lands on that sentence.",
+      "slides": [
+        {
+          "k": "meter",
+          "kicker": "and the budget before we have spent anything",
+          "lines": [
+            "Ninety-five percent",
+            "still *free*"
+          ],
+          "size": 58,
+          "pct": 96,
+          "fill": "957.4k free",
+          "rest": "42.6k used",
+          "caption": "/context, on a project that is still two documents",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "day 1  \u00b7  lecture 3",
+          "lines": [
+            "Slash commands:",
+            "a routine in *one word*"
+          ],
+          "size": 62,
+          "stamp": "first, watch what it does with a vague question",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 58.5,
+      "role": "beat",
+      "secs": [
+        6.0,
+        6.0
+      ],
+      "why": "Pure concept - why the answer was worth more than the question. Ends 1.5s before anchor 72.0 so the next sentence lands on a fresh picture.",
+      "slides": [
+        {
+          "k": "flow",
+          "kicker": "read what came back once more",
+          "size": 52,
+          "lines": [
+            "It answered a *better* question"
+          ],
+          "nodes": [
+            {
+              "t": "what you asked",
+              "sub": "what is the state of this project"
+            },
+            {
+              "t": "what it answered",
+              "sub": "what exists, what does not",
+              "tone": "#3b82f6"
+            },
+            {
+              "t": "what you did not ask",
+              "sub": "build the simulator first, and why that piece",
+              "tone": "#f5c518"
+            }
+          ],
+          "caption": "the unasked half is the part worth paying for",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and you will want that answer again tomorrow",
+          "lines": [
+            "So turn the question",
+            "into a *word*"
+          ],
+          "size": 72,
+          "stamp": "/ct-brief",
+          "stampColor": "#f5c518",
+          "trans": "push"
+        }
+      ]
+    },
+    {
+      "at": 73.5,
+      "role": "beat",
+      "secs": [
+        7.0,
+        7.0
+      ],
+      "why": "THE SYNC FIX. 'Unknown command: /ct-brief' is already on the frame at 73.0s, fifteen seconds before the sentence that makes it the lesson. These two cards carry what the words are actually saying over those fifteen seconds, and the cut-back at 87.5 puts the yellow line on screen half a second before anchor 88.0 reaches for it.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "eighteen lines, sixteen seconds to write",
+          "lines": [
+            "What */ct-brief* prints"
+          ],
+          "size": 62,
+          "rows": [
+            {
+              "t": "what exists in the repo"
+            },
+            {
+              "t": "what is still missing against the brief"
+            },
+            {
+              "t": "and the single next step",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "then we run it",
+          "lines": [
+            "And it says",
+            "*unknown command*"
+          ],
+          "size": 78,
+          "stamp": "you just wrote it, and this session has never heard of it",
+          "stampColor": "#e53935",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 116.0,
+      "role": "beat",
+      "secs": [
+        4.5,
+        5.5
+      ],
+      "why": "The narration reads three lines out of the file. On the master they are 12px of terminal text inside a 4K frame.",
+      "slides": [
+        {
+          "k": "term",
+          "kicker": "eighteen lines, and three of them do the work",
+          "lines": [
+            "Inside *ct-brief.md*"
+          ],
+          "size": 50,
+          "title": ".claude/commands/ct-brief.md",
+          "term": [
+            {
+              "t": "allowed-tools: Bash(git status:*), Bash(git ls-files:*)",
+              "kind": "cmd"
+            },
+            {
+              "t": "!git status --short",
+              "kind": "cmd"
+            },
+            {
+              "t": "@plan.md",
+              "kind": "cmd"
+            }
+          ],
+          "trans": "fade",
+          "prompt": ""
+        },
+        {
+          "k": "rows",
+          "kicker": "and what each of those lines buys you",
+          "lines": [
+            "*Live*, not baked in"
+          ],
+          "size": 58,
+          "rows": [
+            {
+              "t": "! runs the command when you invoke it, so the listing is never stale"
+            },
+            {
+              "t": "@ pulls the brief in, so there is something to compare against"
+            },
+            {
+              "t": "allowed-tools scopes it read-only, so it never stops to ask you",
+              "hot": true
+            }
+          ],
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 133.0,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "The second command's two self-imposed rules are spoken, not shown, and this is the sentence students should leave with. Ends 1.1s before anchor 143.1.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "two rules nobody asked it for",
+          "lines": [
+            "A verdict you cannot",
+            "*check* is worthless"
+          ],
+          "size": 62,
+          "stamp": "open the files, and cite a path and a line before calling anything built",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 147.0,
+      "role": "close",
+      "secs": [
+        6.5,
+        6.5
+      ],
+      "why": "The session has exited and the terminal is empty black for the last eighteen seconds. The closing argument of the lecture is spoken over nothing at all.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "where these two files live is the whole point",
+          "lines": [
+            "In the *project*, not on your laptop"
+          ],
+          "size": 50,
+          "wrong": "keep your shortcuts in your own settings",
+          "right": "commit them, and everyone who clones this gets the same vocabulary",
+          "note": "a personal shortcut helps one person; a committed one changes how the project is worked on",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "Two *words* stand in",
+            "for two paragraphs"
+          ],
+          "size": 60,
+          "stamp": "/ct-brief      /ct-check 3",
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

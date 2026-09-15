@@ -1,0 +1,261 @@
+{
+  "lecture": "w3-02",
+  "title": "The brief: setting up Control Tower",
+  "note": "60% dead picture. Nine cutaways, 96s of 222s (43%). The one sync lead (anchor 80.0) is 4s, under the 8s threshold.",
+  "inserts": [
+    {
+      "at": 23.5,
+      "role": "open",
+      "secs": [
+        6.0,
+        10.5
+      ],
+      "why": "Names the lecture and draws the product the brief describes. The frame is a markdown file too small to read at 4K.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 1  \u00b7  lecture 2",
+          "lines": [
+            "The *brief*:",
+            "setting up Control Tower"
+          ],
+          "size": 60,
+          "stamp": "the only document that really matters",
+          "trans": "fade"
+        },
+        {
+          "k": "rows",
+          "kicker": "a live operations console for a delivery fleet",
+          "lines": [
+            "One markdown *file*"
+          ],
+          "size": 66,
+          "rows": [
+            {
+              "t": "Sixty vans on a map"
+            },
+            {
+              "t": "A list of what is running late"
+            },
+            {
+              "t": "A heat map of which regions are in trouble"
+            },
+            {
+              "t": "And a chat box you can simply tell to reroute a van",
+              "hot": true
+            }
+          ],
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 41.0,
+      "role": "beat",
+      "secs": [
+        7.0
+      ],
+      "why": "Who wrote the brief, which is the point of the lecture and is not visible anywhere.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "what it is, then why it is built that way",
+          "lines": [
+            "*I* wrote this,",
+            "not the agent"
+          ],
+          "size": 66,
+          "stamp": "and what it falls back on when the brief runs out",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 65.0,
+      "role": "beat",
+      "secs": [
+        9.0
+      ],
+      "why": "The trust prompt, and the instruction attached to it. Both spoken over a dialog that is not going to change.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "it asks whether you trust this folder",
+          "lines": [
+            "The last *cheap* moment to say no"
+          ],
+          "size": 48,
+          "wrong": "click through it, it is a formality",
+          "right": "read it every time, and say yes deliberately rather than reflexively",
+          "note": "you are the person who chose this folder, and who knows whether this is reasonable to hand over",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 81.0,
+      "role": "beat",
+      "secs": [
+        9.0
+      ],
+      "why": "What /context is showing, listed in four parts. On the frame it is a dense block of small text.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "slash context, before you have said a word to it",
+          "lines": [
+            "Exactly what it *knows*"
+          ],
+          "size": 62,
+          "rows": [
+            {
+              "t": "a system prompt - how it knows how to behave"
+            },
+            {
+              "t": "tool definitions - how it knows what it can do"
+            },
+            {
+              "t": "any agents and memory files this project has"
+            },
+            {
+              "t": "and the conversation so far, which is eight tokens",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 95.0,
+      "role": "beat",
+      "secs": [
+        9.0,
+        11.0
+      ],
+      "why": "The number the whole week spends, and what running low actually looks like.",
+      "slides": [
+        {
+          "k": "meter",
+          "kicker": "and then the number that matters",
+          "lines": [
+            "You start *three* percent full"
+          ],
+          "size": 58,
+          "pct": 97,
+          "fill": "97% free",
+          "rest": "3% used",
+          "caption": "20k of tool definitions, 5k of system prompt, 8 tokens of conversation",
+          "trans": "fade"
+        },
+        {
+          "k": "myth",
+          "kicker": "and this is what running low looks like",
+          "lines": [
+            "Not an *error*"
+          ],
+          "size": 86,
+          "wrong": "when the window fills up, something tells you",
+          "right": "the answers just get quietly worse",
+          "note": "the people who get good results are the ones who know what is in this panel",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 117.5,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "The habit, dictated over an unchanged panel.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "look at this panel at the start of a session, and again",
+          "lines": [
+            "When an answer",
+            "*disappoints* you"
+          ],
+          "size": 62,
+          "stamp": "nine times out of ten the answer got worse because the window got full",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 188.0,
+      "role": "beat",
+      "secs": [
+        6.0,
+        6.0
+      ],
+      "why": "The sentence the narration calls the whole job of the week, in miniature.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "i did not tell it to count",
+          "lines": [
+            "You are not going to",
+            "*out-type* it"
+          ],
+          "size": 62,
+          "trans": "fade"
+        },
+        {
+          "k": "flow",
+          "kicker": "what you can do instead",
+          "lines": [
+            "Two *things*"
+          ],
+          "size": 86,
+          "nodes": [
+            {
+              "t": "be clear about the standard",
+              "sub": "in one sentence"
+            },
+            {
+              "t": "then check",
+              "sub": "against it",
+              "tone": "#f5c518"
+            }
+          ],
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 205.5,
+      "role": "close",
+      "secs": [
+        7.0,
+        7.5
+      ],
+      "why": "The close, over a memory file that stopped being written twenty seconds ago.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "and it flagged something it could have glossed over",
+          "lines": [
+            "None of those folders *exist* yet"
+          ],
+          "size": 48,
+          "wrong": "a memory file describing the intended layout is fine",
+          "right": "one that quietly describes a repository that is not there is worse than none",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "Be clear about the standard.",
+            "Then *check*"
+          ],
+          "size": 56,
+          "stamp": "that is the whole job this week, in miniature",
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

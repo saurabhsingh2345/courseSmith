@@ -1,0 +1,184 @@
+{
+  "lecture": "w3-15",
+  "title": "Sub-agents vs agent teams: what actually changes",
+  "note": "390s, only 21% dead across six spans. Six cutaways, 75s (19%). No sync leads.",
+  "inserts": [
+    {
+      "at": 0.5,
+      "role": "open",
+      "secs": [
+        4.5,
+        5.0
+      ],
+      "why": "Names the lecture and the honest question it opens with.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 3  \u00b7  lecture 14",
+          "lines": [
+            "Sub-agents vs agent teams:",
+            "what actually *changes*"
+          ],
+          "size": 46,
+          "stamp": "we built a specialist on day one, and it worked",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "so start today with the honest question",
+          "lines": [
+            "What can it *not* do?"
+          ],
+          "size": 96,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 10.5,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "The question put to it, and why it is asked about this project rather than in general.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "asked directly, about our own project",
+          "lines": [
+            "Where does the idea *break*?"
+          ],
+          "size": 62,
+          "stamp": "if I wanted six of these building different parts of Control Tower at once",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 45.0,
+      "role": "beat",
+      "secs": [
+        9.0
+      ],
+      "why": "Why a sub-agent is cheap, which is the same reason it cannot be a team.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "a sub-agent is cheap precisely because it is *disposable*",
+          "lines": [
+            "It goes away, and all you",
+            "keep is the *answer*"
+          ],
+          "size": 48,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 99.5,
+      "role": "beat",
+      "secs": [
+        8.0,
+        8.5
+      ],
+      "why": "The three properties that are the whole distinction, and the test to apply.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "hold these three in your head, because everything follows from them",
+          "lines": [
+            "*Three* properties"
+          ],
+          "size": 104,
+          "rows": [
+            {
+              "t": "it serves one caller"
+            },
+            {
+              "t": "it has one channel"
+            },
+            {
+              "t": "it dies with its task",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and verification is a shared resource",
+          "lines": [
+            "*Cleverness* does not fix it"
+          ],
+          "size": 72,
+          "stamp": "the second one fails to bind",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 179.5,
+      "role": "beat",
+      "secs": [
+        7.0,
+        7.5
+      ],
+      "why": "The honest test for whether work divides, and what you get if it does not.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "if two agents keep needing the same file",
+          "lines": [
+            "A *queue* with extra steps"
+          ],
+          "size": 66,
+          "wrong": "you have built a team",
+          "right": "you have built a queue with extra steps",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "so here is the honest test",
+          "lines": [
+            "Six people who only spoke",
+            "to each other *twice a day*"
+          ],
+          "size": 48,
+          "stamp": "if yes, a team will work",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 343.5,
+      "role": "close",
+      "secs": [
+        8.0,
+        9.0
+      ],
+      "why": "The close: the caveat about the flag, and the pattern the whole week keeps pointing at.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and it may be more settled by the time you watch this",
+          "lines": [
+            "If the flag has gone,",
+            "that is *good news*"
+          ],
+          "size": 52,
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "It did not answer from *memory*"
+          ],
+          "size": 62,
+          "stamp": "and it did not answer confidently and wrongly - it went and read the install",
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

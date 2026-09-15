@@ -1,0 +1,31 @@
+[
+  {
+    "at": 15.5,
+    "role": "beat",
+    "secs": [9.0, 7.0],
+    "why": "The body of the pull request is on the frame and unreadable at 4K, and the narration is reading it out. This is that body at a size you can read, then the reason the third heading is the one that matters.",
+    "slides": [
+      {"k": "editor", "kicker": "the body it wrote, at a size you can read",
+       "file": "pull request  ·  body", "size": 44,
+       "rows": [
+         {"t": "## What changed", "kind": "h1"},
+         {"t": "The parser trimmed the trailing field, so a row", "kind": "text"},
+         {"t": "ending in a comma lost its last value.", "kind": "text"},
+         {"t": "", "kind": "text"},
+         {"t": "## Why", "kind": "h1"},
+         {"t": "The split ran before the guard, not after it.", "kind": "text"},
+         {"t": "", "kind": "text"},
+         {"t": "## What I deliberately did not do", "kind": "h1"},
+         {"t": "Did not rename the function, did not tidy the", "kind": "important"},
+         {"t": "imports, did not touch the second parser.", "kind": "important"}
+       ],
+       "focus": [7, 9], "trans": "fade"},
+      {"k": "myth", "kicker": "and the temptation, right here at the top",
+       "lines": ["Do not skip to the *diff*"], "size": 62,
+       "wrong": "read the diff, the body is boilerplate",
+       "right": "the body says what the diff cannot: why, and what was left alone",
+       "note": "asking for the third heading is what stops a four-line fix arriving as forty",
+       "trans": "rise"}
+    ]
+  }
+]

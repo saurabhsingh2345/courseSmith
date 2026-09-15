@@ -1,0 +1,552 @@
+{
+ "lecture": "w3-30",
+ "title": "What a program built",
+ "note": "76% dead picture, including one 192s hold while the narration teaches the whole of phase three over a static review document. Ten cutaways, 142s of 359s (39%). The one sync lead (anchor 45.6, 6s) is under the 8s threshold.",
+ "inserts": [
+  {
+   "at": 3.5,
+   "role": "open",
+   "secs": [
+    6.5,
+    7.5
+   ],
+   "why": "Names the lecture and the first instruction in it. The frame is a static terminal for the whole opening.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 4  \u00b7  lecture 25",
+     "lines": [
+      "What a program *built*"
+     ],
+     "size": 86,
+     "stamp": "the build reported success - which is not the same as it having worked",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "the first thing to do with a finished unattended run",
+     "lines": [
+      "Read the *repository*"
+     ],
+     "size": 66,
+     "wrong": "read what the agent said about it",
+     "right": "read git status, the file list and the test output",
+     "note": "none of which was written by the thing you are checking on",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 22.5,
+   "role": "beat",
+   "secs": [
+    5.5,
+    6.5
+   ],
+   "why": "The size of the thing, and why the size is the property you want. Both are spoken over an unchanged file list.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "so: how much of it there is",
+     "lines": [
+      "*26* files. 2,300 lines"
+     ],
+     "size": 80,
+     "stamp": "across the six areas the plan named, and nothing outside them",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "which is the property you actually want",
+     "lines": [
+      "Small enough to read",
+      "in an *afternoon*"
+     ],
+     "size": 62,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 47.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    8.0
+   ],
+   "why": "The suite goes green and the narration immediately argues against trusting it, calling back to Wednesday.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "twenty-seven tests, twenty-seven passing",
+     "lines": [
+      "Green is a *claim*"
+     ],
+     "size": 76,
+     "wrong": "a green suite means it works",
+     "right": "green is a claim, not a proof",
+     "note": "on Wednesday, a hundred and nineteen green tests turned out to be worth four",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and notice your own reaction to it",
+     "lines": [
+      "*Relief* is the wrong response"
+     ],
+     "size": 62,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 64.0,
+   "role": "beat",
+   "secs": [
+    5.5,
+    6.0
+   ],
+   "why": "The two ten-second checks. On the frame this is a test summary too small to read.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "the ten-second check: three test files",
+     "lines": [
+      "What is *not* tested"
+     ],
+     "size": 52,
+     "cols": [
+      {
+       "head": "has tests",
+       "items": [
+        "the simulator",
+        "the rules engine",
+        "the feed"
+       ]
+      },
+      {
+       "head": "has none",
+       "items": [
+        "both client halves",
+        "the shell",
+        "the seam between them"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and a second check that costs nothing",
+     "lines": [
+      "Run the suite *twice*"
+     ],
+     "size": 76,
+     "stamp": "one that passes twice with different timings is testing behaviour",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 79.0,
+   "role": "beat",
+   "secs": [
+    8.0,
+    8.0
+   ],
+   "why": "Phase three is introduced. What it produces is a three-way split that is never drawn.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "so here is phase three",
+     "lines": [
+      "The one people *leave out*"
+     ],
+     "size": 78,
+     "stamp": "an agent with read-only tools that had no part in building any of this",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "it reads what is on disk against the plan",
+     "lines": [
+      "Three columns"
+     ],
+     "size": 86,
+     "rows": [
+      {
+       "t": "present"
+      },
+      {
+       "t": "missing"
+      },
+      {
+       "t": "wrong",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 100.0,
+   "role": "beat",
+   "secs": [
+    8.0,
+    8.0
+   ],
+   "why": "Why read-only is the load-bearing choice, and it is explicitly not about safety.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "read-only matters, and not for safety",
+     "lines": [
+      "Not about *safety*"
+     ],
+     "size": 72,
+     "wrong": "read-only is there so it cannot break anything",
+     "right": "an agent that can fix things will fix them, then report that everything is fine",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "which is true, and useless",
+     "lines": [
+      "You never find out what",
+      "it had to *repair*"
+     ],
+     "size": 58,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 116.0,
+   "role": "beat",
+   "why": "Fifty-two seconds of a review document that has not moved, while the narration explains what the reviewer knows and what it has at stake. Stops at 160.5 so the last seven seconds before the next card stay on the document itself.",
+   "secs": [
+    7.5,
+    7.5,
+    7.0,
+    7.5,
+    7.5,
+    7.5
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and it has no idea what any of this is for",
+     "lines": [
+      "It did not sit through",
+      "the *planning* lecture"
+     ],
+     "size": 56,
+     "stamp": "no memory of what we said we wanted, and it cannot be reminded",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "all it has is what is on disk",
+     "lines": [
+      "*Four* things"
+     ],
+     "size": 66,
+     "rows": [
+      {
+       "t": "the plan file"
+      },
+      {
+       "t": "the brief"
+      },
+      {
+       "t": "the memory file"
+      },
+      {
+       "t": "the repository",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "which is precisely the position",
+     "lines": [
+      "The *next person*",
+      "to open this project",
+      "will be in"
+     ],
+     "size": 54,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "and this agent has no stake in the answer",
+     "lines": [
+      "*Three* properties"
+     ],
+     "size": 60,
+     "rows": [
+      {
+       "t": "it did not write any of these files"
+      },
+      {
+       "t": "it will not have to fix anything it finds"
+      },
+      {
+       "t": "and it cannot lose face",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "every one of those is something you would want in a human reviewer",
+     "lines": [
+      "And cannot",
+      "reliably *get*"
+     ],
+     "size": 86,
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and now the question this review is actually asking",
+     "lines": [
+      "Not *does it work*.",
+      "Is it *there*"
+     ],
+     "size": 70,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 168.0,
+   "role": "beat",
+   "secs": [
+    8.0,
+    8.0
+   ],
+   "why": "The distinction between what tests answer and what this answers - the most transferable idea in the lecture, and entirely verbal.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "and this is a different question from the one the tests answer",
+     "lines": [
+      "Two different *failure modes*"
+     ],
+     "size": 48,
+     "cols": [
+      {
+       "head": "the tests ask",
+       "items": [
+        "whether the code does what the tests say"
+       ]
+      },
+      {
+       "head": "this asks",
+       "items": [
+        "whether the repository contains what the plan asked for"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "because nobody writes a test for a thing that is not there",
+     "lines": [
+      "A whole area can be missing",
+      "with a *green* suite"
+     ],
+     "size": 52,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 192.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "why": "When the gap normally gets noticed, and the cheap version of this check that does not work.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "on a normal project, three weeks later, when a feature is missing",
+     "lines": [
+      "Three *weeks*, or three minutes"
+     ],
+     "size": 60,
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "there is a cheaper version people do instead",
+     "lines": [
+      "Do *not* ask the builder"
+     ],
+     "size": 66,
+     "wrong": "ask the agent that built it whether it is finished",
+     "right": "it will say yes, and it will be sincere",
+     "note": "it checks against the same understanding it built from, so both halves are wrong together",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 206.0,
+   "role": "beat",
+   "why": "The reading order, and the first line of the document - which is on the frame at 4K and unreadable, and is the sentence that makes the rest of it worth anything.",
+   "secs": [
+    7.0,
+    7.0,
+    7.0,
+    7.0
+   ],
+   "slides": [
+    {
+     "k": "flow",
+     "kicker": "when somebody hands you work and a summary of the work",
+     "lines": [
+      "Read them in that *order*"
+     ],
+     "size": 60,
+     "nodes": [
+      {
+       "t": "the work",
+       "sub": "first, and on its own"
+      },
+      {
+       "t": "then the summary",
+       "sub": "against what you already saw",
+       "tone": "#f5c518"
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and the other order is the trap",
+     "lines": [
+      "*Confirming*, not checking"
+     ],
+     "size": 62,
+     "wrong": "read the summary, then check the work against it",
+     "right": "you will find yourself confirming it rather than checking it",
+     "note": "and you will not notice that is what you are doing",
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and read the first line of what it produced",
+     "lines": [
+      "The sentence that makes",
+      "the rest of it worth",
+      "*anything*"
+     ],
+     "size": 50,
+     "trans": "fade"
+    },
+    {
+     "k": "quote",
+     "kicker": "read the first line of what it produced",
+     "text": "No code was executed, and every claim below is grounded in a file opened during this review.",
+     "who": "the review, unprompted",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 234.0,
+   "role": "beat",
+   "why": "The limit inside the sentence the quote card just showed, and the three things it names. The quote itself moved back to 227, where it is actually read out.",
+   "secs": [
+    8.0,
+    8.0
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "offered without being asked",
+     "lines": [
+      "And it is also a *limit*"
+     ],
+     "size": 76,
+     "stamp": "it checked what is written, not what happens",
+     "trans": "rise"
+    },
+    {
+     "k": "rows",
+     "kicker": "grounded in a file opened during this review",
+     "lines": [
+      "Three things it did",
+      "*not* check"
+     ],
+     "size": 56,
+     "rows": [
+      {
+       "t": "that the chart renders"
+      },
+      {
+       "t": "that a rule fires"
+      },
+      {
+       "t": "that the page loads at all",
+       "hot": true
+      }
+     ],
+     "stamp": "no amount of reading gets you those",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 258.0,
+   "role": "close",
+   "secs": [
+    5.0,
+    6.0
+   ],
+   "why": "The close, over a review document that stopped scrolling.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and those are the next lecture",
+     "lines": [
+      "No amount of *reading*",
+      "gets you them"
+     ],
+     "size": 60,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "what you can do now",
+     "lines": [
+      "Read the work, *then* the summary"
+     ],
+     "size": 52,
+     "rows": [
+      {
+       "t": "The repository before anything the builder said about it"
+      },
+      {
+       "t": "A read-only reviewer with no stake in the answer"
+      },
+      {
+       "t": "And ask whether the plan is in there, not just whether the tests pass",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  }
+ ]
+}

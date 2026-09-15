@@ -1,0 +1,179 @@
+{
+  "lecture": "w3-19",
+  "title": "The integration pass: are these tests worth anything?",
+  "note": "362s, 34% dead across five spans, one of them a 52.5s hold on a test summary. Five cutaways, 111s (31%). No sync leads.",
+  "inserts": [
+    {
+      "at": 3.5,
+      "role": "open",
+      "secs": [
+        12.0,
+        12.0,
+        12.0,
+        13.5
+      ],
+      "why": "Fifty seconds of a static test summary while the narration teaches suspicion. The test names it reads out are the claim being made, and they are unreadable at 4K.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 3  \u00b7  lecture 18",
+          "lines": [
+            "The integration pass:",
+            "are these tests *worth* anything?"
+          ],
+          "size": 44,
+          "stamp": "119 tests. 118 pass. one skipped, none failed. a third of a second.",
+          "trans": "fade"
+        },
+        {
+          "k": "myth",
+          "kicker": "if you have been sold agent teams by somebody's launch video",
+          "lines": [
+            "This is where the *video ends*"
+          ],
+          "size": 56,
+          "wrong": "green ticks, a round number, roll credits",
+          "right": "be more suspicious than that",
+          "trans": "rise"
+        },
+        {
+          "k": "rows",
+          "kicker": "read the names, because the names are the only claim being made",
+          "lines": [
+            "*Real* behaviours"
+          ],
+          "size": 104,
+          "rows": [
+            {
+              "t": "the simulator keeps its own clock"
+            },
+            {
+              "t": "late vehicles sort to the top of their group"
+            },
+            {
+              "t": "colour runs green to red as risk climbs",
+              "hot": true
+            }
+          ],
+          "trans": "rise"
+        },
+        {
+          "k": "head",
+          "kicker": "and notice who wrote them",
+          "lines": [
+            "There was no *testing agent*",
+            "on this team"
+          ],
+          "size": 52,
+          "stamp": "the person who wrote the tick logic knows what would quietly break it",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 57.0,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "The failure mode of that decision, in four words.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and that decision is about to be examined",
+          "lines": [
+            "Everybody grades their",
+            "own *homework*"
+          ],
+          "size": 56,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 143.5,
+      "role": "beat",
+      "secs": [
+        10.0,
+        10.5
+      ],
+      "why": "Why a shape assertion survives forever, and what scale does to the habit.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "you assert the shape of what comes back, it passes, you move on",
+          "lines": [
+            "And it stays there forever",
+            "*looking* like coverage"
+          ],
+          "size": 48,
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and every codebase you have worked in has tests like this",
+          "lines": [
+            "Now you have the habit",
+            "*at scale*"
+          ],
+          "size": 56,
+          "stamp": "119 of them, written in eight minutes",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 239.0,
+      "role": "beat",
+      "secs": [
+        6.5
+      ],
+      "why": "The clause that keeps the answer honest.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and if a test is wrong rather than the code",
+          "lines": [
+            "*Tell me which* you did"
+          ],
+          "size": 76,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 319.0,
+      "role": "close",
+      "secs": [
+        13.0,
+        13.5
+      ],
+      "why": "The close: why the two steps stay separate, and the permission an agent needs to say nothing is wrong.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "do not fix anything yet costs one extra turn",
+          "lines": [
+            "And buys the entire *reasoning*"
+          ],
+          "size": 54,
+          "stamp": "in your own hands, before a patch hides it",
+          "trans": "fade"
+        },
+        {
+          "k": "myth",
+          "kicker": "and notice the honest answer here was: nothing was broken",
+          "lines": [
+            "An agent needs *permission*",
+            "to say that"
+          ],
+          "size": 48,
+          "wrong": "ask it to fix the failures",
+          "right": "it will find failures, because you told it there were some",
+          "note": "and it will rewrite working code to satisfy a badly written test",
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

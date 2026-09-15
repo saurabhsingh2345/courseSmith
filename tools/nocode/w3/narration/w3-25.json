@@ -1,0 +1,31 @@
+{
+  "lecture": "w3-25",
+  "cut_seconds": 215.0,
+  "segments": [
+    {
+      "anchor": 0,
+      "beat": "dockerfile",
+      "say": "Running on your own machine is not shipping. It works here because your Node is the right version and your folder is where it expects to be, and none of that travels. So: make it portable. Stop the server running on this laptop first — otherwise the thing that answers might be the old process, not the container, and you prove nothing. Most of the work is already done — read this Dockerfile, which a teammate wrote during the build without being asked for it specifically."
+    },
+    {
+      "anchor": 25,
+      "beat": "build",
+      "say": "A published Node image, a working directory, the package file, then the source. It drops to an unprivileged user, exposes the port, and runs the server. There is no install step anywhere in it, and the comment explains why: the project has no dependencies, so the build fetches nothing beyond the base image and works with the network unplugged once that image is cached. So build it, and watch the layers go past, because this is the moment the project stops being a folder on this laptop and becomes an artefact. Base image, working directory, package file, source, export. Four steps, most of them already cached. And notice what is not happening: no dependency resolution, no lock file being reconciled, no install that works today and breaks in six months when some package three levels down changes underneath it. That zero-dependency rule looked like an aesthetic choice on day one. This is where it pays."
+    },
+    {
+      "anchor": 72,
+      "beat": "up",
+      "say": "Now run it from the image, and deliberately on a different port — eight zero nine zero on the outside, mapped to eight zero eight zero inside the container. That mapping matters more than it looks. Inside the container the app still believes it is on its usual port, exactly as it was written. Outside, it is wherever I decide to put it. That is the whole promise of an image: the inside stops caring about the outside. And then the only check worth making. Curl it, and ask for the status code. Two hundred. The container answers. Nothing of my machine is in that reply — not my Node, not my folder, not my environment. And that is the test that actually matters. Not does it run, which you already knew, but does it run somewhere that knows nothing about you."
+    },
+    {
+      "anchor": 117,
+      "beat": "alive",
+      "say": "And here it is again, served out of the image this time. Same fleet, same map, same heat, same ticker. The clock reads a couple of minutes past nine and the on-time panel says awaiting first delivery, because this is a brand new process with a brand new simulated day in it — it has not been running long enough to have delivered anything yet. The exception feed is already six deep though: a breakdown near Brighton at eight fifty six, weather holds near Glasgow and Stoke, a traffic delay near Oxford, a van held in customs. Computed, not typed. That is not a bug, it is the honest behaviour of a system that computes rather than pretends, and it is the kind of detail that tells you the number on that panel is real. This same image now runs anywhere a container runs. That is the deploy story, and I want to be straight with you about the part I am not filming. Pushing this image to a registry and pointing a host at it is a credit card and a hostname. It is worth doing, and it is worth nothing as a lecture, because the interesting problem was never the hosting. It was getting an application worth hosting out of a brief and six agents, and that part is behind us."
+    },
+    {
+      "anchor": 180,
+      "beat": "commit",
+      "say": "Stop the container, and commit. And that is the week's work in one repository: an application nobody typed, a test suite that was made to mean something, a tool we wrote ourselves to run other agents, and an image that carries all of it somewhere else. Four commits, and every one of them is something you could hand to another person. That is the difference between a demo and a project, and it took one working day. One week ago this folder was empty. That is the whole of it — and all that is left is to look back at what actually happened."
+    }
+  ]
+}

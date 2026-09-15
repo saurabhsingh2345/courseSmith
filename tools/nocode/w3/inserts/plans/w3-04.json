@@ -1,0 +1,434 @@
+{
+ "lecture": "w3-04",
+ "title": "Sub-agents: a team of specialists inside one agent",
+ "note": "432s, 47% dead across fifteen spans. Thirteen cutaways, 150s (35%). Three enforced sync fixes at anchors 215.0, 246.0 and 361.0. #08 is 3.5s because its dead span opens at 240.5.",
+ "inserts": [
+  {
+   "at": 1.0,
+   "role": "open",
+   "secs": [
+    8.5
+   ],
+   "why": "Names the lecture and the constraint it exists to solve.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 1  \u00b7  lecture 4",
+     "lines": [
+      "Sub-agents: a team of",
+      "*specialists* inside one agent"
+     ],
+     "size": 48,
+     "stamp": "one agent has one context window, and you have already watched it fill",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 10.5,
+   "role": "beat",
+   "secs": [
+    8.0
+   ],
+   "why": "The window before a word is typed, drawn instead of read off a panel.",
+   "slides": [
+    {
+     "k": "meter",
+     "kicker": "before I have typed a thing",
+     "lines": [
+      "*96* percent free"
+     ],
+     "size": 86,
+     "pct": 96,
+     "fill": "96% free",
+     "rest": "2.4k used",
+     "caption": "two memory files, and by the end of a real afternoon that number is the constraint",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 22.5,
+   "role": "beat",
+   "secs": [
+    7.0,
+    8.0
+   ],
+   "why": "The arithmetic, and the move that changes it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and three agent definitions cost",
+     "lines": [
+      "*314* tokens between them"
+     ],
+     "size": 72,
+     "stamp": "against twenty-nine lines of memory file",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "so here is the move that changes the arithmetic",
+     "lines": [
+      "Hire a *narrow* one"
+     ],
+     "size": 92,
+     "wrong": "one agent that has to hold everything",
+     "right": "a specialist with a job so narrow it can do the work and hand back a summary",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 72.5,
+   "role": "beat",
+   "secs": [
+    6.0
+   ],
+   "why": "What is deliberately missing from the definition.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "no sub-agents, because this one is a leaf. no web search, because this project is offline",
+     "lines": [
+      "Every *absence* is a decision"
+     ],
+     "size": 56,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 93.5,
+   "role": "beat",
+   "secs": [
+    7.0,
+    6.0
+   ],
+   "why": "The test guidance, which is four properties rather than a number.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "and look at the test guidance it wrote for itself",
+     "lines": [
+      "Four *properties*"
+     ],
+     "size": 104,
+     "rows": [
+      {
+       "t": "same seed replays"
+      },
+      {
+       "t": "different seeds diverge"
+      },
+      {
+       "t": "ticks advance position"
+      },
+      {
+       "t": "arrival estimates fall",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "which is a different kind of instruction",
+     "lines": [
+      "*Properties*, not a coverage number"
+     ],
+     "size": 52,
+     "stamp": "and it rules out mocking the simulator out of its own tests",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 129.0,
+   "role": "beat",
+   "secs": [
+    8.0,
+    8.5
+   ],
+   "why": "Why the specialist is not found, and what it does instead of stopping.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "we created this file a minute ago",
+     "lines": [
+      "The name does not exist yet,",
+      "however *correct* the file is"
+     ],
+     "size": 48,
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "but notice what it does instead of stopping",
+     "lines": [
+      "Same brief. *Different* plumbing"
+     ],
+     "size": 54,
+     "stamp": "it inlined the definition word for word into a general agent and got on with it",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 176.5,
+   "role": "beat",
+   "secs": [
+    8.0,
+    8.5
+   ],
+   "why": "The stack it chose against the brief, and the sentence that matters.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "offline, no paid keys, every dependency installable in one command",
+     "lines": [
+      "*Nothing* to go stale"
+     ],
+     "size": 86,
+     "rows": [
+      {
+       "t": "Node 24, ES modules, node:test"
+      },
+      {
+       "t": "nothing to install"
+      },
+      {
+       "t": "and nothing to go stale",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "then the sentence that matters",
+     "lines": [
+      "Say so *now*"
+     ],
+     "size": 140,
+     "stamp": "much cheaper to change before the rest of the app lands on top of it",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 206.0,
+   "role": "beat",
+   "secs": [
+    7.5
+   ],
+   "why": "SYNC FIX: anchor 215.0 arrives twelve seconds after its picture. Ends 1.5s before it.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "it could have just done it",
+     "lines": [
+      "*Delegation*, not abdication"
+     ],
+     "size": 62,
+     "wrong": "a good agent just gets on with it",
+     "right": "flagging a decision you were not asked to make is the difference",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 241.5,
+   "role": "beat",
+   "secs": [
+    3.5
+   ],
+   "why": "SYNC FIX: anchor 246.0 arrives eight seconds after its picture. Short, because the dead span opens at 240.5.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "a new specialist, a new command, a new rule",
+     "lines": [
+      "Assume it will not notice",
+      "until it *starts again*"
+     ],
+     "size": 48,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 319.0,
+   "role": "beat",
+   "secs": [
+    8.0,
+    9.0
+   ],
+   "why": "What you actually want from an agent that got something wrong.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "what you want at that moment",
+     "lines": [
+      "Is not *confidence*"
+     ],
+     "size": 120,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "it is exactly this",
+     "lines": [
+      "Four *lines*"
+     ],
+     "size": 120,
+     "rows": [
+      {
+       "t": "here is what I verified"
+      },
+      {
+       "t": "here is what I got wrong"
+      },
+      {
+       "t": "here is how you would check"
+      },
+      {
+       "t": "and here is the work regardless",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 348.5,
+   "role": "beat",
+   "secs": [
+    11.0
+   ],
+   "why": "SYNC FIX: anchor 361.0 arrives fourteen seconds after its picture. Ends 1.5s before it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "so the work still lands",
+     "lines": [
+      "Same definition.",
+      "A note on what was *improvised*"
+     ],
+     "size": 50,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 359.5,
+   "role": "beat",
+   "why": "The context readout, at the seconds it is being read out. The frame is a bar chart too small to read at 4K; the meter is that chart at a size you can see.",
+   "secs": [
+    6.0,
+    6.0
+   ],
+   "slides": [
+    {
+     "k": "meter",
+     "kicker": "a whole simulator designed, argued about and built",
+     "lines": [
+      "And it cost *three* percent"
+     ],
+     "size": 58,
+     "pct": 93,
+     "fill": "93% free",
+     "rest": "3% spent",
+     "caption": "custom agents 314 tokens, memory files 2,400 - the only line that moved is messages",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "a whole simulator designed, argued about and built",
+     "lines": [
+      "And it cost *three*",
+      "percent of the window"
+     ],
+     "size": 60,
+     "stamp": "the only line that moved is messages",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 375.0,
+   "role": "beat",
+   "why": "Explore, and the refusal it comes back with - which is the better half of the beat and had no card.",
+   "secs": [
+    7.0,
+    6.5
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and you do not have to define one at all",
+     "lines": [
+      "There is one *already* installed"
+     ],
+     "size": 56,
+     "stamp": "Explore reads the repository and reports back, without any of it landing in your window",
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "though watch what happens - it declines",
+     "lines": [
+      "The *right* refusal"
+     ],
+     "size": 74,
+     "wrong": "a survey of the repository now would save you time",
+     "right": "there is nothing to explore yet - it would race the agent still writing and report an empty repo",
+     "note": "one sentence, no setup, and it still checked whether the job was worth doing",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 417.0,
+   "role": "close",
+   "secs": [
+    6.5,
+    7.0
+   ],
+   "why": "The close: the definition to carry into tomorrow.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "the definition to carry into tomorrow",
+     "lines": [
+      "One job, then it *disappears*"
+     ],
+     "size": 58,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "what a specialist actually is",
+     "lines": [
+      "*Three* properties"
+     ],
+     "size": 104,
+     "rows": [
+      {
+       "t": "its own window"
+      },
+      {
+       "t": "it can only talk to whoever called it"
+      },
+      {
+       "t": "and it lives exactly as long as its task",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  }
+ ]
+}

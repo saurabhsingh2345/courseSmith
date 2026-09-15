@@ -1,0 +1,521 @@
+{
+  "lecture": "w3-40",
+  "title": "The history the pipeline did not keep",
+  "note": "589s, 51% dead across 22 spans. Fifteen cutaways, 225s (38%). The one sync lead (anchor 43.6) is 4s, under the 8s threshold.",
+  "inserts": [
+    {
+      "at": 2.0,
+      "role": "open",
+      "secs": [
+        6.0,
+        7.5
+      ],
+      "why": "Names the lecture and lands its one number.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 5  \u00b7  lecture 32",
+          "lines": [
+            "The history the pipeline",
+            "did *not* keep"
+          ],
+          "size": 56,
+          "stamp": "seven agents, an hour of work, 2,300 lines of source",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and how many commits",
+          "lines": [
+            "*One*"
+          ],
+          "size": 170,
+          "stamp": "all of the building is inside the first one",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 18.0,
+      "role": "beat",
+      "secs": [
+        9.0,
+        10.5
+      ],
+      "why": "The whole git log read out - three lines on a frame too small to read.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "the log, bottom to top",
+          "lines": [
+            "*Three* commits"
+          ],
+          "size": 104,
+          "rows": [
+            {
+              "t": "signal desk v1"
+            },
+            {
+              "t": "ci: run the suite on every push and pull request"
+            },
+            {
+              "t": "the alerts buffer trim, from pull request two",
+              "hot": true
+            }
+          ],
+          "stamp": "two of the three are housekeeping",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and the product itself",
+          "lines": [
+            "Is *one line* of that log"
+          ],
+          "size": 66,
+          "stamp": "simulator, rules engine, server, two client panels, and the shell that holds them",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 103.5,
+      "role": "beat",
+      "secs": [
+        6.5
+      ],
+      "why": "The cost that does not show up until later.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and there is one more that hurts",
+          "lines": [
+            "It only shows up *later*"
+          ],
+          "size": 72,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 112.0,
+      "role": "beat",
+      "secs": [
+        7.0
+      ],
+      "why": "What one commit actually forecloses, stated plainly over a static log.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "if the rules engine turns out to be wrong",
+          "lines": [
+            "The only revert takes the",
+            "*whole product* with it"
+          ],
+          "size": 50,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 141.0,
+      "role": "beat",
+      "secs": [
+        7.0,
+        8.5
+      ],
+      "why": "The single commit's real contents, and the graph it flattened.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "one commit, and inside it",
+          "lines": [
+            "*4,123* insertions"
+          ],
+          "size": 120,
+          "stamp": "and one author timestamp",
+          "trans": "fade"
+        },
+        {
+          "k": "flow",
+          "kicker": "and a real dependency graph, flattened into it",
+          "lines": [
+            "Seven tasks, *one* line"
+          ],
+          "size": 62,
+          "nodes": [
+            {
+              "t": "simulator"
+            },
+            {
+              "t": "rules engine"
+            },
+            {
+              "t": "server",
+              "tone": "#3b82f6"
+            },
+            {
+              "t": "shell",
+              "tone": "#f5c518"
+            }
+          ],
+          "caption": "with two client panels in parallel, and a verification pass that needs all of it",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 195.5,
+      "role": "beat",
+      "secs": [
+        8.0,
+        9.0
+      ],
+      "why": "The questions a normal repository answers, and the line the narration says is worth stealing.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "every one of those questions",
+          "lines": [
+            "Answerable *normally*.",
+            "Unanswerable here"
+          ],
+          "size": 52,
+          "trans": "fade"
+        },
+        {
+          "k": "myth",
+          "kicker": "and it ends with a line worth stealing",
+          "lines": [
+            "A guess, not *evidence*"
+          ],
+          "size": 60,
+          "wrong": "it could work out which task wrote which line",
+          "right": "that is not recoverable from git, so any claim about it would be a guess",
+          "note": "no per-task branches, and nothing in the task list beyond a file list",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 214.5,
+      "role": "beat",
+      "secs": [
+        12.5
+      ],
+      "why": "Why the obvious fix is the wrong one - two failure modes, neither of them visible.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "you could tell each task to commit its own work",
+          "lines": [
+            "Not in the *brief*"
+          ],
+          "size": 104,
+          "wrong": "put the commit in each task's brief",
+          "right": "a task that fails halfway commits half of itself",
+          "note": "and a task that touches a file it does not own commits somebody else's change too",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 229.0,
+      "role": "beat",
+      "secs": [
+        8.0,
+        8.5
+      ],
+      "why": "Why the runner is the right place, argued from what it already knows.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "the runner already knows three things",
+          "lines": [
+            "The only thing that knows *all three*"
+          ],
+          "size": 52,
+          "rows": [
+            {
+              "t": "when a task started"
+            },
+            {
+              "t": "when it finished"
+            },
+            {
+              "t": "and whether it succeeded",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "so the commit belongs there",
+          "lines": [
+            "Stage what changed, and",
+            "commit it in that task's *name*"
+          ],
+          "size": 50,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 247.5,
+      "role": "beat",
+      "secs": [
+        8.5
+      ],
+      "why": "The general rule underneath both decisions, quoted because it transfers.",
+      "slides": [
+        {
+          "k": "quote",
+          "kicker": "and it is the same argument that put the tool grant there",
+          "text": "Anything that has to be true across all tasks, regardless of what any individual task is doing, belongs to the thing that runs them.",
+          "who": "the rule underneath both decisions",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 290.0,
+      "role": "beat",
+      "secs": [
+        8.0,
+        7.0
+      ],
+      "why": "What twenty lines of diff actually buys, listed as three things.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "and look at what that one change buys",
+          "lines": [
+            "*Twenty* lines of diff"
+          ],
+          "size": 104,
+          "rows": [
+            {
+              "t": "revert the rules engine and keep everything else"
+            },
+            {
+              "t": "the diff for any single area is one command away"
+            },
+            {
+              "t": "see exactly what task five did, without reading the other six",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "which is the difference between two kinds of output",
+          "lines": [
+            "Generated work you can",
+            "*take apart*"
+          ],
+          "size": 54,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 333.5,
+      "role": "beat",
+      "secs": [
+        10.0,
+        11.5
+      ],
+      "why": "The sentence the narration says to carry out of the week, and the diff's own shape.",
+      "slides": [
+        {
+          "k": "quote",
+          "kicker": "and here is the thing worth carrying out of the week",
+          "text": "Anything that produces a lot of work quickly should produce a lot of history quickly - and it almost never does by default.",
+          "who": "because writing files is the job and recording it is an afterthought",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and the diff is on screen: most of it is comment",
+          "lines": [
+            "*Seven* lines of prose,",
+            "above six that do the work"
+          ],
+          "size": 50,
+          "stamp": "deliberate, in code you expect an agent to read months from now",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 412.5,
+      "role": "beat",
+      "secs": [
+        7.0
+      ],
+      "why": "One word in the prompt decides what comes back.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "read the phrasing, because it decides what comes back",
+          "lines": [
+            "*Incomplete*, not wrong"
+          ],
+          "size": 76,
+          "wrong": "the rule was wrong",
+          "right": "the rule was incomplete",
+          "note": "which is what stops the fix from being: delete the rule",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 482.5,
+      "role": "beat",
+      "secs": [
+        9.0,
+        9.5
+      ],
+      "why": "The boundary it wrote, and the clause nobody asked for.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "it states the boundary itself",
+          "lines": [
+            "Three things it may *not* touch"
+          ],
+          "size": 52,
+          "rows": [
+            {
+              "t": "nothing under server"
+            },
+            {
+              "t": "nothing under public"
+            },
+            {
+              "t": "and nothing npm start reaches may import from it",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and then a clause i did not ask for",
+          "lines": [
+            "This does not reopen",
+            "the door *in general*"
+          ],
+          "size": 52,
+          "stamp": "a new development dependency needs the same argument this one has",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 534.0,
+      "role": "beat",
+      "secs": [
+        9.0,
+        9.0,
+        9.0
+      ],
+      "why": "The two changes read as one kind of change, and what the alternative actually is.",
+      "slides": [
+        {
+          "k": "cols",
+          "kicker": "the two changes are one kind of change",
+          "lines": [
+            "Neither is a *feature*"
+          ],
+          "size": 66,
+          "cols": [
+            {
+              "head": "a commit per task",
+              "items": [
+                "so the history records what happened"
+              ]
+            },
+            {
+              "head": "an exception",
+              "items": [
+                "so the rule records what is allowed"
+              ]
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "both are the same thing",
+          "lines": [
+            "The repository learning to say",
+            "*true things* about itself"
+          ],
+          "size": 50,
+          "trans": "rise"
+        },
+        {
+          "k": "myth",
+          "kicker": "and on a day when nobody is watching",
+          "lines": [
+            "A *document*, not a standard"
+          ],
+          "size": 62,
+          "wrong": "a rule everybody quietly ignores is still a standard",
+          "right": "then you do not have a standard - you have a document",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 569.0,
+      "role": "close",
+      "secs": [
+        9.0,
+        10.0
+      ],
+      "why": "The close: the edit itself, which is one phrase and one paragraph.",
+      "slides": [
+        {
+          "k": "flow",
+          "kicker": "look at what changed in the old paragraph",
+          "lines": [
+            "One *phrase*"
+          ],
+          "size": 104,
+          "nodes": [
+            {
+              "t": "was",
+              "sub": "nothing in dependencies or devDependencies"
+            },
+            {
+              "t": "now",
+              "sub": "nothing in dependencies",
+              "tone": "#f5c518"
+            },
+            {
+              "t": "plus",
+              "sub": "the exception, its own paragraph, naming the file",
+              "tone": "#3b82f6"
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "One phrase out.",
+            "One *paragraph* in"
+          ],
+          "size": 62,
+          "stamp": "the rule narrowing by exactly the width of the exception, and no wider",
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

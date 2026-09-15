@@ -1,0 +1,325 @@
+{
+  "lecture": "w3-34",
+  "title": "An issue is a brief with an address",
+  "note": "476s, 30% dead across eleven spans. Eleven cutaways, 118s (25%). Anchor 158.9 is covered by #04. Anchors 60.0 and 260.6 lead by 20s and 24s and are WAIVED: the dead spans jump 11.5->91.0 and 204.0->387.5, so there is no frame to end a card on before either of them. Remapped off vids/ after its first map came from a truncated copy.",
+  "sync_waived": [
+    60.0,
+    260.6
+  ],
+  "inserts": [
+    {
+      "at": 2.5,
+      "role": "open",
+      "secs": [
+        8.5
+      ],
+      "why": "Names the lecture and its one idea.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 5  \u00b7  lecture 29",
+          "lines": [
+            "An issue is a brief",
+            "with an *address*"
+          ],
+          "size": 58,
+          "stamp": "every brief this week was typed into a terminal and lost when the session ended",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 91.5,
+      "role": "beat",
+      "secs": [
+        8.5
+      ],
+      "why": "The four things the body shape asks for, by name.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "the body shape is specified too",
+          "lines": [
+            "*Four* things, by name"
+          ],
+          "size": 86,
+          "rows": [
+            {
+              "t": "what is wrong"
+            },
+            {
+              "t": "where"
+            },
+            {
+              "t": "how to see it"
+            },
+            {
+              "t": "and what done looks like",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 113.5,
+      "role": "beat",
+      "secs": [
+        7.0,
+        6.5
+      ],
+      "why": "The defect, which is an inconsistency between two neighbours rather than a bug in either.",
+      "slides": [
+        {
+          "k": "cols",
+          "kicker": "and what it found is a good one",
+          "lines": [
+            "One was *thought about*"
+          ],
+          "size": 72,
+          "cols": [
+            {
+              "head": "the candle history",
+              "items": [
+                "trimmed on every tick",
+                "to a fixed window"
+              ]
+            },
+            {
+              "head": "the alerts array",
+              "items": [
+                "grows without any limit",
+                "sitting right next to it"
+              ]
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "which is exactly the kind that gets through",
+          "lines": [
+            "It survives a *green* suite"
+          ],
+          "size": 66,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 130.5,
+      "role": "beat",
+      "secs": [
+        7.5
+      ],
+      "why": "Why reviewing each area separately would have missed it.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "because neither half is wrong on its own",
+          "lines": [
+            "It is the *inconsistency*"
+          ],
+          "size": 86,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 155.5,
+      "role": "beat",
+      "secs": [
+        4.0
+      ],
+      "why": "SYNC FIX: anchor 158.9 arrives twelve seconds after its picture, and the dead span opens at 155.5.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "it read everything written down and picked the best item off it",
+          "lines": [
+            "What a good engineer does",
+            "on their *second day*"
+          ],
+          "size": 48,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 160.5,
+      "role": "beat",
+      "secs": [
+        8.5
+      ],
+      "why": "The instruction about how to read it.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "so read it the right way round",
+          "lines": [
+            "The *body*, not the title"
+          ],
+          "size": 96,
+          "stamp": "what is wrong, where, with the actual lines quoted, and how to see it",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 172.5,
+      "role": "beat",
+      "secs": [
+        9.5,
+        10.0
+      ],
+      "why": "Three line numbers under Where, and the only test an issue has to pass.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "and the numbers under Where",
+          "lines": [
+            "*Three* line numbers"
+          ],
+          "size": 96,
+          "rows": [
+            {
+              "t": "14 declares the array"
+            },
+            {
+              "t": "37 pushes to it with no trim"
+            },
+            {
+              "t": "52 scans all of it",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and this is the only test an issue has to pass",
+          "lines": [
+            "Could a *stranger* act on it?"
+          ],
+          "size": 62,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 195.0,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "The handover, in one clause.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and now the second agent gets",
+          "lines": [
+            "The *address*, not the work"
+          ],
+          "size": 66,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 388.0,
+      "role": "beat",
+      "secs": [
+        7.5
+      ],
+      "why": "What a pattern of oversized pull requests is actually telling you.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and this is what it tells you when your issue was bad",
+          "lines": [
+            "Three in a row?",
+            "The problem is not the *agent*"
+          ],
+          "size": 48,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 408.5,
+      "role": "beat",
+      "secs": [
+        8.0,
+        8.0
+      ],
+      "why": "The three mechanisms that make it safe - the point of the whole lecture.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "nothing here trusts the agent",
+          "lines": [
+            "*Three* things do the work"
+          ],
+          "size": 72,
+          "rows": [
+            {
+              "t": "the branch means main is untouched"
+            },
+            {
+              "t": "the test means the claim is checkable"
+            },
+            {
+              "t": "the pull request means somebody looks",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and they do not come apart",
+          "lines": [
+            "Take one away and you are",
+            "back to *hoping*"
+          ],
+          "size": 52,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 458.0,
+      "role": "close",
+      "secs": [
+        8.0,
+        8.5
+      ],
+      "why": "The close: what the hosted product is underneath.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "a hosted agent that watches a repository is a good product",
+          "lines": [
+            "*Four* commands, on a webhook"
+          ],
+          "size": 56,
+          "wrong": "you need a product to do this on an event",
+          "right": "underneath, it is the four commands you are watching, triggered by an event",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "Drive them by hand,",
+            "and *you* decide"
+          ],
+          "size": 56,
+          "stamp": "whether you want them automatic, on which repositories, with whose permissions",
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

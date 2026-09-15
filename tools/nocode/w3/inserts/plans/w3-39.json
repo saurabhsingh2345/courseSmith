@@ -1,0 +1,317 @@
+{
+  "lecture": "w3-39",
+  "title": "When it is wrong: diagnosing from evidence",
+  "note": "306s, 51% dead across nine spans. Eight cutaways, 130s (42%). Anchor 56.8 leads by 7s - under the 8s threshold, but #02 ends 1.3s before it anyway because the dead span made it free.",
+  "inserts": [
+    {
+      "at": 2.5,
+      "role": "open",
+      "secs": [
+        5.5,
+        6.5
+      ],
+      "why": "Names the lecture and the order it insists on.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 5  \u00b7  lecture 31",
+          "lines": [
+            "When it is wrong:",
+            "diagnosing from *evidence*"
+          ],
+          "size": 54,
+          "stamp": "start from evidence rather than from a feeling",
+          "trans": "fade"
+        },
+        {
+          "k": "flow",
+          "kicker": "and in this order, every time",
+          "lines": [
+            "The *order* matters"
+          ],
+          "size": 86,
+          "nodes": [
+            {
+              "t": "the history",
+              "sub": "first"
+            },
+            {
+              "t": "the suite",
+              "sub": "run it yourself",
+              "tone": "#3b82f6"
+            },
+            {
+              "t": "then ask",
+              "sub": "anybody about it",
+              "tone": "#f5c518"
+            }
+          ],
+          "caption": "you want to know the answer before you hear an explanation of it",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 17.0,
+      "role": "beat",
+      "secs": [
+        8.0,
+        8.0,
+        8.0
+      ],
+      "why": "Why the order matters, and the numbers off a test summary that is illegible at 4K.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "read the work and the explanation in that order",
+          "lines": [
+            "Or you will *confirm* it"
+          ],
+          "size": 66,
+          "wrong": "read the explanation, then check it against the work",
+          "right": "take the explanation first and you will confirm it rather than check it",
+          "note": "and you will not notice that is what you are doing",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and it is green",
+          "lines": [
+            "*29* tests. 110ms"
+          ],
+          "size": 120,
+          "stamp": "what a suite that waits on nothing costs",
+          "trans": "rise"
+        },
+        {
+          "k": "head",
+          "kicker": "which is a good thing to have happen in front of you",
+          "lines": [
+            "Not what this lecture",
+            "was going to be *about*"
+          ],
+          "size": 52,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 50.5,
+      "role": "beat",
+      "secs": [
+        5.0
+      ],
+      "why": "Covers the 7s lead on anchor 56.8 and states the lecture's premise in five words.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "the beat I planned was the one where something is broken",
+          "lines": [
+            "Green does not mean *right*"
+          ],
+          "size": 66,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 135.5,
+      "role": "beat",
+      "secs": [
+        9.5,
+        8.0
+      ],
+      "why": "The failure chain a wrong review sets off - four steps, none of them on screen.",
+      "slides": [
+        {
+          "k": "flow",
+          "kicker": "if the review is wrong about where a bug is",
+          "lines": [
+            "It admits its mistakes *silently*"
+          ],
+          "size": 50,
+          "nodes": [
+            {
+              "t": "a wrong review"
+            },
+            {
+              "t": "the fix goes to the wrong file",
+              "tone": "#e53935"
+            },
+            {
+              "t": "the symptom goes away"
+            },
+            {
+              "t": "reports success",
+              "tone": "#f5c518"
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and the only artefact of the whole misunderstanding",
+          "lines": [
+            "A diff that *looks fine*"
+          ],
+          "size": 76,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 184.5,
+      "role": "beat",
+      "secs": [
+        9.0,
+        9.0
+      ],
+      "why": "What it did with the finding, and the exact edit - five lines for one, at line 314.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "it goes and checks, then does something better",
+          "lines": [
+            "It annotates the",
+            "*review itself*"
+          ],
+          "size": 62,
+          "stamp": "with the evidence, and the date",
+          "trans": "fade"
+        },
+        {
+          "k": "cols",
+          "kicker": "five lines added, one removed, at line 314",
+          "lines": [
+            "One line out, *five* in"
+          ],
+          "size": 54,
+          "cols": [
+            {
+              "head": "the line that went",
+              "items": [
+                "the violation exists"
+              ]
+            },
+            {
+              "head": "the five that replace it",
+              "items": [
+                "it was found and fixed",
+                "naming what is gone from disk",
+                "and when"
+              ]
+            }
+          ],
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 227.0,
+      "role": "beat",
+      "secs": [
+        9.0,
+        10.0
+      ],
+      "why": "What the review becomes, and the habit the narration says to steal from the lecture.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "so it stops being a snapshot of this morning",
+          "lines": [
+            "A *living* document"
+          ],
+          "size": 104,
+          "rows": [
+            {
+              "t": "what was true then"
+            },
+            {
+              "t": "what is true now"
+            },
+            {
+              "t": "and which of its own findings have been dealt with",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "which is the small habit worth stealing",
+          "lines": [
+            "When you act on a document,",
+            "write the *outcome* back into it"
+          ],
+          "size": 48,
+          "stamp": "reviews, issues, plans, memory files - the ones that stay useful are the ones you edit",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 249.5,
+      "role": "beat",
+      "secs": [
+        8.5
+      ],
+      "why": "What that cost, which is the argument for doing it at all.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and notice how cheap that was",
+          "lines": [
+            "One agent, read-only,",
+            "*two* minutes"
+          ],
+          "size": 58,
+          "stamp": "and the most valuable document in this repository is current instead of historical",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 278.0,
+      "role": "close",
+      "secs": [
+        9.0,
+        8.0,
+        9.0
+      ],
+      "why": "The close: why the answer was terse, and the rule to leave with.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "no essay, no list of other things it noticed",
+          "lines": [
+            "The *instruction*, not the model"
+          ],
+          "size": 56,
+          "wrong": "that terseness is the model being well behaved",
+          "right": "it is a property of the instruction rather than of the model",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and that is the difference between two things",
+          "lines": [
+            "A check you run a *hundred* times,",
+            "or an essay you read once"
+          ],
+          "size": 48,
+          "trans": "rise"
+        },
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "If you want a tool, ask a question",
+            "with a *yes or a no* on the end"
+          ],
+          "size": 46,
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

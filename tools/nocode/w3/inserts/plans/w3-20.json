@@ -1,0 +1,124 @@
+{
+  "lecture": "w3-20",
+  "title": "First run: Control Tower is alive",
+  "note": "Only 34% dead on the sharp detector - most of this lecture is sixty vans moving on a live map, which the coarse detector called frozen and which is left entirely alone. Three cutaways, 45s of 150s (30%). No sync leads.",
+  "inserts": [
+    {
+      "at": 4.0,
+      "role": "open",
+      "secs": [
+        5.5,
+        7.0
+      ],
+      "why": "Names the lecture and the shape of the package file, which is small text on the frame.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 3  \u00b7  lecture 19",
+          "lines": [
+            "First run:",
+            "Control Tower is *alive*"
+          ],
+          "size": 62,
+          "stamp": "where we stop reading about it and run it",
+          "trans": "fade"
+        },
+        {
+          "k": "rows",
+          "kicker": "and the shape of it is the point",
+          "lines": [
+            "*Three* lines that matter"
+          ],
+          "size": 62,
+          "rows": [
+            {
+              "t": "one start command"
+            },
+            {
+              "t": "one test command"
+            },
+            {
+              "t": "no dependencies at all",
+              "hot": true
+            }
+          ],
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 29.0,
+      "role": "beat",
+      "secs": [
+        9.0,
+        9.0
+      ],
+      "why": "What the start script actually does, and who wrote it. Ends exactly on anchor 47.0.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "it is not just a node command",
+          "lines": [
+            "What the *start script* does"
+          ],
+          "size": 54,
+          "rows": [
+            {
+              "t": "boots the server"
+            },
+            {
+              "t": "polls the port until it answers"
+            },
+            {
+              "t": "prints the log and gives up if the process dies on the way",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and a teammate wrote that unasked",
+          "lines": [
+            "The small thing that decides",
+            "whether a project is *pleasant*"
+          ],
+          "size": 48,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 135.5,
+      "role": "close",
+      "secs": [
+        7.0,
+        7.0
+      ],
+      "why": "The close, over a committed repository. The rest of this lecture is a live moving map and is left alone.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "and this is the least glamorous command of the week",
+          "lines": [
+            "A folder you are *afraid* to touch"
+          ],
+          "size": 52,
+          "wrong": "the code exists, so it is a project",
+          "right": "until it is committed, that is a folder you are afraid to touch",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "Every change now has something",
+            "to be a *change from*"
+          ],
+          "size": 48,
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

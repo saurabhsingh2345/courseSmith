@@ -1,0 +1,31 @@
+{
+  "lecture": "w3-06",
+  "cut_seconds": 306.0,
+  "segments": [
+    {
+      "anchor": 2,
+      "beat": "browse",
+      "say": "Before we leave hooks, look at what it sketched on the way out. A hook that fires on every prompt you send, quietly injecting the live state of the app into the conversation. Fast, silent when the app is down, and never blocking."
+    },
+    {
+      "anchor": 21,
+      "beat": "install",
+      "say": "Now, everything we have built today we built by hand. Commands, a specialist, a hook. But other people have already done that work and packaged it, and that is what the plugin list is. I am installing one — a front-end design plugin — and I am installing it at project scope, not onto my laptop. That distinction is the same one as the slash commands: it belongs to the repository, so everyone who works here gets it. And there is a rule I am following that is not obvious. I am avoiding anything that spawns its own agents underneath. Not because those are bad, but because the whole point of this week is knowing who is doing what... and a plugin that quietly fans out is the fastest way to lose that. There is a second reason to prefer project scope, and it is about you in six months. Anything you install onto your laptop becomes invisible — it just works, and you forget it is there, and then a colleague cannot reproduce your results and neither of you knows why. A plugin listed in the repository is a thing somebody can read. And be a little suspicious of plugin lists generally. Everything in there is somebody's opinion about how work should go, expressed as tools and prompts you cannot see from the outside. That is fine — most of them are good opinions — but install them one at a time and notice what changes. And there is a smaller point about scope that is worth having in your hands before you need it: project scope means the decision is reviewable. Somebody can open this repository and see the list."
+    },
+    {
+      "anchor": 100.3,
+      "beat": "cost",
+      "say": "And the bill for the day. Eighty-two percent free, and the biggest line by far is not the plugin — it is the conversation itself. Which is the honest way to think about all of this. Every capability has a price in the one budget that actually constrains you, and the plugin is not usually the expensive part."
+    },
+    {
+      "anchor": 117,
+      "beat": "own",
+      "say": "So now the other direction. If a plugin is just commands, agents and hooks in a folder... then everything we built today already is one. Watch what it produces. A manifest, our two commands, the specialist, and the hook — with two install lines underneath. Two manifests. One inside the kit describes the plugin; one at the repo root makes this repository a marketplace, pointing at the kit. And the hook's command now uses plugin root rather than project directory, so the script resolves wherever it is installed. And once this repository is on GitHub, the first of those becomes a single command pointing at the repo, with no clone step at all. Then three notes that are worth more than the packaging. First, it moved the checker script into the plugin and repointed the settings at the new path, so there is one copy rather than two drifting apart — and it retested both cases end to end before telling me. And there is a scar in here: moving the script broke the hook for one edit — a Node loader error, non-blocking, because the path had just moved. Second, it duplicated the commands on purpose, and told me exactly what to delete if I install the kit here, because otherwise everything registers twice and the content check runs twice on every edit. Wasteful rather than harmful, and it said which. And third — my favourite thing that happened all day. It set the author and owner fields to the project name, with no email... because a real name or address in the manifest would trip the very hook it was packaging. Nobody asked it to notice that. And our own command runs now, reads the repository live, and reports honestly that there are no commits yet. Step back and look at what has just happened to the work. This morning those were four separate ideas: a way to ask for status, a way to check one requirement, a specialist that owns the simulator, and a rule about what must never be written. Each of them useful on its own. They are now one thing, with a name and a version, that somebody else can install in a single line. And that is the difference between having a good setup and having a transferable one. Most people who get good at this never make that jump — they end up with a laptop that works beautifully and a team that cannot copy any of it. The jump costs you one command and it is available from the first day of a project, which is why we did it on the first day of this one. There is one more thing in what it produced that I want you to see, because it is the kind of care you cannot ask for directly. It moved the checker script into the plugin and repointed the settings at the new path, so there is exactly one copy of that rule rather than two slowly drifting apart. Then it retested both cases before telling me it was done — clean file passes, file with an emoji fails. Nobody wrote that requirement down. It followed from the standard we set on the first morning, and it kept following from it four lectures later, in work I did not supervise. And the honest reason to package it on day one rather than day ninety is that on day ninety you will not. The setup will be spread across four files you half remember, and turning it into something portable will be an afternoon you never find. Today it is one command, because there is almost nothing here yet. That is the entire argument."
+    },
+    {
+      "anchor": 291,
+      "beat": "close",
+      "say": "Look at what this folder now holds. A brief. A memory. Two commands. A specialist. A rule that fires by itself. And a plugin that hands the whole setup to the next person in one line. That is a workshop."
+    }
+  ]
+}

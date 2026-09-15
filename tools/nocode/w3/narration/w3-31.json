@@ -1,0 +1,41 @@
+{
+  "lecture": "w3-31",
+  "cut_seconds": 210.0,
+  "segments": [
+    {
+      "anchor": 0.6,
+      "beat": "start",
+      "say": "Everything so far has been evidence about a build. Files, timings, a review. This is the only question that has actually mattered since the brief landed: does it run. One command, six seconds, and a status code. Two hundred. Which is the lowest bar there is: something bound to port eight thousand and eighty-one returned bytes. It says nothing about whether they are a console. And I want to say what I expected, before you see it, because it is the honest way to watch this. I expected a page that loaded and did almost nothing - a layout with the right boxes in it and no life."
+    },
+    {
+      "anchor": 31.4,
+      "beat": "alive",
+      "say": "This is Signal Desk. Nobody drew this screen and nobody typed a line of it. It came out of a document and a program, in eighteen minutes, with the room empty. Four panels, and they are the four the brief asked for. Down the left, the watchlist: about seventeen instruments visible, each row a symbol, a live value, a signed change against its open in red or green, and a sparkline drawing itself as we watch. The biggest mover up there is barely two percent, because this day is thirty seconds old. Sorted by size of move, a quiet top row is the honest reading of an empty morning. In the middle, candles, one every five simulated seconds. On the right, the rule editor - a symbol box, a dropdown that already knows the four kinds of rule the engine can parse, a threshold and a button. Under the chart, a scrubber, with the word LIVE beside it."
+    },
+    {
+      "anchor": 81.3,
+      "beat": "watch",
+      "say": "And along the bottom, the alerts panel, empty, because no rules exist yet so nothing has fired. And the first defect is already on screen, in the middle panel. The candles are packed against the left edge and most of that panel is empty, and it is filling at one candle every five seconds. It is drawing at a fixed width rather than fitting what it has, so it looks right eventually and looks broken for the first ten minutes of every session anybody ever starts. Now watch the order of that list rather than the numbers in it. It is sorted by the size of the move, not by the direction and not alphabetically - the biggest faller and the biggest riser are next to each other at the top - and it re-sorts itself every few seconds as the simulated day goes on. Nobody demonstrated that to me and no test asserts it. It is one sentence in the brief, four hours ago, and here it is on screen."
+    },
+    {
+      "anchor": 128.6,
+      "beat": "pick",
+      "say": "And clicking a row does what it should: the chart follows the selection. Which is two panels, built by different agents, agreeing about which symbol is selected - and no test in this repository covers that agreement."
+    },
+    {
+      "anchor": 139.4,
+      "beat": "rules",
+      "say": "The rule editor is the part I was least confident about, because it is the only place in this product where two areas had to agree on something neither of them owns - the client has to emit sentences that the parser can read, and they were built at the same time by different agents who never spoke. The dropdown knows all four kinds. Whether the sentences actually parse is not something you can see from here, and we will find out in the next lecture."
+    },
+    {
+      "anchor": 164.0,
+      "beat": "replay",
+      "say": "And the scrubber sits under the chart, marked LIVE, which is the replay feature - the hardest single requirement in the brief, because moving it has to move all four panels together. It is parked at the right-hand end and we have not touched it, so replay is still a claim, not something watched. And the third defect: seventeen instruments are visible out of thirty, with nothing on screen suggesting there are more. There probably is a scrollbar. You cannot tell, and a person who has not read the brief would never know they were looking at half the data."
+    },
+    {
+      "anchor": 193.2,
+      "beat": "honest",
+      "say": "So: four things. The chart does not fill its panel. The alerts panel has no empty state. The list hides half its rows. And one you cannot see - the chart is meant to hold an hour, and ten minutes is all that exists."
+    }
+  ]
+}

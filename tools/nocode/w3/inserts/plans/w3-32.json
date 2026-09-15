@@ -1,0 +1,305 @@
+{
+  "lecture": "w3-32",
+  "title": "The fix pass",
+  "note": "787s, only 20% dead on the sharp detector - most of this lecture is a live console with candles updating and a light-theme demo, all of which is left alone. Eleven cutaways, 137s (17%). No sync leads.",
+  "inserts": [
+    {
+      "at": 18.0,
+      "role": "open",
+      "secs": [
+        8.0
+      ],
+      "why": "Names the lecture and the point of its first beat.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 4  \u00b7  lecture 27",
+          "lines": [
+            "The *fix* pass"
+          ],
+          "size": 120,
+          "stamp": "two lists, from two different kinds of looking - and only one of them is written down",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 187.0,
+      "role": "beat",
+      "secs": [
+        10.0,
+        10.0
+      ],
+      "why": "The two gaps the eighty-two-line version could not close, now closed on camera as a red-and-green diff.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "that block of red and green is an edit to a file that already existed",
+          "lines": [
+            "*Both* gaps, closed"
+          ],
+          "size": 92,
+          "stamp": "edit an existing file, and run the tests",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and the change itself",
+          "lines": [
+            "Ten times sixty times a thousand",
+            "became *sixty* times sixty times a thousand"
+          ],
+          "size": 42,
+          "stamp": "and the message under it rewritten to an hour",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 219.5,
+      "role": "beat",
+      "secs": [
+        8.5,
+        8.5
+      ],
+      "why": "What it is not doing, and the consequence for the review it was handed.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and notice what it is not doing, which is asking",
+          "lines": [
+            "There is *nobody* to ask"
+          ],
+          "size": 76,
+          "stamp": "every ambiguity in that review gets resolved by one thing reading the code",
+          "trans": "fade"
+        },
+        {
+          "k": "myth",
+          "kicker": "which is why the review had to be grounded",
+          "lines": [
+            "Two *guesses*, stacked"
+          ],
+          "size": 86,
+          "wrong": "an unattended fixer can work from a review either way",
+          "right": "an ungrounded review handed to an unattended fixer is two guesses stacked up",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 240.0,
+      "role": "beat",
+      "secs": [
+        8.5
+      ],
+      "why": "The situation this generalises to.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "resolved by one thing reading the code and deciding",
+          "lines": [
+            "The trade you make when",
+            "you *leave the room*"
+          ],
+          "size": 48,
+          "stamp": "which is exactly the situation any of us are in on a codebase older than a fortnight",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 268.5,
+      "role": "beat",
+      "secs": [
+        11.0,
+        11.0,
+        10.0
+      ],
+      "why": "The test names are read out as claims about behaviour. They are the substance of the beat and are unreadable at 4K.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "twenty-eight tests, and one more than before",
+          "lines": [
+            "*125* milliseconds"
+          ],
+          "size": 120,
+          "stamp": "fixing the retention meant changing the test that pinned the old value",
+          "trans": "fade"
+        },
+        {
+          "k": "rows",
+          "kicker": "and read the names, because they are claims about behaviour",
+          "lines": [
+            "*Behaviour*, not functions"
+          ],
+          "size": 62,
+          "rows": [
+            {
+              "t": "ring buffer retains only the trailing hour per symbol"
+            },
+            {
+              "t": "evaluate fires exactly once per crossing, not on every candle above threshold"
+            },
+            {
+              "t": "same seed, same tick count, byte-identical output",
+              "hot": true
+            }
+          ],
+          "trans": "rise"
+        },
+        {
+          "k": "head",
+          "kicker": "and that last one",
+          "lines": [
+            "The determinism rule,",
+            "turned into something that can *fail*"
+          ],
+          "size": 46,
+          "stamp": "out loud, instead of quietly",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 306.0,
+      "role": "beat",
+      "secs": [
+        8.0,
+        8.0
+      ],
+      "why": "A commit, and why the narration makes a fuss about it.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "a commit is a small thing to make a fuss about",
+          "lines": [
+            "And I want to make a fuss",
+            "about it *anyway*"
+          ],
+          "size": 50,
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "until this moment it existed only as files on a disk",
+          "lines": [
+            "There was no *before*",
+            "to go back to"
+          ],
+          "size": 54,
+          "stamp": "2,300 lines, seven agents, an hour of work",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 333.5,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "The deletion that broke the thing that built the repository.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "the memory file says zero dependencies, so it removed the dependency",
+          "lines": [
+            "It deleted *all* of it"
+          ],
+          "size": 86,
+          "rows": [
+            {
+              "t": "the block"
+            },
+            {
+              "t": "the installed modules"
+            },
+            {
+              "t": "and the lock file",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 682.5,
+      "role": "beat",
+      "secs": [
+        10.0
+      ],
+      "why": "The line that is the whole product working, and what is behind it.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "that single line is the whole product working end to end",
+          "lines": [
+            "*Four* things, agreeing"
+          ],
+          "size": 72,
+          "rows": [
+            {
+              "t": "a simulator that ticks"
+            },
+            {
+              "t": "a feed that retains"
+            },
+            {
+              "t": "a rules engine that parsed a sentence a person typed into a box"
+            },
+            {
+              "t": "and an evaluator that fired exactly once",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 697.0,
+      "role": "beat",
+      "secs": [
+        10.5
+      ],
+      "why": "Five agents, eighteen minutes, meeting for the first time.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "five of the six areas, built in parallel",
+          "lines": [
+            "Meeting each other for the",
+            "*first time* just now"
+          ],
+          "size": 48,
+          "stamp": "eighteen minutes, by five agents that never spoke",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 775.5,
+      "role": "close",
+      "secs": [
+        10.5
+      ],
+      "why": "The close: twenty words, in the file every agent loads first.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "*Twenty* words, in the file",
+            "every agent loads first"
+          ],
+          "size": 48,
+          "stamp": "the running application takes no dependencies; tools is not the running application",
+          "trans": "fade"
+        }
+      ]
+    }
+  ]
+}

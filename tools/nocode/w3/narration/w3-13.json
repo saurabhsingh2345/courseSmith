@@ -1,0 +1,56 @@
+{
+  "lecture": "w3-13",
+  "cut_seconds": 576.0,
+  "segments": [
+    {
+      "anchor": 2,
+      "beat": "empty",
+      "say": "Everything so far has happened by talking to an agent in a terminal. Today we do the same work from a program instead — and you still will not write it. Watch the path change at the top: out of control-tower, into sdk-demo. Two lines of terminal, and the blast radius is already decided."
+    },
+    {
+      "anchor": 18,
+      "beat": "setup",
+      "say": "A brand new folder, somewhere else entirely, so nothing here can touch the project we have been building. And the first thing on screen is a check, not a command: print where I am, and list what is here. Nothing. Get in that habit. The commands that follow install things, and installing things into the wrong folder is the single easiest way to quietly ruin an afternoon. Then three lines of setup. A bare project. A pinned Python version. And one install — the Claude Agent S D K. Note the name, because it changed: it is agent, singular, not agents. And read the numbers on that install. Thirty-four packages resolved, thirty-one installed, and the kit itself is version nought point two point one four eight. A zero at the front is the author telling you the shape can still change. Underneath it sit the ordinary parts of a Python service — an HTTP client, a validation library, a web server — which is your first clue that this is built to live inside a program rather than in front of a person. And all of it landed in a folder inside this project. A broken experiment is one folder to delete. And a word about what this library actually is, because the name misleads people. It is not a second product with a second bill. It is the same agent you have been talking to all week, with the terminal taken off the front of it. Same tools, same permissions model, same login. What changes is who is doing the asking: up to now that has been you, typing. From here it can be a program, and a program does not get bored, does not go to lunch, and can do the same thing a hundred times without getting sloppy on the eightieth."
+    },
+    {
+      "anchor": 106,
+      "beat": "ask",
+      "say": "And here is where this course differs from every other tutorial about this library. I am not going to type the program. I ask for it: hold one prompt and a list of allowed tools, build the options from them, loop over the results printing each message as it arrives. Build a small browser game of asteroids and write the files into this folder. Keep it under thirty lines. And then the part that matters for you: explain each line to me afterwards as if I have never written Python. Because you have not. And you do not need to — but you do need to be able to read what you are about to run. And look at the shape of what I asked for, because it is a specification, not a wish. One prompt. A list of allowed tools. Options built from those two. A loop over the results. Thirty lines. The thirty does more work than it looks. A line limit on a program you are going to read is a limit on how much you can be asked to take on trust, and it forces the real decisions to the surface instead of into helpers. Ask for a hundred lines and you get error handling, a config loader and a logging setup, none of which you asked for and all of which you must read. Small is not a style preference. It is the only version you can actually audit. If you cannot describe the program you want in five clauses like that, you do not want a program yet, you want to keep talking to the terminal. Watch the two lines under the prompt before any code appears. A skill loads itself — the one that knows this API — without me asking for it, and it comes with four tools allowed rather than everything. Then it does the thing that makes the difference: it reads the library that is actually installed in this folder. The query file, the package's own list of what it exports. Not what the API looked like when the model was trained. What is on this disk, at this version, today. Libraries move faster than training data, and that one habit is why the file it writes will run. The clause that does the real work is the last one: explain each line afterwards as if I have never written Python. That is not a courtesy to me. It is the acceptance test. Code I cannot read is code I cannot be responsible for, and I am about to run it against my own filesystem. And it is worth naming what I am not doing here. I am not learning Python. I am learning to specify, and then to read — which are two different skills, and only one of them used to be optional. The file it writes will be under thirty lines, and I will be able to say what every one of them does before I run it."
+    },
+    {
+      "anchor": 247,
+      "beat": "model",
+      "say": "So read it with me, because this explanation is better than most textbooks. The import line reaches into the installed package and takes exactly two things by name. Two things, named, out of a package that pulled in thirty-one others. That is what a good import line looks like: you can see the entire surface you are using in one line of text. And the explanation opens by saying why the whole file is asynchronous: talking to Claude over the network is slow, so the library hands you results as they arrive rather than making you wait for the last one. The prompt is a variable holding text, and capital letters are a convention meaning set once, never changed. Then the tools list — and this is the interesting one. Four names: read a file, write a file, edit a file, find files. And it tells me what is deliberately absent. There is no shell tool, so this script cannot run commands at all. A limit on the blast radius, chosen on purpose. The options object gets labelled inputs: which model, that tool list, a permission mode of accept-edits — because a script has no way to answer a prompt, so without that it would simply hang forever waiting for a human who is not there. And a working directory of dot, which is why the game lands here rather than somewhere else. Labelled is the operative word. Those inputs are keyword arguments, so the order does not matter and each one reads as a sentence. Come back to this file in three weeks and nothing about it needs remembering. Then the loop. A normal loop walks over things that already exist. This one waits for each next message to arrive over the network, which is what turns the output into a live feed of the agent's reasoning instead of one dump at the end. And the print inside the loop is what makes that visible. Move that one line outside the loop and the program behaves identically and shows you nothing until it is over. Where a statement sits relative to a loop is most of what reading code is. And the last line is the starter motor. Creating the job does not run it. That line runs it. Forgetting it is the classic beginner bug — the program exits instantly, having done nothing. One detail worth keeping. The kit talks to Claude through the same command-line tool we have used all week, so it uses the login you already have. There is no API key in this file, and there is none to leak. One more thing in that explanation that is easy to skim past, because it is the difference between a script that works today and one that works in a month. Nothing in this file is a magic string. The model is named. The tools are named. The permission mode is named. The working directory is named. Every behaviour of this program is visible in fifteen lines, which means when it does something you did not expect, there are only fifteen places to look."
+    },
+    {
+      "anchor": 393,
+      "beat": "run",
+      "say": "Then we run it. One command: uv run main dot py. No server, no framework, no deploy. Just a Python file and a folder. That is the entire footprint of an agent running without you. And what comes back is not a tidy answer — it is the raw stream. Every message object, every tool call, every file write, exactly as the loop receives them. It is ugly, and it is honest: this is what a naive print gives you. In a real script you would filter this down to the few messages you care about — and one of them reports your rate limit, which is worth keeping on screen. And it is worth understanding what that stream actually is, because it is the same thing you have been watching all week in a nicer coat. Every tool call, every thought, every file write that the terminal renders as a tidy bullet point arrives here as an object. The terminal is a formatter. Under it, this."
+    },
+    {
+      "anchor": 441,
+      "beat": "play",
+      "say": "An empty folder is filling up while we watch. Not because I wrote a game — because I wrote fifteen lines describing who should write it, what they are allowed to touch, and where the result should land. The stream tells you exactly what landed and where: file created successfully at style dot css, with the full contents echoed back. The model name is in there, and so is the token accounting — eighteen thousand of the input read from cache rather than sent again. When a program is doing the asking, that line is the one you would log. And this is the moment the abstraction becomes concrete, so it is worth watching rather than skipping. Files are appearing in a folder because a loop is iterating. There is no session, no window, nobody waiting to approve anything. The permission mode we set two minutes ago is the only reason it is not stopped dead asking a question of an empty chair."
+    },
+    {
+      "anchor": 487,
+      "beat": "point",
+      "say": "And then it stops. Done. No summary, no flourish. The stream ends because the agent decided the task was finished, and the loop ends because the stream did. That is the whole control flow."
+    },
+    {
+      "anchor": 503,
+      "beat": "files",
+      "say": "So what actually landed. An index page, a stylesheet, and about twenty kilobytes of game. In a folder that was empty eight minutes ago."
+    },
+    {
+      "anchor": 515,
+      "beat": "game",
+      "say": "And there it is. A real game, in the browser, from a fifteen-line script. Score, lives, waves, a best score it remembers. Rocks drifting. Arrow keys to rotate, thrust, space to fire. Now — I want to be honest about this, because a course that oversells is useless to you. Asteroids is not a hard problem, and there are a thousand versions of it in the training data. If you ask for something genuinely novel, you will not get this in one pass. But that is not what this lecture is about. The point is not that it wrote a game. The point is where the instruction came from. Every other time this week, I typed into a terminal and waited. This time a program did it — which means it can happen on a schedule, or when a file changes, or a hundred times over a hundred different inputs, with nobody sitting there. The other thing worth saying, since we are being honest, is what this does not give you. There is no retry, no logging, no way to resume if it dies halfway, and no record of what it did beyond what scrolled past."
+    },
+    {
+      "anchor": 571.9,
+      "beat": "close",
+      "say": "Know which one you have written. And that is the door this opens. Not a framework."
+    }
+  ]
+}

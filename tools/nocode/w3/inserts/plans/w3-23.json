@@ -1,0 +1,355 @@
+{
+ "lecture": "w3-23",
+ "title": "Roll your own orchestrator with the Agent SDK",
+ "note": "505s, 36% dead across twelve spans, including a 45.5s blank cursor that the lecture explains is the product working. Eleven cutaways, 161s (32%). The one sync lead (anchor 423.0) is 7s, under the threshold.",
+ "inserts": [
+  {
+   "at": 3.0,
+   "role": "open",
+   "secs": [
+    8.0
+   ],
+   "why": "Names the lecture and the position it exists to avoid.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 4  \u00b7  lecture 20",
+     "lines": [
+      "Roll your own orchestrator",
+      "with the *Agent SDK*"
+     ],
+     "size": 52,
+     "stamp": "never be in a position where the only one you can use is one somebody ships you",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 12.0,
+   "role": "beat",
+   "secs": [
+    7.0
+   ],
+   "why": "The question this lecture asks, which is not the obvious one.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "so the question for this lecture",
+     "lines": [
+      "Not *which* one is best"
+     ],
+     "size": 86,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 52.0,
+   "role": "beat",
+   "secs": [
+    7.5,
+    7.0
+   ],
+   "why": "What a mature orchestrator gives you beyond a task list - four things, all spoken.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "what agent teams give you beyond that list",
+     "lines": [
+      "*Four* things"
+     ],
+     "size": 104,
+     "rows": [
+      {
+       "t": "phased pipelines"
+      },
+      {
+       "t": "adversarial verification passes"
+      },
+      {
+       "t": "resumable runs"
+      },
+      {
+       "t": "isolation between workers",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and if you write your own",
+     "lines": [
+      "Every one of those,",
+      "the day you *need* it"
+     ],
+     "size": 54,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 125.0,
+   "role": "beat",
+   "secs": [
+    8.0
+   ],
+   "why": "Why the tasks are real ones.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "then three real tasks against this repository",
+     "lines": [
+      "So running it *does* something"
+     ],
+     "size": 52,
+     "stamp": "rather than printing hello three times",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 203.5,
+   "role": "beat",
+   "secs": [
+    7.5
+   ],
+   "why": "What those four sentences actually decide.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "and between them they decide which of these you get",
+     "lines": [
+      "*Unattended*, or stalled"
+     ],
+     "size": 66,
+     "cols": [
+      {
+       "head": "a tool",
+       "items": [
+        "you can run unattended"
+       ]
+      },
+      {
+       "head": "a script",
+       "items": [
+        "that stops halfway",
+        "waiting for somebody who has gone to lunch"
+       ]
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 248.0,
+   "role": "beat",
+   "secs": [
+    7.5
+   ],
+   "why": "The habit, again - it checked rather than assumed.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "no api key in this environment, but a binary on the path",
+     "lines": [
+      "It *confirmed* it"
+     ],
+     "size": 104,
+     "stamp": "against the installed package, rather than assuming",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 301.5,
+   "role": "beat",
+   "secs": [
+    11.0,
+    11.5
+   ],
+   "why": "Why reading the package beats remembering it, argued as two kinds of answer.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "the Agent SDK is new, and it is moving",
+     "lines": [
+      "A *moving* target"
+     ],
+     "size": 110,
+     "wrong": "the model knows this library",
+     "right": "anything written about it a couple of months ago describes options that may not exist",
+     "trans": "fade"
+    },
+    {
+     "k": "cols",
+     "kicker": "so there are two kinds of answer here",
+     "lines": [
+      "*Snapshot*, or version"
+     ],
+     "size": 76,
+     "cols": [
+      {
+       "head": "from memory",
+       "items": [
+        "a snapshot of a moving target"
+       ]
+      },
+      {
+       "head": "from the package on your disk",
+       "items": [
+        "the version you are actually going to run"
+       ]
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 373.5,
+   "role": "beat",
+   "secs": [
+    11.0,
+    12.5
+   ],
+   "why": "What an unedited memory file becomes, and what is absent from the orchestrator.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "worth pausing on, because this is what happens to a file nobody edits",
+     "lines": [
+      "It becomes a *wish*"
+     ],
+     "size": 96,
+     "wrong": "a pristine memory file is a well-kept one",
+     "right": "one that is never edited stops being a description of the project",
+     "note": "the useful version is amended in place, at the moment the exception is made",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "and look at what is not in the file",
+     "lines": [
+      "*None* of this is in there"
+     ],
+     "size": 62,
+     "rows": [
+      {
+       "t": "no scheduler"
+      },
+      {
+       "t": "no queue"
+      },
+      {
+       "t": "no retry policy"
+      },
+      {
+       "t": "no state",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 428.5,
+   "role": "beat",
+   "secs": [
+    14.0,
+    7.0,
+    7.0,
+    14.5
+   ],
+   "why": "Forty-five seconds of a blank cursor while the narration explains that the blankness is the product. The middle headline was one still frame for fourteen seconds - the detector read 444-456 as dead, and it was right - so it is two cards now.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "three names print, and then nothing at all",
+     "lines": [
+      "That silence is what one looks",
+      "like from the *outside*"
+     ],
+     "size": 48,
+     "stamp": "no dashboard, no progress bars, no panes to cycle through",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "which is, if you think about it",
+     "lines": [
+      "The *point*"
+     ],
+     "size": 150,
+     "stamp": "and obviously so",
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "the reason to run work concurrently",
+     "lines": [
+      "Is so that you are",
+      "*not needed* while",
+      "it happens"
+     ],
+     "size": 60,
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "so be careful what you wish for",
+     "lines": [
+      "Asking for your *attention*"
+     ],
+     "size": 62,
+     "wrong": "a good tool shows you what it is doing",
+     "right": "a tool that gave you something to watch would be a tool asking for your attention",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 474.5,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "The honest explanation of why the screen is blank - a property of the pipe, not the agent.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and here is the honest part",
+     "lines": [
+      "*tail* prints nothing until",
+      "the thing feeding it exits"
+     ],
+     "size": 48,
+     "stamp": "so three agents are working and the screen is a blank line with a cursor on it",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 488.5,
+   "role": "close",
+   "secs": [
+    8.0
+   ],
+   "why": "The close: the practical fix to take away.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "what you can do now",
+     "lines": [
+      "Do *not* pipe it into tail"
+     ],
+     "size": 76,
+     "stamp": "stream it, or tee it into a file and follow the file instead",
+     "trans": "fade"
+    }
+   ]
+  }
+ ]
+}

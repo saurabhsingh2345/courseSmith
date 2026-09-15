@@ -1,0 +1,747 @@
+{
+ "lecture": "w3-38",
+ "title": "A stack of documents, not a codebase",
+ "note": "89% dead picture across eighteen spans - twelve PDFs being read one at a time with nothing on screen but an appending file. Eleven cutaways, 170s of 426s (40%). Three enforced sync fixes: anchors 21.7, 72.1 and 390.8 each arrive 18-22s after the picture they describe, and #00, #02 and #09 end just before them.",
+ "inserts": [
+  {
+   "at": 4.0,
+   "role": "open",
+   "secs": [
+    7.0,
+    10.0
+   ],
+   "why": "SYNC FIX: anchor 21.7 arrives eighteen seconds after its picture. Ends 0.7s before it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 2  \u00b7  lecture 13",
+     "lines": [
+      "A stack of *documents*,",
+      "not a codebase"
+     ],
+     "size": 58,
+     "stamp": "twelve PDFs in a folder. receipts - vendors, dates, line items, totals",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and that is deliberate",
+     "lines": [
+      "The lecture that",
+      "generalises *furthest*"
+     ],
+     "size": 58,
+     "stamp": "still useful when everything else in the week is a version behind",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 34.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    8.0
+   ],
+   "why": "The schema is dictated key by key. On the frame it is inside a long wrapped prompt.",
+   "slides": [
+    {
+     "k": "tokens",
+     "kicker": "and the schema goes in the prompt",
+     "lines": [
+      "Name the *keys*"
+     ],
+     "size": 88,
+     "chips": [
+      "vendor",
+      "date",
+      "currency",
+      "total",
+      "items"
+     ],
+     "hot": [
+      2,
+      4
+     ],
+     "caption": "currency as a three-letter code, total as a number, items as an integer count",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and two things it may not do",
+     "lines": [
+      "No prose. No code *fence*"
+     ],
+     "size": 62,
+     "wrong": "ask it to extract the details",
+     "right": "name the keys and their types, and forbid everything else",
+     "note": "that specificity is the difference between output you can parse and output you have to read",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 52.0,
+   "role": "beat",
+   "secs": [
+    9.0,
+    10.0
+   ],
+   "why": "SYNC FIX: anchor 72.1 arrives twenty-two seconds after its picture. Ends 1.1s before it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "the currency came back null, and it said why",
+     "lines": [
+      "It *refused* to guess"
+     ],
+     "size": 76,
+     "stamp": "no symbol anywhere, and a 20% VAT line that fits three countries",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and that is what asking for a schema buys you",
+     "lines": [
+      "A null, and a *reason*"
+     ],
+     "size": 70,
+     "wrong": "a good answer fills in every field",
+     "right": "it returned nothing where nothing was stated, and added a line saying so",
+     "note": "which is the difference between a demo and a step in a pipeline",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 90.0,
+   "role": "beat",
+   "why": "What twelve sessions actually do to this machine, over a loop that has not printed yet.",
+   "secs": [
+    8.0,
+    7.5
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "read is again the only tool it is allowed",
+     "lines": [
+      "Twelve sessions.",
+      "Twelve lines of *text*"
+     ],
+     "size": 58,
+     "stamp": "nothing writes, nothing runs, nothing asks",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and that is not a small detail here",
+     "lines": [
+      "Documents you",
+      "did not *write*"
+     ],
+     "size": 60,
+     "wrong": "read-only is a precaution you can skip on your own files",
+     "right": "you are pointing an agent at a folder you did not write and cannot fully vouch for",
+     "note": "twelve files, r01 to r12, taken by glob in that order",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 107.0,
+   "role": "beat",
+   "secs": [
+    8.0,
+    8.0
+   ],
+   "why": "What the loop does not contain, counted out loud - and the judgement that goes with it.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "and count what is not in it",
+     "lines": [
+      "*No* pool. No retry"
+     ],
+     "size": 62,
+     "cols": [
+      {
+       "head": "it has",
+       "items": [
+        "a for loop",
+        "one instruction",
+        "a redirection to a file"
+       ]
+      },
+      {
+       "head": "it has not",
+       "items": [
+        "a worker pool",
+        "a retry",
+        "any state",
+        "any resume"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and for a folder of twelve that is exactly right",
+     "lines": [
+      "Knowing when it is the",
+      "*right* amount"
+     ],
+     "size": 56,
+     "stamp": "worth more than knowing how to build the other kind",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 128.0,
+   "role": "beat",
+   "secs": [
+    6.0,
+    6.0
+   ],
+   "why": "One character of quoting is the whole trick, and it is invisible at 4K.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "the prompt changed shape too, and it matters",
+     "lines": [
+      "*Quotes*"
+     ],
+     "size": 96,
+     "cols": [
+      {
+       "head": "single",
+       "items": [
+        "the filename typed in",
+        "one document"
+       ]
+      },
+      {
+       "head": "double",
+       "items": [
+        "the shell expands the variable",
+        "twelve substitutions"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and get it wrong and every session reads a file called dollar f",
+     "lines": [
+      "One instruction.",
+      "*Twelve* substitutions"
+     ],
+     "size": 58,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 142.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "The storage decision, argued in one sentence that is nowhere on screen.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and one more thing in that loop: the redirection",
+     "lines": [
+      "A *file*"
+     ],
+     "size": 120,
+     "wrong": "a job like this needs a database or a queue",
+     "right": "a file you can open, read, diff, and delete a bad line out of",
+     "note": "for a job this size the right storage is the one you can fix with a text editor at four",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 168.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "why": "What a loop hides about cost - the arithmetic is spoken, never shown.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "because a loop hides what this costs",
+     "lines": [
+      "No shared *context*"
+     ],
+     "size": 76,
+     "wrong": "the eleventh one is cheaper because it is like the first",
+     "right": "twelve separate sessions, each one starting from nothing",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and that is fine at twelve",
+     "lines": [
+      "At twelve *thousand*,",
+      "look first"
+     ],
+     "size": 62,
+     "stamp": "which is what the cost field in the last lecture was for",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 184.0,
+   "role": "beat",
+   "why": "The precondition under the whole technique. Nothing on the frame says it; the loop is still running.",
+   "secs": [
+    6.0,
+    6.0
+   ],
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and there is a precondition hiding under all of this",
+     "lines": [
+      "These PDFs have",
+      "*text* in them"
+     ],
+     "size": 58,
+     "wrong": "a PDF is a PDF",
+     "right": "Read pulls that text out, which is why one line of instruction is enough",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "photographs of receipts, scanned at an angle by somebody's phone",
+     "lines": [
+      "A different question.",
+      "A different *failure rate*"
+     ],
+     "size": 50,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 206.5,
+   "role": "beat",
+   "why": "The test to run before the loop, and the failure mode the loop signs you up for.",
+   "secs": [
+    8.0,
+    8.0
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "so test that first, on the worst document in the pile",
+     "lines": [
+      "Before you write",
+      "the *loop*"
+     ],
+     "size": 68,
+     "stamp": "the technique is cheap. document nine hundred is not",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and be honest about the failure mode you are signing up for",
+     "lines": [
+      "Twelve independent",
+      "*judgements*"
+     ],
+     "size": 56,
+     "stamp": "and no two of them can be compared while they run",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 224.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "The failure mode being signed up for, and where the check has to live.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "if the fourth one misreads a column heading",
+     "lines": [
+      "Nothing anywhere *notices*"
+     ],
+     "size": 66,
+     "stamp": "not the loop, not the file, not the total at the bottom - the check is a separate pass",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 238.0,
+   "role": "beat",
+   "why": "Why the twelve run one at a time, which is not a property of the job.",
+   "secs": [
+    7.5,
+    7.5
+   ],
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "the other thing a loop hides is order",
+     "lines": [
+      "Sequential by *accident*"
+     ],
+     "size": 62,
+     "wrong": "they run one at a time because the job needs them in order",
+     "right": "these are independent - they are in sequence because a for loop is four characters",
+     "note": "and a job queue is an afternoon",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "if this were twelve thousand you would want three or four at once",
+     "lines": [
+      "And you already",
+      "know how to *write* it"
+     ],
+     "size": 56,
+     "stamp": "we wrote it two lectures ago, and it was thirty lines",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 253.0,
+   "role": "beat",
+   "why": "The one echo in the loop, and what it buys. The frame is that echo's output, four words on a 4K terminal.",
+   "secs": [
+    6.0,
+    6.5
+   ],
+   "slides": [
+    {
+     "k": "term",
+     "kicker": "look at what the loop prints while it waits",
+     "lines": [
+      "One *echo*"
+     ],
+     "size": 62,
+     "title": "receipts",
+     "prompt": "",
+     "term": [
+      {
+       "t": "- r01.pdf",
+       "kind": "out"
+      },
+      {
+       "t": "- r02.pdf",
+       "kind": "out"
+      },
+      {
+       "t": "- r03.pdf",
+       "kind": "out"
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and that echo is doing real work",
+     "lines": [
+      "A slow one, or a *hung* one"
+     ],
+     "size": 56,
+     "wrong": "the echo is noise you can drop",
+     "right": "without it this is three minutes of a blinking cursor",
+     "note": "and no way to tell a slow document from a hung one",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 265.5,
+   "role": "beat",
+   "why": "The two details in the redirection and the schema that the narration reads out of a command that has scrolled off the top.",
+   "secs": [
+    8.0,
+    7.0,
+    7.5,
+    8.0
+   ],
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "there is a delete at the front of the line too",
+     "lines": [
+      "Appended, not *replaced*"
+     ],
+     "size": 58,
+     "wrong": "run it twice and you get the same twelve lines",
+     "right": "twenty-four lines, and a silently wrong total",
+     "note": "the delete is the whole safety of running it again",
+     "trans": "fade"
+    },
+    {
+     "k": "tokens",
+     "kicker": "and the schema has one key the single-document run did not",
+     "lines": [
+      "The *filename*"
+     ],
+     "size": 74,
+     "chips": [
+      "vendor",
+      "date",
+      "currency",
+      "total",
+      "items",
+      "filename"
+     ],
+     "hot": [
+      5
+     ],
+     "caption": "twelve independent sessions produce twelve lines that look alike",
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and nothing else in the loop records where a line came from",
+     "lines": [
+      "That key *is* the join"
+     ],
+     "size": 72,
+     "stamp": "leave it out and the table is unusable",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and it is worth watching the loop run rather than skipping it",
+     "lines": [
+      "The *rhythm*",
+      "is the point"
+     ],
+     "size": 80,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 296.0,
+   "role": "beat",
+   "why": "The loop's rhythm, drawn at a size you can see - the frame prints one filename every twenty seconds - then the comparison the narration says nobody makes. Stops at 326 so the table arrives with the sentence that introduces it.",
+   "secs": [
+    10.0,
+    6.0,
+    7.0,
+    7.0
+   ],
+   "slides": [
+    {
+     "k": "timeline",
+     "kicker": "roughly twenty seconds a document, one after another",
+     "lines": [
+      "No acceleration.",
+      "No *coordination*"
+     ],
+     "size": 52,
+     "items": [
+      {
+       "when": "0:00",
+       "t": "r01"
+      },
+      {
+       "when": "0:20",
+       "t": "r02"
+      },
+      {
+       "when": "0:40",
+       "t": "r03"
+      },
+      {
+       "when": "1:00",
+       "t": "r04"
+      },
+      {
+       "when": "...",
+       "t": "r05 - r11"
+      },
+      {
+       "when": "3:40",
+       "t": "r12",
+       "hot": true
+      }
+     ],
+     "caption": "that is what this technique looks like at any scale: the same twenty seconds, multiplied",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and DONE at the bottom",
+     "lines": [
+      "So you know the shell",
+      "*reached the end*"
+     ],
+     "size": 54,
+     "stamp": "rather than the last one dying quietly",
+     "trans": "rise"
+    },
+    {
+     "k": "cols",
+     "kicker": "hold the wall-clock against the alternative",
+     "lines": [
+      "The only comparison",
+      "that *matters*"
+     ],
+     "size": 46,
+     "cols": [
+      {
+       "head": "the loop",
+       "items": [
+        "twelve sessions",
+        "about twenty seconds each",
+        "three minutes and a bit"
+       ]
+      },
+      {
+       "head": "a person",
+       "items": [
+        "opening twelve PDFs",
+        "typing twelve rows into a sheet",
+        "which is also not instant"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and it is the one nobody makes before going off to build the queue",
+     "lines": [
+      "The arithmetic",
+      "is *easy*"
+     ],
+     "size": 82,
+     "stamp": "which makes it a decision you can actually make",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 337.0,
+   "role": "beat",
+   "secs": [
+    10.0,
+    10.0
+   ],
+   "why": "The defect in the result, with the count the narration gives. Drawn rather than described.",
+   "slides": [
+    {
+     "k": "meter",
+     "kicker": "five of the twelve have a currency",
+     "lines": [
+      "And *seven* are blank"
+     ],
+     "size": 66,
+     "pct": 42,
+     "fill": "5 with a currency",
+     "rest": "7 blank",
+     "caption": "same instruction, same model, same kind of document",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and that is arguably the right behaviour",
+     "lines": [
+      "Honest, and *unusable*"
+     ],
+     "size": 66,
+     "wrong": "the same instruction gives you the same shape every time",
+     "right": "half of them decided it was not stated and returned nothing rather than guessing",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 375.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.5
+   ],
+   "why": "SYNC FIX: anchor 390.8 arrives twenty-two seconds after its picture. Ends 1.3s before it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and the total, followed by eleven more digits",
+     "lines": [
+      "*2856.89000000001*"
+     ],
+     "size": 66,
+     "stamp": "floating point doing what floating point does - in my jq, not in the model",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and it is exactly the sort of thing that ships",
+     "lines": [
+      "Your attention *moves on*"
+     ],
+     "size": 72,
+     "stamp": "and everything downstream of the interesting part stops being read",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 392.0,
+   "role": "close",
+   "secs": [
+    8.0,
+    10.0
+   ],
+   "why": "The close, and the reason this is the lecture that outlives the week.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "nothing in that loop knew it was reading receipts",
+     "lines": [
+      "The agent is not the product.",
+      "The *loop* is"
+     ],
+     "size": 54,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "what you can do now",
+     "lines": [
+      "Change the *schema*"
+     ],
+     "size": 92,
+     "rows": [
+      {
+       "t": "and it reads invoices"
+      },
+      {
+       "t": "or survey responses"
+      },
+      {
+       "t": "or six hundred markdown files",
+       "hot": true
+      }
+     ],
+     "stamp": "everything either side of that one sentence stays exactly as it is",
+     "trans": "rise"
+    }
+   ]
+  }
+ ]
+}

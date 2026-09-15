@@ -1,0 +1,290 @@
+{
+  "lecture": "w3-27",
+  "title": "A second brief, and nobody in the chair",
+  "note": "406s, 32% dead across eleven spans. Ten cutaways, 116s (28%). The one sync lead (anchor 321.7) is 4s, under the threshold. Remapped off vids/ after its first map was generated against a truncated copy.",
+  "inserts": [
+    {
+      "at": 1.5,
+      "role": "open",
+      "secs": [
+        7.0
+      ],
+      "why": "Names the lecture over an empty folder.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 4  \u00b7  lecture 22",
+          "lines": [
+            "A second brief, and",
+            "*nobody* in the chair"
+          ],
+          "size": 56,
+          "stamp": "a second empty folder, and this one gets filled differently",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 11.5,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "Why version control comes first here, which is not the usual reason.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "so version control before anything else",
+          "lines": [
+            "For a *sharper* reason",
+            "than tidiness"
+          ],
+          "size": 54,
+          "stamp": "in an hour a program writes into this folder with no approval prompts",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 24.0,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "What one command actually buys before an unattended run.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "this one command",
+          "lines": [
+            "Reversible, not a *gamble*"
+          ],
+          "size": 62,
+          "wrong": "git init is housekeeping you do at the start",
+          "right": "it is what makes an unattended run a reversible decision",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 56.5,
+      "role": "beat",
+      "secs": [
+        10.0,
+        11.5
+      ],
+      "why": "The brief's four screens, each specified far past what people write down. It is 43 lines of small text on the frame.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "read the shape of it rather than the content",
+          "lines": [
+            "*Not* a watchlist.",
+            "Not a chart. Not alerts"
+          ],
+          "size": 50,
+          "stamp": "each of the four specified far past what people normally write down",
+          "trans": "fade"
+        },
+        {
+          "k": "rows",
+          "kicker": "and this is what past means",
+          "lines": [
+            "*Thirty* instruments"
+          ],
+          "size": 96,
+          "rows": [
+            {
+              "t": "a sparkline of the last two minutes, re-sorting by the size of the move"
+            },
+            {
+              "t": "candles every five seconds, an hour of scrollback, thresholds drawn across"
+            },
+            {
+              "t": "alerts newest first, naming which rule fired, on what, at what value, how long ago",
+              "hot": true
+            }
+          ],
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 102.0,
+      "role": "beat",
+      "secs": [
+        7.5
+      ],
+      "why": "The two halves of the instruction, and which one is load-bearing.",
+      "slides": [
+        {
+          "k": "cols",
+          "kicker": "read those two halves against each other",
+          "lines": [
+            "The *second* does the work"
+          ],
+          "size": 56,
+          "cols": [
+            {
+              "head": "the first half",
+              "items": [
+                "what it does"
+              ]
+            },
+            {
+              "head": "the second half",
+              "items": [
+                "what it is allowed to be"
+              ]
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 167.0,
+      "role": "beat",
+      "secs": [
+        7.0
+      ],
+      "why": "Why each constraint is there - the reason is attached to each one.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "and they are not arbitrary",
+          "lines": [
+            "Each with a *reason*"
+          ],
+          "size": 86,
+          "rows": [
+            {
+              "t": "the files it owns, so two agents never edit the same file"
+            },
+            {
+              "t": "what it must expose, so the others can build against it",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 215.5,
+      "role": "beat",
+      "secs": [
+        8.0,
+        8.5
+      ],
+      "why": "Who actually reads a brief carefully, and the reason that generalises.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "because nobody reads a brief as carefully as",
+          "lines": [
+            "The thing about to read it",
+            "*six* times"
+          ],
+          "size": 52,
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and there is a second reason, which is the one that generalises",
+          "lines": [
+            "The plan has to be *right*",
+            "about the code"
+          ],
+          "size": 52,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 235.5,
+      "role": "beat",
+      "secs": [
+        11.0,
+        11.0
+      ],
+      "why": "The design constraint on an unattended run, and the three minutes nobody films.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "six agents each holding a quarter of this",
+          "lines": [
+            "Nothing you leave implicit",
+            "*survives* that"
+          ],
+          "size": 50,
+          "stamp": "and none of them will be able to see the seam they are sitting on",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and this is the part nobody films",
+          "lines": [
+            "Three minutes where the correct",
+            "thing to do is *nothing*"
+          ],
+          "size": 48,
+          "stamp": "there is no progress bar because there is nothing to report",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 284.5,
+      "role": "beat",
+      "secs": [
+        10.0
+      ],
+      "why": "The three checks to run on a plan, dictated over a static document.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "and this is how you check a plan",
+          "lines": [
+            "*Three* questions"
+          ],
+          "size": 104,
+          "rows": [
+            {
+              "t": "Does every area have a file list?"
+            },
+            {
+              "t": "Does every file appear in exactly one of them?"
+            },
+            {
+              "t": "Is there anything in the brief that no area owns?",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 298.5,
+      "role": "close",
+      "secs": [
+        8.0
+      ],
+      "why": "The close: the two documents and their different jobs.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "Two documents.",
+            "*Different* jobs"
+          ],
+          "size": 62,
+          "stamp": "the plan says what to build and who owns it",
+          "trans": "fade"
+        }
+      ]
+    }
+  ]
+}

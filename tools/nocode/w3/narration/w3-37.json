@@ -1,0 +1,36 @@
+{
+  "lecture": "w3-37",
+  "cut_seconds": 331.0,
+  "segments": [
+    {
+      "anchor": 0.6,
+      "beat": "pipe",
+      "say": "It reads standard input, which means it goes in a pipe, which means everything you already know about composing shell commands applies to it unchanged. A diff on the left. A reviewer on the right. No integration, no plugin, nobody selling you a product. And the diff itself is small on purpose: eight lines in the feed module, twenty-nine in its test, two files changed and thirty-seven insertions in total. I check that with git diff stat before piping it, because a reviewer handed a thousand-line diff gives you a thousand-line answer, and one commit is the unit this command is good at. Read is the only tool it gets. It can open a file to check a claim; it cannot change one. It is worth noticing how old that idea is. Standard input and an exit code are the two conventions that let unrelated programs written by unrelated people be combined by a third person who wrote neither. Nothing about an agent changes that, and nothing about it needed to."
+    },
+    {
+      "anchor": 50.0,
+      "beat": "instruction",
+      "say": "And read how the reviewing instruction is written, because the default output of review this is three paragraphs about how well-structured everything is. Only defects that are real and specific. One per line. Each with the file and what goes wrong. If there are none, reply with the single word NONE. And do not praise anything. Every one of those clauses is there to remove a way of answering that would be technically responsive and completely useless. Notice what is not in it. No mention of style, no mention of tests, no list of things to look for. The instruction constrains the form of the answer and leaves the content entirely open, which is the right way round; the moment you list what to look for, you get a report on your list and nothing about the thing you did not think of. There is a general rule underneath those clauses, and it is the most transferable thing in this lecture. When you ask for an assessment, specify the shape of a negative answer. If there is no way to say nothing is wrong that satisfies the instruction, something will always be wrong - not because the model is dishonest, but because you asked a question that has no other acceptable answer."
+    },
+    {
+      "anchor": 110.0,
+      "beat": "wait",
+      "say": "And what is happening while this runs is worth naming, because it is different from a review inside the editor. There is no repository loaded, no conversation history, no memory of the last two hours. It has the diff on standard input and read access, and that is the entire world it can see. That is also why nothing is on screen. The wait is the agent reading the two files the diff touches, and then the files those talk to, because a diff does not tell you whether what it changed is used somewhere else. A person reviewing this properly does the same reading. The difference is that you can start a hundred of these at once and read them later. Sometimes that is a weakness. Here it is the point: the review is a function of the diff and nothing else, so it does not depend on what else you happened to be doing that afternoon. And that has a consequence worth planning around: it cannot see the conversation you had about this change an hour ago, so anything that justifies the diff has to be in the diff. Which is a good discipline anyway, and a bad surprise if you have been relying on context nobody wrote down."
+    },
+    {
+      "anchor": 170.0,
+      "beat": "read",
+      "say": "And read the answer against the instruction rather than against your hopes. Specific defects, with files. Nothing about structure. Nothing about naming. Two findings, both with a line number. One says the client's alert list is never trimmed, at line two hundred and twenty-two, and adds that this was already broken before the diff. The other is a stale comment above the retention constant: it still says one hour of candles, though the constant now governs alerts too. It is also the kind of thing that costs somebody an afternoon. If you have ever asked a model to review something and got back a warm essay, the difference is not the model. The other thing to check is whether it found nothing, and whether nothing is the right answer. A reviewer that never says NONE is broken in one direction; a reviewer that always says NONE is broken in the other. The only way to know which you have is to point it at a diff you know is bad."
+    },
+    {
+      "anchor": 219.3,
+      "beat": "chain",
+      "say": "Two of them in a row is a pipeline. The first names the three riskiest files for a new contributor, path only, no commentary, into a file. The second reads that file and says what a newcomer would most likely get wrong in each one. Neither knows the other exists; the connective tissue is a text file. And look at what actually landed in it, because this is the honest half of the lecture: it says path only, and it came back wrapped in a code fence. Three correct paths, with three backticks above and below them. Which is fine here, because the next stage is another language model and it does not care. It would not be fine if the next stage were xargs. That is the real difficulty with putting these in a pipeline - the output is almost structured. If you are building this for real, the line after the agent is a grep or a sed that throws away everything that is not the shape you asked for. And the second stage answers per file, with a line number each. Change the random draw pattern in the simulator and you break determinism, because correctness there is the same sequence for the same seed. The feed's clock advances a fixed five thousand milliseconds per tick regardless of when the tick actually fires, so the interval is not wall-clock time. And the rules engine is edge-triggered: a rule that stays true stays silent until it goes false again. And there is an obvious next step from here that I want to name and not take. You could put this in a git hook, so every commit gets reviewed before it lands. You could. It costs a few seconds and a few pennies per commit, and it will interrupt you on the ones where you are already sure - which is how a check gets disabled in a fortnight. Automate the review at the point where somebody else has to read it, which is the pull request, not at the point where you are still working."
+    },
+    {
+      "anchor": 317.0,
+      "beat": "point",
+      "say": "An agent with an exit code and a standard input is a unix program. That is the whole lecture. No window, no approval, no person - and nothing in this lecture that a shell script could not have been doing for you since the day you installed it."
+    }
+  ]
+}

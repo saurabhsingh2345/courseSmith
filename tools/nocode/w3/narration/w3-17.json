@@ -1,0 +1,86 @@
+{
+  "lecture": "w3-17",
+  "cut_seconds": 774.0,
+  "segments": [
+    {
+      "anchor": 2,
+      "beat": "roster",
+      "say": "Everything is in place. The tree on the left is clean, the branch reads agent-team, and the header says Claude Team \u2014 the flag we set is live. Nothing is running. One terminal, one empty prompt, and a plan file that six people are about to be briefed from. So this is the moment the week has been building towards, and it is one instruction, sitting in the box, not yet sent."
+    },
+    {
+      "anchor": 24,
+      "beat": "kick",
+      "say": "Read the roster, because I chose it rather than letting it choose. A simulator engineer. A back-end engineer for the API and the live feed. A front-end engineer for the fleet list and the map. A second front-end engineer for the heat map and the chart. A chat engineer for the dispatcher. And an integration tester. Six, and notice none of them is called architect, or reviewer, or documenter. Every name on that list owns running code. Six specialists, split partly by layer and partly by feature, which is very close to how you would divide the same work between people."
+    },
+    {
+      "anchor": 54,
+      "beat": "tests",
+      "say": "The temptation is to split by task - one to write code, one to write tests, one to write docs. That produces agents that all need the same files and cannot start until the one in front finishes. Split by what a piece of the product owns instead, and the parallelism falls out of the split for free. Then two sentences that matter more than the roster. First: every engineer writes their own unit tests. Not a separate testing agent. The person who wrote the tick logic is the person who pins it, because they are the only one who knows which behaviour is load-bearing and which is an accident. Second, and this is the interesting one: no code reviewer. I was tempted. But a reviewer talks to everybody, which means six conversations about style running while six people are trying to build. That is not quality control, it is noise. And the last line is a guard rail: wait for your teammates to finish before you start doing the work yourself. Left alone, a lead will helpfully begin coding, and then you have seven people editing the same files."
+    },
+    {
+      "anchor": 110,
+      "beat": "absent",
+      "say": "And notice what is absent from that instruction: how. I did not say which files, or in what order, or how they should talk to each other. Six roles and two constraints, and that is the whole shift this week has been about. On day one I described a single job precisely. Here I describe a division of labour and let the coordination be somebody else's problem. Now watch what it does first, because it is not what you would expect. It does not spawn anybody. The first line back is: I will read plan dot md first so each teammate gets a precise brief. Read one file. That is the entire cost of the step, and it is the step most people skip because it does not look like progress. The panel now has two rows: main, and sim-engineer. One teammate started, and it is the one nothing else can be written against. One file read, and then a second thought on top of it. And that ordering is deliberate on its part, not mine: the plan names the simulator as section one, and it read the plan before it read the code."
+    },
+    {
+      "anchor": 165,
+      "beat": "ground",
+      "say": "Now let me look at what is already built, so the briefs are grounded. That is the sentence I would want from a human lead on their first day, and it is a minute extremely well spent. Six agents working from a vague brief is six times the misunderstanding, and unlike a human, none of them will come back and ask. So it searches, reads two files, lists a directory, runs one shell command, and only then does the roster turn into people. Underneath, the working line is ticking: two minutes seventeen, seven thousand tokens. That is what a careful start costs. And the panel is already asymmetric. Sim engineer forty-six seconds in, back end thirty-two, fleet map thirteen \u2014 but the back end has already pulled thirty-nine thousand tokens against the simulator's thirty. Reading is not evenly distributed, and neither is cost. It is nothing against what a bad brief costs. Notice it does not ask me whether the plan is still accurate. It goes and checks. The difference between an agent that asks and an agent that verifies is about four minutes of your attention per build, and it compounds."
+    },
+    {
+      "anchor": 220,
+      "beat": "launch",
+      "say": "Three background agents launched. Simulator, back end, fleet map. Not six at once, and that is a scheduling decision rather than a limit: the simulator is the thing everything else consumes, so it goes first, and the two that can start against a contract rather than against code start with it. Underneath the prompt a roster appears, one line per teammate, and next to each one a clock and a token count that both start moving. That panel is the honest view of this lecture. Not the scrolling text, which you cannot read at this speed and should not pretend to. Those numbers. Three now, six shortly. And shortly turns out to be under a minute. Heat chart, chat, and the integration tester join, and the list reads six background agents launched with an at-sign in front of every name. Five rows fit and the panel says one more, the first sign that you cannot see all of this at once. If you have used a thread pool this will feel familiar, and the resemblance is not accidental: the constraint is the same one, which is that starting work you cannot finish is worse than starting less of it."
+    },
+    {
+      "anchor": 276,
+      "beat": "briefs",
+      "say": "And here is the lead's own account of how it divided the work, and it is worth stopping on because this is the artefact you would have had to write by hand. Sim engineer owns source sim, is auditing the simulator that already exists against section one of the plan, and is told explicitly not to rebuild anything. Back end owns source api and source server, the HTTP server on eight zero eight zero, the snapshot and map routes, the live feed, reroute, hold, release, and the chat post route, plus its own API tests. Fleet map owns source ui public: the page shell, the shared store, the fleet list with live countdowns, the moving map, the exceptions ticker, the theme toggle. Heat chart owns source risk, the value-sized region heat map and the on-time line chart. Chat owns source chat, a deterministic dispatcher with no model call in it, so it works offline. And the tester owns packaging and the end-to-end run. Notice the clause in the simulator's brief that nobody writes by accident: instructed not to rebuild anything. There is a working simulator in this repo already, and the single most expensive thing a fresh agent does is helpfully replace it."
+    },
+    {
+      "anchor": 338.1,
+      "beat": "contracts",
+      "say": "That is a decision a lead had to make. It is not something the model does by default, and it is the difference between six agents building and six agents queueing. Then the sentence that makes the whole thing work: to keep six parallel builders from colliding, I pinned the interface contracts in every brief, and gave each engineer an exclusive file list. Read that twice. Every one of those six briefs contains the same API routes, the same snapshot shape, the same panel container ids, the same two function names. Not a description of them. The literal contract. That is the entire trick of parallel agent work, and it is the same trick that makes parallel human work possible: you can only run people in parallel across a boundary that is written down. Everything else in this lecture is scheduling."
+    },
+    {
+      "anchor": 380,
+      "beat": "nocode",
+      "say": "That is engineering. And it repeats my constraint back at me with a reason attached: no code reviewer, as requested. Then it tells me what it is going to do with its own time, which is nothing, until they report. It will wait, then run the full suite itself, start the app, and check the result against the plan before reporting back to me. The lead holds the only complete picture of the contracts. If it starts editing files it becomes a seventh writer, and the one process that could referee a conflict is now a party to it. A lead that has decided to sit on its hands is a lead that will not be editing files underneath six other people."
+    },
+    {
+      "anchor": 414.5,
+      "beat": "parallel",
+      "say": "So they start appearing, and the thing to watch is not the text scrolling past. It is that more than one of these is moving at the same time. Up to this point in the course everything has been one thing at a time: you ask, it works, it answers. This is the first moment where the work is genuinely happening in parallel and you are not the bottleneck. Two things worth understanding about what that actually buys you. It is not mainly speed, although it is faster. It is that each of these has its own context window, so the front-end work is not competing for room with the simulator's internals. On a long build that is the difference between answers that stay sharp and answers that quietly degrade. And there is a second cost, which is that you lose the ability to follow it. With one agent you can read every line it produces if you choose to. With six you cannot, and the honest response is not to pretend otherwise. It is to move your attention from the transcript to the artefacts: the task list, the file ownership, the test output, the diff."
+    },
+    {
+      "anchor": 470,
+      "beat": "relay",
+      "say": "Those are readable at any team size. A scrolling transcript stops being readable at about two. And this is the first real message between two of them, and it is not chat. The simulator audit came back clean: all fifty-four existing tests pass, the simulator conforms to section one, and nothing was changed, including the deterministic replay guarantee. Then it relays the load-bearing details to the four teammates who consume it, addressed by name, one paragraph each. That is not a broadcast. Each paragraph carries only what that one teammate needs in order not to get it wrong. And it lands before anyone asks \u2014 information moving ahead of the work, rather than behind a blocked agent waiting for an answer. Back end: simulator commands return ok, reason, vehicle, so map ok false to a proper HTTP error. Heat chart: load counts toward the destination region, and on-time rate is null until the first delivery. Fleet map: eta seconds is null while a vehicle is held, so show a held marker rather than a countdown; is late is precomputed; the map space is a hundred by a hundred with a top-left origin."
+    },
+    {
+      "anchor": 530,
+      "beat": "guess",
+      "say": "Every one of those is a bug that did not happen. Somebody would have shown a countdown on a held vehicle. Somebody would have drawn the map upside down, because a top-left origin is not the obvious choice. Somebody would have rendered a zero on-time rate before any van had arrived. Three bugs, none of which would have looked like a bug. Each would have shipped as a plausible screen that was quietly wrong. And notice the phrasing it used: so nobody codes against a guess. That is the failure mode of parallel work, human or otherwise. Not laziness. Guessing, confidently, in five places at once. Then: teammate sim engineer finished. One of six done, fifty-four tests passing, no changes needed, and it stays on call for the rest of the build. And it is worth being precise about what just happened, because it looks like politeness and it is not. One agent read a file, extracted the four facts that other agents could not derive, and pushed them outward before anyone needed them."
+    },
+    {
+      "anchor": 590,
+      "beat": "files",
+      "say": "Meanwhile look at the left-hand side, because that is the part with no commentary attached. Scripts appeared. An env example. A dot gitignore. A Dockerfile, and a compose file next to it. And package dot json has turned from clean to modified, which means somebody edited a file that existed before today. Eighty-eight of ninety tests passing, and the two that are not are both waiting on the chat module. Nobody narrated those into existence in the pane you are watching. They are the tester's Phase One, happening in a different conversation, and the only reason you know it happened is that the explorer changed colour. This is the part of an agent team that people find hardest, and it is worth naming: there is no single place you can look and see everything. There is only the repository, and the repository is now the source of truth about what your team did. There is a discipline that follows from that, and it is the one worth taking away. After a build like this you do not ask the agent what it did. You read the repository. Git status, the file list, the test output. Everything else is a summary written by the thing you are checking on."
+    },
+    {
+      "anchor": 650,
+      "beat": "gitignore",
+      "say": "And here is the kind of thing that makes the tester worth its seat. It flagged a repo-hygiene gap: there is no dot gitignore, which risks the env file being committed against the plan's own hard rule. That belonged to nobody's file list, which is exactly why it would have shipped. The lead picks it up itself, writes five lines, and says why. And the file is on the left \u2014 dot gitignore, with a U beside it, untracked like everything else the team has written. Work nobody scheduled, guarding the plan's one hard rule. Watch what that little exchange actually is. One agent found a gap between two other agents' ownership, reported it upward rather than fixing it inside somebody else's files, and the lead absorbed the unowned work. That is not a feature anybody built. It is what a shared list and clear ownership produce on their own. There is a general form of this worth naming."
+    },
+    {
+      "anchor": 700,
+      "beat": "reports",
+      "say": "Any division of labour leaves gaps at the seams, and the seams are exactly where nobody feels responsible. Here you fill them by giving one agent an explicit remit to look at the whole and report, and then by having a lead that picks up what it finds instead of routing it back. Now the reports start landing on top of each other. The tester is finished: packaging verified, the suite standing at seventy-eight pass, one fail, one skip, with chat the only blocker. Back end is finished, and it handled a cross-team request cleanly on the way: the heat map wanted the risk module importable in the browser, so the server now serves it, with a test added, and the API suite at fifteen pass. Then the chat brain lands and the suite moves to a hundred and eleven of a hundred and thirteen. Nine minutes of clock on the front-end pair, ninety-five and eighty-one thousand tokens each."
+    },
+    {
+      "anchor": 745,
+      "beat": "leave",
+      "say": "And you can look at any one of them directly. Not just the lead, any teammate. That is the practical difference from a sub-agent: when one of them goes wrong you go and talk to the one that went wrong, instead of asking the manager to relay a message. So let them work. And the most important thing here is not a feature: do not sit and watch this. The lead was told to wait so that this runs without you."
+    }
+  ]
+}

@@ -1,0 +1,372 @@
+{
+  "lecture": "w3-13",
+  "title": "Driving Claude from code: the Agent SDK",
+  "note": "581s, 41% dead across fifteen spans, including one 63.5s hold on install output. Thirteen cutaways, 183s (31%). Two enforced sync fixes at anchors 247.0 and 441.0; 393.0 and 515.0 lead by 4s and 6s, under the threshold.",
+  "inserts": [
+    {
+      "at": 8.0,
+      "role": "open",
+      "secs": [
+        7.5
+      ],
+      "why": "Names the lecture over a two-line terminal.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 2  \u00b7  lecture 10",
+          "lines": [
+            "Driving Claude from code:",
+            "the *Agent SDK*"
+          ],
+          "size": 56,
+          "stamp": "the same work, from a program - and you still will not write it",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 19.0,
+      "role": "beat",
+      "secs": [
+        9.5
+      ],
+      "why": "The habit the lecture opens by insisting on.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and the first thing on screen",
+          "lines": [
+            "A *check*, not a command"
+          ],
+          "size": 80,
+          "stamp": "print where I am, and list what is here",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 32.5,
+      "role": "beat",
+      "secs": [
+        9.0
+      ],
+      "why": "Why the check matters, stated as a consequence.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "because the steps that follow install things",
+          "lines": [
+            "The easiest way to quietly",
+            "ruin an *afternoon*"
+          ],
+          "size": 52,
+          "stamp": "installing them into the wrong folder",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 48.0,
+      "role": "beat",
+      "secs": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "why": "Sixty seconds of unchanged install output while the narration explains what the library actually is - the longest dead stretch in the lecture and the densest teaching in it.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and read the version number on that install",
+          "lines": [
+            "*0.2.148*"
+          ],
+          "size": 140,
+          "stamp": "a zero at the front is the author telling you the shape can still change",
+          "trans": "fade"
+        },
+        {
+          "k": "rows",
+          "kicker": "and underneath it, the ordinary parts of a Python service",
+          "lines": [
+            "Built to live *inside* a program"
+          ],
+          "size": 54,
+          "rows": [
+            {
+              "t": "an HTTP client"
+            },
+            {
+              "t": "a validation library"
+            },
+            {
+              "t": "a web server",
+              "hot": true
+            }
+          ],
+          "stamp": "which is your first clue that this is not built to sit in front of a person",
+          "trans": "rise"
+        },
+        {
+          "k": "head",
+          "kicker": "and all of it landed in a folder inside this project",
+          "lines": [
+            "A broken experiment is",
+            "*one folder* to delete"
+          ],
+          "size": 52,
+          "trans": "rise"
+        },
+        {
+          "k": "myth",
+          "kicker": "and a word about what this library actually is",
+          "lines": [
+            "The *same* agent"
+          ],
+          "size": 120,
+          "wrong": "a second product, with a second bill",
+          "right": "the same agent you have talked to all week, with the terminal taken off the front",
+          "note": "same tools, same permissions model, same login",
+          "trans": "rise"
+        },
+        {
+          "k": "head",
+          "kicker": "what changes is who is doing the asking",
+          "lines": [
+            "A program does not",
+            "get *bored*"
+          ],
+          "size": 62,
+          "stamp": "and can do the same thing a hundred times without getting sloppy on the eightieth",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 112.5,
+      "role": "beat",
+      "secs": [
+        7.0
+      ],
+      "why": "How this lecture differs from every other tutorial about the library.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and here is where this course differs",
+          "lines": [
+            "I am not going to *type* it"
+          ],
+          "size": 72,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 121.5,
+      "role": "beat",
+      "secs": [
+        7.0,
+        8.0
+      ],
+      "why": "The clause that matters for the student, and the skill it implies.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and then the part that matters for you",
+          "lines": [
+            "Explain each line as if I have",
+            "never written *Python*"
+          ],
+          "size": 48,
+          "trans": "fade"
+        },
+        {
+          "k": "myth",
+          "kicker": "because you have not, and you do not need to",
+          "lines": [
+            "*Read* it, do not write it"
+          ],
+          "size": 66,
+          "wrong": "you will need to learn Python for this",
+          "right": "you do not need to write it - you do need to be able to read it",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 179.5,
+      "role": "beat",
+      "secs": [
+        6.0
+      ],
+      "why": "What to watch before any code appears.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "watch the two lines under the prompt",
+          "lines": [
+            "*Before* any code appears"
+          ],
+          "size": 72,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 228.0,
+      "role": "beat",
+      "secs": [
+        9.0,
+        9.0
+      ],
+      "why": "SYNC FIX: anchor 247.0 arrives twenty seconds after its picture. Ends 1s before it.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "and it is worth naming what I am not doing here",
+          "lines": [
+            "*Specify*, then read"
+          ],
+          "size": 104,
+          "wrong": "I am learning Python",
+          "right": "I am learning to specify, and then to read",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "which are two different skills",
+          "lines": [
+            "And only one of them",
+            "used to be *optional*"
+          ],
+          "size": 54,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 271.0,
+      "role": "beat",
+      "secs": [
+        8.5
+      ],
+      "why": "Why the library streams, in one sentence.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "because the network is slow",
+          "lines": [
+            "Results as they *arrive*"
+          ],
+          "size": 72,
+          "stamp": "rather than making you wait for the last one",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 353.5,
+      "role": "beat",
+      "secs": [
+        7.5,
+        8.0
+      ],
+      "why": "The classic beginner bug, and the detail about credentials worth keeping.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "that one line runs it, and forgetting it",
+          "lines": [
+            "The classic beginner *bug*"
+          ],
+          "size": 66,
+          "stamp": "the program exits instantly, having done nothing",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and one detail worth keeping",
+          "lines": [
+            "No API key. *None to leak*"
+          ],
+          "size": 72,
+          "stamp": "it talks to Claude through the same command-line tool, on the login you already have",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 428.5,
+      "role": "beat",
+      "secs": [
+        11.0
+      ],
+      "why": "SYNC FIX: anchor 441.0 arrives thirteen seconds after its picture. Ends 1.5s before it.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "the same thing you have watched all week, in a nicer coat",
+          "lines": [
+            "The terminal is a *formatter*"
+          ],
+          "size": 62,
+          "stamp": "every tool call, every thought, every file write arrives here as an object",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 442.0,
+      "role": "beat",
+      "secs": [
+        8.5
+      ],
+      "why": "What the fifteen lines actually said - three things, none of them on the frame.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "not because i wrote a game",
+          "lines": [
+            "*Fifteen* lines"
+          ],
+          "size": 120,
+          "rows": [
+            {
+              "t": "who should write it"
+            },
+            {
+              "t": "what they are allowed to touch"
+            },
+            {
+              "t": "and where the result should land",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 470.0,
+      "role": "close",
+      "secs": [
+        7.5
+      ],
+      "why": "The close, at the moment the narration says the abstraction becomes concrete.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "Files appear because",
+            "a *loop* is iterating"
+          ],
+          "size": 56,
+          "trans": "fade"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,379 @@
+{
+ "lecture": "w3-33",
+ "title": "Somewhere other than your laptop: the repo and its CI",
+ "note": "60% dead picture across eleven spans. Ten cutaways, 130s of 318s (41%). Anchors 130.0 and 190.0 lead by 8s and 9s and are covered by #03 and #05; anchor 216.6 leads by 7s, under the threshold.",
+ "inserts": [
+  {
+   "at": 4.0,
+   "role": "open",
+   "secs": [
+    6.0,
+    7.5
+   ],
+   "why": "Names the lecture and turns 'git status prints nothing' into the point it is making.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 5  \u00b7  lecture 28",
+     "lines": [
+      "Somewhere other than",
+      "your *laptop*"
+     ],
+     "size": 62,
+     "stamp": "one commit, on one disk, in a folder that exists in exactly one place",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "below the dashes, git status prints nothing",
+     "lines": [
+      "The *good* kind of nothing"
+     ],
+     "size": 62,
+     "wrong": "nothing to commit means the work is safe",
+     "right": "everything is committed, and none of it is anywhere but here",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 30.0,
+   "role": "beat",
+   "secs": [
+    9.0,
+    10.0
+   ],
+   "why": "Three steps and a size, all spoken over a terminal that has stopped printing.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "one command: this directory as the source",
+     "lines": [
+      "Create, *remote*, push"
+     ],
+     "size": 62,
+     "rows": [
+      {
+       "t": "private, and inside an organisation rather than a personal account"
+      },
+      {
+       "t": "because almost every command from now on prints the owner on screen",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "fifty objects, and a branch that tracks a remote",
+     "lines": [
+      "*62* kilobytes"
+     ],
+     "size": 104,
+     "stamp": "that is the entire product, and it fits in a file you could email",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 58.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "why": "What a repository actually converts the work into, and the honest reason people put it off.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "a disk becomes three things",
+     "lines": [
+      "An *address*"
+     ],
+     "size": 96,
+     "rows": [
+      {
+       "t": "somewhere with an address"
+      },
+      {
+       "t": "a history anybody can read"
+      },
+      {
+       "t": "and somewhere for work to arrive",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and the reason people put this off",
+     "lines": [
+      "Not that it is *hard*"
+     ],
+     "size": 72,
+     "wrong": "it is a lot of setup for not much",
+     "right": "it feels like ceremony, and stops feeling like ceremony the first time a laptop dies",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 122.5,
+   "role": "beat",
+   "secs": [
+    6.0
+   ],
+   "why": "Ends 1.5s before anchor 130.0, which the footage otherwise reaches eight seconds early.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "it will run on a change made by somebody else",
+     "lines": [
+      "Who was not in this *room*"
+     ],
+     "size": 72,
+     "stamp": "and has not read the memory file",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 140.5,
+   "role": "beat",
+   "secs": [
+    8.5
+   ],
+   "why": "What an agent writes when you do not constrain it, and why both defaults fail here.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "left alone it writes the workflow it has seen most often",
+     "lines": [
+      "Which fails *here*"
+     ],
+     "size": 76,
+     "wrong": "npm ci and a cache keyed on a lock file are the sensible defaults",
+     "right": "both fail on this repository, because the thing they are for does not exist",
+     "note": "and they fail on the runner, six minutes after you stopped looking",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 184.5,
+   "role": "beat",
+   "secs": [
+    4.5
+   ],
+   "why": "A short beat that ends 1s before anchor 190.0, which the footage reaches nine seconds early.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "say what is different about you, in the same sentence",
+     "lines": [
+      "Two clauses. Both *negative*"
+     ],
+     "size": 62,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 190.5,
+   "role": "beat",
+   "secs": [
+    6.0
+   ],
+   "why": "The workflow file is twenty-two lines with a comment per step. On the frame it is small yaml.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "twenty-two lines, three steps",
+     "lines": [
+      "And a *comment* above each"
+     ],
+     "size": 58,
+     "rows": [
+      {
+       "t": "checkout, so the later steps have code"
+      },
+      {
+       "t": "node 24, matching the engines field in the package file"
+      },
+      {
+       "t": "then run the suite",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 219.0,
+   "role": "beat",
+   "secs": [
+    10.0,
+    11.0
+   ],
+   "why": "The moment something genuinely different happens, argued as a difference between two machines.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "every check in this course so far has run on this machine",
+     "lines": [
+      "Run by somebody who *wanted* it to pass"
+     ],
+     "size": 46,
+     "wrong": "the tests pass, so the code is fine",
+     "right": "every check so far was run by somebody who wanted it to pass",
+     "trans": "fade"
+    },
+    {
+     "k": "cols",
+     "kicker": "and this one does not",
+     "lines": [
+      "A machine that has never *seen* this"
+     ],
+     "size": 48,
+     "cols": [
+      {
+       "head": "your laptop",
+       "items": [
+        "the right Node on it",
+        "whatever else happened to be lying around",
+        "and somebody who wants it to pass"
+       ]
+      },
+      {
+       "head": "the runner",
+       "items": [
+        "a clean checkout",
+        "nothing cached",
+        "and no opinion about the outcome"
+       ]
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 244.5,
+   "role": "beat",
+   "why": "The commit message and the second copy - both spoken over a two-line push that finished printing.",
+   "secs": [
+    8.0,
+    8.5
+   ],
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "note the commit message as well",
+     "lines": [
+      "The line somebody",
+      "reads in a *year*"
+     ],
+     "size": 58,
+     "wrong": "add workflow file",
+     "right": "say what the change does, not that a file was added",
+     "note": "you will read it in a year, in a list of forty others",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and one more thing changes with the push, quieter than the rest",
+     "lines": [
+      "Two copies.",
+      "Two machines.",
+      "*One* of them not mine"
+     ],
+     "size": 56,
+     "stamp": "until now, one wrong reset and the work was gone",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 268.0,
+   "role": "beat",
+   "secs": [
+    10.0,
+    12.0
+   ],
+   "why": "Two commands and the conclusion drawn from them, over a terminal showing one row of output.",
+   "slides": [
+    {
+     "k": "term",
+     "kicker": "fifteen seconds, and green - no browser at any point",
+     "lines": [
+      "One *row*"
+     ],
+     "size": 94,
+     "title": "signal-desk",
+     "term": [
+      {
+       "t": "gh run list",
+       "kind": "cmd"
+      },
+      {
+       "t": "CI  main  push  success  15s",
+       "kind": "ok"
+      },
+      {
+       "t": "gh run watch --exit-status",
+       "kind": "cmd"
+      }
+     ],
+     "trans": "fade",
+     "prompt": ""
+    },
+    {
+     "k": "head",
+     "kicker": "and the useful thing about that is not the colour",
+     "lines": [
+      "It runs whether or not anybody",
+      "*remembers* to"
+     ],
+     "size": 54,
+     "stamp": "everything else this week depended on a person choosing to check something",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 301.0,
+   "role": "close",
+   "secs": [
+    7.0,
+    8.0
+   ],
+   "why": "The close, over a finished terminal. It names what this replaces and why the loop is worth more.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and it is worth saying what this replaces",
+     "lines": [
+      "An *install button*"
+     ],
+     "size": 76,
+     "wrong": "you need a hosted agent product to do this",
+     "right": "that product is an install button on top of what you just watched",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "what you can do now",
+     "lines": [
+      "The loop is the same",
+      "on *every* forge"
+     ],
+     "size": 58,
+     "stamp": "at every company, whether or not anybody is selling you an integration",
+     "trans": "rise"
+    }
+   ]
+  }
+ ]
+}

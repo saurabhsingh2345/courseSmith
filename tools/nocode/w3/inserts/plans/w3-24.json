@@ -1,0 +1,250 @@
+{
+  "lecture": "w3-24",
+  "title": "The verdict on the two ways of running a team",
+  "note": "285s, 43% dead across ten spans. Eight cutaways, 108s (38%). Anchor 44.0 leads by 11s and #03 ends 1s before it.",
+  "inserts": [
+    {
+      "at": 4.0,
+      "role": "open",
+      "secs": [
+        4.5,
+        4.5
+      ],
+      "why": "Names the lecture and its premise: numbers before opinion.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 4  \u00b7  lecture 21",
+          "lines": [
+            "The *verdict* on the two",
+            "ways of running a team"
+          ],
+          "size": 50,
+          "stamp": "before any opinion, the numbers",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "everything you have been told this week - by me included",
+          "lines": [
+            "Worth what the *meter* says"
+          ],
+          "size": 62,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 14.0,
+      "role": "beat",
+      "secs": [
+        7.0
+      ],
+      "why": "The number the whole lecture rests on, drawn against its limit rather than read off a panel.",
+      "slides": [
+        {
+          "k": "meter",
+          "kicker": "then the two bars that matter",
+          "lines": [
+            "*78* percent of the week"
+          ],
+          "size": 66,
+          "pct": 78,
+          "fill": "78% of the week gone",
+          "rest": "22% left",
+          "caption": "and this session alone, eighty-six percent used",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 24.5,
+      "role": "beat",
+      "secs": [
+        7.5
+      ],
+      "why": "Where the spend actually came from - the panel breaks it down in text too small to read.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "and it breaks it down for you",
+          "lines": [
+            "Spawning agents is the *spend*"
+          ],
+          "size": 52,
+          "rows": [
+            {
+              "t": "19% from subagent-heavy sessions"
+            },
+            {
+              "t": "11% while four or more sessions ran at once",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 34.0,
+      "role": "beat",
+      "secs": [
+        9.0
+      ],
+      "why": "SYNC FIX: anchor 44.0 arrives eleven seconds after its picture. Ends 1s before it.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and it was not this conversation",
+          "lines": [
+            "A week's allowance,",
+            "in *two* working days"
+          ],
+          "size": 54,
+          "stamp": "six agents building yesterday, and three under our own script an hour ago",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 124.0,
+      "role": "beat",
+      "secs": [
+        9.0
+      ],
+      "why": "The failure mode named precisely, which is the useful part of the beat.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "and that is the failure mode",
+          "lines": [
+            "A reasonable question,",
+            "into an *empty room*"
+          ],
+          "size": 52,
+          "wrong": "the failure mode is a model that lies",
+          "right": "it is a model that asks a reasonable question into an empty room",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 160.0,
+      "role": "beat",
+      "secs": [
+        9.0,
+        9.0
+      ],
+      "why": "What each way of working actually cost, listed as evidence rather than opinion.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "the cost of the team is on screen too",
+          "lines": [
+            "*Three* costs"
+          ],
+          "size": 104,
+          "rows": [
+            {
+              "t": "an experimental flag"
+            },
+            {
+              "t": "a boundary written by hand"
+            },
+            {
+              "t": "and a human reading a 3,000-line diff that landed all at once",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "tokens",
+          "kicker": "and on our own orchestrator: eighty-two lines, three jobs",
+          "lines": [
+            "A *minimal* tool grant"
+          ],
+          "size": 62,
+          "chips": [
+            "read",
+            "glob",
+            "write",
+            "grep"
+          ],
+          "hot": [
+            3
+          ],
+          "caption": "no edit. no shell.",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 180.0,
+      "role": "beat",
+      "secs": [
+        12.0,
+        13.0
+      ],
+      "why": "What the script is good at, in its own words, and the evidence that it worked.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "good at, in its own words",
+          "lines": [
+            "*Narrow* read-then-write jobs,",
+            "with a tight blast radius"
+          ],
+          "size": 48,
+          "stamp": "cheap, isolated, concurrent fan-out",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and it produced grounded output rather than filler",
+          "lines": [
+            "Twenty-six cities is a",
+            "*checkable* number"
+          ],
+          "size": 52,
+          "stamp": "which is the difference between a document and a paraphrase of the brief",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 248.0,
+      "role": "close",
+      "secs": [
+        11.0,
+        12.0
+      ],
+      "why": "The close: the verdict, and what it is a verdict on.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "hear that correctly",
+          "lines": [
+            "On this *version*, not the idea"
+          ],
+          "size": 56,
+          "wrong": "so the agent team wins",
+          "right": "it is a verdict on this version of the script, not on the idea",
+          "note": "neither gap is deep - an edit permission and a shell permission is where they start",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "A better answer",
+            "than a *winner*"
+          ],
+          "size": 62,
+          "stamp": "keep the orchestrator for exactly the job it is good at",
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

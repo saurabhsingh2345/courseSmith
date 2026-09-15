@@ -1,0 +1,293 @@
+{
+  "lecture": "w3-16",
+  "title": "Setting up the team: clean house, pick the roster",
+  "note": "388s, 36% dead across fourteen spans. Twelve cutaways, 115s (30%). Anchor 157.9 leads by 14s and is WAIVED: there is no dead frame anywhere between 125.0s and 168.5s, so there is nothing to end a card on before it. Anchor 174.0 leads by 6s, under the threshold.",
+  "sync_waived": [
+    157.9
+  ],
+  "inserts": [
+    {
+      "at": 0.5,
+      "role": "open",
+      "secs": [
+        9.0
+      ],
+      "why": "Names the lecture over the opening still.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 3  \u00b7  lecture 15",
+          "lines": [
+            "Setting up the team:",
+            "clean house, pick the *roster*"
+          ],
+          "size": 46,
+          "stamp": "before we go loud, we go quiet",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 10.5,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "Why the audit happens first, said once over an unchanged file tree.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "six agents are about to run in this folder",
+          "lines": [
+            "Every one *inherits*",
+            "what is configured here"
+          ],
+          "size": 52,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 29.0,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "The arithmetic of a surprise, which is the whole argument for auditing.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and this is why you audit before you scale something",
+          "lines": [
+            "*Six times* as much,",
+            "in a minute"
+          ],
+          "size": 54,
+          "stamp": "a surprise that costs you nothing with one agent",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 39.0,
+      "role": "beat",
+      "secs": [
+        7.0
+      ],
+      "why": "The second reason, which is about blame.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and if something goes strangely wrong",
+          "lines": [
+            "A future *mystery*,",
+            "or a known starting point"
+          ],
+          "size": 50,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 47.0,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "What is actually being audited.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "and the thing being audited is not really the plugin list",
+          "lines": [
+            "It is the *blast radius*"
+          ],
+          "size": 72,
+          "wrong": "you are checking which plugins are installed",
+          "right": "you are checking what every server, plugin and hook in this folder can reach",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 91.5,
+      "role": "beat",
+      "secs": [
+        7.5
+      ],
+      "why": "Why the memory file is different from the brief - two roles, never drawn.",
+      "slides": [
+        {
+          "k": "cols",
+          "kicker": "and this is the file all six are guaranteed to have read",
+          "lines": [
+            "A path, or an *assumption*"
+          ],
+          "size": 56,
+          "cols": [
+            {
+              "head": "the brief",
+              "items": [
+                "a path they open",
+                "when they need it"
+              ]
+            },
+            {
+              "head": "the memory file",
+              "items": [
+                "the shared assumption",
+                "read by every one of them, every session"
+              ]
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 107.0,
+      "role": "beat",
+      "secs": [
+        8.0,
+        9.0
+      ],
+      "why": "The number the narration asks you to write down, and why.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and then a number I want you to actually write down",
+          "lines": [
+            "This is what we have *spent*"
+          ],
+          "size": 56,
+          "stamp": "we will look at this same screen again afterwards",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and nobody in a tutorial ever shows you this",
+          "lines": [
+            "The single most useful figure",
+            "in the whole *technique*"
+          ],
+          "size": 48,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 169.0,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "The commit, and what it was needed for.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "yesterday it told us off for this, so: a commit",
+          "lines": [
+            "One untracked *pile*"
+          ],
+          "size": 86,
+          "stamp": "seventeen hundred lines, and nothing anybody could review",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 178.5,
+      "role": "beat",
+      "secs": [
+        7.0
+      ],
+      "why": "Why the branch is not tidiness.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and then a branch",
+          "lines": [
+            "That is *not* housekeeping"
+          ],
+          "size": 76,
+          "stamp": "in ten minutes six agents write code in this folder simultaneously",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 218.0,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "What the correction says about the course, which is a point about teaching.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "and we fixed it",
+          "lines": [
+            "Not a *straight* line"
+          ],
+          "size": 96,
+          "wrong": "a course should be a straight line",
+          "right": "not a straight line - a correction",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 330.0,
+      "role": "beat",
+      "secs": [
+        9.0,
+        9.0
+      ],
+      "why": "The habit the narration says is worth more than anything about agent teams.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "a four-line addition to an eight-line file",
+          "lines": [
+            "The impressive part is that",
+            "it is *four* and not eight"
+          ],
+          "size": 48,
+          "trans": "fade"
+        },
+        {
+          "k": "myth",
+          "kicker": "and that habit is worth more than anything specific about agent teams",
+          "lines": [
+            "Merge, then *verify*"
+          ],
+          "size": 92,
+          "wrong": "rewrite the file with what it should say",
+          "right": "it added the two keys, left the hook alone, and showed me the file",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 377.0,
+      "role": "close",
+      "secs": [
+        9.5
+      ],
+      "why": "The close: the start-up rule that trips everybody.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "The session that made the edit",
+            "is not the session that *gets* it"
+          ],
+          "size": 44,
+          "stamp": "a settings change is read at start-up - do not skip the restart",
+          "trans": "fade"
+        }
+      ]
+    }
+  ]
+}

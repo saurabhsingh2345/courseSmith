@@ -1,0 +1,41 @@
+{
+  "lecture": "w3-31",
+  "title": "First run, and what is wrong with it",
+  "note": "Only 10% dead on the sharp detector - the coarse one called this lecture 95% frozen, but it is a live console with candles updating and is left alone. ONE dead span (11.5-33.0), so one cutaway, 17s of 207s (8%). It doubles as the sync fix for anchor 31.4, which the footage reaches twenty seconds early.",
+  "inserts": [
+    {
+      "at": 12.5,
+      "role": "open",
+      "secs": [
+        8.0,
+        9.4
+      ],
+      "why": "SYNC FIX and the only cutaway available: this lecture has exactly one dead span (11.5-33.0) because everything after it is a live console. Anchor 31.4 arrives twenty seconds after its picture, and the card ends 1.5s before it.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 4  \u00b7  lecture 26",
+          "lines": [
+            "First run, and what is",
+            "*wrong* with it"
+          ],
+          "size": 56,
+          "stamp": "one command, six seconds",
+          "trans": "fade"
+        },
+        {
+          "k": "myth",
+          "kicker": "a two hundred is the lowest bar there is",
+          "lines": [
+            "It says *nothing* about a console"
+          ],
+          "size": 52,
+          "wrong": "it returned two hundred, so it works",
+          "right": "something bound to port 8081 returned bytes",
+          "note": "and I want to say what I expected before you see it: a layout with no life in it",
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

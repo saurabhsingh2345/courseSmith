@@ -1,0 +1,712 @@
+{
+ "lecture": "w3-12",
+ "title": "Working in a big codebase: the seven rules",
+ "note": "689s, 56% dead across 25 spans. Eighteen cutaways, 268s (39%). Two enforced sync fixes at anchors 177.0 and 248.0. The heaviest concentration of cards is 311-421, where the narration counts twenty tests apart one clause at a time over a static terminal.",
+ "inserts": [
+  {
+   "at": 1.0,
+   "role": "open",
+   "secs": [
+    8.5
+   ],
+   "why": "Names the lecture over the opening file tree.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 2  \u00b7  lecture 9",
+     "lines": [
+      "Working in a big codebase:",
+      "the *seven* rules"
+     ],
+     "size": 56,
+     "stamp": "yesterday this folder was empty",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 10.5,
+   "role": "beat",
+   "secs": [
+    8.0
+   ],
+   "why": "The thing to hold onto, which the lecture returns to as its own mistake.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "every file in that tree is still marked U",
+     "lines": [
+      "Nothing here has ever",
+      "been *committed*"
+     ],
+     "size": 56,
+     "stamp": "hold that thought - it comes back at the end as the thing we got wrong",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 21.5,
+   "role": "beat",
+   "secs": [
+    7.0,
+    6.0
+   ],
+   "why": "The question this lecture is actually about, reframed. Nothing on the frame carries it.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and this is the question of the day",
+     "lines": [
+      "Not *build*. Keep useful"
+     ],
+     "size": 66,
+     "wrong": "how do I get an agent to build something",
+     "right": "how do I keep it useful once the thing it works in has grown",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and we will be honest about our own project rather than talk in general terms",
+     "lines": [
+      "This is where most people",
+      "quietly *lose*"
+     ],
+     "size": 54,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 74.0,
+   "role": "beat",
+   "secs": [
+    8.0,
+    9.0
+   ],
+   "why": "The rule documenting its own limits, and the sentence the narration says it would frame.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "and that rule documents its own limits",
+     "lines": [
+      "*Exact*, or a heuristic"
+     ],
+     "size": 76,
+     "cols": [
+      {
+       "head": "emoji detection",
+       "items": [
+        "exact",
+        "because that is a property of the character"
+       ]
+      },
+      {
+       "head": "name detection",
+       "items": [
+        "a heuristic, and the file says so",
+        "it cannot tell that Morgan is a person while Preston is a town"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "quote",
+     "kicker": "and then the sentence i would frame",
+     "text": "A pass means nothing obvious. It never means no personal data.",
+     "who": "the rule, about itself",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 109.5,
+   "role": "beat",
+   "secs": [
+    7.5
+   ],
+   "why": "The audit's result, read off a pane of small text.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "seven questions asked",
+     "lines": [
+      "Four yeses and *three gaps*"
+     ],
+     "size": 66,
+     "stamp": "with a file path against every single claim",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 162.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "why": "SYNC FIX: anchor 177.0 arrives eighteen seconds after its picture. Ends 1s before it.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "everything it checked against is written down in the repository",
+     "lines": [
+      "Four *files*"
+     ],
+     "size": 104,
+     "rows": [
+      {
+       "t": "the brief"
+      },
+      {
+       "t": "the memory file"
+      },
+      {
+       "t": "the hook"
+      },
+      {
+       "t": "the plan",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and without them the same seven questions give you generic advice",
+     "lines": [
+      "Only as good as the *standard*",
+      "you wrote first"
+     ],
+     "size": 50,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 192.0,
+   "role": "beat",
+   "secs": [
+    6.0
+   ],
+   "why": "Why it went ahead instead of stopping - it costed the decision.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and this is why it decided rather than asked",
+     "lines": [
+      "It put a *number* on it"
+     ],
+     "size": 86,
+     "stamp": "5.5 kB, about 1,400 tokens, on every single session",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 236.0,
+   "role": "beat",
+   "secs": [
+    5.0,
+    6.0
+   ],
+   "why": "SYNC FIX: anchor 248.0 arrives fifteen seconds after its picture. Ends 1s before it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "a documentation bug is still a bug, and not what I asked about",
+     "lines": [
+      "Flagged, *not* fixed"
+     ],
+     "size": 92,
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and this is the part to copy",
+     "lines": [
+      "Copy the *number*,",
+      "not the decision"
+     ],
+     "size": 62,
+     "stamp": "our memory file is small and yours will be different",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 264.0,
+   "role": "beat",
+   "secs": [
+    7.0
+   ],
+   "why": "What a coverage target actually produces, with the numbers it produced here.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "aim for eighty percent, mock whatever gets in the way",
+     "lines": [
+      "Twenty tests. *91%*"
+     ],
+     "size": 86,
+     "stamp": "and it did exactly that, cheerfully",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 285.0,
+   "role": "beat",
+   "secs": [
+    8.5
+   ],
+   "why": "The distinction that makes the rest of the lecture work.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and the ninety-one is not a made-up number",
+     "lines": [
+      "Honest, and *worthless*"
+     ],
+     "size": 76,
+     "wrong": "91% coverage means the suite is good",
+     "right": "the measurement is honest - it is the thing being measured that is worthless",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 295.5,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "why": "Three real outages injected, and what the suite said about them.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "it runs the same twenty tests against a broken simulator",
+     "lines": [
+      "*Three* real outages"
+     ],
+     "size": 86,
+     "rows": [
+      {
+       "t": "a tick that moves nothing"
+      },
+      {
+       "t": "a hold that holds nothing"
+      },
+      {
+       "t": "an exception feed with no limit",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "sit with that",
+     "lines": [
+      "All twenty still *pass*"
+     ],
+     "size": 104,
+     "stamp": "the suite cannot tell a working simulator from a broken one",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 311.5,
+   "role": "beat",
+   "secs": [
+    11.0,
+    11.0
+   ],
+   "why": "The breakdown of what the twenty tests actually assert, counted out loud and never shown.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "and then it breaks down how",
+     "lines": [
+      "What the twenty actually *assert*"
+     ],
+     "size": 52,
+     "rows": [
+      {
+       "t": "5 shape and type checks that go green against an empty fleet"
+      },
+      {
+       "t": "2 named for determinism compare a string to the string they passed in"
+      },
+      {
+       "t": "3 assert only that nothing raised"
+      },
+      {
+       "t": "3 never load the simulator at all - they assert a mock records calls"
+      },
+      {
+       "t": "3 are tautologies: both sides move together on any change",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "which accounts for sixteen of them",
+     "lines": [
+      "And the last *four*"
+     ],
+     "size": 104,
+     "stamp": "a real requirement behind them, and an assertion that does not quite reach it",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 336.0,
+   "role": "beat",
+   "secs": [
+    10.0,
+    10.0,
+    10.0
+   ],
+   "why": "The single best detail in the day, per the narration. It is a test name, an assertion and a line number - all illegible on the frame.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "there is a test called",
+     "lines": [
+      "*the-exception-feed-",
+      "is-capped-at-fifty*"
+     ],
+     "size": 52,
+     "stamp": "it injects three exceptions and asserts that three is not more than fifty",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and the line that enforces the cap",
+     "lines": [
+      "Green *forever*"
+     ],
+     "size": 110,
+     "wrong": "a test named for the requirement tests the requirement",
+     "right": "the line that enforces the cap is one of the four the suite never executes",
+     "note": "named for the requirement. green forever. never touches the code that implements it",
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and it prints the line, so there is nothing to take on faith",
+     "lines": [
+      "Line *77*"
+     ],
+     "size": 130,
+     "stamp": "the slice that keeps the last fifty exceptions and throws the rest away",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 366.0,
+   "role": "beat",
+   "why": "The argument the cap test is evidence for, spoken over a coverage table that finished printing thirty seconds earlier.",
+   "secs": [
+    7.5,
+    7.5
+   ],
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "and this is the whole failure, in three true clauses",
+     "lines": [
+      "Three things that are",
+      "all *true* at once"
+     ],
+     "size": 50,
+     "rows": [
+      {
+       "t": "the requirement had a test"
+      },
+      {
+       "t": "the test had the right name"
+      },
+      {
+       "t": "the code that satisfies it was never executed once",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and that is not an unusual failure",
+     "lines": [
+      "Named, not *exercised*"
+     ],
+     "size": 64,
+     "wrong": "a test named after a requirement tests that requirement",
+     "right": "naming a test after a requirement is the ordinary way to end up with neither",
+     "note": "four lines in the whole module never ran, and the cap is one of them",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 400.0,
+   "role": "beat",
+   "secs": [
+    10.0,
+    11.0
+   ],
+   "why": "Which four words did the damage - the most quotable moment in the lecture.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and notice which part of the request did the damage",
+     "lines": [
+      "Not the eighty percent.",
+      "The *four words* after it"
+     ],
+     "size": 52,
+     "trans": "fade"
+    },
+    {
+     "k": "quote",
+     "kicker": "say this out loud before you ever type it",
+     "text": "Mock whatever gets in the way is an instruction to remove the system under test whenever the system under test is inconvenient.",
+     "who": "and nobody would agree to it in those terms",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 465.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "why": "The rejection, and the pushback it got.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "so we reject it",
+     "lines": [
+      "Delete the ones that exist",
+      "only to move the *number*"
+     ],
+     "size": 52,
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and the first thing it does",
+     "lines": [
+      "Tell me my *question*",
+      "was wrong"
+     ],
+     "size": 62,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 506.0,
+   "role": "beat",
+   "secs": [
+    9.0,
+    9.0,
+    10.0
+   ],
+   "why": "The argument of the whole lecture in two numbers, put side by side.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "the argument of this lecture in two lines",
+     "lines": [
+      "*Four* against twenty"
+     ],
+     "size": 76,
+     "cols": [
+      {
+       "head": "twenty tests",
+       "items": [
+        "91% coverage",
+        "0 of 3 outages caught"
+       ]
+      },
+      {
+       "head": "four tests",
+       "items": [
+        "80% coverage",
+        "3 of 3 outages caught"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and read that in the direction nobody expects",
+     "lines": [
+      "Fewer tests. Lower coverage.",
+      "And it *fails*"
+     ],
+     "size": 50,
+     "stamp": "on the thing it is named for",
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "put those two numbers together",
+     "lines": [
+      "What coverage *is*"
+     ],
+     "size": 104,
+     "wrong": "coverage is a measure of quality",
+     "right": "it is a measure of how much code you ran",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 542.5,
+   "role": "beat",
+   "secs": [
+    11.5
+   ],
+   "why": "The rewritten cap test, before and after. On the frame it is a diff too small to read.",
+   "slides": [
+    {
+     "k": "flow",
+     "kicker": "the cap test is the clearest",
+     "lines": [
+      "Rewritten, not *deleted*"
+     ],
+     "size": 52,
+     "nodes": [
+      {
+       "t": "before",
+       "sub": "inject three, assert three is under fifty"
+      },
+      {
+       "t": "after",
+       "sub": "inject past fifty, and measure the list the simulator keeps",
+       "tone": "#f5c518"
+      }
+     ],
+     "caption": "because a read that slices to fifty looks capped over a list that grows all day",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 582.0,
+   "role": "beat",
+   "secs": [
+    8.0,
+    9.0,
+    9.0
+   ],
+   "why": "The close, and the thing the lecture opened by telling you to hold onto.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and did we do it right?",
+     "lines": [
+      "But the honest answer",
+      "is *no*"
+     ],
+     "size": 66,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "seventeen hundred lines, and this is the state of it",
+     "lines": [
+      "One untracked *pile*"
+     ],
+     "size": 86,
+     "rows": [
+      {
+       "t": "1,700 lines of source and tests"
+      },
+      {
+       "t": "the plugin"
+      },
+      {
+       "t": "all of the configuration"
+      },
+      {
+       "t": "no branch, no commit, no diff anybody could review",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "the first thing to take out of this lecture",
+     "lines": [
+      "Green is a claim.",
+      "*Count* what it covers"
+     ],
+     "size": 52,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 657.0,
+   "role": "close",
+   "why": "The last words of the lecture, over a terminal that stopped printing a minute earlier. The close was authored at 582 when this stretch had no card in it; that one is a beat now and this is the final word.",
+   "secs": [
+    6.0,
+    6.0,
+    6.0
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "right code, green test, and no relationship between the two",
+     "lines": [
+      "The shape of the bug",
+      "to be most *afraid* of"
+     ],
+     "size": 54,
+     "stamp": "and it found the same blind spot in the real suite",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and notice what the deletion actually bought",
+     "lines": [
+      "Not *tidiness*"
+     ],
+     "size": 92,
+     "wrong": "twenty tests down to four is housekeeping",
+     "right": "it bought a suite that can fail",
+     "note": "the only property of a test suite that matters, and the one a percentage cannot see",
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and do not take the number four as a target either",
+     "lines": [
+      "Every test has a failure",
+      "it can *catch* -",
+      "and you know what it is"
+     ],
+     "size": 48,
+     "trans": "rise"
+    }
+   ]
+  }
+ ]
+}

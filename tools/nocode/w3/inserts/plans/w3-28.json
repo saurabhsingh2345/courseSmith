@@ -1,0 +1,695 @@
+{
+ "lecture": "w3-28",
+ "title": "Turning the orchestrator into a real pipeline",
+ "note": "729s, 49% dead across 23 spans. Eighteen cutaways, 260s (36%). Anchor 619.9 leads by 13s and #15 is a three-second flash because its dead span opens at 615.5 - there is nowhere longer to end a card before it. Anchors 520.0 and 708.7 lead by 7s and 6s, under the threshold.",
+ "inserts": [
+  {
+   "at": 6.0,
+   "role": "open",
+   "secs": [
+    4.5,
+    4.5
+   ],
+   "why": "Names the lecture and where it starts from.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 4  \u00b7  lecture 23",
+     "lines": [
+      "Turning the orchestrator",
+      "into a real *pipeline*"
+     ],
+     "size": 52,
+     "stamp": "eighty-two lines, in a repository it has never seen",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and the verdict we recorded on it",
+     "lines": [
+      "Was not *flattering*"
+     ],
+     "size": 76,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 67.5,
+   "role": "beat",
+   "secs": [
+    7.5
+   ],
+   "why": "What kind of thing the instruction is - said once and never shown.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "so read this instruction",
+     "lines": [
+      "A *specification*, not a wish"
+     ],
+     "size": 62,
+     "stamp": "and almost none of it is about orchestration",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 173.5,
+   "role": "beat",
+   "secs": [
+    8.0
+   ],
+   "why": "The design's single safety mechanism, and why it has to be that.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "there is no permission prompt anywhere in this design",
+     "lines": [
+      "So the *tool grant* is all there is"
+     ],
+     "size": 52,
+     "stamp": "the only thing standing between an unattended run and a bad afternoon",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 203.5,
+   "role": "beat",
+   "secs": [
+    6.5,
+    6.0
+   ],
+   "why": "Two clauses, one present and one deliberately absent.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "if something is missing, say so rather than guessing",
+     "lines": [
+      "*Worse* than stopping"
+     ],
+     "size": 86,
+     "wrong": "guessing keeps the build moving",
+     "right": "an agent that stops to ask is a stopped build; one that guesses is worse",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and a fourth thing, absent on purpose",
+     "lines": [
+      "*No* retry"
+     ],
+     "size": 140,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 232.5,
+   "role": "beat",
+   "secs": [
+    8.0
+   ],
+   "why": "The question to ask before writing any of it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "before you write any of this",
+     "lines": [
+      "Do you need it *at all*?"
+     ],
+     "size": 76,
+     "stamp": "a list of independent jobs that each read something and write something new is a loop",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 257.0,
+   "role": "beat",
+   "secs": [
+    8.5,
+    8.0
+   ],
+   "why": "Why the task list is a file, which is the decision that makes the whole thing debuggable.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "a file rather than a function call",
+     "lines": [
+      "You can *read* it"
+     ],
+     "size": 104,
+     "rows": [
+      {
+       "t": "you can read it"
+      },
+      {
+       "t": "you can edit it"
+      },
+      {
+       "t": "you can delete one task and run the rest",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "so when something goes wrong at task five",
+     "lines": [
+      "Run task five again,",
+      "on its *own*"
+     ],
+     "size": 56,
+     "stamp": "only possible because the plan phase wrote its decision down instead of acting on it",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 275.5,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "The last clause, which is about people rather than behaviour.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and the last clause is not about behaviour at all",
+     "lines": [
+      "Keep it one file.",
+      "Keep it *readable*"
+     ],
+     "size": 58,
+     "stamp": "because this is a tool a person has to be able to debug at two in the morning",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 290.5,
+   "role": "beat",
+   "secs": [
+    12.0,
+    12.5
+   ],
+   "why": "Why that clause earns its place, and the two shapes the same behaviour can take.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "everything else describes what the program does",
+     "lines": [
+      "That clause describes",
+      "what happens when it *does not*"
+     ],
+     "size": 48,
+     "trans": "fade"
+    },
+    {
+     "k": "cols",
+     "kicker": "and the agent will happily build you either",
+     "lines": [
+      "One afternoon, or a *week*"
+     ],
+     "size": 56,
+     "cols": [
+      {
+       "head": "one readable file",
+       "items": [
+        "three hundred lines",
+        "read start to finish",
+        "one afternoon of debugging"
+       ]
+      },
+      {
+       "head": "the same behaviour, spread",
+       "items": [
+        "a plugin system",
+        "and four abstractions",
+        "a week"
+       ]
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 317.0,
+   "role": "beat",
+   "secs": [
+    12.0,
+    6.5,
+    6.5,
+    13.0
+   ],
+   "why": "The argument for writing your own, and who it has to be readable for. The middle card was one frame for thirteen seconds - 330-342 read as dead - so the comparison and its consequence are two cards now.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "there are orchestrators you can install, and some are good",
+     "lines": [
+      "Not *better*. Answerable"
+     ],
+     "size": 62,
+     "wrong": "the argument is that yours is better",
+     "right": "the argument is that you can answer questions about it",
+     "trans": "fade"
+    },
+    {
+     "k": "cols",
+     "kicker": "because the moment the question becomes why did it run those two in parallel",
+     "lines": [
+      "You are reading *source* either way"
+     ],
+     "size": 48,
+     "cols": [
+      {
+       "head": "theirs",
+       "items": [
+        "ten thousand lines"
+       ]
+      },
+      {
+       "head": "yours",
+       "items": [
+        "three hundred"
+       ]
+      }
+     ],
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and either way the answer is in the source",
+     "lines": [
+      "Three hundred lines",
+      "you can *hold* in your head"
+     ],
+     "size": 52,
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and the second half of that clause is who it is readable for",
+     "lines": [
+      "Not you today.",
+      "You in *three weeks*"
+     ],
+     "size": 54,
+     "stamp": "or whoever inherits this while you are away, because something failed overnight",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 377.0,
+   "role": "beat",
+   "secs": [
+    12.0,
+    13.0
+   ],
+   "why": "The version of that clause that produces much worse results.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "there is a phrase i have seen produce much worse results",
+     "lines": [
+      "*make it production ready*"
+     ],
+     "size": 56,
+     "rows": [
+      {
+       "t": "a config file"
+      },
+      {
+       "t": "an abstraction over the SDK"
+      },
+      {
+       "t": "a plugin point for future backends"
+      },
+      {
+       "t": "all reasonable, none asked for, and every line of it yours now",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "so be precise about which kind of thing you are asking for",
+     "lines": [
+      "A constraint, or a *mood*"
+     ],
+     "size": 62,
+     "wrong": "make it production ready",
+     "right": "readable and one file is a constraint; production ready is a mood",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 407.0,
+   "role": "beat",
+   "secs": [
+    9.0,
+    10.0
+   ],
+   "why": "The habit worth more than anything else in the file.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "the same pattern as the last lecture",
+     "lines": [
+      "It *reads* the package",
+      "it is about to write against"
+     ],
+     "size": 52,
+     "stamp": "rather than remembering it",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and the Agent SDK is new, and it is moving",
+     "lines": [
+      "A *moving* target"
+     ],
+     "size": 110,
+     "wrong": "the model knows this library",
+     "right": "anything written about it a couple of months ago describes options that may not exist",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 447.5,
+   "role": "beat",
+   "secs": [
+    9.0,
+    10.0
+   ],
+   "why": "What that habit actually protects you from - and it is not embarrassment.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and be clear about what that protects you from",
+     "lines": [
+      "It does not *throw*"
+     ],
+     "size": 110,
+     "wrong": "a wrong option name fails loudly",
+     "right": "it gets ignored, and the run proceeds with a default you did not choose",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "and these are the defaults you did not choose",
+     "lines": [
+      "*Silently* different"
+     ],
+     "size": 104,
+     "rows": [
+      {
+       "t": "a different model"
+      },
+      {
+       "t": "no tool restriction"
+      },
+      {
+       "t": "a permission mode that stops and waits",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 474.5,
+   "role": "beat",
+   "why": "What the type definitions do and do not tell it, and the command line at the bottom of the file - which is on the frame in a font too small to read.",
+   "secs": [
+    7.5,
+    7.5
+   ],
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "there is one more thing in what it reads that is easy to miss",
+     "lines": [
+      "*Shape*, not behaviour"
+     ],
+     "size": 70,
+     "wrong": "reading the type definitions tells it how the library behaves",
+     "right": "types are a description of the library's shape",
+     "note": "which is why the option names come out right and the semantics still need a test",
+     "trans": "fade"
+    },
+    {
+     "k": "term",
+     "kicker": "and watch what it puts at the bottom of the file",
+     "lines": [
+      "Three runnable *phases*"
+     ],
+     "size": 56,
+     "title": "signal-desk",
+     "prompt": "",
+     "term": [
+      {
+       "t": "node orchestrator.mjs plan",
+       "kind": "cmd"
+      },
+      {
+       "t": "node orchestrator.mjs run",
+       "kind": "cmd"
+      },
+      {
+       "t": "node orchestrator.mjs review",
+       "kind": "cmd"
+      },
+      {
+       "t": "node orchestrator.mjs all",
+       "kind": "cmd"
+      }
+     ],
+     "caption": "twenty lines of argument parsing, and each phase can be run on its own",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 502.5,
+   "role": "beat",
+   "secs": [
+    9.5
+   ],
+   "why": "How to test an orchestrator without paying for it.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "gating and cascading skip, without a single call to the API",
+     "lines": [
+      "Take the *expensive* part out"
+     ],
+     "size": 56,
+     "wrong": "you have to run it to test it",
+     "right": "testing it with the expensive part taken out is not expensive",
+     "note": "enough to get the option names right, and not enough to get the semantics right",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 513.0,
+   "role": "beat",
+   "why": "Ends at 519, one second before anchor 520, so the cut-back is the reveal for the question the next sentence asks.",
+   "secs": [
+    6.0
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and the difference between those two",
+     "lines": [
+      "Is where the remaining",
+      "*bugs* live"
+     ],
+     "size": 58,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 521.0,
+   "role": "beat",
+   "why": "The question the lecture is really about, asked while a run prints nothing.",
+   "secs": [
+    6.5,
+    7.0,
+    6.5
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and while this runs, the question this lecture is really about",
+     "lines": [
+      "Why write this",
+      "at *all*?"
+     ],
+     "size": 88,
+     "stamp": "when there are orchestrators you can install",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "six minutes thirty-nine, thirty thousand tokens",
+     "lines": [
+      "Still proving to itself",
+      "the scheduler cannot",
+      "*deadlock*"
+     ],
+     "size": 48,
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and in about six minutes",
+     "lines": [
+      "You will be able to read",
+      "*every line* of it"
+     ],
+     "size": 52,
+     "stamp": "and change any of it",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 569.0,
+   "role": "beat",
+   "secs": [
+    15.0
+   ],
+   "why": "The honest counterweight, listed as three things - the most useful card in the lecture.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "and here is what you are giving up",
+     "lines": [
+      "*Three* days of work, later"
+     ],
+     "size": 54,
+     "rows": [
+      {
+       "t": "no resumable runs - a failure at minute fifteen means starting again"
+      },
+      {
+       "t": "no isolation between workers beyond the tool list"
+      },
+      {
+       "t": "no verification pass built in - we are writing ours as a third phase",
+       "hot": true
+      }
+     ],
+     "stamp": "every one of those is a day's work you have signed up for, on the day you need it",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 588.5,
+   "role": "beat",
+   "secs": [
+    8.0
+   ],
+   "why": "What building it actually buys, which is not a better tool.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "ours is not competing with theirs",
+     "lines": [
+      "It stops being a",
+      "*product category*"
+     ],
+     "size": 62,
+     "stamp": "and becomes a thing you know the shape of",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 616.0,
+   "role": "beat",
+   "secs": [
+    3.0
+   ],
+   "why": "SYNC FIX and deliberately a flash: anchor 619.9 arrives thirteen seconds after its picture, and its dead span opens at 615.5, so three seconds is all there is. It happens to be the best line in the lecture.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and a question I would rather leave you with",
+     "lines": [
+      "Capabilities do not come with",
+      "*judgement* attached"
+     ],
+     "size": 48,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 620.0,
+   "role": "beat",
+   "secs": [
+    5.5
+   ],
+   "why": "The number, landing on the anchor that names it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and read down it, because almost none of the growth is orchestration",
+     "lines": [
+      "*366* lines, from 82"
+     ],
+     "size": 96,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 708.5,
+   "role": "close",
+   "secs": [
+    9.5,
+    10.0
+   ],
+   "why": "The close, and the thing the next lecture is going to trip over.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and one dependency",
+     "lines": [
+      "Not part of the *application*"
+     ],
+     "size": 72,
+     "stamp": "the orchestrator is a development tool, not part of the thing that ships",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "what to carry into the next lecture",
+     "lines": [
+      "This is not *written down*",
+      "here yet"
+     ],
+     "size": 58,
+     "stamp": "the memory file still says zero dependencies for the running app",
+     "trans": "rise"
+    }
+   ]
+  }
+ ]
+}

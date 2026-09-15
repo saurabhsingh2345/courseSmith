@@ -1,0 +1,346 @@
+{
+  "lecture": "w3-41",
+  "title": "Two whole products, honestly compared",
+  "note": "560s, 32% dead across eleven spans. Ten cutaways, 161s (29%). The one sync lead (anchor 77.1) is 4s, under the threshold. NOTE: this lecture's first map was generated against a truncated copy and reported zero dead spans - it was remapped off vids/.",
+  "inserts": [
+    {
+      "at": 6.5,
+      "role": "open",
+      "secs": [
+        7.0,
+        8.5
+      ],
+      "why": "Names the lecture and sets up the two sides of the comparison.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 5  \u00b7  lecture 33",
+          "lines": [
+            "Two whole products,",
+            "honestly *compared*"
+          ],
+          "size": 58,
+          "stamp": "one built by a team you watched, one by a program you wrote",
+          "trans": "fade"
+        },
+        {
+          "k": "cols",
+          "kicker": "as close to a controlled comparison as anybody will get you",
+          "lines": [
+            "*Same* model, same week"
+          ],
+          "size": 56,
+          "cols": [
+            {
+              "head": "Control Tower",
+              "items": [
+                "an interactive agent team",
+                "a person in the room"
+              ]
+            },
+            {
+              "head": "Signal Desk",
+              "items": [
+                "a program we wrote",
+                "nobody watching"
+              ]
+            }
+          ],
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 41.0,
+      "role": "beat",
+      "secs": [
+        10.0,
+        10.0,
+        10.0
+      ],
+      "why": "The framing of the comparison, argued clause by clause over a static count.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "and the first number on screen is the one to distrust",
+          "lines": [
+            "Easy to *count*"
+          ],
+          "size": 130,
+          "wrong": "lines of code tells you which one is better",
+          "right": "it survives as a metric because it is easy to count, not because it means anything",
+          "trans": "fade"
+        },
+        {
+          "k": "rows",
+          "kicker": "so let us be exact about what is being compared",
+          "lines": [
+            "*Not* two of anything"
+          ],
+          "size": 72,
+          "rows": [
+            {
+              "t": "not two models - the same one"
+            },
+            {
+              "t": "not two briefs - two written the same way, by the same person, in the same week",
+              "hot": true
+            }
+          ],
+          "trans": "rise"
+        },
+        {
+          "k": "head",
+          "kicker": "and the fourth commit on Signal Desk is the one that just landed",
+          "lines": [
+            "So it includes the",
+            "*corrections* we just made"
+          ],
+          "size": 50,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 74.0,
+      "role": "beat",
+      "secs": [
+        7.0
+      ],
+      "why": "Why the fixes have to be inside the comparison.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "because a comparison that leaves out the fixes",
+          "lines": [
+            "Compares two things that",
+            "*no longer exist*"
+          ],
+          "size": 48,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 312.5,
+      "role": "beat",
+      "secs": [
+        7.5
+      ],
+      "why": "The whole argument of the course in one decision.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "reading both repositories rather than a summary of each",
+          "lines": [
+            "A comparison of *two summaries*"
+          ],
+          "size": 52,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 322.0,
+      "role": "beat",
+      "secs": [
+        9.0,
+        9.5
+      ],
+      "why": "What actually differs between the two builds - and it is not capability.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "the thing worth thinking about",
+          "lines": [
+            "It is *who notices*"
+          ],
+          "size": 110,
+          "wrong": "the difference between them is capability",
+          "right": "the difference is who notices",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "a surprise gets caught in the second it happens, and the plan bends",
+          "lines": [
+            "And that costs you a person,",
+            "*present*, for the whole run"
+          ],
+          "size": 46,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 370.0,
+      "role": "beat",
+      "secs": [
+        11.0,
+        11.0,
+        11.0
+      ],
+      "why": "The lecture's thesis, the instruction about waiting, and the result. Thirty-five seconds of unchanged picture.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and this is the question underneath the whole comparison",
+          "lines": [
+            "Never which one is *better*"
+          ],
+          "size": 62,
+          "stamp": "it is how much it costs you to find out you were wrong",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and this is where most people interrupt",
+          "lines": [
+            "Nothing is on screen.",
+            "It is *not* stuck"
+          ],
+          "size": 56,
+          "trans": "rise"
+        },
+        {
+          "k": "head",
+          "kicker": "and here is what it found",
+          "lines": [
+            "*240* lines, one pass"
+          ],
+          "size": 110,
+          "stamp": "after four minutes forty-two of reading, and nineteen thousand tokens",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 405.0,
+      "role": "beat",
+      "secs": [
+        7.5
+      ],
+      "why": "The line that makes the document worth reading.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "line six: it did not run either app's Docker setup",
+          "lines": [
+            "Flagged *unverified*,",
+            "not assumed"
+          ],
+          "size": 54,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 414.5,
+      "role": "beat",
+      "secs": [
+        6.0,
+        7.0
+      ],
+      "why": "What that kind of document is, and the honest disappointment that follows.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "which is a document telling you where not to trust it",
+          "lines": [
+            "*Before* you ask"
+          ],
+          "size": 110,
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and on time",
+          "lines": [
+            "It will not give me the",
+            "headline I *wanted*"
+          ],
+          "size": 54,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 436.5,
+      "role": "beat",
+      "secs": [
+        10.0,
+        9.5
+      ],
+      "why": "Two numbers that look comparable and are not.",
+      "slides": [
+        {
+          "k": "cols",
+          "kicker": "and here are the two records",
+          "lines": [
+            "*17:52* against 6:14"
+          ],
+          "size": 66,
+          "cols": [
+            {
+              "head": "the program",
+              "items": [
+                "17m52s of unattended execution",
+                "across six areas",
+                "machine-generated"
+              ]
+            },
+            {
+              "head": "the team",
+              "items": [
+                "three commits spanning 6h14m",
+                "wall clock, supervised",
+                "with a person thinking in it"
+              ]
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and it says so plainly",
+          "lines": [
+            "*Not* comparable"
+          ],
+          "size": 130,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 460.0,
+      "role": "close",
+      "secs": [
+        9.0
+      ],
+      "why": "The close: what it did with the evidence it did not have.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "and notice what it does with the missing evidence",
+          "lines": [
+            "It does *not* fill the gap"
+          ],
+          "size": 62,
+          "rows": [
+            {
+              "t": "it does not estimate the cost"
+            },
+            {
+              "t": "it does not extrapolate from token counts"
+            },
+            {
+              "t": "and it does not quietly leave the section out",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    }
+  ]
+}

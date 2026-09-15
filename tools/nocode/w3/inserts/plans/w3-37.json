@@ -1,0 +1,618 @@
+{
+ "lecture": "w3-37",
+ "title": "Agents in a pipeline",
+ "note": "91% of this lecture is an unchanged picture - one dead block runs 29.5s to 195.5s, because the agent is reading files with nothing on screen and the lecture says so out loud. Fourteen cutaways, 188s of 341s (55%) - high, and earned: a first pass at 43% still left a 98s hold inside that block. Four cutaways end one to three seconds before anchors 50.0, 110.0, 170.0 and 317.0.",
+ "inserts": [
+  {
+   "at": 3.0,
+   "role": "open",
+   "secs": [
+    6.0,
+    9.0
+   ],
+   "why": "Names the lecture and shows the shape of the whole thing: a diff on the left, a reviewer on the right. The command on the master is one small wrapped line.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 2  \u00b7  lecture 12",
+     "lines": [
+      "Agents in a *pipeline*"
+     ],
+     "size": 88,
+     "stamp": "it reads standard input, so it goes in a pipe",
+     "trans": "fade"
+    },
+    {
+     "k": "term",
+     "kicker": "no integration, no plugin, nobody selling you a product",
+     "lines": [
+      "A diff on the left.",
+      "A *reviewer* on the right"
+     ],
+     "size": 52,
+     "title": "signal-desk",
+     "term": [
+      {
+       "t": "git diff --stat",
+       "kind": "cmd"
+      },
+      {
+       "t": "2 files changed, 37 insertions(+)",
+       "kind": "out"
+      },
+      {
+       "t": "git diff | claude -p 'review this' --allowedTools Read",
+       "kind": "cmd"
+      }
+     ],
+     "trans": "rise",
+     "prompt": ""
+    }
+   ]
+  },
+  {
+   "at": 31.0,
+   "role": "beat",
+   "secs": [
+    8.5,
+    9.0
+   ],
+   "why": "Why the diff is small on purpose, and what the tool list is doing. Both are spoken over a static terminal.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and the diff is small on purpose",
+     "lines": [
+      "One commit is the *unit*"
+     ],
+     "size": 62,
+     "wrong": "pipe it the whole branch",
+     "right": "one commit is the unit this command is good at",
+     "note": "a reviewer handed a thousand-line diff gives you a thousand-line answer",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and one tool, named",
+     "lines": [
+      "*Read* is the only",
+      "tool it gets"
+     ],
+     "size": 72,
+     "stamp": "it can open a file to check a claim; it cannot change one",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 52.0,
+   "role": "beat",
+   "secs": [
+    5.0,
+    8.0
+   ],
+   "why": "The four clauses of the instruction are read out one by one here and are the substance of the lecture. On the frame they are a wrapped prompt line.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "because this is what review this gets you",
+     "lines": [
+      "Three paragraphs",
+      "about how *well-structured*",
+      "everything is"
+     ],
+     "size": 54,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "so every clause removes a way of answering",
+     "lines": [
+      "The *instruction*"
+     ],
+     "size": 74,
+     "rows": [
+      {
+       "t": "Only defects that are real and specific"
+      },
+      {
+       "t": "One per line, each with the file and what goes wrong"
+      },
+      {
+       "t": "If there are none, reply with the single word NONE"
+      },
+      {
+       "t": "And do not praise anything",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 68.0,
+   "role": "beat",
+   "secs": [
+    14.0
+   ],
+   "why": "Fills a 33s gap. The 'right way round' argument is the strongest idea in this stretch and was cut for budget on the first pass.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and notice what is not in that instruction",
+     "lines": [
+      "The *right* way round"
+     ],
+     "size": 76,
+     "wrong": "tell it what to look for",
+     "right": "constrain the form of the answer and leave the content entirely open",
+     "note": "list what to look for and you get a report on your list, not on what you missed",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 82.0,
+   "role": "beat",
+   "why": "The bridge between the two carded ideas, and the sentence the lecture calls the general rule. The frame is the instruction, already read.",
+   "secs": [
+    9.0,
+    7.0
+   ],
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "what listing things to look for actually costs you",
+     "lines": [
+      "A report on *your list*"
+     ],
+     "size": 50,
+     "cols": [
+      {
+       "head": "you list what to look for",
+       "items": [
+        "style",
+        "tests",
+        "naming",
+        "-> a report on your list"
+       ]
+      },
+      {
+       "head": "you list nothing at all",
+       "items": [
+        "only defects that are real and specific",
+        "one per line, with the file",
+        "-> a report on what you missed"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "quote",
+     "kicker": "there is a general rule underneath those clauses",
+     "text": "The moment you list what to look for, you get a report on your list - and nothing about the thing you did not think of.",
+     "who": "the most transferable thing in this lecture",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 98.0,
+   "role": "beat",
+   "secs": [
+    10.0
+   ],
+   "why": "The general rule, called out on camera as the most transferable thing in the lecture, and nowhere on the picture. Ends two seconds before anchor 110.0.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "the most transferable thing in this lecture",
+     "lines": [
+      "Specify the shape of",
+      "a *negative* answer"
+     ],
+     "size": 64,
+     "stamp": "if there is no way to say nothing, you will not be told nothing",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 115.0,
+   "role": "beat",
+   "secs": [
+    6.5,
+    6.5
+   ],
+   "why": "The whole world this agent can see, and the reason the screen is empty - which is the honest answer to why this stretch of the lecture has nothing on it.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "different from a review inside the editor",
+     "size": 50,
+     "lines": [
+      "The *entire* world it can see"
+     ],
+     "cols": [
+      {
+       "head": "it has",
+       "items": [
+        "the diff, on standard input",
+        "read access"
+       ]
+      },
+      {
+       "head": "it has not",
+       "items": [
+        "a repository loaded",
+        "any conversation history",
+        "any memory of the last two hours"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "which is why nothing is on screen",
+     "lines": [
+      "The wait is it *reading*"
+     ],
+     "size": 74,
+     "stamp": "the two files the diff touches, then the files those talk to",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 132.0,
+   "role": "beat",
+   "secs": [
+    14.0
+   ],
+   "why": "Fills a 30s gap. What the isolation buys, and the honest note that it is sometimes a weakness.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "a person reviewing this properly does the same reading",
+     "lines": [
+      "You can start a *hundred*",
+      "of these at once"
+     ],
+     "size": 56,
+     "stamp": "sometimes that is a weakness. here it is the point",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 146.0,
+   "role": "beat",
+   "why": "Why a review with no history is repeatable rather than forgetful. Spoken over the wait, which is a still frame with a spinner. Split in two so the picture moves inside the twelve seconds.",
+   "secs": [
+    6.0,
+    6.0
+   ],
+   "slides": [
+    {
+     "k": "flow",
+     "kicker": "sometimes that is a weakness. here it is the point",
+     "lines": [
+      "A *function* of the diff"
+     ],
+     "size": 60,
+     "nodes": [
+      {
+       "t": "the diff",
+       "sub": "on standard input"
+      },
+      {
+       "t": "review( )",
+       "sub": "and nothing else",
+       "tone": "#f5c518"
+      },
+      {
+       "t": "the same answer",
+       "sub": "whatever kind of afternoon you were having",
+       "tone": "#3b82f6"
+      }
+     ],
+     "caption": "no repository loaded, no conversation history, no memory of the last two hours",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "so it does not depend on what else you were doing that afternoon",
+     "lines": [
+      "Same diff.",
+      "*Same* review"
+     ],
+     "size": 78,
+     "stamp": "a hundred times, and on a Tuesday",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 158.0,
+   "role": "beat",
+   "secs": [
+    10.0
+   ],
+   "why": "The consequence worth planning around, spoken over the same still frame. Ends two seconds before anchor 170.0.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "it cannot see the conversation you had an hour ago",
+     "lines": [
+      "Anything that justifies the diff",
+      "has to be *in* the diff"
+     ],
+     "size": 56,
+     "stamp": "the review is a function of the diff and nothing else",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 174.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "Fills a 27s gap, and it is the instruction being graded against itself.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "read the answer against the instruction, not your hopes",
+     "lines": [
+      "What is *not* in it"
+     ],
+     "size": 66,
+     "rows": [
+      {
+       "t": "specific defects, with files"
+      },
+      {
+       "t": "nothing about structure"
+      },
+      {
+       "t": "nothing about naming",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 200.0,
+   "role": "beat",
+   "secs": [
+    8.5,
+    9.3
+   ],
+   "why": "The two findings are on the frame as small text; this re-renders them readably, then carries the test the narration sets for any reviewer.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "two findings, both with a line number",
+     "lines": [
+      "Read it against the *instruction*"
+     ],
+     "size": 52,
+     "rows": [
+      {
+       "t": "the client's alert list is never trimmed - line 222"
+      },
+      {
+       "t": "a stale comment above the retention constant",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and the other thing to check",
+     "lines": [
+      "Is *nothing* the right answer?"
+     ],
+     "size": 58,
+     "wrong": "a clean review means the code is clean",
+     "right": "a reviewer that never says NONE is broken, and so is one that always does",
+     "note": "the only way to know which you have is to point it at a diff you know is bad",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 237.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "why": "Two agents in a row, and the thing that joins them. The pipeline is described in words and never drawn.",
+   "slides": [
+    {
+     "k": "flow",
+     "kicker": "two of them in a row is a pipeline",
+     "size": 54,
+     "lines": [
+      "Nothing clever in the *plumbing*"
+     ],
+     "nodes": [
+      {
+       "t": "name the three riskiest files",
+       "sub": "path only, no commentary"
+      },
+      {
+       "t": "risky.txt",
+       "sub": "a text file",
+       "tone": "#f5c518"
+      },
+      {
+       "t": "what a newcomer gets wrong",
+       "sub": "in each one",
+       "tone": "#3b82f6"
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and this is the whole trick",
+     "lines": [
+      "Neither knows the",
+      "other *exists*"
+     ],
+     "size": 70,
+     "stamp": "the connective tissue is a text file",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 255.0,
+   "role": "beat",
+   "why": "The honest half of the lecture, moved to the seconds where it is actually said: path only came back wrapped in a code fence.",
+   "secs": [
+    9.5,
+    8.5
+   ],
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "it said path only",
+     "lines": [
+      "*Almost* structured"
+     ],
+     "size": 74,
+     "wrong": "the output is structured",
+     "right": "three correct paths, with three backticks above and below them",
+     "note": "fine when the next stage is a model; not fine when it is xargs",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "so if you are building this for real",
+     "lines": [
+      "The line after the agent",
+      "is a *grep*"
+     ],
+     "size": 56,
+     "stamp": "throw away everything that is not the shape you asked for",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 283.0,
+   "role": "beat",
+   "why": "The second stage's answer, per file. Three traps a newcomer would find the hard way - spoken here and nowhere on the frame, which is one line of output per file.",
+   "secs": [
+    7.0,
+    5.0
+   ],
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "what a newcomer would most likely get wrong, per file",
+     "lines": [
+      "Three files. Three *traps*"
+     ],
+     "size": 48,
+     "rows": [
+      {
+       "t": "change the random draw and determinism goes - same seed, same sequence"
+      },
+      {
+       "t": "the feed's clock advances a fixed 5000 ms a tick, whenever the tick fires"
+      },
+      {
+       "t": "the rules engine is edge-triggered - a rule that stays true stays silent",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "each with a line number, from a list it was handed",
+     "lines": [
+      "Three files.",
+      "Three *afternoons*"
+     ],
+     "size": 66,
+     "stamp": "for a few pennies",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 305.0,
+   "role": "beat",
+   "secs": [
+    10.5
+   ],
+   "why": "Ends 1.5s before anchor 317.0, which the footage otherwise reaches 18.5s early. Says only what the narration says here - no invented findings, because the second stage's output was never checked frame by frame.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and the second stage answers per file",
+     "lines": [
+      "A *line number* each"
+     ],
+     "size": 84,
+     "stamp": "from a list handed to it by a program that could not see it",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 319.0,
+   "role": "close",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "why": "The closing sentence of the lecture. It starts two seconds after anchor 317.0 so that sentence lands on footage first.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and that is the whole lecture",
+     "lines": [
+      "An exit code and standard input",
+      "make it a *unix program*"
+     ],
+     "size": 54,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "what you can do now",
+     "lines": [
+      "No window. No approval. *No person*"
+     ],
+     "size": 50,
+     "rows": [
+      {
+       "t": "Pipe one commit at a time into a reviewer that only reads"
+      },
+      {
+       "t": "Constrain the form of the answer, and leave the content open"
+      },
+      {
+       "t": "Chain two of them with a text file, then grep what comes out",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  }
+ ]
+}

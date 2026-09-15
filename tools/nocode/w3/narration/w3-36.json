@@ -1,0 +1,31 @@
+{
+  "lecture": "w3-36",
+  "cut_seconds": 193.0,
+  "segments": [
+    {
+      "anchor": 0.6,
+      "beat": "tui",
+      "say": "Every session this week has had a face on it. A banner, a spinner, a box you type into, a status line telling you what it is thinking about."
+    },
+    {
+      "anchor": 12.5,
+      "beat": "p",
+      "say": "It is the same session with nowhere to put a question - and every difference that follows is a consequence of that one fact. That interface is good, and it has quietly taught you something untrue: that using an agent means sitting in front of one. So here is the same binary, the same login, the same tools and the same memory files - with the screen taken away. Minus p, a prompt, and it answers and exits. Three test files, twenty-nine test cases, and the command it ran to find that out. That last part was in the instruction on purpose: an agent answering a factual question about a repository should be made to say how it knows, because the difference between counting and remembering is invisible in the answer and total in whether you can rely on it."
+    },
+    {
+      "anchor": 52.0,
+      "beat": "exit",
+      "say": "And it has an exit code, like any other command. Zero. Which sounds like nothing, and is the reason this lecture exists at all - a program with an exit code composes. It can gate a deploy. It can fail a build. It can sit in a git hook."
+    },
+    {
+      "anchor": 67.1,
+      "beat": "json",
+      "say": "Everything else in this course has been a thing you talk to. This is a thing you can put in a sentence with other programs, and that is a different kind of object entirely. Then ask for structure instead of prose. Output format json, and what comes back is an object rather than a paragraph: the result, how many turns it took, how long it took in milliseconds, and what it cost. Pipe that through jq and you have a program's answer. Two of those fields earn their place immediately. The turn count tells you whether your prompt was one job or an argument. And the cost is the only place in this entire week where the bill is a number something else can read - which is how you find out what a thousand documents costs before you run nine hundred and ninety-nine of them."
+    },
+    {
+      "anchor": 109.4,
+      "beat": "tools",
+      "say": "And then the safety model, which is not a permission prompt, because there is nobody to prompt. Ask it to delete the test directory and everything in it. And read what comes back, because it is more interesting than a refusal. It could not complete the deletion, and it says why in two parts. Remove, blocked by the sandbox - it may only remove files from the allowed working directories. And git remove, which requires an approval that cannot be granted, because this session is non-interactive and there is nobody there to answer. Two independent walls, neither of which is the model deciding to be careful. It looked before it refused, and printed what it found: three test files, six hundred and seven lines between them. Then it does the thing I want you to notice. It tells me what deleting them would have broken: the CI workflow runs the suite on every push and would have nothing to run, and the plan requires every area's tests to live in that folder and names each file as a deliverable, so the plan would be describing files that do not exist. Neither of those was asked for. And it finishes by pointing out that the tree is clean and everything is committed, so the deletion would have been recoverable anyway - and then gives me the two honest routes: run the command myself, or re-run it somewhere it can ask. Afterwards I list the directory myself. All three files are still there - verify a refusal, do not take one on trust. That is what a good refusal looks like. Not no. No, here is exactly what stopped me, here is what it would have cost, and here is how you would do it if you meant it."
+    }
+  ]
+}

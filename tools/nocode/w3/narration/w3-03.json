@@ -1,0 +1,31 @@
+{
+  "lecture": "w3-03",
+  "cut_seconds": 162.0,
+  "segments": [
+    {
+      "anchor": 2,
+      "beat": "why",
+      "say": "It finished the memory file, and look at what it chose to tell me about it. Twenty-nine lines, no emojis, the brief pulled in with an at tag... and the other paths left in backticks, with an honest note that none of those folders exist yet. Then slash context again: ninety-five percent still free. Now here is the thing we are actually here for. I am going to ask it for a status of the project. Watch what it does with a vague question, because it is about to be more useful than the question deserved."
+    },
+    {
+      "anchor": 31,
+      "beat": "make",
+      "say": "And that is a genuinely useful answer. Control Tower is a brief, not yet a codebase. What exists is the plan and the memory file. What does not exist is everything else... no source, no tests, no Docker file, no language even chosen yet. And then the part I did not ask for: the obvious next step is the simulator, because every other panel reads from it, and it is the one piece you can test honestly with no interface in place. I am going to want that answer again tomorrow, and the day after. So instead of typing the question every time... I turn it into a word. That last part is the bit worth paying for. I asked what the state was. It told me what to do next, and why that piece before any other."
+    },
+    {
+      "anchor": 72,
+      "beat": "run",
+      "say": "It writes eighteen lines into dot claude, slash commands. It is called ct-brief, sixteen seconds to write \u2014 a routine that prints what exists, what is missing against the brief, and the single next step. Then we run it. . . and it says unknown command."
+    },
+    {
+      "anchor": 88,
+      "beat": "arg",
+      "say": "Which is worth a beat of its own. Do not skip past that. A slash command is read when the session starts, and you just wrote this one, so this session has never heard of it. You will hit the same thing with the specialist we hire next. Write it, restart, then use it. Now read how the command itself works, because this is the part people miss. The line beginning with an exclamation mark actually runs git status when you invoke it, so the file listing is live rather than baked in when it was written. The at tag pulls the brief in for comparison. And the allowed-tools line scopes it to read-only git commands, so it never stops to ask you for permission. A command is more useful still when you can point it at something. So the second one takes an argument: a requirement number out of the brief. Slash ct-check three checks the map, seven the dispatcher chat. And it built in two rules nobody asked for: open the files rather than guess from filenames, and cite a path and line before calling anything built. A verdict you cannot check is worthless."
+    },
+    {
+      "anchor": 143.1,
+      "beat": "scope",
+      "say": "And that is the shape of the day. These files live inside the project, not in settings on your laptop. Commit them, and everyone who clones this gets the same vocabulary. A personal shortcut helps one person. A committed one changes how the whole project is worked on. Two words now stand in for two paragraphs I would otherwise retype every morning."
+    }
+  ]
+}

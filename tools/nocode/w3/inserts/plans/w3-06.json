@@ -1,0 +1,167 @@
+{
+  "lecture": "w3-06",
+  "title": "Plugins and marketplaces: packaging your setup",
+  "note": "314s, only 22% dead across six spans - most of this lecture is a plugin install actually printing. Six cutaways, 54s (17%). Anchor 291.0 leads by 13s and #04 is a three-second flash because its dead span opens at 285.5. Anchor 100.3 leads by 4s, under the threshold.",
+  "inserts": [
+    {
+      "at": 83.5,
+      "role": "open",
+      "secs": [
+        4.0,
+        4.5
+      ],
+      "why": "Names the lecture, then the instruction about installing plugins.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 1  \u00b7  lecture 6",
+          "lines": [
+            "Plugins and marketplaces:",
+            "*packaging* your setup"
+          ],
+          "size": 48,
+          "stamp": "other people have already done this work and packaged it",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "most of them are good opinions",
+          "lines": [
+            "Install them *one at a time*"
+          ],
+          "size": 66,
+          "stamp": "and notice what changes - they carry prompts you cannot see from the outside",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 97.0,
+      "role": "beat",
+      "secs": [
+        6.0,
+        8.5
+      ],
+      "why": "Why project scope matters, then the day's bill - which is not what people expect.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "at project scope rather than on your laptop",
+          "lines": [
+            "The decision is *reviewable*"
+          ],
+          "size": 62,
+          "stamp": "somebody can open this repository and see the list",
+          "trans": "fade"
+        },
+        {
+          "k": "meter",
+          "kicker": "and the bill for the day",
+          "lines": [
+            "*82* percent free"
+          ],
+          "size": 86,
+          "pct": 82,
+          "fill": "82% free",
+          "rest": "18% spent",
+          "caption": "and the biggest line by far is not the plugin - it is the conversation itself",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 138.0,
+      "role": "beat",
+      "secs": [
+        8.5
+      ],
+      "why": "The one detail in the generated manifest that makes it portable.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and the hook's command changed",
+          "lines": [
+            "*plugin root*, not project dir"
+          ],
+          "size": 62,
+          "stamp": "so the script resolves wherever it is installed",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 232.5,
+      "role": "beat",
+      "secs": [
+        7.5
+      ],
+      "why": "The argument for doing it on day one rather than later.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "otherwise you end up here",
+          "lines": [
+            "A team that cannot *copy* it"
+          ],
+          "size": 62,
+          "wrong": "package it up once the project is worth packaging",
+          "right": "the jump costs one command, and it is available from the first day",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 286.5,
+      "role": "beat",
+      "secs": [
+        3.0
+      ],
+      "why": "SYNC FIX: anchor 291.0 arrives thirteen seconds after its picture, and the dead span opens at 285.5.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "today it is one command, because there is almost nothing here yet",
+          "lines": [
+            "That is the *entire* argument"
+          ],
+          "size": 56,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 301.5,
+      "role": "close",
+      "secs": [
+        12.0
+      ],
+      "why": "The close: what the folder holds after one day.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "look at what this folder now holds",
+          "lines": [
+            "A *workshop*"
+          ],
+          "size": 120,
+          "rows": [
+            {
+              "t": "a brief, and a memory"
+            },
+            {
+              "t": "two commands, and a specialist"
+            },
+            {
+              "t": "a rule that fires by itself"
+            },
+            {
+              "t": "and a plugin that hands the whole setup to the next person in one line",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    }
+  ]
+}

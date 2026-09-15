@@ -1,0 +1,26 @@
+{
+  "lecture": "w3-35",
+  "cut_seconds": 176.3,
+  "segments": [
+    {
+      "anchor": 0.6,
+      "beat": "pr",
+      "say": "And here is the pull request. A title, a body, a branch, and a link back to the issue it closes. This is where the week's argument lands: we have spent five days saying that reading is the job now, and this is the interface that was designed for exactly that, twenty years before any of this existed. And it is worth looking at what it wrote in the body rather than skipping to the diff. It says what changed, why, and what it deliberately did not do - which is the part I asked for and the part that is hardest to get. A pull request that only describes the diff is a worse version of the diff."
+    },
+    {
+      "anchor": 38.1,
+      "beat": "diff",
+      "say": "So read it. Eighty lines, and read the test first and the change second - because the test tells you what the author believed the bug was, and if that belief is wrong the fix is wrong however good it looks. This is also the beat people skip, so I want to be honest about the temptation. Everything upstream of here has been careful. The plan was careful, the issue was careful, the instruction was careful, the tests are green and the checks are about to be green. It would be very easy to merge this without reading eighty lines, and the whole apparatus is designed to make you feel that would be fine."
+    },
+    {
+      "anchor": 70.4,
+      "beat": "questions",
+      "say": "Then the two questions that catch most of it. Is anything here not mentioned in the issue. And is anything in the issue not here. Those two take about a minute and they are most of what a review is actually for. Then the checks - and it is worth being plain about why they matter more now than they did before. The volume of plausible code you are asked to read has gone up by an order of magnitude, and your capacity to read it has not moved at all. A check that runs itself is the only part of this that scales with the thing that changed."
+    },
+    {
+      "anchor": 103.4,
+      "beat": "merge",
+      "say": "And there is a specific thing to look for in a diff an agent wrote, which is different from what you look for in one a person wrote. Not typos and not style. Look for the change that is correct and unasked for - a rename, a tidied import, an improved error message - because those are what make a four-line fix into a forty-line diff, and they are what stop you reading it properly the next time. Squash, delete the branch, and the issue closes itself because the pull request said it would. And that is the loop. An issue, a branch, a test, a change, a review, a check, a merge. Every step of it existed before any of this, and not one of them had to be invented for agents - which is exactly the point. You do not need a new process for this. You need the one you already had, actually used, because the thing that changed is not what good work looks like. It is how fast unreviewed work can arrive. And then the last thing, which is not about tooling. Somebody has to be accountable for this merge, and it is not the thing that wrote it. It is whoever pressed the button, which today is me. That does not change because the diff was generated, and it is the one part of this job that no amount of any of it takes off you."
+    }
+  ]
+}

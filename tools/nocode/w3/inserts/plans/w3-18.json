@@ -1,0 +1,209 @@
+{
+  "lecture": "w3-18",
+  "title": "What the swarm actually did: the evidence in the repo",
+  "note": "265s, 35% dead across seven spans. Seven cutaways, 78s (29%). Anchor 221.0 leads by 9s and #04 ends 1.5s before it; #01 and the first beat land exactly on anchors 35.0 and 47.0.",
+  "inserts": [
+    {
+      "at": 4.5,
+      "role": "open",
+      "secs": [
+        7.0,
+        7.5
+      ],
+      "why": "Names the lecture and its first number.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 3  \u00b7  lecture 17",
+          "lines": [
+            "What the swarm actually did:",
+            "the *evidence* in the repo"
+          ],
+          "size": 48,
+          "stamp": "the answer is not in a scrolling pane. it is in the repository",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "start by counting",
+          "lines": [
+            "*23* entries changed"
+          ],
+          "size": 110,
+          "stamp": "and none of them were typed by me",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 21.0,
+      "role": "beat",
+      "secs": [
+        7.0,
+        7.0
+      ],
+      "why": "The five folders, read off a sorted listing. Ends exactly on anchor 35.0.",
+      "slides": [
+        {
+          "k": "tokens",
+          "kicker": "look at the folders rather than the names",
+          "lines": [
+            "The *split* I asked for"
+          ],
+          "size": 66,
+          "chips": [
+            "sim",
+            "api",
+            "chat",
+            "risk",
+            "ui"
+          ],
+          "hot": [
+            0
+          ],
+          "caption": "every file under source, sorted",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and it survived contact with six agents writing at once",
+          "lines": [
+            "Nobody wandered into",
+            "somebody *else's* folder"
+          ],
+          "size": 50,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 39.0,
+      "role": "beat",
+      "secs": [
+        8.5
+      ],
+      "why": "The four things asked of the lead - a long instruction that scrolls past.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "so ask the lead directly",
+          "lines": [
+            "Walk me through what *happened*"
+          ],
+          "size": 52,
+          "rows": [
+            {
+              "t": "which teammate owned which files"
+            },
+            {
+              "t": "what ran in parallel"
+            },
+            {
+              "t": "what had to wait"
+            },
+            {
+              "t": "and where any two of them touched the same thing",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 49.5,
+      "role": "beat",
+      "secs": [
+        7.0
+      ],
+      "why": "The clause the narration says is the one that matters.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and notice the last clause",
+          "lines": [
+            "Tell me anything that",
+            "*looks wrong*"
+          ],
+          "size": 56,
+          "stamp": "because asking an agent to summarise its own work gets you a summary",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 213.0,
+      "role": "beat",
+      "secs": [
+        6.5
+      ],
+      "why": "SYNC FIX: anchor 221.0 arrives nine seconds after its picture. Ends 1.5s before it.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and then the line that matters",
+          "lines": [
+            "Everything else *checks out*"
+          ],
+          "size": 66,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 222.0,
+      "role": "beat",
+      "secs": [
+        11.0
+      ],
+      "why": "The bill for the forensic pass, spoken over a static report.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "because a team that works is only half the story",
+          "lines": [
+            "About *fifty cents*",
+            "and two minutes"
+          ],
+          "size": 54,
+          "stamp": "reading the repository, tracing every import, writing that report",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 236.5,
+      "role": "close",
+      "secs": [
+        8.0,
+        8.5
+      ],
+      "why": "The close: the number to actually watch, drawn against its limit.",
+      "slides": [
+        {
+          "k": "meter",
+          "kicker": "but the week meter is the one to watch",
+          "lines": [
+            "*Three quarters* gone"
+          ],
+          "size": 66,
+          "pct": 75,
+          "fill": "75% spent",
+          "rest": "25% left",
+          "caption": "and most of that went on the build itself, not on this",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "Write *both* numbers down"
+          ],
+          "size": 72,
+          "stamp": "at the end of the week we put them next to what the other approaches cost",
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

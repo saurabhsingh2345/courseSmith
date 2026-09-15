@@ -1,0 +1,402 @@
+{
+  "lecture": "w3-07",
+  "title": "Why sandboxing is the unlock",
+  "note": "453s, 48% dead across fifteen spans. Thirteen cutaways, 179s (40%). Anchor 150.0 leads by 17s; its dead span opens at 147.5, so #04 is a four-second beat ending 1.5s after the anchor - the picture arriving a beat behind the words is the house style, only arriving early is the defect.",
+  "inserts": [
+    {
+      "at": 1.0,
+      "role": "open",
+      "secs": [
+        8.5
+      ],
+      "why": "Names the lecture over the opening file tree.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 2  \u00b7  lecture 7",
+          "lines": [
+            "Why sandboxing",
+            "is the *unlock*"
+          ],
+          "size": 66,
+          "stamp": "everything we built yesterday, we built while approving things",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 10.5,
+      "role": "beat",
+      "secs": [
+        8.0
+      ],
+      "why": "The cost of yesterday, stated as a fact about the tree on screen.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "every one of those files still marked U",
+          "lines": [
+            "Every write, every command,",
+            "*one at a time*"
+          ],
+          "size": 52,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 58.5,
+      "role": "beat",
+      "secs": [
+        7.0,
+        8.5
+      ],
+      "why": "The two kinds of prompt, and what the actual skill is.",
+      "slides": [
+        {
+          "k": "cols",
+          "kicker": "and they are not all the same prompt",
+          "lines": [
+            "Two kinds of *yes*"
+          ],
+          "size": 86,
+          "cols": [
+            {
+              "head": "irreversible",
+              "items": [
+                "worth every second"
+              ]
+            },
+            {
+              "head": "reading a file",
+              "items": [
+                "asking you to be a rubber stamp"
+              ]
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "myth",
+          "kicker": "so the skill is not what you think",
+          "lines": [
+            "Arrange, do not *answer*"
+          ],
+          "size": 62,
+          "wrong": "the skill is answering them faster",
+          "right": "arrange your work so that most of them never need to be asked",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 123.0,
+      "role": "beat",
+      "secs": [
+        8.5
+      ],
+      "why": "The evidence of absence, which is the point of the beat and is a missing file.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "there is no local permissions file",
+          "lines": [
+            "No record of a *single* permission"
+          ],
+          "size": 52,
+          "stamp": "which is the place a \"yes, and do not ask me again\" would have left a trace",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 147.5,
+      "role": "beat",
+      "secs": [
+        4.0
+      ],
+      "why": "SYNC FIX: anchor 150.0 arrives seventeen seconds after its picture, and its dead span opens at 147.5. Four seconds is all there is.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and this is the difference",
+          "lines": [
+            "A check gives you",
+            "somewhere to *go next*"
+          ],
+          "size": 58,
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 158.5,
+      "role": "beat",
+      "secs": [
+        11.0,
+        10.0,
+        11.5
+      ],
+      "why": "What a zero-cost guardrail looks like, and where the real record actually lives.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "the hook it names is a real file, wired to run after every write",
+          "lines": [
+            "A guardrail that costs",
+            "*nothing* at runtime"
+          ],
+          "size": 50,
+          "rows": [
+            {
+              "t": "it has an opinion"
+            },
+            {
+              "t": "it applies it to every write"
+            },
+            {
+              "t": "and it never interrupts you to ask whether you meant it",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and because no allowlist was ever created",
+          "lines": [
+            "Answered individually.",
+            "*Nothing* left behind"
+          ],
+          "size": 54,
+          "trans": "rise"
+        },
+        {
+          "k": "head",
+          "kicker": "then it offers the honest route to a real answer",
+          "lines": [
+            "The raw transcripts",
+            "are on *disk*"
+          ],
+          "size": 58,
+          "stamp": "JSONL, one line per event, under a projects folder keyed to this repo's path",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 194.0,
+      "role": "beat",
+      "secs": [
+        7.5
+      ],
+      "why": "What that file contains, and how rarely anybody looks.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "everything an agent did on your machine",
+          "lines": [
+            "In *plain text*"
+          ],
+          "size": 120,
+          "stamp": "and most people never open it",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 210.0,
+      "role": "beat",
+      "secs": [
+        8.5
+      ],
+      "why": "The failure mode the narration says deserves more caution than the prompts themselves.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "it could have answered with a tidy retrospective",
+          "lines": [
+            "And no way to *tell*"
+          ],
+          "size": 104,
+          "wrong": "a confident retrospective is reassuring",
+          "right": "and there would be no way to tell that it was fabricated",
+          "note": "that failure mode is worth more caution than most of the permission prompts",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 220.5,
+      "role": "beat",
+      "secs": [
+        10.0,
+        11.0,
+        11.5
+      ],
+      "why": "The job of the person in the chair, and the practical lesson in an empty file.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "which is the actual job of the person in your chair",
+          "lines": [
+            "Not typing.",
+            "An answer, or a *plausible* one"
+          ],
+          "size": 50,
+          "trans": "fade"
+        },
+        {
+          "k": "myth",
+          "kicker": "and there is a practical lesson in that empty permissions file",
+          "lines": [
+            "Not a *convenience* feature"
+          ],
+          "size": 56,
+          "wrong": "the allowlist saves you clicks",
+          "right": "it is the memory of your own judgement",
+          "trans": "rise"
+        },
+        {
+          "k": "head",
+          "kicker": "so an empty one has a cost",
+          "lines": [
+            "Yesterday's thinking,",
+            "done *again* today"
+          ],
+          "size": 56,
+          "stamp": "every session starts from nothing and asks you the same questions",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 271.5,
+      "role": "beat",
+      "secs": [
+        7.5
+      ],
+      "why": "How it answered - by reading the program rather than remembering it.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "a shell loop running strings over the installed binary",
+          "lines": [
+            "It read the *binary*"
+          ],
+          "size": 96,
+          "stamp": "hunting for the setting names the program actually knows about",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 291.0,
+      "role": "beat",
+      "secs": [
+        8.0,
+        7.0
+      ],
+      "why": "The distinction the whole lecture turns on, and who gets it wrong.",
+      "slides": [
+        {
+          "k": "cols",
+          "kicker": "and this is the distinction that matters",
+          "lines": [
+            "Two things that are *not* the same"
+          ],
+          "size": 52,
+          "cols": [
+            {
+              "head": "removed",
+              "items": [
+                "the risk is gone"
+              ]
+            },
+            {
+              "head": "stopped being told about",
+              "items": [
+                "the risk is exactly where it was"
+              ]
+            }
+          ],
+          "trans": "fade"
+        },
+        {
+          "k": "myth",
+          "kicker": "and it is not bravery",
+          "lines": [
+            "Only the *second* one"
+          ],
+          "size": 96,
+          "wrong": "running without prompts means the risk is gone",
+          "right": "a lot of people who say they run in YOLO mode have only stopped being told",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 356.5,
+      "role": "beat",
+      "secs": [
+        9.0,
+        9.0
+      ],
+      "why": "Which section of a 70 kB page it pulled out, and why that is the point.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "seventy kilobytes back, and it ran a sed",
+          "lines": [
+            "One heading: *LIMITATIONS*"
+          ],
+          "size": 62,
+          "stamp": "not the whole page - the one section that says what does not work",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "which, as it happens",
+          "lines": [
+            "Is exactly the standard we are",
+            "about to apply to *ourselves*"
+          ],
+          "size": 48,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 407.0,
+      "role": "close",
+      "secs": [
+        6.0,
+        7.0
+      ],
+      "why": "The close: it found a hole in our own setup, which nothing on the frame shows.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and it does not stop at the docs",
+          "lines": [
+            "It found a hole in our",
+            "*own* setup"
+          ],
+          "size": 58,
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "A sandboxed command could rewrite",
+            "the script that *enforces* your rules"
+          ],
+          "size": 44,
+          "stamp": "hooks run outside the sandbox, and ours sits under tools, not under .claude",
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

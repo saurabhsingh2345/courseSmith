@@ -1,0 +1,21 @@
+{
+  "lecture": "w3-20",
+  "cut_seconds": 152.0,
+  "segments": [
+    {
+      "anchor": 0,
+      "beat": "start",
+      "say": "Everything so far has been evidence about the build — files, timestamps, test names. This is where we stop reading about it and run it. And before we do, look at the start script and the package file, because the shape of it is the point. One start command. One test command. No dependencies at all — the whole console is plain Node. Six agents building in parallel had every opportunity to reach for a framework each, and none did. So there is nothing to install. It starts, or it does not. And the start script is worth a second of your attention, because it is not just a node command: it boots the server, polls the port until it answers, and prints the log and gives up if the process dies on the way. A teammate wrote that unasked, and it is exactly the kind of small thing that decides whether a project is pleasant to work in."
+    },
+    {
+      "anchor": 47,
+      "beat": "alive",
+      "say": "This is Control Tower. Nobody drew this screen. It came out of one instruction and a brief, and it has been running for a few seconds. So look at what is actually moving. Sixty vans down the left, grouped by lane, each with a status dot and an ETA counting down in real time — the ones in red are already late. The map in the middle is the whole country, and those dots are the vans themselves, moving along their routes on about a one second tick. Amber is a vehicle in trouble. Region heat on the right, and read it the way it was specified: the size of each box is the volume through that region, and the colour is the risk of delay, so a big green box is a busy region that is coping and a small orange one is a quiet region that is not. And right now exactly one box is amber: the South West. Mid-sized, so mid-volume, and the region most likely to miss. The other five are green or olive. On-time today, eighty three point three percent, plotted against the simulated clock. The exceptions ticker along the bottom, newest first — breakdowns, weather holds, a traffic delay, each naming a van and a place. And the dispatcher bar underneath it, waiting for a sentence like reroute VAN fourteen around the closure. That is the whole screen the brief asked for, and it is the first time it has been run. No adjustment pass, no let me just fix the layout. It came up like this."
+    },
+    {
+      "anchor": 121,
+      "beat": "warts",
+      "say": "And then the least glamorous command in the week, which is the one that makes all of it real. Add everything, commit it, and look at the log. Because until this moment the entire output of six agents existed only as untracked files on one machine. That is not a project, that is a folder you are afraid to touch. Now it has a first commit, and from here every change has something to be a change from. Tomorrow we ask the awkward question about all of this — whether you needed somebody else's orchestrator to do it at all, and what it actually cost."
+    }
+  ]
+}

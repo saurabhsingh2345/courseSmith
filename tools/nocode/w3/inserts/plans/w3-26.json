@@ -1,0 +1,62 @@
+{
+  "lecture": "w3-26",
+  "title": "Wrap: from no-code to agentic director",
+  "note": "Only 15% dead across four spans, and holds.py already rates it the healthiest file in the week at 6%. It is a montage of the week's own footage, so heavy carding would fight the picture: it gets the tutorial bookends and nothing more. Two cutaways, 20s (7%). Anchor 276.0 leads by 14s and is WAIVED - the dead spans jump 251.5->end, so there is no frame to end a card on before it.",
+  "inserts": [
+    {
+      "at": 91.5,
+      "role": "open",
+      "secs": [
+        5.0,
+        5.5
+      ],
+      "why": "The wrap lecture is a montage of the week's own footage and is already the healthiest file in it (6% frozen on holds.py) - so it gets bookends and nothing else. This one names it and carries the pipe beat.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 5  \u00b7  lecture 35",
+          "lines": [
+            "Wrap: from no-code",
+            "to *agentic director*"
+          ],
+          "size": 52,
+          "stamp": "everything you are about to see is from this week. no stock footage.",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "two of them chained, the first one's answer becoming the second's brief",
+          "lines": [
+            "A *pipe*. That is the whole trick"
+          ],
+          "size": 52,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 242.0,
+      "role": "close",
+      "secs": [
+        9.0
+      ],
+      "why": "The close, on the beat where the agent was right and the rule was wrong.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "The agent was right.",
+            "The *rule* was wrong"
+          ],
+          "size": 56,
+          "stamp": "the fix pass read our own rules, found the dependency that broke them, and deleted it",
+          "trans": "fade"
+        }
+      ]
+    }
+  ],
+  "sync_waived": [
+    276.0
+  ]
+}

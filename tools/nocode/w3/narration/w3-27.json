@@ -1,0 +1,56 @@
+{
+  "lecture": "w3-27",
+  "cut_seconds": 414.0,
+  "segments": [
+    {
+      "anchor": 0.6,
+      "beat": "empty",
+      "say": "A second empty folder, and this one is going to be filled differently. Everything we have done this week has had a person in the loop. You type, it works, it answers, you read it."
+    },
+    {
+      "anchor": 15.3,
+      "beat": "git",
+      "say": "So version control before anything else, and for a sharper reason than tidiness. In an hour a program is going to write into this folder with no approval prompts and nobody watching."
+    },
+    {
+      "anchor": 26.1,
+      "beat": "brief",
+      "say": "This one command is what makes that a reversible decision rather than a gamble. Then the brief lands. Forty-three lines, pasted rather than typed, because watching somebody type a document is not a lecture. Forty-three lines is also worth a number. That is one side of one page, and it is about to become two thousand three hundred lines of working software."
+    },
+    {
+      "anchor": 44.0,
+      "beat": "read",
+      "say": "Read the shape of it rather than the content. Four screens, and each one specified far past what people normally write down. Not a watchlist: thirty instruments, each row a symbol, a value, a signed percentage against the open, and a sparkline of the last two minutes, re-sorting by the size of the move and animating rather than jumping. Not a chart: candles, one every five seconds, an hour of scrollback, with rule thresholds drawn across it. Not alerts: newest first, each one naming which rule fired, on what, at what value, and how long ago, and clicking one moves the chart to the moment it fired. Then the replay section, which is the only genuinely hard requirement in the document: a scrubber that moves the whole console back through the last ten minutes, with all four panels following it. And then the rules at the bottom, which is the half most briefs are missing. Node twenty-four. No dependencies for the running app. No framework and no build step. The simulator owns no timer. Same seed, same data."
+    },
+    {
+      "anchor": 100.6,
+      "beat": "claude",
+      "say": "Read those two halves against each other, because the second one is doing most of the work. The first half is what it does. The second half is what it is allowed to be. Left to itself an agent satisfies the first and invents the second, and you get a working console with a framework in it, a build step, four dependencies and a test suite made of mocks. None of that is disobedience. It is what happens when nobody says otherwise."
+    },
+    {
+      "anchor": 124.0,
+      "beat": "plan",
+      "say": "The simulator owns no timer. That one sentence decides whether this product can be tested at all: a generator that ticks itself can only be observed in real time, and a generator that is ticked by its caller can be run a thousand steps forward in a millisecond. Nobody would put that in a brief unless they had been burned by it. And now the instruction, and it is not build this. Divide this into areas that different people could own at the same time without treading on each other, and for each one name the files it owns, what it must expose to the others, and what it must not touch. Put the simulator first, because everything else consumes it. Build nothing yet. And read the three things I asked for per area, because they are not arbitrary. The files it owns, so two agents never edit the same file. What it must expose, so the others can build against a contract instead of against code that does not exist yet."
+    },
+    {
+      "anchor": 178.0,
+      "beat": "why",
+      "say": "And what it must not touch, which is the one people forget and the one that actually prevents the collision. That is the difference between a brief and a plan, and it is the only piece of work in this lecture that genuinely needs a person in the room, because everything downstream inherits it. If the division is wrong, six agents will execute the wrong division perfectly and at speed. And notice what I am not doing. I am not telling it what the areas are. I know roughly what they would be, and so do you, and typing them out would take four minutes. But the moment I name them I own them, and I have not read the brief as carefully as the thing that is about to read it six times. There is a second reason to have it write the plan rather than write it myself, and it is the one that generalises. The plan has to be right about the code, and right now the only thing that has read the brief carefully is the thing I am asking. In an hour there will be six agents each holding a quarter of this, and none of them will be able to see the seam they are sitting on."
+    },
+    {
+      "anchor": 243.0,
+      "beat": "wait",
+      "say": "Nothing you leave implicit survives that. So it works, and this is the part of an unattended pipeline nobody films: three minutes where the correct thing to do is nothing at all. There is no progress bar because there is nothing to report. It is reading a document and writing a longer one. And the temptation, which I want to name because you will feel it, is to interrupt and help. To type but make sure the server owns the timer. Do not. Every clarification you add mid-turn is a clarification you did not put in the brief, which means it is not written down anywhere, which means the next run will not have it. The other thing worth doing with this three minutes is deciding, now, what you are going to check when it comes back. Not read it and see how it looks. Does every area have a file list. Does every file appear in exactly one of them. Is there anything in the brief that no area owns."
+    },
+    {
+      "anchor": 291.2,
+      "beat": "cost",
+      "say": "It is also writing the memory file while it is in there, because I asked for both in one instruction. Those two documents do different jobs and it is worth being clear about which is which. The plan says what to build and who owns it. The memory file says how work is done here, and it is the thing that gets loaded at the start of every session by every agent that ever opens this folder. One is a schedule. The other is a standard."
+    },
+    {
+      "anchor": 321.7,
+      "beat": "planread",
+      "say": "One is a schedule. The other is a standard, and it is the one that keeps costing you after today. And here is what came out. Six areas, and the first line is the reasoning rather than the list: the simulator is first because every other area consumes its output. Then the sentence that makes the rest of the day possible. The other five can all start in parallel, once they are building against the documented contracts rather than waiting for finished code from somebody else. Look at what each area gets. It owns a named list of files. It exposes an interface written out in full, and for the simulator that is an actual function signature and the exact shape of a candle: symbol, time, open, high, low, close, change percent, one entry per instrument in a fixed order. And then a section headed must not touch, which is the half people leave out. The simulator must not know what a rule is. It must not decide how much history to keep, because that belongs to the feed and not to the generator. And there is one paragraph near the top worth more than the six areas under it. Areas talk to each other only through the interfaces listed. Nobody reaches into another area's files. And if a contract has to change, that is a cross-area edit: update this file in the same change, and say so in the commit. That is not documentation. That is the rule that decides whether six agents working at once produce a product or a merge conflict. And read the ownership lists against each other, because that is the check we decided on before it came back. Six areas, six disjoint sets of files, and the two that could plausibly have fought - the two halves of the client - separated by feature rather than by layer, so one owns the watchlist and the chart and the other owns the rules and the alerts. Nothing appears twice. That is the whole property that makes the next hour possible."
+    }
+  ]
+}

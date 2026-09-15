@@ -1,0 +1,2976 @@
+{
+ "lecture": "w3-29",
+ "title": "The run: agents building with no terminal to watch",
+ "note": "The worst file in the week: 1474s, 97% of it an unchanged picture, with a single hold of 437s. That is not a recording defect - the lecture is an unattended build and says out loud that there is nothing to watch. So the narration carries about forty distinct ideas over a still frame, and this is those ideas. 46 cutaways, 578s of 1474s (39%). Only sync lead is anchor 289.1 at 6.6s, under the 8s threshold. Eight cutaways end one to three seconds before anchors 380, 530, 680, 980, 1130 and 1280.",
+ "inserts": [
+  {
+   "at": 3.0,
+   "role": "open",
+   "secs": [
+    5.0,
+    5.0
+   ],
+   "why": "Names the lecture, then reads the repository as it stands - which the frame shows as a file rail too small to read.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 4  \u00b7  lecture 24",
+     "lines": [
+      "Phase one:",
+      "the plan becomes",
+      "a *task list*"
+     ],
+     "size": 60,
+     "stamp": "seven jobs, eighteen minutes, nobody in the room",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "and this is everything in the repository",
+     "lines": [
+      "Signal Desk is entirely *prose*"
+     ],
+     "size": 52,
+     "rows": [
+      {
+       "t": "node_modules, and a tools folder with one script in it"
+      },
+      {
+       "t": "BRIEF.md, CLAUDE.md, plan.md, two package files"
+      },
+      {
+       "t": "not one line of product code",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 13.0,
+   "role": "beat",
+   "why": "The repository read out file by file, over a rail too small to read at 4K, and the U beside every line of it.",
+   "secs": [
+    7.5,
+    7.5
+   ],
+   "slides": [
+    {
+     "k": "hierarchy",
+     "kicker": "everything in the repository, and not one line of product code",
+     "lines": [
+      "Entirely *prose*"
+     ],
+     "size": 66,
+     "nodes": [
+      {
+       "t": "BRIEF.md",
+       "depth": 0,
+       "kind": "file"
+      },
+      {
+       "t": "CLAUDE.md",
+       "depth": 0,
+       "kind": "file"
+      },
+      {
+       "t": "plan.md",
+       "depth": 0,
+       "kind": "file"
+      },
+      {
+       "t": "package.json, and its lock file",
+       "depth": 0,
+       "kind": "file"
+      },
+      {
+       "t": "tools",
+       "depth": 0,
+       "kind": "dir"
+      },
+      {
+       "t": "node_modules",
+       "depth": 0,
+       "kind": "dir"
+      }
+     ],
+     "active": 2,
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and almost every one of those files carries a U beside it",
+     "lines": [
+      "*main*, and a star",
+      "in the status bar"
+     ],
+     "size": 60,
+     "stamp": "nothing in this repository has been committed yet",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 28.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "Every file still carries a U and the branch reads main with a star. The instruction drawn from that is spoken, not shown.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "almost every file in that rail is marked U",
+     "lines": [
+      "Commit *before* the run"
+     ],
+     "size": 74,
+     "wrong": "start the run, commit afterwards",
+     "right": "a commit costs five seconds and turns the next twenty minutes from a mystery into a diff",
+     "note": "nothing in this repository has been committed yet",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 44.0,
+   "role": "beat",
+   "secs": [
+    14.0
+   ],
+   "why": "The translation this phase performs, listed field by field in the narration and nowhere on screen.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "the step people skip, and what it is for",
+     "lines": [
+      "A *translation*, not a summary"
+     ],
+     "size": 48,
+     "cols": [
+      {
+       "head": "plan.md is written for a person",
+       "items": [
+        "reasoning",
+        "cross-references",
+        "a paragraph on what to do if a contract is wrong",
+        "none of it executable"
+       ]
+      },
+      {
+       "head": "tasks.json is written for a runner",
+       "items": [
+        "an identifier",
+        "the files it owns",
+        "the tools it is allowed",
+        "the jobs it waits for",
+        "a brief for somebody who cannot ask a question"
+       ]
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 62.0,
+   "role": "beat",
+   "secs": [
+    10.0
+   ],
+   "why": "The one-line description of why a model is good at this job.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and it is the kind of translation a model is good at",
+     "lines": [
+      "Reading comprehension",
+      "with a *schema* on the end"
+     ],
+     "size": 58,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 72.0,
+   "role": "beat",
+   "why": "The command that started the phase, which is one small line on the frame, and why it stops.",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "slides": [
+    {
+     "k": "term",
+     "kicker": "and look at the command that started it",
+     "lines": [
+      "The word *plan*.",
+      "Not run"
+     ],
+     "size": 62,
+     "title": "signal-desk",
+     "prompt": "",
+     "term": [
+      {
+       "t": "orchestrator.mjs plan",
+       "kind": "cmd"
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and it stops there, before anything is built",
+     "lines": [
+      "A *checkpoint*,",
+      "not a step"
+     ],
+     "size": 62,
+     "wrong": "one command that plans and then goes ahead and builds",
+     "right": "two verbs, so there is a file to read before anything runs",
+     "note": "that they are two rather than one is the most useful decision in the file",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 86.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "Two verbs rather than one is called the most useful decision in the file. The command on the frame is one small line.",
+   "slides": [
+    {
+     "k": "flow",
+     "kicker": "orchestrator.mjs, then the word plan - not run",
+     "lines": [
+      "*Two* verbs, not one"
+     ],
+     "size": 62,
+     "nodes": [
+      {
+       "t": "plan",
+       "sub": "reads plan.md, writes tasks.json"
+      },
+      {
+       "t": "tasks.json",
+       "sub": "on disk, nothing built",
+       "tone": "#f5c518"
+      },
+      {
+       "t": "run",
+       "sub": "and only when you say so",
+       "tone": "#3b82f6"
+      }
+     ],
+     "caption": "that gap is your review gate",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 104.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "What the review gate is actually for, spoken as a list of four things you can do in it.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "what you can do in that gap",
+     "lines": [
+      "Before you type *run*"
+     ],
+     "size": 66,
+     "rows": [
+      {
+       "t": "open the file"
+      },
+      {
+       "t": "delete a job"
+      },
+      {
+       "t": "tighten a brief"
+      },
+      {
+       "t": "change a dependency",
+       "hot": true
+      }
+     ],
+     "stamp": "one command that plans and builds in one breath takes that away",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 117.0,
+   "role": "beat",
+   "why": "Twenty-seven seconds of a terminal showing one line ending in three dots, while the narration reads out the dependency footprint and explains why nothing prints.",
+   "secs": [
+    7.0,
+    7.0,
+    6.5,
+    6.5
+   ],
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "and the line above it is the entire dependency footprint",
+     "lines": [
+      "*One* package"
+     ],
+     "size": 74,
+     "rows": [
+      {
+       "t": "@anthropic-ai/claude-agent-sdk - already up to date"
+      },
+      {
+       "t": "104 packages audited, no vulnerabilities",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "term",
+     "kicker": "and right now this is everything you get",
+     "lines": [
+      "Three *dots*"
+     ],
+     "size": 84,
+     "title": "orchestrator",
+     "prompt": "",
+     "term": [
+      {
+       "t": "planning...",
+       "kind": "out"
+      }
+     ],
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "one agent is reading plan.md",
+     "lines": [
+      "It will print again",
+      "when it has *finished*"
+     ],
+     "size": 56,
+     "stamp": "and in between: no token count, no spinner, nothing",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "which is the first thing to get used to",
+     "lines": [
+      "Silence is not a *stall*"
+     ],
+     "size": 68,
+     "wrong": "no output for two minutes means something has gone wrong",
+     "right": "the runner prints on events, and there are no events until a job ends",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 144.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "The whole orchestrator is 366 lines and its five parts are listed out loud.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "four minutes, and this is the whole runner",
+     "lines": [
+      "*366* lines"
+     ],
+     "size": 96,
+     "rows": [
+      {
+       "t": "the planner"
+      },
+      {
+       "t": "the worker pool"
+      },
+      {
+       "t": "the reviewer"
+      },
+      {
+       "t": "the log"
+      },
+      {
+       "t": "the table at the end",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 160.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "The instinct the narration is arguing against, and the one dependency the whole thing has.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "sit with that number",
+     "lines": [
+      "No *framework* under it"
+     ],
+     "size": 68,
+     "wrong": "agent orchestration needs a framework",
+     "right": "a loop, a set of promises, and one function that decides which jobs are eligible",
+     "note": "one dependency: @anthropic-ai/claude-agent-sdk, 104 packages audited",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 182.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "Why the screen is a cursor and three dots - a property of calling the SDK this way, which is exactly what a student staring at a frozen frame needs told.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "one agent is reading plan.md, and that is all you get",
+     "lines": [
+      "It returns a *result*,",
+      "not a conversation"
+     ],
+     "size": 60,
+     "stamp": "no token stream, no partial output - just a cursor",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 198.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "The planner's tool list and the one thing it may not do, with the reason attached.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "and notice what this phase is not allowed to do",
+     "lines": [
+      "A planner that can *build*, will"
+     ],
+     "size": 48,
+     "cols": [
+      {
+       "head": "it has",
+       "items": [
+        "read",
+        "glob",
+        "grep",
+        "write - and the only file it writes is the task list"
+       ]
+      },
+      {
+       "head": "it has not",
+       "items": [
+        "bash",
+        "edit",
+        "any way to build anything at all"
+       ]
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 214.0,
+   "role": "beat",
+   "secs": [
+    14.0
+   ],
+   "why": "Blast radius, argued explicitly against the sandbox lecture from Tuesday.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "the second reason to make the planner its own agent",
+     "lines": [
+      "*Blast* radius"
+     ],
+     "size": 66,
+     "cols": [
+      {
+       "head": "the plan phase",
+       "items": [
+        "a repository with no source in it",
+        "the worst it can produce is a bad tasks.json",
+        "which you can read in thirty seconds"
+       ]
+      },
+      {
+       "head": "the build phase",
+       "items": [
+        "bash",
+        "edits",
+        "a working tree to damage"
+       ]
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 236.0,
+   "role": "beat",
+   "secs": [
+    14.0
+   ],
+   "why": "The shape of the translation, named because you will do it by hand at least once.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "there is a shape to that translation worth naming",
+     "lines": [
+      "Understood, or *executed*"
+     ],
+     "size": 60,
+     "wrong": "a task list is just a more detailed plan",
+     "right": "a plan is written to be understood; a task list is written to be executed",
+     "note": "the difference is not detail - the plan has more of it",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 263.5,
+   "role": "beat",
+   "secs": [
+    9.0
+   ],
+   "why": "The result of phase one. tasks.json appearing in the rail is a one-line change on a 4K frame.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and here is what it decided the work is",
+     "lines": [
+      "*Seven* jobs"
+     ],
+     "size": 108,
+     "stamp": "tasks.json is the artefact here, not the sentence in the terminal",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 284.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "The dependency column read out as a chain. It is the whole plan compressed, and it is never drawn.",
+   "slides": [
+    {
+     "k": "flow",
+     "kicker": "read the dependency column",
+     "lines": [
+      "The whole plan, in one line each"
+     ],
+     "size": 50,
+     "nodes": [
+      {
+       "t": "simulator",
+       "sub": "waits for nothing"
+      },
+      {
+       "t": "rules engine",
+       "sub": "waits for the simulator"
+      },
+      {
+       "t": "server",
+       "sub": "waits for both",
+       "tone": "#3b82f6"
+      },
+      {
+       "t": "app shell",
+       "sub": "waits for the server and both clients",
+       "tone": "#f5c518"
+      }
+     ],
+     "caption": "and a verification pass at the end waits for everything",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 313.0,
+   "role": "beat",
+   "secs": [
+    8.0
+   ],
+   "why": "The line that closes the graph beat.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "a shape you could draw on a *napkin*",
+     "lines": [
+      "Out of a document nobody",
+      "wrote as a *graph*"
+     ],
+     "size": 56,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 324.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "The two redirections in the run command, and what they buy when a job throws.",
+   "slides": [
+    {
+     "k": "term",
+     "kicker": "two redirections, and both matter",
+     "lines": [
+      "Phase *two*"
+     ],
+     "size": 90,
+     "title": "signal-desk",
+     "term": [
+      {
+       "t": "node tools/orchestrator.mjs run 2>&1 | tee build.out",
+       "kind": "cmd"
+      }
+     ],
+     "trans": "fade",
+     "prompt": ""
+    }
+   ]
+  },
+  {
+   "at": 338.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "What a brief looks like inside tasks.json - three things, all copied forward out of the plan.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "and read what a brief looks like in there",
+     "lines": [
+      "Written for somebody who",
+      "cannot *ask*"
+     ],
+     "size": 52,
+     "rows": [
+      {
+       "t": "the files that job owns"
+      },
+      {
+       "t": "the contract it has to honour"
+      },
+      {
+       "t": "and what it must not touch",
+       "hot": true
+      }
+     ],
+     "stamp": "all of it copied forward out of the plan",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 351.0,
+   "role": "beat",
+   "why": "Why planning is its own agent, and the first hint that the graph it produced was a choice.",
+   "secs": [
+    6.5,
+    6.5
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "which is why the planning phase is a separate agent",
+     "lines": [
+      "Not a *paragraph*",
+      "in the runner"
+     ],
+     "size": 62,
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and the graph it chose is not the only correct one",
+     "lines": [
+      "It did not *have* to wait",
+      "for the finished",
+      "rules engine"
+     ],
+     "size": 46,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 364.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "The judgement call nobody reviewed. Ends three seconds before anchor 380.0.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and the graph it chose is not the only correct one",
+     "lines": [
+      "One *edge*, most of the critical path"
+     ],
+     "size": 46,
+     "wrong": "the server had to wait for the finished rules engine",
+     "right": "it could have been built against the contract and started at minute zero",
+     "note": "a judgement made by a planning agent in four minutes that nobody reviewed",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 377.0,
+   "role": "beat",
+   "why": "The three jobs that start, and the rail - which the narration says is the only thing on the screen that moves for the next quarter of an hour, and which is three lines of 4K text. This draws it.",
+   "secs": [
+    6.0,
+    6.5,
+    6.5,
+    6.0
+   ],
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "three start at once",
+     "lines": [
+      "*Three* jobs, no more"
+     ],
+     "size": 62,
+     "rows": [
+      {
+       "t": "the simulator"
+      },
+      {
+       "t": "the watchlist and chart"
+      },
+      {
+       "t": "the rules and alerts panels"
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "hierarchy",
+     "kicker": "three directories that did not exist ninety seconds ago",
+     "lines": [
+      "Watch the *left rail*"
+     ],
+     "size": 62,
+     "nodes": [
+      {
+       "t": "simulator",
+       "depth": 0,
+       "kind": "dir"
+      },
+      {
+       "t": "test",
+       "depth": 0,
+       "kind": "dir"
+      },
+      {
+       "t": "public",
+       "depth": 0,
+       "kind": "dir"
+      }
+     ],
+     "active": 0,
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "and the terminal will not print another word until the run finishes",
+     "lines": [
+      "A folder appearing",
+      "is your only *signal*"
+     ],
+     "size": 54,
+     "wrong": "you watch the terminal",
+     "right": "for the next quarter of an hour the rail is the only thing on this screen that moves",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and two of those three are building against something that is not there",
+     "lines": [
+      "The code they consume",
+      "*does not exist yet*"
+     ],
+     "size": 50,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 402.0,
+   "role": "beat",
+   "secs": [
+    14.0
+   ],
+   "why": "Called the single most useful idea in the lecture, and it is spoken over a rail that is not moving.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "why two client jobs can start before anything they need exists",
+     "lines": [
+      "They build against the *description*"
+     ],
+     "size": 46,
+     "wrong": "you cannot build a client before the simulator exists",
+     "right": "they build against what the plan says the simulator returns",
+     "note": "the code they consume does not exist yet, and does not need to",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 416.0,
+   "role": "beat",
+   "why": "What a contract buys, spoken over a rail that has not changed since the last card.",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and it does not need to exist",
+     "lines": [
+      "That is what a",
+      "*contract* is for"
+     ],
+     "size": 68,
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and it is why the hour we spent on the plan",
+     "lines": [
+      "Buys three jobs",
+      "of *parallelism*"
+     ],
+     "size": 58,
+     "stamp": "written down an hour ago, and paid out now",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 430.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "Nobody asked for tests in the run command; they arrived because they were in the plan.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "test arrived in the same breath as simulator",
+     "lines": [
+      "The standards travel",
+      "with the *job*"
+     ],
+     "size": 62,
+     "stamp": "instead of living in your head",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 451.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "What the only live signal on screen actually proves.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "be clear about what a new folder proves",
+     "lines": [
+      "It is evidence of a *write*"
+     ],
+     "size": 62,
+     "wrong": "a new directory means the job is going well",
+     "right": "all the rail tells you is that an agent is alive",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 466.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "Why the scheduler is holding an eligible job - the reason is about correctness, not politeness.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "the rules engine is eligible, and the scheduler is holding it",
+     "lines": [
+      "Inventing the shape",
+      "of a *candle*"
+     ],
+     "size": 60,
+     "stamp": "and inventing it differently from whoever eventually writes it",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 478.0,
+   "role": "beat",
+   "secs": [
+    6.0,
+    6.0
+   ],
+   "why": "The mistake the narration says it has watched people make, over an unchanged rail.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and there is a version of this you should not do",
+     "lines": [
+      "I have watched",
+      "people *do* it"
+     ],
+     "size": 74,
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "given seven jobs and a concurrency limit",
+     "lines": [
+      "The instinct is to set",
+      "the limit to *seven*"
+     ],
+     "size": 50,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 490.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "The concurrency-limit argument, which is the most reusable thing in this stretch.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "given seven jobs, the instinct is to set the limit to seven",
+     "lines": [
+      "*Three* is not a compromise"
+     ],
+     "size": 62,
+     "wrong": "more slots means more throughput",
+     "right": "past three the contention stops being about compute and starts being about the repository",
+     "note": "two agents installing something, two editing the same package file",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 503.0,
+   "role": "beat",
+   "secs": [
+    5.5,
+    6.0
+   ],
+   "why": "What contention past three actually is - three concrete collisions, none of them visible on a rail that is not moving.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "past three, the contention stops being about compute",
+     "lines": [
+      "It is about the",
+      "*repository*"
+     ],
+     "size": 56,
+     "rows": [
+      {
+       "t": "two agents installing something"
+      },
+      {
+       "t": "two agents editing the same package file"
+      },
+      {
+       "t": "two agents both deciding to create a directory",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and there is one more thing worth saying about starting three",
+     "lines": [
+      "And it is about *you*,",
+      "not the machine"
+     ],
+     "size": 52,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 516.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "Ends one second before anchor 530.0.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and this is about you rather than the machine",
+     "lines": [
+      "Three you can hold",
+      "in your *head*"
+     ],
+     "size": 62,
+     "stamp": "the moment you cannot say what each agent is doing, you have stopped supervising",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 533.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "The lecture says out loud that there is nothing to watch. This is the card that says it back.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "no dashboard, no panes, no approval prompts",
+     "lines": [
+      "There is *nothing* to watch"
+     ],
+     "size": 78,
+     "stamp": "and that is the lesson, not a defect in the recording",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 545.0,
+   "role": "beat",
+   "secs": [
+    8.5,
+    8.5
+   ],
+   "why": "Two grey filenames at the bottom of the rail, and what being in the gitignore means for the only record of this build.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "build.out and run.log have both gone grey - matched by the gitignore",
+     "lines": [
+      "The sensible default,",
+      "and the thing to *reconsider*"
+     ],
+     "size": 44,
+     "wrong": "logs do not belong in version control",
+     "right": "the only record of how this build happened is the one artefact that will not survive a clone",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "three agents are writing into this repository at the same time",
+     "lines": [
+      "And the entire interface",
+      "is a *log file*"
+     ],
+     "size": 52,
+     "stamp": "and a shell that has not returned yet",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 562.0,
+   "role": "beat",
+   "secs": [
+    14.0
+   ],
+   "why": "Thursday's team against this, argued as a choice rather than a ranking.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "compare this with Thursday",
+     "lines": [
+      "Do you intend to be *in the room*?"
+     ],
+     "size": 46,
+     "cols": [
+      {
+       "head": "an agent team",
+       "items": [
+        "the whole screen is agents talking",
+        "you can go and read any one of them",
+        "a teammate can report a gap and the lead absorbs it"
+       ]
+      },
+      {
+       "head": "a program you wrote",
+       "items": [
+        "the interface is a log file",
+        "and a shell that has not returned yet",
+        "nothing here can report a gap - there is no channel"
+       ]
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 576.0,
+   "role": "beat",
+   "secs": [
+    8.0,
+    8.0
+   ],
+   "why": "The cost of not being in the room, set against Thursday's team - which is the comparison the narration draws and the frame cannot.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and there is a real cost to not being in the room",
+     "lines": [
+      "Which I want to *name*",
+      "rather than skip"
+     ],
+     "size": 54,
+     "trans": "fade"
+    },
+    {
+     "k": "cols",
+     "kicker": "on Thursday a teammate found a gap between two teammates' ownership",
+     "lines": [
+      "Nothing here can *do* that"
+     ],
+     "size": 46,
+     "cols": [
+      {
+       "head": "Thursday",
+       "items": [
+        "it reported the gap upward",
+        "and the lead absorbed the work"
+       ]
+      },
+      {
+       "head": "here",
+       "items": [
+        "nobody to report it to",
+        "and nothing that can absorb it"
+       ]
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 592.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "The price of the interface being a log file, named rather than skipped.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and there is a real cost to not being in the room",
+     "lines": [
+      "There is no *channel*"
+     ],
+     "size": 74,
+     "wrong": "somebody will notice the gap between two jobs",
+     "right": "it will either do it anyway, in files it does not own, or leave it",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 605.0,
+   "role": "beat",
+   "secs": [
+    8.5,
+    8.5
+   ],
+   "why": "What to do with the quarter of an hour, and why the order matters.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "what I would actually do on a real project",
+     "lines": [
+      "Write down what you",
+      "are going to *check*",
+      "when it comes back"
+     ],
+     "size": 48,
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and do it before you see the result",
+     "lines": [
+      "The result is",
+      "*persuasive*"
+     ],
+     "size": 76,
+     "wrong": "you will judge it on its merits when it arrives",
+     "right": "write the checks down while you still have nothing to compare them against",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 622.0,
+   "role": "beat",
+   "secs": [
+    15.0
+   ],
+   "why": "The four questions, dictated one by one over a picture that does not move. The single most useful card in the lecture.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "write these down before you see the result",
+     "lines": [
+      "Because the result is *persuasive*"
+     ],
+     "size": 48,
+     "rows": [
+      {
+       "t": "Does every area in the plan have files on disk?"
+      },
+      {
+       "t": "Does the suite pass?"
+      },
+      {
+       "t": "Does the thing start?"
+      },
+      {
+       "t": "Is there anything in the brief that no file addresses?",
+       "hot": true
+      }
+     ],
+     "stamp": "four questions, worth more than any amount of watching the log",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 637.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    6.5,
+    7.0,
+    6.5
+   ],
+   "why": "How an unattended build feels, which is the thing the frame cannot show: nothing is asking you for anything.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and there is something worth saying about how this feels",
+     "lines": [
+      "It is not how a build",
+      "normally *feels*"
+     ],
+     "size": 54,
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "nothing is asking you for anything",
+     "lines": [
+      "No point at which your",
+      "attention is *required*"
+     ],
+     "size": 50,
+     "stamp": "and therefore no point at which it is invited",
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "nothing is asking you for anything",
+     "lines": [
+      "Present, not *supervising*"
+     ],
+     "size": 66,
+     "wrong": "sitting here watching the log is the job",
+     "right": "there is no point at which your attention is required, so none at which it is invited",
+     "note": "every other tool in this course was a conversation, and a conversation has turns",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and the honest thing to do with the next quarter of an hour",
+     "lines": [
+      "Is something else",
+      "*entirely*"
+     ],
+     "size": 68,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 664.0,
+   "role": "beat",
+   "why": "The faster version of this build that nobody chose - said here, and reviewed by nobody.",
+   "secs": [
+    6.5,
+    6.5
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and there is a version of this that would have been faster",
+     "lines": [
+      "The server could have",
+      "started at *minute zero*"
+     ],
+     "size": 50,
+     "stamp": "given the rules engine's contract instead of the finished rules engine",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "one edge in the graph, and most of this build's duration",
+     "lines": [
+      "Four minutes to *write*.",
+      "Ninety seconds to *review*"
+     ],
+     "size": 46,
+     "wrong": "the plan a planning agent produces is the plan",
+     "right": "reviewing that one judgement is about ninety seconds of work that nobody did",
+     "note": "including me",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 677.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0,
+    6.5,
+    6.5
+   ],
+   "why": "The rail, drawn - a new directory arriving is the only live signal in the lecture and it is four words of 4K text.",
+   "slides": [
+    {
+     "k": "timeline",
+     "kicker": "the simulator lands first, at about a minute and a half",
+     "lines": [
+      "And the *rules engine* starts"
+     ],
+     "size": 52,
+     "items": [
+      {
+       "when": "0:00",
+       "t": "simulator, watchlist, rules panels",
+       "sub": "three at once"
+      },
+      {
+       "when": "1:30",
+       "t": "simulator reports done",
+       "hot": true
+      },
+      {
+       "when": "1:30",
+       "t": "rules engine starts",
+       "sub": "the scheduler stops holding it"
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "hierarchy",
+     "kicker": "rules is there now, and it was not there when the run started",
+     "lines": [
+      "Arriving in",
+      "*dependency* order"
+     ],
+     "size": 58,
+     "nodes": [
+      {
+       "t": "public",
+       "depth": 0,
+       "kind": "dir"
+      },
+      {
+       "t": "rules",
+       "depth": 0,
+       "kind": "dir"
+      },
+      {
+       "t": "simulator",
+       "depth": 0,
+       "kind": "dir"
+      },
+      {
+       "t": "test",
+       "depth": 0,
+       "kind": "dir"
+      }
+     ],
+     "active": 1,
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "top-level directories, one at a time",
+     "lines": [
+      "The closest thing to a",
+      "*progress bar*",
+      "this build has"
+     ],
+     "size": 48,
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and we got it by accident",
+     "lines": [
+      "Nobody *built* that"
+     ],
+     "size": 74,
+     "wrong": "somebody designed that progress indicator",
+     "right": "it is a side effect of telling every job which files it owns",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 704.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "The moment the scheduler releases a held job, and what is doing the coordinating.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "the simulator lands, and the rules engine starts",
+     "lines": [
+      "Nobody is *coordinating* that"
+     ],
+     "size": 62,
+     "stamp": "it is thirty lines of JavaScript we read five minutes ago",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 717.0,
+   "role": "beat",
+   "secs": [
+    8.5,
+    8.0,
+    8.5
+   ],
+   "why": "Why the log is written before anybody needs it. Nothing on the frame moves through any of this.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "five fields, and roughly one line of code per field",
+     "lines": [
+      "Enough to *reconstruct*",
+      "the entire run,",
+      "afterwards"
+     ],
+     "size": 48,
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and the reason to write it at the start rather than when you need it",
+     "lines": [
+      "The run you will most",
+      "want to *understand*"
+     ],
+     "size": 48,
+     "wrong": "add the logging when something goes wrong",
+     "right": "the run you will want it for is the one that went wrong",
+     "note": "and that is exactly the run you will not be watching",
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "one append per line, and it costs nothing",
+     "lines": [
+      "The only reason the",
+      "*next* lecture can say",
+      "anything precise"
+     ],
+     "size": 46,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 742.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "The five fields of a log line, listed out loud. On the frame they are one line of small text.",
+   "slides": [
+    {
+     "k": "tokens",
+     "kicker": "and look at what the log line records",
+     "lines": [
+      "*Five* fields"
+     ],
+     "size": 88,
+     "chips": [
+      "timestamp",
+      "job",
+      "event",
+      "area",
+      "duration"
+     ],
+     "hot": [
+      0,
+      4
+     ],
+     "caption": "enough to reconstruct the entire run, at roughly one line of code per field",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 755.0,
+   "role": "beat",
+   "secs": [
+    7.5,
+    7.5,
+    7.5,
+    7.0,
+    7.5
+   ],
+   "why": "What a dependency bought, and what going wrong would look like - which is indistinguishable from this exact frame, so the check has to be drawn rather than shown.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "the plan does document what a candle is, so it might well have got it right",
+     "lines": [
+      "*Might have* is the",
+      "whole problem"
+     ],
+     "size": 52,
+     "wrong": "the shape is in the plan, so the rules engine could have started early",
+     "right": "might have got it right is not the same as read it",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and that is what the dependency actually bought",
+     "lines": [
+      "A document that could",
+      "be *misread*, into a file",
+      "that can be *read*"
+     ],
+     "size": 42,
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "so what would going wrong look like from here?",
+     "lines": [
+      "Not an *error*"
+     ],
+     "size": 92,
+     "wrong": "a failure would print something",
+     "right": "the rail stops changing and the shell does not come back",
+     "trans": "fade"
+    },
+    {
+     "k": "cols",
+     "kicker": "and there is no visible difference between these two",
+     "lines": [
+      "The only thing separating",
+      "them is the *clock*"
+     ],
+     "size": 42,
+     "cols": [
+      {
+       "head": "an agent thinking hard",
+       "items": [
+        "no output",
+        "the rail unchanged"
+       ]
+      },
+      {
+       "head": "an agent that has wedged",
+       "items": [
+        "no output",
+        "the rail unchanged"
+       ]
+      }
+     ],
+     "trans": "rise"
+    },
+    {
+     "k": "rows",
+     "kicker": "so this is the check, and it takes ten seconds",
+     "lines": [
+      "Open *run.log*"
+     ],
+     "size": 74,
+     "rows": [
+      {
+       "t": "find the last start line"
+      },
+      {
+       "t": "compare its timestamp with now"
+      },
+      {
+       "t": "three minutes expected, fifteen minutes open - that is your answer",
+       "hot": true
+      }
+     ],
+     "stamp": "from a file, rather than from staring at a cursor",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 794.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "The rule the narration says is the takeaway of this whole stretch.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "the rule worth taking home",
+     "lines": [
+      "One *artefact* per job,",
+      "named in the brief"
+     ],
+     "size": 58,
+     "stamp": "then the file system is a status board you did not have to build",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 808.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "What a dependency is not - and what every wrong one costs.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "be clear about what a dependency is not",
+     "lines": [
+      "A claim, not a *ranking*"
+     ],
+     "size": 66,
+     "wrong": "a dependency says which job matters more",
+     "right": "it says one job cannot be done correctly until another has finished",
+     "note": "every dependency that is not that is a parallel job you threw away",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 832.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "Anchor 830.0 lands here and the bill is the subject. Nothing on the frame shows it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and this is a good moment to talk about cost",
+     "lines": [
+      "Seven agents and no *bill*",
+      "is selling you something"
+     ],
+     "size": 54,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 848.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "The arithmetic that undercuts the pool, drawn as the thing it is: two empty slots.",
+   "slides": [
+    {
+     "k": "meter",
+     "kicker": "a limit of three, and this is what is running",
+     "lines": [
+      "*One* agent. Two empty slots"
+     ],
+     "size": 58,
+     "pct": 33,
+     "fill": "1 running",
+     "rest": "2 slots idle",
+     "caption": "the two client jobs finished minutes ago; the rules engine is done",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 861.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0,
+    7.0,
+    7.0,
+    7.5
+   ],
+   "why": "The half of the cost that is not on the screen at all - what every one of the seven reads before it starts.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "if you are going to run something like this",
+     "lines": [
+      "Run it on a repository",
+      "you can afford to run",
+      "*twice*"
+     ],
+     "size": 44,
+     "wrong": "get the task list right the first time",
+     "right": "the first version of your task list will be wrong",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and the other half of the cost question is not on this screen at all",
+     "lines": [
+      "What each of them",
+      "is *reading*"
+     ],
+     "size": 58,
+     "trans": "rise"
+    },
+    {
+     "k": "flow",
+     "kicker": "every one of them opens these before it does anything else",
+     "lines": [
+      "That is how it learns",
+      "what it *owns*"
+     ],
+     "size": 48,
+     "nodes": [
+      {
+       "t": "plan.md"
+      },
+      {
+       "t": "the memory file",
+       "tone": "#f5c518"
+      },
+      {
+       "t": "then the work",
+       "tone": "#3b82f6"
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "seven agents",
+     "lines": [
+      "*Seven* copies of the",
+      "same two documents"
+     ],
+     "size": 54,
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "which is the argument for a short memory file that we made on Wednesday",
+     "lines": [
+      "Paid *seven times over*",
+      "in one eighteen-minute",
+      "window"
+     ],
+     "size": 44,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 912.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "The headline against the reality, over a rail that has stopped changing.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "seven agents is the headline",
+     "lines": [
+      "One at a *time* is the reality"
+     ],
+     "size": 60,
+     "wrong": "seven agents means seven times the work in parallel",
+     "right": "one at a time is the reality for most of this run",
+     "note": "the number to estimate is not how many jobs there are - it is how many can overlap",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 930.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "What to measure instead, named explicitly as the only number a better plan can move.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and it changes what you should measure",
+     "lines": [
+      "Agent-minutes on the",
+      "*critical path*"
+     ],
+     "size": 58,
+     "stamp": "not agents launched, and not jobs completed",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 943.0,
+   "role": "beat",
+   "secs": [
+    7.5,
+    8.0,
+    7.5
+   ],
+   "why": "What a failure would do to the table at the end, and why the log outlives the terminal. None of it is on the frame - nothing has failed.",
+   "slides": [
+    {
+     "k": "flow",
+     "kicker": "and if one of them does fail",
+     "lines": [
+      "Marked failed. Everything",
+      "downstream *skipped*"
+     ],
+     "size": 42,
+     "nodes": [
+      {
+       "t": "a job fails",
+       "tone": "#f5c518"
+      },
+      {
+       "t": "everything downstream skipped"
+      },
+      {
+       "t": "a table with a gap in it",
+       "tone": "#3b82f6"
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "which is much better than the alternative",
+     "lines": [
+      "Everything *looks* finished"
+     ],
+     "size": 58,
+     "wrong": "a build that completes is better than one with a gap in it",
+     "right": "the alternative is a server written against a simulator that does not exist",
+     "note": "a partial build you can see is worth more than a complete one you cannot trust",
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and the other reason to keep a log rather than rely on the terminal",
+     "lines": [
+      "The terminal is",
+      "*not yours*"
+     ],
+     "size": 70,
+     "stamp": "it scrolls, it gets cleared, it belongs to whichever window is open",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 966.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "Ends one second before anchor 980.0.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "so for this stretch in the middle",
+     "lines": [
+      "The limit is not the constraint.",
+      "The *plan* is"
+     ],
+     "size": 52,
+     "stamp": "there is a chain down the middle of this build, and most of the capacity is idle",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 979.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0,
+    7.0
+   ],
+   "why": "The chain down the middle of the build, and why a flat file tree is not a stalled one.",
+   "slides": [
+    {
+     "k": "flow",
+     "kicker": "the server started when both of these were done",
+     "lines": [
+      "And the shell cannot start",
+      "until the *server* does"
+     ],
+     "size": 40,
+     "nodes": [
+      {
+       "t": "simulator"
+      },
+      {
+       "t": "rules engine"
+      },
+      {
+       "t": "server",
+       "tone": "#f5c518"
+      },
+      {
+       "t": "app shell",
+       "tone": "#3b82f6"
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "server was the last directory to appear, a few minutes back",
+     "lines": [
+      "Whatever the shell writes",
+      "goes into folders that",
+      "*already exist*"
+     ],
+     "size": 42,
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "and a flat tree is not a stalled build",
+     "lines": [
+      "Nothing to *see* is not",
+      "nothing *happening*"
+     ],
+     "size": 48,
+     "wrong": "the rail stopped, so the build stopped",
+     "right": "the one live signal we had has gone quiet, during the longest job in the run",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 1000.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "The one live signal has gone quiet, during the longest job in the run - which is precisely why this stretch of footage looks broken and is not.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "server was the last directory to appear, minutes back",
+     "lines": [
+      "The rail has gone *quiet*"
+     ],
+     "size": 72,
+     "stamp": "the app shell is writing into folders that already exist, so the tree stays flat",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 1013.0,
+   "role": "beat",
+   "secs": [
+    8.5,
+    8.5,
+    8.0,
+    8.0,
+    8.5,
+    8.5
+   ],
+   "why": "The defect in our own runner, named rather than edited out, and the check that replaces staring at it. A hundred and two seconds of a file tree that does not change, split in two so there is a beat in the middle.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "which exposes a real defect in our three hundred and sixty-six lines",
+     "lines": [
+      "Worth *naming*",
+      "rather than editing out"
+     ],
+     "size": 54,
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "it appends a line when a job starts and a line when it finishes",
+     "lines": [
+      "And *nothing* in between"
+     ],
+     "size": 58,
+     "wrong": "the log tells you how the run is going",
+     "right": "on a six-minute job, a healthy run and a hung one look identical from here",
+     "trans": "rise"
+    },
+    {
+     "k": "rows",
+     "kicker": "and the fix is small",
+     "lines": [
+      "A *heartbeat*,",
+      "not a spinner"
+     ],
+     "size": 62,
+     "rows": [
+      {
+       "t": "one line appended every thirty seconds"
+      },
+      {
+       "t": "the job id, and its elapsed time",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and the reason to write it before you need it",
+     "lines": [
+      "The run you will want it for",
+      "is the one you are *not*",
+      "sitting in front of"
+     ],
+     "size": 40,
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and there is a better answer than staring, and you already have it",
+     "lines": [
+      "Every one of these is",
+      "*writing to disk*",
+      "as it works"
+     ],
+     "size": 46,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "so, from a second terminal",
+     "lines": [
+      "Two *seconds*, and nobody",
+      "has to have printed anything"
+     ],
+     "size": 40,
+     "rows": [
+      {
+       "t": "check modification times in the working tree"
+      },
+      {
+       "t": "a build that is progressing touches files every few seconds",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 1063.0,
+   "role": "beat",
+   "secs": [
+    9.0,
+    8.5,
+    8.5,
+    8.5,
+    8.5,
+    9.0
+   ],
+   "why": "What the log gives you that the terminal cannot, and the arithmetic that makes a generated build reviewable at all.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "and notice what the log gives you that the terminal does not",
+     "lines": [
+      "*Now*, or the *order*"
+     ],
+     "size": 56,
+     "cols": [
+      {
+       "head": "the terminal",
+       "items": [
+        "shows you now"
+       ]
+      },
+      {
+       "head": "the log",
+       "items": [
+        "shows you the order things happened in",
+        "afterwards, when an area looks wrong"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "every one of these lines costs one append",
+     "lines": [
+      "The only reason the next",
+      "lecture can say anything",
+      "*precise* about this run"
+     ],
+     "size": 42,
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and a smaller thing in the log worth noticing",
+     "lines": [
+      "Each line names the *area*,",
+      "in the plan's own words"
+     ],
+     "size": 44,
+     "stamp": "not just the task id",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "costs nothing to write",
+     "lines": [
+      "Saves ten *minutes*"
+     ],
+     "size": 92,
+     "stamp": "when you are working out which of six directories a failure belongs to",
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "and it is quietly the thing that makes a build like this reviewable",
+     "lines": [
+      "*2,300* lines"
+     ],
+     "size": 96,
+     "wrong": "you review a build like this by reading the code",
+     "right": "nobody is going to read two thousand three hundred lines line by line",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "what you can read instead",
+     "lines": [
+      "*Fourteen* log lines,",
+      "and seven diffs"
+     ],
+     "size": 52,
+     "rows": [
+      {
+       "t": "fourteen log lines - a start and a done for each job"
+      },
+      {
+       "t": "seven diffs"
+      },
+      {
+       "t": "and decide which two of the seven are worth reading properly",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 1115.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "The instinct to reach for the concurrency dial. Ends two seconds before anchor 1130.0.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "before you go and build one of these",
+     "lines": [
+      "The dial that does *nothing*"
+     ],
+     "size": 60,
+     "wrong": "the build is slow, so raise the concurrency limit",
+     "right": "here that would do nothing whatsoever",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 1128.0,
+   "role": "beat",
+   "secs": [
+    8.5,
+    8.5
+   ],
+   "why": "The arithmetic you can do off the task list still sitting in the terminal - which is on the frame, scrolled up and too small to read.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "start with the number you can work out from the task list",
+     "lines": [
+      "*Seven* jobs.",
+      "Three slots"
+     ],
+     "size": 84,
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "if they were all independent",
+     "lines": [
+      "Three at a time would",
+      "clear seven jobs in",
+      "*three rounds*"
+     ],
+     "size": 44,
+     "stamp": "they are not all independent",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 1145.0,
+   "role": "beat",
+   "secs": [
+    14.0
+   ],
+   "why": "The arithmetic worked out loud from the task list still on screen.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "seven jobs, three slots - and this is the graph",
+     "lines": [
+      "A chain of *five*"
+     ],
+     "size": 62,
+     "rows": [
+      {
+       "t": "simulator, then rules engine, then server, then app shell, then verification"
+      },
+      {
+       "t": "with two client jobs hanging off the side"
+      },
+      {
+       "t": "five of the seven are in a queue, and no scheduler makes a queue shorter",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 1159.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0,
+    7.0
+   ],
+   "why": "What would actually make this faster, spoken over a file tree that has not moved in four minutes.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "five of the seven are in a queue",
+     "lines": [
+      "And no scheduler makes",
+      "a queue *shorter*"
+     ],
+     "size": 52,
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "the thing that would make this faster",
+     "lines": [
+      "The server needs its",
+      "*contract* - not the",
+      "finished rules engine"
+     ],
+     "size": 44,
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and that decision was made an hour ago, in a document",
+     "lines": [
+      "It is being *paid for*",
+      "now"
+     ],
+     "size": 62,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 1180.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "What would actually make it faster, and when that decision was made.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "so the thing that would make this faster",
+     "lines": [
+      "A different *plan*,",
+      "not a bigger pool"
+     ],
+     "size": 60,
+     "stamp": "decided an hour ago in a document, and being paid for now",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 1193.0,
+   "role": "beat",
+   "secs": [
+    8.0,
+    8.0,
+    8.0,
+    8.0,
+    8.0,
+    8.0,
+    8.0,
+    8.0,
+    8.0
+   ],
+   "why": "The transferable argument of the whole lecture, seventy-two seconds of it, over a still frame. Nothing here is on the screen at any point.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "there is a general version of that worth carrying out of this lecture",
+     "lines": [
+      "Bounded by the *longest*",
+      "chain of things that",
+      "have to happen in order"
+     ],
+     "size": 42,
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and that chain is decided when you write the plan",
+     "lines": [
+      "Not when you *run* it"
+     ],
+     "size": 78,
+     "trans": "rise"
+    },
+    {
+     "k": "cols",
+     "kicker": "every contract you write down, and every one you leave vague",
+     "lines": [
+      "A parallel job,",
+      "or a *queue*"
+     ],
+     "size": 50,
+     "cols": [
+      {
+       "head": "written down properly",
+       "items": [
+        "a dependency becomes a parallel job"
+       ]
+      },
+      {
+       "head": "left vague",
+       "items": [
+        "a parallel job becomes a queue"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and there is a one-sentence test for which edges are which",
+     "lines": [
+      "A dependency, or",
+      "a *preference*"
+     ],
+     "size": 48,
+     "wrong": "it makes more sense to do that one first",
+     "right": "this job consumes what that job produces",
+     "note": "the first is not a dependency, and you are paying minutes for it",
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "ours has one of each",
+     "lines": [
+      "And the one that *cost* us",
+      "was reviewed by nobody"
+     ],
+     "size": 46,
+     "stamp": "written by an agent in four minutes",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "and the arithmetic takes about a minute",
+     "lines": [
+      "Do it *before* you run"
+     ],
+     "size": 66,
+     "rows": [
+      {
+       "t": "write down each area"
+      },
+      {
+       "t": "what it waits for"
+      },
+      {
+       "t": "and roughly how long you think it takes"
+      },
+      {
+       "t": "add up the longest path - that is your build time",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "and do that arithmetic on the plan, not on the task list",
+     "lines": [
+      "The interesting decision",
+      "is already *taken*"
+     ],
+     "size": 46,
+     "wrong": "tune the graph once the planner has produced it",
+     "right": "by the time your prose is a graph, the decision has been made",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "the place to fix a chain is the paragraph describing the second job",
+     "lines": [
+      "Two sentences of",
+      "*interface*"
+     ],
+     "size": 64,
+     "stamp": "worth more than any amount of tuning the runner",
+     "trans": "rise"
+    },
+    {
+     "k": "cols",
+     "kicker": "and it changes what a slow build means",
+     "lines": [
+      "A *document*,",
+      "not hardware"
+     ],
+     "size": 50,
+     "cols": [
+      {
+       "head": "a normal project",
+       "items": [
+        "slow means the machine is busy",
+        "so you buy a faster one"
+       ]
+      },
+      {
+       "head": "here",
+       "items": [
+        "the machine is idle",
+        "and the plan is serial"
+       ]
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 1265.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "Ends two seconds before anchor 1280.0.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "the app shell runs for about six and a half minutes",
+     "lines": [
+      "Longer than the simulator and",
+      "the server *put together*"
+     ],
+     "size": 50,
+     "stamp": "integration is where the time goes on every build shaped like this",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 1278.0,
+   "role": "beat",
+   "secs": [
+    7.5,
+    7.0,
+    7.5
+   ],
+   "why": "Why the last job is the long one. The frame is the same file tree it has been for six minutes.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "the app shell is the longest single job, and that makes sense",
+     "lines": [
+      "It has to *reconcile*",
+      "everybody else's decisions"
+     ],
+     "size": 46,
+     "trans": "fade"
+    },
+    {
+     "k": "flow",
+     "kicker": "five agents each wrote something that exposes an interface",
+     "lines": [
+      "One page, in the *browser*"
+     ],
+     "size": 54,
+     "nodes": [
+      {
+       "t": "five interfaces",
+       "sub": "each assumed a container id"
+      },
+      {
+       "t": "one shell",
+       "sub": "wires all of them together",
+       "tone": "#f5c518"
+      }
+     ],
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and integration is where the time goes",
+     "lines": [
+      "On *every* build shaped",
+      "like this one"
+     ],
+     "size": 52,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 1300.0,
+   "role": "beat",
+   "secs": [
+    14.0
+   ],
+   "why": "The reason integration is expensive, argued precisely - and the sentence that generalises past this lecture.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and the reason is not that a shell is complicated",
+     "lines": [
+      "Five decisions made *alone*"
+     ],
+     "size": 60,
+     "wrong": "the last job is slow because it is the hardest",
+     "right": "the last one has to make five isolated decisions agree without changing any of them",
+     "note": "nobody plans for that to be the expensive part; it always is",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 1314.0,
+   "role": "beat",
+   "secs": [
+    8.0,
+    8.0,
+    8.0,
+    7.5
+   ],
+   "why": "The moment the run is most likely to go wrong, and the one thing that makes it dangerous: there is nobody left to ask.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and the reason is not that a shell is complicated",
+     "lines": [
+      "Made to *agree*, without",
+      "being allowed to change"
+     ],
+     "size": 44,
+     "wrong": "the last job is simply the hardest job",
+     "right": "five decisions made alone, and the last one has to make them agree without touching any of them",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and this is the moment the whole thing is most likely to go wrong",
+     "lines": [
+      "Everyone else has",
+      "finished and *gone*"
+     ],
+     "size": 52,
+     "trans": "rise"
+    },
+    {
+     "k": "cols",
+     "kicker": "if two of them disagree about a container id, or the shape of the feed",
+     "lines": [
+      "Nobody left to *ask*"
+     ],
+     "size": 56,
+     "cols": [
+      {
+       "head": "it can",
+       "items": [
+        "resolve it by reading their code"
+       ]
+      },
+      {
+       "head": "or it can",
+       "items": [
+        "guess"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and a guess here is the worst kind of defect",
+     "lines": [
+      "Because it does",
+      "not *fail*"
+     ],
+     "size": 74,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 1348.0,
+   "role": "beat",
+   "secs": [
+    13.0
+   ],
+   "why": "Said in the lecture as the general lesson of the whole run.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and this is the general version of it",
+     "lines": [
+      "Nobody plans for that to be",
+      "the *expensive* part"
+     ],
+     "size": 52,
+     "stamp": "it always is",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 1361.0,
+   "role": "beat",
+   "secs": [
+    7.5,
+    7.5,
+    7.5,
+    7.5,
+    7.5,
+    7.5
+   ],
+   "why": "The defect this run was most likely to produce, and why a second run will not find it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "it compiles",
+     "lines": [
+      "The page loads.",
+      "One panel is *empty*"
+     ],
+     "size": 56,
+     "stamp": "and there is nothing in any log to tell you why",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "because from the shell's point of view",
+     "lines": [
+      "*Nothing* went wrong"
+     ],
+     "size": 82,
+     "trans": "rise"
+    },
+    {
+     "k": "cols",
+     "kicker": "so this is the thing to scan for afterwards",
+     "lines": [
+      "Not *crashes*"
+     ],
+     "size": 62,
+     "cols": [
+      {
+       "head": "crashes",
+       "items": [
+        "announce themselves"
+       ]
+      },
+      {
+       "head": "silent disagreements",
+       "items": [
+        "resolved in favour of whoever wrote last",
+        "and nothing in the log"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and you will not find those by running the build again",
+     "lines": [
+      "A second run makes",
+      "*different* guesses"
+     ],
+     "size": 48,
+     "wrong": "run it again and see whether it happens twice",
+     "right": "a second run makes different guesses",
+     "note": "which is the failure mode of an unattended build, and the reason the review phase exists",
+     "trans": "rise"
+    },
+    {
+     "k": "cols",
+     "kicker": "and this is where it differs most sharply from Thursday",
+     "lines": [
+      "Everyone who could",
+      "answer has *exited*"
+     ],
+     "size": 46,
+     "cols": [
+      {
+       "head": "Thursday",
+       "items": [
+        "the lead was still in the conversation",
+        "and could ask"
+       ]
+      },
+      {
+       "head": "here",
+       "items": [
+        "whatever the shell finds",
+        "it resolves alone, from the code in front of it"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "so what do you do about that, given that you were not here?",
+     "lines": [
+      "You read the",
+      "*seams* first"
+     ],
+     "size": 80,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 1406.0,
+   "role": "beat",
+   "secs": [
+    7.5,
+    7.5,
+    7.5,
+    7.5,
+    7.0,
+    7.5
+   ],
+   "why": "How to read a build you were not present for, and the job to write into the plan next time. Ends at 1450.5, a beat before the table arrives with its own sentence.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "not the six diffs in order",
+     "lines": [
+      "The places where two",
+      "areas had to *agree*"
+     ],
+     "size": 50,
+     "rows": [
+      {
+       "t": "on a name"
+      },
+      {
+       "t": "on a shape"
+      },
+      {
+       "t": "on an event",
+       "hot": true
+      }
+     ],
+     "stamp": "check those before you look at anything else",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "that is a quarter of an hour of reading",
+     "lines": [
+      "And it finds the one class",
+      "of defect this run was",
+      "most likely to *produce*"
+     ],
+     "size": 42,
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "the rest of a generated diff is either obviously fine or obviously broken",
+     "lines": [
+      "The *seams* are the only",
+      "part that is quietly wrong"
+     ],
+     "size": 42,
+     "wrong": "read all six diffs and you will find it",
+     "right": "the seams are the only part that is quietly wrong",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and there is a decision worth making before you ever run one of these",
+     "lines": [
+      "Give one job the remit",
+      "to look at the *whole thing*"
+     ],
+     "size": 44,
+     "trans": "rise"
+    },
+    {
+     "k": "rows",
+     "kicker": "ours exists because the planner added it, not because I asked",
+     "lines": [
+      "Write it in *yourself*"
+     ],
+     "size": 62,
+     "rows": [
+      {
+       "t": "it owns no files"
+      },
+      {
+       "t": "it waits for everything"
+      },
+      {
+       "t": "one line per seam: two areas, what they agreed, and a question",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "without it",
+     "lines": [
+      "Six agents each finish",
+      "their own area correctly",
+      "and *nobody* reads the seams"
+     ],
+     "size": 40,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 1461.5,
+   "role": "close",
+   "secs": [
+    10.5
+   ],
+   "why": "The table is on screen and finished. The punchline drawn from it is spoken over a still frame.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "seven jobs, none failed, seventeen minutes fifty-three",
+     "lines": [
+      "Running three at a time did not",
+      "shorten this build *at all*"
+     ],
+     "size": 46,
+     "rows": [
+      {
+       "t": "the chain alone is seventeen minutes fifty-two"
+      },
+      {
+       "t": "it just let the two client jobs finish early and wait",
+       "hot": true
+      }
+     ],
+     "stamp": "fourteen lines in run.log, and the whole run reconstructable",
+     "trans": "fade"
+    }
+   ]
+  }
+ ]
+}

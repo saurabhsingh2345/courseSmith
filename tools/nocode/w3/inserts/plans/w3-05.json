@@ -1,0 +1,334 @@
+{
+  "lecture": "w3-05",
+  "title": "Hooks: making your rules fire by themselves",
+  "note": "471s, 30% dead across twelve spans. Twelve cutaways, 124s (26%). Anchor 67.0 leads by 17s and #02 ends 1.5s before it. #09 and #10 are separate inserts rather than one because the spans either side of 429-430.5 do not touch.",
+  "inserts": [
+    {
+      "at": 19.0,
+      "role": "open",
+      "secs": [
+        4.5,
+        4.5
+      ],
+      "why": "Names the lecture and the surprise in its first minute.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "day 1  \u00b7  lecture 5",
+          "lines": [
+            "Hooks: making your rules",
+            "fire by *themselves*"
+          ],
+          "size": 52,
+          "stamp": "not a suggestion in a document. a thing that fires.",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "i asked which rule is easiest to break by accident",
+          "lines": [
+            "And it picked *neither* of mine"
+          ],
+          "size": 56,
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 29.0,
+      "role": "beat",
+      "secs": [
+        9.5
+      ],
+      "why": "Why it picked the seed - two failure modes that look nothing alike.",
+      "slides": [
+        {
+          "k": "cols",
+          "kicker": "and this is why it picked that one",
+          "lines": [
+            "One fails *silently*"
+          ],
+          "size": 72,
+          "cols": [
+            {
+              "head": "an emoji or a name",
+              "items": [
+                "shows up in the diff"
+              ]
+            },
+            {
+              "head": "determinism",
+              "items": [
+                "fails silently",
+                "you find out when seed 42 replays differently"
+              ]
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 53.5,
+      "role": "beat",
+      "secs": [
+        12.0
+      ],
+      "why": "SYNC FIX: anchor 67.0 arrives seventeen seconds after its picture. Ends 1.5s before it.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "there is a reason this is the third thing we build and not the first",
+          "lines": [
+            "Know the *rule* first"
+          ],
+          "size": 92,
+          "wrong": "automate the rule on day one",
+          "right": "a hook is only worth writing once you know what the rule is",
+          "note": "an automated wrong thing is much harder to argue with than a note in a document",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 116.0,
+      "role": "beat",
+      "secs": [
+        8.5
+      ],
+      "why": "The habit inside the hook's own test.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and it tests the hook",
+          "lines": [
+            "The way the *harness* will call it"
+          ],
+          "size": 56,
+          "stamp": "piping the payload in, rather than calling the function directly",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 153.0,
+      "role": "beat",
+      "secs": [
+        11.5
+      ],
+      "why": "The whole difficulty in miniature - and the four capitalised words that make the point.",
+      "slides": [
+        {
+          "k": "cols",
+          "kicker": "this is the whole difficulty in miniature",
+          "lines": [
+            "*Exact*, or unreliable"
+          ],
+          "size": 66,
+          "cols": [
+            {
+              "head": "emoji detection",
+              "items": [
+                "exact",
+                "a property of the character"
+              ]
+            },
+            {
+              "head": "a person's name",
+              "items": [
+                "not something a script does reliably",
+                "Leeds. South East. Control Tower. Morgan."
+              ]
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 174.0,
+      "role": "beat",
+      "secs": [
+        8.0,
+        9.0
+      ],
+      "why": "The heuristic it settled on, and the line the narration would put on a poster.",
+      "slides": [
+        {
+          "k": "tokens",
+          "kicker": "so it looks for a person-ish field holding a capitalised value",
+          "lines": [
+            "A *heuristic*, named as one"
+          ],
+          "size": 58,
+          "chips": [
+            "driver",
+            "customer",
+            "contact",
+            "recipient"
+          ],
+          "hot": [
+            0
+          ],
+          "caption": "plus an email address and a postcode",
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "and then the line i would put on a poster",
+          "lines": [
+            "A deny-list of real names",
+            "*is* the thing it prevents"
+          ],
+          "size": 48,
+          "stamp": "it deliberately did not write one, because that file would be committed",
+          "trans": "rise"
+        }
+      ]
+    },
+    {
+      "at": 334.0,
+      "role": "beat",
+      "secs": [
+        7.5
+      ],
+      "why": "The last line of the failure, which is an instruction rather than a complaint.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and read the last line",
+          "lines": [
+            "Fix the line and",
+            "write the file *again*"
+          ],
+          "size": 54,
+          "stamp": "which is not a complaint",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 367.0,
+      "role": "beat",
+      "secs": [
+        9.0
+      ],
+      "why": "Being precise about what the hook actually does.",
+      "slides": [
+        {
+          "k": "myth",
+          "kicker": "be precise about what just happened",
+          "lines": [
+            "A *tripwire*, not a lock"
+          ],
+          "size": 72,
+          "wrong": "the hook stopped the file being written",
+          "right": "the file landed - the hook exits with an error so the turn cannot carry on",
+          "note": "if you want the door locked, that is a different mechanism",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 388.5,
+      "role": "beat",
+      "secs": [
+        9.5
+      ],
+      "why": "The other events, listed once and never shown.",
+      "slides": [
+        {
+          "k": "rows",
+          "kicker": "that was one event, after one kind of tool. there are others",
+          "lines": [
+            "*Three* more"
+          ],
+          "size": 120,
+          "rows": [
+            {
+              "t": "before a tool runs"
+            },
+            {
+              "t": "when a session starts"
+            },
+            {
+              "t": "when the agent is about to hand back to you",
+              "hot": true
+            }
+          ],
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 419.5,
+      "role": "beat",
+      "secs": [
+        9.0
+      ],
+      "why": "The detail the narration says will save you an afternoon.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "one detail worth repeating",
+          "lines": [
+            "Picked up *without* a restart"
+          ],
+          "size": 62,
+          "stamp": "and the command we wrote in the last lecture still was not",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 431.0,
+      "role": "beat",
+      "secs": [
+        7.0
+      ],
+      "why": "The reason for that difference.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "same folder",
+          "lines": [
+            "*Different* loading rules"
+          ],
+          "size": 96,
+          "stamp": "so when something you added is not taking effect, that is the first thing to check",
+          "trans": "fade"
+        }
+      ]
+    },
+    {
+      "at": 456.0,
+      "role": "close",
+      "secs": [
+        7.0,
+        7.0
+      ],
+      "why": "The close, over a finished session.",
+      "slides": [
+        {
+          "k": "head",
+          "kicker": "and notice what we have not done",
+          "lines": [
+            "Not a line of the *application*"
+          ],
+          "size": 56,
+          "trans": "fade"
+        },
+        {
+          "k": "head",
+          "kicker": "what you can do now",
+          "lines": [
+            "We built the *conditions*",
+            "the work happens in"
+          ],
+          "size": 54,
+          "trans": "rise"
+        }
+      ]
+    }
+  ]
+}

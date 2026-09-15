@@ -1,0 +1,353 @@
+{
+ "lecture": "w3-01",
+ "title": "Welcome to expert: what changes when you stop typing",
+ "note": "The week's opening lecture, 73% of it a static slide. Seven cutaways, 86s of 196s (44%). It carries the two cards a roadmap lecture actually needs and the footage never draws - the five-day plan and the four Friday outcomes. Anchor 56.7 leads by 18s and #02 ends 2.2s before it; the other seven leads are 3-5s, under the threshold.",
+ "inserts": [
+  {
+   "at": 15.5,
+   "role": "open",
+   "secs": [
+    7.5
+   ],
+   "why": "The week's title card. This is the opening lecture and the frame behind it is a static slide, so the card is what orients the student.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "week 3  \u00b7  day 1  \u00b7  lecture 1",
+     "lines": [
+      "Welcome to *expert*"
+     ],
+     "size": 92,
+     "stamp": "what changes when you stop typing",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 24.5,
+   "role": "beat",
+   "secs": [
+    4.5,
+    5.5
+   ],
+   "why": "Where the student actually is, told as three weeks. Spoken over an unchanged slide.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "one instruction from you",
+     "lines": [
+      "*Six* of them working"
+     ],
+     "size": 96,
+     "trans": "fade"
+    },
+    {
+     "k": "timeline",
+     "kicker": "so take stock of where you are",
+     "lines": [
+      "The *shift*"
+     ],
+     "size": 56,
+     "items": [
+      {
+       "when": "week 1",
+       "t": "You asked for things",
+       "sub": "and watched them appear"
+      },
+      {
+       "when": "week 2",
+       "t": "You put a process around it",
+       "sub": "tickets, branches, reviews"
+      },
+      {
+       "when": "week 3",
+       "t": "You run several at once",
+       "sub": "safely, and build two real products",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 39.0,
+   "role": "beat",
+   "secs": [
+    5.0,
+    10.5
+   ],
+   "why": "Control Tower is described feature by feature and the frame does not show it. Ends 2.2s before anchor 56.7, which the footage otherwise reaches eighteen seconds early - the enforced sync fix in this lecture.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and you build two of them",
+     "lines": [
+      "Two real *products*"
+     ],
+     "size": 96,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "the first one is Control Tower",
+     "lines": [
+      "A live operations *console*"
+     ],
+     "size": 54,
+     "rows": [
+      {
+       "t": "Sixty delivery vans, moving on a live map"
+      },
+      {
+       "t": "A list down the side of everything running late"
+      },
+      {
+       "t": "A heat map showing which regions are in trouble"
+      },
+      {
+       "t": "And a chat box you can simply tell to reroute a van",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 68.0,
+   "role": "beat",
+   "secs": [
+    15.0
+   ],
+   "why": "The five-day roadmap, dictated as prose. This is the card that makes the week legible - the one thing a student wants from an opening lecture and the one thing the footage never shows.",
+   "slides": [
+    {
+     "k": "timeline",
+     "kicker": "five days to get there",
+     "lines": [
+      "The *week*"
+     ],
+     "size": 62,
+     "items": [
+      {
+       "when": "mon",
+       "t": "One agent, properly",
+       "sub": "commands, a specialist, a hook, a plugin"
+      },
+      {
+       "when": "tue",
+       "t": "A box it cannot get out of",
+       "sub": "and the same agent with no screen at all"
+      },
+      {
+       "when": "wed",
+       "t": "A team of six builds it",
+       "sub": "while you watch"
+      },
+      {
+       "when": "thu",
+       "t": "Your own orchestrator",
+       "sub": "pointed at a second product it has never seen"
+      },
+      {
+       "when": "fri",
+       "t": "Somebody else's computer",
+       "sub": "an issue, a pull request, a green tick",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 94.5,
+   "role": "beat",
+   "secs": [
+    4.5,
+    5.5
+   ],
+   "why": "The starting point and the end of day one, both listed out loud over a still slide.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and we start with nothing at all",
+     "lines": [
+      "An *empty* folder"
+     ],
+     "size": 96,
+     "stamp": "no code, no scaffolding",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "by the end of today, that folder has",
+     "lines": [
+      "Four things by *tonight*"
+     ],
+     "size": 58,
+     "rows": [
+      {
+       "t": "a brief"
+      },
+      {
+       "t": "a memory"
+      },
+      {
+       "t": "its own vocabulary"
+      },
+      {
+       "t": "and a specialist that does exactly one job",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 107.5,
+   "role": "beat",
+   "secs": [
+    5.5,
+    6.0
+   ],
+   "why": "The definition of no-code for the week, over the same static slide the lecture has been sitting on since 94s.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and here is what no code actually means this week",
+     "lines": [
+      "You will not type a single",
+      "line of the *application*"
+     ],
+     "size": 44,
+     "trans": "fade"
+    },
+    {
+     "k": "cols",
+     "kicker": "what you do instead",
+     "lines": [
+      "*Two* jobs, all week"
+     ],
+     "size": 60,
+     "cols": [
+      {
+       "head": "you write",
+       "items": [
+        "what it has to do"
+       ]
+      },
+      {
+       "head": "you read",
+       "items": [
+        "what came back"
+       ]
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 120.0,
+   "role": "beat",
+   "secs": [
+    5.5,
+    6.0
+   ],
+   "why": "Why the week approves almost nothing, which is the promise Monday and Tuesday go on to keep.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and of those two",
+     "lines": [
+      "The *reading*",
+      "is the skill"
+     ],
+     "size": 86,
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "you will notice we move fast, and approve almost nothing",
+     "lines": [
+      "Not *bravery*"
+     ],
+     "size": 78,
+     "wrong": "letting an agent run without approving each step is courage",
+     "right": "by tomorrow afternoon they are running somewhere they cannot break anything of yours",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 133.5,
+   "role": "beat",
+   "secs": [
+    10.5
+   ],
+   "why": "The cost warning, which is a real one and is spoken with nothing on screen to carry it.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "one warning, and it is a real one",
+     "lines": [
+      "*Six times* the spend"
+     ],
+     "size": 72,
+     "wrong": "six agents cost about what one costs",
+     "right": "six agents thinking at once is six times the spend",
+     "note": "so the number goes on screen at both ends of every build this week",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 147.0,
+   "role": "close",
+   "secs": [
+    5.0,
+    12.0
+   ],
+   "why": "The four outcomes of the week, and the line the whole week rests on. Ends 3s before anchor 169.5.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "by Friday you will be able to do four things",
+     "lines": [
+      "By *Friday*"
+     ],
+     "size": 104,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "and one thing does not change - not this week, not ever",
+     "lines": [
+      "You still own what you *ship*"
+     ],
+     "size": 48,
+     "rows": [
+      {
+       "t": "Direct a team of agents on one codebase without losing track of them"
+      },
+      {
+       "t": "Contain them, so freedom is safe"
+      },
+      {
+       "t": "Run them with nobody in the chair at all"
+      },
+      {
+       "t": "And judge the result - a good one from a merely plausible one",
+       "hot": true
+      }
+     ],
+     "stamp": "the agents get faster. the judgement stays yours",
+     "trans": "rise"
+    }
+   ]
+  }
+ ]
+}

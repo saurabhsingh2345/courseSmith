@@ -1,0 +1,871 @@
+{
+ "lecture": "w3-17",
+ "title": "Launch: seven agents, one shared task list",
+ "note": "791s, 57% dead across 22 spans. Eighteen cutaways, 239s (30%). Three enforced sync fixes - anchors 165.0, 276.0 and 530.0 arrive 10-20s after the picture they describe. #07 is a deliberate three-second flash: its dead span opens at 272.5 and anchor 276.0 needs a cut-back by 275.8, so there is nowhere longer to put it.",
+ "inserts": [
+  {
+   "at": 0.5,
+   "role": "open",
+   "secs": [
+    9.0
+   ],
+   "why": "Names the lecture over the opening still.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 3  \u00b7  lecture 16",
+     "lines": [
+      "Launch: seven agents,",
+      "one shared *task list*"
+     ],
+     "size": 56,
+     "stamp": "the branch reads agent-team, and nothing is running yet",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 11.0,
+   "role": "beat",
+   "secs": [
+    10.0
+   ],
+   "why": "The setup, stated as the moment the week has been building towards.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "one terminal, one empty prompt, one plan file",
+     "lines": [
+      "And *one* instruction"
+     ],
+     "size": 86,
+     "stamp": "that six people are about to be briefed from",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 96.0,
+   "role": "beat",
+   "secs": [
+    7.0
+   ],
+   "why": "The guard rail in the last line of the instruction, spoken over a static prompt.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and the last line is a guard rail",
+     "lines": [
+      "Wait for your teammates",
+      "before you do their *work*"
+     ],
+     "size": 54,
+     "stamp": "six people editing the same file is not quality control, it is noise",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 123.0,
+   "role": "beat",
+   "secs": [
+    9.0
+   ],
+   "why": "The whole shift of the week in two columns. Nothing on the frame carries it.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "day one against today",
+     "lines": [
+      "Whose problem is the *coordination*?"
+     ],
+     "size": 46,
+     "cols": [
+      {
+       "head": "day 1",
+       "items": [
+        "a single job",
+        "described precisely",
+        "by you"
+       ]
+      },
+      {
+       "head": "today",
+       "items": [
+        "a division of labour",
+        "and the coordination is somebody else's problem"
+       ]
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 159.5,
+   "role": "beat",
+   "secs": [
+    4.5
+   ],
+   "why": "SYNC FIX: anchor 165.0 arrives twelve seconds after its picture. A short beat that ends 1s before it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "deliberate on its part, not mine",
+     "lines": [
+      "It read the *plan*",
+      "before it read the code"
+     ],
+     "size": 54,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 198.0,
+   "role": "beat",
+   "secs": [
+    7.0
+   ],
+   "why": "Token counts read off a status line that is illegible at 4K.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "back end thirty-nine thousand, simulator thirty",
+     "lines": [
+      "Reading is *not* evenly distributed"
+     ],
+     "size": 52,
+     "stamp": "and neither is what it costs you",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 214.5,
+   "role": "beat",
+   "secs": [
+    8.5
+   ],
+   "why": "The compounding difference between two kinds of agent, spoken over a still pane.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "and this is what that habit is worth",
+     "lines": [
+      "*Four* minutes a build"
+     ],
+     "size": 76,
+     "wrong": "an agent that stops to ask is being careful",
+     "right": "an agent that verifies costs you four minutes less attention per build",
+     "note": "and it compounds",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 272.5,
+   "role": "beat",
+   "secs": [
+    3.0
+   ],
+   "why": "SYNC FIX, and deliberately a flash: anchor 276.0 arrives twenty seconds after its picture, and the dead span opens at 272.5, so three seconds is all there is to end a card in. A three-second punctuation card is the lesser evil against a twenty-second early reveal.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and that is the scheduling decision",
+     "lines": [
+      "*Worse* than starting less"
+     ],
+     "size": 72,
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 278.0,
+   "role": "beat",
+   "why": "The lead's division of labour, which is on the frame and unreadable at 4K. Starts at 278 rather than 275.5 so the three-second flash before it still cuts back to the picture at anchor 276.",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and here is the lead's own account of how it divided the work",
+     "lines": [
+      "The artefact you would",
+      "have written by *hand*"
+     ],
+     "size": 54,
+     "stamp": "and it is worth stopping on",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "back end, for instance",
+     "lines": [
+      "One *remit*, listed out"
+     ],
+     "size": 54,
+     "rows": [
+      {
+       "t": "the HTTP server on 8080"
+      },
+      {
+       "t": "the snapshot and map routes, and the live feed"
+      },
+      {
+       "t": "reroute, hold, release, and the chat post route"
+      },
+      {
+       "t": "plus its own API tests",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 300.0,
+   "role": "beat",
+   "secs": [
+    10.0,
+    10.0,
+    10.0
+   ],
+   "why": "The ownership table, read out agent by agent. This is the artefact the narration says you would otherwise have written by hand, and it is never drawn.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "who owns what, and nobody owns two things",
+     "lines": [
+      "Six *exclusive* file lists"
+     ],
+     "size": 52,
+     "rows": [
+      {
+       "t": "sim engineer - src/sim, auditing what already exists"
+      },
+      {
+       "t": "back end - the routes, the live feed, reroute, hold, release"
+      },
+      {
+       "t": "fleet map - src/ui, the shell, the store, the list, the map, the ticker"
+      },
+      {
+       "t": "heat chart - src/risk, the region heat map and the on-time line"
+      },
+      {
+       "t": "chat - src/chat, deterministic, no model call, works offline",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and one clause nobody writes by accident",
+     "lines": [
+      "Instructed not to *rebuild* anything"
+     ],
+     "size": 48,
+     "wrong": "a fresh agent will improve what is already there",
+     "right": "there is a working simulator in this repo, and it was told to leave it alone",
+     "note": "the single most expensive thing a fresh agent does is helpfully replace it",
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and that is a decision a lead had to make",
+     "lines": [
+      "Six agents *building*,",
+      "or six agents queueing"
+     ],
+     "size": 54,
+     "stamp": "it is not something the model does by default",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 340.0,
+   "role": "beat",
+   "secs": [
+    10.0,
+    10.0,
+    10.0
+   ],
+   "why": "The sentence the narration calls the entire trick of parallel agent work, and asks you to read twice.",
+   "slides": [
+    {
+     "k": "quote",
+     "kicker": "then the sentence that makes the whole thing work",
+     "text": "To keep six parallel builders from colliding, I pinned the interface contracts in every brief, and gave each engineer an exclusive file list.",
+     "who": "the lead, unprompted",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "and every one of the six briefs carries the same four things",
+     "lines": [
+      "The *literal* contract"
+     ],
+     "size": 76,
+     "rows": [
+      {
+       "t": "the same API routes"
+      },
+      {
+       "t": "the same snapshot shape"
+      },
+      {
+       "t": "the same panel container ids"
+      },
+      {
+       "t": "the same two function names - not a description of them",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and it is the same trick that makes parallel human work possible",
+     "lines": [
+      "Only across a boundary",
+      "that is *written down*"
+     ],
+     "size": 52,
+     "stamp": "everything else in this lecture is scheduling",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 370.0,
+   "role": "beat",
+   "why": "What the lead does with its own time, and why doing nothing is the job. Spoken over a brief that has finished printing.",
+   "secs": [
+    8.5,
+    8.5,
+    8.5
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and it repeats my constraint back at me, with a reason attached",
+     "lines": [
+      "No code reviewer,",
+      "*as requested*"
+     ],
+     "size": 58,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "then what it will do with its own time",
+     "lines": [
+      "*Nothing*, until they report"
+     ],
+     "size": 54,
+     "rows": [
+      {
+       "t": "wait"
+      },
+      {
+       "t": "run the full suite itself"
+      },
+      {
+       "t": "start the app"
+      },
+      {
+       "t": "check the result against the plan",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "and that is not modesty",
+     "lines": [
+      "A *seventh* writer"
+     ],
+     "size": 78,
+     "wrong": "the lead may as well help while it waits",
+     "right": "start editing files and the one process that could referee a conflict is a party to it",
+     "note": "the lead holds the only complete picture of the contracts",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 415.0,
+   "role": "beat",
+   "secs": [
+    12.0
+   ],
+   "why": "The thing to actually watch, said explicitly because the scrolling text cannot be read at that speed.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "not the text scrolling past - this",
+     "lines": [
+      "More than one is moving",
+      "at the *same time*"
+     ],
+     "size": 54,
+     "stamp": "up to this point in the course, everything has been one thing at a time",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 427.0,
+   "role": "beat",
+   "why": "Forty-three seconds of scrolling text the lecture explicitly tells you not to read, while the narration explains what parallel work buys and what it costs. Ends on anchor 470 so the next message arrives with its own words.",
+   "secs": [
+    7.5,
+    7.5,
+    7.5,
+    7.5,
+    7.5,
+    5.5
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "the first moment the work is genuinely happening in parallel",
+     "lines": [
+      "And you are not",
+      "the *bottleneck*"
+     ],
+     "size": 60,
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "two things worth understanding about what that actually buys",
+     "lines": [
+      "Not mainly *speed*"
+     ],
+     "size": 80,
+     "wrong": "six agents means six times faster",
+     "right": "it is faster, and that is not the main thing you are buying",
+     "trans": "rise"
+    },
+    {
+     "k": "cols",
+     "kicker": "each of these has its own context window",
+     "lines": [
+      "Not competing for *room*"
+     ],
+     "size": 48,
+     "cols": [
+      {
+       "head": "one window",
+       "items": [
+        "the front-end work and the simulator's internals",
+        "in the same room",
+        "answers that quietly degrade"
+       ]
+      },
+      {
+       "head": "six windows",
+       "items": [
+        "neither competes with the other",
+        "on a long build that is the difference",
+        "answers that stay sharp"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and there is a second cost",
+     "lines": [
+      "You lose the ability",
+      "to *follow* it"
+     ],
+     "size": 56,
+     "wrong": "with six you can keep up if you concentrate",
+     "right": "with one you can read every line it produces. with six you cannot",
+     "note": "and the honest response is not to pretend otherwise",
+     "trans": "rise"
+    },
+    {
+     "k": "rows",
+     "kicker": "so move your attention from the transcript to the artefacts",
+     "lines": [
+      "*Four* things to read"
+     ],
+     "size": 60,
+     "rows": [
+      {
+       "t": "the task list"
+      },
+      {
+       "t": "the file ownership"
+      },
+      {
+       "t": "the test output"
+      },
+      {
+       "t": "the diff",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and not one of those four is a transcript",
+     "lines": [
+      "Read the *artefacts*"
+     ],
+     "size": 96,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 472.0,
+   "role": "beat",
+   "secs": [
+    10.0,
+    10.0
+   ],
+   "why": "The first real message between two agents, and what the audit actually said. Both are small text in a scrolling pane.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and a scrolling transcript stops being readable at about two",
+     "lines": [
+      "These are readable at *any* team size"
+     ],
+     "size": 48,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "the simulator audit came back clean",
+     "lines": [
+      "*54* tests, and nothing changed"
+     ],
+     "size": 58,
+     "rows": [
+      {
+       "t": "all fifty-four existing tests pass"
+      },
+      {
+       "t": "the simulator conforms to section one of the plan"
+      },
+      {
+       "t": "nothing was changed, including the deterministic replay guarantee",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 521.0,
+   "role": "beat",
+   "secs": [
+    7.5
+   ],
+   "why": "SYNC FIX: anchor 530.0 arrives ten seconds after its picture. Ends 1.5s before it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and then it relays what each teammate needs",
+     "lines": [
+      "One paragraph each,",
+      "*addressed by name*"
+     ],
+     "size": 54,
+     "stamp": "not a broadcast - each carries only what that teammate consumes",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 532.0,
+   "role": "beat",
+   "secs": [
+    10.0,
+    9.0,
+    9.0
+   ],
+   "why": "Three bugs that did not happen, listed one by one. The most persuasive stretch in the lecture and entirely verbal.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "every one of those is a bug that did not happen",
+     "lines": [
+      "*Three* that never shipped"
+     ],
+     "size": 72,
+     "rows": [
+      {
+       "t": "a countdown shown on a held vehicle"
+      },
+      {
+       "t": "the map drawn upside down, because a top-left origin is not obvious"
+      },
+      {
+       "t": "a zero on-time rate rendered before any van had arrived",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and none of them would have looked like a bug",
+     "lines": [
+      "*Plausible*, and quietly wrong"
+     ],
+     "size": 56,
+     "wrong": "you would have caught those in review",
+     "right": "each would have shipped as a plausible screen that was quietly wrong",
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and notice the phrasing it used",
+     "lines": [
+      "So nobody codes",
+      "against a *guess*"
+     ],
+     "size": 66,
+     "stamp": "which is the failure mode of parallel work, human or otherwise",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 560.0,
+   "role": "beat",
+   "why": "The first teammate reporting in, and what the relay before it actually was. The frame is a roster line that stopped moving.",
+   "secs": [
+    6.5,
+    6.5
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "then: teammate sim engineer finished",
+     "lines": [
+      "*One* of six done"
+     ],
+     "size": 94,
+     "stamp": "54 tests passing, no changes needed, and it stays on call",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and it looks like politeness, and it is not",
+     "lines": [
+      "Information moving",
+      "*ahead* of the work"
+     ],
+     "size": 54,
+     "wrong": "relaying those details was courtesy",
+     "right": "it extracted the four facts the others could not derive and pushed them outward",
+     "note": "before anyone needed them, rather than behind a blocked agent waiting",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 575.0,
+   "role": "beat",
+   "secs": [
+    9.0,
+    8.0
+   ],
+   "why": "The part with no commentary attached - files appearing in a rail nobody is narrating.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "meanwhile, on the left, with no commentary attached",
+     "lines": [
+      "Nobody *narrated* these"
+     ],
+     "size": 62,
+     "rows": [
+      {
+       "t": "scripts, and an env example"
+      },
+      {
+       "t": "a .gitignore"
+      },
+      {
+       "t": "a Dockerfile, and a compose file beside it"
+      },
+      {
+       "t": "and package.json has turned from clean to modified",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and the suite, from the tester's own phase one",
+     "lines": [
+      "*88* of 90 passing"
+     ],
+     "size": 96,
+     "stamp": "and both failures are waiting on the chat module",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 646.0,
+   "role": "beat",
+   "secs": [
+    6.0
+   ],
+   "why": "Why the tester earns its seat - a gap that belonged to nobody.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "it flagged a repo-hygiene gap nobody scheduled",
+     "lines": [
+      "Work nobody *asked* for"
+     ],
+     "size": 76,
+     "stamp": "no .gitignore, which risks the env file being committed against the plan's hard rule",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 674.0,
+   "role": "beat",
+   "why": "The shape of the unowned-work exchange, spoken over a file rail with one new line in it.",
+   "secs": [
+    7.0,
+    7.5
+   ],
+   "slides": [
+    {
+     "k": "flow",
+     "kicker": "watch what that little exchange actually is",
+     "lines": [
+      "Three *moves*"
+     ],
+     "size": 62,
+     "nodes": [
+      {
+       "t": "the tester finds a gap",
+       "sub": "between two other agents' ownership"
+      },
+      {
+       "t": "reports it upward",
+       "sub": "rather than editing somebody else's files",
+       "tone": "#f5c518"
+      },
+      {
+       "t": "the lead absorbs it",
+       "sub": "five lines, and says why",
+       "tone": "#3b82f6"
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and that is not a feature anybody built",
+     "lines": [
+      "What a shared list and",
+      "clear *ownership* produce",
+      "on their own"
+     ],
+     "size": 48,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 697.5,
+   "role": "beat",
+   "secs": [
+    10.0,
+    10.5
+   ],
+   "why": "The general lesson about seams, and the two-part mechanism that fills them.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "any division of labour leaves gaps at the seams",
+     "lines": [
+      "And the seams are where",
+      "nobody feels *responsible*"
+     ],
+     "size": 52,
+     "trans": "fade"
+    },
+    {
+     "k": "flow",
+     "kicker": "so you fill them in two moves",
+     "lines": [
+      "How to cover a *seam*"
+     ],
+     "size": 66,
+     "nodes": [
+      {
+       "t": "one agent with a remit",
+       "sub": "to look at the whole and report"
+      },
+      {
+       "t": "a lead that picks it up",
+       "sub": "instead of routing it back",
+       "tone": "#f5c518"
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 729.5,
+   "role": "close",
+   "secs": [
+    9.5
+   ],
+   "why": "The close: the reports landing on top of each other, read off a pane too small to read.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "and now the reports start landing",
+     "lines": [
+      "*Finished*"
+     ],
+     "size": 104,
+     "rows": [
+      {
+       "t": "tester - packaging verified, 78 pass, one fail, one skip"
+      },
+      {
+       "t": "back end - finished, and it handled a cross-team request"
+      },
+      {
+       "t": "chat is the only blocker left",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  }
+ ]
+}

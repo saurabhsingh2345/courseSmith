@@ -141,3 +141,9 @@ tools/nocode/**/_work/
 tools/nocode/**/_prefetch/
 tools/nocode/**/_voice_liam/
 tools/nocode/**/_montage/
+
+# What a shoot snapshots so teardown can put the machine back: display layout,
+# window positions, menubar state, and the real VS Code and plugin settings it
+# swapped out. Written fresh at the start of every shoot, and a picture of this
+# machine rather than part of the rig.
+tools/nocode/**/restore/

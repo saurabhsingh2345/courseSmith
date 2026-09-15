@@ -1,0 +1,26 @@
+{
+  "lecture": "w3-18",
+  "cut_seconds": 255.0,
+  "segments": [
+    {
+      "anchor": 0,
+      "beat": "shape",
+      "say": "The team has finished. Six agents worked on this repository at once, and I was not watching most of it. So the question is not what that felt like, it is what actually happened — and the answer is not in a scrolling pane. It is in the repository. Start by counting. Twenty three entries changed, and none of them were typed by me."
+    },
+    {
+      "anchor": 19,
+      "beat": "split",
+      "say": "Then the shape of it. Every file under source, sorted. Look at the folders rather than the names: sim, api, chat, risk, ui. That is the split I asked for, and it survived contact with six agents writing at once. Nobody wandered into somebody else's folder."
+    },
+    {
+      "anchor": 35,
+      "beat": "ask",
+      "say": "But a folder listing tells me the outcome, not the story. So I am going to ask the lead directly. Walk me through what actually happened: which teammate owned which files, what ran in parallel, what had to wait, and where any two of them touched the same thing. And notice the last clause, because it is the one that matters. Tell me anything that looks wrong. If you only ask an agent to summarise its own work, it will tell you the work went well. Watch what it does first. It does not reach for its own memory of the session. It reconstructs the answer from the repository: git history, file timestamps, cross references between the new files. Copy that instinct. Timestamps are ground truth, and unlike a summary they cannot flatter anybody. Here is the reconstruction. All four of them started within about thirty four seconds of each other, which is the parallelism you were promised, and it is real. But the interesting part is not that they started together. It is how the API teammate avoided being blocked by the two it depended on. It needed risk data, and it needed the dispatcher, and neither of those existed yet. So it wrote what the lead is calling soft dependency shims. It imports the other teammate's not yet existing module lazily, catches the module not found error, and degrades gracefully: a snapshot without risk enrichment, a five oh three saying the chat is not ready. Both shim files even say so in their header comments. And the test files mirror that exactly. They check whether the dependency exists on disk, and skip the ready case or the not ready case accordingly, so the API teammate's own suite passes whatever order its colleagues finish in. Nobody taught it that pattern. It worked out that the way to not wait for a colleague is to make the absence of that colleague a supported state. There was exactly one genuine wait. The end to end test was written before the dispatcher existed, and could not fully pass until the chat teammate landed, because it asserts a real reply naming a van rather than an error. It resolved itself two minutes later. Nobody handed it off. Then the part I did not expect. Three of them converged on the same file without being told to. The risk module is deliberately dependency free, and its own comment explains why: the browser can import the very same file as a fallback. So risk wrote it with zero imports. The API added a route serving that exact file statically. And the front end imports it in the browser and recomputes client side when the snapshot arrives un-enriched. A real three way agreement on one contract, arrived at by reading each other's code. And now the part I actually asked for. What looks off. Three things, and the first one is a genuine finding. One front end file and its test arrived about three and a half hours after everything else, while the rest of the team finished inside eight minutes. That is the most logic heavy panel on the screen — grouping, sorting, live interpolation — and the lead is honest that it cannot tell from the files alone whether that gap was a stall, a retry, or a deliberate second pass. It is worth asking, and I would not have known to ask without this. Second, two Python files in the tests folder are not from this run at all — two days older, Python in a project with no Python in it, and they label themselves as not part of the suite. Clutter, not a bug. Third, a dropped trailing newline. Cosmetic. And then the line that matters: everything else checks out."
+    },
+    {
+      "anchor": 221,
+      "beat": "cost",
+      "say": "And then the number, because a team that works is only half the story. This forensic session — reading the repository, tracing every import, writing that report — cost about fifty cents and two minutes of model time. The week meter is the one to watch though: three quarters of my weekly allowance is gone, and most of that went on the build itself, not on this. Write both numbers down. At the end of the week we are going to put them next to what the other approaches cost, and a comparison without your own numbers in it is just somebody else's marketing. Yours will not match mine, and that is fine. What matters is that you measured."
+    }
+  ]
+}

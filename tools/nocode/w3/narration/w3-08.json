@@ -1,0 +1,71 @@
+{
+  "lecture": "w3-08",
+  "cut_seconds": 588.0,
+  "segments": [
+    {
+      "anchor": 2,
+      "beat": "open",
+      "say": "Last lecture ended on a question we did not answer: what can we safely stop approving? Here is the answer, and it is not a setting. It is a place. Because approving every step does work. It is just that it makes you the slowest part of your own project, and after about the fortieth prompt you stop reading them properly anyway. Which is the real danger. You have seen that number in action already: yesterday nobody could even count the prompts, which tells you how much attention each one was really getting. Nobody decides to approve something reckless. They approve forty safe things in a row and the forty-first goes past on the same reflex. So the fix people reach for first, which is to turn the prompts off and be careful, is not a fix at all. It is the same exposure with the warning light removed."
+    },
+    {
+      "anchor": 45,
+      "beat": "place",
+      "say": "The question to ask instead is not how much do I trust this agent. It is what can it reach. Trust is a feeling and it varies with how tired you are. Reach is a fact, and you can change it. And reach is a property of the place, not of the model. Change the room and every agent you run in it inherits the new limits, including ones that do not exist yet. Which is why the request asks for a place and never mentions trust."
+    },
+    {
+      "anchor": 70,
+      "beat": "why",
+      "say": "So read the request carefully, because the shape of it is the lesson. I want to let an agent run without approving anything, and I want that to be safe rather than reckless. Build me a dev container for this project: a Dockerfile and a compose file that mount only this repository, with no access to the rest of my machine and no credentials passed in. And explain each line as you write it. Four constraints in one sentence: only this repository, no access to the rest of the machine, no credentials, and explain it. Notice there is no mention of what the agent may do \u2014 only where it can stand. You are not writing a policy about behaviour. You are drawing a line on a floor. And then the fourth clause, which is the one people leave out."
+    },
+    {
+      "anchor": 110,
+      "beat": "explain",
+      "say": "That last clause is not politeness. If I cannot read the thing that is supposed to protect me, it is not protecting me, it is decoration. This is the one category of generated file where taking it on trust defeats the entire purpose. And notice what it does first, before writing anything. It goes and looks at the project, so the container matches what is actually here rather than what a template assumes. No Docker files yet, no dependencies, pure Node twenty-four. Then: three files, and a line-by-line walkthrough. Watch the file list on the left while it works. A dot-dockerignore, a Dockerfile for development, and a compose file, all appearing as untracked. Three files is the whole boundary."
+    },
+    {
+      "anchor": 150,
+      "beat": "build",
+      "say": "If somebody tells you sandboxing an agent is an infrastructure project, that is the number to remember. The image is pinned to the same Node major the project itself declares, so the container cannot quietly be a different runtime from the one the tests expect. That sounds like housekeeping. It is the most common way a container lies to you: everything passes in here and fails out there, or worse, the other way round, and you spend an afternoon on it. The base is the slim variant, and it says why: fewer packages means fewer things an unsupervised agent can reach for. And a word about the base image choice, because this is where most people stop reading and it is the decision with the longest tail. Every package in that image is a tool an unsupervised agent can call. The slim variant is not about download size. It is about how much surface area you are handing over. If you find yourself adding packages to make an agent's life easier, that is exactly the moment to ask what else you just made easy."
+    },
+    {
+      "anchor": 201.8,
+      "beat": "absences",
+      "say": "It installs git, because an agent needs history and diffs to work sensibly, and certificates, because it has to reach the API. And then it says what it is deliberately leaving out. No compilers. No ssh client. No curl. Every one of those absences is a decision somebody made on purpose, and that is the difference between a container and a security boundary. A container is where your code runs. A boundary is a list of things that are not in it. The agent's own command-line tool goes inside the image rather than onto the mounted folder, so the container stays disposable. And it does not take its own Dockerfile on trust either. What is running on screen right now is a probe: start the container, print the user, the Node version, the version of the agent tool inside it, try to write to the home directory, and dump the environment to see whether anything from my Mac leaked through."
+    },
+    {
+      "anchor": 250,
+      "beat": "mount",
+      "say": "And then the line that does the actual work. One bind mount, with a comment next to it that reads: the one and only host path exposed. Not your home directory. Not your ssh keys. Not your cloud credentials. Not even the folder above this one, which is the one people get wrong, because mounting a parent directory to be helpful quietly hands over every sibling project on your machine. That single line is the whole lecture. Everything else is convenience. It also runs a proper init process inside, so that stopping a long-running agent actually stops it, instead of orphaning processes you then have to hunt down. There is one more property of a bind mount worth understanding before you rely on it, because it cuts both ways. The container cannot see outside the mount - that is the protection. But inside the mount it has full write access to your real files, on your real disk, right now. There is no copy. So the container protects everything except the thing you are working on, which is why the commit you made before starting is not optional."
+    },
+    {
+      "anchor": 305,
+      "beat": "door",
+      "say": "So now we have the shape of it: what goes in, what stays out, and exactly one door. And it is worth noticing how little of this is Docker knowledge. The Docker part is four or five lines any tutorial would give you. The part that matters is the list of decisions, and those are the ones I asked to have explained, because those are the ones I would have to defend if somebody asked me whether it was safe. The answer ends with a heading most generated output never has: what this does not protect against. Egress is wide open \u2014 the agent needs the API, and anything that can reach the API can reach the internet. Container isolation is about your filesystem, not about what leaves. The repo mount is read-write, so the agent can rewrite files and git history in here; commit before a long unattended run, because that commit is your undo. And the verification block above it is not a claim but a result: user node, uid one thousand, sudo command not found, host environment leak check, none leaked. If you take one habit from this lecture, take that one: when you ask for something whose job is to protect you, ask for the reasoning in the same breath. You are not going to write it. You do have to be able to read it."
+    },
+    {
+      "anchor": 370,
+      "beat": "up",
+      "say": "So we build it. Two images come out, and this is the first time all week that the thing we made is not code, it is an environment. And while it builds, notice what is not happening. Nothing is being downloaded into my project. Nothing is being installed on my Mac. The whole environment, the runtime, the tools, the agent itself, is being assembled somewhere separate, described entirely by two files I can read and a third that says what to ignore. Watch the layers go past, because there is something worth noticing in the order of them. The system packages are near the bottom and the project is near the top, which means changing a source file rebuilds almost nothing and changing the package list rebuilds almost everything. That ordering is why this takes seconds on the second run instead of minutes, and it is the one piece of Docker craft that pays for itself immediately."
+    },
+    {
+      "anchor": 420,
+      "beat": "disposable",
+      "say": "That is what makes it disposable. If an agent ruins this container I delete it and build it again in a minute, and nothing of mine was ever at risk. Compare that with the alternative, which is an agent with a shell on your actual laptop and your goodwill as the only boundary. And one more thing worth saying out loud, because it is easy to miss while the layers scroll past: I did not write any of this. I described the boundary I wanted in two sentences and asked for the reasoning alongside the result. Reading that reasoning is the work now. That is the job this week keeps handing back to you. Two images, named on the last two lines: control-tower-agent and control-tower-offline. The second one is the interesting one. Same image, but with the network switched off entirely, and it exists to run the test suite in a container that physically cannot reach anything. That is how you prove the runs-with-the-network-unplugged rule is still true, rather than believing it."
+    },
+    {
+      "anchor": 470,
+      "beat": "step",
+      "say": "Then we step inside and ask three questions: where am I, what can I see, and who am I. This is not a demo. This is the acceptance test for the thing you just built, and you should run it every time you build one, because a container that mounts the wrong path looks exactly like a container that mounts the right one until you go and look. Three commands. Print the working directory, list everything including hidden files, and print the user. And notice how it is run: docker compose run, dash dash r m, agent. The r m means the container is deleted the moment the command finishes. Nothing accumulates. Every one of these checks happens in a container that did not exist a second earlier and will not exist a second later, which is the property you are buying. The same command is how you would start a real working session \u2014 the only difference is that instead of three checks you launch the agent with permissions skipped. And the reason to run these three checks by hand, rather than trusting the file you just read, is that a compose file is a statement of intent and a running container is a fact. The gap between the two is where every container security incident lives. Read the file, then go and ask the container."
+    },
+    {
+      "anchor": 534,
+      "beat": "prove",
+      "say": "Where am I: workspace. Not a path on my Mac, a path that only exists in here. What can I see: the repository. The source, the tests, the plan, the tooling, the git directory. And look at what is in that listing you might not expect: dot git. The container can see the history, which is what makes it able to work sensibly \u2014 and also what makes committing first matter. Exactly what an agent working on this project needs, and nothing else. And who am I: node. Not an administrator, and not me. Three answers, and each one is a wall."
+    },
+    {
+      "anchor": 567,
+      "beat": "yolo",
+      "say": "List the folder that holds every user account on this Mac. No such file or directory. Not permission denied. That path does not exist in this world at all. And that is when the dangerous flag stops being dangerous. Skipping every prompt is reckless on your laptop and entirely reasonable in here. You do not get speed by being brave. You get it by changing where the work happens."
+    }
+  ]
+}

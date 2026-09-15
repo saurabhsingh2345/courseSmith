@@ -1,0 +1,46 @@
+{
+  "lecture": "w3-30",
+  "cut_seconds": 378.0,
+  "segments": [
+    {
+      "anchor": 0.6,
+      "beat": "tree",
+      "say": "The build reported success. That is not the same as it having worked, and the first thing to do with a finished unattended run is not to read what the agent said about it. It is to read the repository. Git status, the file list, the test output - those are facts. Everything else is a summary written by the thing you are checking on."
+    },
+    {
+      "anchor": 24.5,
+      "beat": "size",
+      "say": "So: how much of it there is. Twenty-six JavaScript files, two thousand three hundred lines, across the six areas the plan named and nothing outside them. For eighteen minutes of wall clock and no supervision, that is a real amount of work, and it is also small enough that a person could read all of it in an afternoon - which is the property you actually want."
+    },
+    {
+      "anchor": 45.6,
+      "beat": "tests",
+      "say": "Then the suite. Twenty-seven tests, twenty-seven passing, in about a tenth of a second. And I want you to notice your own reaction to that, because mine was relief, and relief is the wrong response. Go back to Wednesday, and the lecture where a hundred and nineteen green tests turned out to be worth four. Green is a claim. And here is the ten-second check: three test files. The simulator, the rules engine, the feed. The two client halves have none, the shell has none, and nothing tests the seam between them. And there is a second ten-second check that costs nothing: run the suite twice. A suite that passes twice in a row with different timings is testing behaviour."
+    },
+    {
+      "anchor": 80.4,
+      "beat": "review",
+      "say": "One that passes once is testing whatever happened to be true when it ran. The server has some. The two client halves and the shell have none at all, and neither does anything that crosses between them - which is exactly where six independently built pieces are most likely to disagree. So here is phase three, and it is the one people leave out. An agent with read-only tools, that had no part in building any of this, reads what is on disk against the plan and writes down what is present, what is missing, and what is wrong. Read-only matters, and not for safety. It matters because an agent that can fix things will fix them, and then report that everything is fine - which is true, and useless, because you never find out what it had to repair. And it has no idea what any of this is for. It did not sit through the planning lecture, it has no memory of what we said we wanted, and it cannot be reminded. All it has is the plan file, the brief, the memory file and the repository - which is precisely the position the next person to open this project will be in."
+    },
+    {
+      "anchor": 140.8,
+      "beat": "different",
+      "say": "This agent has no stake in the answer. It did not write any of these files, it will not have to fix anything it finds, and it cannot lose face. Every one of those is a property you would want in a human reviewer and cannot reliably get. And this is a different question from the one the tests answer. The tests ask whether the code does what the tests say. This asks whether the repository contains what the plan asked for. Those two have completely different failure modes: a whole area can be missing with a green suite, because nobody writes a test for a thing that is not there. On a normal project the person who notices that gap is whoever wrote the plan, three weeks later, when a feature is missing. Here it is a three-minute job that runs immediately. There is a cheaper version of this that people do instead, which is to ask the agent that built something whether it is finished. Do not. It will say yes, and it will be sincere, because the thing it is checking against is the same understanding it built from. If the understanding was wrong, both halves are wrong in the same direction and they agree perfectly."
+    },
+    {
+      "anchor": 203.2,
+      "beat": "grounded",
+      "say": "When somebody hands you work and a summary of the work, read them in that order and separately - the work first, then the summary. If you read the summary first you will find yourself confirming it rather than checking it, and you will not notice that is what you are doing. And read the first line of what it produced, because it is the sentence that makes the rest of it worth anything: no code was executed, and every claim below is grounded in a file opened during this review. That is the standard we have been asking for all week, offered without being asked. It also tells you exactly what this document is not - it has not run anything, so it cannot tell you whether the console works. It can only tell you what is in the repository. Read that sentence once more, because it is also a limit. Grounded in a file opened during this review means it checked what is written, not what happens. It cannot tell you that the chart renders, or that a rule fires, or that the page loads at all."
+    },
+    {
+      "anchor": 260.0,
+      "beat": "areas",
+      "say": "Those are the next lecture, and no amount of reading gets you them. Then six sections, one per area, each split three ways: present, missing, wrong. And in the present column it is not paraphrasing the plan back at me - it names the function signature it found, the constant it read, the file that does not import the file it was told not to import. Every claim has a place you could go and check it. And in the missing column it is specific about the difference between a file that is absent and a requirement that is unmet - which are not the same problem and do not have the same fix. A missing file is somebody's job nobody did. An unmet requirement with all its files present is worse: everybody did their job and the thing still is not there. It is also, quietly, a check on the plan rather than on the code. Twice in this review the honest answer turned out to be that the plan disagreed with itself - and no amount of reading the code would have surfaced that, because the code was a faithful implementation of one half of the contradiction."
+    },
+    {
+      "anchor": 320.0,
+      "beat": "found",
+      "say": "And it found three real things. The chart is supposed to hold the last hour and be scrollable; the only retention anywhere is a ring buffer capped at ten minutes, so that requirement is not met end to end and nothing in the suite could have noticed. An exposed function has quietly grown a second parameter the plan does not document - a contract drifted, in a repository whose entire premise is that contracts do not drift. And the package file carries a dependency, which directly violates the zero-dependency rule in the memory file. That last one is ours: it is the Agent SDK, the orchestrator's own dependency, and the reviewer is right for exactly the reason we already knew - an exception that is not written down is indistinguishable from a mistake. Three findings, from three minutes and one read-only agent, on a suite that is entirely green. Every one of them is a real defect, none of them is a crash, and not one of them could have been caught by running the tests. That is the argument for this phase existing, and it is why it is worth the third of the run time it costs."
+    }
+  ]
+}

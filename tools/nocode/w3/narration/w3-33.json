@@ -1,0 +1,41 @@
+{
+  "lecture": "w3-33",
+  "cut_seconds": 321.9,
+  "segments": [
+    {
+      "anchor": 0.6,
+      "beat": "local",
+      "say": "One commit, on one laptop, in a folder that exists on exactly one disk. One commit is the entire history. Below the dashes, git status prints nothing, which is the good kind of nothing - everything the agents built this hour is committed, and none of it is anywhere but here. That is where the second product has been for the last hour."
+    },
+    {
+      "anchor": 18.8,
+      "beat": "create",
+      "say": "Which is fine for learning and useless as a way of working, because the only record of what seven agents did is a directory you happen to have. So: one command. Create the repository, use this directory as the source, add the remote, push. Private, and inside an organisation rather than under a personal account - which is a good habit anyway, and here it is also because almost every command from now on prints the owner on screen. Fifty objects, sixty-two kilobytes, and a branch that now tracks a remote. That is the entire product, and it fits in a file you could email. And it is worth pausing on how small that command is, because the size is the point. One line moves a project from a folder on one disk to a thing with an address, a history anybody can read, and somewhere for work to arrive. The reason people put this off is not that it is hard. It is that it feels like ceremony, and it stops feeling like ceremony the first time a laptop dies."
+    },
+    {
+      "anchor": 70.3,
+      "beat": "ci",
+      "say": "Now the part that is not about agents at all, and is the most valuable thing in this lecture. The instruction: run on push to main and on every pull request, one job, check out the code, set up Node twenty-four, run the suite. And then two negative clauses, which are the ones that make it short. The app has no dependencies, so do not add an install step it does not need. And do not add a cache for a lockfile that may not exist. And a third clause that is not about CI at all: do not ask me any questions, make the choice and tell me what you chose and why. That turns an interactive session into a report. Cheap to type. Hard to regret. And notice what the workflow is for, because it is not testing. We have had tests all week and they have run whenever somebody typed the command. What this adds is that they run when nobody typed anything - on a push, on a pull request, on a change made by a person who was not in this room and has not read the memory file."
+    },
+    {
+      "anchor": 130.0,
+      "beat": "why",
+      "say": "Those two clauses are there because of what an agent does without them. Left alone it writes you the workflow it has seen most often, and the workflow it has seen most often has an npm ci in it and a cache keyed on a lock file. Both of those fail on this repository, for the same reason: the thing they are for does not exist. And they fail on the runner, six minutes from now, not here - which is the most expensive place to find out anything. And it did what I asked with the choices: four bullets, each naming a decision and its reason. No cache, because there is no lockfile to key one against. No install step, because there is nothing to install. Fourteen seconds of thinking, and I need not open the file to know what is in it. There is a general shape there worth carrying past this lecture. When you ask for something conventional, an agent gives you the convention - and the convention is an average of every project it has seen, not yours. The way you get something that fits is to say what is different about you, in the same sentence. Two clauses did that here, and both of them were negative."
+    },
+    {
+      "anchor": 190.0,
+      "beat": "read",
+      "say": "Twenty two lines, three steps, and a comment above each one saying what it is for. Checkout, so the later steps have code. Node twenty-four, matching the engines field in the package file. And the test command, with the reason for the absent install step written down next to it. That last comment is the one that earns its keep in six months, when somebody adds a dependency and cannot work out why nothing installs it. Twenty two lines of it, and it was one instruction."
+    },
+    {
+      "anchor": 216.6,
+      "beat": "push",
+      "say": "And now something genuinely different happens. Up to this point every check in this course has run on this machine - which means every check has been run by somebody who wanted it to pass, on a computer with the right Node on it and whatever else happened to be lying around. This one runs on a machine that has never seen this project, from a clean checkout, with nothing cached. And the push is quiet: git push minus q, then echo pushed, because a push that prints nothing and a push that failed look identical. Note the commit message as well - it says what the change does, not that a file was added. That is the line somebody reads in a year. There is one more thing that changes with the push, and it is quieter. Until now, if I had made a mistake in any of this - deleted the wrong directory, reset the wrong branch - the work was gone. From this moment there are two copies, on two machines, and one of them is not mine."
+    },
+    {
+      "anchor": 267.6,
+      "beat": "green",
+      "say": "Fifteen seconds, and green. gh run list, and the whole result is one row: the workflow, the branch, the event that triggered it, fifteen seconds elapsed. Then run watch with exit-status, which blocks until the run ends and exits non-zero if it failed - and here reports it had already finished, successfully. No browser at any point. And the useful thing about that is not the colour. It is that the suite now runs whether or not anybody remembers to run it. Everything else this week has depended on a person choosing to check something. This does not, and it will still be true next month when nobody remembers any of this. That is the whole reason it is worth the twenty lines. And it is worth saying what this replaces, since a lecture in this course was going to be about a hosted agent that runs inside this. That product is an install button on top of what you just watched. Knowing the loop underneath it is worth more than the button, because the loop is the same on every forge, at every company, whether or not anybody is selling you an integration this year."
+    }
+  ]
+}

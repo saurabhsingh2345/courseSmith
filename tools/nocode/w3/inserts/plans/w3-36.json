@@ -1,0 +1,436 @@
+{
+ "lecture": "w3-36",
+ "title": "No screen at all: the print flag",
+ "note": "The coarse detector called 0-148s ONE hold; the sharp one splits it into five, because three commands and two answers land in there. Seven cutaways, 78s of 192s (41%) - high because 82% of this lecture is a near-empty terminal under a VS Code watermark. No sync leads: align.py finds every anchor arriving with its own picture.",
+ "inserts": [
+  {
+   "at": 14.5,
+   "role": "open",
+   "secs": [
+    4.5,
+    5.5
+   ],
+   "why": "Names the lecture, then the untrue thing the interface taught you - which is the sentence being spoken at 20-24s.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 2  \u00b7  lecture 11",
+     "lines": [
+      "No screen at all:",
+      "the *print* flag"
+     ],
+     "size": 68,
+     "stamp": "the same session, with nowhere to put a question",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and it has quietly taught you something untrue",
+     "lines": [
+      "You do not have to *sit* there"
+     ],
+     "size": 50,
+     "wrong": "using an agent means sitting in front of one",
+     "right": "it is the same session with nowhere to put a question",
+     "note": "every difference that follows is a consequence of that one fact",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 27.0,
+   "role": "beat",
+   "secs": [
+    7.0,
+    7.0
+   ],
+   "why": "Same binary, same login, same tools, same memory files - and the command that proves it, which on the master is one wrapped line of small text in a sea of black.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "what changes and what does not",
+     "size": 52,
+     "lines": [
+      "The *same* thing, minus the screen"
+     ],
+     "cols": [
+      {
+       "head": "unchanged",
+       "items": [
+        "the same binary",
+        "the same login",
+        "the same tools",
+        "the same memory files"
+       ]
+      },
+      {
+       "head": "gone",
+       "items": [
+        "the banner",
+        "the box you type into",
+        "the spinner",
+        "the status line"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "term",
+     "kicker": "minus p, a prompt, and it answers and exits",
+     "lines": [
+      "One *flag*"
+     ],
+     "size": 82,
+     "title": "signal-desk",
+     "term": [
+      {
+       "t": "claude -p 'how many test files, and how many test cases?'",
+       "kind": "cmd"
+      },
+      {
+       "t": "3 test files, 29 test cases - npm test",
+       "kind": "out"
+      }
+     ],
+     "trans": "rise",
+     "prompt": ""
+    }
+   ]
+  },
+  {
+   "at": 50.0,
+   "role": "beat",
+   "secs": [
+    5.0,
+    6.0
+   ],
+   "why": "'exit code: 0' is two characters on the frame and is the reason the lecture exists. The three things it buys are spoken, never shown. Anchor 52.0 sits inside this card and the card is what its sentence describes, at a size you can read.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and it has one, like any other command",
+     "lines": [
+      "Exit code *zero*"
+     ],
+     "size": 100,
+     "stamp": "which sounds like nothing",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "and this is why that is the whole lecture",
+     "lines": [
+      "A program with an exit code *composes*"
+     ],
+     "size": 48,
+     "rows": [
+      {
+       "t": "It can gate a deploy"
+      },
+      {
+       "t": "It can fail a build"
+      },
+      {
+       "t": "It can sit in a git hook",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 79.0,
+   "role": "beat",
+   "secs": [
+    6.0,
+    7.0
+   ],
+   "why": "Structure instead of prose. The four fields are named out loud and two are singled out - which is a chip row with two lit. No values are shown: the json frame was never checked, and a number true of the project is not automatically true of the frame.",
+   "slides": [
+    {
+     "k": "term",
+     "kicker": "now ask for structure instead of prose",
+     "lines": [
+      "An *object*, not a paragraph"
+     ],
+     "size": 50,
+     "title": "signal-desk",
+     "term": [
+      {
+       "t": "claude -p '...' --output-format json \\",
+       "kind": "cmd"
+      },
+      {
+       "t": "  | jq '{result, num_turns, duration_ms, total_cost_usd}'",
+       "kind": "cmd"
+      }
+     ],
+     "trans": "fade",
+     "prompt": ""
+    },
+    {
+     "k": "tokens",
+     "kicker": "and two of those earn their place immediately",
+     "lines": [
+      "A *program's* answer"
+     ],
+     "size": 56,
+     "chips": [
+      "result",
+      "num_turns",
+      "duration_ms",
+      "total_cost_usd"
+     ],
+     "hot": [
+      1,
+      3
+     ],
+     "caption": "the turn count says whether your prompt was one job or an argument, and the cost is the only bill this week that something else can read",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 92.0,
+   "role": "beat",
+   "why": "The tail of the same sentence: the two fields that earn their place. Spoken over a terminal that has finished printing the json.",
+   "secs": [
+    6.5,
+    7.0
+   ],
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "num_turns",
+     "lines": [
+      "*Turns* are a symptom"
+     ],
+     "size": 62,
+     "wrong": "more turns means it tried harder",
+     "right": "more turns means your prompt was an argument, not a job",
+     "note": "one turn is one instruction it could act on without asking",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and total_cost_usd is the only bill this week a program can read",
+     "lines": [
+      "Price a *thousand*",
+      "before you run",
+      "the other 999"
+     ],
+     "size": 62,
+     "stamp": "one run, times the number you plan to do",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 109.0,
+   "role": "beat",
+   "secs": [
+    6.0
+   ],
+   "why": "The safety model is introduced over a still frame and the point is structural rather than visible. Anchor 109.4 lands on this card.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and then the safety model",
+     "lines": [
+      "Not a permission prompt",
+      "because there is *nobody* to prompt"
+     ],
+     "size": 54,
+     "stamp": "so what stops it?",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 124.0,
+   "role": "beat",
+   "secs": [
+    6.0,
+    6.0
+   ],
+   "why": "The two walls are read out in exactly these words at 124-137s, and on the frame they are two lines of refusal text that scrolled past.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "and it says why, in two parts",
+     "size": 50,
+     "lines": [
+      "Two *independent* walls"
+     ],
+     "cols": [
+      {
+       "head": "rm",
+       "items": [
+        "blocked by the sandbox",
+        "it may only remove files from the allowed working directories"
+       ]
+      },
+      {
+       "head": "git rm",
+       "items": [
+        "needs an approval that cannot be granted",
+        "the session is non-interactive; nobody is there to answer"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and this is the part worth being precise about",
+     "lines": [
+      "Not *judgement*. Reach"
+     ],
+     "size": 60,
+     "wrong": "the model decided to be careful",
+     "right": "neither wall is the model deciding anything",
+     "note": "it looked before it refused - three test files, six hundred and seven lines",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 136.0,
+   "role": "beat",
+   "why": "The refusal's own report, read out over a terminal that stopped scrolling thirty seconds earlier: what it looked at, what deleting it would have broken, that the damage would have been recoverable, and the two routes it hands back.",
+   "secs": [
+    6.5,
+    7.5,
+    6.0,
+    7.0,
+    9.0
+   ],
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "it looked before it refused, and printed what it found",
+     "lines": [
+      "Three test files.",
+      "*607* lines",
+      "between them"
+     ],
+     "size": 66,
+     "trans": "fade"
+    },
+    {
+     "k": "cols",
+     "kicker": "then the part worth noticing - what deleting them would have broken",
+     "lines": [
+      "Two consequences, *unasked* for"
+     ],
+     "size": 48,
+     "cols": [
+      {
+       "head": "the CI workflow",
+       "items": [
+        "runs the suite on every push",
+        "would have had nothing left to run"
+       ]
+      },
+      {
+       "head": "the plan",
+       "items": [
+        "requires every area's tests in that folder",
+        "names each file as a deliverable",
+        "would be describing files that do not exist"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "neither of those was in the prompt",
+     "lines": [
+      "It reported the",
+      "*blast radius*",
+      "nobody asked for"
+     ],
+     "size": 62,
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "and it checked whether the damage would even have stuck",
+     "lines": [
+      "Reach, not *risk*"
+     ],
+     "size": 66,
+     "wrong": "it refused because the deletion looked dangerous",
+     "right": "the tree is clean and everything is committed - it says so, and says the deletion would have been recoverable anyway",
+     "note": "the wall was what it is allowed to touch, not what it judged wise",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "and it hands back the two honest routes",
+     "lines": [
+      "*No*, and here is how",
+      "you would do it anyway"
+     ],
+     "size": 54,
+     "rows": [
+      {
+       "t": "run the command yourself"
+      },
+      {
+       "t": "re-run it somewhere it can ask",
+       "hot": true
+      }
+     ],
+     "stamp": "that is what a good refusal looks like",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 176.0,
+   "role": "close",
+   "secs": [
+    6.0,
+    6.0
+   ],
+   "why": "The closing argument, spoken over a directory listing that was read fifteen seconds earlier.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "all three files are still there",
+     "lines": [
+      "Verify a refusal.",
+      "Do not take one on *trust*"
+     ],
+     "size": 58,
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "what you can do now",
+     "lines": [
+      "A good refusal is not *no*"
+     ],
+     "size": 56,
+     "rows": [
+      {
+       "t": "No - and here is exactly what stopped me"
+      },
+      {
+       "t": "here is what it would have cost you"
+      },
+      {
+       "t": "and here is how you would do it if you meant it",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  }
+ ]
+}

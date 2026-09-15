@@ -1,0 +1,86 @@
+{
+  "lecture": "w3-32",
+  "cut_seconds": 797.7,
+  "segments": [
+    {
+      "anchor": 0.6,
+      "beat": "back",
+      "say": "So we have a list. Four defects on screen and three findings in the review, and the last step of this pipeline is not a phase in the orchestrator at all - it is a person deciding the list is worth acting on, and handing it back. And it is worth separating the two lists, because they came from two different kinds of looking and only one of them is written down."
+    },
+    {
+      "anchor": 21.2,
+      "beat": "hand",
+      "say": "The review read the repository and found three things. I ran the console and found four more. Neither of those methods would have found the other's list, and the second one took ninety seconds of somebody looking at a screen. Read the shape of the instruction, because two clauses in it are load-bearing. Highest impact first, so it does not start with the easiest thing. Actually edit the files rather than describing the fix, because an agent asked to fix something will very often produce an excellent explanation of the fix and no diff. Run the tests after each one, so a repair that breaks something else surfaces immediately rather than three changes later. And when you stop, write down what you changed and what you deliberately left - which is the clause that stops a fix pass turning into a rewrite. And there is a decision hidden in the first clause that is worth making explicitly rather than by accident: I am handing it the review's list, not mine. Everything I noticed on screen a moment ago - the chart not filling its panel, the empty alerts band, the seventeen rows out of thirty - is not in that document, because the reviewer never ran the thing. So this pass fixes what is wrong with the repository, and the things wrong with the picture are still ours to deal with."
+    },
+    {
+      "anchor": 90.0,
+      "beat": "trust",
+      "say": "Those are two different lists and they come from two different kinds of looking. And now the interesting question, which is how much of that list to hand over at once. I have given it all of it. That is a decision, and the reason it is reasonable here is everything we did before starting: there is a commit, there is a plan, there is a review that says what wrong looks like, and there are tests that run in a tenth of a second. Every one of those is a way of finding out that this went badly. Without them I would hand over one item and look at the diff. The general form of that is worth carrying: how much you can safely hand over at once is not a fact about the agent. It is a fact about how quickly you can find out it went wrong. A commit, a fast suite and a written standard are what turn a large handover into a cheap experiment, and none of them are about agents at all. And it is worth naming the one that is not on the list, because it is the biggest. Nobody has looked at whether the four panels agree with each other under load - whether the scrubber really moves all four, whether an alert really jumps the chart to the right moment. The review could not check that, because it never ran anything. The tests do not check it, because nobody wrote a test that crosses two areas. And I did not check it, because I was looking at a console for ninety seconds. Three different methods, and the same blind spot in all three."
+    },
+    {
+      "anchor": 170.0,
+      "beat": "watch",
+      "say": "And what it is doing, while this scrolls, is the thing this week has been building towards and it is worth naming plainly. It is reading a document written by something else about work done by six other agents, in a repository none of them can see any more, and deciding what to do about it. It is doing two things the eighty-two line version could not. That block of red and green is an edit to a file that already existed: the retention test, with ten times sixty times a thousand becoming sixty times sixty times a thousand, and the message under it rewritten to an hour. Then it runs the suite. Edit an existing file, run the tests: those were the two gaps we wrote down when we first put that tool on the bench, and they are the whole reason a fix pass is possible. There is no conversation to refer back to. The repository and the three documents in it are the entire institutional memory of this project, which is exactly the situation any of us are in on a codebase older than a fortnight. And notice what it is not doing, which is asking. There is nobody to ask. Every ambiguity in that review - and there are several, because a review is prose - gets resolved by one thing reading the code and deciding. That is the trade you make when you leave the room, and it is why the review had to be grounded in files rather than impressions. An ungrounded review handed to an unattended fixer is two guesses stacked on top of each other. There is a smaller thing worth watching for in a fix pass, and it is the commonest way one goes wrong. Asked to fix a list, an agent will sometimes fix the first item, discover that the second is related, and quietly turn both into one larger change that is harder to review than either. The clause about writing down what you changed and what you left is the cheapest guard against that, because it forces the decision to be stated rather than absorbed."
+    },
+    {
+      "anchor": 270.7,
+      "beat": "verify",
+      "say": "Twenty-eight tests, all passing - one more than before, because fixing the retention meant changing the test that pinned the old value. A hundred and twenty-five milliseconds for the lot, and read a few of the names while they go past, because they are written as claims about behaviour rather than about functions. Ring buffer retains only the trailing hour per symbol. Evaluate fires exactly once per crossing, not on every subsequent candle above threshold. Same seed, same tick count, byte-identical output. That last one is the determinism rule out of the brief, turned into something that can fail out loud. And then a commit, which is the first one this repository has ever had. A commit is a small thing to make a fuss about, and I want to make a fuss about it anyway. Until this moment everything in this repository - two thousand three hundred lines, seven agents, an hour of work - existed only as files on a disk. There was no before to go back to. Every risky thing we did today was risky in the literal sense until now."
+    },
+    {
+      "anchor": 322.8,
+      "beat": "did",
+      "say": "But read what it actually did, because the first item on that list is the most interesting thing that happened all day and nobody planned it. The review said the package file carries a dependency and the memory file says zero dependencies. So it removed the dependency. It deleted the block, deleted the installed modules, deleted the lock file, checked that the console still starts and the suite still passes, and wrote down that it had done so. Which is correct. It is also the thing that makes the orchestrator - the program that built this entire repository forty minutes ago - no longer able to run. Sit with that, because nobody made a mistake. The rule said zero dependencies. The exception was real, I knew about it, I said so out loud in the lecture where we installed it, and I did not write it in the file. An agent reading only what is written found a violation and fixed it exactly as instructed, and the cost of one unwritten sentence is that the tool is gone. And notice which of the two was actually wrong. Not the agent. It did what the file said, checked that the product still ran without the package, and wrote down what it had removed. The rule was wrong. A rule that says zero dependencies, when what you meant was zero dependencies in the thing that ships, is not a strict rule. It is an incomplete one. That is this whole week in one incident: not a model doing something strange, but a model doing precisely what the written standard said, at a moment when the written standard was incomplete, and doing it faster than anybody could have caught it. And the second finding is the one I would frame, because it is the opposite kind of behaviour. The chart was supposed to hold an hour and the buffer held ten minutes - and rather than change one number, it went back to the brief, worked out that the ten-minute figure belonged to replay and the hour belonged to the chart, split the single constant into two named ones, moved the retention, updated the test that pinned the old value, and then edited the plan to record that the contract had changed. Which is the rule the plan itself set on the first morning: if a contract turns out to be wrong, fix it here, in the same change. Nobody reminded it of that. It read the file. Which leaves one job, and it is the one this whole week keeps handing back. Go and write the sentence down."
+    },
+    {
+      "anchor": 445.0,
+      "beat": "using",
+      "say": "And now the part the first look could not do, because there was nothing worth touching yet. The fixes are in, the suite is green, and the console has been running for a few minutes. Before we open it, the line above is worth reading, because it is the receipt on the riskiest thing that happened today. Start the server, wait six seconds, ask it for a page: two hundred. The product runs on Node and the files the agents wrote and nothing else, so it genuinely did not need the package that got deleted, which is why deleting it was correct, and why the damage is somewhere else entirely. And one honest note before we start clicking. The chart is about to look right, filling the whole panel, and that is not a fix. Nothing on the review's list went near the chart's width. It looks right because this console has been up long enough to have something to draw. So this time we use it rather than look at it."
+    },
+    {
+      "anchor": 498.0,
+      "beat": "sort",
+      "say": "Watch the list re-order itself. Biggest mover at the top, direction ignored, re-sorting every few seconds. Minus twenty-three at the top, then minus twenty, then plus seventeen, then minus seventeen. Red and green interleaved, because the ordering is on the size of the number and not its sign, and a twenty percent fall is exactly as interesting as a twenty percent rise. That is a reading rule rather than a sorting rule, and it is the difference between a list you scan and a list you read. That is one sentence of the brief, written this morning, and nobody demonstrated it and no test asserts it."
+    },
+    {
+      "anchor": 529.9,
+      "beat": "pick",
+      "say": "Click a row and the chart follows. Which is shared state that two separately built panels both agreed about - the watchlist and the chart were written at the same time by different agents who never saw each other's code, and the only thing making them agree is a container id and a function signature in a plan."
+    },
+    {
+      "anchor": 548.8,
+      "beat": "rule",
+      "say": "Now write a rule, in the sentence the engine understands. A symbol, a kind, a threshold. And this is the seam I was least confident about all day, because it is the only place in the product where two areas had to agree on something neither of them owns: the panel has to emit sentences the parser can read, and they were built in parallel by agents who never spoke."
+    },
+    {
+      "anchor": 570.7,
+      "beat": "second",
+      "say": "And a second one of a different kind, to check that the dropdown is not decoration. Four kinds in that list, and they are the same four the suite parsed a few minutes ago: crosses above, crosses below, moves more than N percent within a window, and goes quiet for N seconds. The panel offering exactly what the parser accepts is not luck. It is one interface line in the plan, honoured by two agents who never spoke. Crosses below, on a different instrument, at a different threshold. Two rules, two shapes, both accepted."
+    },
+    {
+      "anchor": 598.4,
+      "beat": "wait",
+      "say": "Then leave it alone. Which is the honest way to test an alerting system and the one nobody films, because for a minute or two nothing happens and nothing is supposed to. There is no way to hurry this that does not also invalidate it - if I lower the threshold until something fires immediately, I have tested that the threshold is a number, not that the engine noticed a crossing. Look at the second rule while we wait, because it is probably never going to fire. KLN crosses below seventy, and KLN is up around two hundred and eighteen, twenty percent above its open. Nothing in the next few minutes takes it below seventy. Worth saying out loud rather than hiding, because a rule that never fires is not evidence of anything - it is not proof the engine works and it is not proof it is broken. Half the alerting rules ever written are sitting in that state right now. And what the first rule is testing is narrower than it looks. Not that the value went above four hundred. That the engine noticed the moment it crossed, once, and did not fire again on every candle that stayed above. There is a test with almost that exact name in the suite, and this is the same claim being made against a live feed, with a person watching instead of an assertion. Which is also why the simulator was not allowed to own a timer. The tests can run this crossing a thousand times in a millisecond. Out here we wait."
+    },
+    {
+      "anchor": 672.9,
+      "beat": "alert",
+      "say": "And there it is. Crosses above four hundred, fired at four hundred and eight point nine one."
+    },
+    {
+      "anchor": 684.4,
+      "beat": "replay",
+      "say": "That single line is the whole product working end to end: a simulator that ticks, a feed that retains, a rules engine that parsed a sentence a person typed into a box, an evaluator that noticed a crossing, and a panel that rendered it. Five of the six areas, built in parallel by five agents in eighteen minutes, meeting each other for the first time just now. Then the scrubber, which is the hardest single requirement in the brief, because moving it has to move all four panels together and each of those panels belongs to somebody different. Nine minutes and thirty-five seconds ago, and look at what happened along the bottom. The alerts band is empty. We have moved the reference time back to before that crossing existed, and the panel that renders alerts agreed with the panel holding the scrubber, without either of their authors ever discussing it."
+    },
+    {
+      "anchor": 728.4,
+      "beat": "theme",
+      "say": "And the light one, because the brief asked for both, and a light theme that is just an inverted dark theme is a thing you can see in a second. Reds and greens still carry their meaning against white, and the sparklines are still legible. That is a second set of colours, not the first one inverted."
+    },
+    {
+      "anchor": 745.2,
+      "beat": "honest",
+      "say": "So: that is a second product, from a document, built by a program, fixed by an agent reading a review written by another agent, and used - properly - for the first time about ninety seconds ago. Nothing in it was typed by a person. Every decision in it was. One thing is still not done, and it is the only piece of this day that needed a person. The memory file still says zero dependencies with no exception written under it. The agent that read it was right, and the next one will be right the same way, and will delete the tool again. None of that gets better by remembering it. So the sentence that has to be written is not a promise, and it is not a note in a commit message. It is one line in the standard: the running application takes no dependencies; the tools directory is not the running application, and the Agent SDK lives there. Twenty words, in the file every agent loads before it does anything else."
+    }
+  ]
+}

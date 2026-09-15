@@ -1,0 +1,41 @@
+{
+  "lecture": "w3-04",
+  "cut_seconds": 420.0,
+  "segments": [
+    {
+      "anchor": 2,
+      "beat": "why",
+      "say": "One agent has one context window, and you have already watched it fill. Ninety-six percent free right now, and by the end of a real afternoon that number is the thing standing between you and a good answer. Two memory files, two thousand four hundred tokens, in the window before I have typed a thing. That is what a memory file costs every session, which is why we kept ours to twenty-nine lines. Three agent definitions cost three hundred and fourteen tokens between them. So here is the move that changes the arithmetic. Instead of one agent that has to hold everything, you hire a specialist... and you give it a job so narrow that it can do the work and hand back a summary, instead of handing back its whole afternoon."
+    },
+    {
+      "anchor": 41,
+      "beat": "make",
+      "say": "Watch what it writes, because this is a job description and it reads like one. The description states the boundary in both directions. It owns the simulator — vehicles, regions, routes, the tick, the exceptions, the seed. And it explicitly does not take the interface, or the chat, or the risk calculation, because those read simulator state rather than own it. Then the tools. Read, write, edit, glob, grep and bash — it writes code and runs its own tests, so it needs the editing trio plus a shell. And look at what it deliberately leaves out. No agent tool, because this one is a leaf and should not fan out further. No web search, because this project is offline by design. Every one of those absences is a decision. And the body of the file carries the things that are easy to violate from inside the work: all randomness through the seeded generator, because a stray random call quietly destroys the replay. It even names the defect: a bare Math dot random, and the replay is gone. And look at the test guidance — same seed replays, different seeds diverge, ticks advance position, arrival estimates fall. Those are properties, not a coverage number. It also rules out mocking the simulator out of its own tests."
+    },
+    {
+      "anchor": 107,
+      "beat": "notyet",
+      "say": "Read the constraints it wrote for itself once more and notice what they are. Not instructions for a task — the standing conditions for a role. And then it fails. Agent type simulator not found. The list of agents it can actually reach is printed right underneath, and simulator is not on it. Read the explanation, because it is the honest one: the agent registry is loaded when the session starts, and we created this file a minute ago. So the name does not exist yet, however correct the file is. But notice what it does instead of stopping. It takes the definition it just wrote, inlines it word for word into a general agent, and gets on with the build in the background. Same brief, same constraints, different plumbing. Except read the small print, because it is honest about the one difference. The definition restricted that specialist to six tools. The general agent it fell back to has the whole toolset, and the only thing holding it to six is a line in the prompt. So the brief is identical and the guardrail is not — a hard limit became a request. And while that runs, it tells me about a decision it made without asking. The brief never named a language or a test runner. It chose Node with the built-in test runner and zero dependencies. . . and it justifies that straight off my own constraints: offline, no paid keys, every dependency installable in one command. Node twenty-four, ES modules, node colon test. Nothing to install and nothing to go stale. Then the sentence that matters. If you would rather it were something else, say so now — it is much cheaper to change before the rest of the app lands on top of it. That is an agent managing your risk, not just your typing. And one more thing it flags on its own initiative: it gave the simulator its own unit tests, rather than reserving all tests for a separate agent — reasoning that whoever changes the tick logic should be the one updating the tests that pin it. It could have just done it. Flagging a decision you were not asked to make is the difference between delegation and abdication."
+    },
+    {
+      "anchor": 215,
+      "beat": "restart",
+      "say": "So we quit. And it warns us on the way out: the background agent will not finish, re-run the build after the restart. Fine. Notice the second half of that warning: after the restart, it says, simulator will also be dispatchable by name. It is sure. Hold that thought. That is the lesson we came for. Write it, restart, then use it. And this is a good habit to copy. When something in a project changes what the agent can see — a new command, a new specialist, a new rule — assume the running session will not notice until it starts again."
+    },
+    {
+      "anchor": 246,
+      "beat": "run",
+      "say": "Except it still is not found. Look at what it does before it says anything. It runs a diagnostic — lists the agents folder, dumps the first lines of the file, checks for a user-level copy, reads the settings. Facts first. And this is the most useful thirty seconds in the whole day, because of what it does next. It retracts. In its own words: my earlier claim that a restart would register it was wrong. Then it separates what it knows from what it is guessing. The file parses. It sits in the right place. Nothing at user level is shadowing it. Nothing in settings disables project agents. And yet the name does not appear in this session's dispatchable list. So it hands me the one check that would tell the two failure modes apart — whether Claude Code can see the file at all, which separates not discovered from discovered but not dispatchable. The check is slash agents, typed straight into the terminal. Either it can see the file or it cannot, and that is a thirty second answer rather than an afternoon. And then it refuses to keep guessing while the build waits, and delivers the work the way that does function. The reason it gives is good: any fix could only be tested in a new session anyway. You are going to hit things like this. The tools are moving faster than the documentation. What you want from an agent at that moment is not confidence. . . it is exactly this: here is what I verified, here is what I got wrong, here is how you would check, and here is the work regardless. There is a second lesson buried in here, and it is about you rather than the tool. When an agent tells you it was wrong, that is the moment its other claims become worth more, not less. The failure mode you should actually fear is the one that never corrects itself. . . because you cannot tell the difference between that and being right. So the work still lands. Same definition, same constraints, delivered through different plumbing, with a note about which part was improvised. It is building src slash sim and its tests, and running node dash dash test over them itself."
+    },
+    {
+      "anchor": 361,
+      "beat": "report",
+      "say": "Context after all that: ninety-three percent free. Custom agents, three hundred and fourteen tokens. Memory files, two thousand four hundred. The only line that moved is messages, at thirty-one thousand. A whole simulator was designed, argued about and built, and it cost about three percent of the window."
+    },
+    {
+      "anchor": 379,
+      "beat": "explore",
+      "say": "And you do not have to define a specialist at all to get the benefit. There is one already installed. Explore reads the repository and reports back what is there and how it fits together, without any of that ending up in your window. One sentence, no setup, same principle: send someone else to read it. Though watch what happens — it declines. Nothing to explore yet, and a survey now would race the agent still writing and report an empty repo. That is the right refusal. And that is the distinction to carry into tomorrow. A specialist is something you define, that does one job and disappears. Its own window, it can only talk to whoever called it, and it lives exactly as long as its task. Hold on to that. . ."
+    }
+  ]
+}

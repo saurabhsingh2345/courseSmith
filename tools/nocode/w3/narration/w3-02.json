@@ -1,0 +1,36 @@
+{
+  "lecture": "w3-02",
+  "cut_seconds": 222.0,
+  "segments": [
+    {
+      "anchor": 2,
+      "beat": "empty",
+      "say": "This is where week three starts. An empty folder. . . and a terminal. No code, no scaffolding, nothing borrowed from last week."
+    },
+    {
+      "anchor": 12,
+      "beat": "git",
+      "say": "Everything you see this week gets built from here, in front of you. First command of the week. Git init."
+    },
+    {
+      "anchor": 18,
+      "beat": "spec",
+      "say": "Now every mistake from here is one command away from being undone. And this is the only document that really matters. The brief for what we are building: Control Tower, a live operations console for a delivery fleet. Sixty vans on a map. A list of what is running late. A heat map of which regions are in trouble. And a chat box you can simply tell to reroute a van. One markdown file, pasted in from the clipboard: what it is, then why it is built that way — what it falls back on when the brief runs out. I wrote this, not the agent. It is the one thing you do not delegate."
+    },
+    {
+      "anchor": 51,
+      "beat": "first",
+      "say": "Four commands in the history, and one of them is the entire project. Now we start Claude Code in that folder for the first time. And straight away it does something worth stopping on: it asks whether you trust this folder before touching anything in it. That is not a formality. Read it, every time. It is the last cheap moment to say no. And say yes deliberately, not reflexively. You are the person who chose this folder, so you are the person who knows whether that is a reasonable thing to hand over."
+    },
+    {
+      "anchor": 80,
+      "beat": "context",
+      "say": "Slash context. This is the agent showing you exactly what it knows before you have said a word to it. A system prompt, which is how it knows how to behave. Tool definitions, which is how it knows what it can do. Any agents and memory files this project has, which right now is almost nothing. And our conversation so far. Twenty thousand tokens of that is tool definitions, five thousand the system prompt, and the conversation eight tokens. You start three percent full. Then the number that matters: free space, ninety-seven percent. That is the resource you spend all week. Every document you pull in, every plugin you install, comes out of it. And when it runs low the answers get worse — not with an error, just quietly worse. The people who get good results are the ones who know what is in this panel. One more habit worth forming now. Look at this panel at the start of a session and again when an answer disappoints you. Nine times out of ten the answer got worse because the window got full, not because the model got stupid."
+    },
+    {
+      "anchor": 134,
+      "beat": "claudemd",
+      "say": "So now we give it a memory. Claude dot M D is the file it reads at the start of every single session, and I am asking for one specific thing in it. Pull the brief in with an at tag, because every session genuinely needs the brief. But refer to everything else by its path, in backticks, so it only opens those when the work actually calls for them. That distinction sounds small and it is not. An at tag pastes the whole document into context, every time, forever, whether this session needs it or not. A path is an offer — it costs you one line now and the full document only when it is relevant. On a project with a dozen design notes, that is the difference between starting every morning half full and starting it empty. Now watch what it actually does. It reads the project first, rather than writing from the brief alone. It drafts. It counts the lines, decides forty is over the limit I gave it, and trims its own work back before showing me anything. I did not tell it to count. I told it what good looked like, in one sentence, and it held itself to that. That is the whole job this week, in miniature. You are not going to out-type it. What you can do is be clear about the standard... and then check. And read the note it leaves at the bottom, because it is honest about something it could easily have glossed over: none of the folders it just referenced actually exist yet. It described the layout the brief implies, and told me to adjust those lines once the real structure lands. A memory file that quietly describes a repository that is not there is worse than no memory file at all."
+    }
+  ]
+}

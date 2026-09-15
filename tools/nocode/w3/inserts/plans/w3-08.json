@@ -1,0 +1,662 @@
+{
+ "lecture": "w3-08",
+ "title": "YOLO without the fear: the container sandbox",
+ "note": "591s, 56% dead across sixteen spans. Fifteen cutaways, 241s (41%). Four enforced sync fixes at anchors 150.0, 420.0 and 470.0. Anchor 45.0 leads by 12s and is WAIVED: there is no dead frame anywhere between 19.0s and 53.5s, so there is nothing to end a card on before it, and covering live footage to fix a sync error would trade one defect for a worse one.",
+ "sync_waived": [
+  45.0
+ ],
+ "inserts": [
+  {
+   "at": 1.0,
+   "role": "open",
+   "secs": [
+    8.0
+   ],
+   "why": "Names the lecture and answers the question the previous one ended on.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 2  \u00b7  lecture 8",
+     "lines": [
+      "YOLO without the fear:",
+      "the container *sandbox*"
+     ],
+     "size": 54,
+     "stamp": "the answer is not a setting. it is a place",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 10.0,
+   "role": "beat",
+   "secs": [
+    8.5
+   ],
+   "why": "Why approving every step is not the safe option, over a still terminal.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "because approving every step does work",
+     "lines": [
+      "You become the *slowest part*"
+     ],
+     "size": 56,
+     "wrong": "approving every step keeps you safe",
+     "right": "it makes you the slowest part of your own project",
+     "note": "and after about the fortieth prompt you stop reading them properly",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 54.5,
+   "role": "beat",
+   "secs": [
+    8.0
+   ],
+   "why": "The reframing the whole lecture rests on, and it is spoken with nothing on screen.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "the question to ask instead",
+     "lines": [
+      "Not trust. *Reach*"
+     ],
+     "size": 96,
+     "wrong": "how much do I trust this agent",
+     "right": "what can it reach - and reach is a property of the place, not the model",
+     "note": "change the room and every agent you run in it inherits the boundary",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 117.0,
+   "role": "beat",
+   "secs": [
+    10.0
+   ],
+   "why": "Why this generated file is the one you have to read.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "if i cannot read the thing that protects me",
+     "lines": [
+      "Then it is *decoration*"
+     ],
+     "size": 80,
+     "stamp": "the one category of generated file where taking it on trust defeats the purpose",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 129.0,
+   "role": "beat",
+   "secs": [
+    8.5
+   ],
+   "why": "What it does before writing anything - a habit worth naming and invisible on the frame.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "and notice what it does first",
+     "lines": [
+      "It looked at the *project*"
+     ],
+     "size": 80,
+     "stamp": "so the container matches what is here, not what a template assumes",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 142.5,
+   "role": "beat",
+   "secs": [
+    7.0
+   ],
+   "why": "SYNC FIX: anchor 150.0 arrives ten seconds after its picture. Ends 0.5s before it.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "three files, appearing as untracked",
+     "lines": [
+      "The whole *boundary*"
+     ],
+     "size": 86,
+     "rows": [
+      {
+       "t": ".dockerignore"
+      },
+      {
+       "t": "a Dockerfile for development"
+      },
+      {
+       "t": "and a compose file",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 226.0,
+   "role": "beat",
+   "secs": [
+    10.0,
+    11.0
+   ],
+   "why": "What is deliberately not in the image, and the probe running on screen as unreadable output.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "the agent's own tool goes inside the image",
+     "lines": [
+      "So it stays *disposable*"
+     ],
+     "size": 80,
+     "stamp": "inside the image, not onto the mounted folder",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "and it does not take its own Dockerfile on trust either",
+     "lines": [
+      "A *probe*, not a promise"
+     ],
+     "size": 66,
+     "rows": [
+      {
+       "t": "print the user, and the Node version"
+      },
+      {
+       "t": "print the version of the agent tool inside it"
+      },
+      {
+       "t": "try to write to the home directory"
+      },
+      {
+       "t": "and dump the environment, to see if anything from my Mac leaked through",
+       "hot": true
+      }
+     ],
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 250.5,
+   "role": "beat",
+   "secs": [
+    11.5,
+    10.0
+   ],
+   "why": "The single line the narration calls the whole lecture, and the four things it excludes.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "one bind mount: the one and only host path exposed",
+     "lines": [
+      "*Not* exposed"
+     ],
+     "size": 104,
+     "rows": [
+      {
+       "t": "not your home directory"
+      },
+      {
+       "t": "not your ssh keys"
+      },
+      {
+       "t": "not your cloud credentials"
+      },
+      {
+       "t": "and not the folder above this one",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "because mounting a parent to be helpful hands over every sibling project",
+     "lines": [
+      "That single line is",
+      "the whole *lecture*"
+     ],
+     "size": 54,
+     "stamp": "everything else is convenience",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 288.0,
+   "role": "beat",
+   "secs": [
+    6.5,
+    6.0
+   ],
+   "why": "The property of a bind mount that cuts both ways - stated plainly and easy to miss.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "and it cuts both ways",
+     "lines": [
+      "There is *no copy*"
+     ],
+     "size": 96,
+     "cols": [
+      {
+       "head": "outside the mount",
+       "items": [
+        "the container cannot see it",
+        "that is the protection"
+       ]
+      },
+      {
+       "head": "inside the mount",
+       "items": [
+        "full write access",
+        "to your real files, on your real disk, right now"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "so be exact about what you have bought",
+     "lines": [
+      "It protects everything *except*",
+      "the thing you are working on"
+     ],
+     "size": 50,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 355.5,
+   "role": "beat",
+   "secs": [
+    8.0,
+    8.0
+   ],
+   "why": "The probe's answers, and the habit the narration says to take from the lecture.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "and this is what the probe came back with",
+     "lines": [
+      "*None* leaked"
+     ],
+     "size": 104,
+     "rows": [
+      {
+       "t": "sudo: command not found"
+      },
+      {
+       "t": "host environment leak check: none leaked",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "if you take one habit from this lecture, take this one",
+     "lines": [
+      "Ask for the *reasoning*",
+      "in the same breath"
+     ],
+     "size": 52,
+     "stamp": "you are not going to write it. you do have to be able to read it",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 400.0,
+   "role": "beat",
+   "secs": [
+    9.0,
+    10.0
+   ],
+   "why": "SYNC FIX: anchor 420.0 arrives twenty-one seconds after its picture. Ends 1s before it.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "and there is something worth noticing in the order of the layers",
+     "lines": [
+      "*Order* is the craft"
+     ],
+     "size": 96,
+     "cols": [
+      {
+       "head": "near the bottom",
+       "items": [
+        "the system packages",
+        "change these and almost everything rebuilds"
+       ]
+      },
+      {
+       "head": "near the top",
+       "items": [
+        "the project",
+        "change a source file and almost nothing rebuilds"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "which is why the second run takes seconds",
+     "lines": [
+      "The one piece of Docker craft",
+      "that pays for itself *immediately*"
+     ],
+     "size": 48,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 422.0,
+   "role": "beat",
+   "secs": [
+    13.0,
+    13.0
+   ],
+   "why": "What disposable actually buys, against the alternative - and who wrote the thing.",
+   "slides": [
+    {
+     "k": "cols",
+     "kicker": "that is what makes it disposable",
+     "lines": [
+      "Delete it. Build it *again*"
+     ],
+     "size": 76,
+     "cols": [
+      {
+       "head": "a container",
+       "items": [
+        "ruined? delete it and rebuild in a minute",
+        "nothing of mine was ever at risk"
+       ]
+      },
+      {
+       "head": "your laptop",
+       "items": [
+        "an agent with a shell on your real machine",
+        "and your goodwill as the only boundary"
+       ]
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and one more thing, easy to miss while the layers scroll past",
+     "lines": [
+      "*Reading* that reasoning",
+      "is the work now"
+     ],
+     "size": 52,
+     "stamp": "I described the boundary in two sentences and asked for the reasoning alongside it",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 452.5,
+   "role": "beat",
+   "secs": [
+    8.0,
+    8.5
+   ],
+   "why": "SYNC FIX: anchor 470.0 arrives eighteen seconds after its picture. Ends 1s before it.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "two images come out, and the second is the interesting one",
+     "lines": [
+      "*control-tower-offline*"
+     ],
+     "size": 72,
+     "stamp": "the same image, with the network switched off entirely",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and that is what it is for",
+     "lines": [
+      "Prove it, do not *believe* it"
+     ],
+     "size": 62,
+     "wrong": "the no-dependencies rule is still true",
+     "right": "run the suite in a container that physically cannot reach anything",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 471.0,
+   "role": "beat",
+   "secs": [
+    13.0,
+    13.0
+   ],
+   "why": "The acceptance test, three questions long, and why it has to be run rather than reasoned about.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "then step inside and ask three questions",
+     "lines": [
+      "The *acceptance* test"
+     ],
+     "size": 72,
+     "rows": [
+      {
+       "t": "where am I?"
+      },
+      {
+       "t": "what can I see?"
+      },
+      {
+       "t": "and who am I?",
+       "hot": true
+      }
+     ],
+     "stamp": "run it every time you build one",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "because until you go and look",
+     "lines": [
+      "A wrong mount looks exactly",
+      "like a *right* one"
+     ],
+     "size": 52,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 503.0,
+   "role": "beat",
+   "secs": [
+    10.0,
+    11.0,
+    11.0
+   ],
+   "why": "The close: what you are actually buying, and the sentence to leave with.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "each of those checks ran in a container that did not exist a second earlier",
+     "lines": [
+      "And will not exist",
+      "a second *later*"
+     ],
+     "size": 54,
+     "stamp": "which is the property you are buying",
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "and this is why you run the checks by hand",
+     "lines": [
+      "Intent, or *fact*"
+     ],
+     "size": 104,
+     "wrong": "you read the compose file, so you know what it mounts",
+     "right": "a compose file is a statement of intent; a running container is a fact",
+     "note": "the gap between the two is where every container security incident lives",
+     "trans": "rise"
+    },
+    {
+     "k": "head",
+     "kicker": "and that is the check itself",
+     "lines": [
+      "Read the file.",
+      "Then go and *ask* the container"
+     ],
+     "size": 54,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 541.5,
+   "role": "beat",
+   "why": "The three questions asked inside the container and the three answers, read out over a terminal that has finished printing them. Ends at 566.5, half a second before anchor 567 hands over to the next command.",
+   "secs": [
+    8.0,
+    8.0,
+    9.0
+   ],
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "three questions, asked from inside the container",
+     "lines": [
+      "Where am I. What can",
+      "I see. *Who* am I"
+     ],
+     "size": 52,
+     "rows": [
+      {
+       "t": "where am I  ->  workspace. not a path on my Mac"
+      },
+      {
+       "t": "what can I see  ->  the repository, and nothing else"
+      },
+      {
+       "t": "who am I  ->  node. not an administrator, and not me",
+       "hot": true
+      }
+     ],
+     "stamp": "three answers, and each one is a wall",
+     "trans": "fade"
+    },
+    {
+     "k": "hierarchy",
+     "kicker": "and look at what is in that listing you might not expect",
+     "lines": [
+      "*.git* is in there"
+     ],
+     "size": 60,
+     "nodes": [
+      {
+       "t": "workspace",
+       "depth": 0,
+       "kind": "dir"
+      },
+      {
+       "t": "the source",
+       "depth": 1,
+       "kind": "dir"
+      },
+      {
+       "t": "the tests",
+       "depth": 1,
+       "kind": "dir"
+      },
+      {
+       "t": "the plan",
+       "depth": 1,
+       "kind": "file"
+      },
+      {
+       "t": "the tooling",
+       "depth": 1,
+       "kind": "dir"
+      },
+      {
+       "t": ".git",
+       "depth": 1,
+       "kind": "dir"
+      }
+     ],
+     "active": 5,
+     "caption": "the container can see the history - which is what lets it work sensibly, and what makes committing first matter",
+     "trans": "rise"
+    },
+    {
+     "k": "myth",
+     "kicker": "and who am I: node",
+     "lines": [
+      "Not an *administrator*.",
+      "And not me"
+     ],
+     "size": 60,
+     "wrong": "the agent runs as you, with your reach",
+     "right": "it runs as node, in a working directory that only exists in here",
+     "note": "exactly what an agent working on this project needs, and nothing else",
+     "trans": "fade"
+    }
+   ]
+  },
+  {
+   "at": 574.0,
+   "role": "close",
+   "why": "The close, and the lecture's last words. The frame is a no-such-file error that finished printing seconds earlier.",
+   "secs": [
+    8.0,
+    9.0
+   ],
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "list the folder that holds every user account on this Mac",
+     "lines": [
+      "*No such file*.",
+      "Not permission denied"
+     ],
+     "size": 58,
+     "wrong": "the container refused to show you the other accounts",
+     "right": "that path does not exist in this world at all",
+     "note": "there is nothing there to be denied access to",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and that is when the dangerous flag stops being dangerous",
+     "lines": [
+      "You do not get speed",
+      "by being *brave*"
+     ],
+     "size": 62,
+     "stamp": "you get it by changing where the work happens",
+     "trans": "rise"
+    }
+   ]
+  }
+ ]
+}

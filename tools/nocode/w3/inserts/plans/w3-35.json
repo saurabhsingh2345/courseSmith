@@ -1,0 +1,370 @@
+{
+ "lecture": "w3-35",
+ "title": "The pull request",
+ "note": "84% dead picture across eight spans - the frame is a static pull request page while the narration teaches how to read one. Six cutaways, 67s of 156s (43%). The two sync leads (anchors 38.1 and 103.4) are 4s and 5s, under the 8s threshold, and neither has a dead frame in the three seconds before it to end a card on.",
+ "inserts": [
+  {
+   "at": 2.5,
+   "role": "open",
+   "secs": [
+    4.5,
+    4.5
+   ],
+   "why": "Names the lecture and the argument it closes. The four parts of the PR are spoken in the first seven seconds and sit in the title card's stamp.",
+   "slides": [
+    {
+     "k": "head",
+     "kicker": "day 5  \u00b7  lecture 30",
+     "lines": [
+      "The pull *request*"
+     ],
+     "size": 92,
+     "stamp": "a title, a body, a branch, and a link back to the issue it closes",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "where the week's argument lands",
+     "lines": [
+      "The diff is the deliverable.",
+      "*Reading* it is your job"
+     ],
+     "size": 54,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 15.5,
+   "role": "beat",
+   "secs": [
+    4.5,
+    4.5,
+    7
+   ],
+   "why": "The body of the pull request is on the frame and unreadable at 4K, and the narration is reading it out. This is that body at a size you can read, then the reason the third heading is the one that matters. The editor card held for nine seconds and 15-32 read as dead picture, so the focus now moves from the first heading to the third instead of sitting on it.",
+   "slides": [
+    {
+     "k": "editor",
+     "kicker": "the body it wrote, at a size you can read",
+     "file": "pull request  \u00b7  body",
+     "size": 44,
+     "rows": [
+      {
+       "t": "## What changed",
+       "kind": "h1"
+      },
+      {
+       "t": "The parser trimmed the trailing field, so a row",
+       "kind": "text"
+      },
+      {
+       "t": "ending in a comma lost its last value.",
+       "kind": "text"
+      },
+      {
+       "t": "",
+       "kind": "text"
+      },
+      {
+       "t": "## Why",
+       "kind": "h1"
+      },
+      {
+       "t": "The split ran before the guard, not after it.",
+       "kind": "text"
+      },
+      {
+       "t": "",
+       "kind": "text"
+      },
+      {
+       "t": "## What I deliberately did not do",
+       "kind": "h1"
+      },
+      {
+       "t": "Did not rename the function, did not tidy the",
+       "kind": "important"
+      },
+      {
+       "t": "imports, did not touch the second parser.",
+       "kind": "important"
+      }
+     ],
+     "focus": [
+      0,
+      2
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "editor",
+     "kicker": "and the heading that is doing the work",
+     "file": "pull request  \u00b7  body",
+     "size": 44,
+     "rows": [
+      {
+       "t": "## What changed",
+       "kind": "h1"
+      },
+      {
+       "t": "The parser trimmed the trailing field, so a row",
+       "kind": "text"
+      },
+      {
+       "t": "ending in a comma lost its last value.",
+       "kind": "text"
+      },
+      {
+       "t": "",
+       "kind": "text"
+      },
+      {
+       "t": "## Why",
+       "kind": "h1"
+      },
+      {
+       "t": "The split ran before the guard, not after it.",
+       "kind": "text"
+      },
+      {
+       "t": "",
+       "kind": "text"
+      },
+      {
+       "t": "## What I deliberately did not do",
+       "kind": "h1"
+      },
+      {
+       "t": "Did not rename the function, did not tidy the",
+       "kind": "important"
+      },
+      {
+       "t": "imports, did not touch the second parser.",
+       "kind": "important"
+      }
+     ],
+     "focus": [
+      7,
+      9
+     ],
+     "trans": "none"
+    },
+    {
+     "k": "myth",
+     "kicker": "and the temptation, right here at the top",
+     "lines": [
+      "Do not skip to the *diff*"
+     ],
+     "size": 62,
+     "wrong": "read the diff, the body is boilerplate",
+     "right": "the body says what the diff cannot: why, and what was left alone",
+     "note": "asking for the third heading is what stops a four-line fix arriving as forty",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 41.0,
+   "role": "beat",
+   "secs": [
+    5.5,
+    6.5
+   ],
+   "why": "Which half of a diff to read first, and why. Spoken over a still page of code.",
+   "slides": [
+    {
+     "k": "flow",
+     "kicker": "and read them in this order",
+     "size": 56,
+     "lines": [
+      "The *test* first"
+     ],
+     "nodes": [
+      {
+       "t": "the test, first",
+       "sub": "what the author believed the bug was",
+       "tone": "#f5c518"
+      },
+      {
+       "t": "the change, second",
+       "sub": "whether it actually fixes that"
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "myth",
+     "kicker": "because one of those decides the other",
+     "lines": [
+      "A wrong *belief* makes a wrong fix"
+     ],
+     "size": 50,
+     "wrong": "the fix looks right, so it is right",
+     "right": "if the belief about the bug is wrong, the fix is wrong however good it looks",
+     "note": "which is why the test is the half you read first",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 73.0,
+   "role": "beat",
+   "secs": [
+    5.0,
+    6.0
+   ],
+   "why": "The two questions are the practical core of the lecture and are spoken, never written down on screen.",
+   "slides": [
+    {
+     "k": "rows",
+     "kicker": "the two questions that catch most of it",
+     "lines": [
+      "Read it *both* ways"
+     ],
+     "size": 66,
+     "rows": [
+      {
+       "t": "Is anything here not mentioned in the issue?"
+      },
+      {
+       "t": "Is anything in the issue not here?",
+       "hot": true
+      }
+     ],
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "and that is not a big ask",
+     "lines": [
+      "About a *minute*"
+     ],
+     "size": 96,
+     "stamp": "and most of what a review is actually for",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 100.0,
+   "role": "beat",
+   "secs": [
+    5.5,
+    6.5
+   ],
+   "why": "The one thing that reads differently in a diff an agent wrote. Named out loud with three examples, none of them on the frame.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "different from a diff a person wrote",
+     "lines": [
+      "Not typos. Not *style*"
+     ],
+     "size": 66,
+     "wrong": "check it for typos and style",
+     "right": "look for the change that is correct and unasked for",
+     "trans": "fade"
+    },
+    {
+     "k": "rows",
+     "kicker": "a rename, a tidied import, a better message",
+     "lines": [
+      "What turns four lines into *forty*"
+     ],
+     "size": 52,
+     "rows": [
+      {
+       "t": "a rename nobody asked for"
+      },
+      {
+       "t": "a tidied import"
+      },
+      {
+       "t": "an improved error message",
+       "hot": true
+      }
+     ],
+     "stamp": "and they are what stop you reading it properly the next time",
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 122.0,
+   "role": "beat",
+   "secs": [
+    6.0,
+    6.0
+   ],
+   "why": "The loop is listed as seven words and is the summary of the whole week. Nothing on screen shows it.",
+   "slides": [
+    {
+     "k": "tokens",
+     "kicker": "squash, delete the branch, and the issue closes itself",
+     "lines": [
+      "And that is the *loop*"
+     ],
+     "size": 62,
+     "chips": [
+      "an issue",
+      "a branch",
+      "a test",
+      "a change",
+      "a review",
+      "a check",
+      "a merge"
+     ],
+     "hot": [
+      6
+     ],
+     "caption": "every step of it existed before any of this",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "which is exactly the point",
+     "lines": [
+      "Not one of them had to be",
+      "*invented* for agents"
+     ],
+     "size": 56,
+     "trans": "rise"
+    }
+   ]
+  },
+  {
+   "at": 142.0,
+   "role": "close",
+   "secs": [
+    5.0,
+    6.0
+   ],
+   "why": "The closing argument, over a merged pull request that stopped changing seconds ago.",
+   "slides": [
+    {
+     "k": "myth",
+     "kicker": "so you do not need a new process for this",
+     "lines": [
+      "The one you *already* had"
+     ],
+     "size": 60,
+     "wrong": "agents need a new way of working",
+     "right": "you need the one you already had, actually used",
+     "trans": "fade"
+    },
+    {
+     "k": "head",
+     "kicker": "what you can do now",
+     "lines": [
+      "What changed is not what",
+      "*good work* looks like"
+     ],
+     "size": 54,
+     "stamp": "it is how fast unreviewed work can arrive",
+     "trans": "rise"
+    }
+   ]
+  }
+ ]
+}
