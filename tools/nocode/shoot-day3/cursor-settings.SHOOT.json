@@ -1,0 +1,15 @@
+{
+    "window.autoDetectColorScheme": false,
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.startupEditor": "none",
+    "editor.fontSize": 15,
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "workbench.activityBar.location": "top",
+    "editor.renderWhitespace": "none",
+    "telemetry.telemetryLevel": "off",
+    "update.showReleaseNotes": false,
+    "explorer.compactFolders": false,
+    "window.commandCenter": false,
+    "workbench.layoutControl.enabled": false
+}

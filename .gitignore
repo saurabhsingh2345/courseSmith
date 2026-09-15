@@ -147,3 +147,7 @@ tools/nocode/**/_montage/
 # swapped out. Written fresh at the start of every shoot, and a picture of this
 # machine rather than part of the rig.
 tools/nocode/**/restore/
+# Same idea one directory over: the real editor settings and the original
+# statusline script a shoot replaces, parked so teardown can restore them.
+tools/nocode/**/*.backup.json
+tools/nocode/**/*.ORIGINAL.*

@@ -1,0 +1,16 @@
+{
+  "col1_card1":  [204, 276],
+  "col3_drop":   [959, 520],
+  "col2_card1":  [581, 276],
+  "col2_below":  [581, 445],
+  "del_card":    [1337, 276],
+  "del_button":  [1486, 249],
+  "col1_title":  [74, 193],
+  "add_button":  [92, 1025],
+  "form_title":  [204, 915],
+  "form_desc":   [204, 963],
+  "form_submit": [72, 1021],
+  "new_name":    "Ideas",
+  "new_title":   "Check it myself",
+  "new_desc":    "A claim is not a demonstration."
+}

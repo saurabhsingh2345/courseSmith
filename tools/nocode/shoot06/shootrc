@@ -1,0 +1,6 @@
+PROMPT='%F{yellow}arena%f %F{white}%#%f '
+RPROMPT=''
+export PS1='arena %# '
+unset RPS1
+cd ~/arena
+clear
