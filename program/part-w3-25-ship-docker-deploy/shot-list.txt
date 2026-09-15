@@ -1,0 +1,5 @@
+W3-25 — Ship it: Docker, deploy, live on the internet
+
+SLIDE ANIMATION   vo/script.json slides
+SCREEN RECORDING  from tools/nocode/w3/cuts/w3-25.mp4
+  After the cut to footage, do not go back to slides.

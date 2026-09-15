@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 220" fill="none">
+  <path d="M20 176 C90 176 110 86 190 80 C270 74 290 176 370 164 C430 154 450 118 480 110" stroke="#e53935" stroke-width="20" stroke-linecap="round" fill="none"/>
+  <path id="coaster-rail" d="M12 166 C82 166 102 76 182 70 C262 64 282 166 362 154 C422 144 442 108 472 100" stroke="#111" stroke-width="18" stroke-linecap="round" fill="none"/>
+  <path d="M12 166 C82 166 102 76 182 70 C262 64 282 166 362 154 C422 144 442 108 472 100" stroke="#f5c518" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <g>
+    <rect x="156" y="44" width="52" height="24" rx="8" fill="#e53935"/>
+    <rect x="152" y="38" width="52" height="24" rx="8" fill="#f5c518" stroke="#111" stroke-width="5"/>
+    <circle cx="164" cy="64" r="5" fill="#111"/>
+    <circle cx="190" cy="64" r="5" fill="#111"/>
+  </g>
+</svg>

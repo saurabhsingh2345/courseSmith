@@ -1,0 +1,1 @@
+And we start with nothing at all. An empty folder. No code, no scaffolding. By the end of today, that folder has a brief, a memory, its own vocabulary... and a specialist that does exactly one job.

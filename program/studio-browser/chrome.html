@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Coder Studio</title>
+  <link rel="stylesheet" href="chrome.css" />
+</head>
+<body data-theme="dark">
+  <header class="bar">
+    <div class="traffic"></div>
+    <nav class="nav">
+      <button id="back" type="button" title="Back">‹</button>
+      <button id="fwd" type="button" title="Forward">›</button>
+      <button id="reload" type="button" title="Reload">↻</button>
+    </nav>
+    <form id="go" class="omni">
+      <input id="url" type="text" spellcheck="false" placeholder="Search or enter address" value="http://127.0.0.1:8765/part-01-the-missing-manual/slides.html?v=live1" />
+    </form>
+    <div class="tools">
+      <button id="part" type="button" title="Part 01 slides">Part 01</button>
+      <button id="theme" type="button" title="Chrome theme">Theme</button>
+      <button id="rec" type="button" class="rec" title="Record this window only">Record</button>
+    </div>
+  </header>
+  <p id="status" class="status"></p>
+  <webview id="view" src="http://127.0.0.1:8765/part-01-the-missing-manual/slides.html?v=live1" allowpopups></webview>
+  <script src="chrome.js"></script>
+</body>
+</html>

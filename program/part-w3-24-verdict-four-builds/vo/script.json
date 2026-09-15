@@ -1,0 +1,17 @@
+{
+  "program": "AI Coder \u2014 no code",
+  "section": "w3-24 The verdict: four builds side by side",
+  "model_id": "eleven_multilingual_v2",
+  "slides": [
+    {
+      "id": "01",
+      "file": "01.mp3",
+      "text": "First line."
+    },
+    {
+      "id": "02",
+      "file": "02.mp3",
+      "text": "Second line."
+    }
+  ]
+}

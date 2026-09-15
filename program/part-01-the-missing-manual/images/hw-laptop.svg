@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" fill="none">
+  <!-- red offset -->
+  <path d="M52 28 L248 18 L268 138 L72 152 Z" fill="#e53935"/>
+  <path d="M38 156 L292 148 L300 176 L28 182 Z" fill="#e53935"/>
+  <!-- lid -->
+  <path d="M40 20 L236 10 L256 130 L60 144 Z" fill="#111" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M56 32 L222 24 L238 120 L74 130 Z" fill="#f5c518"/>
+  <circle cx="148" cy="30" r="3.5" fill="#111"/>
+  <!-- base -->
+  <path d="M26 148 L280 140 L288 168 L16 174 Z" fill="#111" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M48 154 L258 147 L262 160 L46 166 Z" fill="#1a1a1a"/>
+  <g stroke="#f5c518" stroke-width="1.4" opacity="0.85">
+    <path d="M62 157 H244 M62 161 H244 M62 165 H244"/>
+    <path d="M78 155 V167 M96 155 V167 M114 155 V167 M132 155 V167 M150 155 V167 M168 155 V167 M186 155 V167 M204 155 V167 M222 155 V167"/>
+  </g>
+  <rect x="128" y="168" width="52" height="5" rx="2" fill="#2a2a2a"/>
+</svg>

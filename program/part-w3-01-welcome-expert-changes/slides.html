@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>w3-01 Welcome to expert</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/deck.css" />
+  <style>
+    .hero { display:flex; align-items:center; gap:6%; height:100%; }
+    .hero img { height: 58%; }
+    .hero .words { flex:1; }
+    .rail { display:flex; gap:14px; margin-top:34px; }
+    .rail div { flex:1; border:2px solid #2a2a2a; padding:16px 14px; }
+    .rail b { font-family:"Archivo Black",sans-serif; color:var(--yellow);
+              display:block; font-size:clamp(13px,1.5vw,18px); margin-bottom:8px; }
+    .rail.on div:nth-child(3) { border-color: var(--yellow); }
+    .rail.on4 div:nth-child(4) { border-color: var(--yellow); }
+    .rail span { color:#9a958a; font-size:clamp(11px,1.15vw,14px); line-height:1.45; }
+    .big { font-size:clamp(60px,11vw,150px); line-height:.86; }
+    .sub { color:#9a958a; font-size:clamp(15px,1.9vw,25px); margin-top:22px; max-width:30em; line-height:1.5; }
+    .five { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:40px; }
+    .five div { border-top:5px solid var(--yellow); padding-top:14px; }
+    .five b { font-family:"Archivo Black",sans-serif; display:block; font-size:14px; letter-spacing:.1em; color:var(--yellow); }
+    .five span { color:#9a958a; font-size:clamp(11px,1.15vw,15px); line-height:1.45; display:block; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <div id="stage">
+    <div id="gate"><span>Click to start &middot; Adam + SFX</span></div>
+    <div class="veil" id="veil"></div>
+
+    <section class="slide on" data-vo="vo/01.mp3" data-enter="rise">
+      <p class="kicker">Week 3 &middot; Day 1</p>
+      <h1 class="display xl">You stop<br><span class="yellow">typing</span></h1>
+      <p class="sub">Week one you built things. Week two you worked like a professional.
+        This week you stop being the one at the keyboard.</p>
+    </section>
+
+    <section class="slide" data-vo="vo/02.mp3" data-enter="whoosh">
+      <p class="kicker">What actually changes</p>
+      <div class="hero">
+        <img src="images/ill-hands.svg" alt="" />
+        <div class="words">
+          <h2 class="display lg">One instruction.<br><span class="red">Six workers.</span></h2>
+          <p class="sub">The skill stops being how you phrase a request,
+            and starts being how you set up the conditions other agents work in.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-vo="vo/03.mp3" data-enter="hit">
+      <p class="kicker">Where you are</p>
+      <h2 class="display lg">From asking<br>to <span class="yellow">directing</span></h2>
+      <div class="rail on">
+        <div><b>Week 1</b><span>You asked for things and watched them appear.</span></div>
+        <div><b>Week 2</b><span>You worked to a process: tickets, branches, reviews.</span></div>
+        <div><b>Week 3</b><span>You run several agents at once, safely, and build two real products.</span></div>
+      </div>
+    </section>
+
+    <section class="slide" data-vo="vo/04.mp3" data-enter="whoosh">
+      <p class="kicker">What we build</p>
+      <div class="hero">
+        <img src="images/ill-tower.svg" alt="" />
+        <div class="words">
+          <h2 class="display lg">Control<br>Tower</h2>
+          <p class="sub">Sixty delivery vans on a live map. A list of what is late.
+            A heat map of which regions are in trouble. And a chat box you can tell
+            to reroute a van.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-vo="vo/05.mp3" data-enter="rise">
+      <p class="kicker">The week</p>
+      <h2 class="display md">Five days</h2>
+      <div class="five">
+        <div><b>ONE</b><span>One agent, properly. Commands, specialists, hooks, plugins.</span></div>
+        <div><b>TWO</b><span>A box it cannot get out of &mdash; and the same agent with no screen at all.</span></div>
+        <div><b>THREE</b><span>A team of six builds the product while you watch.</span></div>
+        <div><b>FOUR</b><span>Your own orchestrator, pointed at a second product it has never seen.</span></div>
+        <div><b>FIVE</b><span>An issue, a pull request, a green build &mdash; and an honest verdict.</span></div>
+      </div>
+    </section>
+
+    <section class="slide center" data-vo="vo/06.mp3" data-enter="hit" data-stamp="900">
+      <h2 class="display big">You still<br><span class="red">own it</span></h2>
+      <p class="sub">Nothing this week changes who is responsible for what ships.
+        The agents get faster. The judgement stays yours.</p>
+    </section>
+
+    <section class="slide" data-vo="vo/07.mp3" data-enter="whoosh">
+      <p class="kicker">Starting now</p>
+      <h2 class="display lg">An empty<br>folder</h2>
+      <p class="sub">No code, no scaffolding, nothing. By the end of today it has a brief,
+        a memory, its own vocabulary, and a specialist that only does one job.</p>
+    </section>
+
+    <section class="slide" data-vo="vo/08.mp3" data-enter="whoosh">
+      <p class="kicker">What no code means here</p>
+      <h2 class="display lg">You write<br>the <span class="yellow">brief</span></h2>
+      <p class="sub">You will not type a line of the application this week. You write
+        what it has to do, you read what came back, and you say what is wrong with it.
+        That reading is the skill.</p>
+    </section>
+
+    <section class="slide" data-vo="vo/09.mp3" data-enter="hit">
+      <p class="kicker">Everything runs in a box</p>
+      <h2 class="display lg">Fast, because<br>it is <span class="yellow">contained</span></h2>
+      <p class="sub">The reason we can let agents run without approving every step is
+        not bravery. It is that by tomorrow afternoon they are running somewhere
+        they cannot break anything of yours.</p>
+    </section>
+
+    <section class="slide" data-vo="vo/10.mp3" data-enter="rise">
+      <p class="kicker">Watch this one</p>
+      <h2 class="display lg">It costs<br>real <span class="red">money</span></h2>
+      <p class="sub">Six agents thinking at once is six times the spend. We put the
+        number on screen before and after every build this week, so you always know
+        what a technique actually cost.</p>
+    </section>
+
+    <section class="slide" data-vo="vo/11.mp3" data-enter="whoosh">
+      <p class="kicker">By Friday</p>
+      <h2 class="display md">You will be able to</h2>
+      <div class="rail on4">
+        <div><b>DIRECT</b><span>Run a team of agents on one codebase without losing track of them.</span></div>
+        <div><b>CONTAIN</b><span>Give them freedom safely, on your machine or somewhere else entirely.</span></div>
+        <div><b>AUTOMATE</b><span>Run them with nobody in the chair at all, driven by a program.</span></div>
+        <div><b>JUDGE</b><span>Tell a good result from a plausible one, and reject the difference.</span></div>
+      </div>
+    </section>
+
+  </div>
+  <div class="hud"><span id="pos">1 / 11</span><span>w3-01</span></div>
+  <script src="../assets/deck.js"></script>
+</body>
+</html>

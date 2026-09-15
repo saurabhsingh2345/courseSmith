@@ -1,0 +1,13 @@
+{
+  "name": "studio-browser",
+  "productName": "AI Coder Studio",
+  "version": "0.1.0",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^35.2.1"
+  }
+}

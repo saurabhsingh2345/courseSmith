@@ -1,0 +1,5 @@
+W3-18 — Watching a swarm work: approvals, blocks, tokens
+
+SLIDE ANIMATION   vo/script.json slides
+SCREEN RECORDING  from tools/nocode/w3/cuts/w3-18.mp4
+  After the cut to footage, do not go back to slides.

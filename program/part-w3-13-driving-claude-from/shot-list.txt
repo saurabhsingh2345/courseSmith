@@ -1,0 +1,5 @@
+W3-13 — Driving Claude from code: the Agent SDK
+
+SLIDE ANIMATION   vo/script.json slides
+SCREEN RECORDING  from tools/nocode/w3/cuts/w3-13.mp4
+  After the cut to footage, do not go back to slides.

@@ -1,0 +1,5 @@
+W3-01 — Welcome to expert: what changes when you stop typing
+
+SLIDE ANIMATION   vo/script.json slides
+SCREEN RECORDING  from tools/nocode/w3/cuts/w3-01.mp4
+  After the cut to footage, do not go back to slides.

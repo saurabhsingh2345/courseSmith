@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>01 Open</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #070707;
+      --ink: #f4f1ea;
+      --muted: #8a867c;
+      --yellow: #f5c518;
+      --red: #e53935;
+      --blue: #3b82f6;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      background: #000;
+      color: var(--ink);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      overflow: hidden;
+    }
+    #stage {
+      width: min(100vw, calc(100vh * 16 / 9));
+      height: min(100vh, calc(100vw * 9 / 16));
+      margin: auto;
+      position: relative;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 6.5% 7%;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate3d(48px, 0, 0) scale(0.985);
+      filter: none;
+      transition: opacity 0.75s ease, transform 0.85s cubic-bezier(.16,.84,.22,1);
+    }
+    .slide.on {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+    .slide.exit {
+      opacity: 0;
+      transform: translate3d(-40px, 0, 0) scale(0.985);
+    }
+    .kicker {
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: clamp(11px, 1.25vw, 15px);
+      color: var(--muted);
+      margin: 0 0 18px;
+    }
+    .display {
+      font-family: "Archivo Black", sans-serif;
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .xl { font-size: clamp(42px, 7.4vw, 96px); }
+    .lg { font-size: clamp(32px, 5.2vw, 68px); }
+    .md { font-size: clamp(22px, 3.2vw, 40px); }
+    .red { color: var(--red); }
+    .yellow { color: var(--yellow); }
+    .blue { color: var(--blue); }
+    .grow { flex: 1; }
+    .row { display: flex; align-items: center; gap: 5%; height: 100%; }
+    .hud {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 4%;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #5c5c5c;
+      z-index: 4;
+    }
+    .hud.hide { display: none; }
+    .stamp, .badge {
+      font-family: "Archivo Black", sans-serif;
+      text-transform: uppercase;
+    }
+    .stamp {
+      display: inline-block;
+      padding: 10px 16px;
+      border: 2px solid currentColor;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: #111;
+      border: 2px solid #fff;
+      box-shadow: 8px 8px 0 var(--red);
+      padding: 12px 18px;
+      line-height: 0.95;
+    }
+    .cell {
+      width: 11px; height: 11px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.08);
+      transform: scale(0.4);
+      opacity: 0.25;
+    }
+    .cell.lit {
+      background: var(--yellow);
+      opacity: 1;
+      transform: none;
+      animation: cellPulse 2.4s ease-in-out infinite;
+    }
+    .grid { display: grid; grid-template-columns: repeat(18, 11px); gap: 4px; }
+    .xrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid #3a3a3a;
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #9a9a9a;
+      margin-top: 10px;
+    }
+    .meter {
+      height: 46px;
+      border: 2px solid #fff;
+      display: flex;
+      overflow: hidden;
+    }
+    .meter .fill {
+      width: 0;
+      background: var(--yellow);
+      color: #111;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .meter .rest {
+      flex: 1;
+      background: #1b1b1b;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 16px;
+      color: #8a8a8a;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .pod { display: flex; align-items: flex-end; gap: 18px; height: 42%; }
+    .col {
+      flex: 1;
+      border: 2px solid #fff;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 12px;
+      font-family: "Archivo Black", sans-serif;
+      color: #fff;
+      transform: scaleY(0);
+      transform-origin: bottom;
+    }
+    .in {
+      opacity: 0;
+      transform: translate3d(0, 18px, 0);
+      clip-path: inset(0 100% 0 0);
+    }
+    .slide.on .in { animation: reveal 0.85s cubic-bezier(.16,.84,.22,1) forwards; }
+    .slide.on .d1 { animation-delay: 0.08s; }
+    .slide.on .d2 { animation-delay: 0.28s; }
+    .slide.on .d3 { animation-delay: 0.5s; }
+    .slide.on .d4 { animation-delay: 0.72s; }
+    .slide.on .d5 { animation-delay: 0.94s; }
+    .slide.on .d6 { animation-delay: 1.16s; }
+    @keyframes reveal {
+      to { opacity: 1; transform: none; clip-path: inset(0 0 0 0); }
+    }
+    @keyframes slam {
+      0% { opacity: 0; transform: rotate(-24deg) scale(1.45); }
+      70% { opacity: 1; transform: rotate(-8deg) scale(0.96); }
+      100% { opacity: 1; transform: rotate(-6deg) scale(1); }
+    }
+    @keyframes badgeSlam {
+      0% { opacity: 0; transform: rotate(16deg) translateY(28px) scale(0.8); }
+      100% { opacity: 1; transform: rotate(4deg); }
+    }
+    @keyframes growY { to { transform: scaleY(1); } }
+    @keyframes fillW { from { width: 0; } to { width: 78%; } }
+    @keyframes draw { from { width: 0; } to { width: 42%; } }
+    @keyframes floaty {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -10px, 0); }
+    }
+    @keyframes drift {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+      50% { transform: translate3d(8px, -6px, 0) rotate(2deg); }
+    }
+    @keyframes dash {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes ride {
+      0% { offset-distance: 0%; }
+      100% { offset-distance: 100%; }
+    }
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.0), 0 0 18px 4px rgba(59,130,246,0.35); }
+      50% { box-shadow: 0 0 0 10px rgba(59,130,246,0.0), 0 0 28px 8px rgba(59,130,246,0.55); }
+    }
+    @keyframes cellPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.55; }
+    }
+    @keyframes barBreath {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.12); }
+    }
+    .slide.on .rule {
+      height: 3px;
+      width: 0;
+      background: var(--red);
+      margin: 18px 0 0;
+      animation: draw 0.7s 0.55s forwards;
+    }
+    .slide.on .stamp-in { animation: slam 0.5s 1s cubic-bezier(.15,1.3,.3,1) both; }
+    .slide.on .badge-in { animation: badgeSlam 0.55s 1.05s cubic-bezier(.15,1.2,.3,1) both; }
+    .slide.on .fill { animation: fillW 1.25s 0.55s cubic-bezier(.2,.8,.2,1) forwards; }
+    .slide.on .col { animation: growY 0.85s cubic-bezier(.16,.9,.24,1) forwards; }
+    .slide.on .c2 { animation-delay: 0.16s; }
+    .slide.on .c3 { animation-delay: 0.32s; }
+    .slide.on .col { animation-name: growY, barBreath; animation-duration: 0.85s, 2.8s; animation-iteration-count: 1, infinite; }
+    .center { align-items: center; text-align: center; }
+    .brand-lockup {
+      width: min(72%, 760px);
+      margin: 28px auto 0;
+      display: block;
+    }
+    .app-icon {
+      width: min(34%, 260px);
+      border-radius: 22%;
+      flex-shrink: 0;
+    }
+    .slide.on .float { animation: floaty 4.2s ease-in-out infinite; }
+    .slide.on .drift { animation: drift 6s ease-in-out infinite; }
+    .art {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .copy { position: relative; z-index: 1; }
+    .win {
+      background: #141414;
+      border: 1px solid #3a3a3a;
+      border-radius: 12px;
+      overflow: hidden;
+      width: min(42%, 380px);
+    }
+    .win-bar {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      padding: 10px 12px;
+      background: #1c1c1c;
+      color: #8a8a8a;
+      font-size: 11px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #444; }
+    .skel { height: 8px; border-radius: 99px; background: #2a2a2a; margin: 10px 14px; }
+    .skel.w2 { width: 72%; }
+    .skel.w3 { width: 54%; }
+    .skel.hi { background: var(--yellow); width: 64%; }
+    .panes {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr 1fr;
+      gap: 8px;
+      width: min(46%, 420px);
+      height: 42%;
+    }
+    .pane {
+      border: 1px solid #3a3a3a;
+      border-radius: 8px;
+      background: #121212;
+      position: relative;
+      overflow: hidden;
+    }
+    .pane::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      background: repeating-linear-gradient(#2a2a2a 0 6px, transparent 6px 14px);
+      opacity: 0.55;
+    }
+    .pane.mid { border-color: #555; }
+    .pane.agent { border-color: var(--yellow); }
+    .laptop {
+      width: min(36%, 320px);
+      aspect-ratio: 16/11;
+      border: 2px solid #fff;
+      border-radius: 10px 10px 0 0;
+      position: relative;
+      margin: 0 auto;
+    }
+    .laptop::after {
+      content: "";
+      position: absolute;
+      left: -10%;
+      right: -10%;
+      bottom: -16%;
+      height: 16%;
+      border: 2px solid #fff;
+      border-top: 0;
+      clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+    }
+    .pulse-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--blue);
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      animation: glow 1.8s ease-in-out infinite;
+    }
+    .ill-coaster {
+      width: min(64%, 560px);
+      height: auto;
+      display: block;
+      margin: 18px auto 10px;
+      overflow: hidden;
+    }
+    .slide.on .ill-coaster { animation: coasterPop 0.55s cubic-bezier(.15,1.2,.3,1) both; }
+    @keyframes coasterPop {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: none; }
+    }
+    .orb {
+      width: 140px; height: 140px;
+      border: 2px solid #2a2a2a;
+      border-radius: 24px;
+      right: 8%;
+      top: 18%;
+    }
+    .orb span {
+      position: absolute;
+      inset: 18%;
+      border: 2px solid var(--yellow);
+      border-radius: 16px;
+      animation: drift 5s ease-in-out infinite;
+    }
+    .veil {
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 6;
+    }
+    #gate {
+      position: absolute;
+      inset: 0;
+      z-index: 8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #070707;
+      cursor: pointer;
+    }
+    #gate.hide { display: none; }
+    #gate span {
+      font-family: "Archivo Black", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 2px solid #fff;
+      padding: 16px 22px;
+      box-shadow: 8px 8px 0 var(--yellow);
+    }
+    #ask {
+      position: absolute;
+      inset: 0;
+      z-index: 7;
+      display: none;
+      flex-direction: column;
+      padding: 5% 6%;
+      background: rgba(7,7,7,0.92);
+      opacity: 0;
+      transform: translate3d(28px, 0, 0);
+      transition: opacity 0.55s ease, transform 0.6s cubic-bezier(.16,.84,.22,1);
+    }
+    #ask.on {
+      display: flex;
+      opacity: 1;
+      transform: none;
+    }
+    #ask.on.out {
+      opacity: 0;
+      transform: translate3d(-28px, 0, 0);
+    }
+    .ask-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .ask-paused {
+      font-family: "Archivo Black", sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      font-size: 13px;
+    }
+    .ask-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+    .ask-tabs button {
+      background: transparent;
+      color: #aaa;
+      border: 1px solid #3a3a3a;
+      font: 600 11px "IBM Plex Mono", monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+    .ask-tabs button.on { color: #111; background: var(--yellow); border-color: var(--yellow); }
+    .ask-clock {
+      width: 52px; height: 52px;
+      border: 3px solid var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Archivo Black", sans-serif;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .ask-pane { display: none; flex: 1; }
+    .ask-pane.on { display: block; }
+    .ask-q {
+      font-family: "Archivo Black", sans-serif;
+      text-transform: uppercase;
+      font-size: clamp(22px, 3.4vw, 40px);
+      line-height: 0.95;
+      margin: 0 0 22px;
+      max-width: 18ch;
+    }
+    .ask-opts { display: flex; flex-direction: column; gap: 10px; max-width: 640px; }
+    .ask-opts button, .ask-opts label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-align: left;
+      background: #141414;
+      color: var(--ink);
+      border: 2px solid #3a3a3a;
+      padding: 14px 16px;
+      font: 600 15px "IBM Plex Mono", monospace;
+      cursor: pointer;
+    }
+    .ask-opts button:hover, .ask-opts label:hover { border-color: #fff; }
+    .ask-opts button.pick, .ask-opts label.pick { border-color: var(--yellow); box-shadow: 6px 6px 0 var(--red); }
+    .ask-opts button.ok { border-color: var(--yellow); color: var(--yellow); }
+    .ask-opts button.no { border-color: var(--red); color: #f5a8a6; }
+    .mark {
+      width: 22px; height: 22px;
+      border: 2px solid #888;
+      flex-shrink: 0;
+    }
+    .round { border-radius: 50%; }
+    .ask-opts .pick .mark { background: var(--yellow); border-color: var(--yellow); }
+    .ask-code {
+      background: #141414;
+      border: 1px solid #3a3a3a;
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 720px;
+    }
+    .ask-code pre {
+      margin: 0;
+      padding: 22px 24px 28px;
+      font: 600 18px/1.6 "IBM Plex Mono", monospace;
+    }
+    .ghost {
+      color: #6a6a6a;
+      border-bottom: 2px dashed var(--yellow);
+      padding: 0 4px;
+    }
+    .ghost.in {
+      color: var(--yellow);
+      border-bottom-color: transparent;
+    }
+    .ask-hint { margin: 14px 0 0; color: #8a867c; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .ask-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+    }
+    .ask-foot button {
+      font-family: "Archivo Black", sans-serif;
+      text-transform: uppercase;
+      background: var(--yellow);
+      color: #111;
+      border: 2px solid #fff;
+      box-shadow: 6px 6px 0 var(--red);
+      padding: 12px 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="stage">
+    <div id="gate"><span>Click to start · Adam + SFX</span></div>
+    <div class="veil" id="veil"></div>
+
+    <section class="slide on" data-vo="vo/01.mp3?v=2" data-enter="hit">
+      <div class="art orb drift" aria-hidden="true"><span></span></div>
+      <div class="copy">
+        <p class="kicker in">01 · the missing manual</p>
+        <h1 class="display xl">
+          <span class="in d1">AI</span><br />
+          <span class="in d2 red">CODER</span><br />
+          <span class="in d3">PROGRAM</span>
+        </h1>
+        <div class="rule"></div>
+      </div>
+      <div class="grow"></div>
+      <div class="badge badge-in">3 weeks<br /><span style="font-size:0.55em">the ride starts now</span></div>
+    </section>
+
+    <div id="ask">
+      <div class="ask-top">
+        <span class="ask-paused" id="ask-kind">Paused · live</span>
+        <span class="ask-clock" id="ask-clock">30</span>
+      </div>
+
+      <div class="ask-pane" data-kind="single">
+        <p class="ask-q">You will be an expert at…</p>
+        <div class="ask-opts">
+          <button type="button" data-ok="1"><span class="mark round"></span> Agentic engineering</button>
+          <button type="button"><span class="mark round"></span> Slide design</button>
+          <button type="button"><span class="mark round"></span> Hardware shopping</button>
+        </div>
+      </div>
+
+      <div class="ask-pane" data-kind="quiz">
+        <p class="ask-q">True or false?</p>
+        <div class="ask-opts">
+          <button type="button" data-quiz="no">This is a quiet, gentle stroll.</button>
+          <button type="button" data-quiz="ok">You need to buckle up. This is a roller coaster.</button>
+        </div>
+      </div>
+
+      <div class="ask-pane" data-kind="multi">
+        <p class="ask-q">How do we start?</p>
+        <div class="ask-opts">
+          <label><span class="mark"></span> Roll up sleeves</label>
+          <label><span class="mark"></span> Build something together</label>
+          <label><span class="mark"></span> Begin with a 40-page syllabus</label>
+        </div>
+      </div>
+
+      <div class="ask-pane" data-kind="code">
+        <p class="ask-q">Accept the completion</p>
+        <div class="ask-code">
+          <div class="win-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> app.js</div>
+          <pre>const tool = <span class="ghost" id="ghost">"Cursor"</span>;</pre>
+        </div>
+        <p class="ask-hint">Click the ghost, or press Tab</p>
+      </div>
+
+      <div class="ask-foot">
+        <span class="ask-hint">Same pause for everyone · then we resume</span>
+        <button type="button" id="ask-go">Continue</button>
+      </div>
+    </div>
+
+    <section class="slide" data-vo="vo/02.mp3?v=2" data-enter="whoosh" data-grid="1" data-ask="single">
+      <div class="row">
+        <div class="grid drift" id="grid-a" aria-hidden="true"></div>
+        <div class="copy">
+          <p class="kicker in">over the course of three weeks</p>
+          <h2 class="display lg">
+            <span class="in d1">Expert at</span><br />
+            <span class="in d2 yellow">agentic</span><br />
+            <span class="in d3">engineering</span>
+          </h2>
+          <p class="kicker in d5" style="margin-top:22px;color:#aaa;">an extraordinary journey</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide center" data-vo="vo/03.mp3?v=2" data-enter="hit" data-ask="quiz">
+      <p class="kicker in">a word of caution</p>
+      <h2 class="display xl">
+        <span class="in d1">You need to</span><br />
+        <span class="in d2 red">buckle up</span>
+      </h2>
+      <svg class="ill-coaster" viewBox="0 0 500 220" aria-hidden="true">
+        <path d="M20 176 C90 176 110 86 190 80 C270 74 290 176 370 164 C430 154 450 118 480 110" stroke="#e53935" stroke-width="20" stroke-linecap="round" fill="none"/>
+        <path id="coaster-rail" d="M12 166 C82 166 102 76 182 70 C262 64 282 166 362 154 C422 144 442 108 472 100" stroke="#111" stroke-width="18" stroke-linecap="round" fill="none"/>
+        <path d="M12 166 C82 166 102 76 182 70 C262 64 282 166 362 154 C422 144 442 108 472 100" stroke="#f5c518" stroke-width="10" stroke-linecap="round" fill="none"/>
+        <g class="coaster-car">
+          <animateMotion dur="3.6s" repeatCount="indefinite" rotate="auto">
+            <mpath href="#coaster-rail"/>
+          </animateMotion>
+          <rect x="-22" y="-20" width="52" height="24" rx="8" fill="#e53935"/>
+          <rect x="-26" y="-26" width="52" height="24" rx="8" fill="#f5c518" stroke="#111" stroke-width="5"/>
+          <circle cx="-14" cy="0" r="5" fill="#111"/>
+          <circle cx="12" cy="0" r="5" fill="#111"/>
+        </g>
+      </svg>
+      <div>
+        <span class="stamp stamp-in" style="color:var(--yellow);border-color:var(--yellow);">roller coaster</span>
+      </div>
+    </section>
+
+    <section class="slide" data-vo="vo/04.mp3?v=2" data-enter="whoosh" data-stamp="1800">
+      <div class="row">
+        <div class="win float" aria-hidden="true">
+          <div class="win-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> objectives.md</div>
+          <div class="skel"></div>
+          <div class="skel w2"></div>
+          <div class="skel hi"></div>
+          <div class="skel w3"></div>
+        </div>
+        <div class="copy">
+          <p class="kicker in">standard fare with these kinds of programs</p>
+          <h2 class="display md" style="max-width:16ch;">
+            <span class="in d1">Begin with objectives.</span><br />
+            <span class="in d3">I don’t.</span>
+          </h2>
+          <div>
+            <p class="kicker in d2" style="margin:18px 0 8px;">many programs start with</p>
+            <div class="xrow in d3"><span class="red">×</span> Introduce myself</div>
+            <div class="xrow in d4"><span class="red">×</span> Curriculum and logistics</div>
+            <div class="xrow in d5"><span class="red">×</span> The usual welcome tour</div>
+          </div>
+          <div style="margin-top:22px;">
+            <span class="stamp stamp-in" style="color:var(--red);">except I don’t</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-vo="vo/05.mp3?v=3" data-enter="whoosh" data-rise="700" data-ask="multi">
+      <div class="row">
+        <div class="panes drift" aria-hidden="true">
+          <div class="pane"></div>
+          <div class="pane mid"></div>
+          <div class="pane agent"></div>
+        </div>
+        <div class="copy">
+          <p class="kicker in">if you have been on any of our programs</p>
+          <h2 class="display lg">
+            <span class="in d1">Instant</span><br />
+            <span class="in d2 yellow">gratification</span>
+          </h2>
+          <p class="kicker in d3" style="margin:18px 0 28px;color:#c8c4ba;">Roll up sleeves. Build something together.</p>
+          <div class="meter">
+            <div class="fill">build first</div>
+            <div class="rest">talk later</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-vo="vo/06.mp3?v=2" data-enter="rise">
+      <p class="kicker in">next three weeks</p>
+      <h2 class="display lg">
+        <span class="in d1">AI products</span><br />
+        <span class="in d2">that <span class="blue">generate</span></span><br />
+        <span class="in d3">code</span>
+      </h2>
+      <div class="grow"></div>
+      <div class="pod">
+        <div class="col" style="height:46%;background:var(--red);box-shadow:7px 7px 0 var(--blue);">01</div>
+        <div class="col c2" style="height:68%;background:var(--blue);box-shadow:7px 7px 0 var(--yellow);">02</div>
+        <div class="col c3" style="height:88%;background:var(--yellow);color:#111;box-shadow:7px 7px 0 var(--red);">03</div>
+      </div>
+    </section>
+
+    <section class="slide center" data-vo="vo/07.mp3?v=1" data-enter="hit" data-ask="code">
+      <p class="kicker in">but for today</p>
+      <h2 class="display lg in d1">We start with</h2>
+      <img class="brand-lockup in d2" src="images/cursor-lockup.png" alt="Cursor" />
+      <p class="kicker in d4" style="margin-top:22px;color:#c8c4ba;">Super popular. Easy to use. Free trial.</p>
+    </section>
+
+    <section class="slide" data-vo="vo/08.mp3?v=1" data-enter="whoosh">
+      <div class="row">
+        <img class="app-icon float" src="images/cursor-icon.png" alt="Cursor app icon" />
+        <div class="copy">
+          <p class="kicker in">already used the free trial</p>
+          <h2 class="display md">
+            <span class="in d1">Watch.</span><br />
+            <span class="in d2">Or follow along</span><br />
+            <span class="in d3 yellow">your way.</span>
+          </h2>
+          <p class="kicker in d4" style="margin-top:22px;color:#aaa;">You do not need a fresh Cursor account.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" data-vo="vo/09.mp3?v=1" data-enter="rise">
+      <div class="row">
+        <div class="win float" aria-hidden="true">
+          <div class="win-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span> index.html</div>
+          <div class="skel"></div>
+          <div class="skel hi"></div>
+          <div class="skel w2"></div>
+          <div class="skel w3"></div>
+        </div>
+        <div class="copy">
+          <p class="kicker in">then we get on with the program</p>
+          <h2 class="display lg">
+            <span class="in d1">Something</span><br />
+            <span class="in d2 yellow">super simple</span>
+          </h2>
+          <p class="kicker in d3" style="margin:18px 0 20px;color:#c8c4ba;">Use AI to generate code. Right away.</p>
+          <div class="badge badge-in">Let’s go do it</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="hud">
+    <span>AI Coder program</span>
+    <span id="pos">1 / 9</span>
+    <span>Adam · then browser</span>
+  </div>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    const pos = document.getElementById("pos");
+    const gate = document.getElementById("gate");
+    const params = new URLSearchParams(location.search);
+    const auto = params.has("record");
+    let i = Math.max(0, Math.min(slides.length - 1, Number(params.get("s") || 0)));
+    let started = false;
+    let asking = false;
+    let askVo = false;
+    let resuming = false;
+    let askTimer = 0;
+    let askLeft = 30;
+    const askNames = {
+      single: "Paused · live",
+      multi: "Paused · live",
+      quiz: "Paused · live",
+      code: "Paused · live",
+    };
+    const pauseClips = ["vo/pause-1.mp3", "vo/pause-2.mp3"];
+    const resumeClips = ["vo/resume-1.mp3", "vo/resume-2.mp3", "vo/resume-3.mp3"];
+    let liveBeat = 0;
+    const ask = document.getElementById("ask");
+    const askClock = document.getElementById("ask-clock");
+
+    const vo = new Audio();
+    const sfx = {
+      whoosh: new Audio("vo/sfx-whoosh.mp3"),
+      hit: new Audio("vo/sfx-hit.mp3"),
+      stamp: new Audio("vo/sfx-stamp.mp3"),
+      tick: new Audio("vo/sfx-tick.mp3"),
+      rise: new Audio("vo/sfx-rise.mp3"),
+    };
+    Object.values(sfx).forEach((a) => { a.preload = "auto"; a.volume = 0.34; });
+    vo.preload = "auto";
+    vo.preservesPitch = true;
+    vo.playbackRate = 0.9;
+
+    const grid = document.getElementById("grid-a");
+    const cells = [];
+    if (grid) {
+      for (let n = 0; n < 18 * 12; n++) {
+        const c = document.createElement("div");
+        c.className = "cell";
+        grid.appendChild(c);
+        cells.push(c);
+      }
+    }
+
+    function playSfx(name) {
+      const a = sfx[name];
+      if (!a) return;
+      a.pause();
+      a.currentTime = 0;
+      a.play().catch(() => {});
+    }
+
+    function lightGrid() {
+      cells.forEach((c) => c.classList.remove("lit"));
+      const lit = 18 * 4;
+      let n = 0;
+      const step = () => {
+        if (n >= lit) return;
+        cells[n].classList.add("lit");
+        if (n % 8 === 0) playSfx("tick");
+        n += 1;
+        setTimeout(step, 22);
+      };
+      step();
+    }
+
+    function restartAnims(el) {
+      el.querySelectorAll(".in, .stamp-in, .badge-in, .fill, .col, .rule, .ill-coaster").forEach((node) => {
+        node.style.animation = "none";
+        void node.offsetWidth;
+        node.style.animation = "";
+      });
+    }
+
+    function show(n) {
+      const nextI = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, idx) => {
+        s.classList.toggle("exit", idx === i && idx !== nextI);
+        s.classList.toggle("on", idx === nextI);
+        if (idx !== nextI && idx !== i) s.classList.remove("exit");
+      });
+      i = nextI;
+      pos.textContent = `${i + 1} / ${slides.length}`;
+      const slide = slides[i];
+      restartAnims(slide);
+      slide.querySelector("animateMotion")?.beginElement?.();
+      playSfx(slide.dataset.enter || "whoosh");
+      if (slide.dataset.grid) setTimeout(lightGrid, 180);
+      if (slide.dataset.stamp) setTimeout(() => playSfx("stamp"), Number(slide.dataset.stamp));
+      if (slide.dataset.rise) setTimeout(() => playSfx("rise"), Number(slide.dataset.rise));
+      vo.pause();
+      if (slide.dataset.vo) {
+        askVo = false;
+        vo.src = slide.dataset.vo;
+        vo.currentTime = 0;
+        vo.playbackRate = 0.9;
+        vo.play().catch(() => {});
+      }
+    }
+
+    function next() {
+      if (asking || resuming) return;
+      if (i < slides.length - 1) show(i + 1);
+    }
+
+    function openAsk() {
+      const kind = slides[i].dataset.ask;
+      if (!kind || !ask) return;
+      asking = true;
+      resuming = false;
+      ask.classList.remove("out");
+      ask.querySelectorAll(".ask-pane").forEach((p) => p.classList.toggle("on", p.dataset.kind === kind));
+      document.getElementById("ask-kind").textContent = askNames[kind] || "Paused · live";
+      askLeft = 30;
+      askClock.textContent = askLeft;
+      ask.classList.add("on");
+      playSfx("stamp");
+      askVo = true;
+      vo.pause();
+      vo.src = pauseClips[liveBeat % pauseClips.length];
+      vo.currentTime = 0;
+      vo.playbackRate = 0.9;
+      vo.play().catch(() => {});
+      clearInterval(askTimer);
+      askTimer = setInterval(() => {
+        askLeft -= 1;
+        askClock.textContent = Math.max(0, askLeft);
+        if (askLeft <= 0) closeAsk(true);
+      }, 1000);
+    }
+
+    function closeAsk(advance) {
+      if (!asking || resuming) return;
+      asking = false;
+      clearInterval(askTimer);
+      if (!advance) {
+        ask.classList.remove("on", "out");
+        return;
+      }
+      resuming = true;
+      askVo = false;
+      ask.classList.add("out");
+      playSfx("whoosh");
+      vo.pause();
+      vo.src = resumeClips[liveBeat % resumeClips.length];
+      liveBeat += 1;
+      vo.currentTime = 0;
+      vo.playbackRate = 0.9;
+      vo.play().catch(() => {
+        resuming = false;
+        ask.classList.remove("on", "out");
+        next();
+      });
+    }
+
+    vo.addEventListener("ended", () => {
+      if (askVo) {
+        askVo = false;
+        return;
+      }
+      if (resuming) {
+        resuming = false;
+        ask.classList.remove("on", "out");
+        next();
+        return;
+      }
+      if (started && slides[i].dataset.ask) openAsk();
+      else if (started || auto) setTimeout(next, 220);
+    });
+    ask.querySelectorAll("[data-kind=single] button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        ask.querySelectorAll("[data-kind=single] button").forEach((b) => {
+          b.classList.toggle("pick", b === btn);
+          b.classList.toggle("ok", b === btn && b.dataset.ok);
+          b.classList.toggle("no", b === btn && !b.dataset.ok);
+        });
+      });
+    });
+    ask.querySelectorAll("[data-kind=multi] label").forEach((lab) => {
+      lab.addEventListener("click", () => lab.classList.toggle("pick"));
+    });
+    ask.querySelectorAll("[data-quiz]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        ask.querySelectorAll("[data-quiz]").forEach((b) => {
+          b.classList.toggle("ok", b.dataset.quiz === "ok");
+          b.classList.toggle("no", b.dataset.quiz === "no");
+          b.classList.toggle("pick", b === btn);
+        });
+      });
+    });
+    document.getElementById("ghost")?.addEventListener("click", () => {
+      document.getElementById("ghost").classList.add("in");
+    });
+    document.getElementById("ask-go")?.addEventListener("click", () => closeAsk(true));
+
+    function start() {
+      if (started) return;
+      started = true;
+      gate.classList.add("hide");
+      show(i);
+    }
+
+    gate.addEventListener("click", start);
+    if (auto) {
+      gate.classList.add("hide");
+      document.querySelector(".hud")?.classList.add("hide");
+      setTimeout(start, Number(params.get("wait") || 1600));
+    }
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        if (!started) { e.preventDefault(); start(); return; }
+      }
+      if (!started) return;
+      if (asking && e.key === "Tab") {
+        e.preventDefault();
+        document.getElementById("ghost")?.classList.add("in");
+        return;
+      }
+      if (asking && (e.key === "Enter" || e.key === "Escape")) {
+        e.preventDefault();
+        closeAsk(true);
+        return;
+      }
+      if (asking) return;
+      if (["ArrowRight", "PageDown"].includes(e.key)) { e.preventDefault(); next(); }
+      if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); show(i - 1); }
+      if (e.key === "f" || e.key === "F") {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+        else document.exitFullscreen();
+      }
+    });
+  </script>
+</body>
+</html>

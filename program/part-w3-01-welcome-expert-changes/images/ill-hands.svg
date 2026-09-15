@@ -1,0 +1,24 @@
+<svg viewBox="0 0 460 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One instruction, many workers">
+  <g transform="translate(11,11)" fill="#e53935">
+    <rect x="24" y="128" width="96" height="64" rx="6"/>
+    <rect x="200" y="34" width="86" height="58" rx="6"/>
+    <rect x="200" y="128" width="86" height="58" rx="6"/>
+    <rect x="200" y="222" width="86" height="58" rx="6"/>
+  </g>
+  <g stroke="#111" stroke-width="7" stroke-linejoin="round">
+    <rect x="24" y="128" width="96" height="64" rx="6" fill="#f5c518"/>
+    <rect x="200" y="34" width="86" height="58" rx="6" fill="#f5c518"/>
+    <rect x="200" y="128" width="86" height="58" rx="6" fill="#f5c518"/>
+    <rect x="200" y="222" width="86" height="58" rx="6" fill="#f5c518"/>
+    <path d="M120 160 C160 160 160 63 200 63" fill="none"/>
+    <path d="M120 160 H200" fill="none"/>
+    <path d="M120 160 C160 160 160 251 200 251" fill="none"/>
+  </g>
+  <g fill="#111">
+    <rect x="44" y="148" width="56" height="8"/>
+    <rect x="44" y="166" width="36" height="8"/>
+  </g>
+  <circle cx="243" cy="63" r="9" fill="#3b82f6"/>
+  <circle cx="243" cy="157" r="9" fill="#3b82f6"/>
+  <circle cx="243" cy="251" r="9" fill="#3b82f6"/>
+</svg>

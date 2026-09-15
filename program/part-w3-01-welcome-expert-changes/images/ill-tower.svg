@@ -1,0 +1,21 @@
+<svg viewBox="0 0 420 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Control tower">
+  <g transform="translate(12,12)">
+    <!-- offset shadow: same silhouette, red, down-right, no blur -->
+    <g fill="#e53935">
+      <path d="M150 40 h100 l14 46 h-128 z"/>
+      <rect x="150" y="86" width="100" height="54"/>
+      <path d="M168 140 h64 l24 250 h-112 z"/>
+      <rect x="96" y="390" width="208" height="34"/>
+    </g>
+  </g>
+  <g stroke="#111" stroke-width="7" stroke-linejoin="round">
+    <path d="M150 40 h100 l14 46 h-128 z" fill="#f5c518"/>
+    <rect x="150" y="86" width="100" height="54" fill="#111"/>
+    <path d="M168 140 h64 l24 250 h-112 z" fill="#f5c518"/>
+    <rect x="96" y="390" width="208" height="34" fill="#f5c518"/>
+    <line x1="186" y1="180" x2="234" y2="180"/>
+    <line x1="182" y1="240" x2="238" y2="240"/>
+    <line x1="178" y1="300" x2="242" y2="300"/>
+  </g>
+  <circle cx="200" cy="24" r="11" fill="#3b82f6" stroke="#111" stroke-width="6"/>
+</svg>

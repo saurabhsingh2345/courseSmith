@@ -1,0 +1,62 @@
+{
+  "program": "AI Coder — no code",
+  "section": "w3-01 Welcome to expert",
+  "model_id": "eleven_multilingual_v2",
+  "slides": [
+    {
+      "id": "01",
+      "file": "01.mp3",
+      "text": "Week one, you built things. Week two, you learned to work like a professional... with tickets, and branches, and reviews. This week, something changes. This week... you stop being the one at the keyboard."
+    },
+    {
+      "id": "02",
+      "file": "02.mp3",
+      "text": "Here is what that actually means. Up to now, the skill has been how you phrase a request. From today, the skill is how you set up the conditions... that other agents work inside. One instruction from you. Six of them working."
+    },
+    {
+      "id": "03",
+      "file": "03.mp3",
+      "text": "So take stock of where you are. In week one you asked for things, and watched them appear. In week two you put a process around it. And this week, you run several agents at once, safely... and build two real products with them."
+    },
+    {
+      "id": "04",
+      "file": "04.mp3",
+      "text": "That product is Control Tower. Sixty delivery vans, moving on a live map. A list down the side of everything running late. A heat map showing which regions are in trouble. And a chat box... that you can simply tell to reroute a van."
+    },
+    {
+      "id": "05",
+      "file": "05.mp3",
+      "text": "Five days to get there. Today, one agent, properly. Tomorrow, a box it cannot get out of... and the same agent with no screen at all, driven from a script. Day three, a team of six builds the product while you watch. Day four, you write your own orchestrator... and point it at a second product it has never seen. And day five, the loop that runs on somebody else's computer, an issue, a pull request, a green build... and an honest verdict on both ways of working."
+    },
+    {
+      "id": "06",
+      "file": "06.mp3",
+      "text": "One thing does not change. Not this week, not ever. You still own what you ship. The agents get faster. The judgement stays yours."
+    },
+    {
+      "id": "07",
+      "file": "07.mp3",
+      "text": "And we start with nothing at all. An empty folder. No code, no scaffolding. By the end of today, that folder has a brief, a memory, its own vocabulary... and a specialist that does exactly one job."
+    },
+    {
+      "id": "08",
+      "file": "08.mp3",
+      "text": "And here is what no code actually means this week. You will not type a single line of the application. You write what it has to do... you read what came back... and you say what is wrong with it. That reading is the skill."
+    },
+    {
+      "id": "09",
+      "file": "09.mp3",
+      "text": "You will notice we move fast, and let agents run without approving every step. That is not bravery. It is that by tomorrow afternoon, they are running somewhere they cannot break anything of yours."
+    },
+    {
+      "id": "10",
+      "file": "10.mp3",
+      "text": "One warning, and it is a real one. Six agents thinking at once is six times the spend. So we put the number on screen at both ends of every build this week... so you always know what a technique actually cost you."
+    },
+    {
+      "id": "11",
+      "file": "11.mp3",
+      "text": "By Friday you will be able to do four things. Direct a team of agents on one codebase without losing track of them. Contain them, so freedom is safe. Run them with nobody in the chair at all. And judge the result... telling a good one from a merely plausible one, and rejecting the difference."
+    }
+  ]
+}

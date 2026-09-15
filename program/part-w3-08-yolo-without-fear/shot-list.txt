@@ -1,0 +1,5 @@
+W3-08 — YOLO without the fear: the container sandbox
+
+SLIDE ANIMATION   vo/script.json slides
+SCREEN RECORDING  from tools/nocode/w3/cuts/w3-08.mp4
+  After the cut to footage, do not go back to slides.

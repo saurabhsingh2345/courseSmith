@@ -1,0 +1,5 @@
+W3-11 — Tagging Claude on a GitHub issue, all the way to a PR
+
+SLIDE ANIMATION   vo/script.json slides
+SCREEN RECORDING  from tools/nocode/w3/cuts/w3-11.mp4
+  After the cut to footage, do not go back to slides.
