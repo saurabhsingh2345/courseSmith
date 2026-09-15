@@ -1,0 +1,351 @@
+// nocode13 — from YOLO to Ralph Loops (his L13, 13:04)
+//
+// The other load-bearing framework of Week 1. His spine kept whole: workflow as
+// the real lever, the three 2025 rungs (micromanagement, plan-execute-review-
+// test, spec-driven development), the three 2026 rungs (YOLO, Ralph Loops,
+// multi-agents), the day-one payoff, the mission-critical versus greenfield
+// split, and the accountability close.
+//
+// `loops` is the template this lecture exists for. He describes a loop wrapped
+// in a loop and then shows a static diagram of it. Ours spins: the inner agent
+// ring turns, the outer ring draws itself around the whole thing and advances
+// once per inner cycle, with a pass counter. It is the best animation
+// opportunity in Week 1 and it is completely inert as a still.
+//
+// The `ladder` is deliberately the same template as L7's eight stages, because
+// he says the two frameworks are "somewhat analogous" and then draws them
+// separately. Slides 31-34 put them side by side and say it out loud.
+//
+// Three shots come free from the day-one takes — no new shoot. `B_ask` is a
+// real approval gate for rung one, and `C_yolo` is a real agent running
+// unattended for rung four and again for the payoff.
+//
+// Ours: B1-B6 build a Ralph Loop, because he names the pattern and never once
+// shows what is in it (three files and four lines of shell). X1-X7 are the two
+// things nobody says about an overnight run — what it costs, and that a weak
+// stopping test makes the outer loop converge on whatever the test rewards.
+// C1-C3 give a signal for when to change rung. D1-D3 price the same task twice.
+
+import React from 'react';
+import {Deck, Slide, deckFrames, C} from './kit';
+
+export const DURS = [
+  10.946, 16.454, 9.69, 10.739, 9.605, 7.674, 13.315, 12.558, 10.172,
+  13.25, 11.725, 14.016, 10.909, 11.258, 10.679, 14.138, 8.359, 11.874,
+  12.846, 13.537, 9.492, 9.494, 13.188, 9.978, 14.216, 11.515, 7.703,
+  7.551, 10.571, 11.879, 5.843, 11.032, 10.973, 6.912, 9.834, 10.527,
+  12.932, 9.535, 11.458, 13.082, 13.817, 12.513, 12.81, 12.233, 4.79,
+  12.033, 13.638, 11.675, 10.146, 10.993, 12.678, 9.553, 10.74, 13.187,
+  10.718, 14.434, 11.915, 15.455, 7.799, 10.457, 13.047, 11.991, 9.676,
+  15.419, 15.552, 7.266, 7.964, 10.165, 10.949, 8.883,
+];
+export const FILES = [
+  '01', '02', '03', '04', '05', '06', '07', '08', '09', '10',
+  '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+  '21', '22', '23', '24', '25', '26', '27', '28', '29', '30',
+  '31', '32', '33', '34', '35', '36', '37', '38', 'B1', 'B2',
+  'B3', 'B4', 'B5', 'B6', 'X1', 'X2', 'X3', 'X4', 'X5', 'X6',
+  'X7', '39', '40', '41', '42', '43', '44', '45', '46', 'C1',
+  'C2', 'C3', 'D1', 'D2', 'D3', '47', '48', '49', '50', '51',
+].map((n) => `${n}.mp3`);
+export const GAP = 0;
+export const L13_FRAMES = deckFrames(DURS, GAP);
+
+const RUNGS = ['micro-\nmanage', 'plan &\nreview', 'spec-\ndriven',
+               'YOLO', 'Ralph\nloops', 'multi-\nagents'];
+const STAGES = ['chat', 'paste', 'complete', 'inline', 'edit',
+                'agent', 'YOLO', 'orchestrate'];
+const AGENT = ['think', 'call a tool', 'read the result'];
+const OUTER = ['run it', 'test it', 'find the gaps', 'fold them in'];
+
+const SLIDES: Slide[] = [
+  // ------------------------------------------------------ workflow is the lever
+  {k: 'head', kicker: 'yesterday was one file. today is the whole day',
+   lines: ['The shape of', 'your *work*'], size: 104, trans: 'fade'},
+  {k: 'myth', kicker: 'two people, same tools, same model, same file', trans: 'rise',
+   lines: ['One gets *twice*', 'as much done'], size: 58,
+   wrong: 'they must have better tooling',
+   right: 'they are working in a different workflow',
+   note: 'it sounds soft. it is the single biggest lever you have'},
+  {k: 'head', kicker: 'and read properly, this is what that tweet was about',
+   lines: ['Not the model.', 'The *way you work*'], size: 76, trans: 'push'},
+  {k: 'head', kicker: 'three from 2025, three from 2026',
+   lines: ['*Six* of them'], size: 138, trans: 'fade',
+   stamp: 'name them, and you start noticing which one you are in'},
+  {k: 'ladder', kicker: 'and they are not six unrelated ideas', trans: 'rise',
+   lines: ['A ladder. And the thing', 'that climbs is *trust*'], size: 48,
+   items: RUNGS, upto: 0},
+
+  // ------------------------------------------------------------ the 2025 three
+  {k: 'ladder', kicker: 'the 2025 mindset', trans: 'fade',
+   lines: ['Three rungs, and most', 'of you are on the *first*'], size: 48,
+   items: RUNGS, upto: 3},
+  {k: 'shot', src: 'nocode13/shots/06.mp4', kicker: 'rung one — micromanagement',
+   lines: ['You approve', '*every* change'], size: 62},
+  {k: 'rows', kicker: 'and it is five habits, not one', trans: 'rise',
+   lines: ['Slow, hands-on,', 'and it *worked*'], size: 58,
+   rows: [{t: 'A very specific agents file'},
+          {t: 'Approve every change it proposes'},
+          {t: 'Stop it often, and rewrite what it did'},
+          {t: 'Restart with a clean context whenever it drifts', hot: true}]},
+  {k: 'head', kicker: 'and I am not saying that sarcastically',
+   lines: ['Through 2025 this beat', 'trusting it. *Every time*'], size: 62,
+   trans: 'push'},
+  {k: 'ladder', kicker: 'rung two', trans: 'fade',
+   lines: ['Plan, execute,', 'review, *test*'], size: 54, items: RUNGS,
+   upto: 3, pick: 1},
+  {k: 'term', kicker: 'and the important word is the first one', trans: 'rise',
+   lines: ['It writes the *plan*', 'before the code'], size: 54,
+   title: 'plan mode', prompt: '',
+   term: [{t: '> add soft-delete to cards, with a test', kind: 'cmd'},
+          {t: 'PLAN — 4 steps, no code written yet', kind: 'warn'},
+          {t: '1. migration: add deleted_at to cards', kind: 'out'},
+          {t: '2. repository: filter deleted rows by default', kind: 'out'},
+          {t: '3. api: DELETE marks rather than removes', kind: 'out'},
+          {t: '4. tests: covering restore and hard-delete', kind: 'out'},
+          {t: 'approve, edit, or reject this plan', kind: 'ok'}]},
+  {k: 'head', kicker: 'you read it. you argue with it. you change it',
+   lines: ['Only *then* do you', 'switch to execution'], size: 68, trans: 'push',
+   stamp: 'worth more than any prompt you will ever write'},
+  {k: 'flow', kicker: 'then run it in phases, not in one leap', trans: 'rise',
+   lines: ['Six small *gates*'], size: 66,
+   nodes: [{t: 'build', sub: 'this phase only'}, {t: 'review', sub: 'read the diff'},
+           {t: 'test', sub: 'and read the output'},
+           {t: 'next', sub: 'mark it done', tone: C.yellow}],
+   loop: true},
+  {k: 'head', kicker: 'and do not skip the review gate',
+   lines: ['It makes a *mountain*', 'out of a molehill'], size: 66, trans: 'push',
+   stamp: 'four unreviewed phases and a small feature is an architecture'},
+  {k: 'ladder', kicker: 'rung three', trans: 'fade',
+   lines: ['*Spec-driven*', 'development'], size: 54, items: RUNGS,
+   upto: 3, pick: 2},
+  {k: 'head', kicker: 'there are languages for writing specs now',
+   lines: ['The older name', 'is *better*'], size: 88, trans: 'push',
+   stamp: 'trust, but verify'},
+  {k: 'myth', kicker: 'and the whole step up is one word', trans: 'rise',
+   lines: ['*Where* you verify'], size: 68,
+   wrong: 'rung two — you verify at every phase',
+   right: 'rung three — you verify at the end',
+   note: 'that is the entire difference in trust between them'},
+
+  // ------------------------------------------------------------ the 2026 three
+  {k: 'ladder', kicker: 'the 2026 mindset', trans: 'fade',
+   lines: ['Where it stops feeling', 'like *project management*'], size: 44,
+   items: RUNGS},
+  {k: 'shot', src: 'nocode13/shots/18.mp4', kicker: 'rung four — YOLO',
+   lines: ['No permissions.', 'No *approvals*'], size: 62},
+  {k: 'head', kicker: 'YOLO mode has existed since 2025',
+   lines: ['What changed is', '*who* uses it'], size: 82, trans: 'push',
+   stamp: 'work that matters, not weekend projects'},
+  {k: 'head', kicker: 'and the shape of it is genuinely different',
+   lines: ['Set it going.', 'Go and have *dinner*'], size: 74, trans: 'fade',
+   stamp: 'there is no supervising — supervising is what you gave up'},
+  {k: 'ladder', kicker: 'rung five, and the best name in the field', trans: 'push',
+   lines: ['*Ralph* loops'], size: 74, items: RUNGS, pick: 4},
+  {k: 'head', kicker: 'geoffrey huntley named it, after ralph wiggum',
+   lines: ['Naive. Relentlessly', '*optimistic*'], size: 72, trans: 'rise',
+   stamp: 'it does not get discouraged. it just goes round again'},
+  {k: 'loops', kicker: 'hold on to what an agent already is', trans: 'fade',
+   lines: ['A model, going', 'round with *tools*'], size: 54,
+   inner: AGENT, label: 'this is the loop you already have'},
+  {k: 'head', kicker: 'so here is the whole idea',
+   lines: ['Wrap that loop', 'in a *bigger* loop'], size: 76, trans: 'push'},
+  {k: 'loops', kicker: 'and the outer loop does four things', trans: 'fade',
+   lines: ['Run, test, find the', 'gaps, *fold them in*'], size: 48,
+   inner: AGENT, outer: OUTER, passes: 10,
+   label: 'each pass starts fresh — knowing what the last one could not finish'},
+  {k: 'loops', kicker: 'perhaps ten times, while you are not there', trans: 'none',
+   lines: ['YOLO runs an hour.', 'This runs *overnight*'], size: 50,
+   inner: AGENT, outer: OUTER, passes: 10, innerRpm: 64,
+   label: 'the difference in scale is the part to hold on to'},
+  {k: 'ladder', kicker: 'rung six, the top of the ladder', trans: 'push',
+   lines: ['*Multi-agents*'], size: 74, items: RUNGS, pick: 5},
+  {k: 'nest', kicker: 'many agents, and you give them roles', trans: 'rise',
+   lines: ['An actual *hierarchy*'], size: 62,
+   outer: 'manager agent', inner: 'the builders',
+   ring: ['testing agent', 'feedback agent', 'review agent'],
+   caption: 'one whose only job is to try and break what the others built'},
+  {k: 'head', kicker: 'the words you will hear are swarms and orchestration',
+   lines: ['This is the *front*', 'of the field'], size: 78, trans: 'fade',
+   stamp: 'and this rung I am learning alongside you'},
+
+  // ----------------------------------------------- ours: it is the same ladder
+  {k: 'head', kicker: 'let me connect this to something you have seen',
+   lines: ['You have climbed', 'this ladder *before*'], size: 70, trans: 'push'},
+  {k: 'ladder', kicker: 'day one — the eight stages of ai coding', trans: 'fade',
+   lines: ['*Eight* stages'], size: 68, items: STAGES},
+  {k: 'cols', kicker: 'two labels on one axis', trans: 'rise',
+   lines: ['Same *ladder*,', 'two sides of the desk'], size: 52,
+   cols: [{head: 'the eight stages', items: ['how much of the work',
+                                              'the machine is doing']},
+          {head: 'the six workflows', items: ['how much you let it do',
+                                               'before you look']}]},
+  {k: 'head', kicker: 'so this is not a second thing to memorise',
+   lines: ['Know one, and you', 'know the *other*'], size: 74, trans: 'push'},
+
+  // ---------------------------------------------------------------- the payoff
+  {k: 'head', kicker: 'which brings me to that game from day one',
+   lines: ['The bot that takes', '*cover*'], size: 84, trans: 'fade'},
+  {k: 'shot', src: 'nocode13/shots/36.mp4', kicker: 'one agent, dozens of turns',
+   lines: ['No outer loop', 'at *all*'], size: 66},
+  {k: 'loops', kicker: 'so take a second and picture this', trans: 'rise',
+   lines: ['That whole run —', 'as *one pass*'], size: 54,
+   inner: AGENT, outer: OUTER, passes: 10, innerRpm: 80,
+   label: 'then nine more of them while you are asleep'},
+  {k: 'head', kicker: 'and that is not a thought experiment',
+   lines: ['The machine writes', 'its *own* feedback'], size: 68, trans: 'push',
+   stamp: 'that is Tuesday, for a lot of people now'},
+
+  // --------------------------------------- ours: what is actually inside one
+  {k: 'head', kicker: 'a named pattern is easy. the first one you build is not',
+   lines: ['Three files and', 'a *shell loop*'], size: 76, trans: 'fade'},
+  {k: 'editor', kicker: 'file one — the only one you write by hand', trans: 'rise',
+   lines: ['*objectives.md*'], size: 66, file: 'loop/objectives.md',
+   rows: [{t: '# Goal', kind: 'h1'},
+          {t: 'A working kanban board with drag and drop.', kind: 'text'},
+          {t: '', kind: 'text'},
+          {t: '## Done when', kind: 'h2'},
+          {t: '- `uv run pytest` passes, 0 skips', kind: 'bullet'},
+          {t: '- a card can be dragged between all 3 columns', kind: 'bullet'},
+          {t: '- the board survives a page reload', kind: 'bullet'}],
+   caption: 'crisp, specific, and testable — all of the quality lives here'},
+  {k: 'editor', kicker: 'file two — the memory the context does not keep', trans: 'none',
+   lines: ['*progress.md*'], size: 66, file: 'loop/progress.md',
+   rows: [{t: '## pass 3', kind: 'h2'},
+          {t: '- DONE columns render, cards load from the api', kind: 'bullet'},
+          {t: '- DONE drag within a column', kind: 'bullet'},
+          {t: '- STUCK drag between columns — drop target never', kind: 'bullet'},
+          {t: '  fires. tried pointer events and HTML5 dnd.', kind: 'bullet'}],
+   caption: 'the agent appends to this at the end of every pass'},
+  {k: 'editor', kicker: 'file three — written by a second call, not by you',
+   lines: ['*feedback.md*'], size: 66, file: 'loop/feedback.md', trans: 'none',
+   rows: [{t: '## the gap', kind: 'h2'},
+          {t: 'Two of three success criteria are unmet.', kind: 'text'},
+          {t: '', kind: 'text'},
+          {t: '- IMPORTANT: cross-column drop is the only', kind: 'important'},
+          {t: '  blocker. Do not refactor anything else.', kind: 'important'},
+          {t: '- Both attempted approaches failed. Try a', kind: 'bullet'},
+          {t: '  library rather than a third hand-rolled one.', kind: 'bullet'}],
+   caption: 'and it goes straight to the top of the next pass'},
+  {k: 'term', kicker: 'and the loop itself', trans: 'rise',
+   lines: ['About *four lines*'], size: 68, title: 'ralph.sh', prompt: '',
+   term: [{t: 'for i in $(seq 1 10); do', kind: 'cmd'},
+          {t: '  agent --yolo objectives.md progress.md feedback.md', kind: 'cmd'},
+          {t: '  ./stopping-test.sh && break', kind: 'cmd'},
+          {t: '  agent --review > feedback.md', kind: 'cmd'},
+          {t: 'done', kind: 'cmd'}]},
+  {k: 'head', kicker: 'because the name makes it sound like a product',
+   lines: ['A *for loop*', 'around an agent'], size: 88, trans: 'push',
+   stamp: 'nothing to buy, nothing to install'},
+
+  // ---------------------------- ours: the bill, and the stopping condition
+  {k: 'head', kicker: 'two things nobody tells you about an overnight run',
+   lines: ['The first one', 'is the *bill*'], size: 90, trans: 'fade'},
+  {k: 'meter', kicker: 'an agent flat out for an hour is real money', trans: 'rise',
+   lines: ['Ten passes is', '*ten times* that'], size: 60,
+   pct: 10, fill: 'one YOLO hour', rest: 'a full Ralph night',
+   caption: 'and it does not stop when it succeeds — it stops when told'},
+  {k: 'rows', kicker: 'so set two hard limits before you start', trans: 'rise',
+   lines: ['Both. In the *loop*,', 'not in your head'], size: 56,
+   rows: [{t: 'A spend cap'},
+          {t: 'A maximum number of outer passes'},
+          {t: 'A loop with no ceiling is not ambitious, it is expensive', hot: true}]},
+  {k: 'head', kicker: 'and the second thing is where first attempts fall apart',
+   lines: ['“Until it is done”', 'is *not* a condition'], size: 68, trans: 'push'},
+  {k: 'rows', kicker: 'done has to be something the loop can test alone', trans: 'rise',
+   lines: ['Concrete enough for', 'four in the *morning*'], size: 54,
+   rows: [{t: 'Tests passing'},
+          {t: 'A build succeeding'},
+          {t: 'A checklist file with every box ticked', hot: true}]},
+  {k: 'myth', kicker: 'and here is the trap you have met three times this week',
+   lines: ['Weak test, *wrong* target'], size: 56, trans: 'rise',
+   wrong: 'the loop converges on correct',
+   right: 'the loop converges on whatever your test rewards',
+   note: 'ten times over, unsupervised, which is the whole risk of this rung'},
+  {k: 'term', kicker: 'ask for eighty percent coverage overnight', trans: 'rise',
+   lines: ['It did what you *asked*'], size: 60, title: 'morning', prompt: '',
+   term: [{t: '$ uv run pytest --cov', kind: 'cmd'},
+          {t: 'TOTAL     coverage: 80.4%', kind: 'ok'},
+          {t: '$ grep -c assert tests/test_generated.py', kind: 'cmd'},
+          {t: '0', kind: 'warn'},
+          {t: 'a hundred tests. not one of them asserts anything', kind: 'warn'}]},
+
+  // ------------------------------------------------------------ which one, when
+  {k: 'head', kicker: 'so which of the six should you use?',
+   lines: ['Anybody with *one*', 'answer is selling'], size: 74, trans: 'fade'},
+  {k: 'head', kicker: 'it depends on the work, and on two things about it',
+   lines: ['How expensive is it', 'to be *quietly wrong*?'], size: 62, trans: 'push',
+   stamp: 'and how many times has this been built before?'},
+  {k: 'ladder', kicker: 'group one — mission critical', trans: 'rise',
+   lines: ['Stay on *one to three*'], size: 58, items: RUNGS, picks: [0, 1, 2],
+   tone: C.yellow},
+  {k: 'rows', kicker: 'and a second kind that people miss', trans: 'rise',
+   lines: ['Where the training', 'data is *thin*'], size: 58,
+   rows: [{t: 'Enterprise software and commercial products'},
+          {t: 'Large codebases where one change breaks another'},
+          {t: 'And anything genuinely new — because it has not been read', hot: true}]},
+  {k: 'term', kicker: 'the example i would give you today', trans: 'rise',
+   lines: ['*MCP* servers'], size: 74, title: 'why', prompt: '',
+   term: [{t: 'not hard — just too new', kind: 'out'},
+          {t: 'there was little of it around at training time', kind: 'out'},
+          {t: 'so what comes out is not idiomatic', kind: 'warn'},
+          {t: 'you will be reviewing every line', kind: 'warn'}]},
+  {k: 'ladder', kicker: 'group two — nothing exists yet to break', trans: 'fade',
+   lines: ['Go straight to', '*four to six*'], size: 58, items: RUNGS,
+   picks: [3, 4, 5], tone: C.blue},
+  {k: 'rows', kicker: 'and enjoy yourself', trans: 'rise',
+   lines: ['An MVP. A prototype.', 'An *empty* directory'], size: 52,
+   rows: [{t: 'Where you have genuine appetite for risk'},
+          {t: 'And most of it is boilerplate written a million times'},
+          {t: 'React front ends, plain HTML, a CRUD back end', hot: true}]},
+  {k: 'head', kicker: 'and to be concrete about my own work',
+   lines: ['Serious work: *group one*.', 'Day one: group two'], size: 58,
+   trans: 'push', stamp: 'which is exactly why we started there'},
+
+  // -------------------------------------------- ours: when to change rung
+  {k: 'head', kicker: 'so how do you know when to move up?',
+   lines: ['Not by *reading*', 'about it'], size: 92, trans: 'fade'},
+  {k: 'myth', kicker: 'the signal, and it is a boring one', trans: 'rise',
+   lines: ['The gate stopped', 'catching *anything*'], size: 58,
+   wrong: 'forty approvals, zero rejections — going well',
+   right: 'forty approvals, zero rejections — you are clicking',
+   note: 'that is the moment supervision became a ritual. move up'},
+  {k: 'head', kicker: 'and the same test runs downwards',
+   lines: ['Three binned runs', 'is not *bad luck*'], size: 70, trans: 'push',
+   stamp: 'it is the work telling you it belongs further down'},
+
+  // ------------------------------------------------ ours: the same task, priced
+  {k: 'head', kicker: 'one more way to feel the difference',
+   lines: ['Same task.', 'Two *rungs*'], size: 104, trans: 'fade'},
+  {k: 'cols', kicker: 'a delete button, a confirmation, and a test', trans: 'rise',
+   lines: ['Often the *same code*', 'at the end'], size: 52,
+   cols: [{head: 'rung one', items: ['read every diff',
+                                      'reject two', 'approve four']},
+          {head: 'rung three', items: ['write four sentences',
+                                        'walk away', 'read the result']}]},
+  {k: 'head', kicker: 'what differs is what you spent and what you risked',
+   lines: ['Forty minutes, or', '*four*'], size: 92, trans: 'push',
+   stamp: 'neither is the right answer. the task decides'},
+
+  // ------------------------------------------------------------ accountability
+  {k: 'head', kicker: 'one last thing, and it matters more than the rest',
+   lines: ['Especially if you are', '*early* in your career'], size: 62,
+   trans: 'fade'},
+  {k: 'head', kicker: 'this was the job before any of this existed',
+   lines: ['Deliver code that is', '*proven* to work'], size: 68, trans: 'push'},
+  {k: 'head', kicker: 'it never has been, and it is not becoming one',
+   lines: ['“The LLM wrote it”', 'is not an *excuse*'], size: 66, trans: 'rise',
+   stamp: 'and the day you use it as one, you will remember', stampColor: C.red},
+  {k: 'rows', kicker: 'so use all six, as hard and as fast as you like', trans: 'rise',
+   lines: ['This part does not', 'get *delegated*'], size: 58,
+   rows: [{t: 'Checking'},
+          {t: 'Validating'},
+          {t: 'Choosing the right approach for the task in front of you', hot: true}]},
+  {k: 'head', kicker: 'next — we stop talking',
+   lines: ['Four tools. One job.', 'Built *four times*'], size: 66, trans: 'push',
+   stamp: 'and a straight answer about which one I would reach for'},
+];
+
+export const Nocode13: React.FC = () => (
+  <Deck slides={SLIDES} durs={DURS} voDir="nocode13/vo" files={FILES} gap={GAP} />
+);

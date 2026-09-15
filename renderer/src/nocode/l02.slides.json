@@ -1,0 +1,303 @@
+[
+ {
+  "k": "shot",
+  "kicker": "it finished",
+  "lines": [
+   "A whole set",
+   "of *files*"
+  ],
+  "size": 58,
+  "src": "nocode02v2/clips/N01_00.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N01_01.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "what it wrote",
+  "lines": [
+   "Open them *up*"
+  ],
+  "size": 62,
+  "src": "nocode02v2/clips/N02_02.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N02_03.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "time to try it",
+  "lines": [
+   "*Run* it"
+  ],
+  "size": 76,
+  "src": "nocode02v2/clips/N03_04.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N03_05.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "and up it comes",
+  "lines": [
+   "One arena.",
+   "No *second place*."
+  ],
+  "size": 54,
+  "src": "nocode02v2/clips/N04_06.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N04_07.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "what is on the screen",
+  "lines": [
+   "Nobody *typed* this"
+  ],
+  "size": 60,
+  "src": "nocode02v2/clips/N05_08.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N05_09.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "if yours went wrong",
+  "lines": [
+   "Tell the agent,",
+   "it *fixes* it"
+  ],
+  "size": 52,
+  "src": "nocode02v2/clips/N06_10.mp4"
+ },
+ {
+  "k": "rows",
+  "kicker": "and being honest about it",
+  "size": 64,
+  "trans": "push",
+  "lines": [
+   "What it",
+   "*is not*"
+  ],
+  "rows": [
+   {
+    "t": "A plain arena, flat lighting, no sound"
+   },
+   {
+    "t": "An opponent that is not remotely clever"
+   },
+   {
+    "t": "But it runs — from one sentence",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "shot",
+  "kicker": "from one prompt",
+  "lines": [
+   "It just *worked*"
+  ],
+  "size": 68,
+  "src": "nocode02v2/clips/N07_12.mp4"
+ },
+ {
+  "k": "rows",
+  "kicker": "and it is different every run",
+  "size": 62,
+  "trans": "push",
+  "lines": [
+   "Yours will",
+   "*differ*"
+  ],
+  "rows": [
+   {
+    "t": "Maybe the shooting did not work"
+   },
+   {
+    "t": "Once the keys did not work at all"
+   },
+   {
+    "t": "I have run this a lot — never the same twice",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "shot",
+  "kicker": "so let us improve it",
+  "lines": [
+   "Make the opponent",
+   "*look* like one"
+  ],
+  "size": 52,
+  "src": "nocode02v2/clips/N07_14.mp4"
+ },
+ {
+  "k": "flow",
+  "kicker": "and that is the instruction",
+  "size": 76,
+  "trans": "push",
+  "lines": [
+   "Off it *goes*"
+  ],
+  "nodes": [
+   {
+    "t": "Read the files"
+   },
+   {
+    "t": "Add the detail"
+   },
+   {
+    "t": "Save"
+   }
+  ]
+ },
+ {
+  "k": "rows",
+  "kicker": "while it edits",
+  "size": 70,
+  "trans": "push",
+  "lines": [
+   "Back in a",
+   "*second*"
+  ],
+  "rows": [
+   {
+    "t": "It is editing and changing files"
+   },
+   {
+    "t": "We pick it up when it is ready to test",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "shot",
+  "kicker": "it says it is done",
+  "lines": [
+   "An *enemy*, now"
+  ],
+  "size": 68,
+  "src": "nocode02v2/clips/N09_17.mp4"
+ },
+ {
+  "k": "loops",
+  "kicker": "and this is the whole method",
+  "size": 72,
+  "trans": "push",
+  "lines": [
+   "The *loop*"
+  ],
+  "inner": [
+   "Look at what came back",
+   "Decide what to change",
+   "Say it in plain English"
+  ],
+  "label": "for the rest of the program"
+ },
+ {
+  "k": "shot",
+  "kicker": "one more edit",
+  "lines": [
+   "A *HUD*, and",
+   "make it harder"
+  ],
+  "size": 54,
+  "src": "nocode02v2/clips/N10_19.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N10_20.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "and again",
+  "lines": [
+   "A *HUD*, and harder"
+  ],
+  "size": 62,
+  "src": "nocode02v2/clips/N11_21.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N11_22.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "so there you have it",
+  "lines": [
+   "An agent wrote",
+   "*all* of it"
+  ],
+  "size": 54,
+  "src": "nocode02v2/clips/N12_23.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N12_24.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N12_25.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N12_26.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "one more thing",
+  "lines": [
+   "A *technique*",
+   "from later on"
+  ],
+  "size": 54,
+  "src": "nocode02v2/clips/N13_27.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N13_28.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "zero shot, one prompt",
+  "lines": [
+   "No feedback.",
+   "*This* came back."
+  ],
+  "size": 50,
+  "src": "nocode02v2/clips/N14_29.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N14_30.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N14_31.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "and that is the teaser",
+  "lines": [
+   "Going *pro*"
+  ],
+  "size": 76,
+  "src": "nocode02v2/clips/N15_32.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N15_33.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode02v2/clips/N15_34.mp4"
+ }
+]

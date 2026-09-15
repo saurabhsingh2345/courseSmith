@@ -1,0 +1,813 @@
+[
+ {
+  "k": "head",
+  "kicker": "welcome",
+  "size": 92,
+  "trans": "fade",
+  "lines": [
+   "The definitive",
+   "*AI Coder* program"
+  ]
+ },
+ {
+  "k": "head",
+  "kicker": "and what it is called",
+  "size": 128,
+  "trans": "rise",
+  "lines": [
+   "The *Missing*",
+   "Manual"
+  ],
+  "stamp": "three weeks"
+ },
+ {
+  "k": "timeline",
+  "kicker": "where this ends up",
+  "size": 66,
+  "trans": "push",
+  "lines": [
+   "The *journey*"
+  ],
+  "items": [
+   {
+    "when": "week one",
+    "t": "The tools, and the ideas under them"
+   },
+   {
+    "when": "week two",
+    "t": "Building for real"
+   },
+   {
+    "when": "week three",
+    "t": "An expert at agentic engineering",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "head",
+  "kicker": "but first, a word of caution",
+  "size": 104,
+  "trans": "rise",
+  "accent": "#e53935",
+  "lines": [
+   "*Buckle* up"
+  ],
+  "stamp": "a wild ride"
+ },
+ {
+  "k": "curve",
+  "kicker": "what is in store",
+  "size": 76,
+  "trans": "push",
+  "lines": [
+   "A *roller coaster*"
+  ],
+  "rising": true,
+  "accel": true,
+  "yLabel": "what you can build",
+  "xLabel": "three weeks"
+ },
+ {
+  "k": "rows",
+  "kicker": "how these programs usually start",
+  "size": 66,
+  "trans": "push",
+  "lines": [
+   "Standard *fare*"
+  ],
+  "numbered": true,
+  "rows": [
+   {
+    "t": "Begin with the objectives"
+   },
+   {
+    "t": "Introduce myself"
+   },
+   {
+    "t": "The curriculum"
+   },
+   {
+    "t": "The logistics"
+   }
+  ]
+ },
+ {
+  "k": "head",
+  "kicker": "and here is the exception",
+  "size": 118,
+  "trans": "rise",
+  "accent": "#e53935",
+  "lines": [
+   "Except,",
+   "*I don't*"
+  ]
+ },
+ {
+  "k": "head",
+  "kicker": "if you have been here before",
+  "size": 92,
+  "trans": "fade",
+  "lines": [
+   "Instant",
+   "*gratification*"
+  ]
+ },
+ {
+  "k": "rows",
+  "kicker": "so here is the plan",
+  "size": 78,
+  "trans": "push",
+  "lines": [
+   "Build *first*"
+  ],
+  "rows": [
+   {
+    "t": "Roll up sleeves"
+   },
+   {
+    "t": "Build something together",
+    "hot": true
+   },
+   {
+    "t": "The rest of it can wait"
+   }
+  ]
+ },
+ {
+  "k": "tokens",
+  "kicker": "over the next three weeks",
+  "size": 72,
+  "trans": "push",
+  "lines": [
+   "Several tools",
+   "that *write code*"
+  ],
+  "chips": [
+   "Cursor",
+   "Claude Code",
+   "Copilot",
+   "Codex",
+   "Antigravity",
+   "…and more"
+  ]
+ },
+ {
+  "k": "rows",
+  "kicker": "but today, just one",
+  "size": 110,
+  "trans": "push",
+  "lines": [
+   "*Cursor*"
+  ],
+  "rows": [
+   {
+    "t": "Super popular"
+   },
+   {
+    "t": "Very easy to use"
+   },
+   {
+    "t": "Free trial if you are new",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "rows",
+  "kicker": "and if you have used it already",
+  "size": 70,
+  "trans": "push",
+  "lines": [
+   "No trial *left*?"
+  ],
+  "rows": [
+   {
+    "t": "You do not need one"
+   },
+   {
+    "t": "Watch what I do"
+   },
+   {
+    "t": "Or follow along in another product",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "head",
+  "kicker": "so let us do something simple",
+  "size": 96,
+  "trans": "rise",
+  "lines": [
+   "Generate code",
+   "*right away*"
+  ],
+  "stamp": "let's go do it"
+ },
+ {
+  "k": "shot",
+  "kicker": "step one",
+  "lines": [
+   "Open a *browser*"
+  ],
+  "size": 64,
+  "src": "nocode01v2/clips/B_13.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode01v2/clips/B_14.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode01v2/clips/B_15.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "step two",
+  "lines": [
+   "*Download* it"
+  ],
+  "size": 64,
+  "src": "nocode01v2/clips/C_16.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode01v2/clips/C_17.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode01v2/clips/C_18.mp4"
+ },
+ {
+  "k": "rows",
+  "kicker": "and for the pc people",
+  "size": 86,
+  "trans": "push",
+  "lines": [
+   "On *Windows*"
+  ],
+  "rows": [
+   {
+    "t": "Go to cursor.com"
+   },
+   {
+    "t": "“Download for Windows” is the default button",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "flow",
+  "kicker": "once it has downloaded",
+  "size": 78,
+  "trans": "push",
+  "lines": [
+   "Then the *usual*"
+  ],
+  "nodes": [
+   {
+    "t": "Open the file"
+   },
+   {
+    "t": "Yes, run it"
+   },
+   {
+    "t": "Installed"
+   }
+  ]
+ },
+ {
+  "k": "head",
+  "kicker": "and that is the pc done",
+  "size": 92,
+  "trans": "rise",
+  "lines": [
+   "Same app,",
+   "*either way*"
+  ]
+ },
+ {
+  "k": "shot",
+  "kicker": "on a mac",
+  "lines": [
+   "Drag to",
+   "*Applications*"
+  ],
+  "size": 62,
+  "src": "nocode01v2/clips/E_22.mp4"
+ },
+ {
+  "k": "head",
+  "kicker": "and that is the install done",
+  "size": 104,
+  "trans": "rise",
+  "lines": [
+   "Now let's",
+   "*start*"
+  ]
+ },
+ {
+  "k": "rows",
+  "kicker": "the first time you open it",
+  "size": 80,
+  "trans": "push",
+  "lines": [
+   "Sign in, or",
+   "*sign up*"
+  ],
+  "rows": [
+   {
+    "t": "You will be prompted"
+   },
+   {
+    "t": "Sign up if you have no account",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "meter",
+  "kicker": "what it costs you today",
+  "size": 86,
+  "trans": "push",
+  "lines": [
+   "*Free* trial"
+  ],
+  "pct": 100,
+  "fill": "free for the first few weeks",
+  "rest": "which is all we need"
+ },
+ {
+  "k": "rows",
+  "kicker": "if a setup screen appears",
+  "size": 76,
+  "trans": "push",
+  "lines": [
+   "Just press *through*"
+  ],
+  "rows": [
+   {
+    "t": "You can accept the defaults"
+   },
+   {
+    "t": "Nothing here matters yet",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "head",
+  "kicker": "and then you are in",
+  "size": 100,
+  "trans": "rise",
+  "lines": [
+   "Signed in,",
+   "*ready*"
+  ]
+ },
+ {
+  "k": "shot",
+  "kicker": "launching it",
+  "lines": [
+   "The *Cursor* screen"
+  ],
+  "size": 62,
+  "src": "nocode01v2/clips/G_28.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode01v2/clips/G_29.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode01v2/clips/G_30.mp4"
+ },
+ {
+  "k": "rows",
+  "kicker": "if your screen looks different",
+  "size": 72,
+  "trans": "push",
+  "lines": [
+   "Not *identical*?"
+  ],
+  "rows": [
+   {
+    "t": "It may not say Pro — that is fine"
+   },
+   {
+    "t": "A free trial account looks slightly different",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "rows",
+  "kicker": "and you may know this already",
+  "size": 72,
+  "trans": "push",
+  "lines": [
+   "Built on",
+   "*VS Code*"
+  ],
+  "rows": [
+   {
+    "t": "If you use VS Code, this is familiar"
+   }
+  ]
+ },
+ {
+  "k": "rows",
+  "kicker": "what “open a project” means",
+  "size": 68,
+  "trans": "push",
+  "lines": [
+   "Pick a *folder*"
+  ],
+  "rows": [
+   {
+    "t": "Everything for this project lives in it"
+   },
+   {
+    "t": "Make a fresh one rather than reuse something",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "shot",
+  "kicker": "so, a new one",
+  "lines": [
+   "Call it *Instant*"
+  ],
+  "size": 62,
+  "src": "nocode01v2/clips/H2_34.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode01v2/clips/H2_35.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "and there is the project",
+  "lines": [
+   "*Instant*, open"
+  ],
+  "size": 62,
+  "src": "nocode01v2/clips/H2_36.mp4"
+ },
+ {
+  "k": "rows",
+  "kicker": "now the same on a pc",
+  "size": 82,
+  "trans": "push",
+  "lines": [
+   "On the *PC*"
+  ],
+  "rows": [
+   {
+    "t": "Here is Cursor on Windows"
+   },
+   {
+    "t": "If it says Sign In, click it first"
+   }
+  ]
+ },
+ {
+  "k": "flow",
+  "kicker": "otherwise",
+  "size": 76,
+  "trans": "push",
+  "lines": [
+   "Open *Project*"
+  ],
+  "nodes": [
+   {
+    "t": "Open Project"
+   },
+   {
+    "t": "The PC file browser"
+   },
+   {
+    "t": "Your Home folder"
+   }
+  ]
+ },
+ {
+  "k": "rows",
+  "kicker": "same idea as the mac",
+  "size": 70,
+  "trans": "push",
+  "lines": [
+   "Find, or *make* it"
+  ],
+  "rows": [
+   {
+    "t": "Go to your Projects folder"
+   },
+   {
+    "t": "Or create one"
+   },
+   {
+    "t": "Then a folder for this project",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "rows",
+  "kicker": "name it the same thing",
+  "size": 84,
+  "trans": "push",
+  "lines": [
+   "Call it *Instant*"
+  ],
+  "rows": [
+   {
+    "t": "New folder"
+   },
+   {
+    "t": "Type Instant"
+   },
+   {
+    "t": "Create"
+   },
+   {
+    "t": "Open",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "head",
+  "kicker": "and both machines meet here",
+  "size": 88,
+  "trans": "rise",
+  "lines": [
+   "Same project,",
+   "*either way*"
+  ]
+ },
+ {
+  "k": "shot",
+  "kicker": "orienting you",
+  "lines": [
+   "*Three* panes"
+  ],
+  "size": 72,
+  "src": "nocode01v2/clips/J_42.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode01v2/clips/J_43.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode01v2/clips/J_44.mp4"
+ },
+ {
+  "k": "rows",
+  "kicker": "if you cannot see all three",
+  "size": 66,
+  "trans": "push",
+  "lines": [
+   "View → *Appearance*"
+  ],
+  "rows": [
+   {
+    "t": "Toggle things until the three panes appear"
+   },
+   {
+    "t": "You will figure it out — otherwise, message me",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "head",
+  "kicker": "so here is what we will do",
+  "size": 84,
+  "trans": "fade",
+  "lines": [
+   "Put the agent",
+   "*to work*"
+  ]
+ },
+ {
+  "k": "rows",
+  "kicker": "something i feel strongly about",
+  "size": 62,
+  "trans": "push",
+  "lines": [
+   "Projects with",
+   "*real impact*"
+  ],
+  "rows": [
+   {
+    "t": "On every one of our programs"
+   },
+   {
+    "t": "When we build, it should matter",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "rows",
+  "kicker": "what that means in practice",
+  "size": 66,
+  "trans": "push",
+  "lines": [
+   "*Business* first"
+  ],
+  "rows": [
+   {
+    "t": "Things that are actually valuable"
+   },
+   {
+    "t": "Something you could monetise"
+   },
+   {
+    "t": "Or a springboard for what is next",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "myth",
+  "kicker": "and then there is today",
+  "size": 92,
+  "trans": "push",
+  "lines": [
+   "*One* exception"
+  ],
+  "wrong": "Every project here has business impact",
+  "right": "Except this one",
+  "note": "the only exception on the whole program"
+ },
+ {
+  "k": "head",
+  "kicker": "because of how this should start",
+  "size": 104,
+  "trans": "rise",
+  "lines": [
+   "Today we",
+   "have *fun*"
+  ],
+  "stamp": "what better way to begin"
+ },
+ {
+  "k": "rows",
+  "kicker": "and if you are all business",
+  "size": 70,
+  "trans": "push",
+  "lines": [
+   "Do not *worry*"
+  ],
+  "rows": [
+   {
+    "t": "It is all business after this point",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "shot",
+  "kicker": "back to it",
+  "lines": [
+   "Talk to the *agent*"
+  ],
+  "size": 62,
+  "src": "nocode01v2/clips/J_52.mp4"
+ },
+ {
+  "k": "rows",
+  "kicker": "and if these words are new",
+  "size": 66,
+  "trans": "push",
+  "lines": [
+   "All of it, *tomorrow*"
+  ],
+  "rows": [
+   {
+    "t": "Agents, how they work, what they do"
+   },
+   {
+    "t": "Today we are just having fun",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "shot",
+  "kicker": "the box on the right",
+  "lines": [
+   "A message to",
+   "your *agent*"
+  ],
+  "size": 58,
+  "src": "nocode01v2/clips/K_54.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode01v2/clips/K_55.mp4"
+ },
+ {
+  "k": "rows",
+  "kicker": "and which one you can pick",
+  "size": 70,
+  "trans": "push",
+  "lines": [
+   "Depends on",
+   "your *plan*"
+  ],
+  "rows": [
+   {
+    "t": "You may not see every model"
+   },
+   {
+    "t": "Any current one will do this job",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "shot",
+  "kicker": "and here is the ask",
+  "lines": [
+   "The *request*"
+  ],
+  "size": 72,
+  "src": "nocode01v2/clips/L_57.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode01v2/clips/L_58.mp4"
+ },
+ {
+  "k": "shot",
+  "kicker": "and off it goes",
+  "lines": [
+   "It *starts* working"
+  ],
+  "size": 62,
+  "src": "nocode01v2/clips/M_59.mp4"
+ },
+ {
+  "k": "shot",
+  "src": "nocode01v2/clips/M_60.mp4"
+ },
+ {
+  "k": "rows",
+  "kicker": "it may stop and ask you",
+  "size": 64,
+  "trans": "push",
+  "lines": [
+   "It might ask",
+   "*permission*"
+  ],
+  "rows": [
+   {
+    "t": "If you are happy with it, say yes"
+   },
+   {
+    "t": "Mine does not — it depends on your settings"
+   },
+   {
+    "t": "The default will just go and do it",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "rows",
+  "kicker": "and this matters all program",
+  "size": 62,
+  "trans": "push",
+  "lines": [
+   "Yours will",
+   "*differ*"
+  ],
+  "rows": [
+   {
+    "t": "I am on one model, you may be on another"
+   },
+   {
+    "t": "Every one of us gets a different run"
+   },
+   {
+    "t": "What happens next is not fully predictable",
+    "hot": true
+   }
+  ]
+ },
+ {
+  "k": "shot",
+  "kicker": "but it is away",
+  "lines": [
+   "Writing *index.html*"
+  ],
+  "size": 62,
+  "src": "nocode01v2/clips/M_63.mp4"
+ }
+]
