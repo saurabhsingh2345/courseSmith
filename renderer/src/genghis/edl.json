@@ -1,0 +1,330 @@
+[
+  {
+    "id": "open-steppe",
+    "say": "There is a belt of grassland that runs almost unbroken from Hungary to the Pacific. No cities. No walls. For thousands of years the people who lived on it had nothing an empire would want.",
+    "vis": {
+      "kind": "footage",
+      "clip": "steppe_open",
+      "fit": "bleed",
+      "push": 0.08,
+      "credit": "Storm Over Asia · 1928"
+    },
+    "lead": 3.2,
+    "pad": 0.6
+  },
+  {
+    "id": "open-turn",
+    "say": "Then one of them took almost all of it.",
+    "vis": {
+      "kind": "footage",
+      "clip": "ridge_riders",
+      "fit": "bleed",
+      "push": 0.06
+    },
+    "lead": 0.4,
+    "pad": 1.4
+  },
+  {
+    "id": "title",
+    "say": "",
+    "vis": {
+      "kind": "title"
+    },
+    "lead": 0,
+    "pad": 4.6
+  },
+  {
+    "id": "steppe-cold",
+    "say": "The Mongolian steppe is high, dry and cold. Winter reaches forty below. Almost nothing grows that a person can eat.",
+    "vis": {
+      "kind": "footage",
+      "clip": "steppe_hills",
+      "fit": "plate",
+      "push": 0.05,
+      "credit": "Storm Over Asia · 1928"
+    },
+    "lead": 1
+  },
+  {
+    "id": "steppe-eat",
+    "say": "So the Mongols ate what the grass could feed — sheep, goats, horses — and moved when the grass ran out. A family’s entire house folded onto a cart.",
+    "vis": {
+      "kind": "footage",
+      "clip": "ger_lake",
+      "fit": "plate",
+      "push": 0.06,
+      "credit": "Storm Over Asia · 1928"
+    },
+    "lead": 0.5
+  },
+  {
+    "id": "steppe-ride",
+    "say": "A child learned to ride before they could walk well, and to shoot from the saddle soon after. None of that was training for war. It was how you ate.",
+    "vis": {
+      "kind": "footage",
+      "clip": "caravan_line",
+      "fit": "plate",
+      "push": 0.07,
+      "credit": "Morden–Clark Asiatic Expedition · 1926"
+    },
+    "lead": 0.4
+  },
+  {
+    "id": "born",
+    "say": "Around 1162, near the Onon river, a boy was born into one of the dozens of clans fighting each other over this grass. He was called Temüjin.",
+    "vis": {
+      "kind": "plate",
+      "art": "genghis",
+      "focus": [
+        0.5,
+        0.34
+      ],
+      "push": 0.09,
+      "credit": "Yuan dynasty album portrait · 14th c."
+    },
+    "lead": 1.2,
+    "pad": 1
+  },
+  {
+    "id": "hard-years",
+    "say": "When he was nine, rivals poisoned his father. His own clan abandoned the family to the winter. He survived on marmots and roots, and at one point he was captured and held in a wooden collar by the people who had cast him out.",
+    "vis": {
+      "kind": "footage",
+      "clip": "ger_door",
+      "fit": "plate",
+      "push": 0.05,
+      "credit": "Storm Over Asia · 1928"
+    },
+    "lead": 0.5
+  },
+  {
+    "id": "merit",
+    "say": "What he built afterwards was shaped by that. He gathered men who owed nothing to any clan, and he promoted them on loyalty and competence instead of birth. On the steppe, that was close to heresy.",
+    "vis": {
+      "kind": "tribes"
+    },
+    "lead": 0.8,
+    "pad": 0.8
+  },
+  {
+    "id": "kurultai",
+    "say": "By 1206 he had beaten, absorbed or destroyed every rival. The tribes assembled and gave him a title: Chinggis Khan.",
+    "vis": {
+      "kind": "quote",
+      "line": "Chinggis Khan",
+      "sub": "1206 · the assembly at the Onon"
+    },
+    "lead": 0.6,
+    "pad": 1.6
+  },
+  {
+    "id": "machine-in",
+    "say": "He now commanded the best light cavalry in the world, and had nothing left on the steppe to spend it on.",
+    "vis": {
+      "kind": "footage",
+      "clip": "riders_plain",
+      "fit": "plate",
+      "push": 0.06,
+      "credit": "Morden–Clark Asiatic Expedition · 1926"
+    },
+    "lead": 0.5
+  },
+  {
+    "id": "decimal",
+    "say": "The army was built in tens. Ten men made an arban, and the ten were answerable for each other. Ten arbans made a zuun; ten zuun a myangan; ten myangan a tümen — ten thousand riders moving on one instruction.",
+    "vis": {
+      "kind": "decimal"
+    },
+    "lead": 1,
+    "pad": 1.2
+  },
+  {
+    "id": "kit",
+    "say": "Each rider carried a composite bow of horn, wood and sinew, and rode with several spare horses. An army whose food walks beside it does not need supply lines — and it could cover ground no settled army could match.",
+    "vis": {
+      "kind": "kit"
+    },
+    "lead": 0.9,
+    "pad": 1
+  },
+  {
+    "id": "yam",
+    "say": "Orders moved faster than the army. Relay stations, the yam, ran the length of the empire with fresh horses standing ready at each one, so a messenger could hand off and keep going day and night.",
+    "vis": {
+      "kind": "yam"
+    },
+    "lead": 0.8,
+    "pad": 1
+  },
+  {
+    "id": "map-china",
+    "say": "In 1209 they turned south. Western Xia first, then the Jin dynasty of northern China. In 1215 Zhongdu — the city that is now Beijing — fell.",
+    "vis": {
+      "kind": "map",
+      "from": 1206,
+      "to": 1215,
+      "cities": [
+        "zhongdu"
+      ],
+      "label": "the campaigns in the east"
+    },
+    "lead": 1.2
+  },
+  {
+    "id": "beijing-art",
+    "say": "",
+    "vis": {
+      "kind": "plate",
+      "art": "beijing",
+      "push": 0.07,
+      "credit": "The siege of Zhongdu · Persian miniature, Herat"
+    },
+    "lead": 0,
+    "pad": 5.4
+  },
+  {
+    "id": "map-west",
+    "say": "In 1218 he sent a trade caravan west into the Khwarazmian empire. Its governor had the merchants killed. Genghis sent envoys to demand redress, and the shah executed them too.",
+    "vis": {
+      "kind": "map",
+      "from": 1215,
+      "to": 1219,
+      "cities": [
+        "zhongdu",
+        "otrar"
+      ],
+      "label": "the road west"
+    },
+    "lead": 0.8
+  },
+  {
+    "id": "map-khwarazm",
+    "say": "Within three years the Khwarazmian empire no longer existed. Bukhara, Samarkand, Urgench, Nishapur — the great cities of Central Asia were taken one after another.",
+    "vis": {
+      "kind": "map",
+      "from": 1219,
+      "to": 1227,
+      "cities": [
+        "zhongdu",
+        "otrar",
+        "bukhara",
+        "samarkand",
+        "urgench",
+        "nishapur"
+      ],
+      "label": "the Khwarazmian campaign"
+    },
+    "lead": 0.4,
+    "pad": 1.2
+  },
+  {
+    "id": "cost",
+    "say": "The sieges were the argument. A city that opened its gates was taxed. A city that resisted was destroyed thoroughly enough that the next city would not.",
+    "vis": {
+      "kind": "plate",
+      "art": "indus",
+      "push": 0.06,
+      "focus": [
+        0.5,
+        0.5
+      ],
+      "credit": "Chinggis Khan at the Indus · Jami’ al-tawārīkh"
+    },
+    "lead": 1
+  },
+  {
+    "id": "cost-stat",
+    "say": "Estimates of the dead across the whole conquest run from a few million to forty. Nobody knows. Some regions did not recover their population for centuries.",
+    "vis": {
+      "kind": "stat",
+      "big": "unknown",
+      "note": "estimates range from a few million to forty",
+      "tone": "blood"
+    },
+    "lead": 0.8,
+    "pad": 1.2
+  },
+  {
+    "id": "death",
+    "say": "He died in August 1227, on campaign, of something ordinary — a fall, or illness. He was carried back to the steppe and buried where his people made certain nobody would find him. The grave has never been located.",
+    "vis": {
+      "kind": "footage",
+      "clip": "ridge_dusk",
+      "fit": "bleed",
+      "push": 0.07,
+      "credit": "Storm Over Asia · 1928"
+    },
+    "lead": 1.4,
+    "pad": 1.4
+  },
+  {
+    "id": "map-after",
+    "say": "The empire did not stop. Under his sons and grandsons it reached the Danube, the Persian Gulf and the sea off Japan — the largest continuous land empire there has ever been.",
+    "vis": {
+      "kind": "map",
+      "from": 1227,
+      "to": 1259,
+      "cities": [
+        "zhongdu",
+        "samarkand",
+        "baghdad",
+        "kyiv"
+      ],
+      "label": "the empire after him"
+    },
+    "lead": 1,
+    "pad": 0.8
+  },
+  {
+    "id": "pax",
+    "say": "And then something nobody planned. With one authority from Korea to the Black Sea, the roads were safe. For roughly a century a merchant could cross Asia end to end.",
+    "vis": {
+      "kind": "routes"
+    },
+    "lead": 0.9
+  },
+  {
+    "id": "ideas",
+    "say": "Paper money, printing, gunpowder, star charts, maps — they travelled those roads in both directions, faster than they ever had.",
+    "vis": {
+      "kind": "plate",
+      "art": "caravan",
+      "push": 0.08,
+      "credit": "Caravan on the Silk Road · Catalan Atlas, 1375"
+    },
+    "lead": 0.4
+  },
+  {
+    "id": "plague",
+    "say": "So did the plague. The Black Death took the same roads west.",
+    "vis": {
+      "kind": "quote",
+      "line": "So did the plague.",
+      "sub": ""
+    },
+    "lead": 0.5,
+    "pad": 1.6
+  },
+  {
+    "id": "close",
+    "say": "Genghis Khan left no city of his own, no library, no monument he built himself. He left a law code, a postal service across five thousand kilometres, and a hundred years in which the two ends of the known world could finally hear each other — from the one place in Eurasia that had nothing anyone wanted.",
+    "vis": {
+      "kind": "footage",
+      "clip": "steppe_return",
+      "fit": "bleed",
+      "push": 0.11,
+      "credit": "Storm Over Asia · 1928"
+    },
+    "lead": 1.2,
+    "pad": 2.6
+  },
+  {
+    "id": "end",
+    "say": "",
+    "vis": {
+      "kind": "end"
+    },
+    "lead": 0,
+    "pad": 9
+  }
+]

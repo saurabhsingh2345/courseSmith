@@ -1,0 +1,222 @@
+{
+ "fps": 30,
+ "totalFrames": 8720,
+ "beats": [
+  {
+   "id": "open-steppe",
+   "startFrame": 0,
+   "durFrames": 435,
+   "leadFrames": 96,
+   "speechFrames": 321,
+   "say": "There is a belt of grassland that runs almost unbroken from Hungary to the Pacific. No cities. No walls. For thousands of years the people who lived on it had nothing an empire would want."
+  },
+  {
+   "id": "open-turn",
+   "startFrame": 435,
+   "durFrames": 106,
+   "leadFrames": 12,
+   "speechFrames": 52,
+   "say": "Then one of them took almost all of it."
+  },
+  {
+   "id": "title",
+   "startFrame": 541,
+   "durFrames": 138,
+   "leadFrames": 0,
+   "speechFrames": 0,
+   "say": ""
+  },
+  {
+   "id": "steppe-cold",
+   "startFrame": 679,
+   "durFrames": 239,
+   "leadFrames": 30,
+   "speechFrames": 187,
+   "say": "The Mongolian steppe is high, dry and cold. Winter reaches forty below. Almost nothing grows that a person can eat."
+  },
+  {
+   "id": "steppe-eat",
+   "startFrame": 918,
+   "durFrames": 302,
+   "leadFrames": 15,
+   "speechFrames": 265,
+   "say": "So the Mongols ate what the grass could feed \u2014 sheep, goats, horses \u2014 and moved when the grass ran out. A family\u2019s entire house folded onto a cart."
+  },
+  {
+   "id": "steppe-ride",
+   "startFrame": 1220,
+   "durFrames": 246,
+   "leadFrames": 12,
+   "speechFrames": 212,
+   "say": "A child learned to ride before they could walk well, and to shoot from the saddle soon after. None of that was training for war. It was how you ate."
+  },
+  {
+   "id": "born",
+   "startFrame": 1466,
+   "durFrames": 333,
+   "leadFrames": 36,
+   "speechFrames": 267,
+   "say": "Around 1162, near the Onon river, a boy was born into one of the dozens of clans fighting each other over this grass. He was called Tem\u00fcjin."
+  },
+  {
+   "id": "hard-years",
+   "startFrame": 1799,
+   "durFrames": 388,
+   "leadFrames": 15,
+   "speechFrames": 351,
+   "say": "When he was nine, rivals poisoned his father. His own clan abandoned the family to the winter. He survived on marmots and roots, and at one point he was captured and held in a wooden collar by the people who had cast him out."
+  },
+  {
+   "id": "merit",
+   "startFrame": 2187,
+   "durFrames": 430,
+   "leadFrames": 24,
+   "speechFrames": 382,
+   "say": "What he built afterwards was shaped by that. He gathered men who owed nothing to any clan, and he promoted them on loyalty and competence instead of birth. On the steppe, that was close to heresy."
+  },
+  {
+   "id": "kurultai",
+   "startFrame": 2617,
+   "durFrames": 285,
+   "leadFrames": 18,
+   "speechFrames": 219,
+   "say": "By 1206 he had beaten, absorbed or destroyed every rival. The tribes assembled and gave him a title: Chinggis Khan."
+  },
+  {
+   "id": "machine-in",
+   "startFrame": 2902,
+   "durFrames": 184,
+   "leadFrames": 15,
+   "speechFrames": 146,
+   "say": "He now commanded the best light cavalry in the world, and had nothing left on the steppe to spend it on."
+  },
+  {
+   "id": "decimal",
+   "startFrame": 3086,
+   "durFrames": 467,
+   "leadFrames": 30,
+   "speechFrames": 401,
+   "say": "The army was built in tens. Ten men made an arban, and the ten were answerable for each other. Ten arbans made a zuun; ten zuun a myangan; ten myangan a t\u00fcmen \u2014 ten thousand riders moving on one instruction."
+  },
+  {
+   "id": "kit",
+   "startFrame": 3553,
+   "durFrames": 427,
+   "leadFrames": 27,
+   "speechFrames": 370,
+   "say": "Each rider carried a composite bow of horn, wood and sinew, and rode with several spare horses. An army whose food walks beside it does not need supply lines \u2014 and it could cover ground no settled army could match."
+  },
+  {
+   "id": "yam",
+   "startFrame": 3980,
+   "durFrames": 388,
+   "leadFrames": 24,
+   "speechFrames": 334,
+   "say": "Orders moved faster than the army. Relay stations, the yam, ran the length of the empire with fresh horses standing ready at each one, so a messenger could hand off and keep going day and night."
+  },
+  {
+   "id": "map-china",
+   "startFrame": 4368,
+   "durFrames": 333,
+   "leadFrames": 36,
+   "speechFrames": 274,
+   "say": "In 1209 they turned south. Western Xia first, then the Jin dynasty of northern China. In 1215 Zhongdu \u2014 the city that is now Beijing \u2014 fell."
+  },
+  {
+   "id": "beijing-art",
+   "startFrame": 4701,
+   "durFrames": 162,
+   "leadFrames": 0,
+   "speechFrames": 0,
+   "say": ""
+  },
+  {
+   "id": "map-west",
+   "startFrame": 4863,
+   "durFrames": 375,
+   "leadFrames": 24,
+   "speechFrames": 329,
+   "say": "In 1218 he sent a trade caravan west into the Khwarazmian empire. Its governor had the merchants killed. Genghis sent envoys to demand redress, and the shah executed them too."
+  },
+  {
+   "id": "map-khwarazm",
+   "startFrame": 5238,
+   "durFrames": 341,
+   "leadFrames": 12,
+   "speechFrames": 293,
+   "say": "Within three years the Khwarazmian empire no longer existed. Bukhara, Samarkand, Urgench, Nishapur \u2014 the great cities of Central Asia were taken one after another."
+  },
+  {
+   "id": "cost",
+   "startFrame": 5579,
+   "durFrames": 309,
+   "leadFrames": 30,
+   "speechFrames": 257,
+   "say": "The sieges were the argument. A city that opened its gates was taxed. A city that resisted was destroyed thoroughly enough that the next city would not."
+  },
+  {
+   "id": "cost-stat",
+   "startFrame": 5888,
+   "durFrames": 300,
+   "leadFrames": 24,
+   "speechFrames": 240,
+   "say": "Estimates of the dead across the whole conquest run from a few million to forty. Nobody knows. Some regions did not recover their population for centuries."
+  },
+  {
+   "id": "death",
+   "startFrame": 6188,
+   "durFrames": 472,
+   "leadFrames": 42,
+   "speechFrames": 388,
+   "say": "He died in August 1227, on campaign, of something ordinary \u2014 a fall, or illness. He was carried back to the steppe and buried where his people made certain nobody would find him. The grave has never been located."
+  },
+  {
+   "id": "map-after",
+   "startFrame": 6660,
+   "durFrames": 368,
+   "leadFrames": 30,
+   "speechFrames": 314,
+   "say": "The empire did not stop. Under his sons and grandsons it reached the Danube, the Persian Gulf and the sea off Japan \u2014 the largest continuous land empire there has ever been."
+  },
+  {
+   "id": "pax",
+   "startFrame": 7028,
+   "durFrames": 309,
+   "leadFrames": 27,
+   "speechFrames": 259,
+   "say": "And then something nobody planned. With one authority from Korea to the Black Sea, the roads were safe. For roughly a century a merchant could cross Asia end to end."
+  },
+  {
+   "id": "ideas",
+   "startFrame": 7337,
+   "durFrames": 268,
+   "leadFrames": 12,
+   "speechFrames": 233,
+   "say": "Paper money, printing, gunpowder, star charts, maps \u2014 they travelled those roads in both directions, faster than they ever had."
+  },
+  {
+   "id": "plague",
+   "startFrame": 7605,
+   "durFrames": 162,
+   "leadFrames": 15,
+   "speechFrames": 99,
+   "say": "So did the plague. The Black Death took the same roads west."
+  },
+  {
+   "id": "close",
+   "startFrame": 7767,
+   "durFrames": 683,
+   "leadFrames": 36,
+   "speechFrames": 569,
+   "say": "Genghis Khan left no city of his own, no library, no monument he built himself. He left a law code, a postal service across five thousand kilometres, and a hundred years in which the two ends of the known world could finally hear each other \u2014 from the one place in Eurasia that had nothing anyone wanted."
+  },
+  {
+   "id": "end",
+   "startFrame": 8450,
+   "durFrames": 270,
+   "leadFrames": 0,
+   "speechFrames": 0,
+   "say": ""
+  }
+ ]
+}
